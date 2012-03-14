@@ -1,7 +1,15 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 import javax.microedition.lcdui.*;
 import javax.microedition.midlet.MIDlet;
 import org.netbeans.microedition.util.SimpleCancellableTask;
 
+/**
+ * @author mohamed
+ */
 public class calculator extends MIDlet implements CommandListener, ItemCommandListener {
     
         private boolean midletPaused = false;
@@ -112,6 +120,9 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
     }//GEN-BEGIN:|7-commandAction|6|
 //</editor-fold>//GEN-END:|7-commandAction|6|
 
+
+
+
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: form ">//GEN-BEGIN:|20-getter|0|20-preInit
     /**
      * Returns an initialized instance of form component.
@@ -146,6 +157,14 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
         return FieldA;
     }
 //</editor-fold>//GEN-END:|23-getter|2|
+
+
+
+
+
+
+
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|26-getter|0|26-preInit
     /**
@@ -295,6 +314,8 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
     }//GEN-BEGIN:|8-itemCommandAction|16|
 //</editor-fold>//GEN-END:|8-itemCommandAction|16|
 
+
+
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: itemCommand ">//GEN-BEGIN:|47-getter|0|47-preInit
     /**
      * Returns an initialized instance of itemCommand component.
@@ -346,6 +367,8 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
         return font;
     }
 //</editor-fold>//GEN-END:|51-getter|2|
+
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: multiply ">//GEN-BEGIN:|55-getter|0|55-preInit
     /**
@@ -429,6 +452,8 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
     }
 //</editor-fold>//GEN-END:|61-getter|2|
 
+
+
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backSpace ">//GEN-BEGIN:|65-getter|0|65-preInit
     /**
      * Returns an initialized instance of backSpace component.
@@ -438,7 +463,7 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
     public StringItem getBackSpace() {
         if (backSpace == null) {//GEN-END:|65-getter|0|65-preInit
             // write pre-init user code here
-            backSpace = new StringItem("\\", null, Item.BUTTON);//GEN-BEGIN:|65-getter|1|65-postInit
+            backSpace = new StringItem("backspace", "\\", Item.BUTTON);//GEN-BEGIN:|65-getter|1|65-postInit
             backSpace.addCommand(getItemCommand());
             backSpace.setItemCommandListener(this);
             backSpace.setDefaultCommand(getItemCommand());
@@ -465,6 +490,8 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
 
     public void startApp() {
             initialize();
+            startMIDlet();
+   initialize();
             startMIDlet();
             minus.setDefaultCommand(new Command("Set", Command.ITEM, 1));
             plus.setDefaultCommand(new Command("Set", Command.ITEM, 1));
@@ -552,6 +579,8 @@ public class calculator extends MIDlet implements CommandListener, ItemCommandLi
                 result += pow(temp,calculate(x));
                 flag = true;
             }
+            else if(x.charAt(i)!=1||x.charAt(i)!=2||x.charAt(i)!=3||x.charAt(i)!=4||x.charAt(i)!=5||x.charAt(i)!=6||x.charAt(i)!=7||x.charAt(i)!=8||x.charAt(i)!=9||x.charAt(i)!=0)
+               FieldA.setString(""); 
         }
         if(flag==true)
         return result;
