@@ -21,6 +21,8 @@ public class Midlet extends MIDlet {
     boolean flagb = true;
     boolean flagc = true;
     boolean flagd = true;
+    boolean flage = false;
+    //int neg = -1;
     
     
     
@@ -38,7 +40,7 @@ public class Midlet extends MIDlet {
         cont.setLayout(new GridLayout(3, 2));
        
         
-        final TextField input1 = new TextField();
+        final TextField input1 = new TextField("0");
         input1.setHint("First number here");
         input1.setConstraint(TextField.NUMERIC);
         
@@ -75,8 +77,10 @@ public class Midlet extends MIDlet {
                 old="";
                 out.setText("0");
                 op.setText("");
+                input1.setText("0");
                 flag = true;
                 flaga=true;
+                flage=false;
             }
         });
         
@@ -135,12 +139,38 @@ public class Midlet extends MIDlet {
             public void actionPerformed(ActionEvent ae)  {
 
                     try{
+                       // if(flage)
                         if(flagc){
                         operator = 2;
                         if(flag)
-                           result += Double.parseDouble(input1.getText()); 
+                        {
+
+                            if(Integer.parseInt(input1.getText())==0)
+                            {
+                                flage=true;
+                            }
+                            
+                            
+                            else{
+                                if(flage==true)
+                             {
+                                  result =-1* Double.parseDouble(input1.getText());
+                                out.setText(result+"");
+                                  flage=false;
+                             }
+                             else
+                             {
+                                  result += Double.parseDouble(input1.getText());
+                                  out.setText(result+"");
+                             }
+                            }
+                            
+                                   
+                        }
+                           
                         else
-                            result -= Double.parseDouble(input1.getText());
+                        result -= Double.parseDouble(input1.getText());
+                        //out.setText(result+"");
                         flag=false;
                         flaga=true;
                         flagb=true;
@@ -149,6 +179,7 @@ public class Midlet extends MIDlet {
                         }
                     }
                     catch(NumberFormatException e){
+                        //result -= Double.parseDouble(input1.getText());
                         out.setText("input error");
                     }
             }
@@ -215,6 +246,7 @@ public class Midlet extends MIDlet {
                            flagc=true;
                            op.setText(old+"\n"+"-"+"\n"+input1.getText());
                            old=result+""; 
+                           //result = -1*Double.parseDouble(input1.getText());
                            out.setText(result+"");
                        }
                        else
