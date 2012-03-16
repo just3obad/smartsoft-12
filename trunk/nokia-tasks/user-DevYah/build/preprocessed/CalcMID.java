@@ -3,10 +3,10 @@
  * and open the template in the editor.
  */
 
-import java.io.PrintStream;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import java.util.Enumeration.*;
+import org.netbeans.microedition.lcdui.SplashScreen;
     
 /**
  * @author Yahia
@@ -17,7 +17,7 @@ public class CalcMID extends MIDlet implements CommandListener {
     private boolean midletPaused = false;
     private double firstNumber = 0;
     private double secondNumber = 0;
-    private int operation = -1; //ADD=1, SUB=2, MULT=3, DIV=4
+    private int operation = -1; //ADD=0, SUB=1, MULT=2, DIV=3
     private String result = "N/A";
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
@@ -26,11 +26,14 @@ public class CalcMID extends MIDlet implements CommandListener {
     private List OperationScreen;
     private Form ResultScreen;
     private StringItem stringItem;
+    private SplashScreen splashScreen;
     private Command exitCommand;
     private Command Next;
     private Command cancelCommand;
     private Command Next3;
     private Command copytofirst;
+    private Command backCommand;
+    private Command cancelCommand1;
     //</editor-fold>//GEN-END:|fields|0|
     /**
      * The CalcMID constructor.
@@ -100,45 +103,43 @@ public class CalcMID extends MIDlet implements CommandListener {
      */
     public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
-        System.out.println("Yooo");
-        System.out.println("first number is  " + firstNumber + 
-                "  second number is " + secondNumber + " operation is "
-                + operation +  "  result is " + result); 
-        if (displayable == FirstNumberScreen) {//GEN-BEGIN:|7-commandAction|1|32-preAction
-            if (command == Next) {//GEN-END:|7-commandAction|1|32-preAction
+        try{
+            if (displayable == FirstNumberScreen) {//GEN-BEGIN:|7-commandAction|1|32-preAction
+                if (command == Next) {//GEN-END:|7-commandAction|1|32-preAction
                 // write pre-action user code here
+                if (FirstNumberScreen.getString().length() == 0)
+                    FirstNumberScreen.setString("0");
+                
                 firstNumber = Double.parseDouble(FirstNumberScreen.getString());
-                System.out.println("first number is    " + firstNumber);
                 switchDisplayable(null, getOperationScreen());//GEN-LINE:|7-commandAction|2|32-postAction
                 // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|3|29-preAction
+                } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|3|29-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|4|29-postAction
+                    exitMIDlet();//GEN-LINE:|7-commandAction|4|29-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|5|38-preAction
-        } else if (displayable == OperationScreen) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|5|38-preAction
+                }//GEN-BEGIN:|7-commandAction|5|38-preAction
+            } else if (displayable == OperationScreen) {
+                if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|5|38-preAction
                 // write pre-action user code here
                 operation = OperationScreen.getSelectedIndex();
-                System.out.println("operation is   " + operation);
                 if (SecondNumberScreen != null)
                     SecondNumberScreen.delete(0, SecondNumberScreen.size());
 
                 OperationScreenAction();//GEN-LINE:|7-commandAction|6|38-postAction
                 // write post-action user code here
-            } else if (command == cancelCommand) {//GEN-LINE:|7-commandAction|7|85-preAction
+                } else if (command == cancelCommand) {//GEN-LINE:|7-commandAction|7|85-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFirstNumberScreen());//GEN-LINE:|7-commandAction|8|85-postAction
+                    switchDisplayable(null, getFirstNumberScreen());//GEN-LINE:|7-commandAction|8|85-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|80-preAction
-        } else if (displayable == ResultScreen) {
-            if (command == cancelCommand) {//GEN-END:|7-commandAction|9|80-preAction
+                }//GEN-BEGIN:|7-commandAction|9|80-preAction
+            } else if (displayable == ResultScreen) {
+                if (command == cancelCommand) {//GEN-END:|7-commandAction|9|80-preAction
                 // write pre-action user code here
                FirstNumberScreen.delete(0, FirstNumberScreen.size());
                 
-                switchDisplayable(null, getFirstNumberScreen());//GEN-LINE:|7-commandAction|10|80-postAction
+               switchDisplayable(null, getFirstNumberScreen());//GEN-LINE:|7-commandAction|10|80-postAction
                 // write post-action user code here
-            } else if (command == copytofirst) {//GEN-LINE:|7-commandAction|11|92-preAction
+                } else if (command == copytofirst) {//GEN-LINE:|7-commandAction|11|92-preAction
                 // write pre-action user code here
                 if (result.equals("N/A"))
                     firstNumber = 0;
@@ -146,17 +147,19 @@ public class CalcMID extends MIDlet implements CommandListener {
                     firstNumber = Double.parseDouble(result);
                 switchDisplayable(null, getOperationScreen());//GEN-LINE:|7-commandAction|12|92-postAction
                 // write post-action user code here
-            } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|13|79-preAction
+                } else if (command == exitCommand) {//GEN-LINE:|7-commandAction|13|79-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|14|79-postAction
+                    exitMIDlet();//GEN-LINE:|7-commandAction|14|79-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|54-preAction
-        } else if (displayable == SecondNumberScreen) {
-            if (command == Next3) {//GEN-END:|7-commandAction|15|54-preAction
+                }//GEN-BEGIN:|7-commandAction|15|54-preAction
+            } else if (displayable == SecondNumberScreen) {
+                if (command == Next3) {//GEN-END:|7-commandAction|15|54-preAction
                 // write pre-action user code here
-                secondNumber = Double.parseDouble(SecondNumberScreen.getString());
-                System.out.println("second number is   " + secondNumber);
-                 switch(operation)
+                if (SecondNumberScreen.getString().length() == 0)
+                    SecondNumberScreen.setString("0");
+
+                    secondNumber = Double.parseDouble(SecondNumberScreen.getString());
+                switch(operation)
                 {
                     case 0: result = ""+(firstNumber + secondNumber);
                         break;
@@ -170,34 +173,36 @@ public class CalcMID extends MIDlet implements CommandListener {
                         else 
                             result = "N/A";
                 }
-                System.out.println("result is    " + result);
-                stringItem = null;
-                ResultScreen = null;
+                stringItem = null; // to get updated
+                ResultScreen = null; // to get updated
                 switchDisplayable(null, getResultScreen());//GEN-LINE:|7-commandAction|16|54-postAction
                 // write post-action user code here
                
-            } else if (command == cancelCommand) {//GEN-LINE:|7-commandAction|17|46-preAction
+                } else if (command == cancelCommand) {//GEN-LINE:|7-commandAction|17|46-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFirstNumberScreen());//GEN-LINE:|7-commandAction|18|46-postAction
+                    switchDisplayable(null, getFirstNumberScreen());//GEN-LINE:|7-commandAction|18|46-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|19|7-postCommandAction
-        }//GEN-END:|7-commandAction|19|7-postCommandAction
+                }//GEN-BEGIN:|7-commandAction|19|99-preAction
+            } else if (displayable == splashScreen) {
+                if (command == SplashScreen.DISMISS_COMMAND) {//GEN-END:|7-commandAction|19|99-preAction
+                    // write pre-action user code here
+//GEN-LINE:|7-commandAction|20|99-postAction
+                    // write post-action user code here
+                } else if (command == cancelCommand) {//GEN-LINE:|7-commandAction|21|104-preAction
+                    // write pre-action user code here
+                    switchDisplayable(null, getFirstNumberScreen());//GEN-LINE:|7-commandAction|22|104-postAction
+                    // write post-action user code here
+                }//GEN-BEGIN:|7-commandAction|23|7-postCommandAction
+            }//GEN-END:|7-commandAction|23|7-postCommandAction
         // write post-action user code here
-        System.out.println("first number is  " + firstNumber + 
-                "  second number is " + secondNumber + " operation is "
-                + operation +  "  result is " + result); 
-    }//GEN-BEGIN:|7-commandAction|20|
-    //</editor-fold>//GEN-END:|7-commandAction|20|
-
-
-
-
-
-
-
-
-
-
+        }
+        catch(Exception e)
+        {
+            System.out.println("exception handled");
+            switchDisplayable(null, getSplashScreen());            
+        }
+    }//GEN-BEGIN:|7-commandAction|24|
+    //</editor-fold>//GEN-END:|7-commandAction|24|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|20-getter|0|20-preInit
     /**
@@ -317,8 +322,6 @@ public class CalcMID extends MIDlet implements CommandListener {
     }
     //</editor-fold>//GEN-END:|31-getter|2|
 
-
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: cancelCommand ">//GEN-BEGIN:|45-getter|0|45-preInit
     /**
      * Returns an initiliazed instance of cancelCommand component.
@@ -334,8 +337,6 @@ public class CalcMID extends MIDlet implements CommandListener {
     }
     //</editor-fold>//GEN-END:|45-getter|2|
 
-
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Next3 ">//GEN-BEGIN:|53-getter|0|53-preInit
     /**
      * Returns an initiliazed instance of Next3 component.
@@ -350,10 +351,6 @@ public class CalcMID extends MIDlet implements CommandListener {
         return Next3;
     }
     //</editor-fold>//GEN-END:|53-getter|2|
-
-
-
-
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ResultScreen ">//GEN-BEGIN:|71-getter|0|71-preInit
     /**
@@ -374,16 +371,6 @@ public class CalcMID extends MIDlet implements CommandListener {
     }
     //</editor-fold>//GEN-END:|71-getter|2|
 
-
-
-
-
-
-
-
-
-
-
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|88-getter|0|88-preInit
     /**
      * Returns an initiliazed instance of stringItem component.
@@ -398,10 +385,6 @@ public class CalcMID extends MIDlet implements CommandListener {
         return stringItem;
     }
     //</editor-fold>//GEN-END:|88-getter|2|
-
-
-
-
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: copytofirst ">//GEN-BEGIN:|91-getter|0|91-preInit
     /**
@@ -418,7 +401,54 @@ public class CalcMID extends MIDlet implements CommandListener {
     }
     //</editor-fold>//GEN-END:|91-getter|2|
 
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: splashScreen ">//GEN-BEGIN:|97-getter|0|97-preInit
+    /**
+     * Returns an initiliazed instance of splashScreen component.
+     * @return the initialized component instance
+     */
+    public SplashScreen getSplashScreen() {
+        if (splashScreen == null) {//GEN-END:|97-getter|0|97-preInit
+            // write pre-init user code here
+            splashScreen = new SplashScreen(getDisplay());//GEN-BEGIN:|97-getter|1|97-postInit
+            splashScreen.setTitle("Error");
+            splashScreen.addCommand(getCancelCommand());
+            splashScreen.setCommandListener(this);
+            splashScreen.setText("check your input :/");//GEN-END:|97-getter|1|97-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|97-getter|2|
+        return splashScreen;
+    }
+    //</editor-fold>//GEN-END:|97-getter|2|
 
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|100-getter|0|100-preInit
+    /**
+     * Returns an initiliazed instance of backCommand component.
+     * @return the initialized component instance
+     */
+    public Command getBackCommand() {
+        if (backCommand == null) {//GEN-END:|100-getter|0|100-preInit
+            // write pre-init user code here
+            backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|100-getter|1|100-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|100-getter|2|
+        return backCommand;
+    }
+    //</editor-fold>//GEN-END:|100-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: cancelCommand1 ">//GEN-BEGIN:|102-getter|0|102-preInit
+    /**
+     * Returns an initiliazed instance of cancelCommand1 component.
+     * @return the initialized component instance
+     */
+    public Command getCancelCommand1() {
+        if (cancelCommand1 == null) {//GEN-END:|102-getter|0|102-preInit
+            // write pre-init user code here
+            cancelCommand1 = new Command("Cancel", Command.CANCEL, 0);//GEN-LINE:|102-getter|1|102-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|102-getter|2|
+        return cancelCommand1;
+    }
+    //</editor-fold>//GEN-END:|102-getter|2|
 
     /**
      * Returns a display instance.
