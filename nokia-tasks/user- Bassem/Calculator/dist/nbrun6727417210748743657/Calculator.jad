@@ -1,0 +1,11 @@
+MIDlet-1: HelloMIDlet, , hello.HelloMIDlet
+MIDlet-2: Calc3akeeeem, , hello.Calc3akeeeem
+MIDlet-3: calculator, , hello.calculator
+MIDlet-4: bhb, ,hello.bhb
+MIDlet-Jar-Size: 850366
+MIDlet-Jar-URL: Calculator.jar
+MIDlet-Name: Calculator
+MIDlet-Vendor: Vendor
+MIDlet-Version: 1.0
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.1
