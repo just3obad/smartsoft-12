@@ -1,3 +1,5 @@
+MIDlet-3: Calculator2,,hello.Calculator2
+MIDlet-2: VisualMIDlet, , hello.VisualMIDlet
 MIDlet-1: Calculator,,hello.Calculator
 MIDlet-Vendor: Vendor
 MIDlet-Name: Calc
