@@ -14,16 +14,20 @@ public class Midlet extends MIDlet {
     Form mainForm;
     double result=0;
     String old="";
-    boolean flag = true;
     int operator ;
     int counter=0;
+    boolean flag = true;
+    boolean flaga = true;
+    boolean flagb = true;
+    boolean flagc = true;
+    boolean flagd = true;
     
     
     
     public void startApp() {
          Display.init(this);
          createMainUI();
-        // createTheme();
+         createTheme();
          
     }
     public void createMainUI(){
@@ -45,6 +49,7 @@ public class Midlet extends MIDlet {
         op.setPreferredH(100);
         
         final Label out = new Label("Result here");
+       
         
         
         
@@ -67,8 +72,11 @@ public class Midlet extends MIDlet {
             public void actionPerformed(ActionEvent ae) {
                 input1.clear();
                 result = 0;
+                old="";
                 out.setText("0");
                 op.setText("");
+                flag = true;
+                flaga=true;
             }
         });
         
@@ -77,10 +85,16 @@ public class Midlet extends MIDlet {
             public void actionPerformed(ActionEvent ae)  {
 
                    try{
+                       if(flaga){
                         operator = 0;
                         result += Double.parseDouble(input1.getText());
                         flag=false;
-  
+                        flaga=false;
+                        flagb=true;
+                        flagc=true;
+                        flagd=true;
+                       }
+
                    }
                    catch(Exception e){
                        out.setText("Input Error");
@@ -95,11 +109,20 @@ public class Midlet extends MIDlet {
             public void actionPerformed(ActionEvent ae)  {
 
                     try{
+                        if(flagb){
                         operator = 1;
+                        if(Double.parseDouble(input1.getText())!=0)
                         result /= Double.parseDouble(input1.getText());
+                        else
+                        out.setText("Arithmatic Error");    
                         flag=false;
-                       
+                        flaga=true;
+                        flagb=false;
+                        flagc=true;
+                        flagd=true;
+                        }
                     }
+                       
                     catch(NumberFormatException e){
                         out.setText("input error");
                     }
@@ -112,10 +135,18 @@ public class Midlet extends MIDlet {
             public void actionPerformed(ActionEvent ae)  {
 
                     try{
+                        if(flagc){
                         operator = 2;
-                        result -= Double.parseDouble(input1.getText());
+                        if(flag)
+                           result += Double.parseDouble(input1.getText()); 
+                        else
+                            result -= Double.parseDouble(input1.getText());
                         flag=false;
-                      
+                        flaga=true;
+                        flagb=true;
+                        flagc=false;
+                        flagd=true;
+                        }
                     }
                     catch(NumberFormatException e){
                         out.setText("input error");
@@ -129,10 +160,15 @@ public class Midlet extends MIDlet {
             public void actionPerformed(ActionEvent ae)  {
 
                     try{
+                        if(flagd){
                          operator = 3;
                          result *= Double.parseDouble(input1.getText());
-                         flag=false;
-                         
+                        flag=false;
+                        flaga=true;
+                        flagb=true;
+                        flagc=true;
+                        flagd=false;
+                        }
                     }
                     catch(NumberFormatException e){
                         out.setText("input error");
@@ -145,68 +181,58 @@ public class Midlet extends MIDlet {
            eq.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
-
-                switch(operator)
-                {
-                    case 0:
-                        if(flag == true)
-                        {
-                          op.setText("");  
-                          
-                          
-                        }
-                        else{
-                        op.setText(old+"\n"+"+"+"\n"+input1.getText());
-                        old=result+"";
-                        
-                        }
-                        break;
-                    case 1:
-                        if(flag == true)
-                        {
-                          op.setText("");  
-                         
-                        }
-                        else{
-                            
-                        op.setText(old+"\n"+"÷"+"\n"+input1.getText());
-                        old=result+"";
-                        
-                        }
-                        break;
-                    case 2:
-                        if(flag == true)
-                        {
-                          op.setText("");  
-                          
-                        }
-                        else{
-                          
-                        op.setText(old+"\n"+"-"+"\n"+input1.getText());
-                        old=result+""; 
-                        
-                        }
-                        break;
-                    case 3:
-                        if(flag == true)
-                        {
-                          op.setText("");  
-                          
-                        }
-                        else{
-                        
-                        op.setText(old+"\n"+"x"+"\n"+input1.getText());
-                        old=result+"";
-                        
-                        }  
-                        break;
-                     default: op.setText(input1.getText()); 
-                }
-                 
+        
+               if(!flaga){
+                   if(flag)
+                   {
+                     op.setText(input1.getText());  
+                   }
+               flaga=true;
+               op.setText(old+"\n"+"+"+"\n"+input1.getText());
+               old=result+"";
                out.setText(result+"");
-               
-               
- 
+               }
+               else
+               {
+                   if(!flagb)
+                   {
+                       if(flag)
+                   {
+                     op.setText(input1.getText());  
+                   }
+                       flagb=true;
+                       op.setText(old+"\n"+"÷"+"\n"+input1.getText());
+                       old=result+"";
+                       out.setText(result+"");
+                   }
+                   else{
+                       if(!flagc)
+                       {
+                           if(flag)
+                   {
+                     op.setText(input1.getText());  
+                   }
+                           flagc=true;
+                           op.setText(old+"\n"+"-"+"\n"+input1.getText());
+                           old=result+""; 
+                           out.setText(result+"");
+                       }
+                       else
+                       {
+                           if(!flagd)
+                           {
+                               if(flag)
+                   {
+                     op.setText(input1.getText());  
+                   }
+                            flagd=true;
+                            op.setText(old+"\n"+"x"+"\n"+input1.getText());
+                            old=result+"";
+                            out.setText(result+"");
+                           }
+                       }
+                   }
+               }
             }
         });
            
@@ -229,17 +255,17 @@ public class Midlet extends MIDlet {
         
     }
     
-   /* private void createTheme() { 
+   private void createTheme() { 
         try { 
             Resources r; 
-            r = Resources.open("/Theme1.res");
-            UIManager.getInstance().setThemeProps(r.getTheme("Theme1")); 
+            r = Resources.open("/3OBAD.res");
+            UIManager.getInstance().setThemeProps(r.getTheme("3OBAD")); 
            mainForm.refreshTheme(); 
            mainForm.show();
         } catch (Exception e) { 
             e.printStackTrace(); 
         }
-    }*/
+    }
     public void pauseApp() {
     }
     
