@@ -1,5 +1,7 @@
 MIDlet-1: Calculator,,hello.Calculator
-MIDlet-Jar-Size: 814231
+MIDlet-2: VisualMIDlet, , hello.VisualMIDlet
+MIDlet-3: Calculator2,,hello.Calculator2
+MIDlet-Jar-Size: 964978
 MIDlet-Jar-URL: Calc.jar
 MIDlet-Name: Calc
 MIDlet-Vendor: Vendor
