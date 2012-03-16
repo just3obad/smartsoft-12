@@ -143,9 +143,17 @@ public class Calculator extends Midlet{
                     return;
                 }
                 else{
+                    if(resultOut){
+                        resultOut = false;
+                        result = 0;
+                        temp = 0;
+                        lastOperation = 1;
+                        firstScreen = true;
+                    }
                     if(digits.length()<10){
                 digits+=l.getText();
                 firstTime = false;
+                
                     updateTextArea();
                     }
                     
