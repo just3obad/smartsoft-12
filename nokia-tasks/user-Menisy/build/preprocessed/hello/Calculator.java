@@ -24,11 +24,14 @@ import com.sun.lwuit.layouts.BoxLayout;
 
 
 import com.sun.lwuit.layouts.GridLayout;
+import com.sun.lwuit.plaf.UIManager;
+import com.sun.lwuit.util.Resources;
 
 public class Calculator extends Midlet{
       public void startApp() {
          Display.init(this);
          createMainUI();
+         theming();
          
     }
      
@@ -42,6 +45,18 @@ public class Calculator extends Midlet{
       boolean firstScreen = true;
       boolean comeBack = true;
       int lastOperation = 1; //1 add //2 subtract //3 multiply //4 divide 
+      
+      private void theming() { 
+        try { 
+            Resources resc; 
+            resc = Resources.open("/MeniS-Theme.res");
+            UIManager.getInstance().setThemeProps(resc.getTheme("MeniS")); 
+           mainForm.refreshTheme(); 
+           mainForm.show();
+        } catch (Exception e) { 
+            e.printStackTrace(); 
+        }
+    }
     public void createMainUI(){
         mainForm = new Form("Calculator");
        mainForm.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
@@ -58,12 +73,12 @@ public class Calculator extends Midlet{
      //  tf.setInputMode("Numeric");
      
         textarea.setEditable(false);
-        textarea.setPreferredH(100);
+        textarea.setPreferredH(95);
         textarea.setPreferredW(240);
          resultLabel = new Label();
          resultLabel.getStyle().setBgColor(0x808080);
          resultLabel.getStyle().setFgColor(0xFFFFFF);
-        resultLabel.setPreferredH(30);
+        resultLabel.setPreferredH(25);
         resultLabel.setPreferredW(240);
        
         con1.addComponent(textarea);
@@ -230,7 +245,7 @@ public class Calculator extends Midlet{
         mainForm.addComponent(con3);
         mainForm.addComponent(con2);
         mainForm.addCommand(exitCommand);
-        mainForm.show();
+       // mainForm.show();
         
         
         
