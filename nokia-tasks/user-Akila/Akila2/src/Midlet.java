@@ -12,7 +12,6 @@ import com.sun.lwuit.TextField;
 import com.sun.lwuit.events.ActionEvent;
 import com.sun.lwuit.events.ActionListener;
 import com.sun.lwuit.layouts.BoxLayout;
-import com.sun.lwuit.layouts.GridLayout;
 import javax.microedition.midlet.*;
 
 /**
@@ -34,7 +33,7 @@ public class Midlet extends MIDlet {
     }
 
     public void createMainUI() {
-        mainForm = new Form("Calco");
+        mainForm = new Form("My Calculator");
         mainForm.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
         //// A TextField,it is final to be able to use in the action listener part 
         //and in addition i will no change its value later so no problem
@@ -70,9 +69,12 @@ public class Midlet extends MIDlet {
         add.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
+                if(input.getText().length()!=0)
                 op1 = Double.parseDouble(input.getText());
-                System.out.println(op1);
+                //System.out.println(op1);
+                else op1=0;
                 input.setText("");
+                op=0;
                 //output.setText("\n" + "_________");
                 //output.setText("\n" + (op1 + op2));
             }
@@ -80,9 +82,12 @@ public class Midlet extends MIDlet {
         sub.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
+                if(input.getText().length()!=0)
                 op1 = Double.parseDouble(input.getText());
-                System.out.println(op1);
+                //System.out.println(op1);
+                else op1=0;
                 input.setText("");
+                op=1;
                 //output.setText("\n" + "_________");
                 //output.setText("\n" + (op1 + op2));
             }
@@ -90,9 +95,12 @@ public class Midlet extends MIDlet {
         mul.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
+                if(input.getText().length()!=0)
                 op1 = Double.parseDouble(input.getText());
-                System.out.println(op1);
+                else op1=1;
+                //System.out.println(op1);
                 input.setText("");
+                op=2;
                 //output.setText("\n" + "_________");
                 //output.setText("\n" + (op1 + op2));
             }
@@ -100,9 +108,12 @@ public class Midlet extends MIDlet {
         div.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
+                if(input.getText().length()!=0)
                 op1 = Double.parseDouble(input.getText());
-                System.out.println(op1);
+                //System.out.println(op1);
+                else op1=0;              
                 input.setText("");
+                op=3;
                 //output.setText("\n" + "_________");
                 //output.setText("\n" + (op1 + op2));
             }
@@ -120,7 +131,7 @@ public class Midlet extends MIDlet {
         dot.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
-                if (input.getText().length() != 0) {
+                if (input.getText().length() != 0 && input.getText().replace('.','.')) {
                     input.setText(input.getText() + ".");
                 } else {
                     input.setText("0.");
@@ -140,7 +151,7 @@ public class Midlet extends MIDlet {
 
             public void actionPerformed(ActionEvent ae) {
                 op2=Double.parseDouble(input.getText());
-                output.setText("\n"+op2);
+                output.setText("\n"+op2);                
                 switch(op){
                     case 0: input.setText(""+(op1+op2)); break;
                     case 1: input.setText(""+(op1-op2)); break;
@@ -154,7 +165,9 @@ public class Midlet extends MIDlet {
         del.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
+                if(input.getText().length()!=0)
                 input.setText(input.getText().substring(0,((input.getText()).length()-1)));
+                else input.setText("");
             }
         });
         
