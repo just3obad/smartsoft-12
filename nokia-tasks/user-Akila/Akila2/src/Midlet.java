@@ -131,7 +131,7 @@ public class Midlet extends MIDlet {
         dot.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent ae) {
-                if (input.getText().length() != 0 && input.getText().replace('.','.')) {
+                if (input.getText().length() != 0) {
                     input.setText(input.getText() + ".");
                 } else {
                     input.setText("0.");
