@@ -1,0 +1,38 @@
+1806 [2012-04-16 13:44:24,294] - DEBUG - singleton - Checking for another running instance...
+1806 [2012-04-16 13:44:27,206] - INFO - zeitgeist.sql - Using database: /home/kareem/.local/share/zeitgeist/activity.sqlite
+1806 [2012-04-16 13:44:27,313] - DEBUG - zeitgeist.sql - Updating sql schema
+1806 [2012-04-16 13:44:33,690] - INFO - zeitgeist.sql - DB set up in 6483.73007774ms
+1806 [2012-04-16 13:44:33,776] - DEBUG - zeitgeist.extension - Searching for system extensions in: /usr/share/zeitgeist/_zeitgeist/engine/extensions
+1806 [2012-04-16 13:44:33,858] - DEBUG - zeitgeist.extension - Searching for user extensions in: /home/kareem/.local/share/zeitgeist/extensions
+1806 [2012-04-16 13:44:38,213] - DEBUG - zeitgeist.extension - No extra extensions
+1806 [2012-04-16 13:44:38,215] - DEBUG - zeitgeist.extension - Found extensions: [<class '_zeitgeist.engine.extensions.blacklist.Blacklist'>, <class '_zeitgeist.engine.extensions.datasource_registry.DataSourceRegistry'>, <class '_zeitgeist.engine.extensions.fts.SearchEngineExtension'>, <class '_zeitgeist.engine.extensions.storagemonitor.StorageMonitor'>]
+1806 [2012-04-16 13:44:38,215] - DEBUG - zeitgeist.extension - Loading extension 'Blacklist'
+1806 [2012-04-16 13:44:38,216] - DEBUG - zeitgeist.blacklist - No existing blacklist config found
+1806 [2012-04-16 13:44:38,235] - DEBUG - zeitgeist.extension - Loading extension 'DataSourceRegistry'
+1806 [2012-04-16 13:44:38,319] - DEBUG - zeitgeist.datasource_registry - No existing data-source data found.
+1806 [2012-04-16 13:44:38,407] - DEBUG - zeitgeist.extension - Loading extension 'SearchEngineExtension'
+1806 [2012-04-16 13:44:38,414] - DEBUG - zeitgeist.fts - Opening full text index: /home/kareem/.local/share/zeitgeist/fts.index
+1806 [2012-04-16 13:44:39,294] - DEBUG - zeitgeist.extension - Loading extension 'StorageMonitor'
+1806 [2012-04-16 13:44:40,355] - DEBUG - zeitgeist.storagemonitor - Creating NetworkManager network monitor
+1806 [2012-04-16 13:44:40,456] - DEBUG - zeitgeist.storagemonitor - NetworkManager network state: 70
+1806 [2012-04-16 13:44:40,458] - DEBUG - zeitgeist.storagemonitor - Setting storage medium net 'Internet' as available
+1806 [2012-04-16 13:44:40,545] - INFO - root - Trying to start the datahub
+1806 [2012-04-16 13:44:40,916] - DEBUG - root - Running datahub (/usr/bin/zeitgeist-datahub) with PID=1916
+1806 [2012-04-16 13:44:40,948] - INFO - root - Starting Zeitgeist service...
+1806 [2012-04-16 13:44:41,121] - INFO - zeitgeist.fts - Index must be upgraded. Doing full rebuild
+1806 [2012-04-16 13:44:41,160] - DEBUG - zeitgeist.engine - Found 0 events in 0.036441s
+1806 [2012-04-16 13:44:41,557] - INFO - zeitgeist.fts - Preparing to rebuild index with 0 events
+1806 [2012-04-16 13:44:42,074] - DEBUG - zeitgeist.fts - Committing FTS index
+1806 [2012-04-16 13:55:05,315] - DEBUG - zeitgeist.fts - Search '(ter*) AND ((zgem:http://www.zeitgeist-project.com/ontologies/2010/01/27/zg#UserActivity) AND (zgsu:file_*))' gave 0 hits in 382.046937943ms
+1806 [2012-04-16 13:55:23,678] - DEBUG - zeitgeist.engine - Inserted 1 events out of 1 in 2.537331s
+1806 [2012-04-16 13:55:23,750] - DEBUG - zeitgeist.notify - Checking monitor :1.127/org/gnome/zeitgeist/monitor/0
+1806 [2012-04-16 13:55:23,919] - DEBUG - zeitgeist.fts - Indexing 'application://gnome-terminal.desktop'
+1806 [2012-04-16 13:55:24,985] - DEBUG - zeitgeist.fts - Committing FTS index
+1806 [2012-04-16 14:33:29,499] - DEBUG - zeitgeist.engine - Inserted 1 events out of 1 in 1.829179s
+1806 [2012-04-16 14:33:30,451] - DEBUG - zeitgeist.fts - Indexing 'application://ubuntu-software-center.desktop'
+1806 [2012-04-16 14:33:30,696] - DEBUG - zeitgeist.notify - Checking monitor :1.127/org/gnome/zeitgeist/monitor/0
+1806 [2012-04-16 14:33:32,196] - DEBUG - zeitgeist.fts - Committing FTS index
+1806 [2012-04-16 14:34:11,680] - DEBUG - zeitgeist.fts - Indexing 'application://ubuntu-software-center.desktop'
+1806 [2012-04-16 14:34:11,760] - DEBUG - zeitgeist.engine - Inserted 1 events out of 1 in 0.116460s
+1806 [2012-04-16 14:34:11,771] - DEBUG - zeitgeist.notify - Checking monitor :1.127/org/gnome/zeitgeist/monitor/0
+1806 [2012-04-16 14:34:12,261] - DEBUG - zeitgeist.fts - Committing FTS index
