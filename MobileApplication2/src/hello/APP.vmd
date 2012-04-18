@@ -8,8 +8,8 @@
                     <Property name="start" typeID="C#MobileDeviceStartEventSource" value="R3"/>
                     <Property name="resume" typeID="C#MobileDeviceResumeEventSource" value="R4"/>
                     <Component componentID="3" typeID="C#MobileDeviceStartEventSource">
-                        <Property name="eventHandler" typeID="C#EventHandler" value="R18"/>
-                        <Component componentID="18" typeID="C#SwitchDisplayableEventHandler">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R46"/>
+                        <Component componentID="46" typeID="C#SwitchDisplayableEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R3"/>
                             <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R14"/>
                         </Component>
@@ -116,14 +116,20 @@
                     <Property name="label" typeID="Pjava.lang.String" value="VExit"/>
                     <Property name="type" typeID="Pint" value="V7"/>
                 </Component>
+                <Component componentID="43" typeID="Cjavax.microedition.lcdui.Command">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VbackCommand1"/>
+                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="label" typeID="Pjava.lang.String" value="VBack"/>
+                    <Property name="type" typeID="Pint" value="V2"/>
+                </Component>
             </Component>
             <Component componentID="12" typeID="C#ResourcesCategory"/>
             <Component componentID="13" typeID="C#DatabindingCategory"/>
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="14" descriptorID="componentNode14" x="485" y="126"/>
-        <Node componentID="21" descriptorID="componentNode21" x="321" y="238"/>
-        <Node componentID="2" descriptorID="componentNode2" x="34" y="32"/>
+        <Node componentID="14" descriptorID="componentNode14" x="251" y="245"/>
+        <Node componentID="21" descriptorID="componentNode21" x="35" y="267"/>
+        <Node componentID="2" descriptorID="componentNode2" x="12" y="16"/>
     </FlowScene>
 </VisualDesign>
