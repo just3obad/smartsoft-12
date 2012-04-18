@@ -446,3 +446,35 @@ function kk() {
         });
 
     }
+    function kl(dataa,names,pointInterval,pointStart,xl) {
+    var chart;
+var options = {
+    chart: {
+        renderTo: 'ccc',
+        defaultSeriesType: 'line'
+    },
+    xAxis: {
+        type: "datetime",
+        title: {
+           text: xl
+        }
+      },
+    series: [{
+        name: names[0],
+        data: dataa[0],
+        pointInterval: pointInterval,
+        pointStart: pointStart
+    }]
+};
+for(i=1;i<dataa.length;i++) {
+  var mli = new Object();
+//mli.name = namaa[i];
+  mli.data = dataa[i];
+  mli.name = names[i];
+  mli.pointInterval= pointInterval;
+  mli.pointStart= pointStart;
+  options.series.push(mli);
+}
+
+chart=Highcharts.Chart(options);
+}
