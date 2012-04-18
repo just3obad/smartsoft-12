@@ -4,6 +4,7 @@ NokiaRuby::Application.routes.draw do
   resources :admins
   resources :stories
   resources :interests
+  resources :shares
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

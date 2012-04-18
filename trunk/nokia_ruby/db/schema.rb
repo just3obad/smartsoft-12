@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417185917) do
+ActiveRecord::Schema.define(:version => 20120417213528) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20120417185917) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "shares", :force => true do |t|
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "shares", ["story_id"], :name => "index_shares_on_story_id"
+  add_index "shares", ["user_id"], :name => "index_shares_on_user_id"
 
   create_table "stories", :force => true do |t|
     t.datetime "created_at", :null => false
