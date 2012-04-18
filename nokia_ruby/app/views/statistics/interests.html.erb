@@ -1,0 +1,16 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+      data= <%= getInterests %>   
+      //kkk=<% getkk %> 
+      names=["No Of Users","No Of Articles","No of videos","No of images"];
+      pointInterval= <%= 1.day * 1000 %>
+      pointStart= <%= 4.days.ago.to_i * 1000 %>
+      xl="Day";
+  kl(data,names,pointInterval,pointStart,xl);
+   });
+  function kkkk() {
+    
+  }
+</script>
+<div id="ccc" style="width: 600px; height: 500px;"></div>
+<!--input type="button" value="Click me3!" onclick="kkkk()" /-->
