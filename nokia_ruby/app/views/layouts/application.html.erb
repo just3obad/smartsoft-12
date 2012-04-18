@@ -1,12 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NokiaRuby</title>
+  <title>Kook</title>
+  <!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script-->
+
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "jquery.min.js" %>
+        <%= javascript_include_tag "exporting.js" %>
+    <%= javascript_include_tag "highcharts.js" %>
+
+  <%= javascript_include_tag "chrisss" %>
+
   <%= csrf_meta_tags %>
-</head>
-<body>
+		
+
+		
+		</head>
+	<body>
+<!--script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script-->
+<script>
+function myfun() {
+  var xx=[1,2,3,4,5];
+  var xl="Students";
+  var yl="Grades";
+  var xax=["Joujou","Loulou","Kooky","Mina","Yaya"];
+  line(xx,xl,yl,xax);
+}
+</script>
+<!--input type="button" value="Click me2!" onclick="pie()" />
+<input type="button" value="Click me3!" onclick="line()" />
+<input type="button" value="Click me4!" onclick="scatter()" />
+
+
+<div id="container" style="min-width: 400px; height: 500px; margin: 0 auto;"></div-->
+
 
 <%= yield %>
 
