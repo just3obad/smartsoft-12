@@ -211,7 +211,7 @@ function kk() {
      var chart;
         chart = new Highcharts.Chart({
             chart: {
-                renderTo: 'container',
+                renderTo: 'ccc',
                 type: 'line',
                 marginRight: 130,
                 marginBottom: 25
@@ -448,10 +448,12 @@ function kk() {
     }
     function kl(dataa,names,pointInterval,pointStart,xl) {
     var chart;
-var options = {
-    chart: {
+    var options = {
+        chart: {
         renderTo: 'ccc',
-        defaultSeriesType: 'line'
+        type: 'line',
+        zoomType: 'x',
+        marginRight: 130
     },
     xAxis: {
         type: "datetime",
@@ -459,6 +461,14 @@ var options = {
            text: xl
         }
       },
+     legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -10,
+                y: 100,
+                borderWidth: 0
+            },
     series: [{
         name: names[0],
         data: dataa[0],
@@ -476,5 +486,5 @@ for(i=1;i<dataa.length;i++) {
   options.series.push(mli);
 }
 
-chart=Highcharts.Chart(options);
+chart=new Highcharts.Chart(options);
 }
