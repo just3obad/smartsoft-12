@@ -14,30 +14,31 @@
 
   <%= csrf_meta_tags %>
 		
-
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 		
 		</head>
 	<body>
 <!--script src="http://code.highcharts.com/highcharts.js"></script-->
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
-<script>
-function myfun() {
-  var xx=[1,2,3,4,5];
-  var xl="Students";
-  var yl="Grades";
-  var xax=["Joujou","Loulou","Kooky","Mina","Yaya"];
-  line(xx,xl,yl,xax);
-}
-</script>
-<!--input type="button" value="Click me2!" onclick="pie()" />
-<input type="button" value="Click me3!" onclick="line()" />
-<input type="button" value="Click me4!" onclick="scatter()" />
 
-
-<div id="container" style="min-width: 400px; height: 500px; margin: 0 auto;"></div-->
-
-
-<%= yield %>
+<header class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "LA2ETLAK", {controller: 'admin' ,action: 'home'}, id: "logo" %>
+          <nav>
+            <ul class="nav pull-right">
+              <li><%= link_to "Home",    '#' %></li>
+              <li><%= link_to "Help",    '#' %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
 
 </body>
 </html>
