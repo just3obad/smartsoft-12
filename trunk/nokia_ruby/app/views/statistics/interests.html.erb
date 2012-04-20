@@ -7,7 +7,7 @@
       data= <%= get_interest_stat(@id) %>   //get The interests array of arrays of data
       names=["No Of Users","No Of Articles","No of videos","No of images"]; //the graphs that we want to show
       pointInterval= <%= 1.day * 1000 %> //the time interval between one point and another in the graph.
-      pointStart= <%= 30.days.ago.to_i * 1000 %> // Start point of the graph.
+      pointStart= <%= get_interest_start_date.days.ago.to_i * 1000 %> // Start point of the graph.
       xl="Day"; //Label for x-axis
       kl(data,names,pointInterval,pointStart,xl); //call the method that renders the graph with the calculated parameters.
    });
