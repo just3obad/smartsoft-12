@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-
-ActiveRecord::Schema.define(:version => 20120420024847) do
+ActiveRecord::Schema.define(:version => 20120420131006) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -20,11 +19,11 @@ ActiveRecord::Schema.define(:version => 20120420024847) do
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "content"
+    t.string   "content",    :limit => 500
     t.integer  "user_id"
     t.integer  "story_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "interests", :force => true do |t|
@@ -58,8 +57,9 @@ ActiveRecord::Schema.define(:version => 20120420024847) do
   end
 
   create_table "stories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "description"
   end
 
   create_table "users", :force => true do |t|
