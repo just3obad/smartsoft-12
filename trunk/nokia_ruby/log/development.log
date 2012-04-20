@@ -3265,3 +3265,510 @@ Served asset /statistics.js - 304 Not Modified (0ms)
 
 Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 03:36:27 +0200
 Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" [0m
+  Rendered users/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 63ms (Views: 57.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /interests.css - 304 Not Modified (18ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /jquery.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /admins.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /chrisss.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /highcharts.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /jquery.min.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 04:07:39 +0200
+Served asset /application.js - 304 Not Modified (23ms)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "3"]]
+  Rendered users/show.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 79ms (Views: 74.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /application.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /admins.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /users.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /interests.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /admins.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /chrisss.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /highcharts.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /interests.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /rails.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /application.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 04:08:38 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to CreateComments (20120420023742)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to CreateComments (20120420024707)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "userid" integer, "storyid" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420024707')[0m
+  [1m[35m (64.2ms)[0m  commit transaction
+  [1m[36m (0.3ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admins")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("interests")[0m
+  [1m[35m (0.9ms)[0m  PRAGMA index_list("shares")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_shares_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_shares_on_story_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("users")
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to CreateComments (20120420024847)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "user_id" integer, "story_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+SQLite3::SQLException: table "comments" already exists: CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "user_id" integer, "story_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to CreateComments (20120420024847)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "user_id" integer, "story_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420024847')[0m
+  [1m[35m (81.1ms)[0m  commit transaction
+  [1m[36m (0.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admins")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("interests")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("shares")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_shares_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_shares_on_story_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("users")
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/comments" for 127.0.0.1 at 2012-04-20 05:07:50 +0200
+
+ActionController::RoutingError (No route matches [GET] "/comments"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.9ms)
+
+
+Started GET "/comments" for 127.0.0.1 at 2012-04-20 05:08:28 +0200
+Processing by CommentsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" [0m
+  Rendered comments/index.html.erb within layouts/application (2.7ms)
+Completed 500 Internal Server Error in 52ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @comments.each do |comment| %>
+    3: <tr>
+    4:     <td><%= comment.id %></td>
+    5:     <td><%= comment.content %></td>
+  app/views/comments/index.html.erb:2:in `_app_views_comments_index_html_erb___4524395022703379905_28607860'
+  app/controllers/comments_controller.rb:31:in `index'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (8.3ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.9ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (85.9ms)
+
+
+Started GET "/comments/index" for 127.0.0.1 at 2012-04-20 05:09:10 +0200
+Processing by CommentsController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" 
+  Rendered comments/index.html.erb within layouts/application (5.9ms)
+Completed 500 Internal Server Error in 12ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @comments.each do |comment| %>
+    3: <tr>
+    4:     <td><%= comment.id %></td>
+    5:     <td><%= comment.content %></td>
+  app/views/comments/index.html.erb:2:in `_app_views_comments_index_html_erb___4524395022703379905_28607860'
+  app/controllers/comments_controller.rb:31:in `index'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (11.6ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.3ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (32.7ms)
+
+
+Started GET "/comments/" for 127.0.0.1 at 2012-04-20 05:09:14 +0200
+Processing by CommentsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" [0m
+  Rendered comments/index.html.erb within layouts/application (9.7ms)
+Completed 500 Internal Server Error in 25ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @comments.each do |comment| %>
+    3: <tr>
+    4:     <td><%= comment.id %></td>
+    5:     <td><%= comment.content %></td>
+  app/views/comments/index.html.erb:2:in `_app_views_comments_index_html_erb___4524395022703379905_28607860'
+  app/controllers/comments_controller.rb:31:in `index'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (9.9ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.3ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (36.8ms)
+
+
+Started GET "/comments/" for 127.0.0.1 at 2012-04-20 05:09:29 +0200
+Processing by CommentsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" 
+  Rendered comments/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 123ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @comments.each do |comment| %>
+    3: <tr>
+    4:     <td><%= comment.id %></td>
+    5:     <td><%= comment.content %></td>
+  app/views/comments/index.html.erb:2:in `_app_views_comments_index_html_erb___4524395022703379905_28607860'
+  app/controllers/comments_controller.rb:31:in `index'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (11.5ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.5ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (94.8ms)
+
+
+Started GET "/comments/" for 127.0.0.1 at 2012-04-20 05:12:27 +0200
+Processing by CommentsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" [0m
+  Rendered comments/index.html.erb within layouts/application (2.3ms)
+Completed 500 Internal Server Error in 11ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @comments.each do |comment| %>
+    3: <tr>
+    4:     <td><%= comment.id %></td>
+    5:     <td><%= comment.content %></td>
+  app/views/comments/index.html.erb:2:in `_app_views_comments_index_html_erb___4524395022703379905_28607860'
+  app/controllers/comments_controller.rb:31:in `index'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (9.0ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (29.0ms)
+
+
+Started GET "/comments/" for 127.0.0.1 at 2012-04-20 05:12:31 +0200
+Processing by CommentsController#index as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" 
+  Rendered comments/index.html.erb within layouts/application (17.1ms)
+Completed 500 Internal Server Error in 28ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @comments.each do |comment| %>
+    3: <tr>
+    4:     <td><%= comment.id %></td>
+    5:     <td><%= comment.content %></td>
+  app/views/comments/index.html.erb:2:in `_app_views_comments_index_html_erb___4524395022703379905_28607860'
+  app/controllers/comments_controller.rb:31:in `index'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (14.4ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.2ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (48.6ms)
+
+
+Started GET "/comments/" for 127.0.0.1 at 2012-04-20 05:17:19 +0200
+Processing by CommentsController#index as HTML
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" [0m
+  Rendered comments/index.html.erb within layouts/application (0.7ms)
+Compiled comments.css  (137ms)  (pid 3396)
+Compiled application.css  (181ms)  (pid 3396)
+Compiled comments.js  (1108ms)  (pid 3396)
+Compiled application.js  (1203ms)  (pid 3396)
+Completed 200 OK in 1630ms (Views: 1576.3ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /comments.css - 200 OK (9ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /comments.js - 200 OK (4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /application.css - 304 Not Modified (56ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /interests.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /statistics.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /admins.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /jquery.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /admins.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /chrisss.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /highcharts.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /jquery.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /users.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /application.js - 304 Not Modified (115ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 05:17:21 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
