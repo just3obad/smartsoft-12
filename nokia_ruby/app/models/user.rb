@@ -13,4 +13,7 @@ class User < ActiveRecord::Base
    def share!(storyid)
      shares.create!(story_id: storyid)
   end
+  def comment!(story_id,content)
+     Comment.create(:content => content,:user_id => self.id , :story_id => story_id) 
+  end
 end

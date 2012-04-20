@@ -1,4 +1,5 @@
 NokiaRuby::Application.routes.draw do
+
   match "/interests/:id/statistics" => "statistics#interests"
   match "/stories/:id/statistics" => "statistics#stories"
   match "/users/:id/statistics" => "statistics#users"
@@ -6,7 +7,8 @@ NokiaRuby::Application.routes.draw do
   resources :admins
   resources :stories
   resources :interests
-  resources :shares
+  resources :shares 
+  resources :comments
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
