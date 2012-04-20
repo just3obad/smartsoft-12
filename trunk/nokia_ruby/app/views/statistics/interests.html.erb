@@ -3,13 +3,21 @@
    //point and also what is the interval between each two points default will be 1 day also it takes the names of the things it
    //view across time by default for an interest we will view no of users who added this interest, no of articles, no of videos and
    //no of images and then call method kl that will view the graph with the parameters already stated.
+   
+   //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
   $(document).ready(function() {
-      data= <%= get_interest_stat(@id) %>   //get The interests array of arrays of data
-      names=["No Of Users","No Of Articles","No of videos","No of images"]; //the graphs that we want to show
-      pointInterval= <%= 1.day * 1000 %> //the time interval between one point and another in the graph.
-      pointStart= <%= get_interest_start_date.days.ago.to_i * 1000 %> // Start point of the graph.
-      xl="Day"; //Label for x-axis
-      kl(data,names,pointInterval,pointStart,xl); //call the method that renders the graph with the calculated parameters.
+       //get The interests array of arrays of data
+      data= <%= get_interest_stat(@id) %>
+      //the graphs that we want to show
+      names=["No Of Users","No Of Articles","No of videos","No of images"];
+      //the time interval between one point and another in the graph.
+      pointInterval= <%= 1.day * 1000 %> 
+      // Start point of the graph.
+      pointStart= <%= get_interest_start_date(@id).days.ago.to_i * 1000 %>
+      //Label for x-axis 
+      xl="Day"; 
+      //call the method that renders the graph with the calculated parameters.
+      kl(data,names,pointInterval,pointStart,xl);  
    });
 </script>
 <!-- ccc is the id of the div that the graph would render to -->
