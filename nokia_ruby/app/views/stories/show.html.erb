@@ -2,9 +2,10 @@
 <p>Story description and content </br></p> 
 <table>
 <%= @story.id %>
+<!-- showing comments of the story -->
 <% @comments.each do |comment| %>
 <tr>
-    <td><%= comment.id %></td>
+    <td><%= comment.id %></td> 
     <td><%= comment.content %></td>
     <td><%= comment.user_id %></td>
     <td><%= comment.story_id %></td>

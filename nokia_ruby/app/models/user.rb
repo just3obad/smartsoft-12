@@ -9,8 +9,6 @@ class User < ActiveRecord::Base
   :format=> {:with => email_regex },
   :uniqueness => { :case_sensitive => false}
   
-  def comment!(story_id,content)
-     Comment.create(:content => content,:user_id => self.id , :story_id => story_id) 
-  end
+  
   
 end
