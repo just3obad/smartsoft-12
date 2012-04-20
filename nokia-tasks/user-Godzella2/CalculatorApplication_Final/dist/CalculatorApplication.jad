@@ -1,8 +1,0 @@
-MIDlet-1: CalculatorVisual, , Calculator.CalculatorVisual
-MIDlet-Jar-Size: 43444
-MIDlet-Jar-URL: CalculatorApplication.jar
-MIDlet-Name: CalculatorApplication
-MIDlet-Vendor: Vendor
-MIDlet-Version: 1.0
-MicroEdition-Configuration: CLDC-1.1
-MicroEdition-Profile: MIDP-2.1
