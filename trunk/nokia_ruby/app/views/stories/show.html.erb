@@ -1,10 +1,9 @@
-<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => @story.id}) %>
+<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => @story.id}, class: "btn btn-large btn-primary") %>
 <p>Story description and content </br></p> 
 <table>
 <%= @story.id %>
 <%= @story.title %>
 <%= @story.body %>
-<!-- showing comments of the story -->
 <% @comments.each do |comment| %>
 <tr>
     <td><%= comment.id %></td> 
