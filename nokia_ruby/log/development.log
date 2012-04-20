@@ -7917,3 +7917,1538 @@ Served asset /users.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 17:31:51 +0200
 Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/stories/1" for 127.0.0.1 at 2012-04-20 17:51:41 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 1[0m
+  [1m[35mStory Load (0.4ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered stories/show.html.erb within layouts/application (51.6ms)
+Completed 200 OK in 462ms (Views: 208.8ms | ActiveRecord: 8.8ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:42 +0200
+Served asset /application.css - 304 Not Modified (105ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /admins.css - 304 Not Modified (12ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /comments.css - 304 Not Modified (18ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /interests.css - 304 Not Modified (16ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /spams.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /likedislikes.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /statistics.css - 304 Not Modified (16ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /stories.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /users.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /jquery.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (31ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /admins.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /chrisss.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /comments.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /exporting.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /highcharts.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /jquery.min.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /interests.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /likedislikes.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /rails.js - 304 Not Modified (33ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /spams.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /statistics.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /stories.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /users.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 17:51:43 +0200
+Served asset /application.js - 304 Not Modified (219ms)
+
+
+Started GET "/stories/1/addComment" for 127.0.0.1 at 2012-04-20 17:54:16 +0200
+Processing by StoriesController#add_comment as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 165ms
+
+ActionView::MissingTemplate (Missing template stories/add_comment, application/add_comment with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/home/menisy/projects/SE/trunk/nokia_ruby/app/views"
+):
+  app/controllers/stories_controller.rb:14:in `block (2 levels) in add_comment'
+  app/controllers/stories_controller.rb:9:in `add_comment'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (1.7ms)
+
+
+Started GET "/stories/1/addComment%7B:comment=%3E%7B:content%20=%3E%20%22lol%22%20,%20:story_id=%3E1,:user_id=4%7D%7D" for 127.0.0.1 at 2012-04-20 17:55:19 +0200
+
+ActionController::RoutingError (No route matches [GET] "/stories/1/addComment%7B:comment=%3E%7B:content%20=%3E%20%22lol%22%20,%20:story_id=%3E1,:user_id=4%7D%7D"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.7ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to CreateLikedislikes (20120419192619)
+Migrating to CreateSpams (20120419212733)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to CreateComments (20120420024847)
+Migrating to AddDescriptionToStories (20120420131006)
+Migrating to AddThumbsUpToComments (20120420164209)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "comments" ADD "thumbs_up" int
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420164209')[0m
+  [1m[35m (48.4ms)[0m  commit transaction
+Migrating to AddThumbsDownToComments (20120420164258)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "comments" ADD "thumbs_down" int
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420164258')[0m
+  [1m[35m (16.1ms)[0m  commit transaction
+Migrating to AddThumbedDownToComments (20120420164327)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "comments" ADD "thumbed_down" []
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420164327')[0m
+  [1m[35m (15.9ms)[0m  commit transaction
+Migrating to AddThumbedUpToComments (20120420164358)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "comments" ADD "thumbed_up" []
+  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420164358')[0m
+  [1m[35m (16.6ms)[0m  commit transaction
+  [1m[36m (0.5ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("admins")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("interests")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("likedislikes")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("shares")
+  [1m[36m (0.2ms)[0m  [1mPRAGMA index_info('index_shares_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_shares_on_story_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("spams")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-04-20 18:51:52 +0200
+Served asset /rails.png - 304 Not Modified (3ms)
+
+
+Started GET "/comments/" for 127.0.0.1 at 2012-04-20 18:51:55 +0200
+Processing by CommentsController#index as HTML
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" [0m
+  Rendered comments/index.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 539ms (Views: 351.7ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /admins.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /comments.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /application.css - 304 Not Modified (43ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /spams.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /interests.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /likedislikes.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /stories.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /statistics.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /users.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /jquery.js - 304 Not Modified (86ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /admins.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /chrisss.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:56 +0200
+Served asset /comments.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /exporting.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /highcharts.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /interests.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /jquery.min.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /rails.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /likedislikes.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /spams.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /statistics.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /application.js - 304 Not Modified (56ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /users.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 18:51:57 +0200
+Served asset /stories.js - 304 Not Modified (6ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:52:01 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "1"]]
+ERROR: compiling _app_views_comments_show_html_erb___194915434392943507_14776640 RAISED /home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_comments_show_html_erb___194915434392943507_14776640(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "comments/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_concat('<table>
+<tr>
+    <td>');@output_buffer.append= ( @comment.content );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.user_id );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.story_id );@output_buffer.safe_concat('</td>
+<table>
+'); @comment.thumbed_down.each |id| 
+@output_buffer.safe_concat('
+<tr> ');@output_buffer.append= (id);@output_buffer.safe_concat(' </tr>
+');end
+@output_buffer.safe_concat('</table>
+</table>
+');@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:125:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:232:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:160:in `to_html'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:153:in `respond'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:146:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/mime_responds.rb:239:in `respond_with'
+/home/menisy/projects/SE/trunk/nokia_ruby/app/controllers/comments_controller.rb:14:in `show'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__4273047202379960798__process_action__3139487350233295255__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:68:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `each'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/etag.rb:23:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/conditionalget.rb:25:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__1380014834548367779__call__2830085392013260500__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/methodoverride.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/runtime.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/lock.rb:15:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/handler/webrick.rb:59:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+  Rendered comments/show.html.erb within layouts/application (147.3ms)
+Completed 500 Internal Server Error in 176ms
+
+ActionView::Template::Error (/home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end):
+    11: </table>
+    12: </table>
+  app/controllers/comments_controller.rb:14:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (9.6ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.5ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (34.2ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:53:10 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (8.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+ERROR: compiling _app_views_comments_show_html_erb___194915434392943507_39400240 RAISED /home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_comments_show_html_erb___194915434392943507_39400240(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "comments/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_concat('<table>
+<tr>
+    <td>');@output_buffer.append= ( @comment.content );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.user_id );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.story_id );@output_buffer.safe_concat('</td>
+<table>
+'); @comment.thumbed_down.each |id| 
+@output_buffer.safe_concat('
+<tr><td> ');@output_buffer.append= (id);@output_buffer.safe_concat(' </td></tr>
+');end
+@output_buffer.safe_concat('</table>
+</table>
+');@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:125:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:232:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:160:in `to_html'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:153:in `respond'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:146:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/mime_responds.rb:239:in `respond_with'
+/home/menisy/projects/SE/trunk/nokia_ruby/app/controllers/comments_controller.rb:14:in `show'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__4273047202379960798__process_action__3139487350233295255__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:68:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `each'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/etag.rb:23:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/conditionalget.rb:25:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__1380014834548367779__call__2830085392013260500__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/methodoverride.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/runtime.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/lock.rb:15:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/handler/webrick.rb:59:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+  Rendered comments/show.html.erb within layouts/application (6.7ms)
+Completed 500 Internal Server Error in 43ms
+
+ActionView::Template::Error (/home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end):
+    11: </table>
+    12: </table>
+  app/controllers/comments_controller.rb:14:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (15.7ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.3ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (51.8ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:54:44 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 122ms (Views: 108.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:44 +0200
+Served asset /application.css - 304 Not Modified (170ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /admins.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /interests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /spams.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /comments.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /stories.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /admins.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /chrisss.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /highcharts.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /interests.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /stories.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /application.js - 304 Not Modified (24ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 18:54:45 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:55:19 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (8.9ms)
+Completed 500 Internal Server Error in 24ms
+
+ActionView::Template::Error (undefined method `[]' for nil:NilClass):
+    4:     <td><%= @comment.user_id %></td>
+    5:     <td><%= @comment.story_id %></td>
+    6: <table>
+    7: <%= @comment.thumbed_down[1] %>
+    8: 
+    9: 
+    10: 
+  app/views/comments/show.html.erb:7:in `_app_views_comments_show_html_erb___194915434392943507_17488640'
+  app/controllers/comments_controller.rb:14:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (8.2ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.1ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (35.1ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (5.9ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 115ms (Views: 103.1ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Served asset /application.css - 304 Not Modified (221ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Served asset /comments.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Served asset /interests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Served asset /stories.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:02 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /likedislikes.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /users.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /jquery.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /comments.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /chrisss.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /exporting.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /highcharts.js - 304 Not Modified (41ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /likedislikes.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /jquery.min.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /interests.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /rails.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /statistics.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /stories.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /users.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:03 +0200
+Served asset /application.js - 304 Not Modified (37ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 76ms (Views: 70.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /application.css - 304 Not Modified (21ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /admins.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /interests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /likedislikes.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /statistics.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /jquery.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /admins.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /chrisss.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /exporting.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /highcharts.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 18:56:17 +0200
+Served asset /application.js - 304 Not Modified (9ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:56:49 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "1"]]
+ERROR: compiling _app_views_comments_show_html_erb___194915434392943507_38336740 RAISED /home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_comments_show_html_erb___194915434392943507_38336740(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "comments/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_concat('<table>
+<tr>
+    <td>');@output_buffer.append= ( @comment.content );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.user_id );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.story_id );@output_buffer.safe_concat('</td>
+<table>
+'); @comment.thumbed_down.each |id| 
+@output_buffer.safe_concat('
+<tr> ');@output_buffer.append= (id);@output_buffer.safe_concat(' </tr>
+');end
+@output_buffer.safe_concat('</table>
+</table>
+');@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:125:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:232:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:160:in `to_html'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:153:in `respond'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:146:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/mime_responds.rb:239:in `respond_with'
+/home/menisy/projects/SE/trunk/nokia_ruby/app/controllers/comments_controller.rb:14:in `show'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__4273047202379960798__process_action__3139487350233295255__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:68:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `each'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/etag.rb:23:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/conditionalget.rb:25:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__1380014834548367779__call__2830085392013260500__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/methodoverride.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/runtime.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/lock.rb:15:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/handler/webrick.rb:59:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+  Rendered comments/show.html.erb within layouts/application (6.6ms)
+Completed 500 Internal Server Error in 52ms
+
+ActionView::Template::Error (/home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end):
+    11: </table>
+    12: </table>
+  app/controllers/comments_controller.rb:14:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (17.0ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.1ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (46.9ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:57:08 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+ERROR: compiling _app_views_comments_show_html_erb___194915434392943507_36492140 RAISED /home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_comments_show_html_erb___194915434392943507_36492140(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "comments/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_concat('<table>
+<tr>
+    <td>');@output_buffer.append= ( @comment.content );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.user_id );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.story_id );@output_buffer.safe_concat('</td>
+<table>
+'); @comment.thumbed_down.each |id| 
+@output_buffer.safe_concat('
+<tr> ');@output_buffer.append= (id);@output_buffer.safe_concat(' </tr>
+'); end 
+@output_buffer.safe_concat('</table>
+</table>
+');@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:125:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:232:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:160:in `to_html'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:153:in `respond'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:146:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/mime_responds.rb:239:in `respond_with'
+/home/menisy/projects/SE/trunk/nokia_ruby/app/controllers/comments_controller.rb:14:in `show'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__4273047202379960798__process_action__3139487350233295255__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:68:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `each'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/etag.rb:23:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/conditionalget.rb:25:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__1380014834548367779__call__2830085392013260500__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/methodoverride.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/runtime.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/lock.rb:15:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/handler/webrick.rb:59:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+  Rendered comments/show.html.erb within layouts/application (12.4ms)
+Completed 500 Internal Server Error in 26ms
+
+ActionView::Template::Error (/home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end):
+    11: </table>
+    12: </table>
+  app/controllers/comments_controller.rb:14:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (8.8ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.9ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (35.0ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:57:10 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "1"]]
+ERROR: compiling _app_views_comments_show_html_erb___194915434392943507_36492140 RAISED /home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end
+Function body:           def _app_views_comments_show_html_erb___194915434392943507_36492140(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "comments/show";_old_output_buffer = @output_buffer;;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.safe_concat('<table>
+<tr>
+    <td>');@output_buffer.append= ( @comment.content );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.user_id );@output_buffer.safe_concat('</td>
+    <td>');@output_buffer.append= ( @comment.story_id );@output_buffer.safe_concat('</td>
+<table>
+'); @comment.thumbed_down.each |id| 
+@output_buffer.safe_concat('
+<tr> ');@output_buffer.append= (id);@output_buffer.safe_concat(' </tr>
+'); end 
+@output_buffer.safe_concat('</table>
+</table>
+');@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:125:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:232:in `default_render'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:160:in `to_html'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:153:in `respond'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/responder.rb:146:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/mime_responds.rb:239:in `respond_with'
+/home/menisy/projects/SE/trunk/nokia_ruby/app/controllers/comments_controller.rb:14:in `show'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__4273047202379960798__process_action__3139487350233295255__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:68:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `each'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/journey-1.0.3/lib/journey/router.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/etag.rb:23:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/conditionalget.rb:25:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:205:in `context'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/session/abstract/id.rb:200:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__1380014834548367779__call__2830085392013260500__callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/reloader.rb:65:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/methodoverride.rb:21:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/runtime.rb:17:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/lock.rb:15:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/content_length.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/railties-3.2.3/lib/rails/rack/log_tailer.rb:14:in `call'
+/home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/rack-1.4.1/lib/rack/handler/webrick.rb:59:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+  Rendered comments/show.html.erb within layouts/application (10.5ms)
+Completed 500 Internal Server Error in 45ms
+
+ActionView::Template::Error (/home/menisy/projects/SE/trunk/nokia_ruby/app/views/comments/show.html.erb:14: syntax error, unexpected keyword_ensure, expecting $end):
+    11: </table>
+    12: </table>
+  app/controllers/comments_controller.rb:14:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (10.5ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.9ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (39.7ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 18:57:56 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (2.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (8.1ms)
+Completed 500 Internal Server Error in 21ms
+
+ActionView::Template::Error (undefined method `each' for "---\n- 1\n- 2\n":String):
+    4:     <td><%= @comment.user_id %></td>
+    5:     <td><%= @comment.story_id %></td>
+    6: <table>
+    7: <% for id in @comment.thumbed_down %>
+    8: 
+    9: <tr> <%=id%> </tr>
+    10: <% end %>
+  app/views/comments/show.html.erb:7:in `_app_views_comments_show_html_erb___194915434392943507_15554480'
+  app/controllers/comments_controller.rb:14:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (19.5ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.3ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (123.0ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to CreateLikedislikes (20120419192619)
+Migrating to CreateSpams (20120419212733)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to CreateComments (20120420024847)
+Migrating to AddDescriptionToStories (20120420131006)
+Migrating to AddThumbsUpToComments (20120420164209)
+Migrating to AddThumbsDownToComments (20120420164258)
+Migrating to AddThumbedDownToComments (20120420164327)
+Migrating to AddThumbedUpToComments (20120420164358)
+Migrating to RemoveThumbedUpFromComments (20120420170236)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120420170236')
+  [1m[36m (63.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("admins")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("comments")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("interests")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("likedislikes")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("shares")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_shares_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_shares_on_story_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("spams")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.8ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-20 19:06:32 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (3.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 102ms (Views: 56.6ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /comments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /interests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /chrisss.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /rails.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /jquery.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /stories.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
+Served asset /application.js - 304 Not Modified (17ms)
