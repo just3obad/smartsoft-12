@@ -46,4 +46,13 @@ def create
   def block_story(@story)
     @story.is_blocked = true
   end
+
+  #this method takes list of stories belonging to a friend as input and blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend.
+
+  #@friend_stories = getFriendsStories(self.friends)
+  def block_friend_feed(@friend_stories)
+    0.upto(@friend_stories.length) do |i|
+       @friend_stories[i].is_blocked = true
+    end
+  end
 end
