@@ -6,7 +6,5 @@ class CreateShares < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :shares, :story_id
-    add_index :shares, :user_id
   end
 end
