@@ -1,1 +1,16 @@
 <%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => 1}) %>
+<p>Story description and content </br></p> 
+<table>
+<%= @story.id %>
+<% @comments.each do |comment| %>
+<tr>
+    <td><%= comment.id %></td>
+    <td><%= comment.content %></td>
+    <td><%= comment.user_id %></td>
+    <td><%= comment.story_id %></td>
+</tr>
+<%end%>
+</table>
+    
+
+    
