@@ -10,13 +10,13 @@ module AuthenticationHelper
   $access_token    = '558012292-Sz82kMwDBxlt8Yo3wK4NA0m72VfirgE7TJBzOG1j'
   $access_secret   = '1MuiXTaGQUrHiAKowJn6YAVHe9EONajEUBaTaB1tos'
 
-  =begin 
-  TODO handle excpetion such as,
-      Twitter is not over capacity (ServiceUnavailable),
-      You are not authozorized,
-      Duplicate status, 
+=begin 
+TODO handle excpetion such as,
+    Twitter is not over capacity (ServiceUnavailable),
+    You are not authozorized,
+    Duplicate status, 
 
-  =end
+=end
   def generate_request_token
     oa = OAuth::Consumer.new($consumer_token, $consumer_secret,
                              :site=> 'http://api.twitter.com',
@@ -64,26 +64,3 @@ module AuthenticationHelper
 end 
 
 
-#req = generate_request_token
-#puts 'Please visit the above url'
-#
-#puts "Press enter when authenticated"
-#gets
-#generate_access_token(req) 
-
-#config_twitter
-
-#puts Twitter.home_timeline(:count => 5)
-#Twitter.update("Will this work?")
-
-#puts "(t)weet or (f)eed?"
-#choice = gets.chomp
-
-#if choice == 't'
-#  puts 'Please enter the tweet'
-#  tweet("#{ gets.chomp }")
-#elsif choice == 'f'
-#  puts 'coming soon'
-#else
-#end
-#
