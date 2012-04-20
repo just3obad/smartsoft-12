@@ -3,4 +3,9 @@ module InterestsHelper
   def get_all_interests
     interests=Interest.all
   end
+  
+  #This method when called will return the difference between today and the day the interest was created in days.
+  def get_interest_start_date(interest_id)
+ 
+  end
 end
