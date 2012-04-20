@@ -12913,3 +12913,821 @@ Served asset /users.js - 304 Not Modified (0ms)
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 19:06:33 +0200
 Served asset /application.js - 304 Not Modified (17ms)
 >>>>>>> .r169
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-04-20 22:35:36 +0200
+Served asset /rails.png - 304 Not Modified (2ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-20 22:35:39 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:7: syntax error, unexpected tLSHFT, expecting keyword_end
+<<<<<<< .mine
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:13: syntax error, unexpected tEQQ, expecting keyword_end
+=======
+   ^):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__103165695__call__761644111__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (4.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.7ms)
+
+
+Started GET "/stories.son" for 127.0.0.1 at 2012-04-20 22:35:51 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:7: syntax error, unexpected tLSHFT, expecting keyword_end
+<<<<<<< .mine
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:13: syntax error, unexpected tEQQ, expecting keyword_end
+=======
+   ^):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__103165695__call__761644111__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (31.6ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (41.8ms)
+
+
+Started GET "/stories.json" for 127.0.0.1 at 2012-04-20 22:35:55 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:7: syntax error, unexpected tLSHFT, expecting keyword_end
+<<<<<<< .mine
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:13: syntax error, unexpected tEQQ, expecting keyword_end
+=======
+   ^):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__103165695__call__761644111__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.4ms)
+
+
+Started GET "/stories.json" for 127.0.0.1 at 2012-04-20 22:35:57 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:7: syntax error, unexpected tLSHFT, expecting keyword_end
+<<<<<<< .mine
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:13: syntax error, unexpected tEQQ, expecting keyword_end
+=======
+   ^):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__103165695__call__761644111__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.8ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.3ms)
+
+
+Started GET "/stories/4" for 127.0.0.1 at 2012-04-20 22:36:02 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:7: syntax error, unexpected tLSHFT, expecting keyword_end
+<<<<<<< .mine
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:13: syntax error, unexpected tEQQ, expecting keyword_end
+=======
+   ^):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__103165695__call__761644111__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.8ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.4ms)
+
+
+Started GET "/stories/5" for 127.0.0.1 at 2012-04-20 22:36:05 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:7: syntax error, unexpected tLSHFT, expecting keyword_end
+<<<<<<< .mine
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:13: syntax error, unexpected tEQQ, expecting keyword_end
+=======
+   ^):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__103165695__call__761644111__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (15.0ms)
+
+
+Started GET "/stories/5" for 127.0.0.1 at 2012-04-20 22:37:15 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 5[0m
+  [1m[35mStory Load (0.2ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "5"]]
+Completed 500 Internal Server Error in 116ms
+
+ActiveRecord::RecordNotFound (Couldn't find Story with id=5):
+  app/controllers/stories_controller.rb:5:in `show'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.0ms)
+
+
+Started GET "/stories/6" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 6[0m
+  [1m[35mStory Load (0.1ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "6"]]
+  Rendered stories/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 110ms (Views: 100.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Served asset /application.css - 304 Not Modified (25ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Served asset /admins.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Served asset /comments.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Served asset /likedislikes.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Served asset /spams.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Served asset /interests.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:20 +0200
+Served asset /statistics.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /stories.css - 304 Not Modified (44ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /users.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /admins.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /chrisss.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /jquery.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /comments.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /exporting.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /highcharts.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /interests.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /jquery.min.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /likedislikes.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /spams.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /rails.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /statistics.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /stories.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /application.js - 304 Not Modified (24ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 22:37:21 +0200
+Served asset /users.js - 304 Not Modified (2ms)
+
+
+Started GET "/stories/6" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 6[0m
+  [1m[35mStory Load (0.1ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "6"]]
+  Rendered stories/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 59ms (Views: 56.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /application.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /interests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /statistics.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:01 +0200
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /chrisss.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /highcharts.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /jquery.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:02 +0200
+Served asset /application.js - 304 Not Modified (6ms)
+
+
+Started GET "/stories/8" for 127.0.0.1 at 2012-04-20 22:38:08 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mStory Load (0.1ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "8"]]
+Completed 500 Internal Server Error in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Story with id=8):
+  app/controllers/stories_controller.rb:5:in `show'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.1ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.8ms)
+
+
+Started GET "/stories/7" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 7[0m
+  [1m[35mStory Load (0.1ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  Rendered stories/show.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 27ms (Views: 24.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /application.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /interests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /stories.css - 304 Not Modified (39ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /chrisss.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-20 22:38:12 +0200
+Served asset /application.js - 304 Not Modified (4ms)
+
+
+Started GET "/stories/7.json" for 127.0.0.1 at 2012-04-20 22:38:15 +0200
+Processing by StoriesController#show as JSON
+  Parameters: {"id"=>"7"}
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 7[0m
+  [1m[35mStory Load (0.1ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  Rendered stories/show.json.erb (2.3ms)
+Completed 200 OK in 7ms (Views: 4.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/stories.json" for 127.0.0.1 at 2012-04-20 22:38:20 +0200
+Processing by StoriesController#index as JSON
+  [1m[36mStory Load (0.2ms)[0m  [1mSELECT "stories".* FROM "stories" [0m
+  Rendered stories/index.json.erb (1.1ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/stories.json" for 127.0.0.1 at 2012-04-20 22:38:20 +0200
+Processing by StoriesController#index as JSON
+  [1m[35mStory Load (0.2ms)[0m  SELECT "stories".* FROM "stories" 
+  Rendered stories/index.json.erb (0.3ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms)
