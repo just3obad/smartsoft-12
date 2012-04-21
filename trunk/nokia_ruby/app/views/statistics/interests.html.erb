@@ -16,8 +16,12 @@
       pointStart= <%= get_interest_start_date(@id).days.ago.to_i * 1000 %>
       //Label for x-axis 
       xl="Day"; 
+      //Label for y-axis
+      yl="Number";
+      //Label for whole graph
+      titleOfGraph="Interest Stat";
       //call the method that renders the graph with the calculated parameters.
-      kl(data,names,pointInterval,pointStart,xl);  
+      Graph(data,names,pointInterval,pointStart,xl,yl,titleGraph);  
    });
 </script>
 <!-- ccc is the id of the div that the graph would render to -->
