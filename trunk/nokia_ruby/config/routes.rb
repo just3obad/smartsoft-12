@@ -1,5 +1,7 @@
 NokiaRuby::Application.routes.draw do
 
+
+
   match "/interests/:id/statistics" => "statistics#interests"
   match "/stories/:id/statistics" => "statistics#stories"
   match "/users/:id/statistics" => "statistics#users"
