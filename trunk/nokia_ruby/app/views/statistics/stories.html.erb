@@ -15,30 +15,93 @@
       pointInterval= <%= 1.day * 1000 %> 
       // Start point of the graph.
       x = <%= get_story_start_date(@id).to_i %>;
-      if (x != -1) {
+      if(x != -1) {
       pointStart= <%= get_story_start_date(@id).days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
       yl="Number";
-      titleOfGraph="Story Stat"
+      titleOfGraph="Story Stat";
+      document.getElementById("deletedStory").style.display= "none"; 
       //call the method that renders the graph with the calculated parameters.
       Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
       } else {
-      document.getElementById("christine").innerHTML = "Story was deleted before the last 30 days";
-      } 
+      document.getElementById("deletedStory").style.display = "block";
+      document.getElementById("graph").style.display = "none";
+      }
+      
+      noOfShares = <%= get_total_number_of_shares(@id) %>;
+      document.getElementById("labelShares").innerHTML ="Number of shares";
+      document.getElementById("NumberShares").innerHTML = noOfShares;
    });
 </script>
 <!-- ccc is the id of the div that the graph would render to -->
 
   <div class="row-fluid">
-    <div class="span4">
+   <div class="span12">
+     <div class="alert" id="deletedStory" style="display: none;">
+           <a class="close" data-dismiss="alert">×</a>
+           <h1><strong>Warning!</strong> Story was deleted before the last 30 days.</h1>
+     </div>
+    <div class = "row-fluid">
+      <div class="span3" id = "Sidebar">
       <!--Sidebar content-->
-      <label id="christine"> Koookyyyy</label>
+       
+       <div class="well sidebar-nav">
+            <span class="label" id="labelShares" style="size: "72px";"></span>
+            <br />
+            <span class="badge badge-success" id="NumberShares"></span>
+            <ul class="nav nav-list">
+
+              <li class="nav-header">Sidebar</li>
+              <li class="active"><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Sidebar</li>
+
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+
+              <li class="nav-header">Sidebar</li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div><!--/.well -->
+      
     </div>
-    <div class="span8">
-      <div id="ccc" style="width: 700px; height: 500px;"></div>
+    <div class="span9">
+        
+      <div class="hero-unit" id="graph">
+      <div id="ccc"></div>
+          <!--ul class="thumbnails">
+           <li class="span3">
+             <a href="#" class="thumbnail">
+               <img src="http://pe-sport-ideas.tv/wp-content/uploads/2011/03/Online-Sports-Betting1.jpg" alt="">
+             </a>
+           </li>
+           <li class="span3">
+             <a href="#" class="thumbnail">
+               <img src="http://placehold.it/260x180" alt="">
+             </a>
+           </li>
+           <li class="span3">
+             <a href="#" class="thumbnail">
+               <img src="http://placehold.it/260x180" alt="">
+             </a>
+           </li>
+  
+    </ul-->
+      </div>
+     
       <!--Body content-->
     </div>
-  </div>
+   </div>
+ </div>
+</div>
 
 
