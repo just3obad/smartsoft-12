@@ -7,6 +7,11 @@ package hello;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import com.nokia.mid.ui.LCDUIUtil;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import javax.microedition.io.Connector;
+import javax.microedition.io.HttpConnection;
 import org.netbeans.microedition.lcdui.SplashScreen;
 
 /**
@@ -16,6 +21,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
     String url;
     static int countInsertion = 0;
     private boolean midletPaused = false;
+    String json;
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
@@ -930,5 +936,64 @@ public SplashScreen getComingSoon() {
 
     public void itemStateChanged(Item item) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void httpconn() /*this method should intiate the connection between the server and the mobile client which
+                           should return the json file of list of stories according to the client interests.*/
+    {
+          HttpConnection httpConn = null;
+      String url = "http://192.168.26.136:3000/users/1.json";  
+
+    InputStream is = null;
+    OutputStream os = null;
+
+    try {
+      // Open an HTTP Connection object
+      httpConn = (HttpConnection)Connector.open(url);
+
+      // Setup HTTP Request
+      httpConn.setRequestMethod(HttpConnection.GET);
+      httpConn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+
+      int respCode = httpConn.getResponseCode();
+      if (respCode == httpConn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1)
+          sb.append((char) chr);
+
+       json =sb.toString();
+        System.out.println( sb.toString());
+      }
+      else {
+        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+      }}catch(Exception e){
+          
+      
+
+      } finally {
+        if(is!= null)
+            try {
+                is.close();
+            } catch (IOException ex) {
+            }
+          if(os != null)
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+      if(httpConn != null)
+            try {
+                httpConn.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+     
+    }
     }
 }

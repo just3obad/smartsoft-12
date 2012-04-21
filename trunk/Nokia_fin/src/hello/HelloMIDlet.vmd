@@ -299,6 +299,18 @@
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="elements" typeID="1C#ListElementEventSource" value="A6:3_R833_R843_R853_R863_R873_R88"/>
                     <Property name="selectCommand" typeID="C#CommandEventSource" value="R81"/>
+                    <Component componentID="85" typeID="C#ListElementEventSource">
+                        <Property name="string" typeID="Pjava.lang.String" value="VFlickr"/>
+                    </Component>
+                    <Component componentID="84" typeID="C#ListElementEventSource">
+                        <Property name="string" typeID="Pjava.lang.String" value="VFacebook"/>
+                    </Component>
+                    <Component componentID="87" typeID="C#ListElementEventSource">
+                        <Property name="string" typeID="Pjava.lang.String" value="VTumblr"/>
+                    </Component>
+                    <Component componentID="86" typeID="C#ListElementEventSource">
+                        <Property name="string" typeID="Pjava.lang.String" value="VFoursquare"/>
+                    </Component>
                     <Component componentID="81" typeID="C#ListSelectCommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R82"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R80"/>
@@ -309,18 +321,6 @@
                     </Component>
                     <Component componentID="83" typeID="C#ListElementEventSource">
                         <Property name="string" typeID="Pjava.lang.String" value="VTwitter"/>
-                    </Component>
-                    <Component componentID="84" typeID="C#ListElementEventSource">
-                        <Property name="string" typeID="Pjava.lang.String" value="VFacebook"/>
-                    </Component>
-                    <Component componentID="85" typeID="C#ListElementEventSource">
-                        <Property name="string" typeID="Pjava.lang.String" value="VFlickr"/>
-                    </Component>
-                    <Component componentID="86" typeID="C#ListElementEventSource">
-                        <Property name="string" typeID="Pjava.lang.String" value="VFoursquare"/>
-                    </Component>
-                    <Component componentID="87" typeID="C#ListElementEventSource">
-                        <Property name="string" typeID="Pjava.lang.String" value="VTumblr"/>
                     </Component>
                     <Component componentID="88" typeID="C#ListElementEventSource">
                         <Property name="string" typeID="Pjava.lang.String" value="VYoutube"/>
@@ -344,14 +344,14 @@
         </Component>
     </Document>
     <FlowScene version="1">
-        <Node componentID="22" descriptorID="componentNode22" x="455" y="12"/>
-        <Node componentID="14" descriptorID="componentNode14" x="41" y="197"/>
-        <Node componentID="26" descriptorID="componentNode26" x="201" y="274"/>
-        <Node componentID="2" descriptorID="componentNode2" x="66" y="38"/>
-        <Node componentID="71" descriptorID="componentNode71" x="437" y="414"/>
-        <Node componentID="89" descriptorID="componentNode89" x="235" y="394"/>
-        <Node componentID="47" descriptorID="componentNode47" x="556" y="130"/>
         <Node componentID="80" descriptorID="componentNode80" x="47" y="359"/>
+        <Node componentID="22" descriptorID="componentNode22" x="455" y="12"/>
+        <Node componentID="26" descriptorID="componentNode26" x="201" y="274"/>
+        <Node componentID="89" descriptorID="componentNode89" x="235" y="394"/>
+        <Node componentID="14" descriptorID="componentNode14" x="41" y="197"/>
+        <Node componentID="71" descriptorID="componentNode71" x="437" y="414"/>
+        <Node componentID="47" descriptorID="componentNode47" x="556" y="130"/>
+        <Node componentID="2" descriptorID="componentNode2" x="66" y="38"/>
         <Node componentID="27" descriptorID="componentNode27" x="446" y="304"/>
         <Node componentID="23" descriptorID="componentNode23" x="306" y="73"/>
         <Node componentID="68" descriptorID="componentNode68" x="440" y="388"/>
