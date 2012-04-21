@@ -6,7 +6,7 @@ def get_no_of_shares(storyId)
   creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
   lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
   deleted = false
-  #Story.where(:id => story_id).select("deleted")
+  #Story.where(:id => story_id).deleted_before_type_cast
   #There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
   #1) If the story was created and deleted within the last 30 days, then I only return the shares from the table between the creation date and the last update which is the deletion:
     if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
