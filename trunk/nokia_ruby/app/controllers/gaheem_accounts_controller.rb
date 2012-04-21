@@ -1,0 +1,2 @@
+class GaheemAccountsController < ApplicationController
+end

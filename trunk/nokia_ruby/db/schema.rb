@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421201820) do
+ActiveRecord::Schema.define(:version => 20120421223408) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -26,9 +26,10 @@ ActiveRecord::Schema.define(:version => 20120421201820) do
     t.datetime "updated_at"
   end
 
-  create_table "flags", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "story_id"
+  create_table "gaheem_accounts", :force => true do |t|
+    t.string   "email"
+    t.string   "password"
+    t.integer  "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -74,9 +75,6 @@ ActiveRecord::Schema.define(:version => 20120421201820) do
     t.text     "content"
     t.boolean  "deleted"
     t.boolean  "hidden"
-    t.integer  "flags"
-    t.integer  "likes"
-    t.integer  "dislikes"
   end
 
   create_table "users", :force => true do |t|
