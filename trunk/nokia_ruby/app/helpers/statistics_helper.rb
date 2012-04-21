@@ -10,16 +10,17 @@ include UsersHelper
 #third one is "No of videos"
 #and forth one is "No of images"
  def get_interest_stat(interest_id)
- 
  vid = get_num_videos_in_interest(interest_id)
  img = get_num_images_in_interest(interest_id)
  artc = get_num_articles_in_interest(interest_id)
  user = get_num_users_added_interest(interest_id)
  data ="[#{user},#{artc},#{vid},#{img}]"
-  
  end
- 
-
+ #to get the number of registered users per day to use it in the graph
+ def get_registered_stat
+ r = get_num_registered_day
+ data = "[#{r}]"
+ end
 #This is the method that should return the data of statistics of an story
 #with this format first element in the data arrays is ARRAY OF "No Of Shares",
 #second one is "No Of Likes"
