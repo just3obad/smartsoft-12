@@ -29,6 +29,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command backCommand2;
     private Command Exit;
     private Command Login;
+    private Command save;
+    private Command back;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -38,6 +40,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Form LoginScreen;
     private TextField textField;
     private TextField textField1;
+    private Form profile;
+    private TextField userName;
+    private TextField firstName;
+    private TextField lastName;
+    private DateField dob;
+    private TextField newPass;
+    private TextField confirmNewPass;
 //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -183,21 +192,31 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 exitMIDlet();//GEN-LINE:|7-commandAction|16|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|17|35-preAction
+            }//GEN-BEGIN:|7-commandAction|17|72-preAction
+        } else if (displayable == profile) {
+            if (command == back) {//GEN-END:|7-commandAction|17|72-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|18|72-postAction
+                // write post-action user code here
+            } else if (command == save) {//GEN-LINE:|7-commandAction|19|70-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|20|70-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|21|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|17|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|21|35-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|18|35-postAction
+                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|22|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|19|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|23|33-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|20|33-postAction
+                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|24|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|21|7-postCommandAction
-        }//GEN-END:|7-commandAction|21|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|25|7-postCommandAction
+        }//GEN-END:|7-commandAction|25|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|22|
-//</editor-fold>//GEN-END:|7-commandAction|22|
+    }//GEN-BEGIN:|7-commandAction|26|
+//</editor-fold>//GEN-END:|7-commandAction|26|
 
 
 
@@ -525,6 +544,154 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return Login;
     }
 //</editor-fold>//GEN-END:|65-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: save ">//GEN-BEGIN:|69-getter|0|69-preInit
+    /**
+     * Returns an initialized instance of save component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getSave() {
+        if (save == null) {//GEN-END:|69-getter|0|69-preInit
+            // write pre-init user code here
+            save = new Command("Ok", Command.OK, 0);//GEN-LINE:|69-getter|1|69-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|69-getter|2|
+        return save;
+    }
+//</editor-fold>//GEN-END:|69-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: back ">//GEN-BEGIN:|71-getter|0|71-preInit
+    /**
+     * Returns an initialized instance of back component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBack() {
+        if (back == null) {//GEN-END:|71-getter|0|71-preInit
+            // write pre-init user code here
+            back = new Command("Back", Command.BACK, 0);//GEN-LINE:|71-getter|1|71-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|71-getter|2|
+        return back;
+    }
+//</editor-fold>//GEN-END:|71-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: profile ">//GEN-BEGIN:|68-getter|0|68-preInit
+    /**
+     * Returns an initialized instance of profile component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getProfile() {
+        if (profile == null) {//GEN-END:|68-getter|0|68-preInit
+            // write pre-init user code here
+            profile = new Form("form1", new Item[]{getUserName(), getFirstName(), getLastName(), getDob(), getNewPass(), getConfirmNewPass()});//GEN-BEGIN:|68-getter|1|68-postInit
+            profile.addCommand(getSave());
+            profile.addCommand(getBack());
+            profile.setCommandListener(this);//GEN-END:|68-getter|1|68-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|68-getter|2|
+        return profile;
+    }
+//</editor-fold>//GEN-END:|68-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: userName ">//GEN-BEGIN:|75-getter|0|75-preInit
+    /**
+     * Returns an initialized instance of userName component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getUserName() {
+        if (userName == null) {//GEN-END:|75-getter|0|75-preInit
+            // write pre-init user code here
+            userName = new TextField("User Name", null, 32, TextField.ANY);//GEN-LINE:|75-getter|1|75-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|75-getter|2|
+        return userName;
+    }
+//</editor-fold>//GEN-END:|75-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: firstName ">//GEN-BEGIN:|76-getter|0|76-preInit
+    /**
+     * Returns an initialized instance of firstName component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getFirstName() {
+        if (firstName == null) {//GEN-END:|76-getter|0|76-preInit
+            // write pre-init user code here
+            firstName = new TextField("First Name", null, 32, TextField.ANY);//GEN-LINE:|76-getter|1|76-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|76-getter|2|
+        return firstName;
+    }
+//</editor-fold>//GEN-END:|76-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: lastName ">//GEN-BEGIN:|77-getter|0|77-preInit
+    /**
+     * Returns an initialized instance of lastName component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getLastName() {
+        if (lastName == null) {//GEN-END:|77-getter|0|77-preInit
+            // write pre-init user code here
+            lastName = new TextField("Last Name", null, 32, TextField.ANY);//GEN-LINE:|77-getter|1|77-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|77-getter|2|
+        return lastName;
+    }
+//</editor-fold>//GEN-END:|77-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: dob ">//GEN-BEGIN:|78-getter|0|78-preInit
+    /**
+     * Returns an initialized instance of dob component.
+     *
+     * @return the initialized component instance
+     */
+    public DateField getDob() {
+        if (dob == null) {//GEN-END:|78-getter|0|78-preInit
+            // write pre-init user code here
+            dob = new DateField("Date of Birth", DateField.DATE);//GEN-BEGIN:|78-getter|1|78-postInit
+            dob.setDate(new java.util.Date(System.currentTimeMillis()));//GEN-END:|78-getter|1|78-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|78-getter|2|
+        return dob;
+    }
+//</editor-fold>//GEN-END:|78-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: newPass ">//GEN-BEGIN:|79-getter|0|79-preInit
+    /**
+     * Returns an initialized instance of newPass component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getNewPass() {
+        if (newPass == null) {//GEN-END:|79-getter|0|79-preInit
+            // write pre-init user code here
+            newPass = new TextField("New Password", null, 32, TextField.ANY | TextField.PASSWORD | TextField.SENSITIVE | TextField.NON_PREDICTIVE);//GEN-LINE:|79-getter|1|79-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|79-getter|2|
+        return newPass;
+    }
+//</editor-fold>//GEN-END:|79-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: confirmNewPass ">//GEN-BEGIN:|80-getter|0|80-preInit
+    /**
+     * Returns an initialized instance of confirmNewPass component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getConfirmNewPass() {
+        if (confirmNewPass == null) {//GEN-END:|80-getter|0|80-preInit
+            // write pre-init user code here
+            confirmNewPass = new TextField("Confirm New Password", null, 32, TextField.ANY | TextField.PASSWORD | TextField.SENSITIVE | TextField.NON_PREDICTIVE);//GEN-LINE:|80-getter|1|80-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|80-getter|2|
+        return confirmNewPass;
+    }
+//</editor-fold>//GEN-END:|80-getter|2|
 
 
 
