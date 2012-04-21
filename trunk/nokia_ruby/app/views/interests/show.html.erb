@@ -1,1 +1,70 @@
 <%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'interests', :id => @interest.id}, class: "btn btn-large btn-primary") %>
+
+<html>
+<head>
+<style>
+
+h2 {font-size:20px;color:#06276F}
+h3 {font-size:20px;color:#06276F}
+p1 {font-size:18px;}
+p2 {font-size:14px;}
+p3 {font-size:14px;}
+</style>
+</head>
+<body>
+
+
+      <h1>
+          <font size="35" face="arial" color=#06276F>
+        <br/><%= @interest.name %><br/><br/>
+             <%= image_tag(@interest.image, :alt => "default pic", :class => "round") %>
+           </font>
+         
+      </h1>
+
+      <h2>
+
+       Description:
+         
+      </h2>
+
+      <p1>
+
+         <%= @interest.description %><br /><br />
+         
+      </p1>
+
+<h3>
+RSS Feeds :
+</h3>
+
+      <p2>
+
+<a><%= @interest.RSS%><br /></a>
+ </p2>
+
+
+<% unless @interest.feeds.empty? %>
+     
+     <%= render @interest.feeds %>
+       
+<% end %>
+
+
+  
+       
+         
+    
+<strong>Number Of Feeds : </strong> <%= @interest.feeds.count %></br>
+ <strong>Interest's URL : </strong> <%= link_to interest_path(@interest), @interest %><br />
+       <strong> </strong> <%= link_to "Show Statistics", '#', :class => "statistics_button round" %><br />
+       <strong> </strong> <%= link_to "Edit Interest", '#', :class => "edit_button round" %><br />
+       <strong> </strong> <%= link_to "Delete Interest", '#', :class => "delete_button round" %></br>
+       <strong> </strong> <%= link_to "View Stories", '#', :class => "stories_button round" %>
+
+</body>
+</html>
+
+
+
+
