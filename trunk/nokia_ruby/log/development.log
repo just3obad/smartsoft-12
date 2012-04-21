@@ -13731,46 +13731,1228 @@ Processing by StoriesController#index as JSON
   [1m[35mStory Load (0.2ms)[0m  SELECT "stories".* FROM "stories" 
   Rendered stories/index.json.erb (0.3ms)
 Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms)
-  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
-Migrating to CreateUsers (20120417185744)
-Migrating to CreateAdmins (20120417185814)
-Migrating to CreateStories (20120417185845)
-Migrating to CreateInterests (20120417185917)
-Migrating to CreateShares (20120417213528)
-Migrating to CreateLikedislikes (20120419192619)
-Migrating to CreateSpams (20120419212733)
-Migrating to AddNameToUsers (20120420012304)
-Migrating to AddEmailToUsers (20120420012715)
-Migrating to CreateComments (20120420024847)
-Migrating to AddDescriptionToStories (20120420131006)
-Migrating to RenameColoumn (20120420182843)
-Migrating to AddBodyToStories (20120420183416)
-Migrating to AddStoryAttributesToStories (20120420185828)
-Migrating to AddContentToStories (20120421093354)
-  [1m[35m (0.0ms)[0m  select sqlite_version(*)
-  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (1.0ms)[0m  ALTER TABLE "stories" ADD "content" text
-  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120421093354')[0m
-  [1m[35m (45.7ms)[0m  commit transaction
-Migrating to AddDeletedToStories (20120421093602)
-  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.4ms)[0m  ALTER TABLE "stories" ADD "deleted" boolean
-  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120421093602')[0m
-  [1m[35m (29.4ms)[0m  commit transaction
-Migrating to AddHiddenToStories (20120421095220)
-  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
-  [1m[35m (0.5ms)[0m  ALTER TABLE "stories" ADD "hidden" boolean
-  [1m[36m (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120421095220')[0m
-  [1m[35m (6.6ms)[0m  commit transaction
-  [1m[36m (0.4ms)[0m  [1mselect sqlite_version(*)[0m
-  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
-  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admins")[0m
-  [1m[35m (0.1ms)[0m  PRAGMA index_list("comments")
-  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("interests")[0m
-  [1m[35m (0.0ms)[0m  PRAGMA index_list("likedislikes")
-  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("shares")[0m
-  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_shares_on_user_id')
-  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_shares_on_story_id')[0m
-  [1m[35m (0.0ms)[0m  PRAGMA index_list("spams")
-  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("stories")[0m
-  [1m[35m (0.0ms)[0m  PRAGMA index_list("users")
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-04-21 15:16:51 +0200
+Served asset /rails.png - 304 Not Modified (27ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:18:36 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:7: syntax error, unexpected tLSHFT, expecting keyword_end
+<<<<<<< .mine
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:65: syntax error, unexpected tEQQ, expecting keyword_end
+=======
+   ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:75: syntax error, unexpected tRSHFT, expecting keyword_end
+>>>>>>> .r177
+  ^
+/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:76: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (21.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (202.8ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:21:10 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:68: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.6ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.7ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:21:11 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:68: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.6ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.8ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:15 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.5ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.6ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:15 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.9ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:16 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.5ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.8ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:16 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.8ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.9ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:16 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.4ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.5ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:53 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.6ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.7ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:54 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.8ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:54 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.4ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.2ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.3ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:22:54 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__1060896280__call__760552193__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.8ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.4ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:23:06 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__146414975__call__403102422__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.5ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (29.6ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (45.6ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:23:07 +0200
+
+SyntaxError (/home/essam/smartsoft-12/nokia_ruby/app/controllers/stories_controller.rb:67: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__146414975__call__403102422__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/essam/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.7ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.4ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:24:11 +0200
+Processing by StoriesController#index as HTML
+  Rendered stories/index.html.erb within layouts/application (60.4ms)
+Completed 500 Internal Server Error in 120ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @stories.each do |story| %>
+    3: <tr>
+    4:     <td><%= story.id %></td>
+    5:     <td><%= story.title %></td>
+  app/views/stories/index.html.erb:2:in `_app_views_stories_index_html_erb___552942217_78923920'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (5.1ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (15.3ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:24:12 +0200
+Processing by StoriesController#index as HTML
+  Rendered stories/index.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 4ms
+
+ActionView::Template::Error (undefined method `each' for nil:NilClass):
+    1: <table>
+    2: <% @stories.each do |story| %>
+    3: <tr>
+    4:     <td><%= story.id %></td>
+    5:     <td><%= story.title %></td>
+  app/views/stories/index.html.erb:2:in `_app_views_stories_index_html_erb___552942217_78923920'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.0ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (16.4ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-21 15:25:26 +0200
+Processing by StoriesController#index as HTML
+  [1m[36mStory Load (0.2ms)[0m  [1mSELECT "stories".* FROM "stories" [0m
+  Rendered stories/index.html.erb within layouts/application (0.3ms)
+Compiled custom.css  (1985ms)  (pid 2726)
+Compiled application.css  (2018ms)  (pid 2726)
+Compiled chrisss.js  (0ms)  (pid 2726)
+Compiled application.js  (12ms)  (pid 2726)
+Completed 200 OK in 2711ms (Views: 2578.2ms | ActiveRecord: 31.0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /custom.css - 200 OK (22ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /comments.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /highcharts.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /exporting.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /stories.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /spams.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /application.css - 304 Not Modified (70ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /likedislikes.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /rails.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /admins.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /spams.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /statistics.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /stories.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /users.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /chrisss.js - 200 OK (2ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /likedislikes.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /comments.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /interests.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /statistics.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /users.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /admins.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /jquery.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /application.js - 304 Not Modified (28ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /interests.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:29 +0200
+Served asset /jquery.min.js - 304 Not Modified (2ms)
+
+
+Started GET "/stories/1" for 127.0.0.1 at 2012-04-21 15:25:45 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 1
+  [1m[36mStory Load (0.3ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 500 Internal Server Error in 150ms
+
+ActiveRecord::RecordNotFound (Couldn't find Story with id=1):
+  app/controllers/stories_controller.rb:5:in `show'
+
+
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.3ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.4ms)
+  Rendered /home/essam/.rvm/gems/ruby-1.9.2-p318@essamGemSet/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (14.7ms)
+
+
+Started GET "/stories/7" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 7
+  [1m[36mStory Load (0.1ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  Rendered stories/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 28ms (Views: 25.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /application.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /interests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /likedislikes.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /stories.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /exporting.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /jquery.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:52 +0200
+Served asset /rails.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:53 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:53 +0200
+Served asset /application.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:53 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-21 15:25:53 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)

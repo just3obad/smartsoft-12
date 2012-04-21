@@ -1,3 +1,4 @@
+MIDlet-1: HelloMIDlet, , hello.HelloMIDlet
 MIDlet-Vendor: Vendor
 MIDlet-Name: 2allak2!
 MIDlet-Version: 1.0
