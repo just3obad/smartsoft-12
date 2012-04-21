@@ -7,6 +7,7 @@ package hello;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import com.nokia.mid.ui.LCDUIUtil;
+import org.netbeans.microedition.lcdui.SplashScreen;
 
 /**
  * @author Essam Hafez
@@ -46,6 +47,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
     private Alert CommentFail;
     private Gauge indicator;
     private Alert CommentSucc;
+    private List connectAccount;
+    private SplashScreen comingSoon;
     //</editor-fold>//GEN-END:|fields|0|
 
   
@@ -264,37 +267,49 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
  // write pre-action user code here
 //GEN-LINE:|7-commandAction|12|79-postAction
  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|13|19-preAction
+            }//GEN-BEGIN:|7-commandAction|13|91-preAction
+        } else if (displayable == comingSoon) {
+            if (command == SplashScreen.DISMISS_COMMAND) {//GEN-END:|7-commandAction|13|91-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|14|91-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|15|81-preAction
+        } else if (displayable == connectAccount) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|15|81-preAction
+                // write pre-action user code here
+                connectAccountAction();//GEN-LINE:|7-commandAction|16|81-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|17|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|13|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|17|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|14|19-postAction
+//GEN-LINE:|7-commandAction|18|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|53-preAction
+            }//GEN-BEGIN:|7-commandAction|19|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|15|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|19|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|16|53-postAction
+//GEN-LINE:|7-commandAction|20|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|17|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|21|49-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|18|49-postAction
+//GEN-LINE:|7-commandAction|22|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|19|35-preAction
+            }//GEN-BEGIN:|7-commandAction|23|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|19|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|23|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|20|35-postAction
+//GEN-LINE:|7-commandAction|24|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|21|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|25|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|22|33-postAction
+//GEN-LINE:|7-commandAction|26|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|23|7-postCommandAction
-        }//GEN-END:|7-commandAction|23|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|27|7-postCommandAction
+        }//GEN-END:|7-commandAction|27|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|24|
-    //</editor-fold>//GEN-END:|7-commandAction|24|
+    }//GEN-BEGIN:|7-commandAction|28|
+    //</editor-fold>//GEN-END:|7-commandAction|28|
 
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
@@ -362,79 +377,79 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
     }
     //</editor-fold>//GEN-END:|22-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
-/**
- * Returns an initiliazed instance of viewComments component.
- * @return the initialized component instance
- */
-public Command getViewComments() {
-    if (viewComments == null) {//GEN-END:|24-getter|0|24-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
+    /**
+     * Returns an initiliazed instance of viewComments component.
+     * @return the initialized component instance
+     */
+    public Command getViewComments() {
+        if (viewComments == null) {//GEN-END:|24-getter|0|24-preInit
             // write pre-init user code here
-        viewComments = new Command("Ok", Command.OK, 0);//GEN-LINE:|24-getter|1|24-postInit
+            viewComments = new Command("Ok", Command.OK, 0);//GEN-LINE:|24-getter|1|24-postInit
             // write post-init user code here
-    }//GEN-BEGIN:|24-getter|2|
-    return viewComments;
-}
-//</editor-fold>//GEN-END:|24-getter|2|
+        }//GEN-BEGIN:|24-getter|2|
+        return viewComments;
+    }
+    //</editor-fold>//GEN-END:|24-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
-/**
- * Returns an initiliazed instance of Story component.
- * @return the initialized component instance
- */
-public Form getStory() {
-    if (Story == null) {//GEN-END:|23-getter|0|23-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
+    /**
+     * Returns an initiliazed instance of Story component.
+     * @return the initialized component instance
+     */
+    public Form getStory() {
+        if (Story == null) {//GEN-END:|23-getter|0|23-preInit
             // write pre-init user code here
-        Story = new Form("form1");//GEN-BEGIN:|23-getter|1|23-postInit
-        Story.addCommand(getOkCommand1());
-        Story.addCommand(getComment1());
-        Story.addCommand(getBackCommand());
-        Story.setCommandListener(this);//GEN-END:|23-getter|1|23-postInit
+            Story = new Form("form1");//GEN-BEGIN:|23-getter|1|23-postInit
+            Story.addCommand(getOkCommand1());
+            Story.addCommand(getComment1());
+            Story.addCommand(getBackCommand());
+            Story.setCommandListener(this);//GEN-END:|23-getter|1|23-postInit
             // write post-init user code here
-    }//GEN-BEGIN:|23-getter|2|
-    return Story;
-}
-//</editor-fold>//GEN-END:|23-getter|2|
+        }//GEN-BEGIN:|23-getter|2|
+        return Story;
+    }
+    //</editor-fold>//GEN-END:|23-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
-/**
- * Returns an initiliazed instance of textBox component.
- * @return the initialized component instance
- */
-public TextBox getTextBox() {
-    if (textBox == null) {//GEN-END:|26-getter|0|26-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
+    /**
+     * Returns an initiliazed instance of textBox component.
+     * @return the initialized component instance
+     */
+    public TextBox getTextBox() {
+        if (textBox == null) {//GEN-END:|26-getter|0|26-preInit
             // write pre-init user code here
-        textBox = new TextBox("textBox", null, 100, TextField.ANY);//GEN-BEGIN:|26-getter|1|26-postInit
-        textBox.addCommand(getOkCommand());
-        textBox.addCommand(getBackCommand1());
-        textBox.setCommandListener(this);//GEN-END:|26-getter|1|26-postInit
+            textBox = new TextBox("textBox", null, 100, TextField.ANY);//GEN-BEGIN:|26-getter|1|26-postInit
+            textBox.addCommand(getOkCommand());
+            textBox.addCommand(getBackCommand1());
+            textBox.setCommandListener(this);//GEN-END:|26-getter|1|26-postInit
             // write post-init user code here
-    }//GEN-BEGIN:|26-getter|2|
-    return textBox;
-}
-//</editor-fold>//GEN-END:|26-getter|2|
+        }//GEN-BEGIN:|26-getter|2|
+        return textBox;
+    }
+    //</editor-fold>//GEN-END:|26-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment ">//GEN-BEGIN:|27-getter|0|27-preInit
-/**
- * Returns an initiliazed instance of Comment component.
- * @return the initialized component instance
- */
-public Form getComment() {
-    if (Comment == null) {//GEN-END:|27-getter|0|27-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment ">//GEN-BEGIN:|27-getter|0|27-preInit
+    /**
+     * Returns an initiliazed instance of Comment component.
+     * @return the initialized component instance
+     */
+    public Form getComment() {
+        if (Comment == null) {//GEN-END:|27-getter|0|27-preInit
             // write pre-init user code here
     
-        Comment = new Form("Comments", new Item[] { getTextField() });//GEN-BEGIN:|27-getter|1|27-postInit
-        Comment.addCommand(getBackCommand2());
-        Comment.addCommand(getComment2());
-        Comment.setCommandListener(this);//GEN-END:|27-getter|1|27-postInit
+            Comment = new Form("Comments", new Item[] { getTextField() });//GEN-BEGIN:|27-getter|1|27-postInit
+            Comment.addCommand(getBackCommand2());
+            Comment.addCommand(getComment2());
+            Comment.setCommandListener(this);//GEN-END:|27-getter|1|27-postInit
             // write post-init user code here
 addComments(); //adding dummy comments to test UI
                
                
-    }//GEN-BEGIN:|27-getter|2|
-    return Comment;
-}
-//</editor-fold>//GEN-END:|27-getter|2|
+        }//GEN-BEGIN:|27-getter|2|
+        return Comment;
+    }
+    //</editor-fold>//GEN-END:|27-getter|2|
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
 /**
@@ -773,6 +788,85 @@ public Command getOkCommand1() {
     return okCommand1;
 }
 //</editor-fold>//GEN-END:|78-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: connectAccount ">//GEN-BEGIN:|80-getter|0|80-preInit
+/**
+ * Returns an initiliazed instance of connectAccount component.
+ * @return the initialized component instance
+ */
+public List getConnectAccount() {
+    if (connectAccount == null) {//GEN-END:|80-getter|0|80-preInit
+        // write pre-init user code here
+        connectAccount = new List("Network", Choice.IMPLICIT);//GEN-BEGIN:|80-getter|1|80-postInit
+        connectAccount.append("Twitter", null);
+        connectAccount.append("Facebook", null);
+        connectAccount.append("Flickr", null);
+        connectAccount.append("Foursquare", null);
+        connectAccount.append("Tumblr", null);
+        connectAccount.append("Youtube", null);
+        connectAccount.setCommandListener(this);
+        connectAccount.setSelectedFlags(new boolean[] { false, false, false, false, false, false });//GEN-END:|80-getter|1|80-postInit
+        // write post-init user code here
+    }//GEN-BEGIN:|80-getter|2|
+    return connectAccount;
+}
+//</editor-fold>//GEN-END:|80-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: connectAccountAction ">//GEN-BEGIN:|80-action|0|80-preAction
+/**
+ * Performs an action assigned to the selected list element in the connectAccount component.
+ */
+public void connectAccountAction() {//GEN-END:|80-action|0|80-preAction
+    // enter pre-action user code here
+    String __selectedString = getConnectAccount().getString(getConnectAccount().getSelectedIndex());//GEN-BEGIN:|80-action|1|83-preAction
+    if (__selectedString != null) {
+        if (__selectedString.equals("Twitter")) {//GEN-END:|80-action|1|83-preAction
+            // write pre-action user code here
+//GEN-LINE:|80-action|2|83-postAction
+            // write post-action user code here
+        } else if (__selectedString.equals("Facebook")) {//GEN-LINE:|80-action|3|84-preAction
+            // write pre-action user code here
+//GEN-LINE:|80-action|4|84-postAction
+            // write post-action user code here
+        } else if (__selectedString.equals("Flickr")) {//GEN-LINE:|80-action|5|85-preAction
+            // write pre-action user code here
+//GEN-LINE:|80-action|6|85-postAction
+            // write post-action user code here
+        } else if (__selectedString.equals("Foursquare")) {//GEN-LINE:|80-action|7|86-preAction
+            // write pre-action user code here
+//GEN-LINE:|80-action|8|86-postAction
+            // write post-action user code here
+        } else if (__selectedString.equals("Tumblr")) {//GEN-LINE:|80-action|9|87-preAction
+            // write pre-action user code here
+//GEN-LINE:|80-action|10|87-postAction
+            // write post-action user code here
+        } else if (__selectedString.equals("Youtube")) {//GEN-LINE:|80-action|11|88-preAction
+            // write pre-action user code here
+//GEN-LINE:|80-action|12|88-postAction
+            // write post-action user code here
+        }//GEN-BEGIN:|80-action|13|80-postAction
+    }//GEN-END:|80-action|13|80-postAction
+    // enter post-action user code here
+}//GEN-BEGIN:|80-action|14|
+//</editor-fold>//GEN-END:|80-action|14|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: comingSoon ">//GEN-BEGIN:|89-getter|0|89-preInit
+/**
+ * Returns an initiliazed instance of comingSoon component.
+ * @return the initialized component instance
+ */
+public SplashScreen getComingSoon() {
+    if (comingSoon == null) {//GEN-END:|89-getter|0|89-preInit
+        // write pre-init user code here
+        comingSoon = new SplashScreen(getDisplay());//GEN-BEGIN:|89-getter|1|89-postInit
+        comingSoon.setTitle("Coming Soon");
+        comingSoon.setCommandListener(this);
+        comingSoon.setText("Network is coming soon.");//GEN-END:|89-getter|1|89-postInit
+        // write post-init user code here
+    }//GEN-BEGIN:|89-getter|2|
+    return comingSoon;
+}
+//</editor-fold>//GEN-END:|89-getter|2|
 
 
 
