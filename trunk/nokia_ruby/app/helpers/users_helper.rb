@@ -36,6 +36,8 @@ module UsersHelper
  else
  date = 30.days.ago.to_date
   end
+  data=30
  end
+ 
  
 end

@@ -39,8 +39,35 @@
       </div>
     </header>
     <div class="container-fluid">
+      <div class="row-fluid">
+   <div class="span3">
+      <!--Sidebar content-->
+      <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+    
+      <li class="nav-header">
+        Statistics
+      </li>
+      <li>
+       <%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
+      </li>
+       <li>
+       <%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
+       </li>
+        <li>
+       <%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
+       </li>
+ 
+     </ul>
+    </div>
+    </div>
+    <div class="span9">
       <%= yield %>
+    </div>
+  </div>
     </div>
 
 </body>
 </html>
+
+
