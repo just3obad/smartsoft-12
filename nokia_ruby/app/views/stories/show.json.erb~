@@ -1,0 +1,7 @@
+{"<%= @story.class %>":
+{
+"title" : "<%= @story.title %>",
+"body" : "<%= @story.body %>",
+"id":"<%= @story.id %>"
+"ce":"<%= @user.created_at %> "
+}}
