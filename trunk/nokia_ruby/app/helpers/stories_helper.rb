@@ -3,15 +3,15 @@ module StoriesHelper
 #This method gets the number of shares of a certain story using its id in the last 30 days
 def get_no_of_shares(storyId)
 
-  creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
-  lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
-  deleted = false
-  #Story.where(:id => story_id).deleted_before_type_cast
-  #There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
-  #1) If the story was created and deleted within the last 30 days, then I only return the shares from the table between the creation date and the last update which is the deletion:
-    if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
-      shares_by_day = Share.where(:created_at => creationOfStory..lastUpdated, :story_id => storyId).group("date(created_at)").select("created_at, count(story_id) as noOfSharesPerDay")
-      (creationOfStory.to_date..lastUpdated.to_date).map do |date|
+creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
+lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
+deleted = false
+#Story.find(story_id).deleted_before_type_cast
+#There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
+#1) If the story was created and deleted within the last 30 days, then I only return the shares from the table between the creation date and the last update which is the deletion:
+  if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
+    shares_by_day = Share.where(:created_at => creationOfStory..lastUpdated, :story_id => storyId).group("date(created_at)").select("created_at, count(story_id) as noOfSharesPerDay")
+    (creationOfStory.to_date..lastUpdated.to_date).map do |date|
       share = shares_by_day.detect { |share| share.created_at.to_date == date }
       share && share.noOfSharesPerDay.to_i || 0
     end.inspect
@@ -45,12 +45,12 @@ end
 #This method gets the number of likes of a certain story using its id in the last 30 days
 def get_no_of_likes(storyId)
 
-  creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
-  lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
-  deleted = false
-  #Story.where(:id => story_id).select("deleted")
-  #There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
-  #1) If the story was created and deleted within the last 30 days, then I only return the likes from the table between the creation date and the last update which is the deletion:
+creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
+lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
+deleted = false
+#Story.find(story_id).deleted_before_type_cast
+#There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
+#1) If the story was created and deleted within the last 30 days, then I only return the likes from the table between the creation date and the last update which is the deletion:
   if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
     likes_by_day = Likedislike.where(:created_at => creationOfStory..lastUpdated, :story_id => storyId, :action => 1).group("date(created_at)").select("created_at, count(story_id) as noOfLikesPerDay")
     (creationOfStory.to_date..lastUpdated.to_date).map do |date|
@@ -87,12 +87,12 @@ end
 #This method gets the number of dislikes of a certain story using its id in the last 30 days
 def get_no_of_dislikes(storyId)
 
-  creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
-  lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
-  deleted = false
-  #Story.where(:id => story_id).select("deleted")
-  #There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
-  #1) If the story was created and deleted within the last 30 days, then I only return the dislikes from the table between the creation date and the last update which is the deletion:
+creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
+lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
+deleted = false
+#Story.find(story_id).deleted_before_type_cast
+#There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
+#1) If the story was created and deleted within the last 30 days, then I only return the dislikes from the table between the creation date and the last update which is the deletion:
   if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
     dislikes_by_day = Likedislike.where(:created_at => creationOfStory..lastUpdated, :story_id => storyId, :action => -1).group("date(created_at)").select("created_at, count(story_id) as noOfDislikesPerDay")
     (creationOfStory.to_date..lastUpdated.to_date).map do |date|
@@ -129,12 +129,12 @@ end
 #This method gets the number of spams of a certain story using its id in the last 30 days
 def get_no_of_spams(storyId)
 
-  creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
-  lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
-  deleted = false
-  #Story.where(:id => story_id).select("deleted")
-  #There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
-  #1) If the story was created and deleted within the last 30 days, then I only return the spams from the table between the creation date and the last update which is the deletion:
+creationOfStory = Story.find(storyId).created_at_before_type_cast.to_date
+lastUpdated = Story.find(storyId).updated_at_before_type_cast.to_date
+deleted = false
+#Story.find(story_id).deleted_before_type_cast
+#There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
+#1) If the story was created and deleted within the last 30 days, then I only return the spams from the table between the creation date and the last update which is the deletion:
   if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
     spams_by_day = Spam.where(:created_at => creationOfStory..lastUpdated, :story_id => storyId).group("date(created_at)").select("created_at, count(story_id) as noOfSpamsPerDay")
     (creationOfStory.to_date..lastUpdated.to_date).map do |date|
@@ -171,21 +171,35 @@ end
 #This method when called will return the difference between today and the day the story was created in in days.
 def get_story_start_date(story_id)
 
-  creationOfStory = Story.find(story_id).created_at_before_type_cast.to_date
-  lastUpdated = Story.find(story_id).updated_at_before_type_cast.to_date
-  deleted = false
-  #Story.where(:id => story_id).select("deleted")
-  if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
-    date = lastUpdated - creationOfStory
-  elsif deleted && creationOfStory <= 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
-    date = lastUpdated - 30.days.ago.to_date
-  elsif deleted && creationOfStory <= 30.days.ago.to_date && lastUpdated <= 30.days.ago.to_date
-    date = 0
-  elsif creationOfStory <= 30.days.ago.to_date
-    date = (Date.today) - 30.days.ago.to_date
-  else
-    date = (Date.today) - creationOfStory
-  end
+creationOfStory = Story.find(story_id).created_at_before_type_cast.to_date
+lastUpdated = Story.find(story_id).updated_at_before_type_cast.to_date
+deleted = false
+#Story.find(story_id).deleted_before_type_cast
+if deleted && creationOfStory > 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
+  date = Date.today - creationOfStory
+elsif deleted && creationOfStory <= 30.days.ago.to_date && lastUpdated > 30.days.ago.to_date
+  date = Date.today - 30.days.ago.to_date
+elsif deleted && creationOfStory <= 30.days.ago.to_date && lastUpdated <= 30.days.ago.to_date
+  date = -1
+elsif creationOfStory <= 30.days.ago.to_date
+  date = Date.today - 30.days.ago.to_date
+else
+  date = Date.today - creationOfStory
+end
+end
+
+def get_who_shared_story(storyId)
+#This method gets the users who shared a certain story (of the given id) in the last 30 days:
+ start_date = get_story_start_date(storyId).to_i.days.ago.to_date
+ if start_date != -1
+ ids = Share.where(["created_at >= ? AND created_at < ? AND story_id == ?",start_date,Date.today,storyId])
+ else
+ ids = -1
+ end
+end
+
+def get_total_number_of_shares(story_id)
+  number = Share.where(:story_id => story_id).count
 end
 
 end
