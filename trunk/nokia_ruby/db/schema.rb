@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< .mine
-ActiveRecord::Schema.define(:version => 20120420185828) do
-=======
-ActiveRecord::Schema.define(:version => 20120420170236) do
->>>>>>> .r169
+ActiveRecord::Schema.define(:version => 20120421095220) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -23,13 +19,11 @@ ActiveRecord::Schema.define(:version => 20120420170236) do
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "content",     :limit => 500
+    t.string   "content",    :limit => 500
     t.integer  "user_id"
     t.integer  "story_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "thumbs_up"
-    t.integer  "thumbs_down"
   end
 
   create_table "interests", :force => true do |t|
@@ -70,6 +64,9 @@ ActiveRecord::Schema.define(:version => 20120420170236) do
     t.integer  "rank"
     t.string   "image"
     t.string   "category"
+    t.text     "content"
+    t.boolean  "deleted"
+    t.boolean  "hidden"
   end
 
   create_table "users", :force => true do |t|
