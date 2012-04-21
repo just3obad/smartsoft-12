@@ -1,0 +1,26 @@
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+      //get The story's array of arrays of data
+      data= <%= get_all_users_stat %>
+      //the graphs that we want to show
+      names=["Registered Users","Logged in"]; 
+      //the time interval between one point and another in the graph.
+      pointInterval= <%= 1.day * 1000 %> 
+      // Start point of the graph.
+      
+      pointStart= <%= get_registered_start_date.days.ago.to_i * 1000 %>
+      //Label for x-axis
+      xl="Day"; 
+      yl="Number";
+      titleOfGraph="All Users Stat."; 
+      //call the method that renders the graph with the calculated parameters.
+      Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
+      
+      
+     // noOfShares = <%= get_total_number_of_shares(@id) %>;
+      //document.getElementById("labelShares").innerHTML ="Number of shares";
+      //document.getElementById("NumberShares").innerHTML = noOfShares;
+   });
+</script>
+
+<div id="ccc"></div>
