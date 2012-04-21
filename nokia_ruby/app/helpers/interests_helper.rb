@@ -29,7 +29,7 @@ module InterestsHelper
   end
   
   #this method when called will get the number of videos in an interest for each day
-  def get_num_videos_in_interest(interest_idp)
+  def get_num_videos_in_interest(interest_id)
   interest_create_date = Interest.find(interest_id).created_at_before_type_cast.to_date #to get when the interest was created
   interest_last_update_date = Interest.find(interest_id).updated_at_before_type_cast.to_date #to get when the interest was updated last time
   deleted = Interest.find(interest_id).select("deleted") #to check if the interest is deleted or not
