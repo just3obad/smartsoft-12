@@ -1,13 +1,12 @@
 class StoriesController < ApplicationController
 respond_to :html,:json
- def show
+  def show
    @comments = Comment.find_all_by_story_id(params[:id]) # get comments of this story
    @story = Story.find(params[:id])
- end
-<<<<<<< .mine
+  end
 
   def index
- 
+    respond_with(@stories = Story.all)
   end
 
   def new
@@ -62,15 +61,6 @@ def recommend_story
   
   self.show @email, @message
 end
-=======
-#<<<<<<< .mine
 
-def index
-    respond_with(@stories = Story.all)
- end
 
-#=======
- 
-#>>>>>>> .r169
->>>>>>> .r177
 end
