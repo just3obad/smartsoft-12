@@ -26,10 +26,10 @@ respond_to :html,:json
 #it depend on the method share_story which take the story id and the account id and return true or false if it returns true then a pop up message will display thet the story published successfully
 #if it returned false a pop up message will disply thet an error happend and to try again
  def share_story_social_network
-  @flag=share_Story self.id, user.id 
+  flag=share_Story self.id, user.id 
 
   respond_to do |format|
-    if @flag
+    if flag
       format.json { message :story_published_successfuly }
     else
      format.json { message  :an_error_happend_plz_try_again_later }
@@ -42,27 +42,68 @@ respond_to :html,:json
 #it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to 
 #if the user has no friends he could be directed to add friends page
 def recommend_story
-  @flist=Array.new
-  @flist=user.get_Friend_List() 
+  flist=Array.new
+  flist=user.get_Friend_List() 
 
   respond_to do |list|
-    list.json { render json: @flist}
+    list.json { render json: flist}
    end
 
   respond_to do |mess|
-    if @flist.Empty
+    if flist.Empty
   mess.json { message :sorry_you_dont_have_any_friends }
   end
+ end
 
   respond_from do |format|
     parsed_json = ActiveSupport::JSON.decode(format)
-    @email=parsed_json[email]
-    @message=parsed_json[message]
+    email=parsed_json[email]
+    message=parsed_json[message]
    end
   
-  self.show @email, @message
+  self.show email, message
+end
+
+#view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain
+#story, there will be button in the options tab of the story called view liks/dislikes that will open another 
+#page with the names of friends in it
+def view_friends_like_dislike()
+
+  flistlike=Array.new
+  flistdislike=Array.new
+  
+   flistlike=extractFriends( liked self.id )
+   flistdislike=extractFriends( disliked self.id )
+
+  respond_to do |listlike|
+    listlike.json { render json: flistlike}
+   end
+  
+  respond_to do |listdislike|
+    listdislike.json { render json: flistdislike}
+   end
+  
 end
 
 
-end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end
