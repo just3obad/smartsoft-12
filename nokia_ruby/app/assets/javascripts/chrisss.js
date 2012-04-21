@@ -62,7 +62,14 @@
         renderTo: 'ccc',
         type: 'line',
         zoomType: 'x',
-        marginRight: 130
+        marginRight: 130,
+        plotBackgroundColor: {
+                linearGradient: [0, 0, 500, 500],
+                stops: [
+                    [0, 'rgb(255, 255, 255)'],
+                    [1, 'rgb(100, 237, 255)']
+                ]
+            }
     },
     xAxis: {
         type: "datetime",
