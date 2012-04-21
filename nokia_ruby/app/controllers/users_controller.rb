@@ -56,3 +56,15 @@ def create
     end
   end
 end
+
+
+#this method Passes a list of Interests according to the user_id to getStories method which should return list of stories according to these Interests and it converts it to a json file.
+
+def feed
+ @id=params[:id]
+ @interests = User.find(:first,:conditions => ["id = ?",@id],:select => "interests")
+# @stories_list = getStories(@interests)
+respond_to do |format|
+      format.json { render json: @stories_list }
+end
+end
