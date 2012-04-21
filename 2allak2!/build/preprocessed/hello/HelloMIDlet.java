@@ -30,6 +30,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command ok;
     private Command back;
     private Command options;
+    private Command Back1;
+    private Command find;
+    private Command find1;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -43,6 +46,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private TextField pas;
     private DateField dob;
     private TextField lastName;
+    private Form findFriend;
+    private TextField nameEmail;
 //</editor-fold>//GEN-END:|fields|0|
 
   
@@ -159,57 +164,71 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
                 switchDisplayable(null, getTextBox());//GEN-LINE:|7-commandAction|4|40-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|5|63-preAction
+            }//GEN-BEGIN:|7-commandAction|5|73-preAction
         } else if (displayable == MainFeed) {
-            if (command == options) {//GEN-END:|7-commandAction|5|63-preAction
+            if (command == find1) {//GEN-END:|7-commandAction|5|73-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getProfile());//GEN-LINE:|7-commandAction|6|63-postAction
+                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|6|73-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|29-preAction
+            } else if (command == options) {//GEN-LINE:|7-commandAction|7|63-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getProfile());//GEN-LINE:|7-commandAction|8|63-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|9|29-preAction
         } else if (displayable == Story) {
-            if (command == Comment1) {//GEN-END:|7-commandAction|7|29-preAction
+            if (command == Comment1) {//GEN-END:|7-commandAction|9|29-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getTextBox());//GEN-LINE:|7-commandAction|8|29-postAction
+                switchDisplayable(null, getTextBox());//GEN-LINE:|7-commandAction|10|29-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|9|31-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|11|31-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|10|31-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|12|31-postAction
                 // write post-action user code here
-            } else if (command == viewComments) {//GEN-LINE:|7-commandAction|11|25-preAction
+            } else if (command == viewComments) {//GEN-LINE:|7-commandAction|13|25-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getComment());//GEN-LINE:|7-commandAction|12|25-postAction
+                switchDisplayable(null, getComment());//GEN-LINE:|7-commandAction|14|25-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|13|19-preAction
+            }//GEN-BEGIN:|7-commandAction|15|67-preAction
+        } else if (displayable == findFriend) {
+            if (command == Back1) {//GEN-END:|7-commandAction|15|67-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|16|67-postAction
+                // write post-action user code here
+            } else if (command == find) {//GEN-LINE:|7-commandAction|17|69-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|18|69-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|19|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|13|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|19|19-preAction
                 // write pre-action user code here
-                exitMIDlet();//GEN-LINE:|7-commandAction|14|19-postAction
+                exitMIDlet();//GEN-LINE:|7-commandAction|20|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|53-preAction
+            }//GEN-BEGIN:|7-commandAction|21|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|15|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|21|53-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|16|53-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|22|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|17|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|23|49-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|18|49-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|24|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|19|35-preAction
+            }//GEN-BEGIN:|7-commandAction|25|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|19|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|25|35-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|20|35-postAction
+                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|26|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|21|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|27|33-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|22|33-postAction
+                switchDisplayable(null, getStory());//GEN-LINE:|7-commandAction|28|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|23|7-postCommandAction
-        }//GEN-END:|7-commandAction|23|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|29|7-postCommandAction
+        }//GEN-END:|7-commandAction|29|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|24|
-//</editor-fold>//GEN-END:|7-commandAction|24|
+    }//GEN-BEGIN:|7-commandAction|30|
+//</editor-fold>//GEN-END:|7-commandAction|30|
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
@@ -272,6 +291,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             // write pre-init user code here
             MainFeed = new Form("form1");//GEN-BEGIN:|22-getter|1|22-postInit
             MainFeed.addCommand(getOptions());
+            MainFeed.addCommand(getFind1());
             MainFeed.setCommandListener(this);//GEN-END:|22-getter|1|22-postInit
             // write post-init user code here
             helpMainFeed();
@@ -630,6 +650,89 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return options;
     }
 //</editor-fold>//GEN-END:|62-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Back1 ">//GEN-BEGIN:|66-getter|0|66-preInit
+    /**
+     * Returns an initialized instance of Back1 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBack1() {
+        if (Back1 == null) {//GEN-END:|66-getter|0|66-preInit
+            // write pre-init user code here
+            Back1 = new Command("Back", Command.BACK, 0);//GEN-LINE:|66-getter|1|66-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|66-getter|2|
+        return Back1;
+    }
+//</editor-fold>//GEN-END:|66-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: find ">//GEN-BEGIN:|68-getter|0|68-preInit
+    /**
+     * Returns an initialized instance of find component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getFind() {
+        if (find == null) {//GEN-END:|68-getter|0|68-preInit
+            // write pre-init user code here
+            find = new Command("Ok", Command.OK, 0);//GEN-LINE:|68-getter|1|68-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|68-getter|2|
+        return find;
+    }
+//</editor-fold>//GEN-END:|68-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: find1 ">//GEN-BEGIN:|72-getter|0|72-preInit
+    /**
+     * Returns an initialized instance of find1 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getFind1() {
+        if (find1 == null) {//GEN-END:|72-getter|0|72-preInit
+            // write pre-init user code here
+            find1 = new Command("Find A Friend", Command.SCREEN, 0);//GEN-LINE:|72-getter|1|72-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|72-getter|2|
+        return find1;
+    }
+//</editor-fold>//GEN-END:|72-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: findFriend ">//GEN-BEGIN:|65-getter|0|65-preInit
+    /**
+     * Returns an initialized instance of findFriend component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getFindFriend() {
+        if (findFriend == null) {//GEN-END:|65-getter|0|65-preInit
+            // write pre-init user code here
+            findFriend = new Form("form1", new Item[]{getNameEmail()});//GEN-BEGIN:|65-getter|1|65-postInit
+            findFriend.addCommand(getBack1());
+            findFriend.addCommand(getFind());
+            findFriend.setCommandListener(this);//GEN-END:|65-getter|1|65-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|65-getter|2|
+        return findFriend;
+    }
+//</editor-fold>//GEN-END:|65-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: nameEmail ">//GEN-BEGIN:|70-getter|0|70-preInit
+    /**
+     * Returns an initialized instance of nameEmail component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getNameEmail() {
+        if (nameEmail == null) {//GEN-END:|70-getter|0|70-preInit
+            // write pre-init user code here
+            nameEmail = new TextField("Username/Email", "Find", 32, TextField.ANY);//GEN-LINE:|70-getter|1|70-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|70-getter|2|
+        return nameEmail;
+    }
+//</editor-fold>//GEN-END:|70-getter|2|
 
     
  
