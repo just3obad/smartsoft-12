@@ -13,23 +13,19 @@ module InterestsHelper
   #case 1 if the interest is deleted and it's created within the last 30 days
   if deleted && interest_create_date > 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
   date = interest_last_update - interest_create_date
-  end
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
   date = interest_last_update - 30.days.ago.to_date
-  end
   #case 3 if the interest is deleted and it's created before the last 30 days and its last update was before the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date <= 30.days.ago.to_date
   date = 0
-  end
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
   date = (Date.today) - 30.days.ago.to_date
-  end
-   #case 5 if the interest is not deleted and it's created within the last 30 days
+  #case 5 if the interest is not deleted and it's created within the last 30 days
   else
   date = (Date.today) - interest_create_date
-  end
+   end
   end
   
   #this method when called will get the number of videos in an interest for each day
@@ -45,7 +41,7 @@ module InterestsHelper
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0
   #this was to get the count of the videos added to the interest per day and 0 if no videos were added  
-  end
+  end.inspect
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
@@ -54,12 +50,12 @@ module InterestsHelper
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0  
   #this was to get the count of the videos added to the interest per day and 0 if no videos were added
-  end
+  end.inspect
 
   #case 3 if the interest is deleted and it's created before the last 30 days and its last update was before the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date <= 30.days.ago.to_date
   videos_per_day = [0]  #to return 0 as there are no videos added within the last 30 days
-  end
+  end.inspect
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
@@ -68,7 +64,7 @@ module InterestsHelper
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0
   #this was to get the count of the videos added to the interest per day and 0 if no videos were added
-  end
+  end.inspect
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
@@ -77,6 +73,7 @@ module InterestsHelper
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0
   #this was to get the count of the videos added to the interest per day and 0 if no videos were added
+   end.inspect
   end
  end
 
@@ -94,7 +91,7 @@ module InterestsHelper
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0
   #this was to get the count of the images added to the interest per day and 0 if no images were added  
-  end
+  end.inspect
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
@@ -103,12 +100,12 @@ module InterestsHelper
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0  
   #this was to get the count of the images added to the interest per day and 0 if no images were added
-  end
+  end.inspect
 
   #case 3 if the interest is deleted and it's created before the last 30 days and its last update was before the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date <= 30.days.ago.to_date
   images_per_day = [0]  #to return 0 as there are no images added within the last 30 days
-  end
+  end.inspect
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
@@ -117,7 +114,7 @@ module InterestsHelper
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0
   #this was to get the count of the images added to the interest per day and 0 if no images were added
-  end
+  end.inspect
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
@@ -126,6 +123,7 @@ module InterestsHelper
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0
   #this was to get the count of the images added to the interest per day and 0 if no images were added
+   end.inspect
   end
  end
 
@@ -143,7 +141,7 @@ module InterestsHelper
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0
   #this was to get the count of the articles added to the interest per day and 0 if no articles were added  
-  end
+  end.inspect
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
@@ -152,12 +150,12 @@ module InterestsHelper
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0  
   #this was to get the count of the articles added to the interest per day and 0 if no articles were added
-  end
+  end.inspect
 
   #case 3 if the interest is deleted and it's created before the last 30 days and its last update was before the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date <= 30.days.ago.to_date
   articles_per_day = [0]  #to return 0 as there are no articles added within the last 30 days
-  end
+  end.inspect
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
@@ -166,7 +164,7 @@ module InterestsHelper
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0
   #this was to get the count of the articles added to the interest per day and 0 if no articles were added
-  end
+  end.inspect
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
@@ -175,6 +173,7 @@ module InterestsHelper
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0
   #this was to get the count of the articles added to the interest per day and 0 if no articles were added
+   end.inspect
   end
  end
 
@@ -192,7 +191,7 @@ module InterestsHelper
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0
   #this was to get the count of the users who added the interest per day and 0 if no user did  
-  end
+  end.inspect
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
@@ -201,12 +200,12 @@ module InterestsHelper
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0  
   #this was to get the count of the users who added the interest per day and 0 if no users added it
-  end
+  end.inspect
 
   #case 3 if the interest is deleted and it's created before the last 30 days and its last update was before the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date <= 30.days.ago.to_date
   users_per_day = [0]  #to return 0 as there are no users added the interest within the last 30 days
-  end
+  end.inspect
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
@@ -215,7 +214,7 @@ module InterestsHelper
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0
   #this was to get the count of the users who added the interest per day and 0 if no users added it
-  end
+  end.inspect
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
@@ -224,6 +223,7 @@ module InterestsHelper
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0
   #this was to get the count of the users who added the interest per day and 0 if no users added it
+   end.inspect
   end
  end
 
