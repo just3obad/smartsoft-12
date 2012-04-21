@@ -2,9 +2,9 @@
   //This is a method that will be called on viewing this page it gets the data that will be added to the graph + what's the start
    //point and also what is the interval between each two points default will be 1 day also it takes the names of the things it
    //view across time by default for a story we will view no of shares , no of likes, no of dislikes and no of spams
-   //and then call method kl that will view the graph with the parameters already stated.
+   //and then call method Graph that will view the graph with the parameters already stated.
    
-   //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
+   //also this method gets the start date of data flow from get_story_start_date method in StoriesHelper
 
   $(document).ready(function() {
       //get The story's array of arrays of data
@@ -15,7 +15,9 @@
       pointInterval= <%= 1.day * 1000 %> 
       // Start point of the graph.
       x = <%= get_story_start_date(@id).to_i %>;
-      if(x != -1) {
+      //check if the story was deleted before the last 30 days
+      //if no, then render the graph normally. if yes, then show the warning described in the HTML part below
+      if(x = -1) {
       pointStart= <%= get_story_start_date(@id).days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
@@ -27,81 +29,61 @@
       } else {
       document.getElementById("deletedStory").style.display = "block";
       document.getElementById("graph").style.display = "none";
-      }
-      
-      noOfShares = <%= get_total_number_of_shares(@id) %>;
-      document.getElementById("labelShares").innerHTML ="Number of shares";
-      document.getElementById("NumberShares").innerHTML = noOfShares;
+      }  
    });
 </script>
-<!-- ccc is the id of the div that the graph would render to -->
 
   <div class="row-fluid">
+  
+   <!--This warning will appear only if the given story was deleted before the last 30 days so that the admin knows that there are no graphs for this story:-->
    <div class="span12">
      <div class="alert" id="deletedStory" style="display: none;">
            <a class="close" data-dismiss="alert">×</a>
            <h1><strong>Warning!</strong> Story was deleted before the last 30 days.</h1>
      </div>
     <div class = "row-fluid">
+      <!--That's the content of the sidebar:-->
       <div class="span3" id = "Sidebar">
-      <!--Sidebar content-->
        
        <div class="well sidebar-nav">
-            <span class="label" id="labelShares" style="size: "72px";"></span>
-            <br />
-            <span class="badge badge-success" id="NumberShares"></span>
+            
+            <!--Here we'll get the number shares, likes, dislikes and spams of the given story:-->
+            <h4><div class="alert alert-info">Number of shares:
+            <%= get_total_number_of_shares(@id) %>
+            </div></h4>
+            
+            <h4><div class="alert alert-info">Number of likes:
+            <%= get_total_number_of_likes(@id) %>
+            </div></h4>
+            
+            <h4><div class="alert alert-info">Number of dislikes:
+            <%= get_total_number_of_dislikes(@id) %>
+            </div></h4>
+            
+            <h4><div class="alert alert-info">Number of spams:
+            <%= get_total_number_of_spams(@id) %>
+            </div></h4>
             <ul class="nav nav-list">
-
-              <li class="nav-header">Sidebar</li>
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li class="nav-header">Sidebar</li>
-
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-
-              <li class="nav-header">Sidebar</li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+            
+            <!--Here we'll get the users who shared the given story with a link to the profile page of each user:-->
+            <% Share.where(:story_id => @id).find_each do |share| %>
+            <%= link_to User.find(share.user_id).name, {:controller => 'users', :action => 'show', :id => share.user_id}, class: "btn btn-large btn-primary" %>
+            <br />
+            <% end %>
+              
             </ul>
-          </div><!--/.well -->
+          </div>
       
     </div>
+    <!--The content of the right side of the page:-->
     <div class="span9">
-        
+       
+     <!-- ccc is the id of the div that the graph would render to -->
       <div class="hero-unit" id="graph">
       <div id="ccc"></div>
-          <!--ul class="thumbnails">
-           <li class="span3">
-             <a href="#" class="thumbnail">
-               <img src="http://pe-sport-ideas.tv/wp-content/uploads/2011/03/Online-Sports-Betting1.jpg" alt="">
-             </a>
-           </li>
-           <li class="span3">
-             <a href="#" class="thumbnail">
-               <img src="http://placehold.it/260x180" alt="">
-             </a>
-           </li>
-           <li class="span3">
-             <a href="#" class="thumbnail">
-               <img src="http://placehold.it/260x180" alt="">
-             </a>
-           </li>
-  
-    </ul-->
+         
       </div>
-     
-      <!--Body content-->
     </div>
    </div>
  </div>
 </div>
-
-
