@@ -16,11 +16,7 @@ include UsersHelper
  user = get_num_users_added_interest(interest_id)
  data ="[#{user},#{artc},#{vid},#{img}]"
  end
- #to get the number of registered users per day to use it in the graph
- def get_registered_stat
- r = get_num_registered_day
- data = "[#{r}]"
- end
+ 
 #This is the method that should return the data of statistics of an story
 #with this format first element in the data arrays is ARRAY OF "No Of Shares",
 #second one is "No Of Likes"
@@ -46,8 +42,21 @@ include UsersHelper
   #dataa=[[1,2,3,4,5,6,9,7,8,14,1,2,3,4,5,6,9,7,8,14,1,2,3,4,5,6,9,7,8,14],[2,4,6,8,10,7,4,6,8,7,2,4,6,8,10,7,4,6,8,7,2,4,6,8,10,7,4,6,8,7],[2,10,5,15,4,1,3,5,7,9,2,10,5,15,4,1,3,5,7,9,2,10,5,15,4,1,3,5,7,9],[8,5,8,3,0,7,5,6,4,3,8,5,8,3,0,7,5,6,4,3,8,5,8,3,0,7,5,6,4,3]]
  end
  
+ #to get the number of registered users per day to use it in the graph
+ def get_registered_stat
+ r = get_num_registered_day
+ data = "[#{r}]"
+ end
+#to get the number of logged in users per day to use it in the graph
+ def get_logged_stat
+ l = get_num_logged_in_day
+ data = "[#{l}]"
+ end
+ #to get the number of registered and logged in users per day to use it in the graph
  def get_all_users_stat
-  dataa=[[1,2,3,4,5,6,9,7,8,14,1,2,3,4,5,6,9,7,8,14,1,2,3,4,5,6,9,7,8,14],[2,4,6,8,10,7,4,6,8,7,2,4,6,8,10,7,4,6,8,7,2,4,6,8,10,7,4,6,8,7]]
+ reg = get_num_registered_day
+ log = get_num_logged_in_day
+ data = "[#{reg},#{log}]"
  end
  
  
