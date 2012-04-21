@@ -10,7 +10,12 @@ include UsersHelper
 #third one is "No of videos"
 #and forth one is "No of images"
  def get_interest_stat(interest_id)
-  #dataa=[[1,2,3,4,5,6,9,7,8,14,1,2,3,4,5,6,9,7,8,14,1,2,3,4,5,6,9,7,8,14],[2,4,6,8,10,7,4,6,8,7,2,4,6,8,10,7,4,6,8,7,2,4,6,8,10,7,4,6,8,7],[2,10,5,15,4,1,3,5,7,9,2,10,5,15,4,1,3,5,7,9,2,10,5,15,4,1,3,5,7,9],[8,5,8,3,0,7,5,6,4,3,8,5,8,3,0,7,5,6,4,3,8,5,8,3,0,7,5,6,4,3]]
+ 
+ vid = get_num_videos_in_interest(interest_id)
+ img = get_num_images_in_interest(interest_id)
+ artc = get_num_articles_in_interest(interest_id)
+ user = get_num_users_added_interest(interest_id)
+ data ="[#{user},#{artc},#{vid},#{img}]"
   
  end
  
