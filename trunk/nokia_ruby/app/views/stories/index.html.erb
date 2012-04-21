@@ -1,0 +1,12 @@
+<table>
+<% @stories.each do |story| %>
+<tr>
+    <td><%= story.id %></td>
+    <td><%= story.title %></td>
+    <td><%= story.body %></td>
+    <td><%= story.rank %></td>
+    <td><%= story.image %></td>
+    <td><%= story.category %></td>
+</tr>
+<%end%>
+</table>

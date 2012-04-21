@@ -1,0 +1,13 @@
+{"<%= @stories.class %>":
+{
+<% @stories.each do |story| %>
+"id" :  "<%= story.id %>"
+"title" : "<%= story.title %>"
+"body" : "<%= story.body %>"
+"rank" : "<%= story.rank %>"
+"image" : "<%= story.image %>"
+"category" : "<%= story.category %>"
+
+<%end%>
+}}
+
