@@ -227,12 +227,21 @@ module InterestsHelper
   end
  end
 
- #this method is to get all the general info regarding the statistics of the interest from the database , given its id as a parameter
- def get_interest_general_statistics(interestId) 
- interest_title = Interest.find(interestId).title #storing the title of the interest in a variable
+ #these methods are to get all the general info regarding the statistics of the interest from the database , given its id as a parameter
+ #num videos
+ def get_interest_num_vid(interestId) 
  num_videos_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,'Video') #to get the count of the videos inside the given interest
+ end
+ #num images
+ def get_interest_num_img(interestId)
  num_images_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,'Image') #to get the count of the images inside the given interest
+ end
+ #num articles
+ def get_interest_num_artc(interestId)
  num_articles_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,'Article') #to get the count of the articles inside the given interest
+ end
+ #num users who added interest
+ def get_num_user_added_interest(interestId)
  num_users_added_interest = Users_Add_Interests.count.where(":interest = ?",interestId) #to get the count of the users who added this interest
  end
 
