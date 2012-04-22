@@ -208,4 +208,56 @@ def get_total_number_of_spams(story_id)
   number = Spam.where(:story_id => story_id).count
 end
 
+#the method of fetching rss feeds
+
+def fetch_stories_by_rss_feeds(link)
+
+#source = "http://feeds.abcnews.com/abcnews/topstories" # url or local file
+source = link
+content = "" # raw content of rss feed will be loaded here
+
+
+open(source) do |s| content = s.read end
+rss = RSS::Parser.parse(content, false)
+
+
+i = 0
+num = rss.items.size
+
+listOfStories = Array.new()
+puts listOfStories[num]
+
+
+
+while i < num do
+
+stitle = rss.items[i].date
+sdate = rss.items[i].date
+sdescription =  rss.items[i].description
+
+
+count_of_stories_with_same_title = Story.where(:title => stitle).count
+if count_of_stories_with_same_title == 0
+listOfStories[i] = Story.create(:title => stitle, :date => sdate, :body => sdescription, :rank => 0, :deleted => false, :hidden => false, :likes => 0, :dislikes => 0, :flags => 0, :body => sdescription)
+elsif
+listOfStories[i] = Story.where(:title => stitle)
+end
+i+=1
+if i < num
+return listOfStories
+end
+end
+
+
+rescue NoMethodError
+p ' enter valid rss link'
+return
+rescue Errno::ENOENT
+p 'enter valid link'
+ return
+rescue RSS::NotWellFormedError
+p 'enter valid rss feed link form'
+
+end
+
 end
