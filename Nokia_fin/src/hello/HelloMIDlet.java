@@ -38,6 +38,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
     private Command Find;
     private Command Add;
     private Command Add1;
+    private Command choosefriend;
+    private Command backCommand3;
+    private Command okCommand2;
+    private Command backCommand4;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -62,8 +66,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
     private Alert NotFound;
     private Alert Saved;
     private Alert Error;
-    private Alert EnterUserNameEmail;
     private Alert ComingSoon;
+    private Alert EnterUserNameEmail;
+    private Form recommend;
+    private TextField textField2;
+    private TextField textField3;
+    private List choosefriend1;
     //</editor-fold>//GEN-END:|fields|0|
 
   
@@ -282,57 +290,89 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
  // write pre-action user code here
 //GEN-LINE:|7-commandAction|12|79-postAction
  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|13|81-preAction
+            }//GEN-BEGIN:|7-commandAction|13|123-preAction
+        } else if (displayable == choosefriend1) {
+            if (command == Find) {//GEN-END:|7-commandAction|13|123-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|14|123-postAction
+                // write post-action user code here
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|15|117-preAction
+                // write pre-action user code here
+                choosefriend1Action();//GEN-LINE:|7-commandAction|16|117-postAction
+                // write post-action user code here
+            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|17|122-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|18|122-postAction
+                // write post-action user code here
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|19|120-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|20|120-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|21|81-preAction
         } else if (displayable == connectAccount) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|13|81-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|21|81-preAction
                 // write pre-action user code here
-                connectAccountAction();//GEN-LINE:|7-commandAction|14|81-postAction
+                connectAccountAction();//GEN-LINE:|7-commandAction|22|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|106-preAction
+            }//GEN-BEGIN:|7-commandAction|23|106-preAction
         } else if (displayable == findFriend) {
-            if (command == Add1) {//GEN-END:|7-commandAction|15|106-preAction
+            if (command == Add1) {//GEN-END:|7-commandAction|23|106-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|16|106-postAction
+//GEN-LINE:|7-commandAction|24|106-postAction
                 // write post-action user code here
-            } else if (command == Back1) {//GEN-LINE:|7-commandAction|17|94-preAction
+            } else if (command == Back1) {//GEN-LINE:|7-commandAction|25|94-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|18|94-postAction
+//GEN-LINE:|7-commandAction|26|94-postAction
                 // write post-action user code here
-            } else if (command == Find) {//GEN-LINE:|7-commandAction|19|96-preAction
+            } else if (command == Find) {//GEN-LINE:|7-commandAction|27|96-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|20|96-postAction
+//GEN-LINE:|7-commandAction|28|96-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|21|19-preAction
+            }//GEN-BEGIN:|7-commandAction|29|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|21|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|29|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|22|19-postAction
+//GEN-LINE:|7-commandAction|30|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|23|53-preAction
+            }//GEN-BEGIN:|7-commandAction|31|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|23|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|31|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|24|53-postAction
+//GEN-LINE:|7-commandAction|32|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|25|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|33|49-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|26|49-postAction
+//GEN-LINE:|7-commandAction|34|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|27|35-preAction
+            }//GEN-BEGIN:|7-commandAction|35|115-preAction
+        } else if (displayable == recommend) {
+            if (command == backCommand3) {//GEN-END:|7-commandAction|35|115-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|36|115-postAction
+                // write post-action user code here
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|37|124-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|38|124-postAction
+                // write post-action user code here
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|39|113-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|40|113-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|41|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|27|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|41|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|28|35-postAction
+//GEN-LINE:|7-commandAction|42|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|29|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|43|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|30|33-postAction
+//GEN-LINE:|7-commandAction|44|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|31|7-postCommandAction
-        }//GEN-END:|7-commandAction|31|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|45|7-postCommandAction
+        }//GEN-END:|7-commandAction|45|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|32|
-    //</editor-fold>//GEN-END:|7-commandAction|32|
+    }//GEN-BEGIN:|7-commandAction|46|
+    //</editor-fold>//GEN-END:|7-commandAction|46|
 
 
 
@@ -514,7 +554,7 @@ addComments(); //adding dummy comments to test UI
     public Command getOkCommand() {
         if (okCommand == null) {//GEN-END:|32-getter|0|32-preInit
             // write pre-init user code here
-            okCommand = new Command("Ok", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
+            okCommand = new Command("send", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
             // write post-init user code here
         }//GEN-BEGIN:|32-getter|2|
         return okCommand;
@@ -969,7 +1009,7 @@ addComments(); //adding dummy comments to test UI
     public Command getFind() {
         if (Find == null) {//GEN-END:|95-getter|0|95-preInit
             // write pre-init user code here
-            Find = new Command("Ok", Command.OK, 0);//GEN-LINE:|95-getter|1|95-postInit
+            Find = new Command("findfriend", Command.OK, 0);//GEN-LINE:|95-getter|1|95-postInit
             // write post-init user code here
         }//GEN-BEGIN:|95-getter|2|
         return Find;
@@ -1070,6 +1110,145 @@ addComments(); //adding dummy comments to test UI
         return ComingSoon;
     }
     //</editor-fold>//GEN-END:|107-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend ">//GEN-BEGIN:|111-getter|0|111-preInit
+    /**
+     * Returns an initiliazed instance of choosefriend component.
+     * @return the initialized component instance
+     */
+    public Command getChoosefriend() {
+        if (choosefriend == null) {//GEN-END:|111-getter|0|111-preInit
+            // write pre-init user code here
+            choosefriend = new Command("choosefriend", Command.SCREEN, 0);//GEN-LINE:|111-getter|1|111-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|111-getter|2|
+        return choosefriend;
+    }
+    //</editor-fold>//GEN-END:|111-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand3 ">//GEN-BEGIN:|114-getter|0|114-preInit
+    /**
+     * Returns an initiliazed instance of backCommand3 component.
+     * @return the initialized component instance
+     */
+    public Command getBackCommand3() {
+        if (backCommand3 == null) {//GEN-END:|114-getter|0|114-preInit
+            // write pre-init user code here
+            backCommand3 = new Command("Back", Command.BACK, 0);//GEN-LINE:|114-getter|1|114-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|114-getter|2|
+        return backCommand3;
+    }
+    //</editor-fold>//GEN-END:|114-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand2 ">//GEN-BEGIN:|119-getter|0|119-preInit
+    /**
+     * Returns an initiliazed instance of okCommand2 component.
+     * @return the initialized component instance
+     */
+    public Command getOkCommand2() {
+        if (okCommand2 == null) {//GEN-END:|119-getter|0|119-preInit
+            // write pre-init user code here
+            okCommand2 = new Command("ok", Command.OK, 0);//GEN-LINE:|119-getter|1|119-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|119-getter|2|
+        return okCommand2;
+    }
+    //</editor-fold>//GEN-END:|119-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand4 ">//GEN-BEGIN:|121-getter|0|121-preInit
+    /**
+     * Returns an initiliazed instance of backCommand4 component.
+     * @return the initialized component instance
+     */
+    public Command getBackCommand4() {
+        if (backCommand4 == null) {//GEN-END:|121-getter|0|121-preInit
+            // write pre-init user code here
+            backCommand4 = new Command("Back", Command.BACK, 0);//GEN-LINE:|121-getter|1|121-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|121-getter|2|
+        return backCommand4;
+    }
+    //</editor-fold>//GEN-END:|121-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend ">//GEN-BEGIN:|108-getter|0|108-preInit
+    /**
+     * Returns an initiliazed instance of recommend component.
+     * @return the initialized component instance
+     */
+    public Form getRecommend() {
+        if (recommend == null) {//GEN-END:|108-getter|0|108-preInit
+            // write pre-init user code here
+            recommend = new Form("form1", new Item[] { getTextField2(), getTextField3() });//GEN-BEGIN:|108-getter|1|108-postInit
+            recommend.addCommand(getOkCommand());
+            recommend.addCommand(getBackCommand3());
+            recommend.addCommand(getChoosefriend());
+            recommend.setCommandListener(this);//GEN-END:|108-getter|1|108-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|108-getter|2|
+        return recommend;
+    }
+    //</editor-fold>//GEN-END:|108-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|109-getter|0|109-preInit
+    /**
+     * Returns an initiliazed instance of textField2 component.
+     * @return the initialized component instance
+     */
+    public TextField getTextField2() {
+        if (textField2 == null) {//GEN-END:|109-getter|0|109-preInit
+            // write pre-init user code here
+            textField2 = new TextField("Email", null, 32, TextField.ANY);//GEN-LINE:|109-getter|1|109-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|109-getter|2|
+        return textField2;
+    }
+    //</editor-fold>//GEN-END:|109-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|110-getter|0|110-preInit
+    /**
+     * Returns an initiliazed instance of textField3 component.
+     * @return the initialized component instance
+     */
+    public TextField getTextField3() {
+        if (textField3 == null) {//GEN-END:|110-getter|0|110-preInit
+            // write pre-init user code here
+            textField3 = new TextField("message", null, 32, TextField.ANY);//GEN-LINE:|110-getter|1|110-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|110-getter|2|
+        return textField3;
+    }
+    //</editor-fold>//GEN-END:|110-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
+    /**
+     * Returns an initiliazed instance of choosefriend1 component.
+     * @return the initialized component instance
+     */
+    public List getChoosefriend1() {
+        if (choosefriend1 == null) {//GEN-END:|116-getter|0|116-preInit
+            // write pre-init user code here
+            choosefriend1 = new List("choosefriend", Choice.IMPLICIT);//GEN-BEGIN:|116-getter|1|116-postInit
+            choosefriend1.addCommand(getOkCommand2());
+            choosefriend1.addCommand(getBackCommand4());
+            choosefriend1.addCommand(getFind());
+            choosefriend1.setCommandListener(this);//GEN-END:|116-getter|1|116-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|116-getter|2|
+        return choosefriend1;
+    }
+    //</editor-fold>//GEN-END:|116-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: choosefriend1Action ">//GEN-BEGIN:|116-action|0|116-preAction
+    /**
+     * Performs an action assigned to the selected list element in the choosefriend1 component.
+     */
+    public void choosefriend1Action() {//GEN-END:|116-action|0|116-preAction
+        // enter pre-action user code here
+        String __selectedString = getChoosefriend1().getString(getChoosefriend1().getSelectedIndex());//GEN-LINE:|116-action|1|116-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|116-action|2|
+    //</editor-fold>//GEN-END:|116-action|2|
 
 
 
