@@ -10,7 +10,7 @@ include UsersHelper
 #third one is "No of videos"
 #and forth one is "No of images"
  def get_interest_stat(interest_id)
- sto = gget_num_stories_in_interest_day(interest_id)
+ sto = get_num_stories_in_interest_day(interest_id)
  data ="[#{sto}]"
  end
  
