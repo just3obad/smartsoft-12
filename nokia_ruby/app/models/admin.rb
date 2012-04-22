@@ -26,6 +26,7 @@ class Admin < ActiveRecord::Base
 
     # Matched $EMAIL
     # The next block is commented until the attributes of user are handled.
+    #
     # name_query = query
 
     # name_match = []
@@ -39,6 +40,7 @@ class Admin < ActiveRecord::Base
     #   query_result += User.all.select {|user| not user.first_name.nil? and
     #                                   (user.first_name =~ %r'#{name_match}' or name_query.downcase =~ %r'#{user.first_name}')}
     # end
+    # END OF BLOCK
     # Matched names
     username_query = query
 
