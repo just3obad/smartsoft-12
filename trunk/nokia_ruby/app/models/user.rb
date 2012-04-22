@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
  # validates :last_name, :presence => true,     #un-comment after db handling
  # :length => { :maximum => 20 }
  # validates :date_of_birth, :presence => true
-  validates :verified, :presence =>true
   
  # gets the shared stories of friends of a user
   def get_friends_stories()
@@ -47,4 +46,16 @@ class User < ActiveRecord::Base
       return false		# sharing failed, return false
     end
   end 
+
+ # this methods generates a verification code for the user and adds an entry to Verification_Code
+  def generateVerificationCode?()
+  @verification_code = VerificationCode.find_by_user_id(self.id)
+      if @verification_code.nil? then
+      VerificationCode.create :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join,:user_id=>self.id, :verified=>false
+      return true		
+    else 			
+      return false		
+    end
+  end 
+
 end

@@ -1,11 +1,11 @@
 class VerificationCode < ActiveRecord::Base
-  attr_accessible :code, :user_id
+  attr_accessible :code, :user_id, :verified
   
   belongs_to :user
   
   validates :code, :presence => true,
-  :length => { :equal => 4}
+  :length => { :is => 4}
   
-  validates :user_id, presence => true,
+  validates :user_id, :presence => true,
   :uniqueness => true
 end
