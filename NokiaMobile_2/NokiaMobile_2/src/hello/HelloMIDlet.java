@@ -4,6 +4,9 @@
  */
 package hello;
 
+import java.io.OutputStream;
+import javax.microedition.io.Connector;
+import javax.microedition.io.HttpConnection;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 
@@ -131,6 +134,50 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|10|36-postAction
                 // write post-action user code here
+                //Register
+        HttpConnection httpConn = null;
+        OutputStream os = null;
+                try {
+        //Change IP accordingly
+        httpConn = (HttpConnection) Connector.open("http://192.168.1.107:3000/users/");
+        //Request method has to be POST
+        httpConn.setRequestMethod(HttpConnection.POST);
+        httpConn.setRequestProperty("User-Agent",
+                "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+        httpConn.setRequestProperty("Accept_Language", "en-US");
+        //Content-Type is must to pass parameters in POST Request must be application/json
+        httpConn.setRequestProperty("Content-Type", "application/json");
+        // JSON String that you will send containing the attributes needed for sign up. 
+        String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}";
+        httpConn.setRequestProperty("Content-Length",
+                "" + dataToBeSend.length());
+        os = httpConn.openOutputStream();
+        os.write(dataToBeSend.getBytes());
+
+        os.flush();//data written will be flushed to server.
+        System.out.println(httpConn.getResponseCode());
+        System.out.println(dataToBeSend);
+    
+    } catch (Throwable t) {
+        System.out.println("Exception occured " + t.toString());
+    } //Since only limited number of network objects can be in open state
+    //it is necessary to clean them up as soon as we are done with them.
+    finally {
+        try {
+            if (os != null) {
+                os.close();
+            }
+        } catch (Throwable t) {
+            System.out.println("Exception occured " + t.toString());
+        }
+        try {
+            if (httpConn != null) {
+                httpConn.close();
+            }
+        } catch (Throwable t) {
+            System.out.println("Exception occured " + t.toString());
+        }
+    }
             }//GEN-BEGIN:|7-commandAction|11|19-preAction
         } else if (displayable == form) {
             if (command == exitCommand) {//GEN-END:|7-commandAction|11|19-preAction
