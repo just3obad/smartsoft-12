@@ -41,6 +41,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private TextField textField8;
     private TextField textField9;
     private DateField dateField;
+    private Alert Saved;
+    private Alert Error;
 //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -605,6 +607,40 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return dateField;
     }
 //</editor-fold>//GEN-END:|49-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Saved ">//GEN-BEGIN:|50-getter|0|50-preInit
+    /**
+     * Returns an initialized instance of Saved component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getSaved() {
+        if (Saved == null) {//GEN-END:|50-getter|0|50-preInit
+            // write pre-init user code here
+            Saved = new Alert("alert", null, null, AlertType.CONFIRMATION);//GEN-BEGIN:|50-getter|1|50-postInit
+            Saved.setTimeout(Alert.FOREVER);//GEN-END:|50-getter|1|50-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|50-getter|2|
+        return Saved;
+    }
+//</editor-fold>//GEN-END:|50-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Error ">//GEN-BEGIN:|51-getter|0|51-preInit
+    /**
+     * Returns an initialized instance of Error component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getError() {
+        if (Error == null) {//GEN-END:|51-getter|0|51-preInit
+            // write pre-init user code here
+            Error = new Alert("alert1", null, null, AlertType.ERROR);//GEN-BEGIN:|51-getter|1|51-postInit
+            Error.setTimeout(Alert.FOREVER);//GEN-END:|51-getter|1|51-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|51-getter|2|
+        return Error;
+    }
+//</editor-fold>//GEN-END:|51-getter|2|
 
     /**
      * Returns a display instance.
