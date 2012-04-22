@@ -4,7 +4,7 @@ class Story < ActiveRecord::Base
 # :type==> 1 (Article) 2 (Image) 3 (video)
   attr_accessible :title, :date, :body, :rank, :image, :category, 
                   :content, :deleted, :hidden , :likes , :dislikes ,
-		  :flags, :type
+		  :flags, :type, :interest
   belongs_to :interests
 
   #def initialize(title, date, body)
