@@ -10,11 +10,8 @@ include UsersHelper
 #third one is "No of videos"
 #and forth one is "No of images"
  def get_interest_stat(interest_id)
- vid = get_num_videos_in_interest(interest_id)
- img = get_num_images_in_interest(interest_id)
- artc = get_num_articles_in_interest(interest_id)
- user = get_num_users_added_interest(interest_id)
- data ="[#{user},#{artc},#{vid},#{img}]"
+ sto = gget_num_stories_in_interest_day(interest_id)
+ data ="[#{sto}]"
  end
  
 #This is the method that should return the data of statistics of an story
