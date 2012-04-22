@@ -7,6 +7,11 @@ class GaheemAccountsController < ApplicationController
 
   # PUT /gaheem_accounts/1
   # PUT /gaheem_accounts/1.json
+  
+  def new
+    @gaheem_account = GaheemAccount.new(params[:email, :password])
+  end
+
   def update
     @gaheem_account = GaheemAccount.find(params[:id])
 
