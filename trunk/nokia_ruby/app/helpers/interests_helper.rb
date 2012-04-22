@@ -78,7 +78,7 @@ module InterestsHelper
  end 
 
   #this method when called will get the number of users in an interest for each day
-  def get_num_users_added_interest(interest_id)
+  def get_num_users_added_interest_day(interest_id)
   interest_create_date = Interest.find(interest_id).created_at_before_type_cast.to_date #to get when the interest was created
   interest_last_update_date = Interest.find(interest_id).updated_at_before_type_cast.to_date #to get when the interest was updated last time
   deleted = Interest.find(interest_id).select("deleted") #to check if the interest is deleted or not
@@ -133,7 +133,7 @@ module InterestsHelper
  end
  
  #num users who added interest
- def get_num_user_added_interest(interestId)
+ def get_total_num_user_added_interest(interestId)
  num_users_added_interest = UserAddInterest.count.where(":interest = ?",interestId) #to get the count of the users who added this interest
  end
 
