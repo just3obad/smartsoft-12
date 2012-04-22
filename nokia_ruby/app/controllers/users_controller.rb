@@ -88,7 +88,7 @@ class UsersController < ApplicationController
 
 def feed
  @id=params[:id]
-# @interests = User.find(:first,:conditions => ["id = ?",@id],:select => "interests")
+ @interests = User.find_by_sql("select interests.name from user,user_add_interest,interest where user_id=@id AND user.id = user_add_interest.user_id AND user_add_interest.interest_id = interest.id ")
 # @stories_list = getStories(@interests)
 respond_to do |format|
       format.json { render json: @stories_list }
