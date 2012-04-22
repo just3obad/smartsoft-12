@@ -1,11 +1,21 @@
-<table>
+<table class="table table-striped table-bodered">
+ <thead>
+    <tr>
+      <th></th>
+      <th>Story no.</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Rank</th>
+      <th>Category</th>
+    </tr>
+  </thead>
 <% @stories.each do |story| %>
 <tr>
+    <td><img width="150";height="100"; src=story.image></td>
     <td><%= story.id %></td>
     <td><%= story.title %></td>
     <td><%= story.body %></td>
     <td><%= story.rank %></td>
-    <td><%= story.image %></td>
     <td><%= story.category %></td>
 </tr>
 <%end%>
