@@ -73,7 +73,7 @@ def recommend_story
 
   respond_to do |mess|
     if flist.Empty
-      mess.json { message :sorry_you_dont_have_any_friends }
+      mess.json { message :sorry_you_dont_have_any_friends, status :have_no_friends }
     else
         list.json { render json: flist}
   end
@@ -111,11 +111,11 @@ def view_friends_like_dislike()
    flistdislike=extractFriends( disliked self.id )
 
   respond_to do |listlike|
-    listlike.json { render json: flistlike}
+    listlike.json { render json: flistlike, status: :liked}
    end
   
   respond_to do |listdislike|
-    listdislike.json { render json: flistdislike}
+    listdislike.json { render json: flistdislike, status: :dislike}
    end
   
 end
