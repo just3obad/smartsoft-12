@@ -80,7 +80,6 @@ module UsersHelper
       share = shares_by_day.detect { |share| share.created_at.to_date == date }
       share && share.noOfSharesPerDay.to_i || 0
       end.inspect
-	  end
   #3) If the user registered and deactivated before the last 30 days
 	 elsif deactivated && user_reg_date <= 30.days.ago.to_date && last_updated <= 30.days.ago.to_date
       shares_by_day = []
@@ -99,6 +98,7 @@ module UsersHelper
         share && share.noOfSharesPerDay.to_i || 0
       end.inspect
     end
+	end
 end
 	  
 #This method gets the number of Likes by this user in the last 30 days	  	  	
