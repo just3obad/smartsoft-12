@@ -66,16 +66,16 @@ class StoriesController < ApplicationController
 #recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page 
 
 def recommend_story
-  flist=Array.new
-  flist=user.get_Friend_List() 
+  @flist=Array.new
+  @flist=user.get_Friend_List() 
 
    
 
   respond_to do |mess|
-    if flist.Empty
-      mess.json { message :sorry_you_dont_have_any_friends, status :have_no_friends }
+    if @flist.Empty
+      mess.json { message :sorry_you_dont_have_any_friends }
     else
-        list.json { render json: flist}
+        list.json { render json: @flist}
   end
  end
 
@@ -104,18 +104,18 @@ end
 
 def view_friends_like_dislike()
 
-  flistlike=Array.new
-  flistdislike=Array.new
+  @flistlike=Array.new
+  @flistdislike=Array.new
   
-   flistlike=extractFriends( liked self.id )
-   flistdislike=extractFriends( disliked self.id )
+   @flistlike=extractFriends( liked self.id )
+   @flistdislike=extractFriends( disliked self.id )
 
   respond_to do |listlike|
-    listlike.json { render json: flistlike, status: :liked}
+    listlike.json { render json: @flistlike, status: :liked}
    end
   
   respond_to do |listdislike|
-    listdislike.json { render json: flistdislike, status: :dislike}
+    listdislike.json { render json: @flistdislike, status: :dislike}
    end
   
 end
