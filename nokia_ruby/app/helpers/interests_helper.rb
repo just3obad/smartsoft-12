@@ -36,7 +36,7 @@ module InterestsHelper
   
   #case 1 if the interest is deleted and it's created within the last 30 days
   if deleted && interest_create_date > 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  videos_per_day = Story.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => "video" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within the creation and deletion of the interest and group by the date of creation
+  videos_per_day = Story.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => 3 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within the creation and deletion of the interest and group by the date of creation
   (interest_create_date.to_date..interest_last_update.to_date).map do |date|
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0
@@ -45,7 +45,7 @@ module InterestsHelper
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  videos_per_day = Story.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => "video" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within the last 30 days and the last update of the interest and group by the date of creation
+  videos_per_day = Story.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => 3 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within the last 30 days and the last update of the interest and group by the date of creation
   (30.days.ago.to_date..interest_last_update.to_date).map do |date|
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0  
@@ -59,7 +59,7 @@ module InterestsHelper
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
-  videos_per_day = Story.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => "video" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within the creation of the interest until the current date and group by the date of creation
+  videos_per_day = Story.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => 3 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within the creation of the interest until the current date and group by the date of creation
   (30.days.ago.to_date..Date.today).map do |date|
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0
@@ -68,7 +68,7 @@ module InterestsHelper
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
-  videos_per_day = Story.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => "video" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within interest creation date until the current date and group by the date of creation
+  videos_per_day = Story.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => 3 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as vids_day") #to get all the videos within interest creation date until the current date and group by the date of creation
   (interest_create_date.to_date..Date.today).map do |date|
   video = videos_per_day.detect { |video| video.created_at.to_date == date}
   video && video.vids_day.to_i || 0
@@ -86,7 +86,7 @@ module InterestsHelper
   
   #case 1 if the interest is deleted and it's created within the last 30 days
   if deleted && interest_create_date > 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  images_per_day = Story.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => "image" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within the creation and deletion of the interest and group by the date of creation
+  images_per_day = Story.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => 2 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within the creation and deletion of the interest and group by the date of creation
   (interest_create_date.to_date..interest_last_update.to_date).map do |date|
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0
@@ -95,7 +95,7 @@ module InterestsHelper
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  images_per_day = Story.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => "image" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within the last 30 days and the last update of the interest and group by the date of creation
+  images_per_day = Story.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => 2 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within the last 30 days and the last update of the interest and group by the date of creation
   (30.days.ago.to_date..interest_last_update.to_date).map do |date|
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0  
@@ -109,7 +109,7 @@ module InterestsHelper
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
-  images_per_day = Story.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => "image" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within 30 day ago until the current date and group by the date of creation
+  images_per_day = Story.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => 2 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within 30 day ago until the current date and group by the date of creation
   (30.days.ago.to_date..Date.today).map do |date|
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0
@@ -118,7 +118,7 @@ module InterestsHelper
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
-  images_per_day = Story.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => "image" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within interest creation until the current date and group by the date of creation
+  images_per_day = Story.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => 2 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as imgs_day") #to get all the images within interest creation until the current date and group by the date of creation
   (interest_create_date.to_date..Date.today).map do |date|
   image = images_per_day.detect { |image| image.created_at.to_date == date}
   image && image.imgs_day.to_i || 0
@@ -136,7 +136,7 @@ module InterestsHelper
   
   #case 1 if the interest is deleted and it's created within the last 30 days
   if deleted && interest_create_date > 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  articles_per_day = Story.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => "article" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within the creation and deletion of the interest and group by the date of creation
+  articles_per_day = Story.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => 1 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within the creation and deletion of the interest and group by the date of creation
   (interest_create_date.to_date..interest_last_update.to_date).map do |date|
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0
@@ -145,7 +145,7 @@ module InterestsHelper
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  articles_per_day = Story.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => "article" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within the last 30 days and the last update of the interest and group by the date of creation
+  articles_per_day = Story.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id , :type => 1 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within the last 30 days and the last update of the interest and group by the date of creation
   (30.days.ago.to_date..interest_last_update.to_date).map do |date|
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0  
@@ -159,7 +159,7 @@ module InterestsHelper
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
-  articles_per_day = Story.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => "article" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within 30 days ago until the current date and group by the date of creation
+  articles_per_day = Story.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => 1 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within 30 days ago until the current date and group by the date of creation
   (30.days.ago.to_date..Date.today).map do |date|
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0
@@ -168,7 +168,7 @@ module InterestsHelper
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
-  articles_per_day = Story.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => "article" , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within interest creation until the current date and group by the date of creation
+  articles_per_day = Story.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id , :type => 1 , :deleted => false).group("date(created_at)").select("created_at , count(story_id) as artcs_day") #to get all the articles within interest creation until the current date and group by the date of creation
   (interest_create_date.to_date..Date.today).map do |date|
   article = articles_per_day.detect { |article| article.created_at.to_date == date}
   article && article.artcs_day.to_i || 0
@@ -230,15 +230,15 @@ module InterestsHelper
  #these methods are to get all the general info regarding the statistics of the interest from the database , given its id as a parameter
  #num videos
  def get_interest_num_vid(interestId) 
- num_videos_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,'Video') #to get the count of the videos inside the given interest
+ num_videos_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,3) #to get the count of the videos inside the given interest
  end
  #num images
  def get_interest_num_img(interestId)
- num_images_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,'Image') #to get the count of the images inside the given interest
+ num_images_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,2) #to get the count of the images inside the given interest
  end
  #num articles
  def get_interest_num_artc(interestId)
- num_articles_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,'Article') #to get the count of the articles inside the given interest
+ num_articles_in_interest = Story.count.where(":interest = ? AND :type = ?",interestId,1) #to get the count of the articles inside the given interest
  end
  #num users who added interest
  def get_num_user_added_interest(interestId)
