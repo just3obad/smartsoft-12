@@ -6,4 +6,10 @@ class Story < ActiveRecord::Base
                   :content, :deleted, :hidden , :likes , :dislikes ,
 		  :flags, :type, :interest_id
   belongs_to :interests
+
+  def initialize(title, body)
+    @title = title
+    @body = body
+  end
+
 end
