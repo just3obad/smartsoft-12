@@ -18,12 +18,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command okCommand;
     private Command exitCommand1;
     private Command itemCommand;
+    private Command okCommand1;
+    private Command backCommand;
     private Form form;
     private StringItem stringItem;
     private Form LoginScreen;
     private TextField textField;
     private TextField textField1;
     private Form RegisterScreen;
+    private TextField textField2;
+    private TextField textField3;
+    private TextField textField4;
 //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -116,17 +121,27 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|6|27-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|19-preAction
-        } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|7|19-preAction
+            }//GEN-BEGIN:|7-commandAction|7|38-preAction
+        } else if (displayable == RegisterScreen) {
+            if (command == backCommand) {//GEN-END:|7-commandAction|7|38-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|8|19-postAction
+//GEN-LINE:|7-commandAction|8|38-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|7-postCommandAction
-        }//GEN-END:|7-commandAction|9|7-postCommandAction
+            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|9|36-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|10|36-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|11|19-preAction
+        } else if (displayable == form) {
+            if (command == exitCommand) {//GEN-END:|7-commandAction|11|19-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|12|19-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|13|7-postCommandAction
+        }//GEN-END:|7-commandAction|13|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|10|
-//</editor-fold>//GEN-END:|7-commandAction|10|
+    }//GEN-BEGIN:|7-commandAction|14|
+//</editor-fold>//GEN-END:|7-commandAction|14|
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
@@ -287,12 +302,95 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Form getRegisterScreen() {
         if (RegisterScreen == null) {//GEN-END:|23-getter|0|23-preInit
             // write pre-init user code here
-            RegisterScreen = new Form("form1");//GEN-LINE:|23-getter|1|23-postInit
+            RegisterScreen = new Form("RegisterScreen", new Item[]{getTextField2(), getTextField3(), getTextField4()});//GEN-BEGIN:|23-getter|1|23-postInit
+            RegisterScreen.addCommand(getOkCommand1());
+            RegisterScreen.addCommand(getBackCommand());
+            RegisterScreen.setCommandListener(this);//GEN-END:|23-getter|1|23-postInit
             // write post-init user code here
         }//GEN-BEGIN:|23-getter|2|
         return RegisterScreen;
     }
 //</editor-fold>//GEN-END:|23-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand1 ">//GEN-BEGIN:|35-getter|0|35-preInit
+    /**
+     * Returns an initialized instance of okCommand1 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getOkCommand1() {
+        if (okCommand1 == null) {//GEN-END:|35-getter|0|35-preInit
+            // write pre-init user code here
+            okCommand1 = new Command("Ok", Command.OK, 0);//GEN-LINE:|35-getter|1|35-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|35-getter|2|
+        return okCommand1;
+    }
+//</editor-fold>//GEN-END:|35-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|37-getter|0|37-preInit
+    /**
+     * Returns an initialized instance of backCommand component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBackCommand() {
+        if (backCommand == null) {//GEN-END:|37-getter|0|37-preInit
+            // write pre-init user code here
+            backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|37-getter|1|37-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|37-getter|2|
+        return backCommand;
+    }
+//</editor-fold>//GEN-END:|37-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|32-getter|0|32-preInit
+    /**
+     * Returns an initialized instance of textField2 component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getTextField2() {
+        if (textField2 == null) {//GEN-END:|32-getter|0|32-preInit
+            // write pre-init user code here
+            textField2 = new TextField("Email", null, 32, TextField.ANY);//GEN-LINE:|32-getter|1|32-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|32-getter|2|
+        return textField2;
+    }
+//</editor-fold>//GEN-END:|32-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|33-getter|0|33-preInit
+    /**
+     * Returns an initialized instance of textField3 component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getTextField3() {
+        if (textField3 == null) {//GEN-END:|33-getter|0|33-preInit
+            // write pre-init user code here
+            textField3 = new TextField("Password", null, 32, TextField.ANY);//GEN-LINE:|33-getter|1|33-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|33-getter|2|
+        return textField3;
+    }
+//</editor-fold>//GEN-END:|33-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField4 ">//GEN-BEGIN:|34-getter|0|34-preInit
+    /**
+     * Returns an initialized instance of textField4 component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getTextField4() {
+        if (textField4 == null) {//GEN-END:|34-getter|0|34-preInit
+            // write pre-init user code here
+            textField4 = new TextField("Confirm Password", null, 32, TextField.ANY);//GEN-LINE:|34-getter|1|34-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|34-getter|2|
+        return textField4;
+    }
+//</editor-fold>//GEN-END:|34-getter|2|
 
     /**
      * Returns a display instance.
