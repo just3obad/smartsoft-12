@@ -4,12 +4,12 @@ class VerificationCodesController < ApplicationController
   def verify
 
   @code = params[:code]
-  @user = Users.find_by_id(params[:id])
+  @account = GaheemAccount.find_by_id(params[:id])
     respond_to do |format|
-      if @user.verifyAccount(@code)
-      format.json { render json: @user, notice: "account succesfully verified" }
+      if @account.verifyAccount?(@code)
+      format.json { render json: @account, notice: "account succesfully verified" }
       else
-      format.json { render json: @user.errors, status: :unprocessable_entity }
+      format.json { render json: @account.errors, status: :unprocessable_entity }
       end
     end
   end

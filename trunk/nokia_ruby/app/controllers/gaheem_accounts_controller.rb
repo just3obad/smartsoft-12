@@ -13,6 +13,9 @@ class GaheemAccountsController < ApplicationController
 
     respond_to do |format|
       if @gaheem_account.save
+         if @gaheem_account.generateVerificationCode?
+           Emailer.deliver_registration_confirmation(@gaheem_account)
+         end
         format.json {render json: @gaheem_account, status: :created, location: @gaheem_account}
       else
         format.json {render json: @gaheem_account.errors, status: :unprocessable_entity }

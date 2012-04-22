@@ -20,7 +20,7 @@ NokiaRuby::Application.routes.draw do
   match "friends/:id" => "friends#add"
   match "friends/:id/accept" => "friends#update"
   match "friends/:id/reject" => "friends#delete"
-  match "users/:id/verify" => "verification_codes#verify"
+  match "gaheem_accounts/:id/verify" => "verification_codes#verify"
 
 
   match "/users/:id" => "users#feed"

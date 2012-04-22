@@ -1,11 +1,12 @@
 class VerificationCode < ActiveRecord::Base
-  attr_accessible :code, :user_id, :verified
+  attr_accessible :code, :account_id, :verified
   
-  belongs_to :user
+  belongs_to :gaheem_account
   
   validates :code, :presence => true,
   :length => { :is => 4}
   
-  validates :user_id, :presence => true,
+  validates :account_id, :presence => true,
   :uniqueness => true
+
 end
