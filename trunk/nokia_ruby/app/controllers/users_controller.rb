@@ -94,4 +94,14 @@ respond_to do |format|
       format.json { render json: @stories_list }
 end
 end
+
+#this method gets the stories of a friend through method getFriendsStories and converts them to a json file.
+
+def friends_feed
+ @friends = User.find(:first,:conditions => ["id = ?",params[:id]],:select => "friends")
+#@friend_stories = getFriendsStories(@friends)
+respond_to do |format|
+       format.json { render json: @friend_stories }
+end
+end
 end
