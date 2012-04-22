@@ -40,13 +40,13 @@ NokiaRuby::Application.routes.draw do
   resources :interests
   resources :shares 
   resources :comments
-<<<<<<< .mine
+
   resources :feeds, :only => [:create, :destroy, :index, :new]
-=======
+
   resources :gaheem_accounts
   resources :twitter_accounts
   resources :friends
->>>>>>> .r367
+
 
 
 
