@@ -5,6 +5,27 @@ respond_to :html,:json
    @story = Story.find(params[:id])
 
   end
+    # show comments of a certain story
+    def show_comments
+    @comments = Comment.find_all_by_story_id(params[:id])
+    end
+
+    # create a new comment for a certain story
+    # parameters are stored in POST HTTP request body
+    # that was sent from the mobile client
+    def create_comment
+     @comment = Comment.new({:content=>params[:content],:user_id=>params[:user_id],:story_id=>params[:id]})
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @comment, notice: 'Comment success' }
+        format.json { render json: @comment, status: :created, location: @comment }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   def index
     respond_with(@stories = Story.all)

@@ -1,7 +1,12 @@
 class CommentsController < ApplicationController
   respond_to :html,:json
   
-     def new
+
+
+  
+
+
+  def new
     @comment = Comment.new
 
     respond_to do |format|
@@ -18,7 +23,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'User was successfully created.' }
+        format.html { redirect_to @comment, notice: 'comment successfully posted' }
         format.json { render json: @comment, status: :created, location: @user }
       else
         format.html { render action: "new" }
