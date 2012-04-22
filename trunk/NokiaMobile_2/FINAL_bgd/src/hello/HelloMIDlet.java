@@ -192,6 +192,67 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     }
         
     }
+     
+      public String getData(String ip){
+         String ret = "";
+          HttpConnection httpConn = null;
+      String url = ip+".json" ;  
+
+    InputStream is = null;
+    OutputStream os = null;
+
+    try {
+      // Open an HTTP Connection object
+      httpConn = (HttpConnection)Connector.open(url);
+
+      // Setup HTTP Request
+      httpConn.setRequestMethod(HttpConnection.GET);
+      httpConn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+
+      int respCode = httpConn.getResponseCode();
+      if (respCode == httpConn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1)
+          sb.append((char) chr);
+
+    
+        System.out.println( sb.toString());
+        ret = sb.toString();
+      }
+      else {
+        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+      }}catch(Exception e){
+          
+      
+
+      } finally {
+        if(is!= null)
+            try {
+                is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+          if(os != null)
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+      if(httpConn != null)
+            try {
+                httpConn.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+     
+    }
+         return ret;
+     }
       public void friendsConnection()
     {
           
