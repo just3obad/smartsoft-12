@@ -22,15 +22,15 @@ class UsersController < ApplicationController
     @user = User.new(params[:name=>params[:name],:email=>params[:email],
                     :first_name=>params[:first_name], :last_name=>params[:last_name],
                     :date_of_birth=>params[:date_of_birth]])
-#    redirect_to :controller => GaheemAccount, :action => 'create', :email=>params[:email],
-#        :password=>params[:password]
+    redirect_to :controller => GaheemAccount, :action => 'create', :email=>params[:email],
+        :password=>params[:password]
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
- #       format.json { render json: @user, status: :created, location: @user }
+        format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
- #       format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -93,7 +93,6 @@ def feed
 respond_to do |format|
       format.json { render json: @stories_list }
 end
-
 def friend_requests(user_id)
    id_list = Array.new()
    @friend_list = Array.new()
@@ -106,9 +105,7 @@ def friend_requests(user_id)
    end
  respond_to do |format|
       format.json { render json: @friend_list }
-end  
-
-
+end
 def friends(user_id)
    id_list = Array.new()
    @friends = Array.new()
