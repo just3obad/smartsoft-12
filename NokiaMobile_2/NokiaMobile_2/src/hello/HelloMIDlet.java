@@ -32,10 +32,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command backCommand3;
     private Form form;
     private StringItem stringItem;
+    private Form LoginScreen;
+    private TextField textField;
+    private TextField textField1;
     private Form RegisterScreen;
-    private TextField textField4;
     private TextField textField2;
     private TextField textField3;
+    private TextField textField4;
     private Form LoginScreen;
     private TextField textField1;
     private TextField textField;
@@ -47,6 +50,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private DateField dateField;
     private TextField textField9;
     private Alert Error;
+>>>>>>> .r335
     private Alert Saved;
     private List ConnectAccount;
     private Alert ComingSoon;
@@ -199,7 +203,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         OutputStream os = null;
                 try {
         //Change IP accordingly
-        httpConn = (HttpConnection) Connector.open("http://192.168.1.107:3000/users/");
+        httpConn = (HttpConnection) Connector.open("http://192.168.1.100:3000/users/");
         //Request method has to be POST
         httpConn.setRequestMethod(HttpConnection.POST);
         httpConn.setRequestProperty("User-Agent",
