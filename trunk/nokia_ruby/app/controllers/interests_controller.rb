@@ -1,5 +1,9 @@
 
 class InterestsController < ApplicationController
+  
+  def index
+    @interests = Interest.all
+  end
 
   def show
  # creating a new interest and returning it in a variable @interest used in the form in new.html.erb 
