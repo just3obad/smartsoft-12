@@ -22,6 +22,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private boolean midletPaused = false;
      Displayable displayable;
     String json;
+    int user_id; // The user id of logged in 
 //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
@@ -384,8 +385,51 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
                 // write post-action user code here
             } else if (command == ok) {//GEN-LINE:|7-commandAction|49|49-preAction
                 // write pre-action user code here
-              //  String s ="";
+               //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}"
+               String s ="";
+               int anyInfo = 0;
+               int passInt = 0;
                
+               if(this.userName.getString().length()!=0){
+                   s +=" \"name\":"+this.userName.getString();
+                    anyInfo = 1;
+               }
+               if(this.pas.getString().length()!=0 || this.confPas.getString().length()!=0){
+                   if(this.pas.getString() == this.confPas.getString()){
+                        s += " \"password\":"+this.userName.getString()+" \"user_id\":"+this.user_id;
+                         passInt = 1;
+                        
+                    }
+                     else{
+                      //Alert pass and confpass mismatch
+                       }
+                   }
+               if(this.firstName.getString().length()!=0){
+                   s+=" \"firstName\":"+this.firstName.getString();
+                    anyInfo = 1;
+               }
+               if(this.lastName.getString().length()!=0){
+                   s+=" \"lastName\":"+this.lastName.getString();
+                    anyInfo = 1;
+               }
+               if(this.dob.getDate().toString().length()!=0){
+                   s+=" \"date_of_birth\":"+this.dob.getDate().toString();
+                    anyInfo = 1;
+               }
+               
+               if(passInt==1&&anyInfo==1){
+                   this.sendData("haccount/modify/IP", s);
+                   this.sendData("user/modify/ip", s);
+               }else{
+                   if(passInt==1&&anyInfo==0){
+                       this.sendData("haccount/modify/IP", s);
+                   }
+                   else{
+                       if(passInt==0&&anyInfo==0){
+                           this.sendData("user/modify/IP", s);
+                       }
+                   }
+               }
 //GEN-LINE:|7-commandAction|50|49-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|51|115-preAction
