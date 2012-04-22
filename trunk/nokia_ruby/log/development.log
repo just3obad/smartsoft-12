@@ -16895,3 +16895,22 @@ Migrating to FixCNames (20120422172214)
   [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("uppeds")[0m
   [1m[35m (0.1ms)[0m  PRAGMA index_list("userinterests")
   [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/likedislikes?uid=5&sid=1&act=-1" for 192.168.26.1 at 2012-04-22 12:41:03 -0700
+Processing by LikedislikesController#thumb as HTML
+  Parameters: {"uid"=>"5", "sid"=>"1", "act"=>"-1"}
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "likedislikes" WHERE "likedislikes"."story_id" = 1 AND "likedislikes"."user_id" = 5[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (21.4ms)[0m  [1mINSERT INTO "likedislikes" ("action", "created_at", "story_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["action", -1], ["created_at", Sun, 22 Apr 2012 19:41:05 UTC +00:00], ["story_id", 1], ["updated_at", Sun, 22 Apr 2012 19:41:05 UTC +00:00], ["user_id", 5]]
+  [1m[35m (16.5ms)[0m  commit transaction
+  [1m[36mStory Load (0.5ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 500 Internal Server Error in 279ms
+
+ActiveRecord::RecordNotFound (Couldn't find Story with id=1):
+  app/controllers/likedislikes_controller.rb:14:in `thumb'
+
+
+  Rendered /home/kemo/.rvm/gems/ruby-1.9.2-p318@gemset/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (11.3ms)
+  Rendered /home/kemo/.rvm/gems/ruby-1.9.2-p318@gemset/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.4ms)
+  Rendered /home/kemo/.rvm/gems/ruby-1.9.2-p318@gemset/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (57.6ms)
