@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     respond_with(@user = User.find(params[:id]))
   end
 
+  def search
+    respond_with(@user = Admin.search(params[:query]))
+  end
+
    def new
     @user = User.new
 
@@ -98,13 +102,30 @@ def friend_requests(user_id)
    puts friend_list[count]
    id_list=Friends.where(:stat=>0, :receiver => user_id ).select("sender")
    0.upto(id_list.length) do |i|
-     friend_list[i]=User.where(user_id=id_list[i]).select("name")
+     friend_list[i]=User.where(:id=>id_list[i]).select("name")
    end
  respond_to do |format|
       format.json { render json: @friend_list }
-end
+<<<<<<< .mine
+end  
+
+
+def friends(user_id)
+   id_list = Array.new()
+   @friends = Array.new()
+   count = Friends.where(:stat=>1, :receiver => user_id ).select("sender").count
+   puts id_list[count]
+   puts friend[count]
+   id_list=Friends.where(:stat=>1, :receiver => user_id ).select("sender")
+   0.upto(id_list.length) do |i|
+     friends[i]=User.where(:id=>id_list[i]).select("name")
+   end
+ respond_to do |format|
+      format.json { render json: @friends }
+end  
   
 
-
+end
+<<<<<<< .mine
 end
 end
