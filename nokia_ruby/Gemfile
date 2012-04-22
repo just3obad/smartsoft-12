@@ -33,6 +33,8 @@ gem 'jquery-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
+  ### <%= stylesheet_link_tag    "application", :media => "all" %> 
+
 # Deploy with Capistrano
 # gem 'capistrano'
 
