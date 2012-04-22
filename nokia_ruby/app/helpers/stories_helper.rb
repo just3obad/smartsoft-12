@@ -231,14 +231,14 @@ puts listOfStories[num]
 
 while i < num do
 
-stitle = rss.items[i].date
+stitle = rss.items[i].title
 sdate = rss.items[i].date
 sdescription =  rss.items[i].description
 
 
 count_of_stories_with_same_title = Story.where(:title => stitle).count
 if count_of_stories_with_same_title == 0
-listOfStories[i] = Story.create(:title => stitle, :date => sdate, :body => sdescription, :rank => 0, :deleted => false, :hidden => false, :likes => 0, :dislikes => 0, :flags => 0, :body => sdescription)
+listOfStories[i] = Story.create(:title => stitle, :date => sdate, :body => sdescription, :rank => 0, :deleted => false, :hidden => false, :likes => 0, :dislikes => 0, :flags => 0)
 elsif
 listOfStories[i] = Story.where(:title => stitle)
 end
