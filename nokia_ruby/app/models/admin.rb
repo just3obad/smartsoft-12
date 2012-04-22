@@ -25,6 +25,7 @@ class Admin < ActiveRecord::Base
     query_result += User.all.select {|user| not user.email.nil? and (query =~ %r'#{user.email}' or user.email =~ %r'#{query}')}
 
     # Matched $EMAIL
+
     # The next block is commented until the attributes of user are handled.
     #
     # name_query = query
@@ -40,8 +41,8 @@ class Admin < ActiveRecord::Base
     #   query_result += User.all.select {|user| not user.first_name.nil? and
     #                                   (user.first_name =~ %r'#{name_match}' or name_query.downcase =~ %r'#{user.first_name}')}
     # end
-    # END OF BLOCK
     # Matched names
+    # END OF BLOCK
     username_query = query
 
     username_match = []
