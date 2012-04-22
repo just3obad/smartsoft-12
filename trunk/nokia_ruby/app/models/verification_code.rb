@@ -1,7 +1,7 @@
 class VerificationCode < ActiveRecord::Base
   attr_accessible :code, :account_id, :verified
   
-  belongs_to :gaheem_account
+  belongs_to :h_account
   
   validates :code, :presence => true,
   :length => { :is => 4}
