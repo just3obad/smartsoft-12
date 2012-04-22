@@ -45,6 +45,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private TextField textField9;
     private Alert Error;
     private Alert Saved;
+    private List ConnectAccount;
+    private Alert ComingSoon;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -115,38 +117,44 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
-        if (displayable == LoginScreen) {//GEN-BEGIN:|7-commandAction|1|29-preAction
-            if (command == exitCommand1) {//GEN-END:|7-commandAction|1|29-preAction
+        if (displayable == ConnectAccount) {//GEN-BEGIN:|7-commandAction|1|54-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|1|54-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|2|29-postAction
+                ConnectAccountAction();//GEN-LINE:|7-commandAction|2|54-postAction
                 // write post-action user code here
-            } else if (command == itemCommand) {//GEN-LINE:|7-commandAction|3|31-preAction
+            }//GEN-BEGIN:|7-commandAction|3|29-preAction
+        } else if (displayable == LoginScreen) {
+            if (command == exitCommand1) {//GEN-END:|7-commandAction|3|29-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|4|31-postAction
+//GEN-LINE:|7-commandAction|4|29-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|5|27-preAction
+            } else if (command == itemCommand) {//GEN-LINE:|7-commandAction|5|31-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|6|27-postAction
+//GEN-LINE:|7-commandAction|6|31-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|41-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|7|27-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|8|27-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|9|41-preAction
         } else if (displayable == Profile) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|7|41-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|9|41-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|8|41-postAction
+//GEN-LINE:|7-commandAction|10|41-postAction
                 // write post-action user code here
-            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|9|43-preAction
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|11|43-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|10|43-postAction
+//GEN-LINE:|7-commandAction|12|43-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|11|38-preAction
+            }//GEN-BEGIN:|7-commandAction|13|38-preAction
         } else if (displayable == RegisterScreen) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|11|38-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|13|38-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|12|38-postAction
+//GEN-LINE:|7-commandAction|14|38-postAction
                 // write post-action user code here
-            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|13|36-preAction
+            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|15|36-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|14|36-postAction
+//GEN-LINE:|7-commandAction|16|36-postAction
                 // write post-action user code here
                 //Register
         HttpConnection httpConn = null;
@@ -192,17 +200,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             System.out.println("Exception occured " + t.toString());
         }
     }
-            }//GEN-BEGIN:|7-commandAction|15|19-preAction
+            }//GEN-BEGIN:|7-commandAction|17|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|15|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|17|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|16|19-postAction
+//GEN-LINE:|7-commandAction|18|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|17|7-postCommandAction
-        }//GEN-END:|7-commandAction|17|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|19|7-postCommandAction
+        }//GEN-END:|7-commandAction|19|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|18|
-    //</editor-fold>//GEN-END:|7-commandAction|18|
+    }//GEN-BEGIN:|7-commandAction|20|
+    //</editor-fold>//GEN-END:|7-commandAction|20|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
@@ -608,6 +616,83 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return Error;
     }
     //</editor-fold>//GEN-END:|51-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ConnectAccount ">//GEN-BEGIN:|52-getter|0|52-preInit
+    /**
+     * Returns an initiliazed instance of ConnectAccount component.
+     * @return the initialized component instance
+     */
+    public List getConnectAccount() {
+        if (ConnectAccount == null) {//GEN-END:|52-getter|0|52-preInit
+            // write pre-init user code here
+            ConnectAccount = new List("Connect Account", Choice.IMPLICIT);//GEN-BEGIN:|52-getter|1|52-postInit
+            ConnectAccount.append("Twitter", null);
+            ConnectAccount.append("Facebook", null);
+            ConnectAccount.append("Flickr", null);
+            ConnectAccount.append("Foursquare", null);
+            ConnectAccount.append("Tumblr", null);
+            ConnectAccount.append("Youtube", null);
+            ConnectAccount.setCommandListener(this);
+            ConnectAccount.setSelectedFlags(new boolean[] { false, false, false, false, false, false });//GEN-END:|52-getter|1|52-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|52-getter|2|
+        return ConnectAccount;
+    }
+    //</editor-fold>//GEN-END:|52-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: ConnectAccountAction ">//GEN-BEGIN:|52-action|0|52-preAction
+    /**
+     * Performs an action assigned to the selected list element in the ConnectAccount component.
+     */
+    public void ConnectAccountAction() {//GEN-END:|52-action|0|52-preAction
+        // enter pre-action user code here
+        String __selectedString = getConnectAccount().getString(getConnectAccount().getSelectedIndex());//GEN-BEGIN:|52-action|1|56-preAction
+        if (__selectedString != null) {
+            if (__selectedString.equals("Twitter")) {//GEN-END:|52-action|1|56-preAction
+                // write pre-action user code here
+//GEN-LINE:|52-action|2|56-postAction
+                // write post-action user code here
+            } else if (__selectedString.equals("Facebook")) {//GEN-LINE:|52-action|3|57-preAction
+                // write pre-action user code here
+//GEN-LINE:|52-action|4|57-postAction
+                // write post-action user code here
+            } else if (__selectedString.equals("Flickr")) {//GEN-LINE:|52-action|5|58-preAction
+                // write pre-action user code here
+//GEN-LINE:|52-action|6|58-postAction
+                // write post-action user code here
+            } else if (__selectedString.equals("Foursquare")) {//GEN-LINE:|52-action|7|59-preAction
+                // write pre-action user code here
+//GEN-LINE:|52-action|8|59-postAction
+                // write post-action user code here
+            } else if (__selectedString.equals("Tumblr")) {//GEN-LINE:|52-action|9|60-preAction
+                // write pre-action user code here
+//GEN-LINE:|52-action|10|60-postAction
+                // write post-action user code here
+            } else if (__selectedString.equals("Youtube")) {//GEN-LINE:|52-action|11|61-preAction
+                // write pre-action user code here
+//GEN-LINE:|52-action|12|61-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|52-action|13|52-postAction
+        }//GEN-END:|52-action|13|52-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|52-action|14|
+    //</editor-fold>//GEN-END:|52-action|14|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ComingSoon ">//GEN-BEGIN:|62-getter|0|62-preInit
+    /**
+     * Returns an initiliazed instance of ComingSoon component.
+     * @return the initialized component instance
+     */
+    public Alert getComingSoon() {
+        if (ComingSoon == null) {//GEN-END:|62-getter|0|62-preInit
+            // write pre-init user code here
+            ComingSoon = new Alert("alert", "This Network is coming soon", null, null);//GEN-BEGIN:|62-getter|1|62-postInit
+            ComingSoon.setTimeout(Alert.FOREVER);//GEN-END:|62-getter|1|62-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|62-getter|2|
+        return ComingSoon;
+    }
+    //</editor-fold>//GEN-END:|62-getter|2|
 
     /**
      * Returns a display instance.
