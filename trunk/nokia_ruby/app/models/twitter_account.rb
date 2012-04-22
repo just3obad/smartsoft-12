@@ -10,6 +10,7 @@ class TwitterAccount < ActiveRecord::Base
 
   validates :auth_secret, presence: true
   validates :auth_token, presence: true
+  validates :user_id, presence: true
 
   def config_twitter
     Twitter.configure do |config|
