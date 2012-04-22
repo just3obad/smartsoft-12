@@ -91,6 +91,13 @@ ActiveRecord::Schema.define(:version => 20120422023215) do
     t.integer  "interest_id"
   end
 
+  create_table "twitter_accounts", :force => true do |t|
+    t.string   "auth_token"
+    t.string   "auth_secret"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "uppeds", :force => true do |t|
     t.integer  "user_id"
     t.integer  "comment_id"

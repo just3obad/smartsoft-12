@@ -11,6 +11,7 @@ NokiaRuby::Application.routes.draw do
   match "admins/statistics/all_stories" => "statistics#all_stories"
   match "users/:id/update" => "users#update"
   match "gaheem_accounts/:id/update" => "gaheem_accounts#update"
+  match "authenticate/get_twitter_url" => "twitter_accounts#generate_request_token"
   match "stories/:id/comments"  => "stories#show_comments"
   match "stories/:id/comments/new" => "stories#create_comment"
 
@@ -24,6 +25,7 @@ NokiaRuby::Application.routes.draw do
   resources :shares 
   resources :comments
   resources :gaheem_accounts
+  resources :twitter_accounts
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
