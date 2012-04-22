@@ -12,11 +12,11 @@ class User < ActiveRecord::Base
   validates :name, :presence => true,
   :length => { :maximum => 20 }
   validates :email, :presence => true,
-  :format=> {:with => email_regex }
+  :format => {:with => email_regex },
   :uniqueness => { :case_sensitive => false}
   validates :first_name, :presence => true,
   :length => { :maximum => 20 }
-  validates :last_name, :presence => true,
+  validates :last_name, :presence => true,     #un-comment after db handling
   :length => { :maximum => 20 }
   validates :date_of_birth, :presence => true
   
@@ -48,6 +48,25 @@ class User < ActiveRecord::Base
     end
   end 
 
+ # this methods generates a verification code for the user and adds an entry to Verification_Code
+  def generateVerificationCode?()
+  @verification_code = VerificationCode.find_by_user_id(self.id)
+      if @verification_code.nil? then
+      VerificationCode.create :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join,:user_id=>self.id, :verified=>false
+      return true		
+    else 			
+      return false		
+    end
+  end 
 
+  def verifyAccount?(verCode)
+    @verEntry = VerificationCode.find_by_user_id(self.id)
+    if @verEntry.code == verCode then
+      @verEntry.update_attributes(verified: true)
+      return true
+    else 
+      return false
+    end
+  end
 
 end
