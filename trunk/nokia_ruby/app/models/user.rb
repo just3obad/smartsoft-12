@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 #:deactivated, :first_name, :last_name, :date_of_birth  # commented out till handling in tables
   
   has_one :gaheem_account
+  has_one :twitter_account
   has_one :verification_code
 
   email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
