@@ -1,7 +1,7 @@
 class Interest < ActiveRecord::Base
   
 #attributes  that can be modified automatically by outside users
-  attr_accessible :description, :name, :image
+  attr_accessible :description, :name, :image, :deleted
   
   has_many :stories
   has_many :feeds, :dependent => :destroy
