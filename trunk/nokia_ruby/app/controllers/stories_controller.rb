@@ -43,6 +43,12 @@ respond_to :html,:json
  
   end
 
+# get_story is a method that takes a specific story_id as an input  and searches the database for the stroy with this id and returns #this story to the caller
+
+  def get_story(story_id)
+  return Story.find(params[story_id])
+  end
+
 #share_story_social_network is a method to share specific story to  asocial network by clicking the button of share story in the story 
 #it depend on the method share_story which take the story id and the account id and return true or false if it returns true then a pop up message will display thet the story published successfully
 #if it returned false a pop up message will disply thet an error happend and to try again
@@ -105,26 +111,5 @@ def view_friends_like_dislike()
    end
   
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end
