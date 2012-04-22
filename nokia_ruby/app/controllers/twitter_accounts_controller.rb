@@ -22,5 +22,19 @@ class TwitterAccountsController < ApplicationController
     render text: url
   end 
 
+  def self.get_main_feed(count=10)
+    stories = Array.new
+    feed = get_main_feed
+    puts feed.class
+    feed.each do |tweet|
+      temp = to_hash(tweet) 
+      stories.push(temp) 
+    end 
+  end 
+
+  def self.to_hash (tweet)
+    story = [author: tweet['user']['name'], text: tweet['text']]
+  end
+
 
 end
