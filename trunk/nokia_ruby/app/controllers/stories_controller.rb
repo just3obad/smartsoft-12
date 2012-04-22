@@ -37,6 +37,7 @@ class StoriesController < ApplicationController
   end
 
   def create
+   @story = Story.new(params[:title], params[:body])
 
   end
 
