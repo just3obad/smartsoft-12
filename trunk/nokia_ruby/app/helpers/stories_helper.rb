@@ -85,7 +85,7 @@ deleted = false
 end
   
 #This method gets the number of dislikes of a certain story using its id in the last 30 days
-def get_no_of_dislikes(storyId)
+def get_no_of_dislikes(story_id)
 
 creationOfStory = Story.find(story_id).created_at_before_type_cast.to_date
 lastUpdated = Story.find(story_id).updated_at_before_type_cast.to_date
@@ -127,7 +127,7 @@ deleted = false
 end
   
 #This method gets the number of spams of a certain story using its id in the last 30 days
-def get_no_of_spams(storyId)
+def get_no_of_spams(story_id)
 
 creationOfStory = Story.find(story_id).created_at_before_type_cast.to_date
 lastUpdated = Story.find(story_id).updated_at_before_type_cast.to_date
