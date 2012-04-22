@@ -60,7 +60,8 @@ module UsersHelper
  num = User.all.count
  end
  
-  def get_no_of_shares_user(user_id)
+#This method gets the number of Shares by this user in the last 30 days
+ def get_no_of_shares_user(user_id)
 
   user_reg_date = User.find(user_id).created_at_before_type_cast.to_date
   last_updated = User.find(user_id).updated_at_before_type_cast.to_date
@@ -99,10 +100,9 @@ module UsersHelper
       end.inspect
     end
 	end
-end
 	  
 #This method gets the number of Likes by this user in the last 30 days	  	  	
-def get_no_of_likes_user(user_id)
+ def get_no_of_likes_user(user_id)
 
 user_reg_date = User.find(user_id).created_at_before_type_cast.to_date
 last_updated = User.find(user_id).updated_at_before_type_cast.to_date
@@ -143,7 +143,7 @@ deactivated = false
 end
   
 #This method gets the number of Dislikes by this user in the last 30 days
-def get_no_of_dislikes_user(user_id)
+ def get_no_of_dislikes_user(user_id)
 
 user_reg_date = User.find(user_id).created_at_before_type_cast.to_date
 last_updated = User.find(user_id).updated_at_before_type_cast.to_date
@@ -183,8 +183,8 @@ deactivated = false
   end
 end
 
-#This method gets the number of comments by this user in the last 30 days	  		
-def get_no_of_comments_user(user_id)
+#This method gets the number of Comments by this user in the last 30 days	  		
+ def get_no_of_comments_user(user_id)
 
 user_reg_date = Story.find(user_id).created_at_before_type_cast.to_date
 last_updated = Story.find(user_id).updated_at_before_type_cast.to_date
@@ -222,9 +222,10 @@ deactivated = false
       comment && comment.noOfCommentsPerDay.to_i || 0
     end.inspect
   end
+	end
 	
-#This method gets the number of spams by this user in the last 30 days	  		
-def get_no_of_spams_user(user_id)
+#This method gets the number of Spams by this user in the last 30 days	  		
+ def get_no_of_spams_user(user_id)
 user_reg_date = Story.find(user_id).created_at_before_type_cast.to_date
 last_updated = Story.find(user_id).updated_at_before_type_cast.to_date
 deactivated = User.find(user_id).deactivated_before_type_cast
