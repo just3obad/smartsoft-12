@@ -46,9 +46,16 @@ NokiaRuby::Application.routes.draw do
   resources :gaheem_accounts
   resources :twitter_accounts
   resources :friends
-
-
-
+#LogFiles
+  resources :logs, :except => [:delete,:show]  
+  match '/logs/filter/',    to: 'logs#filter'
+  match '/logs/search/',    to: 'logs#search'
+  match '/logs/filterbydate/',    to: 'logs#filter_by_date'
+  match '/logs/interest/:id',    to: 'logs#get_specific_interest'
+  match '/logs/stories/:id',    to: 'logs#get_specific_story'
+  match '/logs/users/:id',    to: 'logs#get_specific_user'
+  match '/logs/admins/:id',    to: 'logs#get_specific_admin'
+#LogFiles
 
 
 
