@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422021217) do
+ActiveRecord::Schema.define(:version => 20120422023215) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(:version => 20120422021217) do
   end
 
   create_table "stories", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "title"
     t.string   "body"
     t.integer  "rank"
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20120422021217) do
     t.integer  "flags"
     t.integer  "likes"
     t.integer  "dislikes"
+    t.integer  "type"
+    t.integer  "interest_id"
   end
 
   create_table "uppeds", :force => true do |t|
