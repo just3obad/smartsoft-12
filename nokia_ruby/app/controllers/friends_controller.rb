@@ -3,8 +3,9 @@ class FriendsController < ApplicationController
   # GET /friends/new
   # GET /friends/new.json
 
-  def add(sender_id,receiver_id)
-    @receiver = User.where(:id => receiver_id)
+  def add(sender_id,receiver_name)
+    
+    @receiver_id = User.where(:name => receive_name).select("id")
      if (reciver != nil)
        Friends.create!(:sender => sender_id, :receiver => receiver__id , :stat => 0)
      end
