@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< .mine
-ActiveRecord::Schema.define(:version => 20120422143812) do
-=======
-ActiveRecord::Schema.define(:version => 20120422114919) do
->>>>>>> .r295
+ActiveRecord::Schema.define(:version => 20120422155026) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -111,6 +107,14 @@ ActiveRecord::Schema.define(:version => 20120422114919) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "twitter_requests", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "request_token"
+    t.string   "request_secret"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "uppeds", :force => true do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
@@ -118,12 +122,21 @@ ActiveRecord::Schema.define(:version => 20120422114919) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "users", :force => true do |t|
+  create_table "userinterests", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "interest"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "name"
     t.string   "email"
     t.boolean  "verified"
+    t.string   "twitter_account_id"
+    t.string   "twitter_request_id"
   end
 
   create_table "verification_codes", :force => true do |t|
@@ -131,7 +144,6 @@ ActiveRecord::Schema.define(:version => 20120422114919) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.boolean  "verified"
   end
 
 end
