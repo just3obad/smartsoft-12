@@ -20,7 +20,7 @@ class storyItem extends CustomItem {
     private StringItem storyTitle;
     private StringItem storyBody;
     private StringItem storyRank;
-    private StringItem storyCategory;
+    public StringItem storyCategory;
     private Image addedImage;
     
   public storyItem(String imageName,String title,String body,int rank,String category){
