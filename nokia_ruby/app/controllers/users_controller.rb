@@ -104,4 +104,19 @@ respond_to do |format|
        format.json { render json: @friend_stories }
 end
 end
+
+def friend_requests(user_id)
+   id_list = Array.new()
+   @friend_list = Array.new()
+   count = Friends.where(:stat=>0, :receiver => user_id ).select("sender").count
+   puts id_list[count]
+   puts friend_list[count]
+   id_list=Friends.where(:stat=>0, :receiver => user_id ).select("sender")
+   0.upto(id_list.length) do |i|
+     friend_list[i]=User.where(:id=id_list[i]).select("name")
+   end
+ respond_to do |format|
+      format.json { render json: @friend_list }
+end    
+
 end

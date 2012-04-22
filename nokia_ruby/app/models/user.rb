@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :name, :email
-#:deactivated, :first_name, :last_name, :date_of_birth  # commented out till handling in tables
+  attr_accessible :name, :email ,:first_name, :last_name, :date_of_birth
+#:deactivated,   # commented out till handling in tables
   
   has_one :gaheem_account
   has_one :twitter_account
@@ -13,12 +13,12 @@ class User < ActiveRecord::Base
   :length => { :maximum => 20 }
   validates :email, :presence => true,
   :format=> {:with => email_regex }
- # :uniqueness => { :case_sensitive => false}
- # validates :first_name, :presence => true,
- # :length => { :maximum => 20 }
- # validates :last_name, :presence => true,     #un-comment after db handling
- # :length => { :maximum => 20 }
- # validates :date_of_birth, :presence => true
+ :uniqueness => { :case_sensitive => false}
+  validates :first_name, :presence => true,
+  :length => { :maximum => 20 }
+  validates :last_name, :presence => true,     #un-comment after db handling
+  :length => { :maximum => 20 }
+  validates :date_of_birth, :presence => true
   
  # gets the shared stories of friends of a user
   def get_friends_stories()
