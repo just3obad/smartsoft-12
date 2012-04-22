@@ -96,6 +96,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private TextField textField7;
     private TextField textField8;
     //</editor-fold>//GEN-END:|fields|0|
+    private HttpConnection httpConn;
+    private OutputStream os;
 
   
     /**
@@ -123,6 +125,55 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
             commentItem item = new commentItem("menis", comment, i + 1 + "", "3", i + 1);
             Comment.insert(countInsertion++, item);
         }
+    }
+    
+    
+     public void sendData(String ip, String data){
+        
+        
+         try {
+        //Change IP accordingly
+        httpConn = (HttpConnection) Connector.open(ip);
+        //Request method has to be POST
+        httpConn.setRequestMethod(HttpConnection.POST);
+        httpConn.setRequestProperty("User-Agent",
+                "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+        httpConn.setRequestProperty("Accept_Language", "en-US");
+        //Content-Type is must to pass parameters in POST Request must be application/json
+        httpConn.setRequestProperty("Content-Type", "application/json");
+        // JSON String that you will send containing the attributes needed for sign up. 
+        //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}";
+        String dataToBeSend = data;
+        httpConn.setRequestProperty("Content-Length",
+                "" + dataToBeSend.length());
+        os = httpConn.openOutputStream();
+        os.write(dataToBeSend.getBytes());
+
+        os.flush();//data written will be flushed to server.
+        System.out.println(httpConn.getResponseCode());
+        System.out.println(dataToBeSend);
+    
+    } catch (Throwable t) {
+        System.out.println("Exception occured " + t.toString());
+    } //Since only limited number of network objects can be in open state
+    //it is necessary to clean them up as soon as we are done with them.
+    finally {
+        try {
+            if (os != null) {
+                os.close();
+            }
+        } catch (Throwable t) {
+            System.out.println("Exception occured " + t.toString());
+        }
+        try {
+            if (httpConn != null) {
+                httpConn.close();
+            }
+        } catch (Throwable t) {
+            System.out.println("Exception occured " + t.toString());
+        }
+    }
+        
     }
     
     //<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
