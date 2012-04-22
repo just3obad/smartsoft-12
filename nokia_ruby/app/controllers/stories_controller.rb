@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
   respond_to :html,:json
-  
+  require 'net/smtp'
+
   def show
    @comments = Comment.find_all_by_story_id(params[:id]) # get comments of this story
    @story = Story.find(params[:id])
@@ -67,20 +68,19 @@ class StoriesController < ApplicationController
  end
    
 
-#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story 
-#it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to 
-#if the user has no friends he could be directed to add friends page
+#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page 
+
 def recommend_story
   flist=Array.new
   flist=user.get_Friend_List() 
 
-  respond_to do |list|
-    list.json { render json: flist}
-   end
+   
 
   respond_to do |mess|
     if flist.Empty
-  mess.json { message :sorry_you_dont_have_any_friends }
+      mess.json { message :sorry_you_dont_have_any_friends }
+    else
+        list.json { render json: flist}
   end
  end
 
@@ -89,13 +89,24 @@ def recommend_story
     email=parsed_json[email]
     message=parsed_json[message]
    end
-  
-  self.show email, message
+
+ userlist=Array.new
+ userlist=User.where(:user_mail => email)
+
+  if userlist.Empty
+    Net::SMTP.start( smtp.gmail.com, 25) do |smtp|
+    smtp.send_message "invitation to gaheem application", user.email, [email]
+     end
+
+   else
+    self.show email, message
+  end
+
 end
 
-#view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain
-#story, there will be button in the options tab of the story called view liks/dislikes that will open another 
-#page with the names of friends in it
+
+#view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
+
 def view_friends_like_dislike()
 
   flistlike=Array.new
