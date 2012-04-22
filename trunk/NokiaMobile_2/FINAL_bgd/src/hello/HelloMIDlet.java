@@ -2462,7 +2462,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         while ((chr = is.read()) != -1)
           sb.append((char) chr);
 
-        System.out.println( sb.toString());
+        sb.toString();
+        choosefriendslist.append(sb.toString());
       }
       else { 
           if (respCoden == httpCon.HTTP_OK) {
@@ -2473,7 +2474,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         while ((chr = is.read()) != -1)
           sb.append((char) chr);
 
-        System.out.println( sb.toString());
+         sb.toString();
+      likeddisliked.append(sb.toString());
       }
       else {
          
@@ -2485,7 +2487,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         while ((chr = is.read()) != -1)
           sb.append((char) chr);
 
-        System.out.println( sb.toString());
+        sb.toString();
+        likeddisliked.append(sb.toString());
       }
       else {
         System.out.println("Error in opening HTTP Connection. Error#" + respCode);
@@ -2516,4 +2519,5 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     }
 
 
+}
 }
