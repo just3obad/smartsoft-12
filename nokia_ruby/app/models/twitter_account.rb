@@ -12,24 +12,34 @@ class TwitterAccount < ActiveRecord::Base
   validates :auth_token, presence: true
   validates :user_id, presence: true
 
-  def config_twitter
-    Twitter.configure do |config|
-      config.consumer_key         = CONSUMER_TOKEN
-      config.consumer_secret      = CONSUMER_SECRET
-      config.oauth_token          = access_token
-      config.oauth_token_secret   = access_secret
-    end
-  end 
 
+
+  def get_feed(count=10)
+    Twitter.home_timeline(:count => count)
+    stories = Array.new
+    feed.each do |tweet|
+      temp = tweet_to_story(tweet) 
+      stories.push(temp) 
+    end 
+  end 
+  
+
+  # This representation was asked by C1 lead. 
+  def self.tweet_to_story (tweet)
+    #story = [author: tweet['user']['name'], text: tweet['text']]
+    story = Story.new
+    story.title = tweet['user']['name']
+    story.body = tweet['text']
+    story.content = tweet['text']
+    story.category = 'twitter'
+  end
+
+  
 
 #  def tweet(tweet)
 #    client = Twitter::Client.new
 #    client.update(tweet)
 #  end 
 #
-#
-#  # returns the time of the last tweet received
-#  def get_main_feed(count=10)
-#    feed = Twitter.home_timeline(:count => count)
-#  end 
+
 end
