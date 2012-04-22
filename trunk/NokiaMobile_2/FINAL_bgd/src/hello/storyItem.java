@@ -27,7 +27,7 @@ class storyItem extends CustomItem {
     private StringItem storyTitle;
     private StringItem storyBody;
     private StringItem storyRank;
-    private StringItem storyCategory;
+    public StringItem storyCategory;
     private Image addedImage;
     private int id;
     Displayable display;
