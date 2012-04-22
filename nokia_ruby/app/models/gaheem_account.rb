@@ -1,5 +1,5 @@
 class GaheemAccount < ActiveRecord::Base
-  attr_accessible :email, :password, :status
+  attr_accessible :email, :password, 
  
   has_one :user
 
