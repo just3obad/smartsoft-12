@@ -11,4 +11,11 @@ class Story < ActiveRecord::Base
     #@body = body
   #end
 
+# get_story is a method that takes a specific story_id as an input  and searches the database for the stroy with this id and returns #this story to the caller
+
+  def self.get_story(story_id)
+      return Story.find(story_id)
+  end
+
+
 end
