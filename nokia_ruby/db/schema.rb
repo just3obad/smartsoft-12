@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< .mine
+ActiveRecord::Schema.define(:version => 20120422143812) do
+=======
 ActiveRecord::Schema.define(:version => 20120422114919) do
+>>>>>>> .r295
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -97,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20120422114919) do
     t.integer  "interest_id"
     t.string   "title"
     t.integer  "story_type"
+    t.boolean  "is_blocked"
   end
 
   create_table "twitter_accounts", :force => true do |t|
