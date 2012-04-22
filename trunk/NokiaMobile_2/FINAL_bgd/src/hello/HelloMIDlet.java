@@ -50,6 +50,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command exitCommand1;
     private Command okCommand5;
     private Command backCommand7;
+    private Command backCommand8;
+    private Command okCommand6;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -90,6 +92,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private TextField textField6;
     private TextField textField7;
     private TextField textField8;
+    private Form form1;
+    private TextField textField9;
 //</editor-fold>//GEN-END:|fields|0|
 
   
@@ -381,55 +385,65 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|38|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|39|128-preAction
+            }//GEN-BEGIN:|7-commandAction|39|159-preAction
+        } else if (displayable == form1) {
+            if (command == backCommand8) {//GEN-END:|7-commandAction|39|159-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|40|159-postAction
+                // write post-action user code here
+            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|41|161-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|42|161-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|43|128-preAction
         } else if (displayable == likeddisliked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|39|128-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|43|128-preAction
                 // write pre-action user code here
-                likeddislikedAction();//GEN-LINE:|7-commandAction|40|128-postAction
+                likeddislikedAction();//GEN-LINE:|7-commandAction|44|128-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|41|130-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|45|130-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|42|130-postAction
+//GEN-LINE:|7-commandAction|46|130-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|43|53-preAction
+            }//GEN-BEGIN:|7-commandAction|47|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|43|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|47|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|44|53-postAction
+//GEN-LINE:|7-commandAction|48|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|45|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|49|49-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|46|49-postAction
+//GEN-LINE:|7-commandAction|50|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|47|115-preAction
+            }//GEN-BEGIN:|7-commandAction|51|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|47|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|51|115-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|48|115-postAction
+//GEN-LINE:|7-commandAction|52|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|49|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|53|124-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|50|124-postAction
+//GEN-LINE:|7-commandAction|54|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|51|113-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|55|113-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|52|113-postAction
+//GEN-LINE:|7-commandAction|56|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|53|35-preAction
+            }//GEN-BEGIN:|7-commandAction|57|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|53|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|57|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|54|35-postAction
+//GEN-LINE:|7-commandAction|58|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|55|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|59|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|56|33-postAction
+//GEN-LINE:|7-commandAction|60|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|57|7-postCommandAction
-        }//GEN-END:|7-commandAction|57|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|61|7-postCommandAction
+        }//GEN-END:|7-commandAction|61|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|58|
-//</editor-fold>//GEN-END:|7-commandAction|58|
+    }//GEN-BEGIN:|7-commandAction|62|
+//</editor-fold>//GEN-END:|7-commandAction|62|
 
 
 
@@ -1671,6 +1685,73 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         return textField8;
     }
 //</editor-fold>//GEN-END:|151-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand8 ">//GEN-BEGIN:|158-getter|0|158-preInit
+    /**
+     * Returns an initialized instance of backCommand8 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBackCommand8() {
+        if (backCommand8 == null) {//GEN-END:|158-getter|0|158-preInit
+            // write pre-init user code here
+            backCommand8 = new Command("Back", Command.BACK, 0);//GEN-LINE:|158-getter|1|158-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|158-getter|2|
+        return backCommand8;
+    }
+//</editor-fold>//GEN-END:|158-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand6 ">//GEN-BEGIN:|160-getter|0|160-preInit
+    /**
+     * Returns an initialized instance of okCommand6 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getOkCommand6() {
+        if (okCommand6 == null) {//GEN-END:|160-getter|0|160-preInit
+            // write pre-init user code here
+            okCommand6 = new Command("Ok", Command.OK, 0);//GEN-LINE:|160-getter|1|160-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|160-getter|2|
+        return okCommand6;
+    }
+//</editor-fold>//GEN-END:|160-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: form1 ">//GEN-BEGIN:|156-getter|0|156-preInit
+    /**
+     * Returns an initialized instance of form1 component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getForm1() {
+        if (form1 == null) {//GEN-END:|156-getter|0|156-preInit
+            // write pre-init user code here
+            form1 = new Form("ForgotPasswordScreen", new Item[]{getTextField9()});//GEN-BEGIN:|156-getter|1|156-postInit
+            form1.addCommand(getBackCommand8());
+            form1.addCommand(getOkCommand6());
+            form1.setCommandListener(this);//GEN-END:|156-getter|1|156-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|156-getter|2|
+        return form1;
+    }
+//</editor-fold>//GEN-END:|156-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField9 ">//GEN-BEGIN:|157-getter|0|157-preInit
+    /**
+     * Returns an initialized instance of textField9 component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getTextField9() {
+        if (textField9 == null) {//GEN-END:|157-getter|0|157-preInit
+            // write pre-init user code here
+            textField9 = new TextField("Email", null, 32, TextField.ANY);//GEN-LINE:|157-getter|1|157-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|157-getter|2|
+        return textField9;
+    }
+//</editor-fold>//GEN-END:|157-getter|2|
 
 
 
