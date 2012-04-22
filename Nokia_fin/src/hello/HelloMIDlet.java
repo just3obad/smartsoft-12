@@ -1445,4 +1445,69 @@ addComments(); //adding dummy comments to test UI
      
     }
     }
+
+    public String getTwitterAuthURL(String serverIP, int port) {
+        HttpConnection httpConn = null;
+        String url = "http://" + serverIP + ":" + port + 
+                "/authenticate/get_twitter_url";
+        System.out.println(url);
+        InputStream is = null;
+        OutputStream os = null;
+
+        try {
+            // Open an HTTP Connection object
+            httpConn = (HttpConnection) Connector.open(url);
+
+            // Setup HTTP Request
+            httpConn.setRequestMethod(HttpConnection.GET);
+            httpConn.setRequestProperty("User-Agent",
+                    "Profile/MIDP-1.1 Confirguration/CLDC-1.0");
+
+
+            int respCode = httpConn.getResponseCode();
+            if (respCode == httpConn.HTTP_OK) {
+                StringBuffer sb = new StringBuffer();
+                os = httpConn.openOutputStream();
+                is = httpConn.openDataInputStream();
+                int chr;
+                while ((chr = is.read()) != -1) {
+                    sb.append((char) chr);
+                }
+
+                System.out.println(sb.toString());
+                return sb.toString();
+            } else {
+                System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+            }
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (httpConn != null) {
+                try {
+                    httpConn.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        
+        return "n/a";
+    }
+
 }
