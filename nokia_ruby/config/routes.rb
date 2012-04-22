@@ -28,15 +28,34 @@ NokiaRuby::Application.routes.draw do
   match "h_accounts/:id/resend" => "verification_codes#resend"
   match "/users/:id" => "users#feed"
   match "/users/new" => "users#create"
+  match '/add',  :to => 'interests#new'
+  
+  match '/pages/home' => 'pages#home'
+
+  root :to => 'pages#home'
+  
   resources :users
   resources :admins
   resources :stories
   resources :interests
   resources :shares 
   resources :comments
+<<<<<<< .mine
+  resources :feeds, :only => [:create, :destroy, :index, :new]
+=======
   resources :gaheem_accounts
   resources :twitter_accounts
   resources :friends
+>>>>>>> .r367
+
+
+
+
+
+
+
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
