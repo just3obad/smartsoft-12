@@ -10,8 +10,8 @@ NokiaRuby::Application.routes.draw do
   match "admins/statistics/all_interests" => "statistics#all_interests"
   match "admins/statistics/all_stories" => "statistics#all_stories"
   match "users/:id/update" => "users#update"
-  match "gaheem_accounts/:id/update" => "gaheem_accounts#update"
-  match "gaheem_accounts/create" => "gaheem_accounts#create", :as => :create
+  match "h_accounts/:id/update" => "h_accounts#update"
+  match "h_accounts/create" => "h_accounts#create", :as => :create
   match "authenticate/:u_id/get_twitter_url" => "twitter_requests#generate_request_token"
   match "authenticate/:u_id/new_twitter_account" =>  "twitter_requests#generate_access_token"
   match "Twitter/:u_id/delete" => "twitter_accounts#remove_twitter_account"
@@ -20,13 +20,13 @@ NokiaRuby::Application.routes.draw do
   match "friends/:id/add/username" => "friends#add"
   match "friends/:id/accept" => "friends#update"
   match "friends/:id/reject" => "friends#delete"
+  match "h_accounts/:id/verify" => "verification_codes#verify"
+  match "h_accounts" => "h_accounts#index"
   match "users/:id/requests" => "user#friend_requests"
   match "h_accounts/:id/verify" => "verification_codes#verify"
   match "h_accounts/:id/resend" => "verification_codes#resend"
-
-
   match "/users/:id" => "users#feed"
-  
+  match "/users/new" => "users#create"
   resources :users
   resources :admins
   resources :stories
