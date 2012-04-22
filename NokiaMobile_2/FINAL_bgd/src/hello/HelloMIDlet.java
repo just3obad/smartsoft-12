@@ -53,7 +53,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command backCommand8;
     private Command backCommand6;
     private Command exitCommand1;
+    private Command Resend;
     private Command okCommand6;
+    private Command Verify;
+    private Command backV;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -96,6 +99,18 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private TextField textField6;
     private TextField textField7;
     private TextField textField8;
+    private Alert IncorrectCode;
+    private Gauge indicator1;
+    private Alert ResentAlert;
+    private Gauge indicator3;
+    private Alert VerifiedAlert;
+    private Gauge indicator2;
+    private Alert InvalidCode;
+    private Gauge indicator4;
+    private Form Verification;
+    private TextField vTF;
+    private StringItem vSI;
+    private List list;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
     private OutputStream os;
@@ -362,77 +377,97 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
  // write pre-action user code here
 //GEN-LINE:|7-commandAction|20|79-postAction
  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|21|123-preAction
+            }//GEN-BEGIN:|7-commandAction|21|170-preAction
+        } else if (displayable == Verification) {
+            if (command == Resend) {//GEN-END:|7-commandAction|21|170-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|22|170-postAction
+                // write post-action user code here
+            } else if (command == Verify) {//GEN-LINE:|7-commandAction|23|168-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|24|168-postAction
+                // write post-action user code here
+            } else if (command == backV) {//GEN-LINE:|7-commandAction|25|166-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|26|166-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|27|123-preAction
         } else if (displayable == choosefriend1) {
-            if (command == Find) {//GEN-END:|7-commandAction|21|123-preAction
+            if (command == Find) {//GEN-END:|7-commandAction|27|123-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|22|123-postAction
+//GEN-LINE:|7-commandAction|28|123-postAction
                 // write post-action user code here
-            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|23|117-preAction
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|29|117-preAction
                 // write pre-action user code here
-                choosefriend1Action();//GEN-LINE:|7-commandAction|24|117-postAction
+                choosefriend1Action();//GEN-LINE:|7-commandAction|30|117-postAction
                 // write post-action user code here
-            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|25|122-preAction
+            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|31|122-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|26|122-postAction
+//GEN-LINE:|7-commandAction|32|122-postAction
                 // write post-action user code here
-            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|27|120-preAction
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|33|120-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|28|120-postAction
+//GEN-LINE:|7-commandAction|34|120-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|29|81-preAction
+            }//GEN-BEGIN:|7-commandAction|35|81-preAction
         } else if (displayable == connectAccount) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|29|81-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|35|81-preAction
                 // write pre-action user code here
-                connectAccountAction();//GEN-LINE:|7-commandAction|30|81-postAction
+                connectAccountAction();//GEN-LINE:|7-commandAction|36|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|31|106-preAction
+            }//GEN-BEGIN:|7-commandAction|37|106-preAction
         } else if (displayable == findFriend) {
-            if (command == Add1) {//GEN-END:|7-commandAction|31|106-preAction
+            if (command == Add1) {//GEN-END:|7-commandAction|37|106-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|32|106-postAction
+//GEN-LINE:|7-commandAction|38|106-postAction
                 // write post-action user code here
-            } else if (command == Back1) {//GEN-LINE:|7-commandAction|33|94-preAction
+            } else if (command == Back1) {//GEN-LINE:|7-commandAction|39|94-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|34|94-postAction
+//GEN-LINE:|7-commandAction|40|94-postAction
                 // write post-action user code here
-            } else if (command == Find) {//GEN-LINE:|7-commandAction|35|96-preAction
+            } else if (command == Find) {//GEN-LINE:|7-commandAction|41|96-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|36|96-postAction
+//GEN-LINE:|7-commandAction|42|96-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|37|19-preAction
+            }//GEN-BEGIN:|7-commandAction|43|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|37|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|43|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|38|19-postAction
+//GEN-LINE:|7-commandAction|44|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|39|159-preAction
+            }//GEN-BEGIN:|7-commandAction|45|159-preAction
         } else if (displayable == form1) {
-            if (command == backCommand8) {//GEN-END:|7-commandAction|39|159-preAction
+            if (command == backCommand8) {//GEN-END:|7-commandAction|45|159-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|40|159-postAction
+//GEN-LINE:|7-commandAction|46|159-postAction
                 // write post-action user code here
-            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|41|161-preAction
+            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|47|161-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|42|161-postAction
+//GEN-LINE:|7-commandAction|48|161-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|43|128-preAction
+            }//GEN-BEGIN:|7-commandAction|49|128-preAction
         } else if (displayable == likeddisliked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|43|128-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|49|128-preAction
                 // write pre-action user code here
-                likeddislikedAction();//GEN-LINE:|7-commandAction|44|128-postAction
+                likeddislikedAction();//GEN-LINE:|7-commandAction|50|128-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|45|130-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|51|130-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|46|130-postAction
+//GEN-LINE:|7-commandAction|52|130-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|47|53-preAction
+            }//GEN-BEGIN:|7-commandAction|53|181-preAction
+        } else if (displayable == list) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|53|181-preAction
+                // write pre-action user code here
+                listAction();//GEN-LINE:|7-commandAction|54|181-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|55|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|47|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|55|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|48|53-postAction
+//GEN-LINE:|7-commandAction|56|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|49|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|57|49-preAction
                 // write pre-action user code here
                //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}"
                String s ="";
@@ -479,37 +514,37 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
                        }
                    }
                }
-//GEN-LINE:|7-commandAction|50|49-postAction
+//GEN-LINE:|7-commandAction|58|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|51|115-preAction
+            }//GEN-BEGIN:|7-commandAction|59|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|51|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|59|115-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|52|115-postAction
+//GEN-LINE:|7-commandAction|60|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|53|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|61|124-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|54|124-postAction
+//GEN-LINE:|7-commandAction|62|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|55|113-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|63|113-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|56|113-postAction
+//GEN-LINE:|7-commandAction|64|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|57|35-preAction
+            }//GEN-BEGIN:|7-commandAction|65|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|57|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|65|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|58|35-postAction
+//GEN-LINE:|7-commandAction|66|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|59|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|67|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|60|33-postAction
+//GEN-LINE:|7-commandAction|68|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|61|7-postCommandAction
-        }//GEN-END:|7-commandAction|61|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|69|7-postCommandAction
+        }//GEN-END:|7-commandAction|69|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|62|
-//</editor-fold>//GEN-END:|7-commandAction|62|
+    }//GEN-BEGIN:|7-commandAction|70|
+//</editor-fold>//GEN-END:|7-commandAction|70|
 
 
 
@@ -1819,6 +1854,271 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     }
 //</editor-fold>//GEN-END:|157-getter|2|
 
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Resend ">//GEN-BEGIN:|169-getter|0|169-preInit
+    /**
+     * Returns an initialized instance of Resend component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getResend() {
+        if (Resend == null) {//GEN-END:|169-getter|0|169-preInit
+            // write pre-init user code here
+            Resend = new Command("Resend", Command.SCREEN, 1);//GEN-LINE:|169-getter|1|169-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|169-getter|2|
+        return Resend;
+    }
+//</editor-fold>//GEN-END:|169-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verify ">//GEN-BEGIN:|167-getter|0|167-preInit
+    /**
+     * Returns an initialized instance of Verify component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getVerify() {
+        if (Verify == null) {//GEN-END:|167-getter|0|167-preInit
+            // write pre-init user code here
+            Verify = new Command("Verify", Command.SCREEN, 1);//GEN-LINE:|167-getter|1|167-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|167-getter|2|
+        return Verify;
+    }
+//</editor-fold>//GEN-END:|167-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backV ">//GEN-BEGIN:|165-getter|0|165-preInit
+    /**
+     * Returns an initialized instance of backV component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBackV() {
+        if (backV == null) {//GEN-END:|165-getter|0|165-preInit
+            // write pre-init user code here
+            backV = new Command("Back", Command.BACK, 1);//GEN-LINE:|165-getter|1|165-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|165-getter|2|
+        return backV;
+    }
+//</editor-fold>//GEN-END:|165-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: IncorrectCode ">//GEN-BEGIN:|171-getter|0|171-preInit
+    /**
+     * Returns an initialized instance of IncorrectCode component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getIncorrectCode() {
+        if (IncorrectCode == null) {//GEN-END:|171-getter|0|171-preInit
+            // write pre-init user code here
+            IncorrectCode = new Alert("Incorrect Verification", "Incorrect verification code", null, AlertType.ERROR);//GEN-BEGIN:|171-getter|1|171-postInit
+            IncorrectCode.setIndicator(getIndicator1());
+            IncorrectCode.setTimeout(Alert.FOREVER);//GEN-END:|171-getter|1|171-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|171-getter|2|
+        return IncorrectCode;
+    }
+//</editor-fold>//GEN-END:|171-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator1 ">//GEN-BEGIN:|175-getter|0|175-preInit
+    /**
+     * Returns an initialized instance of indicator1 component.
+     *
+     * @return the initialized component instance
+     */
+    public Gauge getIndicator1() {
+        if (indicator1 == null) {//GEN-END:|175-getter|0|175-preInit
+            // write pre-init user code here
+            indicator1 = new Gauge(null, false, 100, 50);//GEN-LINE:|175-getter|1|175-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|175-getter|2|
+        return indicator1;
+    }
+//</editor-fold>//GEN-END:|175-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ResentAlert ">//GEN-BEGIN:|174-getter|0|174-preInit
+    /**
+     * Returns an initialized instance of ResentAlert component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getResentAlert() {
+        if (ResentAlert == null) {//GEN-END:|174-getter|0|174-preInit
+            // write pre-init user code here
+            ResentAlert = new Alert("Code Resent", "The verification code has been sent to your email", null, AlertType.CONFIRMATION);//GEN-BEGIN:|174-getter|1|174-postInit
+            ResentAlert.setIndicator(getIndicator3());
+            ResentAlert.setTimeout(Alert.FOREVER);//GEN-END:|174-getter|1|174-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|174-getter|2|
+        return ResentAlert;
+    }
+//</editor-fold>//GEN-END:|174-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator3 ">//GEN-BEGIN:|178-getter|0|178-preInit
+    /**
+     * Returns an initialized instance of indicator3 component.
+     *
+     * @return the initialized component instance
+     */
+    public Gauge getIndicator3() {
+        if (indicator3 == null) {//GEN-END:|178-getter|0|178-preInit
+            // write pre-init user code here
+            indicator3 = new Gauge(null, false, 100, 50);//GEN-LINE:|178-getter|1|178-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|178-getter|2|
+        return indicator3;
+    }
+//</editor-fold>//GEN-END:|178-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: VerifiedAlert ">//GEN-BEGIN:|173-getter|0|173-preInit
+    /**
+     * Returns an initialized instance of VerifiedAlert component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getVerifiedAlert() {
+        if (VerifiedAlert == null) {//GEN-END:|173-getter|0|173-preInit
+            // write pre-init user code here
+            VerifiedAlert = new Alert("Account Verified", "your account has been successfully verified", null, AlertType.CONFIRMATION);//GEN-BEGIN:|173-getter|1|173-postInit
+            VerifiedAlert.setIndicator(getIndicator2());
+            VerifiedAlert.setTimeout(Alert.FOREVER);//GEN-END:|173-getter|1|173-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|173-getter|2|
+        return VerifiedAlert;
+    }
+//</editor-fold>//GEN-END:|173-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator2 ">//GEN-BEGIN:|177-getter|0|177-preInit
+    /**
+     * Returns an initialized instance of indicator2 component.
+     *
+     * @return the initialized component instance
+     */
+    public Gauge getIndicator2() {
+        if (indicator2 == null) {//GEN-END:|177-getter|0|177-preInit
+            // write pre-init user code here
+            indicator2 = new Gauge(null, false, 100, 50);//GEN-LINE:|177-getter|1|177-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|177-getter|2|
+        return indicator2;
+    }
+//</editor-fold>//GEN-END:|177-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: InvalidCode ">//GEN-BEGIN:|172-getter|0|172-preInit
+    /**
+     * Returns an initialized instance of InvalidCode component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getInvalidCode() {
+        if (InvalidCode == null) {//GEN-END:|172-getter|0|172-preInit
+            // write pre-init user code here
+            InvalidCode = new Alert("Invalid Verification", "The verification code can\'t be less than 4 characters", null, AlertType.ERROR);//GEN-BEGIN:|172-getter|1|172-postInit
+            InvalidCode.setIndicator(getIndicator4());
+            InvalidCode.setTimeout(Alert.FOREVER);//GEN-END:|172-getter|1|172-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|172-getter|2|
+        return InvalidCode;
+    }
+//</editor-fold>//GEN-END:|172-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator4 ">//GEN-BEGIN:|179-getter|0|179-preInit
+    /**
+     * Returns an initialized instance of indicator4 component.
+     *
+     * @return the initialized component instance
+     */
+    public Gauge getIndicator4() {
+        if (indicator4 == null) {//GEN-END:|179-getter|0|179-preInit
+            // write pre-init user code here
+            indicator4 = new Gauge(null, false, 100, 50);//GEN-LINE:|179-getter|1|179-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|179-getter|2|
+        return indicator4;
+    }
+//</editor-fold>//GEN-END:|179-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verification ">//GEN-BEGIN:|162-getter|0|162-preInit
+    /**
+     * Returns an initialized instance of Verification component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getVerification() {
+        if (Verification == null) {//GEN-END:|162-getter|0|162-preInit
+            // write pre-init user code here
+            Verification = new Form("form2", new Item[]{getVTF(), getVSI()});//GEN-BEGIN:|162-getter|1|162-postInit
+            Verification.addCommand(getBackV());
+            Verification.addCommand(getVerify());
+            Verification.addCommand(getResend());
+            Verification.setCommandListener(this);//GEN-END:|162-getter|1|162-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|162-getter|2|
+        return Verification;
+    }
+//</editor-fold>//GEN-END:|162-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: vTF ">//GEN-BEGIN:|163-getter|0|163-preInit
+    /**
+     * Returns an initialized instance of vTF component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getVTF() {
+        if (vTF == null) {//GEN-END:|163-getter|0|163-preInit
+            // write pre-init user code here
+            vTF = new TextField("Enter verification code:", "", 4, TextField.ANY);//GEN-LINE:|163-getter|1|163-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|163-getter|2|
+        return vTF;
+    }
+//</editor-fold>//GEN-END:|163-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: vSI ">//GEN-BEGIN:|164-getter|0|164-preInit
+    /**
+     * Returns an initialized instance of vSI component.
+     *
+     * @return the initialized component instance
+     */
+    public StringItem getVSI() {
+        if (vSI == null) {//GEN-END:|164-getter|0|164-preInit
+            // write pre-init user code here
+            vSI = new StringItem("", "Press the \'Resend\' button to resend the verification code to your registered   e-mail adrress.");//GEN-LINE:|164-getter|1|164-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|164-getter|2|
+        return vSI;
+    }
+//</editor-fold>//GEN-END:|164-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: list ">//GEN-BEGIN:|180-getter|0|180-preInit
+    /**
+     * Returns an initialized instance of list component.
+     *
+     * @return the initialized component instance
+     */
+    public List getList() {
+        if (list == null) {//GEN-END:|180-getter|0|180-preInit
+            // write pre-init user code here
+            list = new List("list", Choice.IMPLICIT);//GEN-BEGIN:|180-getter|1|180-postInit
+            list.setCommandListener(this);//GEN-END:|180-getter|1|180-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|180-getter|2|
+        return list;
+    }
+//</editor-fold>//GEN-END:|180-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: listAction ">//GEN-BEGIN:|180-action|0|180-preAction
+    /**
+     * Performs an action assigned to the selected list element in the list
+     * component.
+     */
+    public void listAction() {//GEN-END:|180-action|0|180-preAction
+        // enter pre-action user code here
+        String __selectedString = getList().getString(getList().getSelectedIndex());//GEN-LINE:|180-action|1|180-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|180-action|2|
+//</editor-fold>//GEN-END:|180-action|2|
+
 
 
 
@@ -2003,6 +2303,117 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         
         return "n/a";
     }
+     public static String getInterests() /*this method should intiate the connection between the server and the mobile client which
+                         should return the json file of list of stories according to the client interests.*/
+    {
+       
+          HttpConnection httpConn = null;
+      String url = "http://192.168.26.145:3000/userinterests?id=5&format=json" ;  
+
+    InputStream is = null;
+    OutputStream os = null;
+
+    try {
+      // Open an HTTP Connection object
+      httpConn = (HttpConnection)Connector.open(url);
+
+      // Setup HTTP Request
+      httpConn.setRequestMethod(HttpConnection.GET);
+      httpConn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+
+      int respCode = httpConn.getResponseCode();
+      if (respCode == httpConn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1)
+          sb.append((char) chr);
+
+    String x = sb.toString();
+    
+        System.out.println( sb.toString());
+        return x;
+      }
+      else {
+        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+      }}catch(Exception e){
+          
+      
+
+      } finally {
+        if(is!= null)
+            try {
+                is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+          if(os != null)
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+      if(httpConn != null)
+            try {
+                httpConn.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+     
+    }
+    return "";
+
+    }
+        public  void parseJsonInterest(String x) // user to parse json interests
+{
+    String interest = "";
+    for(int i=0; i<x.length(); i++)
+    {
+        interest ="";
+        if(x.charAt(i) == ':')
+        {
+            i = i+2;
+            while(x.charAt(i)!= '"')
+            {
+                interest = interest + x.charAt(i);
+                i++;
+               
+            }
+            list.append(interest, null);
+            System.out.println(interest);
+             //list.append(interest, null);
+        }
+    }
+}
+   public  void putInterests ()
+{
+    String x = getInterests();
+    parseJsonInterest(x);
+}
+   
+   public void dummydata()
+   {
+       list.append("History", null);
+       list.append("sports", null);
+       
+   }
+   
+   
+   public void filter(String interest){
+   for(int i=0;i<MainFeed.size();i++){
+        if (MainFeed.get(i) instanceof storyItem){
+          storyItem temp =(storyItem) MainFeed.get(i);
+            if(temp.storyCategory.getText() != interest){
+               MainFeed.delete(i);
+           }
+        }
+   }
+}
+    
+
     
     public void storyopt() throws IOException  {
 
