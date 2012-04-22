@@ -7,5 +7,10 @@ class CreateLikedislikes < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :likedislikes, :user_id
+    add_index :likedislikes, :story_id
+    add_index :likedislikes, :action
+    add_index :likedislikes, [:user_id, :story_id], unique: true
   end
 end
