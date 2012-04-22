@@ -1,0 +1,8 @@
+<% @comments.each do |c| %>
+id<%= c.id %>
+name<%= if User.find(c.user_id).name.nil? then "name" else User.find(c.user_id) end%> 
+content<%= if c.content.nil? then "content" else c.content  end%> 
+up<%= Upped.find_all_by_comment_id(c.id).length %> 
+down<%= Downed.find_all_by_comment_id(c.id).length %> 
+<% end %>
+
