@@ -1,0 +1,2 @@
+module HAccountsHelper
+end
