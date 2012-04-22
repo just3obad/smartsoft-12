@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_one :gaheem_account
   has_one :verification_code
 
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
   validates :name, :presence => true,
   :length => { :maximum => 20 }
   validates :email, :presence => true,
