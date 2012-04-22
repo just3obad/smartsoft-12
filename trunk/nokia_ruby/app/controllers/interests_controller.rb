@@ -1,19 +1,18 @@
 class InterestsController < ApplicationController
-
+  
   def show
     @interest = Interest.find(params[:id])
     @feeds = @interest.feeds
     @title = @interest.name
     @image = @interest.image
-
   end
 
 
 
   def new
    @feed = Feed.new
-  @interest = Interest.new
-  @title = "Add interest"
+   @interest = Interest.new
+   @title = "Add interest"
   end
 
   def create

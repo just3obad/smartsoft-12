@@ -2,7 +2,7 @@ class Interest < ActiveRecord::Base
 
   attr_accessible :RSS, :description, :name, :image
   
- 
+  has_many :stories
   has_many :feeds, :dependent => :destroy
 
   RSS_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
