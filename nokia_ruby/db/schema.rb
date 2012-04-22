@@ -11,19 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120421223408) do
+ActiveRecord::Schema.define(:version => 20120422021217) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "comments", :force => true do |t|
-    t.string   "content",    :limit => 500
+# Could not dump table "comments" because of following StandardError
+#   Unknown type 'bool' for column 'hidden'
+
+  create_table "downeds", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "flags", :force => true do |t|
     t.integer  "user_id"
     t.integer  "story_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "gaheem_accounts", :force => true do |t|
@@ -75,6 +84,16 @@ ActiveRecord::Schema.define(:version => 20120421223408) do
     t.text     "content"
     t.boolean  "deleted"
     t.boolean  "hidden"
+    t.integer  "flags"
+    t.integer  "likes"
+    t.integer  "dislikes"
+  end
+
+  create_table "uppeds", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
