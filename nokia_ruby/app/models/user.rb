@@ -58,4 +58,14 @@ class User < ActiveRecord::Base
     end
   end 
 
+  def verifyAccount?(verCode)
+    @verEntry = VerificationCode.find_by_user_id(self.id)
+    if @verEntry.code == verCode then
+      @verEntry.update_attributes(verified: true)
+      return true
+    else 
+      return false
+    end
+  end
+
 end
