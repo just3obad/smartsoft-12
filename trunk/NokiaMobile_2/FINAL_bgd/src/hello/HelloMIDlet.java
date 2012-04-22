@@ -58,6 +58,16 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command okCommand6;
     private Command Verify;
     private Command backV;
+    private Command backCommand9;
+    private Command okCommand7;
+    private Command thumbup;
+    private Command thumbdown;
+    private Command flag;
+    private Command share;
+    private Command recommend1;
+    private Command blockinterest;
+    private Command blockstory;
+    private Command signout;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -113,6 +123,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private StringItem vSI;
     private Form FriendsStories;
     private List list;
+    private Form readMore;
+    private ImageItem imageItem;
+    private Image image1;
     //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
     private OutputStream os;
@@ -124,7 +137,77 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     public HelloMIDlet() {
     }
 
+    public Image getImage1(String s) {
+        if (image1 == null) {
+            // write pre-init user code here
+            try {
+                image1 = Image.createImage(s);
+            } catch (java.io.IOException e) {
+                e.printStackTrace();
+            }
+            // write post-init user code here
+        }
+        return image1;
+    }
     
+    public void jsonReadMoree() {
+        String url = "id: 1 title:\"FaceBook \" body To launch the high quality TV channel TNT in Belgium we placed a big red push button on an average Flemish square of an average Flemish town. A sign with the...http://www.3run.co.uk/ - Home of the 3RUN Famly World Wide http://www.3runshop.com/ - Free Running Trainers, Clothing, DVD's, Bags, Accessories. 3RUN  : rank 5 image : /x.png category : arts";
+        String s = url;
+        
+        if(s.length() == 0) {
+            readMore.append("sorry , the selected story was removed");
+            readMore.removeCommand(thumbup);
+            readMore.removeCommand(thumbdown);
+            readMore.removeCommand(flag);
+            readMore.removeCommand(recommend1);
+            readMore.removeCommand(share);
+            readMore.removeCommand(signout);
+            readMore.removeCommand(blockinterest);
+            readMore.removeCommand(blockstory); 
+        }
+                else {
+                int idOccur = s.indexOf("id");   
+                int t = s.indexOf("title");
+                int b = s.indexOf("body");
+                int r = s.indexOf("rank");
+                int i = s.indexOf("image");
+                int c = s.indexOf("category");
+                t=t+7;
+                String title = s.substring(t, b-2); 
+                b+=4;
+                String body = s.substring(b, r-1);
+                r+=4;
+                String rank = s.substring(r, i-1);
+                i+=5;
+                String image = s.substring(i+3, c-1);
+                c +=8;
+                String category = s.substring(c, s.length()-1);
+          
+             Image addedImage = getImage1(image);
+               
+           try {
+                addedImage = Image.createImage(image);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }   
+            
+                
+                //readMore.append("\n");
+                readMore.append( title.toUpperCase());
+                 if(addedImage != null) readMore.append(addedImage);
+                readMore.append("\n");
+                readMore.append("with ranking:   " + rank);
+                readMore.append("\n");
+                //readMore.append(image);
+                readMore.append("\n");
+                readMore.append(": " + body);
+
+        }
+    }
+  
+    public void rm() {
+        jsonReadMoree();
+    }   
     //Methos to add comment to the comments list
 
     public void addComment(String comment) {
@@ -572,35 +655,77 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
                }
 //GEN-LINE:|7-commandAction|56|49-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|57|115-preAction
+             }//GEN-BEGIN:|7-commandAction|57|186-preAction
+         } else if (displayable == readMore) {
+             if (command == backCommand9) {//GEN-END:|7-commandAction|57|186-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|58|186-postAction
+                 // write post-action user code here
+             } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|59|200-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|60|200-postAction
+                 // write post-action user code here
+             } else if (command == blockstory) {//GEN-LINE:|7-commandAction|61|202-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|62|202-postAction
+                 // write post-action user code here
+             } else if (command == flag) {//GEN-LINE:|7-commandAction|63|194-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|64|194-postAction
+                 // write post-action user code here
+             } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|65|188-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|66|188-postAction
+                 // write post-action user code here
+             } else if (command == recommend1) {//GEN-LINE:|7-commandAction|67|198-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|68|198-postAction
+                 // write post-action user code here
+             } else if (command == share) {//GEN-LINE:|7-commandAction|69|196-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|70|196-postAction
+                 // write post-action user code here
+             } else if (command == signout) {//GEN-LINE:|7-commandAction|71|204-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|72|204-postAction
+                 // write post-action user code here
+             } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|73|192-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|74|192-postAction
+                 // write post-action user code here
+             } else if (command == thumbup) {//GEN-LINE:|7-commandAction|75|190-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|76|190-postAction
+                 // write post-action user code here
+             }//GEN-BEGIN:|7-commandAction|77|115-preAction
          } else if (displayable == recommend) {
-             if (command == backCommand3) {//GEN-END:|7-commandAction|57|115-preAction
+             if (command == backCommand3) {//GEN-END:|7-commandAction|77|115-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|58|115-postAction
+//GEN-LINE:|7-commandAction|78|115-postAction
                 // write post-action user code here
-             } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|59|124-preAction
+             } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|79|124-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|60|124-postAction
+//GEN-LINE:|7-commandAction|80|124-postAction
                 // write post-action user code here
-             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|61|113-preAction
+             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|81|113-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|62|113-postAction
+//GEN-LINE:|7-commandAction|82|113-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|63|35-preAction
+             }//GEN-BEGIN:|7-commandAction|83|35-preAction
          } else if (displayable == textBox) {
-             if (command == backCommand1) {//GEN-END:|7-commandAction|63|35-preAction
+             if (command == backCommand1) {//GEN-END:|7-commandAction|83|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|64|35-postAction
+//GEN-LINE:|7-commandAction|84|35-postAction
                 // write post-action user code here
-             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|65|33-preAction
+             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|85|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|66|33-postAction
+//GEN-LINE:|7-commandAction|86|33-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|67|7-postCommandAction
-         }//GEN-END:|7-commandAction|67|7-postCommandAction
+             }//GEN-BEGIN:|7-commandAction|87|7-postCommandAction
+         }//GEN-END:|7-commandAction|87|7-postCommandAction
         // write post-action user code here
-      }//GEN-BEGIN:|7-commandAction|68|
-      //</editor-fold>//GEN-END:|7-commandAction|68|
+      }//GEN-BEGIN:|7-commandAction|88|
+      //</editor-fold>//GEN-END:|7-commandAction|88|
 
 
 
@@ -671,57 +796,57 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
       }
       //</editor-fold>//GEN-END:|22-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
-    /**
-     * Returns an initiliazed instance of viewComments component.
-     * @return the initialized component instance
-     */
-    public Command getViewComments() {
-        if (viewComments == null) {//GEN-END:|24-getter|0|24-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
+      /**
+       * Returns an initiliazed instance of viewComments component.
+       * @return the initialized component instance
+       */
+      public Command getViewComments() {
+          if (viewComments == null) {//GEN-END:|24-getter|0|24-preInit
             // write pre-init user code here
-            viewComments = new Command("Ok", Command.OK, 0);//GEN-LINE:|24-getter|1|24-postInit
+              viewComments = new Command("Ok", Command.OK, 0);//GEN-LINE:|24-getter|1|24-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|24-getter|2|
-        return viewComments;
-    }
-    //</editor-fold>//GEN-END:|24-getter|2|
+          }//GEN-BEGIN:|24-getter|2|
+          return viewComments;
+      }
+      //</editor-fold>//GEN-END:|24-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
-    /**
-     * Returns an initiliazed instance of Story component.
-     * @return the initialized component instance
-     */
-    public Form getStory() {
-        if (Story == null) {//GEN-END:|23-getter|0|23-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
+      /**
+       * Returns an initiliazed instance of Story component.
+       * @return the initialized component instance
+       */
+      public Form getStory() {
+          if (Story == null) {//GEN-END:|23-getter|0|23-preInit
             // write pre-init user code here
-            Story = new Form("form1");//GEN-BEGIN:|23-getter|1|23-postInit
-            Story.addCommand(getOkCommand1());
-            Story.addCommand(getComment1());
-            Story.addCommand(getBackCommand());
-            Story.setCommandListener(this);//GEN-END:|23-getter|1|23-postInit
+              Story = new Form("form1");//GEN-BEGIN:|23-getter|1|23-postInit
+              Story.addCommand(getOkCommand1());
+              Story.addCommand(getComment1());
+              Story.addCommand(getBackCommand());
+              Story.setCommandListener(this);//GEN-END:|23-getter|1|23-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|23-getter|2|
-        return Story;
-    }
-    //</editor-fold>//GEN-END:|23-getter|2|
+          }//GEN-BEGIN:|23-getter|2|
+          return Story;
+      }
+      //</editor-fold>//GEN-END:|23-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
-    /**
-     * Returns an initiliazed instance of textBox component.
-     * @return the initialized component instance
-     */
-    public TextBox getTextBox() {
-        if (textBox == null) {//GEN-END:|26-getter|0|26-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
+      /**
+       * Returns an initiliazed instance of textBox component.
+       * @return the initialized component instance
+       */
+      public TextBox getTextBox() {
+          if (textBox == null) {//GEN-END:|26-getter|0|26-preInit
             // write pre-init user code here
-            textBox = new TextBox("textBox", null, 100, TextField.ANY);//GEN-BEGIN:|26-getter|1|26-postInit
-            textBox.addCommand(getOkCommand());
-            textBox.addCommand(getBackCommand1());
-            textBox.setCommandListener(this);//GEN-END:|26-getter|1|26-postInit
+              textBox = new TextBox("textBox", null, 100, TextField.ANY);//GEN-BEGIN:|26-getter|1|26-postInit
+              textBox.addCommand(getOkCommand());
+              textBox.addCommand(getBackCommand1());
+              textBox.setCommandListener(this);//GEN-END:|26-getter|1|26-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|26-getter|2|
-        return textBox;
-    }
-    //</editor-fold>//GEN-END:|26-getter|2|
+          }//GEN-BEGIN:|26-getter|2|
+          return textBox;
+      }
+      //</editor-fold>//GEN-END:|26-getter|2|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment ">//GEN-BEGIN:|27-getter|0|27-preInit
     /**
@@ -2098,6 +2223,213 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         // enter post-action user code here
     }//GEN-BEGIN:|181-action|2|
     //</editor-fold>//GEN-END:|181-action|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand9 ">//GEN-BEGIN:|185-getter|0|185-preInit
+    /**
+     * Returns an initiliazed instance of backCommand9 component.
+     * @return the initialized component instance
+     */
+    public Command getBackCommand9() {
+        if (backCommand9 == null) {//GEN-END:|185-getter|0|185-preInit
+            // write pre-init user code here
+            backCommand9 = new Command("Back", Command.BACK, 0);//GEN-LINE:|185-getter|1|185-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|185-getter|2|
+        return backCommand9;
+    }
+    //</editor-fold>//GEN-END:|185-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand7 ">//GEN-BEGIN:|187-getter|0|187-preInit
+    /**
+     * Returns an initiliazed instance of okCommand7 component.
+     * @return the initialized component instance
+     */
+    public Command getOkCommand7() {
+        if (okCommand7 == null) {//GEN-END:|187-getter|0|187-preInit
+            // write pre-init user code here
+            okCommand7 = new Command("  ", Command.OK, 0);//GEN-LINE:|187-getter|1|187-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|187-getter|2|
+        return okCommand7;
+    }
+    //</editor-fold>//GEN-END:|187-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbup ">//GEN-BEGIN:|189-getter|0|189-preInit
+    /**
+     * Returns an initiliazed instance of thumbup component.
+     * @return the initialized component instance
+     */
+    public Command getThumbup() {
+        if (thumbup == null) {//GEN-END:|189-getter|0|189-preInit
+            // write pre-init user code here
+            thumbup = new Command("Thumb Up", Command.OK, 0);//GEN-LINE:|189-getter|1|189-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|189-getter|2|
+        return thumbup;
+    }
+    //</editor-fold>//GEN-END:|189-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbdown ">//GEN-BEGIN:|191-getter|0|191-preInit
+    /**
+     * Returns an initiliazed instance of thumbdown component.
+     * @return the initialized component instance
+     */
+    public Command getThumbdown() {
+        if (thumbdown == null) {//GEN-END:|191-getter|0|191-preInit
+            // write pre-init user code here
+            thumbdown = new Command("Thumb Down", Command.OK, 0);//GEN-LINE:|191-getter|1|191-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|191-getter|2|
+        return thumbdown;
+    }
+    //</editor-fold>//GEN-END:|191-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: flag ">//GEN-BEGIN:|193-getter|0|193-preInit
+    /**
+     * Returns an initiliazed instance of flag component.
+     * @return the initialized component instance
+     */
+    public Command getFlag() {
+        if (flag == null) {//GEN-END:|193-getter|0|193-preInit
+            // write pre-init user code here
+            flag = new Command("Flag", Command.OK, 0);//GEN-LINE:|193-getter|1|193-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|193-getter|2|
+        return flag;
+    }
+    //</editor-fold>//GEN-END:|193-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: share ">//GEN-BEGIN:|195-getter|0|195-preInit
+    /**
+     * Returns an initiliazed instance of share component.
+     * @return the initialized component instance
+     */
+    public Command getShare() {
+        if (share == null) {//GEN-END:|195-getter|0|195-preInit
+            // write pre-init user code here
+            share = new Command("Share", Command.OK, 0);//GEN-LINE:|195-getter|1|195-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|195-getter|2|
+        return share;
+    }
+    //</editor-fold>//GEN-END:|195-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend1 ">//GEN-BEGIN:|197-getter|0|197-preInit
+    /**
+     * Returns an initiliazed instance of recommend1 component.
+     * @return the initialized component instance
+     */
+    public Command getRecommend1() {
+        if (recommend1 == null) {//GEN-END:|197-getter|0|197-preInit
+            // write pre-init user code here
+            recommend1 = new Command("Recommend", Command.OK, 0);//GEN-LINE:|197-getter|1|197-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|197-getter|2|
+        return recommend1;
+    }
+    //</editor-fold>//GEN-END:|197-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockinterest ">//GEN-BEGIN:|199-getter|0|199-preInit
+    /**
+     * Returns an initiliazed instance of blockinterest component.
+     * @return the initialized component instance
+     */
+    public Command getBlockinterest() {
+        if (blockinterest == null) {//GEN-END:|199-getter|0|199-preInit
+            // write pre-init user code here
+            blockinterest = new Command("Block Interest", Command.OK, 0);//GEN-LINE:|199-getter|1|199-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|199-getter|2|
+        return blockinterest;
+    }
+    //</editor-fold>//GEN-END:|199-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockstory ">//GEN-BEGIN:|201-getter|0|201-preInit
+    /**
+     * Returns an initiliazed instance of blockstory component.
+     * @return the initialized component instance
+     */
+    public Command getBlockstory() {
+        if (blockstory == null) {//GEN-END:|201-getter|0|201-preInit
+            // write pre-init user code here
+            blockstory = new Command("Block Story", Command.OK, 0);//GEN-LINE:|201-getter|1|201-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|201-getter|2|
+        return blockstory;
+    }
+    //</editor-fold>//GEN-END:|201-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: signout ">//GEN-BEGIN:|203-getter|0|203-preInit
+    /**
+     * Returns an initiliazed instance of signout component.
+     * @return the initialized component instance
+     */
+    public Command getSignout() {
+        if (signout == null) {//GEN-END:|203-getter|0|203-preInit
+            // write pre-init user code here
+            signout = new Command("Sign out", Command.OK, 0);//GEN-LINE:|203-getter|1|203-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|203-getter|2|
+        return signout;
+    }
+    //</editor-fold>//GEN-END:|203-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: readMore ">//GEN-BEGIN:|184-getter|0|184-preInit
+    /**
+     * Returns an initiliazed instance of readMore component.
+     * @return the initialized component instance
+     */
+    public Form getReadMore() {
+        if (readMore == null) {//GEN-END:|184-getter|0|184-preInit
+            // write pre-init user code here
+            readMore = new Form("form2", new Item[] { getImageItem() });//GEN-BEGIN:|184-getter|1|184-postInit
+            readMore.addCommand(getBackCommand9());
+            readMore.addCommand(getOkCommand7());
+            readMore.addCommand(getThumbup());
+            readMore.addCommand(getThumbdown());
+            readMore.addCommand(getFlag());
+            readMore.addCommand(getShare());
+            readMore.addCommand(getRecommend1());
+            readMore.addCommand(getBlockinterest());
+            readMore.addCommand(getBlockstory());
+            readMore.addCommand(getSignout());
+            readMore.setCommandListener(this);//GEN-END:|184-getter|1|184-postInit
+            // write post-init user code here
+            rm();
+        }//GEN-BEGIN:|184-getter|2|
+        return readMore;
+    }
+    //</editor-fold>//GEN-END:|184-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: imageItem ">//GEN-BEGIN:|205-getter|0|205-preInit
+    /**
+     * Returns an initiliazed instance of imageItem component.
+     * @return the initialized component instance
+     */
+    public ImageItem getImageItem() {
+        if (imageItem == null) {//GEN-END:|205-getter|0|205-preInit
+            // write pre-init user code here
+            imageItem = new ImageItem("", getImage1(), ImageItem.LAYOUT_DEFAULT, "<Missing Image>");//GEN-LINE:|205-getter|1|205-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|205-getter|2|
+        return imageItem;
+    }
+    //</editor-fold>//GEN-END:|205-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: image1 ">//GEN-BEGIN:|206-getter|0|206-preInit
+    /**
+     * Returns an initiliazed instance of image1 component.
+     * @return the initialized component instance
+     */
+    public Image getImage1() {
+        if (image1 == null) {//GEN-END:|206-getter|0|206-preInit
+            // write pre-init user code here
+            image1 = Image.createImage(1, 1);//GEN-LINE:|206-getter|1|206-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|206-getter|2|
+        return image1;
+    }
+    //</editor-fold>//GEN-END:|206-getter|2|
 
 
 
