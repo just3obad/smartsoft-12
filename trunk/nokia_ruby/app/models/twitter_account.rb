@@ -24,10 +24,10 @@ class TwitterAccount < ActiveRecord::Base
     puts 'twitter configured'
   end 
 
-  def get_feed(count=10)
+  def get_feed(page=1)
     self.config_twitter
     puts "getting the feed"
-    feed = Twitter.home_timeline(:count => count)
+    feed = Twitter.home_timeline(:page => page)
     puts feed
     stories = Array.new
     feed.each do |tweet|
