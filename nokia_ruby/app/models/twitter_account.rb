@@ -10,8 +10,8 @@ class TwitterAccount < ActiveRecord::Base
 
   validates :auth_secret, presence: true
   validates :auth_token, presence: true
-  validates :user_id, presence: true
-
+  validates :user_id, presence: true 
+  validates :user_id, uniqueness: true
 
 
   def get_feed(count=10)

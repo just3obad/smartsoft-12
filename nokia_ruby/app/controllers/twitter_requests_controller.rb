@@ -15,32 +15,38 @@ class TwitterRequestsController < ApplicationController
                              :sign_in => true)
 
     @t_request = TwitterRequest.new
-    user = User.find(params[:u_id]) #FIXME according to mina adel 
+    user = User.find(params[:u_id]) 
 
     req = oa.get_request_token
     @t_request.request_secret = req.secret
     @t_request.request_token = req.token
     @t_request.user = user
 
-    url = "http://api.twitter.com/oauth/authorize?oauth_token=#{ @t_request.request_token }"
-    if @t_request.save
-      render text: "#{ url } user with id #{params[:u_id]} made a twitter request #{@t_request.id}  " 
+
+    old_req = TwitterRequest.find_by_user_id(user.id)
+    puts '###########' + old_req.to_s
+
+    prefeix = ''
+    if (old_req)
+      prefix = 'deleted old one' 
+      old_req.destroy
     else 
-      render text: "# user is has already a request"
-      user.twitter_request.destroy
-      @t_request.save
+      prefix = "it's a new one"
     end 
 
-    #puts "######## " + url
-    #format.json { [twitter_auth_url: url] } 
-    #render(:text => url)
-    # I am rendering because this will only be called from the mobile side
-    #render text: "#{ url } user with id #{params[:u_id]} made a twitter request  " 
+    @t_request.save
+
+    # FIXME remove everything but the url
+    url = "http://api.twitter.com/oauth/authorize?oauth_token=#{ @t_request.request_token }"
+    render text: "#{ url } user with id #{params[:u_id]} made a twitter request #{@t_request.id} #{prefix} " 
+
   end 
 
 
   # AFter the user authenticates
-  def generate_access_token()
+  def generate_access_token
+
+    user = User.find(params[:u_id])  
     t_request = TwitterRequest.find_by_user_id(params[:u_id])
 
     oa = OAuth::Consumer.new(self.consumer_token, $consumer_secret,
@@ -55,12 +61,12 @@ class TwitterRequestsController < ApplicationController
     @t_account = TwitterAccoung.new
     @t_account.auth_token = access.token
     @t_account.auth_secret = access.secret
+    @t_account.user = user
 
-    puts 'access_secret is ' + $access_secret
-    t_account.save
+    puts 'access_secret is ' + @t_account.auth_secret
+    @t_account.save
     render text: "User #{ param[:u_id] } created a new twitter account"
   end 
-
 
 
 end
