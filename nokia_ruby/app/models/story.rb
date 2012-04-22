@@ -17,5 +17,5 @@ class Story < ActiveRecord::Base
       return Story.find(story_id)
   end
 
-
+  
 end
