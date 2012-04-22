@@ -16897,20 +16897,785 @@ Migrating to FixCNames (20120422172214)
   [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
 
 
-Started GET "/likedislikes?uid=5&sid=1&act=-1" for 192.168.26.1 at 2012-04-22 12:41:03 -0700
-Processing by LikedislikesController#thumb as HTML
-  Parameters: {"uid"=>"5", "sid"=>"1", "act"=>"-1"}
-  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "likedislikes" WHERE "likedislikes"."story_id" = 1 AND "likedislikes"."user_id" = 5[0m
-  [1m[35m (0.1ms)[0m  begin transaction
-  [1m[36mSQL (21.4ms)[0m  [1mINSERT INTO "likedislikes" ("action", "created_at", "story_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["action", -1], ["created_at", Sun, 22 Apr 2012 19:41:05 UTC +00:00], ["story_id", 1], ["updated_at", Sun, 22 Apr 2012 19:41:05 UTC +00:00], ["user_id", 5]]
-  [1m[35m (16.5ms)[0m  commit transaction
-  [1m[36mStory Load (0.5ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "1"]]
-Completed 500 Internal Server Error in 279ms
+Started GET "/users/1" for 127.0.0.1 at 2012-04-22 22:02:40 +0200
 
-ActiveRecord::RecordNotFound (Couldn't find Story with id=1):
-  app/controllers/likedislikes_controller.rb:14:in `thumb'
+SyntaxError (/home/akila/5ara/nokia_ruby/app/controllers/users_controller.rb:114: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__444525363981306626__call__700788222210417630__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
 
 
-  Rendered /home/kemo/.rvm/gems/ruby-1.9.2-p318@gemset/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (11.3ms)
-  Rendered /home/kemo/.rvm/gems/ruby-1.9.2-p318@gemset/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.4ms)
-  Rendered /home/kemo/.rvm/gems/ruby-1.9.2-p318@gemset/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (57.6ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.4ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (72.6ms)
+
+
+Started GET "/users/" for 127.0.0.1 at 2012-04-22 22:02:48 +0200
+
+SyntaxError (/home/akila/5ara/nokia_ruby/app/controllers/users_controller.rb:114: syntax error, unexpected $end, expecting keyword_end):
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:469:in `block in load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:639:in `new_constants_in'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:468:in `load_file'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:353:in `require_or_load'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:502:in `load_missing_constant'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:192:in `block in const_missing'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `each'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:190:in `const_missing'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:229:in `block in constantize'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `each'
+  activesupport (3.2.3) lib/active_support/inflector/methods.rb:228:in `constantize'
+  activesupport (3.2.3) lib/active_support/dependencies.rb:554:in `get'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:69:in `controller_reference'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:54:in `controller'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:32:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__444525363981306626__call__700788222210417630__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.2ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (30.6ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-22 22:02:54 +0200
+Processing by StoriesController#index as HTML
+  [1m[36mStory Load (0.2ms)[0m  [1mSELECT "stories".* FROM "stories" [0m
+  Rendered stories/index.html.erb within layouts/application (1.6ms)
+Compiled admins.css  (43ms)  (pid 3425)
+Compiled comments.css  (1ms)  (pid 3425)
+Compiled custom.css  (2424ms)  (pid 3425)
+Compiled flags.css  (1ms)  (pid 3425)
+Compiled h_accounts.css  (1ms)  (pid 3425)
+Compiled likedislikes.css  (2ms)  (pid 3425)
+Compiled scaffolds.css  (14ms)  (pid 3425)
+Compiled spams.css  (4ms)  (pid 3425)
+Compiled statistics.css  (1ms)  (pid 3425)
+Compiled stories.css  (1ms)  (pid 3425)
+Compiled twitter_accounts.css  (1ms)  (pid 3425)
+Compiled twitter_requests.css  (4ms)  (pid 3425)
+Compiled users.css  (1ms)  (pid 3425)
+Compiled verification_code.css  (2ms)  (pid 3425)
+Compiled verification_codes.css  (1ms)  (pid 3425)
+Compiled application.css  (2762ms)  (pid 3425)
+Compiled jquery.js  (2ms)  (pid 3425)
+Compiled jquery_ujs.js  (0ms)  (pid 3425)
+Compiled admins.js  (582ms)  (pid 3425)
+Compiled bootstrap-alert.js  (0ms)  (pid 3425)
+Compiled chrisss.js  (0ms)  (pid 3425)
+Compiled comments.js  (170ms)  (pid 3425)
+Compiled exporting.js  (0ms)  (pid 3425)
+Compiled flags.js  (166ms)  (pid 3425)
+Compiled h_accounts.js  (217ms)  (pid 3425)
+Compiled highcharts.js  (0ms)  (pid 3425)
+Compiled interests.js  (154ms)  (pid 3425)
+Compiled jquery.min.js  (1ms)  (pid 3425)
+Compiled likedislikes.js  (220ms)  (pid 3425)
+Compiled rails.js  (0ms)  (pid 3425)
+Compiled spams.js  (156ms)  (pid 3425)
+Compiled statistics.js  (152ms)  (pid 3425)
+Compiled stories.js  (164ms)  (pid 3425)
+Compiled twitter_accounts.js  (215ms)  (pid 3425)
+Compiled twitter_requests.js  (157ms)  (pid 3425)
+Compiled users.js  (165ms)  (pid 3425)
+Compiled verification_code.js  (153ms)  (pid 3425)
+Compiled verification_codes.js  (166ms)  (pid 3425)
+Compiled application.js  (3150ms)  (pid 3425)
+Completed 200 OK in 6299ms (Views: 6120.0ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /application.css - 304 Not Modified (64ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /admins.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /comments.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /custom.css - 200 OK (121ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /likedislikes.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /scaffolds.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /h_accounts.css - 200 OK (2ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /flags.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /spams.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /statistics.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /stories.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /twitter_requests.css - 200 OK (2ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /users.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /verification_code.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /verification_codes.css - 200 OK (12ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /jquery.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /admins.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /bootstrap-alert.js - 200 OK (14ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /chrisss.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /comments.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /exporting.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /flags.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /h_accounts.js - 200 OK (9ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /highcharts.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /interests.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:01 +0200
+Served asset /jquery.min.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /likedislikes.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /rails.js - 304 Not Modified (145ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /spams.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /statistics.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /stories.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /twitter_requests.js - 200 OK (10ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /users.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /verification_code.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /verification_codes.js - 200 OK (10ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:02 +0200
+Served asset /application.js - 304 Not Modified (68ms)
+
+
+Started GET "/stories/10" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 10
+  [1m[36mStory Load (0.4ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "10"]]
+  Rendered stories/show.html.erb within layouts/application (70.2ms)
+Completed 200 OK in 327ms (Views: 98.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /application.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /flags.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /verification_code.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /admins.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /jquery.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /chrisss.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /flags.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /highcharts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /jquery.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /stories.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /statistics.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:10 +0200
+Served asset /application.js - 304 Not Modified (141ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-22 22:03:11 +0200
+Served asset /verification_code.js - 304 Not Modified (0ms)
+
+
+Started GET "/stories/10/statistics" for 127.0.0.1 at 2012-04-22 22:03:14 +0200
+Processing by StatisticsController#stories as HTML
+  Parameters: {"id"=>"10"}
+  [1m[35mStory Load (0.2ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "10"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "10"]]
+  [1m[35mShare Load (3.8ms)[0m  SELECT created_at, count(story_id) as noOfSharesPerDay FROM "shares" WHERE "shares"."story_id" = 10 AND ("shares"."created_at" BETWEEN '2012-04-22 00:00:00.000000' AND '2012-04-22 23:59:59.999999') GROUP BY date(created_at)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "10"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "10"]]
+  [1m[36mLikedislike Load (0.2ms)[0m  [1mSELECT created_at, count(story_id) as noOfLikesPerDay FROM "likedislikes" WHERE "likedislikes"."story_id" = 10 AND "likedislikes"."action" = 1 AND ("likedislikes"."created_at" BETWEEN '2012-04-22 00:00:00.000000' AND '2012-04-22 23:59:59.999999') GROUP BY date(created_at)[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "10"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "10"]]
+  [1m[35mLikedislike Load (0.3ms)[0m  SELECT created_at, count(story_id) as noOfDislikesPerDay FROM "likedislikes" WHERE "likedislikes"."story_id" = 10 AND "likedislikes"."action" = -1 AND ("likedislikes"."created_at" BETWEEN '2012-04-22 00:00:00.000000' AND '2012-04-22 23:59:59.999999') GROUP BY date(created_at)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "10"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "10"]]
+  Rendered statistics/stories.html.erb within layouts/statisticsPage (165.2ms)
+Completed 500 Internal Server Error in 171ms
+
+ActionView::Template::Error (uninitialized constant StoriesHelper::Spam):
+    8: 
+    9:   $(document).ready(function() {
+    10:       //get The story's array of arrays of data
+    11:       data= <%= get_story_stat(@id) %>
+    12:       //the graphs that we want to show
+    13:       names=["No Of Shares","No Of Likes","No of Dislikes","No of Spams"]; 
+    14:       //the time interval between one point and another in the graph.
+  app/helpers/stories_helper.rb:163:in `get_no_of_spams'
+  app/helpers/statistics_helper.rb:27:in `get_story_stat'
+  app/views/statistics/stories.html.erb:11:in `_app_views_statistics_stories_html_erb__3458536519020240313_47443720'
+
+
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.2ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.3ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (13.7ms)
+
+
+Started GET "/stories" for 127.0.0.1 at 2012-04-22 22:49:43 +0200
+Processing by StoriesController#index as HTML
+  [1m[36mStory Load (0.2ms)[0m  [1mSELECT "stories".* FROM "stories" [0m
+  Rendered stories/index.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 515ms (Views: 385.4ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:45 +0200
+Served asset /application.css - 304 Not Modified (90ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:45 +0200
+Served asset /comments.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:45 +0200
+Served asset /admins.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /custom.css - 304 Not Modified (101ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /h_accounts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /likedislikes.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /scaffolds.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /flags.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /spams.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /statistics.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /stories.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /twitter_requests.css - 304 Not Modified (17ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /users.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /verification_code.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /verification_codes.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /jquery.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /admins.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /bootstrap-alert.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /chrisss.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /comments.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /exporting.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /flags.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /h_accounts.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /highcharts.js - 304 Not Modified (19ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /interests.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /jquery.min.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /likedislikes.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /rails.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /spams.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /statistics.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /stories.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /twitter_requests.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /users.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /verification_code.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /verification_codes.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-22 22:49:46 +0200
+Served asset /application.js - 304 Not Modified (211ms)
+
+
+Started GET "/interests" for 127.0.0.1 at 2012-04-22 22:50:03 +0200
+Processing by InterestsController#index as HTML
+  [1m[35mInterest Load (0.1ms)[0m  SELECT "interests".* FROM "interests" 
+Completed 500 Internal Server Error in 99ms
+
+ActionView::MissingTemplate (Missing template interests/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/home/akila/5ara/nokia_ruby/app/views"
+):
+  actionpack (3.2.3) lib/action_view/path_set.rb:58:in `find'
+  actionpack (3.2.3) lib/action_view/lookup_context.rb:109:in `find'
+  actionpack (3.2.3) lib/action_view/renderer/abstract_renderer.rb:3:in `find_template'
+  actionpack (3.2.3) lib/action_view/renderer/template_renderer.rb:34:in `determine_template'
+  actionpack (3.2.3) lib/action_view/renderer/template_renderer.rb:10:in `render'
+  actionpack (3.2.3) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.3) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.3) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.3) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.3) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.3) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.3) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+  activesupport (3.2.3) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.3) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.3) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.3) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:414:in `_run__3272054671789773603__process_action__3365757485581371573__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.3) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+  activerecord (3.2.3) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.3) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__2066290257156389338__call__2092149659081761121__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/akila/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (1.4ms)
+
+
+Started GET "/interests/1" for 127.0.0.1 at 2012-04-22 22:50:14 +0200
+Processing by InterestsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mInterest Load (0.3ms)[0m  [1mSELECT "interests".* FROM "interests" WHERE "interests"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 500 Internal Server Error in 11ms
+
+ActiveRecord::RecordNotFound (Couldn't find Interest with id=1):
+  app/controllers/interests_controller.rb:4:in `show'
+
+
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (12.1ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.5ms)
+  Rendered /home/akila/.rvm/gems/ruby-1.9.2-p318/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (23.7ms)

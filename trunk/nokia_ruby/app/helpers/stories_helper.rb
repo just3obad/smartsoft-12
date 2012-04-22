@@ -267,4 +267,17 @@ p 'enter valid rss feed link form'
 
 end
 
+#a method that takes list of interests and returns list of stories related to those interests
+  def get_stories(interests)
+#create new array to return the stories in
+  @stories=Array.new
+#loop for each interest and get its id then it queries the database to return all the stories which belongs to this specific interest and append them to the stories list.
+  interests.each do |interest|
+	 @stories += Story.find_all_by_interest_id(interest.id)
+  end
+#return the list after looping on all the entered interests
+  return @stories
+  end
+
+
 end

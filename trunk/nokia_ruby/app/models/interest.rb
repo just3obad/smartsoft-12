@@ -1,7 +1,7 @@
 class Interest < ActiveRecord::Base
   
 #attributes  that can be modified automatically by outside users
-  attr_accessible :description, :name, :image, :deleted
+  #attr_accessible :description, :name, :image, :deleted
   
   has_many :stories
   has_many :feeds, :dependent => :destroy
@@ -11,8 +11,8 @@ LINK_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9
  
   # name cannot be duplicated and has to be there .
 
-validates :name, :presence => true,
-                   :uniqueness => true
+#validates :name, :presence => true,
+                  # :uniqueness => true
 
 
 
