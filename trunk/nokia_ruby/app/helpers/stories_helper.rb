@@ -216,39 +216,43 @@ def fetch_stories_by_rss_feeds(link)
 source = link
 content = "" # raw content of rss feed will be loaded here
 
-
+#parsing the url
 open(source) do |s| content = s.read end
 rss = RSS::Parser.parse(content, false)
 
 
 i = 0
 num = rss.items.size
-
+#creating the array of stories
 listOfStories = Array.new()
 puts listOfStories[num]
 
 
-
+#creating the stories and put them in the array
 while i < num do
 
 stitle = rss.items[i].title
 sdate = rss.items[i].date
 sdescription =  rss.items[i].description
 
-
+#check if the story already exists in the database
 count_of_stories_with_same_title = Story.where(:title => stitle).count
+
+#if it is a new story, it will enter automatically
 if count_of_stories_with_same_title == 0
 listOfStories[i] = Story.create(:title => stitle, :date => sdate, :body => sdescription, :rank => 0, :deleted => false, :hidden => false, :likes => 0, :dislikes => 0, :flags => 0)
 elsif
+#if the story exists in the database it will enter the array without modifications
 listOfStories[i] = Story.where(:title => stitle)
 end
 i+=1
 if i < num
+#if the array is full, return it
 return listOfStories
 end
 end
 
-
+#handling the errors of the links are not valid
 rescue NoMethodError
 p ' enter valid rss link'
 return
