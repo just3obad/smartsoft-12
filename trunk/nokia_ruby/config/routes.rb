@@ -14,6 +14,7 @@ NokiaRuby::Application.routes.draw do
   match "gaheem_accounts/create" => "gaheem_accounts#create", :as => :create
   match "authenticate/:u_id/get_twitter_url" => "twitter_requests#generate_request_token"
   match "authenticate/:u_id/new_twitter_account" =>  "twitter_requests#generate_access_token"
+  match "Twitter/:u_id/delete" => "twitter_accounts#remove_twitter_account"
   match "stories/:id/comments"  => "stories#show_comments"
   match "stories/:id/comments/new" => "stories#create_comment"
   match "friends/:id" => "friends#new"

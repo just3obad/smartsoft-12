@@ -14,6 +14,11 @@ class TwitterRequestsController < ApplicationController
                              :request_endpoint => 'http://api.twitter.com',
                              :sign_in => true)
 
+    t_account = TwitterAccount.find_by_user_id(params[:u_id])
+    if (t_account)
+      return render text: "You already have an twitter account connected"
+    end
+
     @t_request = TwitterRequest.new
     user = User.find(params[:u_id]) 
 
