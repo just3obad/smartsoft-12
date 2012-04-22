@@ -1,6 +1,6 @@
 NokiaRuby::Application.routes.draw do
 
-
+  match "user_add_interests" => "user_add_interests#getinterests"
   match "flags" => "flags#flag"
   match "likedislikes" => "likedislikes#thumb"
   match "/interests/:id/statistics" => "statistics#interests"
