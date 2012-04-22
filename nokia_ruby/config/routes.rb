@@ -17,7 +17,7 @@ NokiaRuby::Application.routes.draw do
   match "Twitter/:u_id/delete" => "twitter_accounts#remove_twitter_account"
   match "stories/:id/comments"  => "stories#show_comments"
   match "stories/:id/comments/new" => "stories#create_comment"
-  match "friends/:id" => "friends#add"
+  match "friends/:id/add/username" => "friends#add"
   match "friends/:id/accept" => "friends#update"
   match "friends/:id/reject" => "friends#delete"
   match "gaheem_accounts/:id/verify" => "verification_codes#verify"
