@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   :length => { :maximum => 20 }
   validates :email, :presence => true,
   :format=> {:with => email_regex }
- :uniqueness => { :case_sensitive => false}
+ #:uniqueness => { :case_sensitive => false}
   validates :first_name, :presence => true,
   :length => { :maximum => 20 }
   validates :last_name, :presence => true,     #un-comment after db handling
