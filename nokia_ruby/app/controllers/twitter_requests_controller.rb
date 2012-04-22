@@ -49,7 +49,7 @@ class TwitterRequestsController < ApplicationController
     user = User.find(params[:u_id])  
     t_request = TwitterRequest.find_by_user_id(params[:u_id])
 
-    oa = OAuth::Consumer.new(self.consumer_token, $consumer_secret,
+    oa = OAuth::Consumer.new(CONSUMER_TOKEN, CONSUMER_SECRET,
                              :site=> 'http://api.twitter.com',
                              :request_endpoint => 'http://api.twitter.com',
                              :sign_in => true)
@@ -58,14 +58,14 @@ class TwitterRequestsController < ApplicationController
     req.secret = t_request.request_secret
     access = req.get_access_token
 
-    @t_account = TwitterAccoung.new
+    @t_account = TwitterAccount.new
     @t_account.auth_token = access.token
     @t_account.auth_secret = access.secret
     @t_account.user = user
 
     puts 'access_secret is ' + @t_account.auth_secret
     @t_account.save
-    render text: "User #{ param[:u_id] } created a new twitter account"
+    render text: "User #{ params[:u_id] } created a new twitter account"
   end 
 
 
