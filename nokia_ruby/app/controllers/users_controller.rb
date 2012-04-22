@@ -20,14 +20,14 @@ class UsersController < ApplicationController
                     :date_of_birth=>params[:date_of_birth]])
 #    redirect_to :controller => GaheemAccount, :action => 'create', :email=>params[:email],
 #        :password=>params[:password]
- #   respond_to do |format|
- #     if @user.save
- #       format.html { redirect_to @user, notice: 'User was successfully created.' }
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
  #       format.json { render json: @user, status: :created, location: @user }
- #     else
- #       format.html { render action: "new" }
+      else
+        format.html { render action: "new" }
  #       format.json { render json: @user.errors, status: :unprocessable_entity }
- #     end
+      end
     end
   end
 
@@ -51,10 +51,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-
-
-
 
   def index
     respond_with(@users = User.all)
@@ -88,7 +84,7 @@ class UsersController < ApplicationController
 
 def feed
  @id=params[:id]
- @interests = User.find(:first,:conditions => ["id = ?",@id],:select => "interests")
+# @interests = User.find(:first,:conditions => ["id = ?",@id],:select => "interests")
 # @stories_list = getStories(@interests)
 respond_to do |format|
       format.json { render json: @stories_list }
@@ -111,4 +107,4 @@ end
 
 
 end
-#end
+end
