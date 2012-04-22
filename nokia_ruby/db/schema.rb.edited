@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< .mine
 ActiveRecord::Schema.define(:version => 20120422172214) do
+=======
+ActiveRecord::Schema.define(:version => 20120422165915) do
+>>>>>>> .r324
 
   create_table "Verification_Codes", :force => true do |t|
     t.string   "code"

@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   has_one :gaheem_account
   has_one :twitter_account
   has_one :twitter_request #If he requested another one, the old will be deleted
-  has_one :verification_code
 
   email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
   validates :name, :presence => true,
@@ -48,25 +47,6 @@ class User < ActiveRecord::Base
     end
   end 
 
- # this methods generates a verification code for the user and adds an entry to Verification_Code
-  def generateVerificationCode?()
-  @verification_code = VerificationCode.find_by_user_id(self.id)
-      if @verification_code.nil? then
-      VerificationCode.create :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join,:user_id=>self.id, :verified=>false
-      return true		
-    else 			
-      return false		
-    end
-  end 
 
-  def verifyAccount?(verCode)
-    @verEntry = VerificationCode.find_by_user_id(self.id)
-    if @verEntry.code == verCode then
-      @verEntry.update_attributes(verified: true)
-      return true
-    else 
-      return false
-    end
-  end
 
 end
