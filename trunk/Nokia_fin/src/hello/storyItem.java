@@ -4,6 +4,10 @@
  */
 package hello;
 
+import java.io.DataInputStream;
+import java.io.IOException;
+import javax.microedition.io.Connector;
+import javax.microedition.io.HttpConnection;
 import javax.microedition.lcdui.CustomItem;
 import javax.microedition.lcdui.Font;
 import javax.microedition.lcdui.Graphics;
@@ -23,12 +27,36 @@ class storyItem extends CustomItem {
     private StringItem storyCategory;
     private Image addedImage;
     
+    public Image loadImage(String url) throws IOException {
+    HttpConnection hpc = null;
+    DataInputStream dis = null;
+    try {
+      hpc = (HttpConnection) Connector.open(url);
+      int length = (int) hpc.getLength();
+      byte[] data = new byte[length];
+      dis = new DataInputStream(hpc.openInputStream());
+      dis.readFully(data);
+      return Image.createImage(data, 0, data.length);
+    } finally {
+      if (hpc != null)
+        hpc.close();
+      if (dis != null)
+        dis.close();
+    }
+  }
+
   public storyItem(String imageName,String title,String body,int rank,String category){
   super(null);
+  System.out.println(imageName);
        try{
-        addedImage = Image.createImage(imageName);
+        addedImage = loadImage(imageName);
        }catch(Exception e){
             System.out.println("Cannot find image");
+            try {
+                addedImage = Image.createImage("/x.png");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
        int width = addedImage.getWidth()>80?80:addedImage.getWidth();
        int height = addedImage.getHeight()>60?60:addedImage.getHeight(); 
@@ -37,12 +65,14 @@ class storyItem extends CustomItem {
                        
        addedImage = Image.createImage(addedImage, 0,0,width,height,0);
         image = new ImageItem("",  addedImage, ImageItem.LAYOUT_DEFAULT, "Nokia");
+        
         storyTitle = new StringItem(null,title); 
         storyBody = new StringItem(null, body);
         storyRank = new StringItem(null, rank+"");
         storyCategory = new StringItem(null, category);
   }
-
+  
+  
   public int getMinContentWidth(){
   return 240;
   }
