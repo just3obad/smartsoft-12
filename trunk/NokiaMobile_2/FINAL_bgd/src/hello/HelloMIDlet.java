@@ -1954,5 +1954,106 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         
         return "n/a";
     }
+    
+    public void storyopt() throws IOException  {
+
+    HttpConnection httpConn = null;
+     HttpConnection httpCon = null;
+      HttpConnection httpConnn = null;
+      
+      String mess_url = "http://192.168.1.1:3000/stories/recommend_story?mess";
+    String like_url = "http://192.168.1.1:3000/stories/view_friends_like_dislike?listlike";
+    String dislike_url = "http://192.168.1.1:3000/stories/view_friends_like_dislike?listdislike";
+    InputStream is = null;
+    OutputStream os = null;
+    InputStream in = null;
+    OutputStream on = null;
+    InputStream it = null;
+    OutputStream ot = null;
+
+    try {
+      // Open an HTTP Connection object
+      httpConn = (HttpConnection)Connector.open(url);
+      httpCon = (HttpConnection)Connector.open(like_url);
+      httpConnn = (HttpConnection)Connector.open(dislike_url);
+      
+      // Setup HTTP Request
+      httpConn.setRequestMethod(HttpConnection.GET); 
+      httpConn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+       httpCon.setRequestMethod(HttpConnection.GET); 
+      httpCon.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+      
+      httpConnn.setRequestMethod(HttpConnection.GET); 
+      httpConnn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+      
+      
+      int respCode = httpConn.getResponseCode();
+      int respCoden = httpConn.getResponseCode();
+      int respCodenn = httpConn.getResponseCode();
+      if (respCode == httpConn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1)
+          sb.append((char) chr);
+
+        System.out.println( sb.toString());
+      }
+      else { 
+          if (respCoden == httpCon.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1)
+          sb.append((char) chr);
+
+        System.out.println( sb.toString());
+      }
+      else {
+         
+               if (respCodenn == httpConnn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1)
+          sb.append((char) chr);
+
+        System.out.println( sb.toString());
+      }
+      else {
+        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+      }
+      }
+
+     } 
+  
+    }finally {
+        if(is!= null)
+            try {
+                is.close();
+            } catch (IOException ex) {
+            }
+          if(os != null)
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+      if(httpConn != null)
+            try {
+                httpConn.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+     
+    }
+
 
 }
