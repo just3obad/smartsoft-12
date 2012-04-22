@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< .mine
-ActiveRecord::Schema.define(:version => 20120422032957) do
-=======
-ActiveRecord::Schema.define(:version => 20120422081152) do
->>>>>>> .r262
+ActiveRecord::Schema.define(:version => 20120422114919) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -35,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20120422081152) do
   create_table "flags", :force => true do |t|
     t.integer  "user_id"
     t.integer  "story_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "friends", :force => true do |t|
+    t.integer  "sender"
+    t.integer  "receiver"
+    t.integer  "stat"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -114,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20120422081152) do
     t.datetime "updated_at", :null => false
     t.string   "name"
     t.string   "email"
+    t.boolean  "verified"
   end
 
   create_table "verification_codes", :force => true do |t|
@@ -121,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20120422081152) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "verified"
   end
 
 end
