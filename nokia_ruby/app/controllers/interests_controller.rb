@@ -7,6 +7,9 @@ class InterestsController < ApplicationController
     @image = @interest.image
   end
 
+  def index
+   @interests = Interest.all
+  end
 
 
   def new
