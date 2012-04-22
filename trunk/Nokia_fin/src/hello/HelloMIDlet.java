@@ -37,10 +37,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
     private Command Back1;
     private Command Find;
     private Command Add;
-    private Command Add1;
     private Command choosefriend;
-    private Command backCommand3;
+    private Command Add1;
     private Command okCommand2;
+    private Command backCommand3;
     private Command backCommand4;
     private Form form;
     private StringItem stringItem;
@@ -66,12 +66,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
     private Alert NotFound;
     private Alert Saved;
     private Alert Error;
+    private Form recommend;
+    private TextField textField3;
+    private TextField textField2;
     private Alert ComingSoon;
     private Alert EnterUserNameEmail;
-    private Form recommend;
-    private TextField textField2;
-    private TextField textField3;
     private List choosefriend1;
+    private Alert storeypublished;
+    private Alert storynotpublished;
+    private List likeddisliked;
     //</editor-fold>//GEN-END:|fields|0|
 
   
@@ -334,45 +337,55 @@ public class HelloMIDlet extends MIDlet implements CommandListener ,ItemStateLis
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|30|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|31|53-preAction
+            }//GEN-BEGIN:|7-commandAction|31|128-preAction
+        } else if (displayable == likeddisliked) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|31|128-preAction
+                // write pre-action user code here
+                likeddislikedAction();//GEN-LINE:|7-commandAction|32|128-postAction
+                // write post-action user code here
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|33|130-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|34|130-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|35|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|31|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|35|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|32|53-postAction
+//GEN-LINE:|7-commandAction|36|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|33|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|37|49-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|34|49-postAction
+//GEN-LINE:|7-commandAction|38|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|35|115-preAction
+            }//GEN-BEGIN:|7-commandAction|39|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|35|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|39|115-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|36|115-postAction
+//GEN-LINE:|7-commandAction|40|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|37|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|41|124-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|38|124-postAction
+//GEN-LINE:|7-commandAction|42|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|39|113-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|43|113-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|40|113-postAction
+//GEN-LINE:|7-commandAction|44|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|41|35-preAction
+            }//GEN-BEGIN:|7-commandAction|45|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|41|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|45|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|42|35-postAction
+//GEN-LINE:|7-commandAction|46|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|43|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|47|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|44|33-postAction
+//GEN-LINE:|7-commandAction|48|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|45|7-postCommandAction
-        }//GEN-END:|7-commandAction|45|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|49|7-postCommandAction
+        }//GEN-END:|7-commandAction|49|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|46|
-    //</editor-fold>//GEN-END:|7-commandAction|46|
+    }//GEN-BEGIN:|7-commandAction|50|
+    //</editor-fold>//GEN-END:|7-commandAction|50|
 
 
 
@@ -1249,6 +1262,66 @@ addComments(); //adding dummy comments to test UI
         // enter post-action user code here
     }//GEN-BEGIN:|116-action|2|
     //</editor-fold>//GEN-END:|116-action|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storeypublished ">//GEN-BEGIN:|125-getter|0|125-preInit
+    /**
+     * Returns an initiliazed instance of storeypublished component.
+     * @return the initialized component instance
+     */
+    public Alert getStoreypublished() {
+        if (storeypublished == null) {//GEN-END:|125-getter|0|125-preInit
+            // write pre-init user code here
+            storeypublished = new Alert("", "story published successfully", null, AlertType.CONFIRMATION);//GEN-BEGIN:|125-getter|1|125-postInit
+            storeypublished.setTimeout(Alert.FOREVER);//GEN-END:|125-getter|1|125-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|125-getter|2|
+        return storeypublished;
+    }
+    //</editor-fold>//GEN-END:|125-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storynotpublished ">//GEN-BEGIN:|126-getter|0|126-preInit
+    /**
+     * Returns an initiliazed instance of storynotpublished component.
+     * @return the initialized component instance
+     */
+    public Alert getStorynotpublished() {
+        if (storynotpublished == null) {//GEN-END:|126-getter|0|126-preInit
+            // write pre-init user code here
+            storynotpublished = new Alert("", "story hasn\'t published , please try again later", null, AlertType.ALARM);//GEN-BEGIN:|126-getter|1|126-postInit
+            storynotpublished.setTimeout(Alert.FOREVER);//GEN-END:|126-getter|1|126-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|126-getter|2|
+        return storynotpublished;
+    }
+    //</editor-fold>//GEN-END:|126-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: likeddisliked ">//GEN-BEGIN:|127-getter|0|127-preInit
+    /**
+     * Returns an initiliazed instance of likeddisliked component.
+     * @return the initialized component instance
+     */
+    public List getLikeddisliked() {
+        if (likeddisliked == null) {//GEN-END:|127-getter|0|127-preInit
+            // write pre-init user code here
+            likeddisliked = new List("liked/disliked", Choice.IMPLICIT);//GEN-BEGIN:|127-getter|1|127-postInit
+            likeddisliked.addCommand(getBackCommand());
+            likeddisliked.setCommandListener(this);//GEN-END:|127-getter|1|127-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|127-getter|2|
+        return likeddisliked;
+    }
+    //</editor-fold>//GEN-END:|127-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: likeddislikedAction ">//GEN-BEGIN:|127-action|0|127-preAction
+    /**
+     * Performs an action assigned to the selected list element in the likeddisliked component.
+     */
+    public void likeddislikedAction() {//GEN-END:|127-action|0|127-preAction
+        // enter pre-action user code here
+        String __selectedString = getLikeddisliked().getString(getLikeddisliked().getSelectedIndex());//GEN-LINE:|127-action|1|127-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|127-action|2|
+    //</editor-fold>//GEN-END:|127-action|2|
 
 
 
