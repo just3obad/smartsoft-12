@@ -11,7 +11,7 @@ NokiaRuby::Application.routes.draw do
   match "admins/statistics/all_stories" => "statistics#all_stories"
   match "users/:id/update" => "users#update"
   match "gaheem_accounts/:id/update" => "gaheem_accounts#update"
-  match "gaheem_accounts/new" => "gaheem_accounts#new"
+  match "gaheem_accounts/create" => "gaheem_accounts#create", :as => :create
   match "authenticate/get_twitter_url" => "twitter_requests#generate_request_token"
   match "stories/:id/comments"  => "stories#show_comments"
   match "stories/:id/comments/new" => "stories#create_comment"
