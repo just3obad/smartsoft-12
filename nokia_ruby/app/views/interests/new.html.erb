@@ -1,0 +1,56 @@
+
+<h1>
+<font size="15" face="arial" color=#06276F>
+Add Interest
+</font>
+</h1>
+<!.... the form_for helper method takes in  (@interest) an Active Record object and constructs a form using the interest’s attributes , ....>
+<%= form_for(@interest) do |f| %>
+<!..  @interest variable  is defined in the controller action corresponding to the new action in the "Interests" controller. The form_for helper knows that @interest is  Interest object, so we will refer to this form by creating a new Interest  , see "Interest.new " in the controller.. >
+ 
+
+  <%= render 'shared/error_messages' %>
+<!.. here we render the partial responsible for errors messages in the /shared directory .. >
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image,"Image" %><br />
+    <%= f.text_field :image %>
+ 
+  </div>
+
+  <div class="field">
+    <%= f.label :RSS,"RSS" %><br />
+    <%= f.text_field :RSS %>
+ 
+  </div>
+
+<%= f.submit "Submit" , class:"button round"%>
+
+
+<% end %>
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
