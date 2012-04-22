@@ -1,18 +1,26 @@
 <%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => @story.id}, class: "btn btn-large btn-primary") %>
-<p>Story description and content </br></p> 
-<table>
-<%= @story.id %>
-<%= @story.title %>
-<%= @story.body %>
-<% @comments.each do |comment| %>
-<tr>
-    <td><%= comment.id %></td> 
-    <td><%= comment.content %></td>
-    <td><%= comment.user_id %></td>
-    <td><%= comment.story_id %></td>
-</tr>
-<%end%>
+<p>Story description and content </br></p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Related Interest</th>
+      <th>Description</th>
+      <th>Content</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @story.title %></td>
+      <td><%= @story.interest_id %></td> 
+      <td><%= @story.body %></td>
+      <td><%= @story.content %></td>
+  <% @comments.each do |comment| %>
+      <td><%= comment.id %></td> 
+      <td><%= comment.content %></td>
+      <td><%= comment.user_id %></td>
+      <td><%= comment.story_id %></td>
+      <%end%>
+    </tr>
+  </tbody>
 </table>
-    
-
-    
