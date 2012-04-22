@@ -33,11 +33,11 @@ class StoriesController < ApplicationController
   end
 
   def new
-
+	@story = Story.new
   end
 
   def create
-   @story = Story.new(params[:title], params[:body])
+   @story = Story.new(params[:title], params[:date], params[:body], params[:rank], params[:deleted], params[:hidden], params[:likes], params[:dislikes], params[:flags], params[:type], params[:interest_id])
 
   end
 

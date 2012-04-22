@@ -7,9 +7,9 @@ class Story < ActiveRecord::Base
 		  :flags, :type, :interest_id
   belongs_to :interests
 
-  def initialize(title, date, body)
-    @title = title
-    @body = body
-  end
+  #def initialize(title, date, body)
+   # @title = title
+    #@body = body
+  #end
 
 end
