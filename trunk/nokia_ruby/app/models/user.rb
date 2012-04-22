@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   
   has_one :gaheem_account
   has_one :twitter_account
+  has_one :twitter_request #If he requested another one, the old will be deleted
   has_one :verification_code
 
   email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
