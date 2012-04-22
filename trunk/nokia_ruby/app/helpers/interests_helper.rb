@@ -85,7 +85,7 @@ module InterestsHelper
   
   #case 1 if the interest is deleted and it's created within the last 30 days
   if deleted && interest_create_date > 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  users_per_day = User_Add_Interest.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within the creation and deletion of the interest and group by the date of creation
+  users_per_day = UserAddInterest.where(:created_at => interest_create_date.to_date..interest_last_update.to_date , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within the creation and deletion of the interest and group by the date of creation
   (interest_create_date.to_date..interest_last_update.to_date).map do |date|
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0
@@ -94,7 +94,7 @@ module InterestsHelper
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
   elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  users_per_day = User_Add_Interest.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within the last 30 days and the last update of the interest and group by the date of creation
+  users_per_day = UserAddInterest.where(:created_at => 30.days.ago.to_date..interest_last_update.to_date , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within the last 30 days and the last update of the interest and group by the date of creation
   (30.days.ago.to_date..interest_last_update.to_date).map do |date|
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0  
@@ -108,7 +108,7 @@ module InterestsHelper
 
   #case 4 if the interest is not deleted and it's created before the last 30 days
   elsif interest_create_date <= 30.days.ago.to_date
-  users_per_day = User_Add_Interest.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within 30 days ago until the current date and group by the date of creation
+  users_per_day = UserAddInterest.where(:created_at => 30.days.ago.to_date..Time.zone.now.end_of_day , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within 30 days ago until the current date and group by the date of creation
   (30.days.ago.to_date..Date.today).map do |date|
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0
@@ -117,7 +117,7 @@ module InterestsHelper
 
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
-  users_per_day = User_Add_Interest.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within interest creation until the current date and group by the date of creation
+  users_per_day = UserAddInterest.where(:created_at => interest_create_date..Time.zone.now.end_of_day , :interest_id => interest_id).group("date(created_at)").select("created_at , count(user_id) as usrs_day") #to get all the users who added the interest within interest creation until the current date and group by the date of creation
   (interest_create_date.to_date..Date.today).map do |date|
   user = users_per_day.detect { |user| user.created_at.to_date == date}
   user && user.usrs_day.to_i || 0
@@ -134,7 +134,7 @@ module InterestsHelper
  
  #num users who added interest
  def get_num_user_added_interest(interestId)
- num_users_added_interest = Users_Add_Interests.count.where(":interest = ?",interestId) #to get the count of the users who added this interest
+ num_users_added_interest = UserAddInterest.count.where(":interest = ?",interestId) #to get the count of the users who added this interest
  end
 
 end
