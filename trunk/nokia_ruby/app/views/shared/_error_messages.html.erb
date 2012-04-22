@@ -1,7 +1,24 @@
+<<<<<<< .mine
+<! ... A partial for displaying form submission error messages, simply we count the number of errors , get the message for each  and display it .. >
+
+
+<% if @interest.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@interest.errors.count, "error") %> 
+        prohibited this interest from being saved:</h2>
+    <p>There were problems with the following fields:</p>
+    <ul>
+    <% @interest.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+=======
 <%- flash.each do |key, msg| -%>
 	  <div id="error_explanation">
 		<div class="alert alert-error">
 	     <%= msg %>
 	    </div>
 	</div>
-	<%- end -%>
+	<%- end -%>>>>>>>> .r388
