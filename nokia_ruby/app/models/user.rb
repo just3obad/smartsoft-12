@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :name, :email, :deactivated, :first_name, :last_name, :date_of_birth
+  attr_accessible :name, :email, :deactivated, :first_name, :last_name, :date_of_birth, :verified
   
   has_one :gaheem_account
+  has_one :verification_code
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, :presence => true,
@@ -15,6 +16,7 @@ class User < ActiveRecord::Base
   validates :last_name, :presence => true,
   :length => { :maximum => 20 }
   validates :date_of_birth, :presence => true
+  validates :verified, :presence =>true
   
 
   def 
