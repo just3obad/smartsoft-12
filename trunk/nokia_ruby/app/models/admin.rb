@@ -8,7 +8,6 @@ class Admin < ActiveRecord::Base
 
   def self.search(query)
     query_result = [].to_set
-    # change this to set
 
     email_query = query
 
