@@ -16443,3 +16443,5 @@ Migrating to AddVerifiedToVerificationCode (20120422114919)
   [1m[35m (0.0ms)[0m  PRAGMA index_list("verification_codes")
   [1m[36m (0.8ms)[0m  [1mbegin transaction[0m
   [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[36m (8.3ms)[0m  [1mbegin transaction[0m
+  [1m[36m (67.9ms)[0m  [1mbegin transaction[0m
