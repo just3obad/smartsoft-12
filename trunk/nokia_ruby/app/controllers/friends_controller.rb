@@ -2,6 +2,15 @@ class FriendsController < ApplicationController
 
   # GET /friends/new
   # GET /friends/new.json
+
+  def add(sender_id,receiver_id)
+    @receiver = User.where(:id => receiver_id)
+     if (reciver != nil)
+       Friends.create!(:sender => sender_id, :receiver => receiver__id , :stat => 0)
+     end
+   end
+       
+  
   def new
     @friend = Friend.new
 
