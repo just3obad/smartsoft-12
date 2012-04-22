@@ -14,10 +14,19 @@ class User < ActiveRecord::Base
   :length => { :maximum => 20 }
   validates :last_name, :presence => true,
   :length => { :maximum => 20 }
-  validates :date_of_birth, :presence => true,
+  validates :date_of_birth, :presence => true
   
-  
-  
-  
-  
+
+  def 
+
+ # lets a user share a story given its id
+  def share?(story_id)
+    @share = Share.find_by_user_id_and_story_id(self.id,story_id)
+    if @share.nil? then		# if he/she didn't share this story before then make him/her share it
+      Share.create :user_id=>self.id,:story_id=>story_id
+      return true		# shared successfully, return true
+    else 			# else, dont allow to share
+      return false		# sharing failed, return false
+    end
+  end 
 end
