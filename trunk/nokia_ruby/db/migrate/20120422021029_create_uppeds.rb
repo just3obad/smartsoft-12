@@ -6,5 +6,9 @@ class CreateUppeds < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :uppeds, :user_id
+    add_index :uppeds, :comment_id
+    add_index :uppeds, [:user_id, :comment_id], unique: true
   end
 end

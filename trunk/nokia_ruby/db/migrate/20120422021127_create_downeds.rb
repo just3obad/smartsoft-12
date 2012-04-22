@@ -6,5 +6,9 @@ class CreateDowneds < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :downeds, :user_id
+    add_index :downeds, :comment_id
+    add_index :downeds, [:user_id, :comment_id], unique: true
   end
 end
