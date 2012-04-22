@@ -20,8 +20,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     String url;
     int countInsertion = 0;
     private boolean midletPaused = false;
+     Displayable displayable;
     String json;
-//<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
+    //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
     private Command Comment1;
@@ -43,14 +44,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command okCommand2;
     private Command backCommand3;
     private Command backCommand4;
-    private Command okCommand3;
     private Command backCommand5;
     private Command okCommand4;
-    private Command backCommand6;
-    private Command exitCommand1;
+    private Command okCommand3;
     private Command okCommand5;
     private Command backCommand7;
     private Command backCommand8;
+    private Command backCommand6;
+    private Command exitCommand1;
     private Command okCommand6;
     private Form form;
     private StringItem stringItem;
@@ -86,15 +87,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Alert storynotpublished;
     private Alert storeypublished;
     private Form LoginScreen;
-    private TextField textField4;
     private TextField textField5;
+    private TextField textField4;
+    private Form form1;
+    private TextField textField9;
     private Form RegisterScreen;
     private TextField textField6;
     private TextField textField7;
     private TextField textField8;
-    private Form form1;
-    private TextField textField9;
-//</editor-fold>//GEN-END:|fields|0|
+    //</editor-fold>//GEN-END:|fields|0|
 
   
     /**
@@ -103,88 +104,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     public HelloMIDlet() {
     }
 
-  
-    public String removeExtras(String x){
-        String returned="";
-        for(int i=0;i<x.length();i++){
-            if(x.charAt(i)=='"' || x.charAt(i)=='{' || x.charAt(i)=='}' || x.charAt(i) == ':'){
-             
-            }else{
-                returned+=x.charAt(i);
-            }
-        }
-        return(returned);
-    }
-     public String removeSpaces(String x){
-        String returned="";
-        for(int i=0;i<x.length();i++){
-            if(x.charAt(i) == ' '){
-             
-            }else{
-                returned+=x.charAt(i);
-            }
-        }
-        return(returned);
-    }
-    
-    public void parseJsonStory(){
-    url = "id: 1 title:\"test test test\" body:dh test tany ! : rank 5 image : /x.png category : arts id: 056 title:\"title title\" body:isA  : rank 3 image : /2.jpg category : sports ";
-        String temp = url;
-        String title,body,rank,image,category;
-        try{
-        if(temp.length() !=0){ 
-            while(temp.indexOf("id")>=0) { //loop till no more id written
-                int idOccur = temp.indexOf("id");    //get first occurance of it
-                int titleOccur = temp.indexOf("title");
-                int bodyOccur = temp.indexOf("body");
-                int rankOccur = temp.indexOf("rank");
-                int imageOccur = temp.indexOf("image");
-                int categoryOccur = temp.indexOf("category");
-                titleOccur +=5;     // add 5 to title to get the rest as the title
-                title = temp.substring(titleOccur, bodyOccur-1); //title = after title to index of body-1
-                bodyOccur+=4;
-                body = temp.substring(bodyOccur, rankOccur-1);
-                rankOccur+=4;
-                rank = temp.substring(rankOccur, imageOccur-1);
-                imageOccur+=5;
-                image = temp.substring(imageOccur, categoryOccur-1);
-                categoryOccur +=8;
-                if(temp.indexOf("id",categoryOccur)!=-1){
-                    category = temp.substring(categoryOccur,temp.indexOf("id", categoryOccur));
-                    String x = temp.substring(temp.indexOf("id",categoryOccur));
-                    temp = x;
-                }else{
-                    category = temp.substring(categoryOccur);
-                    String x = temp.substring(categoryOccur);
-                    temp = x;
-                }
-                
-                title = removeExtras(title);
-                body = removeExtras(body);
-                rank = removeExtras(rank);
-                rank = removeSpaces(rank);
-                image = removeExtras(image);
-                image = image.trim();
-                category = removeExtras(category);
-                storyItem a = new storyItem(image,title,body,Integer.parseInt(rank),category);
-                MainFeed.insert(countInsertion++, a);
-            }
-        }
-        }catch(Exception e){
-            System.out.println("Exception happened here");
-            e.printStackTrace();
-        }
-    }
-
-    public void helpMainFeed() {
-        //addStory("/x.png", "new story222", "AaaAaAASa",3);
-        parseJsonStory();
-        /*for (int i = 0; i < 5; i++) {
-            storyItem a = new storyItem("/x.png", "new Story", "", i + 1, "sportssssssssssssssssssss");//category 25 chars MAX
-            
-            MainFeed.insert(countInsertion++, a);
-        }*/
-    }
     
     //Methos to add comment to the comments list
 
@@ -206,22 +125,21 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }
     }
     
-//<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
-//</editor-fold>//GEN-END:|methods|0|
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: initialize ">//GEN-BEGIN:|0-initialize|0|0-preInitialize
+    //<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
+    //</editor-fold>//GEN-END:|methods|0|
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: initialize ">//GEN-BEGIN:|0-initialize|0|0-preInitialize
     /**
-     * Initializes the application. It is called only once when the MIDlet is
-     * started. The method is called before the
-     * <code>startMIDlet</code> method.
+     * Initializes the application.
+     * It is called only once when the MIDlet is started. The method is called before the <code>startMIDlet</code> method.
      */
     private void initialize() {//GEN-END:|0-initialize|0|0-preInitialize
         // write pre-initialize user code here
 //GEN-LINE:|0-initialize|1|0-postInitialize
         // write post-initialize user code here
     }//GEN-BEGIN:|0-initialize|2|
-//</editor-fold>//GEN-END:|0-initialize|2|
+    //</editor-fold>//GEN-END:|0-initialize|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: startMIDlet ">//GEN-BEGIN:|3-startMIDlet|0|3-preAction
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: startMIDlet ">//GEN-BEGIN:|3-startMIDlet|0|3-preAction
     /**
      * Performs an action assigned to the Mobile Device - MIDlet Started point.
      */
@@ -230,9 +148,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
 //GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
-//</editor-fold>//GEN-END:|3-startMIDlet|2|
+    //</editor-fold>//GEN-END:|3-startMIDlet|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: resumeMIDlet ">//GEN-BEGIN:|4-resumeMIDlet|0|4-preAction
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: resumeMIDlet ">//GEN-BEGIN:|4-resumeMIDlet|0|4-preAction
     /**
      * Performs an action assigned to the Mobile Device - MIDlet Resumed point.
      */
@@ -241,18 +159,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
 //GEN-LINE:|4-resumeMIDlet|1|4-postAction
         // write post-action user code here
     }//GEN-BEGIN:|4-resumeMIDlet|2|
-//</editor-fold>//GEN-END:|4-resumeMIDlet|2|
+    //</editor-fold>//GEN-END:|4-resumeMIDlet|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: switchDisplayable ">//GEN-BEGIN:|5-switchDisplayable|0|5-preSwitch
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: switchDisplayable ">//GEN-BEGIN:|5-switchDisplayable|0|5-preSwitch
     /**
-     * Switches a current displayable in a display. The
-     * <code>display</code> instance is taken from
-     * <code>getDisplay</code> method. This method is used by all actions in the
-     * design for switching displayable.
-     *
-     * @param alert the Alert which is temporarily set to the display; if
-     * <code>null</code>, then
-     * <code>nextDisplayable</code> is set immediately
+     * Switches a current displayable in a display. The <code>display</code> instance is taken from <code>getDisplay</code> method. This method is used by all actions in the design for switching displayable.
+     * @param alert the Alert which is temporarily set to the display; if <code>null</code>, then <code>nextDisplayable</code> is set immediately
      * @param nextDisplayable the Displayable to be set
      */
     public void switchDisplayable(Alert alert, Displayable nextDisplayable) {//GEN-END:|5-switchDisplayable|0|5-preSwitch
@@ -265,24 +177,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-END:|5-switchDisplayable|1|5-postSwitch
         // write post-switch user code here
     }//GEN-BEGIN:|5-switchDisplayable|2|
-//</editor-fold>//GEN-END:|5-switchDisplayable|2|
+    //</editor-fold>//GEN-END:|5-switchDisplayable|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: commandAction for Displayables ">//GEN-BEGIN:|7-commandAction|0|7-preCommandAction
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: commandAction for Displayables ">//GEN-BEGIN:|7-commandAction|0|7-preCommandAction
     /**
-     * Called by a system to indicated that a command has been invoked on a
-     * particular displayable.
-     *
+     * Called by a system to indicated that a command has been invoked on a particular displayable.
      * @param command the Command that was invoked
      * @param displayable the Displayable where the command was invoked
      */
     public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
-        if (displayable == Comment) {//GEN-BEGIN:|7-commandAction|1|38-preAction
-            if (command == backCommand2) {//GEN-END:|7-commandAction|1|38-preAction
+         this.displayable = displayable;
+         if (displayable == Comment) {//GEN-BEGIN:|7-commandAction|1|38-preAction
+             if (command == backCommand2) {//GEN-END:|7-commandAction|1|38-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|2|38-postAction
                 // write post-action user code here
-            } else if (command == comment2) {//GEN-LINE:|7-commandAction|3|40-preAction
+             } else if (command == comment2) {//GEN-LINE:|7-commandAction|3|40-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|4|40-postAction
                 // write post-action user code here
@@ -301,157 +212,156 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         switchDisplayable(CommentSucc, getComment());  //show success alert
       //  getDisplay().setCurrent(displayable);
     }
-            }//GEN-BEGIN:|7-commandAction|5|137-preAction
-        } else if (displayable == LoginScreen) {
-            if (command == backCommand5) {//GEN-END:|7-commandAction|5|137-preAction
+             }//GEN-BEGIN:|7-commandAction|5|137-preAction
+         } else if (displayable == LoginScreen) {
+             if (command == backCommand5) {//GEN-END:|7-commandAction|5|137-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|6|137-postAction
                 // write post-action user code here
-            } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|7|135-preAction
+             } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|7|135-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|8|135-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|63-preAction
-        } else if (displayable == MainFeed) {
-            if (command == options) {//GEN-END:|7-commandAction|9|63-preAction
+             }//GEN-BEGIN:|7-commandAction|9|63-preAction
+         } else if (displayable == MainFeed) {
+             if (command == options) {//GEN-END:|7-commandAction|9|63-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|10|63-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|11|155-preAction
-        } else if (displayable == RegisterScreen) {
-            if (command == backCommand7) {//GEN-END:|7-commandAction|11|155-preAction
+             }//GEN-BEGIN:|7-commandAction|11|155-preAction
+         } else if (displayable == RegisterScreen) {
+             if (command == backCommand7) {//GEN-END:|7-commandAction|11|155-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|12|155-postAction
                 // write post-action user code here
-            } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|13|153-preAction
+             } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|13|153-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|14|153-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|29-preAction
-        } else if (displayable == Story) {
-            if (command == Comment1) {//GEN-END:|7-commandAction|15|29-preAction
+             }//GEN-BEGIN:|7-commandAction|15|29-preAction
+         } else if (displayable == Story) {
+             if (command == Comment1) {//GEN-END:|7-commandAction|15|29-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|16|29-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|17|31-preAction
+             } else if (command == backCommand) {//GEN-LINE:|7-commandAction|17|31-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|18|31-postAction
                 // write post-action user code here
-            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|19|79-preAction
+             } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|19|79-preAction
  // write pre-action user code here
 //GEN-LINE:|7-commandAction|20|79-postAction
  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|21|123-preAction
-        } else if (displayable == choosefriend1) {
-            if (command == Find) {//GEN-END:|7-commandAction|21|123-preAction
+             }//GEN-BEGIN:|7-commandAction|21|123-preAction
+         } else if (displayable == choosefriend1) {
+             if (command == Find) {//GEN-END:|7-commandAction|21|123-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|22|123-postAction
                 // write post-action user code here
-            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|23|117-preAction
+             } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|23|117-preAction
                 // write pre-action user code here
-                choosefriend1Action();//GEN-LINE:|7-commandAction|24|117-postAction
+                 choosefriend1Action();//GEN-LINE:|7-commandAction|24|117-postAction
                 // write post-action user code here
-            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|25|122-preAction
+             } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|25|122-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|26|122-postAction
                 // write post-action user code here
-            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|27|120-preAction
+             } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|27|120-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|28|120-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|29|81-preAction
-        } else if (displayable == connectAccount) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|29|81-preAction
+             }//GEN-BEGIN:|7-commandAction|29|81-preAction
+         } else if (displayable == connectAccount) {
+             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|29|81-preAction
                 // write pre-action user code here
-                connectAccountAction();//GEN-LINE:|7-commandAction|30|81-postAction
+                 connectAccountAction();//GEN-LINE:|7-commandAction|30|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|31|106-preAction
-        } else if (displayable == findFriend) {
-            if (command == Add1) {//GEN-END:|7-commandAction|31|106-preAction
+             }//GEN-BEGIN:|7-commandAction|31|106-preAction
+         } else if (displayable == findFriend) {
+             if (command == Add1) {//GEN-END:|7-commandAction|31|106-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|32|106-postAction
                 // write post-action user code here
-            } else if (command == Back1) {//GEN-LINE:|7-commandAction|33|94-preAction
+             } else if (command == Back1) {//GEN-LINE:|7-commandAction|33|94-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|34|94-postAction
                 // write post-action user code here
-            } else if (command == Find) {//GEN-LINE:|7-commandAction|35|96-preAction
+             } else if (command == Find) {//GEN-LINE:|7-commandAction|35|96-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|36|96-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|37|19-preAction
-        } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|37|19-preAction
+             }//GEN-BEGIN:|7-commandAction|37|19-preAction
+         } else if (displayable == form) {
+             if (command == exitCommand) {//GEN-END:|7-commandAction|37|19-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|38|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|39|159-preAction
-        } else if (displayable == form1) {
-            if (command == backCommand8) {//GEN-END:|7-commandAction|39|159-preAction
+             }//GEN-BEGIN:|7-commandAction|39|159-preAction
+         } else if (displayable == form1) {
+             if (command == backCommand8) {//GEN-END:|7-commandAction|39|159-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|40|159-postAction
                 // write post-action user code here
-            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|41|161-preAction
+             } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|41|161-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|42|161-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|43|128-preAction
-        } else if (displayable == likeddisliked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|43|128-preAction
+             }//GEN-BEGIN:|7-commandAction|43|128-preAction
+         } else if (displayable == likeddisliked) {
+             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|43|128-preAction
                 // write pre-action user code here
-                likeddislikedAction();//GEN-LINE:|7-commandAction|44|128-postAction
+                 likeddislikedAction();//GEN-LINE:|7-commandAction|44|128-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|45|130-preAction
+             } else if (command == backCommand) {//GEN-LINE:|7-commandAction|45|130-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|46|130-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|47|53-preAction
-        } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|47|53-preAction
+             }//GEN-BEGIN:|7-commandAction|47|53-preAction
+         } else if (displayable == profile) {
+             if (command == back) {//GEN-END:|7-commandAction|47|53-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|48|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|49|49-preAction
+             } else if (command == ok) {//GEN-LINE:|7-commandAction|49|49-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|50|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|51|115-preAction
-        } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|51|115-preAction
+             }//GEN-BEGIN:|7-commandAction|51|115-preAction
+         } else if (displayable == recommend) {
+             if (command == backCommand3) {//GEN-END:|7-commandAction|51|115-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|52|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|53|124-preAction
+             } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|53|124-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|54|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|55|113-preAction
+             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|55|113-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|56|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|57|35-preAction
-        } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|57|35-preAction
+             }//GEN-BEGIN:|7-commandAction|57|35-preAction
+         } else if (displayable == textBox) {
+             if (command == backCommand1) {//GEN-END:|7-commandAction|57|35-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|58|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|59|33-preAction
+             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|59|33-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|60|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|61|7-postCommandAction
-        }//GEN-END:|7-commandAction|61|7-postCommandAction
+             }//GEN-BEGIN:|7-commandAction|61|7-postCommandAction
+         }//GEN-END:|7-commandAction|61|7-postCommandAction
         // write post-action user code here
     }//GEN-BEGIN:|7-commandAction|62|
-//</editor-fold>//GEN-END:|7-commandAction|62|
+    //</editor-fold>//GEN-END:|7-commandAction|62|
 
 
 
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
-     * Returns an initialized instance of exitCommand component.
-     *
+     * Returns an initiliazed instance of exitCommand component.
      * @return the initialized component instance
      */
     public Command getExitCommand() {
@@ -462,30 +372,28 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|18-getter|2|
         return exitCommand;
     }
-//</editor-fold>//GEN-END:|18-getter|2|
+    //</editor-fold>//GEN-END:|18-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: form ">//GEN-BEGIN:|14-getter|0|14-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: form ">//GEN-BEGIN:|14-getter|0|14-preInit
     /**
-     * Returns an initialized instance of form component.
-     *
+     * Returns an initiliazed instance of form component.
      * @return the initialized component instance
      */
     public Form getForm() {
         if (form == null) {//GEN-END:|14-getter|0|14-preInit
             // write pre-init user code here
-            form = new Form("Welcome", new Item[]{getStringItem()});//GEN-BEGIN:|14-getter|1|14-postInit
+            form = new Form("Welcome", new Item[] { getStringItem() });//GEN-BEGIN:|14-getter|1|14-postInit
             form.addCommand(getExitCommand());
             form.setCommandListener(this);//GEN-END:|14-getter|1|14-postInit
             // write post-init user code here
         }//GEN-BEGIN:|14-getter|2|
         return form;
     }
-//</editor-fold>//GEN-END:|14-getter|2|
+    //</editor-fold>//GEN-END:|14-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|16-getter|0|16-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|16-getter|0|16-preInit
     /**
-     * Returns an initialized instance of stringItem component.
-     *
+     * Returns an initiliazed instance of stringItem component.
      * @return the initialized component instance
      */
     public StringItem getStringItem() {
@@ -496,12 +404,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|16-getter|2|
         return stringItem;
     }
-//</editor-fold>//GEN-END:|16-getter|2|
+    //</editor-fold>//GEN-END:|16-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: MainFeed ">//GEN-BEGIN:|22-getter|0|22-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: MainFeed ">//GEN-BEGIN:|22-getter|0|22-preInit
     /**
-     * Returns an initialized instance of MainFeed component.
-     *
+     * Returns an initiliazed instance of MainFeed component.
      * @return the initialized component instance
      */
     public Form getMainFeed() {
@@ -511,16 +418,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
             MainFeed.addCommand(getOptions());
             MainFeed.setCommandListener(this);//GEN-END:|22-getter|1|22-postInit
             // write post-init user code here
-            helpMainFeed();
+            new createStories(url,MainFeed,displayable,this);
         }//GEN-BEGIN:|22-getter|2|
         return MainFeed;
     }
-//</editor-fold>//GEN-END:|22-getter|2|
+    //</editor-fold>//GEN-END:|22-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
     /**
-     * Returns an initialized instance of viewComments component.
-     *
+     * Returns an initiliazed instance of viewComments component.
      * @return the initialized component instance
      */
     public Command getViewComments() {
@@ -531,12 +437,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|24-getter|2|
         return viewComments;
     }
-//</editor-fold>//GEN-END:|24-getter|2|
+    //</editor-fold>//GEN-END:|24-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
     /**
-     * Returns an initialized instance of Story component.
-     *
+     * Returns an initiliazed instance of Story component.
      * @return the initialized component instance
      */
     public Form getStory() {
@@ -551,12 +456,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|23-getter|2|
         return Story;
     }
-//</editor-fold>//GEN-END:|23-getter|2|
+    //</editor-fold>//GEN-END:|23-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
     /**
-     * Returns an initialized instance of textBox component.
-     *
+     * Returns an initiliazed instance of textBox component.
      * @return the initialized component instance
      */
     public TextBox getTextBox() {
@@ -570,19 +474,18 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|26-getter|2|
         return textBox;
     }
-//</editor-fold>//GEN-END:|26-getter|2|
+    //</editor-fold>//GEN-END:|26-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment ">//GEN-BEGIN:|27-getter|0|27-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment ">//GEN-BEGIN:|27-getter|0|27-preInit
     /**
-     * Returns an initialized instance of Comment component.
-     *
+     * Returns an initiliazed instance of Comment component.
      * @return the initialized component instance
      */
     public Form getComment() {
         if (Comment == null) {//GEN-END:|27-getter|0|27-preInit
             // write pre-init user code here
     
-            Comment = new Form("Comments", new Item[]{getTextField()});//GEN-BEGIN:|27-getter|1|27-postInit
+            Comment = new Form("Comments", new Item[] { getTextField() });//GEN-BEGIN:|27-getter|1|27-postInit
             Comment.addCommand(getBackCommand2());
             Comment.addCommand(getComment2());
             Comment.setCommandListener(this);//GEN-END:|27-getter|1|27-postInit
@@ -611,12 +514,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|27-getter|2|
         return Comment;
     }
-//</editor-fold>//GEN-END:|27-getter|2|
+    //</editor-fold>//GEN-END:|27-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
     /**
-     * Returns an initialized instance of Comment1 component.
-     *
+     * Returns an initiliazed instance of Comment1 component.
      * @return the initialized component instance
      */
     public Command getComment1() {
@@ -627,12 +529,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|28-getter|2|
         return Comment1;
     }
-//</editor-fold>//GEN-END:|28-getter|2|
+    //</editor-fold>//GEN-END:|28-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
     /**
-     * Returns an initialized instance of backCommand component.
-     *
+     * Returns an initiliazed instance of backCommand component.
      * @return the initialized component instance
      */
     public Command getBackCommand() {
@@ -643,12 +544,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|30-getter|2|
         return backCommand;
     }
-//</editor-fold>//GEN-END:|30-getter|2|
+    //</editor-fold>//GEN-END:|30-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
     /**
-     * Returns an initialized instance of okCommand component.
-     *
+     * Returns an initiliazed instance of okCommand component.
      * @return the initialized component instance
      */
     public Command getOkCommand() {
@@ -659,12 +559,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|32-getter|2|
         return okCommand;
     }
-//</editor-fold>//GEN-END:|32-getter|2|
+    //</editor-fold>//GEN-END:|32-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
     /**
-     * Returns an initialized instance of backCommand1 component.
-     *
+     * Returns an initiliazed instance of backCommand1 component.
      * @return the initialized component instance
      */
     public Command getBackCommand1() {
@@ -675,12 +574,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|34-getter|2|
         return backCommand1;
     }
-//</editor-fold>//GEN-END:|34-getter|2|
+    //</editor-fold>//GEN-END:|34-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|37-getter|0|37-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|37-getter|0|37-preInit
     /**
-     * Returns an initialized instance of backCommand2 component.
-     *
+     * Returns an initiliazed instance of backCommand2 component.
      * @return the initialized component instance
      */
     public Command getBackCommand2() {
@@ -691,12 +589,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|37-getter|2|
         return backCommand2;
     }
-//</editor-fold>//GEN-END:|37-getter|2|
+    //</editor-fold>//GEN-END:|37-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: comment2 ">//GEN-BEGIN:|39-getter|0|39-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: comment2 ">//GEN-BEGIN:|39-getter|0|39-preInit
     /**
-     * Returns an initialized instance of comment2 component.
-     *
+     * Returns an initiliazed instance of comment2 component.
      * @return the initialized component instance
      */
     public Command getComment2() {
@@ -707,18 +604,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|39-getter|2|
         return comment2;
     }
-//</editor-fold>//GEN-END:|39-getter|2|
+    //</editor-fold>//GEN-END:|39-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: profile ">//GEN-BEGIN:|47-getter|0|47-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: profile ">//GEN-BEGIN:|47-getter|0|47-preInit
     /**
-     * Returns an initialized instance of profile component.
-     *
+     * Returns an initiliazed instance of profile component.
      * @return the initialized component instance
      */
     public Form getProfile() {
         if (profile == null) {//GEN-END:|47-getter|0|47-preInit
             // write pre-init user code here
-            profile = new Form("form1", new Item[]{getUserName(), getTextField1(), getLastName(), getDob(), getPas(), getConfPas()});//GEN-BEGIN:|47-getter|1|47-postInit
+            profile = new Form("form1", new Item[] { getUserName(), getTextField1(), getLastName(), getDob(), getPas(), getConfPas() });//GEN-BEGIN:|47-getter|1|47-postInit
             profile.addCommand(getOk());
             profile.addCommand(getBack());
             profile.setCommandListener(this);//GEN-END:|47-getter|1|47-postInit
@@ -726,12 +622,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|47-getter|2|
         return profile;
     }
-//</editor-fold>//GEN-END:|47-getter|2|
+    //</editor-fold>//GEN-END:|47-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ok ">//GEN-BEGIN:|48-getter|0|48-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ok ">//GEN-BEGIN:|48-getter|0|48-preInit
     /**
-     * Returns an initialized instance of ok component.
-     *
+     * Returns an initiliazed instance of ok component.
      * @return the initialized component instance
      */
     public Command getOk() {
@@ -742,12 +637,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|48-getter|2|
         return ok;
     }
-//</editor-fold>//GEN-END:|48-getter|2|
+    //</editor-fold>//GEN-END:|48-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: cancelCommand ">//GEN-BEGIN:|50-getter|0|50-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: cancelCommand ">//GEN-BEGIN:|50-getter|0|50-preInit
     /**
-     * Returns an initialized instance of cancelCommand component.
-     *
+     * Returns an initiliazed instance of cancelCommand component.
      * @return the initialized component instance
      */
     public Command getCancelCommand() {
@@ -758,12 +652,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|50-getter|2|
         return cancelCommand;
     }
-//</editor-fold>//GEN-END:|50-getter|2|
+    //</editor-fold>//GEN-END:|50-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: back ">//GEN-BEGIN:|52-getter|0|52-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: back ">//GEN-BEGIN:|52-getter|0|52-preInit
     /**
-     * Returns an initialized instance of back component.
-     *
+     * Returns an initiliazed instance of back component.
      * @return the initialized component instance
      */
     public Command getBack() {
@@ -774,12 +667,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|52-getter|2|
         return back;
     }
-//</editor-fold>//GEN-END:|52-getter|2|
+    //</editor-fold>//GEN-END:|52-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: userName ">//GEN-BEGIN:|54-getter|0|54-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: userName ">//GEN-BEGIN:|54-getter|0|54-preInit
     /**
-     * Returns an initialized instance of userName component.
-     *
+     * Returns an initiliazed instance of userName component.
      * @return the initialized component instance
      */
     public TextField getUserName() {
@@ -790,12 +682,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|54-getter|2|
         return userName;
     }
-//</editor-fold>//GEN-END:|54-getter|2|
+    //</editor-fold>//GEN-END:|54-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField1 ">//GEN-BEGIN:|55-getter|0|55-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField1 ">//GEN-BEGIN:|55-getter|0|55-preInit
     /**
-     * Returns an initialized instance of textField1 component.
-     *
+     * Returns an initiliazed instance of textField1 component.
      * @return the initialized component instance
      */
     public TextField getTextField1() {
@@ -806,12 +697,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|55-getter|2|
         return textField1;
     }
-//</editor-fold>//GEN-END:|55-getter|2|
+    //</editor-fold>//GEN-END:|55-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: lastName ">//GEN-BEGIN:|56-getter|0|56-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: lastName ">//GEN-BEGIN:|56-getter|0|56-preInit
     /**
-     * Returns an initialized instance of lastName component.
-     *
+     * Returns an initiliazed instance of lastName component.
      * @return the initialized component instance
      */
     public TextField getLastName() {
@@ -822,12 +712,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|56-getter|2|
         return lastName;
     }
-//</editor-fold>//GEN-END:|56-getter|2|
+    //</editor-fold>//GEN-END:|56-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: dob ">//GEN-BEGIN:|57-getter|0|57-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: dob ">//GEN-BEGIN:|57-getter|0|57-preInit
     /**
-     * Returns an initialized instance of dob component.
-     *
+     * Returns an initiliazed instance of dob component.
      * @return the initialized component instance
      */
     public DateField getDob() {
@@ -839,12 +728,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|57-getter|2|
         return dob;
     }
-//</editor-fold>//GEN-END:|57-getter|2|
+    //</editor-fold>//GEN-END:|57-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: pas ">//GEN-BEGIN:|58-getter|0|58-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: pas ">//GEN-BEGIN:|58-getter|0|58-preInit
     /**
-     * Returns an initialized instance of pas component.
-     *
+     * Returns an initiliazed instance of pas component.
      * @return the initialized component instance
      */
     public TextField getPas() {
@@ -855,12 +743,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|58-getter|2|
         return pas;
     }
-//</editor-fold>//GEN-END:|58-getter|2|
+    //</editor-fold>//GEN-END:|58-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
     /**
-     * Returns an initialized instance of confPas component.
-     *
+     * Returns an initiliazed instance of confPas component.
      * @return the initialized component instance
      */
     public TextField getConfPas() {
@@ -871,12 +758,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|59-getter|2|
         return confPas;
     }
-//</editor-fold>//GEN-END:|59-getter|2|
+    //</editor-fold>//GEN-END:|59-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: options ">//GEN-BEGIN:|62-getter|0|62-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: options ">//GEN-BEGIN:|62-getter|0|62-preInit
     /**
-     * Returns an initialized instance of options component.
-     *
+     * Returns an initiliazed instance of options component.
      * @return the initialized component instance
      */
     public Command getOptions() {
@@ -887,12 +773,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|62-getter|2|
         return options;
     }
-//</editor-fold>//GEN-END:|62-getter|2|
+    //</editor-fold>//GEN-END:|62-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField ">//GEN-BEGIN:|67-getter|0|67-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField ">//GEN-BEGIN:|67-getter|0|67-preInit
     /**
-     * Returns an initialized instance of textField component.
-     *
+     * Returns an initiliazed instance of textField component.
      * @return the initialized component instance
      */
     public TextField getTextField() {
@@ -904,12 +789,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|67-getter|2|
         return textField;
     }
-//</editor-fold>//GEN-END:|67-getter|2|
+    //</editor-fold>//GEN-END:|67-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentFail ">//GEN-BEGIN:|68-getter|0|68-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentFail ">//GEN-BEGIN:|68-getter|0|68-preInit
     /**
-     * Returns an initialized instance of CommentFail component.
-     *
+     * Returns an initiliazed instance of CommentFail component.
      * @return the initialized component instance
      */
     public Alert getCommentFail() {
@@ -922,12 +806,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|68-getter|2|
         return CommentFail;
     }
-//</editor-fold>//GEN-END:|68-getter|2|
+    //</editor-fold>//GEN-END:|68-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator ">//GEN-BEGIN:|69-getter|0|69-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator ">//GEN-BEGIN:|69-getter|0|69-preInit
     /**
-     * Returns an initialized instance of indicator component.
-     *
+     * Returns an initiliazed instance of indicator component.
      * @return the initialized component instance
      */
     public Gauge getIndicator() {
@@ -938,12 +821,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|69-getter|2|
         return indicator;
     }
-//</editor-fold>//GEN-END:|69-getter|2|
+    //</editor-fold>//GEN-END:|69-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentSucc ">//GEN-BEGIN:|71-getter|0|71-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentSucc ">//GEN-BEGIN:|71-getter|0|71-preInit
     /**
-     * Returns an initialized instance of CommentSucc component.
-     *
+     * Returns an initiliazed instance of CommentSucc component.
      * @return the initialized component instance
      */
     public Alert getCommentSucc() {
@@ -955,12 +837,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|71-getter|2|
         return CommentSucc;
     }
-//</editor-fold>//GEN-END:|71-getter|2|
+    //</editor-fold>//GEN-END:|71-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand1 ">//GEN-BEGIN:|78-getter|0|78-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand1 ">//GEN-BEGIN:|78-getter|0|78-preInit
     /**
-     * Returns an initialized instance of okCommand1 component.
-     *
+     * Returns an initiliazed instance of okCommand1 component.
      * @return the initialized component instance
      */
     public Command getOkCommand1() {
@@ -971,12 +852,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|78-getter|2|
         return okCommand1;
     }
-//</editor-fold>//GEN-END:|78-getter|2|
+    //</editor-fold>//GEN-END:|78-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: connectAccount ">//GEN-BEGIN:|80-getter|0|80-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: connectAccount ">//GEN-BEGIN:|80-getter|0|80-preInit
     /**
-     * Returns an initialized instance of connectAccount component.
-     *
+     * Returns an initiliazed instance of connectAccount component.
      * @return the initialized component instance
      */
     public List getConnectAccount() {
@@ -990,17 +870,16 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
             connectAccount.append("Tumblr", null);
             connectAccount.append("Youtube", null);
             connectAccount.setCommandListener(this);
-            connectAccount.setSelectedFlags(new boolean[]{false, false, false, false, false, false});//GEN-END:|80-getter|1|80-postInit
+            connectAccount.setSelectedFlags(new boolean[] { false, false, false, false, false, false });//GEN-END:|80-getter|1|80-postInit
         // write post-init user code here
         }//GEN-BEGIN:|80-getter|2|
         return connectAccount;
     }
-//</editor-fold>//GEN-END:|80-getter|2|
+    //</editor-fold>//GEN-END:|80-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: connectAccountAction ">//GEN-BEGIN:|80-action|0|80-preAction
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: connectAccountAction ">//GEN-BEGIN:|80-action|0|80-preAction
     /**
-     * Performs an action assigned to the selected list element in the
-     * connectAccount component.
+     * Performs an action assigned to the selected list element in the connectAccount component.
      */
     public void connectAccountAction() {//GEN-END:|80-action|0|80-preAction
     // enter pre-action user code here
@@ -1034,14 +913,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-END:|80-action|13|80-postAction
     // enter post-action user code here
     }//GEN-BEGIN:|80-action|14|
-//</editor-fold>//GEN-END:|80-action|14|
+    //</editor-fold>//GEN-END:|80-action|14|
 
 
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: search ">//GEN-BEGIN:|97-getter|0|97-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: search ">//GEN-BEGIN:|97-getter|0|97-preInit
     /**
-     * Returns an initialized instance of search component.
-     *
+     * Returns an initiliazed instance of search component.
      * @return the initialized component instance
      */
     public TextField getSearch() {
@@ -1052,12 +930,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|97-getter|2|
         return search;
     }
-//</editor-fold>//GEN-END:|97-getter|2|
+    //</editor-fold>//GEN-END:|97-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add ">//GEN-BEGIN:|102-getter|0|102-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add ">//GEN-BEGIN:|102-getter|0|102-preInit
     /**
-     * Returns an initialized instance of Add component.
-     *
+     * Returns an initiliazed instance of Add component.
      * @return the initialized component instance
      */
     public Command getAdd() {
@@ -1068,18 +945,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|102-getter|2|
         return Add;
     }
-//</editor-fold>//GEN-END:|102-getter|2|
+    //</editor-fold>//GEN-END:|102-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: findFriend ">//GEN-BEGIN:|92-getter|0|92-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: findFriend ">//GEN-BEGIN:|92-getter|0|92-preInit
     /**
-     * Returns an initialized instance of findFriend component.
-     *
+     * Returns an initiliazed instance of findFriend component.
      * @return the initialized component instance
      */
     public Form getFindFriend() {
         if (findFriend == null) {//GEN-END:|92-getter|0|92-preInit
         // write pre-init user code here
-            findFriend = new Form("form1", new Item[]{getSearch()});//GEN-BEGIN:|92-getter|1|92-postInit
+            findFriend = new Form("form1", new Item[] { getSearch() });//GEN-BEGIN:|92-getter|1|92-postInit
             findFriend.addCommand(getBack1());
             findFriend.addCommand(getFind());
             findFriend.addCommand(getAdd1());
@@ -1088,12 +964,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|92-getter|2|
         return findFriend;
     }
-//</editor-fold>//GEN-END:|92-getter|2|
+    //</editor-fold>//GEN-END:|92-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Back1 ">//GEN-BEGIN:|93-getter|0|93-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Back1 ">//GEN-BEGIN:|93-getter|0|93-preInit
     /**
-     * Returns an initialized instance of Back1 component.
-     *
+     * Returns an initiliazed instance of Back1 component.
      * @return the initialized component instance
      */
     public Command getBack1() {
@@ -1104,14 +979,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|93-getter|2|
         return Back1;
     }
-//</editor-fold>//GEN-END:|93-getter|2|
+    //</editor-fold>//GEN-END:|93-getter|2|
 
 
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Error ">//GEN-BEGIN:|99-getter|0|99-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Error ">//GEN-BEGIN:|99-getter|0|99-preInit
     /**
-     * Returns an initialized instance of Error component.
-     *
+     * Returns an initiliazed instance of Error component.
      * @return the initialized component instance
      */
     public Alert getError() {
@@ -1123,14 +997,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|99-getter|2|
         return Error;
     }
-//</editor-fold>//GEN-END:|99-getter|2|
+    //</editor-fold>//GEN-END:|99-getter|2|
 
 
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Find ">//GEN-BEGIN:|95-getter|0|95-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Find ">//GEN-BEGIN:|95-getter|0|95-preInit
     /**
-     * Returns an initialized instance of Find component.
-     *
+     * Returns an initiliazed instance of Find component.
      * @return the initialized component instance
      */
     public Command getFind() {
@@ -1141,12 +1014,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|95-getter|2|
         return Find;
     }
-//</editor-fold>//GEN-END:|95-getter|2|
+    //</editor-fold>//GEN-END:|95-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add1 ">//GEN-BEGIN:|105-getter|0|105-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add1 ">//GEN-BEGIN:|105-getter|0|105-preInit
     /**
-     * Returns an initialized instance of Add1 component.
-     *
+     * Returns an initiliazed instance of Add1 component.
      * @return the initialized component instance
      */
     public Command getAdd1() {
@@ -1157,12 +1029,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|105-getter|2|
         return Add1;
     }
-//</editor-fold>//GEN-END:|105-getter|2|
+    //</editor-fold>//GEN-END:|105-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Saved ">//GEN-BEGIN:|98-getter|0|98-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Saved ">//GEN-BEGIN:|98-getter|0|98-preInit
     /**
-     * Returns an initialized instance of Saved component.
-     *
+     * Returns an initiliazed instance of Saved component.
      * @return the initialized component instance
      */
     public Alert getSaved() {
@@ -1174,12 +1045,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|98-getter|2|
         return Saved;
     }
-//</editor-fold>//GEN-END:|98-getter|2|
+    //</editor-fold>//GEN-END:|98-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Found ">//GEN-BEGIN:|100-getter|0|100-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Found ">//GEN-BEGIN:|100-getter|0|100-preInit
     /**
-     * Returns an initialized instance of Found component.
-     *
+     * Returns an initiliazed instance of Found component.
      * @return the initialized component instance
      */
     public Alert getFound() {
@@ -1191,12 +1061,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|100-getter|2|
         return Found;
     }
-//</editor-fold>//GEN-END:|100-getter|2|
+    //</editor-fold>//GEN-END:|100-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: NotFound ">//GEN-BEGIN:|101-getter|0|101-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: NotFound ">//GEN-BEGIN:|101-getter|0|101-preInit
     /**
-     * Returns an initialized instance of NotFound component.
-     *
+     * Returns an initiliazed instance of NotFound component.
      * @return the initialized component instance
      */
     public Alert getNotFound() {
@@ -1208,12 +1077,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|101-getter|2|
         return NotFound;
     }
-//</editor-fold>//GEN-END:|101-getter|2|
+    //</editor-fold>//GEN-END:|101-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: EnterUserNameEmail ">//GEN-BEGIN:|104-getter|0|104-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: EnterUserNameEmail ">//GEN-BEGIN:|104-getter|0|104-preInit
     /**
-     * Returns an initialized instance of EnterUserNameEmail component.
-     *
+     * Returns an initiliazed instance of EnterUserNameEmail component.
      * @return the initialized component instance
      */
     public Alert getEnterUserNameEmail() {
@@ -1225,12 +1093,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|104-getter|2|
         return EnterUserNameEmail;
     }
-//</editor-fold>//GEN-END:|104-getter|2|
+    //</editor-fold>//GEN-END:|104-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ComingSoon ">//GEN-BEGIN:|107-getter|0|107-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ComingSoon ">//GEN-BEGIN:|107-getter|0|107-preInit
     /**
-     * Returns an initialized instance of ComingSoon component.
-     *
+     * Returns an initiliazed instance of ComingSoon component.
      * @return the initialized component instance
      */
     public Alert getComingSoon() {
@@ -1242,12 +1109,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|107-getter|2|
         return ComingSoon;
     }
-//</editor-fold>//GEN-END:|107-getter|2|
+    //</editor-fold>//GEN-END:|107-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend ">//GEN-BEGIN:|111-getter|0|111-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend ">//GEN-BEGIN:|111-getter|0|111-preInit
     /**
-     * Returns an initialized instance of choosefriend component.
-     *
+     * Returns an initiliazed instance of choosefriend component.
      * @return the initialized component instance
      */
     public Command getChoosefriend() {
@@ -1258,12 +1124,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|111-getter|2|
         return choosefriend;
     }
-//</editor-fold>//GEN-END:|111-getter|2|
+    //</editor-fold>//GEN-END:|111-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand3 ">//GEN-BEGIN:|114-getter|0|114-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand3 ">//GEN-BEGIN:|114-getter|0|114-preInit
     /**
-     * Returns an initialized instance of backCommand3 component.
-     *
+     * Returns an initiliazed instance of backCommand3 component.
      * @return the initialized component instance
      */
     public Command getBackCommand3() {
@@ -1274,12 +1139,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|114-getter|2|
         return backCommand3;
     }
-//</editor-fold>//GEN-END:|114-getter|2|
+    //</editor-fold>//GEN-END:|114-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand2 ">//GEN-BEGIN:|119-getter|0|119-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand2 ">//GEN-BEGIN:|119-getter|0|119-preInit
     /**
-     * Returns an initialized instance of okCommand2 component.
-     *
+     * Returns an initiliazed instance of okCommand2 component.
      * @return the initialized component instance
      */
     public Command getOkCommand2() {
@@ -1290,12 +1154,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|119-getter|2|
         return okCommand2;
     }
-//</editor-fold>//GEN-END:|119-getter|2|
+    //</editor-fold>//GEN-END:|119-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand4 ">//GEN-BEGIN:|121-getter|0|121-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand4 ">//GEN-BEGIN:|121-getter|0|121-preInit
     /**
-     * Returns an initialized instance of backCommand4 component.
-     *
+     * Returns an initiliazed instance of backCommand4 component.
      * @return the initialized component instance
      */
     public Command getBackCommand4() {
@@ -1306,18 +1169,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|121-getter|2|
         return backCommand4;
     }
-//</editor-fold>//GEN-END:|121-getter|2|
+    //</editor-fold>//GEN-END:|121-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend ">//GEN-BEGIN:|108-getter|0|108-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend ">//GEN-BEGIN:|108-getter|0|108-preInit
     /**
-     * Returns an initialized instance of recommend component.
-     *
+     * Returns an initiliazed instance of recommend component.
      * @return the initialized component instance
      */
     public Form getRecommend() {
         if (recommend == null) {//GEN-END:|108-getter|0|108-preInit
             // write pre-init user code here
-            recommend = new Form("form1", new Item[]{getTextField2(), getTextField3()});//GEN-BEGIN:|108-getter|1|108-postInit
+            recommend = new Form("form1", new Item[] { getTextField2(), getTextField3() });//GEN-BEGIN:|108-getter|1|108-postInit
             recommend.addCommand(getOkCommand());
             recommend.addCommand(getBackCommand3());
             recommend.addCommand(getChoosefriend());
@@ -1326,12 +1188,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|108-getter|2|
         return recommend;
     }
-//</editor-fold>//GEN-END:|108-getter|2|
+    //</editor-fold>//GEN-END:|108-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|109-getter|0|109-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|109-getter|0|109-preInit
     /**
-     * Returns an initialized instance of textField2 component.
-     *
+     * Returns an initiliazed instance of textField2 component.
      * @return the initialized component instance
      */
     public TextField getTextField2() {
@@ -1342,12 +1203,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|109-getter|2|
         return textField2;
     }
-//</editor-fold>//GEN-END:|109-getter|2|
+    //</editor-fold>//GEN-END:|109-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|110-getter|0|110-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|110-getter|0|110-preInit
     /**
-     * Returns an initialized instance of textField3 component.
-     *
+     * Returns an initiliazed instance of textField3 component.
      * @return the initialized component instance
      */
     public TextField getTextField3() {
@@ -1358,12 +1218,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|110-getter|2|
         return textField3;
     }
-//</editor-fold>//GEN-END:|110-getter|2|
+    //</editor-fold>//GEN-END:|110-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
     /**
-     * Returns an initialized instance of choosefriend1 component.
-     *
+     * Returns an initiliazed instance of choosefriend1 component.
      * @return the initialized component instance
      */
     public List getChoosefriend1() {
@@ -1378,24 +1237,22 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|116-getter|2|
         return choosefriend1;
     }
-//</editor-fold>//GEN-END:|116-getter|2|
+    //</editor-fold>//GEN-END:|116-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: choosefriend1Action ">//GEN-BEGIN:|116-action|0|116-preAction
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: choosefriend1Action ">//GEN-BEGIN:|116-action|0|116-preAction
     /**
-     * Performs an action assigned to the selected list element in the
-     * choosefriend1 component.
+     * Performs an action assigned to the selected list element in the choosefriend1 component.
      */
     public void choosefriend1Action() {//GEN-END:|116-action|0|116-preAction
         // enter pre-action user code here
         String __selectedString = getChoosefriend1().getString(getChoosefriend1().getSelectedIndex());//GEN-LINE:|116-action|1|116-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|116-action|2|
-//</editor-fold>//GEN-END:|116-action|2|
+    //</editor-fold>//GEN-END:|116-action|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: storeypublished ">//GEN-BEGIN:|125-getter|0|125-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storeypublished ">//GEN-BEGIN:|125-getter|0|125-preInit
     /**
-     * Returns an initialized instance of storeypublished component.
-     *
+     * Returns an initiliazed instance of storeypublished component.
      * @return the initialized component instance
      */
     public Alert getStoreypublished() {
@@ -1407,12 +1264,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|125-getter|2|
         return storeypublished;
     }
-//</editor-fold>//GEN-END:|125-getter|2|
+    //</editor-fold>//GEN-END:|125-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: storynotpublished ">//GEN-BEGIN:|126-getter|0|126-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storynotpublished ">//GEN-BEGIN:|126-getter|0|126-preInit
     /**
-     * Returns an initialized instance of storynotpublished component.
-     *
+     * Returns an initiliazed instance of storynotpublished component.
      * @return the initialized component instance
      */
     public Alert getStorynotpublished() {
@@ -1424,12 +1280,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|126-getter|2|
         return storynotpublished;
     }
-//</editor-fold>//GEN-END:|126-getter|2|
+    //</editor-fold>//GEN-END:|126-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: likeddisliked ">//GEN-BEGIN:|127-getter|0|127-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: likeddisliked ">//GEN-BEGIN:|127-getter|0|127-preInit
     /**
-     * Returns an initialized instance of likeddisliked component.
-     *
+     * Returns an initiliazed instance of likeddisliked component.
      * @return the initialized component instance
      */
     public List getLikeddisliked() {
@@ -1442,24 +1297,22 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|127-getter|2|
         return likeddisliked;
     }
-//</editor-fold>//GEN-END:|127-getter|2|
+    //</editor-fold>//GEN-END:|127-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: likeddislikedAction ">//GEN-BEGIN:|127-action|0|127-preAction
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: likeddislikedAction ">//GEN-BEGIN:|127-action|0|127-preAction
     /**
-     * Performs an action assigned to the selected list element in the
-     * likeddisliked component.
+     * Performs an action assigned to the selected list element in the likeddisliked component.
      */
     public void likeddislikedAction() {//GEN-END:|127-action|0|127-preAction
         // enter pre-action user code here
         String __selectedString = getLikeddisliked().getString(getLikeddisliked().getSelectedIndex());//GEN-LINE:|127-action|1|127-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|127-action|2|
-//</editor-fold>//GEN-END:|127-action|2|
+    //</editor-fold>//GEN-END:|127-action|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand3 ">//GEN-BEGIN:|134-getter|0|134-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand3 ">//GEN-BEGIN:|134-getter|0|134-preInit
     /**
-     * Returns an initialized instance of okCommand3 component.
-     *
+     * Returns an initiliazed instance of okCommand3 component.
      * @return the initialized component instance
      */
     public Command getOkCommand3() {
@@ -1470,12 +1323,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|134-getter|2|
         return okCommand3;
     }
-//</editor-fold>//GEN-END:|134-getter|2|
+    //</editor-fold>//GEN-END:|134-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand5 ">//GEN-BEGIN:|136-getter|0|136-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand5 ">//GEN-BEGIN:|136-getter|0|136-preInit
     /**
-     * Returns an initialized instance of backCommand5 component.
-     *
+     * Returns an initiliazed instance of backCommand5 component.
      * @return the initialized component instance
      */
     public Command getBackCommand5() {
@@ -1486,12 +1338,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|136-getter|2|
         return backCommand5;
     }
-//</editor-fold>//GEN-END:|136-getter|2|
+    //</editor-fold>//GEN-END:|136-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand4 ">//GEN-BEGIN:|142-getter|0|142-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand4 ">//GEN-BEGIN:|142-getter|0|142-preInit
     /**
-     * Returns an initialized instance of okCommand4 component.
-     *
+     * Returns an initiliazed instance of okCommand4 component.
      * @return the initialized component instance
      */
     public Command getOkCommand4() {
@@ -1502,12 +1353,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|142-getter|2|
         return okCommand4;
     }
-//</editor-fold>//GEN-END:|142-getter|2|
+    //</editor-fold>//GEN-END:|142-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand6 ">//GEN-BEGIN:|144-getter|0|144-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand6 ">//GEN-BEGIN:|144-getter|0|144-preInit
     /**
-     * Returns an initialized instance of backCommand6 component.
-     *
+     * Returns an initiliazed instance of backCommand6 component.
      * @return the initialized component instance
      */
     public Command getBackCommand6() {
@@ -1518,12 +1368,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|144-getter|2|
         return backCommand6;
     }
-//</editor-fold>//GEN-END:|144-getter|2|
+    //</editor-fold>//GEN-END:|144-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|146-getter|0|146-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|146-getter|0|146-preInit
     /**
-     * Returns an initialized instance of exitCommand1 component.
-     *
+     * Returns an initiliazed instance of exitCommand1 component.
      * @return the initialized component instance
      */
     public Command getExitCommand1() {
@@ -1534,18 +1383,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|146-getter|2|
         return exitCommand1;
     }
-//</editor-fold>//GEN-END:|146-getter|2|
+    //</editor-fold>//GEN-END:|146-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: LoginScreen ">//GEN-BEGIN:|131-getter|0|131-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: LoginScreen ">//GEN-BEGIN:|131-getter|0|131-preInit
     /**
-     * Returns an initialized instance of LoginScreen component.
-     *
+     * Returns an initiliazed instance of LoginScreen component.
      * @return the initialized component instance
      */
     public Form getLoginScreen() {
         if (LoginScreen == null) {//GEN-END:|131-getter|0|131-preInit
             // write pre-init user code here
-            LoginScreen = new Form("LoginScreen", new Item[]{getTextField4(), getTextField5()});//GEN-BEGIN:|131-getter|1|131-postInit
+            LoginScreen = new Form("LoginScreen", new Item[] { getTextField4(), getTextField5() });//GEN-BEGIN:|131-getter|1|131-postInit
             LoginScreen.addCommand(getOkCommand3());
             LoginScreen.addCommand(getBackCommand5());
             LoginScreen.setCommandListener(this);//GEN-END:|131-getter|1|131-postInit
@@ -1553,12 +1401,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|131-getter|2|
         return LoginScreen;
     }
-//</editor-fold>//GEN-END:|131-getter|2|
+    //</editor-fold>//GEN-END:|131-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField4 ">//GEN-BEGIN:|132-getter|0|132-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField4 ">//GEN-BEGIN:|132-getter|0|132-preInit
     /**
-     * Returns an initialized instance of textField4 component.
-     *
+     * Returns an initiliazed instance of textField4 component.
      * @return the initialized component instance
      */
     public TextField getTextField4() {
@@ -1569,12 +1416,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|132-getter|2|
         return textField4;
     }
-//</editor-fold>//GEN-END:|132-getter|2|
+    //</editor-fold>//GEN-END:|132-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField5 ">//GEN-BEGIN:|133-getter|0|133-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField5 ">//GEN-BEGIN:|133-getter|0|133-preInit
     /**
-     * Returns an initialized instance of textField5 component.
-     *
+     * Returns an initiliazed instance of textField5 component.
      * @return the initialized component instance
      */
     public TextField getTextField5() {
@@ -1585,12 +1431,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|133-getter|2|
         return textField5;
     }
-//</editor-fold>//GEN-END:|133-getter|2|
+    //</editor-fold>//GEN-END:|133-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand5 ">//GEN-BEGIN:|152-getter|0|152-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand5 ">//GEN-BEGIN:|152-getter|0|152-preInit
     /**
-     * Returns an initialized instance of okCommand5 component.
-     *
+     * Returns an initiliazed instance of okCommand5 component.
      * @return the initialized component instance
      */
     public Command getOkCommand5() {
@@ -1601,12 +1446,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|152-getter|2|
         return okCommand5;
     }
-//</editor-fold>//GEN-END:|152-getter|2|
+    //</editor-fold>//GEN-END:|152-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand7 ">//GEN-BEGIN:|154-getter|0|154-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand7 ">//GEN-BEGIN:|154-getter|0|154-preInit
     /**
-     * Returns an initialized instance of backCommand7 component.
-     *
+     * Returns an initiliazed instance of backCommand7 component.
      * @return the initialized component instance
      */
     public Command getBackCommand7() {
@@ -1617,18 +1461,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|154-getter|2|
         return backCommand7;
     }
-//</editor-fold>//GEN-END:|154-getter|2|
+    //</editor-fold>//GEN-END:|154-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: RegisterScreen ">//GEN-BEGIN:|148-getter|0|148-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: RegisterScreen ">//GEN-BEGIN:|148-getter|0|148-preInit
     /**
-     * Returns an initialized instance of RegisterScreen component.
-     *
+     * Returns an initiliazed instance of RegisterScreen component.
      * @return the initialized component instance
      */
     public Form getRegisterScreen() {
         if (RegisterScreen == null) {//GEN-END:|148-getter|0|148-preInit
             // write pre-init user code here
-            RegisterScreen = new Form("RegisterScreen", new Item[]{getTextField6(), getTextField7(), getTextField8()});//GEN-BEGIN:|148-getter|1|148-postInit
+            RegisterScreen = new Form("RegisterScreen", new Item[] { getTextField6(), getTextField7(), getTextField8() });//GEN-BEGIN:|148-getter|1|148-postInit
             RegisterScreen.addCommand(getOkCommand5());
             RegisterScreen.addCommand(getBackCommand7());
             RegisterScreen.setCommandListener(this);//GEN-END:|148-getter|1|148-postInit
@@ -1636,12 +1479,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|148-getter|2|
         return RegisterScreen;
     }
-//</editor-fold>//GEN-END:|148-getter|2|
+    //</editor-fold>//GEN-END:|148-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField6 ">//GEN-BEGIN:|149-getter|0|149-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField6 ">//GEN-BEGIN:|149-getter|0|149-preInit
     /**
-     * Returns an initialized instance of textField6 component.
-     *
+     * Returns an initiliazed instance of textField6 component.
      * @return the initialized component instance
      */
     public TextField getTextField6() {
@@ -1652,12 +1494,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|149-getter|2|
         return textField6;
     }
-//</editor-fold>//GEN-END:|149-getter|2|
+    //</editor-fold>//GEN-END:|149-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField7 ">//GEN-BEGIN:|150-getter|0|150-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField7 ">//GEN-BEGIN:|150-getter|0|150-preInit
     /**
-     * Returns an initialized instance of textField7 component.
-     *
+     * Returns an initiliazed instance of textField7 component.
      * @return the initialized component instance
      */
     public TextField getTextField7() {
@@ -1668,12 +1509,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|150-getter|2|
         return textField7;
     }
-//</editor-fold>//GEN-END:|150-getter|2|
+    //</editor-fold>//GEN-END:|150-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField8 ">//GEN-BEGIN:|151-getter|0|151-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField8 ">//GEN-BEGIN:|151-getter|0|151-preInit
     /**
-     * Returns an initialized instance of textField8 component.
-     *
+     * Returns an initiliazed instance of textField8 component.
      * @return the initialized component instance
      */
     public TextField getTextField8() {
@@ -1684,12 +1524,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|151-getter|2|
         return textField8;
     }
-//</editor-fold>//GEN-END:|151-getter|2|
+    //</editor-fold>//GEN-END:|151-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand8 ">//GEN-BEGIN:|158-getter|0|158-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand8 ">//GEN-BEGIN:|158-getter|0|158-preInit
     /**
-     * Returns an initialized instance of backCommand8 component.
-     *
+     * Returns an initiliazed instance of backCommand8 component.
      * @return the initialized component instance
      */
     public Command getBackCommand8() {
@@ -1700,12 +1539,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|158-getter|2|
         return backCommand8;
     }
-//</editor-fold>//GEN-END:|158-getter|2|
+    //</editor-fold>//GEN-END:|158-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand6 ">//GEN-BEGIN:|160-getter|0|160-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand6 ">//GEN-BEGIN:|160-getter|0|160-preInit
     /**
-     * Returns an initialized instance of okCommand6 component.
-     *
+     * Returns an initiliazed instance of okCommand6 component.
      * @return the initialized component instance
      */
     public Command getOkCommand6() {
@@ -1716,18 +1554,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|160-getter|2|
         return okCommand6;
     }
-//</editor-fold>//GEN-END:|160-getter|2|
+    //</editor-fold>//GEN-END:|160-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: form1 ">//GEN-BEGIN:|156-getter|0|156-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: form1 ">//GEN-BEGIN:|156-getter|0|156-preInit
     /**
-     * Returns an initialized instance of form1 component.
-     *
+     * Returns an initiliazed instance of form1 component.
      * @return the initialized component instance
      */
     public Form getForm1() {
         if (form1 == null) {//GEN-END:|156-getter|0|156-preInit
             // write pre-init user code here
-            form1 = new Form("ForgotPasswordScreen", new Item[]{getTextField9()});//GEN-BEGIN:|156-getter|1|156-postInit
+            form1 = new Form("ForgotPasswordScreen", new Item[] { getTextField9() });//GEN-BEGIN:|156-getter|1|156-postInit
             form1.addCommand(getBackCommand8());
             form1.addCommand(getOkCommand6());
             form1.setCommandListener(this);//GEN-END:|156-getter|1|156-postInit
@@ -1735,12 +1572,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|156-getter|2|
         return form1;
     }
-//</editor-fold>//GEN-END:|156-getter|2|
+    //</editor-fold>//GEN-END:|156-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField9 ">//GEN-BEGIN:|157-getter|0|157-preInit
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField9 ">//GEN-BEGIN:|157-getter|0|157-preInit
     /**
-     * Returns an initialized instance of textField9 component.
-     *
+     * Returns an initiliazed instance of textField9 component.
      * @return the initialized component instance
      */
     public TextField getTextField9() {
@@ -1751,7 +1587,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         }//GEN-BEGIN:|157-getter|2|
         return textField9;
     }
-//</editor-fold>//GEN-END:|157-getter|2|
+    //</editor-fold>//GEN-END:|157-getter|2|
 
 
 
