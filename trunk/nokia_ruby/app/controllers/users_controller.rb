@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def search
-    respond_with(@user = Admin.search(params[:query]))
+    respond_with(@user = Admin.search(params[:id]))
   end
 
    def new
@@ -106,7 +106,6 @@ def friend_requests(user_id)
    end
  respond_to do |format|
       format.json { render json: @friend_list }
-<<<<<<< .mine
 end  
 
 
@@ -126,6 +125,5 @@ end
   
 
 end
-<<<<<<< .mine
 end
 end
