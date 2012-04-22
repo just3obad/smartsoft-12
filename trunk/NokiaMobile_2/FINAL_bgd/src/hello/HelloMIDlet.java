@@ -176,6 +176,55 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     }
         
     }
+      public void friendsConnection()
+    {
+          
+         HttpConnection httpConn = null;
+      String url = "http://192.168.26.136:3000/users/friends_feed?id="+ user_id;
+      
+    InputStream is = null;
+    OutputStream os = null;
+
+    try {
+      // Open an HTTP Connection object
+      httpConn = (HttpConnection)Connector.open(url);
+
+      // Setup HTTP Request
+      httpConn.setRequestMethod(HttpConnection.GET);
+      httpConn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+      int respCode = httpConn.getResponseCode();
+      if (respCode == httpConn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1)
+          sb.append((char) chr);
+        
+        sb.toString();
+        FriendsStories.append(sb.toString());
+      }
+      else {
+        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+      }
+
+      } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if(is!= null)
+                   is.close();
+                  if(os != null)
+                    os.close();
+              if(httpConn != null)
+                    httpConn.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+    }
+
+    }
     
 //<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
 //</editor-fold>//GEN-END:|methods|0|
