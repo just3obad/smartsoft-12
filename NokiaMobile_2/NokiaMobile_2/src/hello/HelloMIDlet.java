@@ -53,6 +53,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Form TwitterEmailSent;
     private StringItem stringItem1;
     private List ConnectTwitter;
+    private Form AuthFailed;
+    private TextField textField10;
+    private Form AuthSucceeded;
+    private StringItem stringItem2;
     //</editor-fold>//GEN-END:|fields|0|
 
     /**
@@ -123,60 +127,72 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
-        if (displayable == ComingSoon) {//GEN-BEGIN:|7-commandAction|1|67-preAction
-            if (command == okCommand3) {//GEN-END:|7-commandAction|1|67-preAction
+        if (displayable == AuthFailed) {//GEN-BEGIN:|7-commandAction|1|89-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|1|89-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|2|67-postAction
+//GEN-LINE:|7-commandAction|2|89-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|3|54-preAction
+            }//GEN-BEGIN:|7-commandAction|3|92-preAction
+        } else if (displayable == AuthSucceeded) {
+            if (command == okCommand) {//GEN-END:|7-commandAction|3|92-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|4|92-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|5|67-preAction
+        } else if (displayable == ComingSoon) {
+            if (command == okCommand3) {//GEN-END:|7-commandAction|5|67-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|6|67-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|7|54-preAction
         } else if (displayable == ConnectAccount) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|3|54-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|7|54-preAction
                 // write pre-action user code here
-                ConnectAccountAction();//GEN-LINE:|7-commandAction|4|54-postAction
+                ConnectAccountAction();//GEN-LINE:|7-commandAction|8|54-postAction
                 // write post-action user code here
-            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|5|65-preAction
+            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|9|65-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|6|65-postAction
+//GEN-LINE:|7-commandAction|10|65-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|75-preAction
+            }//GEN-BEGIN:|7-commandAction|11|75-preAction
         } else if (displayable == ConnectTwitter) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|7|75-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|11|75-preAction
                 // write pre-action user code here
-                ConnectTwitterAction();//GEN-LINE:|7-commandAction|8|75-postAction
+                ConnectTwitterAction();//GEN-LINE:|7-commandAction|12|75-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|9|29-preAction
+            }//GEN-BEGIN:|7-commandAction|13|29-preAction
         } else if (displayable == LoginScreen) {
-            if (command == exitCommand1) {//GEN-END:|7-commandAction|9|29-preAction
+            if (command == exitCommand1) {//GEN-END:|7-commandAction|13|29-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|10|29-postAction
+//GEN-LINE:|7-commandAction|14|29-postAction
                 // write post-action user code here
-            } else if (command == itemCommand) {//GEN-LINE:|7-commandAction|11|31-preAction
+            } else if (command == itemCommand) {//GEN-LINE:|7-commandAction|15|31-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|12|31-postAction
+//GEN-LINE:|7-commandAction|16|31-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|13|27-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|17|27-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|14|27-postAction
+//GEN-LINE:|7-commandAction|18|27-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|15|41-preAction
+            }//GEN-BEGIN:|7-commandAction|19|41-preAction
         } else if (displayable == Profile) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|15|41-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|19|41-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|16|41-postAction
+//GEN-LINE:|7-commandAction|20|41-postAction
                 // write post-action user code here
-            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|17|43-preAction
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|21|43-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|18|43-postAction
+//GEN-LINE:|7-commandAction|22|43-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|19|38-preAction
+            }//GEN-BEGIN:|7-commandAction|23|38-preAction
         } else if (displayable == RegisterScreen) {
-            if (command == backCommand) {//GEN-END:|7-commandAction|19|38-preAction
+            if (command == backCommand) {//GEN-END:|7-commandAction|23|38-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|20|38-postAction
+//GEN-LINE:|7-commandAction|24|38-postAction
                 // write post-action user code here
-            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|21|36-preAction
+            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|25|36-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|22|36-postAction
+//GEN-LINE:|7-commandAction|26|36-postAction
                 // write post-action user code here
                 //Register
         HttpConnection httpConn = null;
@@ -222,23 +238,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             System.out.println("Exception occured " + t.toString());
         }
     }
-            }//GEN-BEGIN:|7-commandAction|23|70-preAction
+            }//GEN-BEGIN:|7-commandAction|27|70-preAction
         } else if (displayable == TwitterEmailSent) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|23|70-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|27|70-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|24|70-postAction
+//GEN-LINE:|7-commandAction|28|70-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|25|19-preAction
+            }//GEN-BEGIN:|7-commandAction|29|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|25|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|29|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|26|19-postAction
+//GEN-LINE:|7-commandAction|30|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|27|7-postCommandAction
-        }//GEN-END:|7-commandAction|27|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|31|7-postCommandAction
+        }//GEN-END:|7-commandAction|31|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|28|
-    //</editor-fold>//GEN-END:|7-commandAction|28|
+    }//GEN-BEGIN:|7-commandAction|32|
+    //</editor-fold>//GEN-END:|7-commandAction|32|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
@@ -812,7 +828,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             // write pre-init user code here
             ConnectTwitter = new List("list", Choice.IMPLICIT);//GEN-BEGIN:|74-getter|1|74-postInit
             ConnectTwitter.append("SendActivationMail", null);
-            ConnectTwitter.append("AlreadyAuthorized", null);
+            ConnectTwitter.append("AuthorizedTheApp", null);
             ConnectTwitter.setCommandListener(this);
             ConnectTwitter.setSelectedFlags(new boolean[] { false, false });//GEN-END:|74-getter|1|74-postInit
             // write post-init user code here
@@ -833,7 +849,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
 //GEN-LINE:|74-action|2|77-postAction
                 // write post-action user code here
-            } else if (__selectedString.equals("AlreadyAuthorized")) {//GEN-LINE:|74-action|3|78-preAction
+            } else if (__selectedString.equals("AuthorizedTheApp")) {//GEN-LINE:|74-action|3|78-preAction
                 // write pre-action user code here
 //GEN-LINE:|74-action|4|78-postAction
                 // write post-action user code here
@@ -842,6 +858,89 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         // enter post-action user code here
     }//GEN-BEGIN:|74-action|6|
     //</editor-fold>//GEN-END:|74-action|6|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: method ">//GEN-BEGIN:|83-if|0|83-preIf
+    /**
+     * Performs an action assigned to the method if-point.
+     */
+    public void method() {//GEN-END:|83-if|0|83-preIf
+        // enter pre-if user code here
+        if (true) {//GEN-LINE:|83-if|1|84-preAction
+            // write pre-action user code here
+//GEN-LINE:|83-if|2|84-postAction
+            // write post-action user code here
+        } else {//GEN-LINE:|83-if|3|85-preAction
+            // write pre-action user code here
+//GEN-LINE:|83-if|4|85-postAction
+            // write post-action user code here
+        }//GEN-LINE:|83-if|5|83-postIf
+        // enter post-if user code here
+    }//GEN-BEGIN:|83-if|6|
+    //</editor-fold>//GEN-END:|83-if|6|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: AuthFailed ">//GEN-BEGIN:|82-getter|0|82-preInit
+    /**
+     * Returns an initiliazed instance of AuthFailed component.
+     * @return the initialized component instance
+     */
+    public Form getAuthFailed() {
+        if (AuthFailed == null) {//GEN-END:|82-getter|0|82-preInit
+            // write pre-init user code here
+            AuthFailed = new Form("AuthFailed", new Item[] { getTextField10() });//GEN-BEGIN:|82-getter|1|82-postInit
+            AuthFailed.addCommand(getBackCommand());
+            AuthFailed.setCommandListener(this);//GEN-END:|82-getter|1|82-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|82-getter|2|
+        return AuthFailed;
+    }
+    //</editor-fold>//GEN-END:|82-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField10 ">//GEN-BEGIN:|88-getter|0|88-preInit
+    /**
+     * Returns an initiliazed instance of textField10 component.
+     * @return the initialized component instance
+     */
+    public TextField getTextField10() {
+        if (textField10 == null) {//GEN-END:|88-getter|0|88-preInit
+            // write pre-init user code here
+            textField10 = new TextField("Authorization failed", "Authorization failed. please check your email for another authorizatoin email", 32, TextField.ANY);//GEN-LINE:|88-getter|1|88-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|88-getter|2|
+        return textField10;
+    }
+    //</editor-fold>//GEN-END:|88-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: AuthSucceeded ">//GEN-BEGIN:|90-getter|0|90-preInit
+    /**
+     * Returns an initiliazed instance of AuthSucceeded component.
+     * @return the initialized component instance
+     */
+    public Form getAuthSucceeded() {
+        if (AuthSucceeded == null) {//GEN-END:|90-getter|0|90-preInit
+            // write pre-init user code here
+            AuthSucceeded = new Form("Authorization Succeeded", new Item[] { getStringItem2() });//GEN-BEGIN:|90-getter|1|90-postInit
+            AuthSucceeded.addCommand(getOkCommand());
+            AuthSucceeded.setCommandListener(this);//GEN-END:|90-getter|1|90-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|90-getter|2|
+        return AuthSucceeded;
+    }
+    //</editor-fold>//GEN-END:|90-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem2 ">//GEN-BEGIN:|91-getter|0|91-preInit
+    /**
+     * Returns an initiliazed instance of stringItem2 component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem2() {
+        if (stringItem2 == null) {//GEN-END:|91-getter|0|91-preInit
+            // write pre-init user code here
+            stringItem2 = new StringItem("Authorization Succeeded", "Thanks for authorizing our app");//GEN-LINE:|91-getter|1|91-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|91-getter|2|
+        return stringItem2;
+    }
+    //</editor-fold>//GEN-END:|91-getter|2|
 
     /**
      * Returns a display instance.
