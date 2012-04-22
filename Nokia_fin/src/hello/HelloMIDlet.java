@@ -15,7 +15,7 @@ import javax.microedition.io.HttpConnection;
 /**
  * @author Essam Hafez
  */
-public class HelloMIDlet extends MIDlet implements ItemStateListener{
+public class HelloMIDlet extends MIDlet implements ItemStateListener, CommandListener{
     String url;
     static int countInsertion = 0;
     private boolean midletPaused = false;
@@ -230,7 +230,7 @@ public class HelloMIDlet extends MIDlet implements ItemStateListener{
      */
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-        switchDisplayable(null, getMainFeed());//GEN-LINE:|3-startMIDlet|1|3-postAction
+        connectAccountAction();//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
 //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -281,7 +281,7 @@ public class HelloMIDlet extends MIDlet implements ItemStateListener{
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
      * Returns an initialized instance of exitCommand component.
      *
@@ -306,7 +306,7 @@ public class HelloMIDlet extends MIDlet implements ItemStateListener{
     public Form getForm() {
         if (form == null) {//GEN-END:|14-getter|0|14-preInit
             // write pre-init user code here
-            form = new Form("Welcome", new Item[] { getStringItem() });//GEN-LINE:|14-getter|1|14-postInit
+            form = new Form("Welcome", new Item[]{getStringItem()});//GEN-LINE:|14-getter|1|14-postInit
             // write post-init user code here
         }//GEN-BEGIN:|14-getter|2|
         return form;
@@ -346,9 +346,10 @@ public class HelloMIDlet extends MIDlet implements ItemStateListener{
     }
 //</editor-fold>//GEN-END:|22-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
     /**
-     * Returns an initiliazed instance of viewComments component.
+     * Returns an initialized instance of viewComments component.
+     *
      * @return the initialized component instance
      */
     public Command getViewComments() {
@@ -359,11 +360,12 @@ public class HelloMIDlet extends MIDlet implements ItemStateListener{
         }//GEN-BEGIN:|24-getter|2|
         return viewComments;
     }
-    //</editor-fold>//GEN-END:|24-getter|2|
+//</editor-fold>//GEN-END:|24-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
     /**
-     * Returns an initiliazed instance of Story component.
+     * Returns an initialized instance of Story component.
+     *
      * @return the initialized component instance
      */
     public Form getStory() {
@@ -374,11 +376,12 @@ public class HelloMIDlet extends MIDlet implements ItemStateListener{
         }//GEN-BEGIN:|23-getter|2|
         return Story;
     }
-    //</editor-fold>//GEN-END:|23-getter|2|
+//</editor-fold>//GEN-END:|23-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
     /**
-     * Returns an initiliazed instance of textBox component.
+     * Returns an initialized instance of textBox component.
+     *
      * @return the initialized component instance
      */
     public TextBox getTextBox() {
@@ -389,18 +392,19 @@ public class HelloMIDlet extends MIDlet implements ItemStateListener{
         }//GEN-BEGIN:|26-getter|2|
         return textBox;
     }
-    //</editor-fold>//GEN-END:|26-getter|2|
+//</editor-fold>//GEN-END:|26-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment ">//GEN-BEGIN:|27-getter|0|27-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment ">//GEN-BEGIN:|27-getter|0|27-preInit
     /**
-     * Returns an initiliazed instance of Comment component.
+     * Returns an initialized instance of Comment component.
+     *
      * @return the initialized component instance
      */
     public Form getComment() {
         if (Comment == null) {//GEN-END:|27-getter|0|27-preInit
             // write pre-init user code here
     
-            Comment = new Form("Comments", new Item[] { getTextField() });//GEN-LINE:|27-getter|1|27-postInit
+            Comment = new Form("Comments", new Item[]{getTextField()});//GEN-LINE:|27-getter|1|27-postInit
             // write post-init user code here
 addComments(); //adding dummy comments to test UI
                
@@ -408,11 +412,12 @@ addComments(); //adding dummy comments to test UI
         }//GEN-BEGIN:|27-getter|2|
         return Comment;
     }
-    //</editor-fold>//GEN-END:|27-getter|2|
+//</editor-fold>//GEN-END:|27-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
     /**
-     * Returns an initiliazed instance of Comment1 component.
+     * Returns an initialized instance of Comment1 component.
+     *
      * @return the initialized component instance
      */
     public Command getComment1() {
@@ -423,41 +428,44 @@ addComments(); //adding dummy comments to test UI
         }//GEN-BEGIN:|28-getter|2|
         return Comment1;
     }
-    //</editor-fold>//GEN-END:|28-getter|2|
+//</editor-fold>//GEN-END:|28-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommandV ">//GEN-BEGIN:|30-getter|0|30-preInit
     /**
-     * Returns an initiliazed instance of backCommand component.
+     * Returns an initialized instance of backCommandV component.
+     *
      * @return the initialized component instance
      */
-    public Command getBackCommand() {
-        if (backCommand == null) {//GEN-END:|30-getter|0|30-preInit
+    public Command getBackCommandV() {
+        if (backCommandV == null) {//GEN-END:|30-getter|0|30-preInit
             // write pre-init user code here
-            backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|30-getter|1|30-postInit
+            backCommandV = new Command("Back", Command.BACK, 0);//GEN-LINE:|30-getter|1|30-postInit
             // write post-init user code here
         }//GEN-BEGIN:|30-getter|2|
-        return backCommand;
+        return backCommandV;
     }
-    //</editor-fold>//GEN-END:|30-getter|2|
+//</editor-fold>//GEN-END:|30-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
     /**
-     * Returns an initiliazed instance of okCommand component.
+     * Returns an initialized instance of okCommand component.
+     *
      * @return the initialized component instance
      */
     public Command getOkCommand() {
         if (okCommand == null) {//GEN-END:|32-getter|0|32-preInit
             // write pre-init user code here
-            okCommand = new Command("Ok", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
+            okCommand = new Command("send", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
             // write post-init user code here
         }//GEN-BEGIN:|32-getter|2|
         return okCommand;
     }
-    //</editor-fold>//GEN-END:|32-getter|2|
+//</editor-fold>//GEN-END:|32-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
     /**
-     * Returns an initiliazed instance of backCommand1 component.
+     * Returns an initialized instance of backCommand1 component.
+     *
      * @return the initialized component instance
      */
     public Command getBackCommand1() {
@@ -468,11 +476,12 @@ addComments(); //adding dummy comments to test UI
         }//GEN-BEGIN:|34-getter|2|
         return backCommand1;
     }
-    //</editor-fold>//GEN-END:|34-getter|2|
+//</editor-fold>//GEN-END:|34-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|37-getter|0|37-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|37-getter|0|37-preInit
     /**
-     * Returns an initiliazed instance of backCommand2 component.
+     * Returns an initialized instance of backCommand2 component.
+     *
      * @return the initialized component instance
      */
     public Command getBackCommand2() {
@@ -483,7 +492,7 @@ addComments(); //adding dummy comments to test UI
         }//GEN-BEGIN:|37-getter|2|
         return backCommand2;
     }
-    //</editor-fold>//GEN-END:|37-getter|2|
+//</editor-fold>//GEN-END:|37-getter|2|
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: comment2 ">//GEN-BEGIN:|39-getter|0|39-preInit
     /**
@@ -510,7 +519,7 @@ addComments(); //adding dummy comments to test UI
     public Form getProfile() {
         if (profile == null) {//GEN-END:|47-getter|0|47-preInit
             // write pre-init user code here
-        profile = new Form("form1", new Item[] { getUserName(), getTextField1(), getLastName(), getDob(), getPas(), getConfPas() });//GEN-LINE:|47-getter|1|47-postInit
+            profile = new Form("form1", new Item[]{getUserName(), getTextField1(), getLastName(), getDob(), getPas(), getConfPas()});//GEN-LINE:|47-getter|1|47-postInit
             // write post-init user code here
         }//GEN-BEGIN:|47-getter|2|
         return profile;
@@ -894,6 +903,495 @@ addComments(); //adding dummy comments to test UI
         return Back1;
     }
 //</editor-fold>//GEN-END:|93-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: commandAction for Displayables ">//GEN-BEGIN:|7-commandAction|0|7-preCommandAction
+    /**
+     * Called by a system to indicated that a command has been invoked on a
+     * particular displayable.
+     *
+     * @param command the Command that was invoked
+     * @param displayable the Displayable where the command was invoked
+     */
+    public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
+        // write pre-action user code here
+        if (displayable == Verification) {//GEN-BEGIN:|7-commandAction|1|139-preAction
+            if (command == Find) {//GEN-END:|7-commandAction|1|139-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|2|139-postAction
+                // write post-action user code here
+            } else if (command == backCommandV) {//GEN-LINE:|7-commandAction|3|135-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|4|135-postAction
+                // write post-action user code here
+            } else if (command == verifyCommand) {//GEN-LINE:|7-commandAction|5|138-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|6|138-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|7|123-preAction
+        } else if (displayable == choosefriend1) {
+            if (command == Find) {//GEN-END:|7-commandAction|7|123-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|8|123-postAction
+                // write post-action user code here
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|9|117-preAction
+                // write pre-action user code here
+                choosefriend1Action();//GEN-LINE:|7-commandAction|10|117-postAction
+                // write post-action user code here
+            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|11|122-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|12|122-postAction
+                // write post-action user code here
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|13|120-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|14|120-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|15|81-preAction
+        } else if (displayable == connectAccount) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|15|81-preAction
+                // write pre-action user code here
+                connectAccountAction();//GEN-LINE:|7-commandAction|16|81-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|17|106-preAction
+        } else if (displayable == findFriend) {
+            if (command == Add1) {//GEN-END:|7-commandAction|17|106-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|18|106-postAction
+                // write post-action user code here
+            } else if (command == Back1) {//GEN-LINE:|7-commandAction|19|94-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|20|94-postAction
+                // write post-action user code here
+            } else if (command == Find) {//GEN-LINE:|7-commandAction|21|96-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|22|96-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|23|128-preAction
+        } else if (displayable == likeddisliked) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|23|128-preAction
+                // write pre-action user code here
+                likeddislikedAction();//GEN-LINE:|7-commandAction|24|128-postAction
+                // write post-action user code here
+            } else if (command == backCommandV) {//GEN-LINE:|7-commandAction|25|130-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|26|130-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|27|115-preAction
+        } else if (displayable == recommend) {
+            if (command == backCommand3) {//GEN-END:|7-commandAction|27|115-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|28|115-postAction
+                // write post-action user code here
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|29|124-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|30|124-postAction
+                // write post-action user code here
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|31|113-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|32|113-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|33|7-postCommandAction
+        }//GEN-END:|7-commandAction|33|7-postCommandAction
+        // write post-action user code here
+    }//GEN-BEGIN:|7-commandAction|34|
+//</editor-fold>//GEN-END:|7-commandAction|34|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Find ">//GEN-BEGIN:|95-getter|0|95-preInit
+    /**
+     * Returns an initialized instance of Find component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getFind() {
+        if (Find == null) {//GEN-END:|95-getter|0|95-preInit
+            // write pre-init user code here
+            Find = new Command("findfriend", Command.OK, 0);//GEN-LINE:|95-getter|1|95-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|95-getter|2|
+        return Find;
+    }
+//</editor-fold>//GEN-END:|95-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend ">//GEN-BEGIN:|111-getter|0|111-preInit
+    /**
+     * Returns an initialized instance of choosefriend component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getChoosefriend() {
+        if (choosefriend == null) {//GEN-END:|111-getter|0|111-preInit
+            // write pre-init user code here
+            choosefriend = new Command("choosefriend", Command.SCREEN, 0);//GEN-LINE:|111-getter|1|111-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|111-getter|2|
+        return choosefriend;
+    }
+//</editor-fold>//GEN-END:|111-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add1 ">//GEN-BEGIN:|105-getter|0|105-preInit
+    /**
+     * Returns an initialized instance of Add1 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getAdd1() {
+        if (Add1 == null) {//GEN-END:|105-getter|0|105-preInit
+            // write pre-init user code here
+            Add1 = new Command("Ok", Command.OK, 0);//GEN-LINE:|105-getter|1|105-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|105-getter|2|
+        return Add1;
+    }
+//</editor-fold>//GEN-END:|105-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand2 ">//GEN-BEGIN:|119-getter|0|119-preInit
+    /**
+     * Returns an initialized instance of okCommand2 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getOkCommand2() {
+        if (okCommand2 == null) {//GEN-END:|119-getter|0|119-preInit
+            // write pre-init user code here
+            okCommand2 = new Command("ok", Command.OK, 0);//GEN-LINE:|119-getter|1|119-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|119-getter|2|
+        return okCommand2;
+    }
+//</editor-fold>//GEN-END:|119-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand3 ">//GEN-BEGIN:|114-getter|0|114-preInit
+    /**
+     * Returns an initialized instance of backCommand3 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBackCommand3() {
+        if (backCommand3 == null) {//GEN-END:|114-getter|0|114-preInit
+            // write pre-init user code here
+            backCommand3 = new Command("Back", Command.BACK, 0);//GEN-LINE:|114-getter|1|114-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|114-getter|2|
+        return backCommand3;
+    }
+//</editor-fold>//GEN-END:|114-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand4 ">//GEN-BEGIN:|121-getter|0|121-preInit
+    /**
+     * Returns an initialized instance of backCommand4 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBackCommand4() {
+        if (backCommand4 == null) {//GEN-END:|121-getter|0|121-preInit
+            // write pre-init user code here
+            backCommand4 = new Command("Back", Command.BACK, 0);//GEN-LINE:|121-getter|1|121-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|121-getter|2|
+        return backCommand4;
+    }
+//</editor-fold>//GEN-END:|121-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Found ">//GEN-BEGIN:|100-getter|0|100-preInit
+    /**
+     * Returns an initialized instance of Found component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getFound() {
+        if (Found == null) {//GEN-END:|100-getter|0|100-preInit
+            // write pre-init user code here
+            Found = new Alert("alert", "Friend Found\n", null, AlertType.CONFIRMATION);//GEN-BEGIN:|100-getter|1|100-postInit
+            Found.setTimeout(Alert.FOREVER);//GEN-END:|100-getter|1|100-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|100-getter|2|
+        return Found;
+    }
+//</editor-fold>//GEN-END:|100-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: NotFound ">//GEN-BEGIN:|101-getter|0|101-preInit
+    /**
+     * Returns an initialized instance of NotFound component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getNotFound() {
+        if (NotFound == null) {//GEN-END:|101-getter|0|101-preInit
+            // write pre-init user code here
+            NotFound = new Alert("alert1", "Check User Name/Email", null, AlertType.ERROR);//GEN-BEGIN:|101-getter|1|101-postInit
+            NotFound.setTimeout(Alert.FOREVER);//GEN-END:|101-getter|1|101-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|101-getter|2|
+        return NotFound;
+    }
+//</editor-fold>//GEN-END:|101-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Saved ">//GEN-BEGIN:|98-getter|0|98-preInit
+    /**
+     * Returns an initialized instance of Saved component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getSaved() {
+        if (Saved == null) {//GEN-END:|98-getter|0|98-preInit
+            // write pre-init user code here
+            Saved = new Alert("alert", "Your Info was saved ", null, AlertType.CONFIRMATION);//GEN-BEGIN:|98-getter|1|98-postInit
+            Saved.setTimeout(Alert.FOREVER);//GEN-END:|98-getter|1|98-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|98-getter|2|
+        return Saved;
+    }
+//</editor-fold>//GEN-END:|98-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Error ">//GEN-BEGIN:|99-getter|0|99-preInit
+    /**
+     * Returns an initialized instance of Error component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getError() {
+        if (Error == null) {//GEN-END:|99-getter|0|99-preInit
+            // write pre-init user code here
+            Error = new Alert("alert1", "Error while saving Info ", null, AlertType.ERROR);//GEN-BEGIN:|99-getter|1|99-postInit
+            Error.setTimeout(Alert.FOREVER);//GEN-END:|99-getter|1|99-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|99-getter|2|
+        return Error;
+    }
+//</editor-fold>//GEN-END:|99-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend ">//GEN-BEGIN:|108-getter|0|108-preInit
+    /**
+     * Returns an initialized instance of recommend component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getRecommend() {
+        if (recommend == null) {//GEN-END:|108-getter|0|108-preInit
+            // write pre-init user code here
+            recommend = new Form("form1", new Item[]{getTextField2(), getTextField3()});//GEN-BEGIN:|108-getter|1|108-postInit
+            recommend.addCommand(getOkCommand());
+            recommend.addCommand(getBackCommand3());
+            recommend.addCommand(getChoosefriend());
+            recommend.setCommandListener(this);//GEN-END:|108-getter|1|108-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|108-getter|2|
+        return recommend;
+    }
+//</editor-fold>//GEN-END:|108-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|110-getter|0|110-preInit
+    /**
+     * Returns an initialized instance of textField3 component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getTextField3() {
+        if (textField3 == null) {//GEN-END:|110-getter|0|110-preInit
+            // write pre-init user code here
+            textField3 = new TextField("message", null, 32, TextField.ANY);//GEN-LINE:|110-getter|1|110-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|110-getter|2|
+        return textField3;
+    }
+//</editor-fold>//GEN-END:|110-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|109-getter|0|109-preInit
+    /**
+     * Returns an initialized instance of textField2 component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getTextField2() {
+        if (textField2 == null) {//GEN-END:|109-getter|0|109-preInit
+            // write pre-init user code here
+            textField2 = new TextField("Email", null, 32, TextField.ANY);//GEN-LINE:|109-getter|1|109-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|109-getter|2|
+        return textField2;
+    }
+//</editor-fold>//GEN-END:|109-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ComingSoon ">//GEN-BEGIN:|107-getter|0|107-preInit
+    /**
+     * Returns an initialized instance of ComingSoon component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getComingSoon() {
+        if (ComingSoon == null) {//GEN-END:|107-getter|0|107-preInit
+            // write pre-init user code here
+            ComingSoon = new Alert("Coming Soon", "This network is coming soon", null, null);//GEN-BEGIN:|107-getter|1|107-postInit
+            ComingSoon.setTimeout(Alert.FOREVER);//GEN-END:|107-getter|1|107-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|107-getter|2|
+        return ComingSoon;
+    }
+//</editor-fold>//GEN-END:|107-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: EnterUserNameEmail ">//GEN-BEGIN:|104-getter|0|104-preInit
+    /**
+     * Returns an initialized instance of EnterUserNameEmail component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getEnterUserNameEmail() {
+        if (EnterUserNameEmail == null) {//GEN-END:|104-getter|0|104-preInit
+            // write pre-init user code here
+            EnterUserNameEmail = new Alert("alert", "Enter A User Name/EMail", null, AlertType.ERROR);//GEN-BEGIN:|104-getter|1|104-postInit
+            EnterUserNameEmail.setTimeout(Alert.FOREVER);//GEN-END:|104-getter|1|104-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|104-getter|2|
+        return EnterUserNameEmail;
+    }
+//</editor-fold>//GEN-END:|104-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
+    /**
+     * Returns an initialized instance of choosefriend1 component.
+     *
+     * @return the initialized component instance
+     */
+    public List getChoosefriend1() {
+        if (choosefriend1 == null) {//GEN-END:|116-getter|0|116-preInit
+            // write pre-init user code here
+            choosefriend1 = new List("choosefriend", Choice.IMPLICIT);//GEN-BEGIN:|116-getter|1|116-postInit
+            choosefriend1.addCommand(getOkCommand2());
+            choosefriend1.addCommand(getBackCommand4());
+            choosefriend1.addCommand(getFind());
+            choosefriend1.setCommandListener(this);//GEN-END:|116-getter|1|116-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|116-getter|2|
+        return choosefriend1;
+    }
+//</editor-fold>//GEN-END:|116-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: choosefriend1Action ">//GEN-BEGIN:|116-action|0|116-preAction
+    /**
+     * Performs an action assigned to the selected list element in the
+     * choosefriend1 component.
+     */
+    public void choosefriend1Action() {//GEN-END:|116-action|0|116-preAction
+        // enter pre-action user code here
+        String __selectedString = getChoosefriend1().getString(getChoosefriend1().getSelectedIndex());//GEN-LINE:|116-action|1|116-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|116-action|2|
+//</editor-fold>//GEN-END:|116-action|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: likeddisliked ">//GEN-BEGIN:|127-getter|0|127-preInit
+    /**
+     * Returns an initialized instance of likeddisliked component.
+     *
+     * @return the initialized component instance
+     */
+    public List getLikeddisliked() {
+        if (likeddisliked == null) {//GEN-END:|127-getter|0|127-preInit
+            // write pre-init user code here
+            likeddisliked = new List("liked/disliked", Choice.IMPLICIT);//GEN-BEGIN:|127-getter|1|127-postInit
+            likeddisliked.addCommand(getBackCommandV());
+            likeddisliked.setCommandListener(this);//GEN-END:|127-getter|1|127-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|127-getter|2|
+        return likeddisliked;
+    }
+//</editor-fold>//GEN-END:|127-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: likeddislikedAction ">//GEN-BEGIN:|127-action|0|127-preAction
+    /**
+     * Performs an action assigned to the selected list element in the
+     * likeddisliked component.
+     */
+    public void likeddislikedAction() {//GEN-END:|127-action|0|127-preAction
+        // enter pre-action user code here
+        String __selectedString = getLikeddisliked().getString(getLikeddisliked().getSelectedIndex());//GEN-LINE:|127-action|1|127-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|127-action|2|
+//</editor-fold>//GEN-END:|127-action|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: storynotpublished ">//GEN-BEGIN:|126-getter|0|126-preInit
+    /**
+     * Returns an initialized instance of storynotpublished component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getStorynotpublished() {
+        if (storynotpublished == null) {//GEN-END:|126-getter|0|126-preInit
+            // write pre-init user code here
+            storynotpublished = new Alert("", "story hasn\'t published , please try again later", null, AlertType.ALARM);//GEN-BEGIN:|126-getter|1|126-postInit
+            storynotpublished.setTimeout(Alert.FOREVER);//GEN-END:|126-getter|1|126-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|126-getter|2|
+        return storynotpublished;
+    }
+//</editor-fold>//GEN-END:|126-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: storeypublished ">//GEN-BEGIN:|125-getter|0|125-preInit
+    /**
+     * Returns an initialized instance of storeypublished component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getStoreypublished() {
+        if (storeypublished == null) {//GEN-END:|125-getter|0|125-preInit
+            // write pre-init user code here
+            storeypublished = new Alert("", "story published successfully", null, AlertType.CONFIRMATION);//GEN-BEGIN:|125-getter|1|125-postInit
+            storeypublished.setTimeout(Alert.FOREVER);//GEN-END:|125-getter|1|125-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|125-getter|2|
+        return storeypublished;
+    }
+//</editor-fold>//GEN-END:|125-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verification ">//GEN-BEGIN:|131-getter|0|131-preInit
+    /**
+     * Returns an initialized instance of Verification component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getVerification() {
+        if (Verification == null) {//GEN-END:|131-getter|0|131-preInit
+            // write pre-init user code here
+            Verification = new Form("form1", new Item[]{getVTF(), getStringItem1()});//GEN-BEGIN:|131-getter|1|131-postInit
+            Verification.addCommand(getBackCommandV());
+            Verification.addCommand(getVerifyCommand());
+            Verification.addCommand(getFind());
+            Verification.setCommandListener(this);//GEN-END:|131-getter|1|131-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|131-getter|2|
+        return Verification;
+    }
+//</editor-fold>//GEN-END:|131-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: vTF ">//GEN-BEGIN:|133-getter|0|133-preInit
+    /**
+     * Returns an initialized instance of vTF component.
+     *
+     * @return the initialized component instance
+     */
+    public TextField getVTF() {
+        if (vTF == null) {//GEN-END:|133-getter|0|133-preInit
+            // write pre-init user code here
+            vTF = new TextField("Enter Verification Code:", "", 4, TextField.ANY);//GEN-LINE:|133-getter|1|133-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|133-getter|2|
+        return vTF;
+    }
+//</editor-fold>//GEN-END:|133-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem1 ">//GEN-BEGIN:|134-getter|0|134-preInit
+    /**
+     * Returns an initialized instance of stringItem1 component.
+     *
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem1() {
+        if (stringItem1 == null) {//GEN-END:|134-getter|0|134-preInit
+            // write pre-init user code here
+            stringItem1 = new StringItem("", "Press the \'Resend\' button to resend the verification code to your registered   e-mail adrress.", Item.PLAIN);//GEN-LINE:|134-getter|1|134-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|134-getter|2|
+        return stringItem1;
+    }
+//</editor-fold>//GEN-END:|134-getter|2|
 
 
 
