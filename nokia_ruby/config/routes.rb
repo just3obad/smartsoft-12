@@ -21,8 +21,8 @@ NokiaRuby::Application.routes.draw do
   match "friends/:id/accept" => "friends#update"
   match "friends/:id/reject" => "friends#delete"
   match "users/:id/requests" => "user#friend_requests"
-  match "gaheem_accounts/:id/verify" => "verification_codes#verify"
-  match "gaheem_accounts/:id/resend" => "verification_codes#resend"
+  match "h_accounts/:id/verify" => "verification_codes#verify"
+  match "h_accounts/:id/resend" => "verification_codes#resend"
 
 
   match "/users/:id" => "users#feed"
