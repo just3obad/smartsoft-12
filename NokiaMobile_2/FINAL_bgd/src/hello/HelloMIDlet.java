@@ -111,6 +111,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private TextField vTF;
     private StringItem vSI;
     private Form FriendsStories;
+    private List list;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
     private OutputStream os;
@@ -457,13 +458,19 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|50|130-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|51|53-preAction
-        } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|51|53-preAction
+            }//GEN-BEGIN:|7-commandAction|51|182-preAction
+        } else if (displayable == list) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|51|182-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|52|53-postAction
+                listAction();//GEN-LINE:|7-commandAction|52|182-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|53|49-preAction
+            }//GEN-BEGIN:|7-commandAction|53|53-preAction
+        } else if (displayable == profile) {
+            if (command == back) {//GEN-END:|7-commandAction|53|53-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|54|53-postAction
+                // write post-action user code here
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|55|49-preAction
                 // write pre-action user code here
                //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}"
                String s ="";
@@ -510,37 +517,37 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
                        }
                    }
                }
-//GEN-LINE:|7-commandAction|54|49-postAction
+//GEN-LINE:|7-commandAction|56|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|55|115-preAction
+            }//GEN-BEGIN:|7-commandAction|57|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|55|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|57|115-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|56|115-postAction
+//GEN-LINE:|7-commandAction|58|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|57|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|59|124-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|58|124-postAction
+//GEN-LINE:|7-commandAction|60|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|59|113-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|61|113-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|60|113-postAction
+//GEN-LINE:|7-commandAction|62|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|61|35-preAction
+            }//GEN-BEGIN:|7-commandAction|63|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|61|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|63|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|62|35-postAction
+//GEN-LINE:|7-commandAction|64|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|63|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|65|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|64|33-postAction
+//GEN-LINE:|7-commandAction|66|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|65|7-postCommandAction
-        }//GEN-END:|7-commandAction|65|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|67|7-postCommandAction
+        }//GEN-END:|7-commandAction|67|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|66|35-postAction
-//</editor-fold>//GEN-END:|7-commandAction|66|35-postAction
+    }//GEN-BEGIN:|7-commandAction|68|
+//</editor-fold>//GEN-END:|7-commandAction|68|
 
 
 
@@ -2101,6 +2108,35 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
         return FriendsStories;
     }
 //</editor-fold>//GEN-END:|180-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: list ">//GEN-BEGIN:|181-getter|0|181-preInit
+    /**
+     * Returns an initialized instance of list component.
+     *
+     * @return the initialized component instance
+     */
+    public List getList() {
+        if (list == null) {//GEN-END:|181-getter|0|181-preInit
+            // write pre-init user code here
+            list = new List("list", Choice.IMPLICIT);//GEN-BEGIN:|181-getter|1|181-postInit
+            list.setCommandListener(this);//GEN-END:|181-getter|1|181-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|181-getter|2|
+        return list;
+    }
+//</editor-fold>//GEN-END:|181-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: listAction ">//GEN-BEGIN:|181-action|0|181-preAction
+    /**
+     * Performs an action assigned to the selected list element in the list
+     * component.
+     */
+    public void listAction() {//GEN-END:|181-action|0|181-preAction
+        // enter pre-action user code here
+        String __selectedString = getList().getString(getList().getSelectedIndex());//GEN-LINE:|181-action|1|181-postAction
+        // enter post-action user code here
+    }//GEN-BEGIN:|181-action|2|
+//</editor-fold>//GEN-END:|181-action|2|
 
 
 
