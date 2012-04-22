@@ -123,10 +123,10 @@ end
 def friends(user_id)
    id_list = Array.new()
    @friends = Array.new()
-   count = Friends.where(:stat=>0, :receiver => user_id ).select("sender").count
+   count = Friends.where(:stat=>1, :receiver => user_id ).select("sender").count
    puts id_list[count]
    puts friend[count]
-   id_list=Friends.where(:stat=>0, :receiver => user_id ).select("sender")
+   id_list=Friends.where(:stat=>1, :receiver => user_id ).select("sender")
    0.upto(id_list.length) do |i|
      friends[i]=User.where(:id=id_list[i]).select("name")
    end
