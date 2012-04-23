@@ -1,7 +1,22 @@
 module UsersHelper
   #This method when called will return the difference between today and the day the user registered in our app in days.
  def get_user_start_date(user_id)
+ user_reg_date = Story.find(user_id).created_at_before_type_cast.to_date
+last_updated = Story.find(user_id).updated_at_before_type_cast.to_date
+deactivated = User.find(user_id).deactivated_before_type_cast
+if deactivated && user_reg_date > 30.days.ago.to_date && last_updated > 30.days.ago.to_date
+  date = Time.zone.now.to_date - user_reg_date
+elsif deactivated && user_reg_date <= 30.days.ago.to_date && last_updated > 30.days.ago.to_date
+  date = Time.zone.now.to_date - 30.days.ago.to_date
+elsif deactivated && user_reg_date <= 30.days.ago.to_date && last_updated <= 30.days.ago.to_date
+  date = -1
+elsif user_reg_date <= 30.days.ago.to_date
+  date = Time.zone.now.to_date - 30.days.ago.to_date
+else
+  date = Time.zone.now.to_date - user_reg_date
+end
  end
+ 
  #This method to get the number of users who registered per day
  def get_num_registered_day
  first_user_create_date = User.first.created_at_before_type_cast.to_date #to get the creation date of the first user
@@ -65,8 +80,7 @@ module UsersHelper
 
   user_reg_date = User.find(user_id).created_at_before_type_cast.to_date
   last_updated = User.find(user_id).updated_at_before_type_cast.to_date
-  deactivated = false
-  #deactivated = User.find(user_id).deactivated_before_type_cast     remove the hash when deactivated is defined in the database
+  deactivated = User.find(user_id).deactivated_before_type_cast
   #1) If the user registered and was deactivated within the last 30 days
     if deactivated && user_reg_date > 30.days.ago.to_date
       shares_by_day = Share.where(:user_id => user_id, :created_at => user_reg_date..last_updated).group("date(created_at)").select("created_at, count(user_id) as noOfSharesPerDay")
@@ -106,8 +120,7 @@ module UsersHelper
 
 user_reg_date = User.find(user_id).created_at_before_type_cast.to_date
 last_updated = User.find(user_id).updated_at_before_type_cast.to_date
-deactivated = false
-  #deactivated = User.find(user_id).deactivated_before_type_cast     remove the hash when deactivated is defined in the database
+deactivated = User.find(user_id).deactivated_before_type_cast
 #1) If the user registered and was deactivated within the last 30 days
   if deactivated && user_reg_date > 30.days.ago.to_date && last_updated > 30.days.ago.to_date
     likes_by_day = Likedislike.where(:created_at => user_reg_date..last_updated, :user_id => user_id, :action => 1).group("date(created_at)").select("created_at, count(user_id) as noOfLikesPerDay")
@@ -147,8 +160,7 @@ end
 
 user_reg_date = User.find(user_id).created_at_before_type_cast.to_date
 last_updated = User.find(user_id).updated_at_before_type_cast.to_date
-deactivated = false
-  #deactivated = User.find(user_id).deactivated_before_type_cast     remove the hash when deactivated is defined in the database
+deactivated = User.find(user_id).deactivated_before_type_cast     
 #1) If the user registered and was deactivated within the last 30 days
   if deactivated && user_reg_date > 30.days.ago.to_date && last_updated > 30.days.ago.to_date
     dislikes_by_day = Likedislike.where(:created_at => user_reg_date..last_updated, :user_id => user_id, :action => -1).group("date(created_at)").select("created_at, count(user_id) as noOfDislikesPerDay")
@@ -188,8 +200,7 @@ end
 
 user_reg_date = User.find(user_id).created_at_before_type_cast.to_date
 last_updated = User.find(user_id).updated_at_before_type_cast.to_date
-deactivated = false
-  #deactivated = User.find(user_id).deactivated_before_type_cast     remove the hash when deactivated is defined in the database
+deactivated = User.find(user_id).deactivated_before_type_cast
 #1) If the user registered and was deactivated within the last 30 days
   if deactivated && user_reg_date > 30.days.ago.to_date && last_updated > 30.days.ago.to_date
     comments_by_day = Comment.where(:created_at => user_reg_date..last_updated, :user_id => user_id).group("date(created_at)").select("created_at, count(user_id) as noOfCommentsPerDay")
