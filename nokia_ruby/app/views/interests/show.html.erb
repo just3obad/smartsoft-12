@@ -1,39 +1,45 @@
 <html>
-<head>
-<style>
+<body class="container">
 
-h2 {font-size:20px;color:#06276F}
-h3 {font-size:20px;color:#06276F}
-p1 {font-size:18px;}
-p2 {font-size:14px;}
-p3 {font-size:14px;}
-</style>
-</head>
-<body>
+        <style>
+        
+           
+           header img   {padding: 1em;
+  background: grey;}
+        </style>
 
+<header >
 
-      <h1>
-          <font size="35" face="arial" color=#06276F>
-        <br/><%= @interest.name %><br/><br/>
-             <%= image_tag(@interest.image, :alt => "default pic", :class => "round") %>
+      <h3>
+          <font size="35" face="arial" color=#025167>
+          Interests :  <br/><br/>
+        <%= @interest.name %><br/><br/>
+
            </font>
          
-      </h1>
+      </h3>
 
-      <h2>
+<h1>
+             <%= image_tag(@interest.image, :alt => "default pic", :class => "round") %></br></br>
+</h1>
+</header>
 
+      <h3>
+         <font  size="5"face="arial" color=#025167>
        Description:
-         
-      </h2>
+             </font>
+      </h3>
 
-      <p1>
-
+      <p>
+                 <font  size = "3" face="arial" >
          <%= @interest.description %><br /><br />
-         
-      </p1>
+             </font>
+      </p>
 
 <h3>
-RSS Feeds :
+ <font  face="arial" color=#025167>
+RSS Feeds : </br>
+    </font>
 </h3>
 
  
@@ -41,25 +47,29 @@ RSS Feeds :
 
 <% unless @interest.feeds.empty? %>
      
-     <%= render @interest.feeds %>
+     <%= render @interest.feeds %></br></br>
 
        
 <% end %>
 
-
-<%= link_to "Add RSS Feed ", {:controller => 'feeds', :action =>'new', :id => @interest.id ,  :class => "statistics_button round"} ,  %><br /><br />
-       
+<strong>Number Of Feeds : </strong> <%= @interest.feeds.count %></br></br></br>
+<%= link_to "Add RSS Feed ", {:controller => 'feeds', :action =>'new', :id => @interest.id },  :class => "btn btn-large btn-success"  %><br /><br />
+    
          
     
-<strong>Number Of Feeds : </strong> <%= @interest.feeds.count %></br>
- <strong>Interest's URL : </strong> <%= link_to interest_path(@interest), @interest %><br />
-       <strong> </strong> <%= link_to "Show Statistics", '#', :class => "statistics_button round" %><br />
-       <strong> </strong> <%= link_to "Edit Interest", '#', :class => "edit_button round" %><br />
-       <strong> </strong> <%= link_to "Delete Interest", '#', :class => "delete_button round" %></br>
-       <strong> </strong> <%= link_to "View Stories", '#', :class => "stories_button round" %>
 
 
 
+
+       <strong> </strong> <%= link_to "Show Statistics", '#', :class => "btn  btn-inverse" %>
+       <strong> </strong> <%= link_to "Edit Interest", '#', :class => "btn  btn-inverse" %>
+
+       <strong> </strong> <%= link_to "Delete Interest", '#', :class => "btn  btn-inverse" %>
+
+       <strong> </strong> <%= link_to "View Stories", '#', :class => "btn  btn-inverse " %><br /><br /><br />
+
+
+ <strong> Interest's URL : </strong> <%= link_to interest_path(@interest), @interest %><br /> 
 
 </body>
 </html>
