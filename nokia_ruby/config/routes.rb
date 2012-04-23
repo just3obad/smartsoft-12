@@ -24,6 +24,7 @@ NokiaRuby::Application.routes.draw do
   match "h_accounts/:id/verify" => "verification_codes#verify"
   match "h_accounts" => "h_accounts#index"
   match "/users/:id" => "users#feed"
+  match "admins?search=:id" => "admins#search"
   match "/users/new" => "users#create"
   match '/add',  :to => 'interests#new'
   
