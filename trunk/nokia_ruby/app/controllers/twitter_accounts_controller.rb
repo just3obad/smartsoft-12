@@ -12,4 +12,15 @@ class TwitterAccountsController < ApplicationController
     end 
     render text: "You twitter account was deleted"
   end 
+
+  def exists?
+    t_accounts = TwitterAccount.find_by_user_id(params[:u_id])
+    puts '###########' + t_accounts.class.to_s
+    if t_accounts
+      render text: 'true'
+    else
+      render text: 'false'
+    end 
+  end 
+
 end
