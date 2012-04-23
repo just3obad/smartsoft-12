@@ -75,16 +75,16 @@ class UsersController < ApplicationController
   #this method takes a story as input and blocks it by setting the is_blocked attribute to true.
 
   
-  def block_story
-   @story = Story.find(params[:id])
+  def block_story(story_id)
+   @story = Story.find(story_id)
     @story.is_blocked = true
   end
 
   #this method takes list of stories belonging to a friend as input and blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend.
 
   def block_friend_feed
-    @friends = User.find(:first,:conditions => ["id = ?",params[:id]],:select => "friends")
-    #@friend_stories = getFriendsStories(@friends)
+    @id = params[:id]
+    #@friend_stories = getFriendsStories()
     0.upto(@friend_stories.length) do |i|
        @friend_stories[i].is_blocked = true
     end
@@ -93,10 +93,9 @@ class UsersController < ApplicationController
 #this method gets the stories of a friend through method getFriendsStories and converts them to a json file.
 
 def friends_feed
- @friends = User.find(:first,:conditions => ["id = ?",params[:id]],:select => "friends")
-#@friend_stories = getFriendsStories(@friends)
-respond_to do |format|
-       format.json { render json: @friend_stories }
+ @user = User.find(params[:id])
+#@friend_stories = getFriendsStories()
+  respond_with(@friend_stories)
 end
 end
 
@@ -136,9 +135,6 @@ def friends(user_id)
  respond_to do |format|
       format.json { render json: @friends }
 end  
-  
-
-end
 end
 end
 end
