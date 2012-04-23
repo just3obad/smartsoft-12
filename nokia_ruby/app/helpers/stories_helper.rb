@@ -243,7 +243,7 @@ elsif
 #if the story exists in the database it will enter the array without modifications
 #listOfStories[i] = 
 
-sid = Story.where(:title => stitle).select("story_id")
+sid = Story.where(:title => stitle).select("story_id").first
 listOfStories[i] = Story.find(sid)
 end
 i+=1
