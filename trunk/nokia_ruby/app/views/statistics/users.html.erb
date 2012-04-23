@@ -14,6 +14,9 @@
       //the time interval between one point and another in the graph.
       pointInterval= <%= 1.day * 1000 %> 
       // Start point of the graph.
+       x = <%= get_story_start_date(@id).to_i %>;
+        if(x != -1) {
+        x=x+1;
       pointStart= <%= get_user_start_date(@id).days.ago.to_i * 1000 %>
       //Label for x-axis 
       xl="Day"; 
@@ -22,8 +25,19 @@
       //Label for graph title
       titleOfGraph="User Stat";
       //call the method that renders the graph with the calculated parameters.
-      Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);  
+       document.getElementById("deletedStory").style.display= "none"; 
+      Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);
+      } else {
+         document.getElementById("deletedStory").style.display = "block";
+      document.getElementById("ccc").style.display = "none";
+      }  
    });
 </script>
 <!-- ccc is the id of the div that the graph would render to -->
 <div id="ccc" style="width: 700px; height: 500px;"></div>
+
+<div class="alert" id="deletedStory" style="display: none;">
+  
+           <a class="close" data-dismiss="alert">×</a>
+           <h1><strong>Warning!</strong> Story was deleted before the last 30 days.</h1>
+     </div>
