@@ -20,12 +20,13 @@ import org.json.me.*;
 
 public class HelloMIDlet extends MIDlet implements CommandListener{
     String url;
-   
+    int currentStoryID;
     int countInsertion = 0;
     private boolean midletPaused = false;
      Displayable displayable;
     String json;
     int user_id; // The user id of logged in 
+    String currentStoryString;
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
@@ -77,10 +78,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command FilterFriends;
     private Command okCommand8;
     private Command Filter;
+    private Command BackToAccounts;
+    private Command ReplaceTwitterAccount;
     private Command backCommand2;
     private Command BackToAccounts1;
-    private Command ReplaceTwitterAccount;
-    private Command BackToAccounts;
     private Command Resend1;
     private Command backCommand10;
     private Form form;
@@ -144,10 +145,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private List list1;
     private List FriendList;
     private List AuthTwitter;
-    private Form EmailSent;
-    private StringItem stringItem1;
     private Form AlreadyHaveTwitter;
     private StringItem stringItem2;
+    private Form EmailSent;
+    private StringItem stringItem1;
     private Form AuthSuccessful;
     private StringItem stringItem3;
     private Form TwitterAuthFailed;
@@ -178,6 +179,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     }
     
     public void jsonReadMoree() {
+        //currentStoryString
         String url = "id: 1 title:\"FaceBook \" body To launch the high quality TV channel TNT in Belgium we placed a big red push button on an average Flemish square of an average Flemish town. A sign with the...http://www.3run.co.uk/ - Home of the 3RUN Famly World Wide http://www.3runshop.com/ - Free Running Trainers, Clothing, DVD's, Bags, Accessories. 3RUN  : rank 5 image : /x.png category : arts";
         String s = url;
         
@@ -414,7 +416,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
        */
       public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-//GEN-LINE:|3-startMIDlet|1|3-postAction
+          switchDisplayable(null, getMainFeed());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
       }//GEN-BEGIN:|3-startMIDlet|2|
       //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -963,50 +965,50 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
       }
       //</editor-fold>//GEN-END:|27-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
-    /**
-     * Returns an initiliazed instance of Comment1 component.
-     * @return the initialized component instance
-     */
-    public Command getComment1() {
-        if (Comment1 == null) {//GEN-END:|28-getter|0|28-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
+      /**
+       * Returns an initiliazed instance of Comment1 component.
+       * @return the initialized component instance
+       */
+      public Command getComment1() {
+          if (Comment1 == null) {//GEN-END:|28-getter|0|28-preInit
             // write pre-init user code here
-            Comment1 = new Command("Comments", Command.OK, 0);//GEN-LINE:|28-getter|1|28-postInit
+              Comment1 = new Command("Comments", Command.OK, 0);//GEN-LINE:|28-getter|1|28-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|28-getter|2|
-        return Comment1;
-    }
-    //</editor-fold>//GEN-END:|28-getter|2|
+          }//GEN-BEGIN:|28-getter|2|
+          return Comment1;
+      }
+      //</editor-fold>//GEN-END:|28-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
-    /**
-     * Returns an initiliazed instance of backCommand component.
-     * @return the initialized component instance
-     */
-    public Command getBackCommand() {
-        if (backCommand == null) {//GEN-END:|30-getter|0|30-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
+      /**
+       * Returns an initiliazed instance of backCommand component.
+       * @return the initialized component instance
+       */
+      public Command getBackCommand() {
+          if (backCommand == null) {//GEN-END:|30-getter|0|30-preInit
             // write pre-init user code here
-            backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|30-getter|1|30-postInit
+              backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|30-getter|1|30-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|30-getter|2|
-        return backCommand;
-    }
-    //</editor-fold>//GEN-END:|30-getter|2|
+          }//GEN-BEGIN:|30-getter|2|
+          return backCommand;
+      }
+      //</editor-fold>//GEN-END:|30-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
-    /**
-     * Returns an initiliazed instance of okCommand component.
-     * @return the initialized component instance
-     */
-    public Command getOkCommand() {
-        if (okCommand == null) {//GEN-END:|32-getter|0|32-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
+      /**
+       * Returns an initiliazed instance of okCommand component.
+       * @return the initialized component instance
+       */
+      public Command getOkCommand() {
+          if (okCommand == null) {//GEN-END:|32-getter|0|32-preInit
             // write pre-init user code here
-            okCommand = new Command("send", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
+              okCommand = new Command("send", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|32-getter|2|
-        return okCommand;
-    }
-    //</editor-fold>//GEN-END:|32-getter|2|
+          }//GEN-BEGIN:|32-getter|2|
+          return okCommand;
+      }
+      //</editor-fold>//GEN-END:|32-getter|2|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
     /**
