@@ -28,6 +28,41 @@ class StoriesController < ApplicationController
       end
     end
   end
+  # action for thumbing up a comment with params passed in POST HTTP request
+  def up_comment
+    @liked = Upped.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
+    @disliked = Downed.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
+    if @liked.nil? && @disliked.nil? then #if user never liked or disliked comment then like it
+      Upped.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id]) 
+      return true
+    else if !@disliked.nil? then #if user disliked it, now make him like it! 
+      
+Downed.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id]).destroy
+      Upped.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id])
+      return true
+    # extra condition if he liked it before is not needed since nothing will be done in this case
+       return false
+    end
+  end 
+end
+
+  # action for thumbing down a comment with params passed in POST HTTP request
+  def down_comment
+    @liked = Upped.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
+    @disliked = Downed.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
+    if @liked.nil? && @disliked.nil? then #if user never liked or disliked comment then like it
+      Downed.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id]) 
+      return true
+    else if !@liked.nil?  then #if user liked it, now make him dislike it! 
+      
+Upped.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id]).destroy
+      Downed.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id])
+      return true
+    # extra condition if he liked it before is not needed since nothing will be done in this case
+       return false
+    end
+  end 
+end
 
   def index
     respond_with(@stories = Story.all)
