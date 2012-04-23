@@ -21,6 +21,13 @@ import org.json.me.*;
  */
 
 public class HelloMIDlet extends MIDlet implements CommandListener{
+    
+    // YAHIA : i added those for sake of teting
+    static String SERVER_IP = "172.20.10.4";
+    static int PORT = 3000;
+    static int USER_ID = 2;
+    // YAHIA END
+
     String url;
     int currentStoryID;
     int countInsertion = 0;
@@ -1128,7 +1135,7 @@ public void jsonReadMoree() {
     public Command getComment1() {
         if (Comment1 == null) {//GEN-END:|28-getter|0|28-preInit
             // write pre-init user code here
-            Comment1 = new Command("Comments", Command.OK, 0);//GEN-LINE:|28-getter|1|28-postInit
+              Comment1 = new Command("Comments", Command.OK, 0);//GEN-LINE:|28-getter|1|28-postInit
             // write post-init user code here
         }//GEN-BEGIN:|28-getter|2|
         return Comment1;
@@ -1144,7 +1151,7 @@ public void jsonReadMoree() {
     public Command getBackCommand() {
         if (backCommand == null) {//GEN-END:|30-getter|0|30-preInit
             // write pre-init user code here
-            backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|30-getter|1|30-postInit
+              backCommand = new Command("Back", Command.BACK, 0);//GEN-LINE:|30-getter|1|30-postInit
             // write post-init user code here
         }//GEN-BEGIN:|30-getter|2|
         return backCommand;
@@ -1160,12 +1167,12 @@ public void jsonReadMoree() {
     public Command getOkCommand() {
         if (okCommand == null) {//GEN-END:|32-getter|0|32-preInit
             // write pre-init user code here
-            okCommand = new Command("send", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
+              okCommand = new Command("send", Command.OK, 0);//GEN-LINE:|32-getter|1|32-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|32-getter|2|
-        return okCommand;
-    }
-//</editor-fold>//GEN-END:|32-getter|2|
+          }//GEN-BEGIN:|32-getter|2|
+          return okCommand;
+      }
+      //</editor-fold>//GEN-END:|32-getter|2|
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
     /**
@@ -3014,7 +3021,8 @@ public void jsonReadMoree() {
      */
     public void HaveTwitterAcount() {//GEN-END:|255-if|0|255-preIf
         // enter pre-if user code here
-        if (true) {//GEN-LINE:|255-if|1|256-preAction
+        boolean hasAccount = isTwitterAccountExists(SERVER_IP, PORT, USER_ID);
+        if (hasAccount) {//GEN-LINE:|255-if|1|256-preAction
             // write pre-action user code here
             switchDisplayable(null, getAlreadyHaveTwitter());//GEN-LINE:|255-if|2|256-postAction
             // write post-action user code here
@@ -3033,7 +3041,8 @@ public void jsonReadMoree() {
      */
     public void IsAuthSuccess() {//GEN-END:|259-if|0|259-preIf
         // enter pre-if user code here
-        if (true) {//GEN-LINE:|259-if|1|260-preAction
+        boolean accountCreated = createTwitterAccount(SERVER_IP, PORT, USER_ID);
+        if (accountCreated) {//GEN-LINE:|259-if|1|260-preAction
             // write pre-action user code here
             switchDisplayable(null, getAuthSuccessful());//GEN-LINE:|259-if|2|260-postAction
             // write post-action user code here
@@ -3644,13 +3653,33 @@ public void jsonReadMoree() {
     }
     }
 
-    public String getTwitterAuthURL(String serverIP, int port) {
-        HttpConnection httpConn = null;
-        String url = "http://" + serverIP + ":" + port + 
-                "/authenticate/get_twitter_url";
+public String getTwitterAuthURL(String serverIP, int port) {
+        String sendURL = "/authenticate/get_twitter_url";
+        return getHttpResponse(serverIP, port, sendURL);
+    }
+    
+    public boolean isTwitterAccountExists(String serverIP, int port, int userID){
+        String sendURL = "/twitter/" + userID + "/exists";
+        String resp = getHttpResponse(serverIP, port, sendURL);
+        return resp.equals("true");
+    }
+    
+    public boolean createTwitterAccount(String serverIP, int port, int userID){
+        String sendURL = "/authenticate/" + userID + "/new_twitter_account";
+        String resp = getHttpResponse(serverIP, port, sendURL);
+        if (resp.toLowerCase().startsWith("http"))
+            return false;
+        else
+            return true;
+    }
+    
+    public String getHttpResponse(String serverIP, int port, String url){
+        url = "http://" + serverIP + ":" + port + url;
         System.out.println(url);
         InputStream is = null;
         OutputStream os = null;
+        HttpConnection httpConn = null;
+
 
         try {
             // Open an HTTP Connection object
@@ -3707,7 +3736,8 @@ public void jsonReadMoree() {
         
         return "n/a";
     }
-     public static String getInterests() /*this method should intiate the connection between the server and the mobile client which
+    
+    public static String getInterests() /*this method should intiate the connection between the server and the mobile client which
                          should return the json file of list of stories according to the client interests.*/
     {
        

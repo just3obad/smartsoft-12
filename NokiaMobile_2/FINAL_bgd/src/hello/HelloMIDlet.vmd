@@ -38,6 +38,7 @@
                 </Component>
                 <Component componentID="255" typeID="C#IfPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VHaveTwitterAcount"/>
+                    <Property name="condition" typeID="P#javacode" value="VhasAccount"/>
                     <Property name="true" typeID="C#IfTrueEventSource" value="R256"/>
                     <Property name="false" typeID="C#IfFalseEventSource" value="R257"/>
                     <Component componentID="256" typeID="C#IfTrueEventSource">
@@ -57,6 +58,7 @@
                 </Component>
                 <Component componentID="259" typeID="C#IfPoint">
                     <Property name="methodName" typeID="Pjava.lang.String" value="VIsAuthSuccess"/>
+                    <Property name="condition" typeID="P#javacode" value="VaccountCreated"/>
                     <Property name="true" typeID="C#IfTrueEventSource" value="R260"/>
                     <Property name="false" typeID="C#IfFalseEventSource" value="R261"/>
                     <Component componentID="260" typeID="C#IfTrueEventSource">
