@@ -4,15 +4,20 @@
  */
 package hello;
 
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 import javax.microedition.lcdui.CustomItem;
-
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.ImageItem;
 import javax.microedition.lcdui.*;
 import javax.microedition.midlet.MIDlet;
-import org.json.me.*;
+import org.json.me.JSONException;
+import org.json.me.JSONObject;
+
+//import json.me.*;
 
 /**
  *
@@ -20,16 +25,17 @@ import org.json.me.*;
  */
 public class commentItem extends CustomItem {
 
-    int n, height = 50;
-    String comment_id;
-    boolean lonely;
+    int n, height = 50; // variables to be used to painting the component
+    String comment_id; // comment id
+    boolean lonely; // to check for if the comment is in a list or a form of its own "which in this case lonely == true"
     String user; //username of the comment
     String content; //content of the comment
     String ups, downs; //number of thumbs up and down
+    String date; //date and time in "dd-MM-yy hh:mm" format which the comment was created
     HelloMIDlet MIDlet; //MIDlet to which the custom item belongs to
 
     
-    public commentItem(String id,String us,String cont,String up,String down,boolean lon){
+    public commentItem(String id,String us,String cont,String up,String down,String dateCreated,boolean lon){
         super(null);
         comment_id = id;
         user = us;
@@ -37,13 +43,41 @@ public class commentItem extends CustomItem {
         ups = up;
         downs = down;
         lonely = lon;
+       // date = dateCreated;
+        fancyDateTime(dateCreated);
     }
+    public void fancyDateTime(String s) 
+{
+        //2012-04-20 13:11:49  ==> this is the Rails format of Date we want to change it to 20-4-2012 1:11 pm
+	String day = s.substring(8,10);
+	String month = (Integer.parseInt(s.substring(5,7)) - 1)+"";
+	String year = s.substring(2, 4);
+        String hour24 =  s.substring(11,13);
+        String mins = s.substring(14,16);
+        String prettyDate = prettifyDate(day,month,year); // make the date part pretty
+        String prettyTime = prettifyTime(hour24,mins);
+	date = prettyDate +"  "+ prettyTime;
+	
+}
+    
     public commentItem(String jsonString,HelloMIDlet mid) {
         super(null);
         fromJson(jsonString);
         MIDlet = mid;
     }
-    
+    // make time pretty
+    public String prettifyTime(String h,String mins){
+        String hh = Integer.parseInt(h)+""; // remove trailing left zero from hours
+        return hh+":"+mins;                 // return time in pretty format
+    }
+    //make date pretty
+    public String prettifyDate(String d,String m,String y){
+        String dd = Integer.parseInt(d)+""; // remove trailing left zero from day
+        String mm = Integer.parseInt(m)+""; // remove trailing left zero from months
+        return dd+"-"+mm+"-"+y;             // return date in pretty format
+    }
+    /* Sets the variables of the comment item using the parameters and values
+    supplied by the constructor */
     public void fromJson(String js){
         try {
 			JSONObject json = new JSONObject(js);
@@ -52,6 +86,7 @@ public class commentItem extends CustomItem {
 			content=(json.getString("content"));
                         ups = json.getString("ups");
                         downs = json.getString("downs");
+                        date = json.getString("created_at");
                         System.out.println("printttt "+comment_id+" "+user+" "+ups+" "+downs+" "+content);
                         
 		} catch (JSONException ex) {
@@ -59,8 +94,8 @@ public class commentItem extends CustomItem {
 		}
 	
     }
+   
     // helper method for wrapping long Strings into multiple lines.
-
     static Vector wrap(String text, Font font, int width) {
         Vector result = new Vector();
         if (text == null) {
@@ -105,7 +140,6 @@ public class commentItem extends CustomItem {
         return result;
     }
     // Method used to divide a long String into multiple lines, uses wrap as its helper.
-
     static public int drawMultilineString(Graphics g, Font font, String str, int x, int y, int anchor, int width) {
 
         Vector lines = wrap(str, font, width);
@@ -120,15 +154,29 @@ public class commentItem extends CustomItem {
     public int getMinContentWidth() {
         return 240;
     }
-
+    //override the listener in order to detect touch events
     protected void pointerPressed(int x, int y) {
-       // System.out.println("pressed");
+        //System.out.println(x+"  "+y);
+        System.out.println("pressksdjs");
     }
-
+    int lastX=0,lastY=0;
+    protected void pointerDragged(int x,int y){
+        if(lastX!=0 && lastY!=0){
+            if(lastX>x){
+                System.out.println("dragged left!");
+            }else{
+                 System.out.println("dragged right!");
+            }
+        }
+        System.out.println(x+"  "+y);
+        lastX = x; lastY=y;
+              
+    }
+    //override the listener in order to detect touch events
     protected void pointerReleased(int x, int y) {
       //  System.out.println("released");
         if(!lonely)
-        MIDlet.viewCommentOne(comment_id,user,content,ups,downs);
+      MIDlet.viewCommentOne(comment_id,user,content,ups,downs,date);
     }
 
     public int getMinContentHeight() {
@@ -144,17 +192,39 @@ public class commentItem extends CustomItem {
         return getMinContentHeight();
     }
     //Component Paint method that draws the needed values.
-
     public void paint(Graphics g, int w, int h) {
+       Image likes=null,dislikes=null;
+        try {
+            likes = Image.createImage("/ups.png");
+            dislikes = Image.createImage("/downs.png");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+       
+       
+        int width = likes.getWidth()>80?80:likes.getWidth(); /// customize size of the width  not to exceed 80
+       int height = dislikes.getHeight()>60?60:dislikes.getHeight();  // customize size of height not to exceed 60
+      
+                       
+       likes = Image.createImage(likes, 0,0,width,height,0);
+        g.setColor(0xffffff);
+      g.fillRect(0, 0, getMinContentWidth(), getMinContentHeight());
+        g.setColor(0x000000);
         g.drawRect(0, 0, w - 1, h - 1);
-
         g.setColor(53, 177, 255);
-        g.drawString(user, 5, 0, 0);// Username
+        Font f2= Font.getFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM);
+        g.setFont(f2);
+        g.drawString((user.length()<10)?user:user.substring(0,10)+"...", 5, 0, 0);// Username shortened if more than 10 characters
         g.setColor(0, 0, 0);
-        n = drawMultilineString(g, g.getFont(), content, 8, 20, 0, 200);
+        Font f3 = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+        g.setFont(f3);
+        g.drawString(date,121 , 3, 0);
+        Font f4 = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_MEDIUM);
+        g.setFont(f4);
+        n = drawMultilineString(g, g.getFont(), content, 8, 25, 0, 200);
         g.setColor(38, 193, 255);
-        g.drawString("Upped: " + ups, 100, n + 5, 0); //Number of thumbs up
-        g.drawString("Downed: " + downs, 100, n + 30, 0);  //Number of thumbs down
+        g.drawImage(likes, 100, n + 8, 0); //Number of thumbs up
+        g.drawImage(dislikes, 100, n + 38, 0);  //Number of thumbs down
 
 
     }
