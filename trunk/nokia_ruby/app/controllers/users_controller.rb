@@ -116,10 +116,10 @@ def friend_requests
    @me=params[:user_id]
    id_list = Array.new()
    @friend_list = Array.new()
-   count = Friends.where(:stat=>0, :receiver => user_id ).select("sender").count
+   count = Friends.where(:stat=>0, :receiver => @me ).select("sender").count
    puts id_list[count]
    puts friend_list[count]
-   id_list=Friends.where(:stat=>0, :receiver => user_id ).select("sender")
+   id_list=Friends.where(:stat=>0, :receiver => @me ).select("sender")
    0.upto(id_list.length) do |i|
      friend_list[i]=User.where(@me=>id_list[i]).select("name")
    end
