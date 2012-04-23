@@ -1,26 +1,34 @@
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
-      //get The story's array of arrays of data
+      //get The users' array of arrays of data
       data= <%= get_all_users_stat %>
+      if (data.length != 0) {
       //the graphs that we want to show
       names=["Registered Users","Logged in"]; 
       //the time interval between one point and another in the graph.
       pointInterval= <%= 1.day * 1000 %> 
       // Start point of the graph.
       
-      pointStart= <%= get_registered_start_date.days.ago.to_i * 1000 %>
+      pointStart= <%= get_all_users_start_date.days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
       yl="Number";
       titleOfGraph="All Users Stat."; 
       //call the method that renders the graph with the calculated parameters.
+     document.getElementById("deletedStory").style.display= "none"; 
       Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
-      
-      
+      } else {
+        document.getElementById("deletedStory").style.display= "block";  
+        document.getElementById("ccc").style.display= "none"; 
+      }
      // noOfShares = <%= get_total_number_of_shares(@id) %>;
       //document.getElementById("labelShares").innerHTML ="Number of shares";
       //document.getElementById("NumberShares").innerHTML = noOfShares;
    });
 </script>
-
+<div class="alert" id="deletedStory" style="display: none;">
+  
+           <a class="close" data-dismiss="alert">×</a>
+           <h1><strong>Warning!</strong> No Users in our database Yet.</h1>
+     </div>
 <div id="ccc"></div>
