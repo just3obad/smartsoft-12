@@ -17,7 +17,7 @@
       x = <%= get_story_start_date(@id).to_i %>;
       //check if the story was deleted before the last 30 days
       //if no, then render the graph normally. if yes, then show the warning described in the HTML part below
-      if(x = -1) {
+      if(x != -1) {
       pointStart= <%= get_story_start_date(@id).days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
