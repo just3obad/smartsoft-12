@@ -8,6 +8,7 @@
   $(document).ready(function() {
        //get The interests array of arrays of data
       data= <%= get_interest_stat(@id) %>
+      if(data != -1) {
       //the graphs that we want to show
       names=["No Of Users","No Of Stories"];
       //the time interval between one point and another in the graph.
@@ -21,8 +22,32 @@
       //Label for whole graph
       titleOfGraph="Interest Stat";
       //call the method that renders the graph with the calculated parameters.
-      Graph(data,names,pointInterval,pointStart,xl,yl,titleGraph);  
+      document.getElementById("deletedInterest").style.display= "none"; 
+      Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);  
+      }else{
+       document.getElementById("deletedInterest").style.display= "block";  
+        document.getElementById("ccc").style.display= "none"; 
+      }
    });
 </script>
+<div class="alert" id="deletedInterest" style="display: none;">
+  
+           <a class="close" data-dismiss="alert">×</a>
+           <h1><strong>Warning!</strong> Interest was deleted a long time ago.</h1>
+     </div> 
 <!-- ccc is the id of the div that the graph would render to -->
-<div id="ccc" style="width: 700px; height: 500px;"></div>
+<div id="ccc"></div>
+<div class="general info">
+            
+            <!--Here we'll get the number of stories and users in an interest:-->
+            <h4><div class="alert alert-info">Number of Stories:
+            <%= get_interest_num_stories(@id) %>
+            </div></h4>
+            
+            <h4><div class="alert alert-info">Number of Users:
+            <%= get_total_num_user_added_interest(@id) %>
+            </div></h4>
+            
+          </div>
+
+
