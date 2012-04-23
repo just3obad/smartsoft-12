@@ -2,12 +2,14 @@ class UsersController < ApplicationController
 	respond_to :html,:json
 
  def show
-    respond_with(@user = User.find(params[:id]))
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.html #show.html.erb
+      format.json { render json: @user }
+    end
   end
 
-  def search
-    respond_with(@user = Admin.search(params[:id]))
-  end
 
    def new
     @user = User.new

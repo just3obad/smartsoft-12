@@ -1,0 +1,13 @@
+
+<% if not @user.nil? %>
+  <table>
+  <% @user.each do |user| %>
+  <tr>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+  </tr>
+  <%end%>
+  </table>
+<% end %>
+
