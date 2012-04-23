@@ -53,7 +53,7 @@ RSS Feeds : </br>
 <% end %>
 
 <strong>Number Of Feeds : </strong> <%= @interest.feeds.count %></br></br></br>
-
+<! .. to add an RSS feed ..>
 <%= link_to "Add RSS Feed ", {:controller => 'feeds', :action =>'new', :id => @interest.id },  :class => "btn btn-large btn-success "  %><br /><br />
     
     
@@ -62,7 +62,7 @@ RSS Feeds : </br>
 
 
 
-       <strong> </strong> <%= link_to "Show Statistics", '#', :class => "btn  btn-inverse" %>
+ 
        <strong> </strong> <%= link_to "Edit Interest", '#', :class => "btn  btn-inverse" %>
 
        <strong> </strong> <%= link_to "Delete Interest", '#', :class => "btn  btn-inverse" %>
