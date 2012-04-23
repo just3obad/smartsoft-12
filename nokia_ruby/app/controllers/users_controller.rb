@@ -54,6 +54,7 @@ respond_to do |format|
 
  # PUT /users/1
   # PUT /users/1.json
+#this method takes user name email and password and his basic info and updates the current info
   def update
     @user = User.find(params[:id])
 
@@ -117,7 +118,7 @@ def friends_feed
 end
 end
 
-
+# This method takes the id as a param and it searchs for the pending requests in table friends where the stat is 0 and returns them in array
 def friend_requests
    @me=params[:user_id]
    id_list = Array.new()
@@ -127,7 +128,7 @@ def friend_requests
    puts friend_list[count]
    id_list=Friends.where(:stat=>0, :receiver => user_id ).select("sender")
    0.upto(id_list.length) do |i|
-     friend_list[i]=User.where(@me=>id_list[i]).select("name")
+     friend_list[i]=User.where(@me=>id_list[i])
    end
  respond_to do |format|
       format.json { render json: @friend_list }
