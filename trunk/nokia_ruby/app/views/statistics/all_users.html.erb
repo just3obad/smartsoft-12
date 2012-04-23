@@ -15,20 +15,28 @@ $(document).ready(function() {
       yl="Number";
       titleOfGraph="All Users Stat."; 
       //call the method that renders the graph with the calculated parameters.
-     document.getElementById("deletedStory").style.display= "none"; 
+     document.getElementById("noUser").style.display= "none"; 
       Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
       } else {
-        document.getElementById("deletedStory").style.display= "block";  
+        document.getElementById("noUser").style.display= "block";  
         document.getElementById("ccc").style.display= "none"; 
       }
-     // noOfShares = <%= get_total_number_of_shares(@id) %>;
-      //document.getElementById("labelShares").innerHTML ="Number of shares";
-      //document.getElementById("NumberShares").innerHTML = noOfShares;
+     
    });
 </script>
-<div class="alert" id="deletedStory" style="display: none;">
+<div class="alert" id="noUser" style="display: none;">
   
            <a class="close" data-dismiss="alert">×</a>
            <h1><strong>Warning!</strong> No Users in our database Yet.</h1>
      </div>
+
 <div id="ccc"></div>
+<div class="general info">
+            
+            <!--Here we'll get the number of users in the system:-->
+            <h4><div class="alert alert-info">Number of Users who are resgistered in the System: 
+            <%= all_user_registered %>
+            </div></h4>
+            
+          
+          </div>
