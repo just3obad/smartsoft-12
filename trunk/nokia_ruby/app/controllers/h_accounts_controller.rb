@@ -26,6 +26,8 @@ class HAccountsController < ApplicationController
     @h_account = Haccount.find_by_email(params[:email])
     
   end
+#this method takes user name email and password  updates the current info
+
   def update
     @h_account = Haccount.find(params[:id])
 
