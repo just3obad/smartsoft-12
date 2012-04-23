@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
 	respond_to :html,:json
 
+
+#this method Passes a list of Interests according to the user_id to getStories method which should return list of stories according to these Interests and it converts it to a json file.
+
+def feed
+ @id=params[:id]
+ @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
+# @stories_list = getStories(@interests)
+respond_to do |format|
+    format.json { render json: @interests }
+ end
+ end
+
+
  def show
     @user = User.find(params[:id])
 
@@ -106,8 +119,9 @@ def feed
  @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
 # @stories_list = getStories(@interests)
 respond_to do |format|
-      format.json { render json: @stories_list }
-end
+    format.json { render json: @stories_list }
+ end
+ end
 def friend_requests
    @me=params[:user_id]
    id_list = Array.new()
@@ -122,19 +136,6 @@ def friend_requests
  respond_to do |format|
       format.json { render json: @friend_list }
 end
-def friends(user_id)
-   id_list = Array.new()
-   @friends = Array.new()
-   count = Friends.where(:stat=>1, :receiver => user_id ).select("sender").count
-   puts id_list[count]
-   puts friend[count]
-   id_list=Friends.where(:stat=>1, :receiver => user_id ).select("sender")
-   0.upto(id_list.length) do |i|
-     friends[i]=User.where(:id=>id_list[i]).select("name")
-   end
- respond_to do |format|
-      format.json { render json: @friends }
-end  
+
 end
-end
-end
+
