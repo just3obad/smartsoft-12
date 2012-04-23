@@ -75,7 +75,7 @@ respond_to do |format|
   def index
     respond_with(@users = User.all)
   end
- #this method takes an array of interests and blocks these interests   from the user's feed by changing the is_blocked attribute to true. The method depends on another method that gets the list of stories under these interests.
+ #this method blocks interests from the user's feed by changing the is_blocked attribute to true. The method depends on another method that gets the list of stories under these interests.
    
   def block_interest
  @user_interests = User.find(:first,:conditions => ["id = ?",params[:id]],:select => "interests")
@@ -85,15 +85,20 @@ respond_to do |format|
     end
   end
 
-  #this method takes a story as input and blocks it by setting the is_blocked attribute to true.
+  #this method takes a story id as input and blocks its story by setting the is_blocked attribute to true.
 
   
   def block_story(story_id)
-   @story = Story.find(story_id)
+   @story = Story.find(:first, :conditions => { :id => story_id})
+    if (@story != nil)
     @story.is_blocked = true
+    respond_with("story is blocked successfully")
+    else 
+    respond_with("story is not found")
+    end
   end
 
-  #this method takes list of stories belonging to a friend as input and blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend.
+  #this method blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend.
 
   def block_friend_feed
     @id = params[:id]
