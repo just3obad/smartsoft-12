@@ -9,7 +9,7 @@ NokiaRuby::Application.routes.draw do
   match "/admins/index" => "admins#index"
   match "admins/statistics/all_users" => "statistics#all_users"
   match "admins/statistics/all_interests" => "statistics#all_interests"
-  match "admins/statistics/all_stories" => "statistics#all_stories"
+   match "admins/statistics/all_stories" => "statistics#all_stories"
   match "users/:id/update" => "users#update"
   match "h_accounts/:id/update" => "h_accounts#update"
   match "h_accounts/create" => "h_accounts#create", :as => :create
@@ -26,7 +26,7 @@ NokiaRuby::Application.routes.draw do
   match "/users/:id" => "users#feed"
   match "admins?search=:id" => "admins#search"
   match "/users/new" => "users#create"
-  match '/add',  :to => 'interests#new'
+  match '/add'  :to => 'interests#new'
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
   

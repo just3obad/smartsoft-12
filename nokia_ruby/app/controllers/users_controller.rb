@@ -48,16 +48,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:name=>params[:name],:email=>params[:email],
+      if @user.update_attributes(params[:id=>params[:id],:name=>params[:name],:email=>params[:email],
                     :first_name=>params[:first_name], :last_name=>params[:last_name],
                     :date_of_birth=>params[:date_of_birth]])
-        redirect_to :controller => "h_accounts", :action => 'update', :email=>params[:email],
+        redirect_to :controller => 'H_accounts', :action => 'update', :email=>params[:email],
         :password=>params[:password]
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
+        respond_with (@user = User.find(params[:id]))
       else
         format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        respond_with ("failed to update")
       end
     end
   end
@@ -123,8 +123,7 @@ def friend_requests
    0.upto(id_list.length) do |i|
      friend_list[i]=User.where(@me=>id_list[i]).select("name")
    end
- respond_to do |format|
-      format.json { render json: @friend_list }
+   respond_with (@friend_list)
 end
 def friends(user_id)
    id_list = Array.new()
@@ -134,14 +133,13 @@ def friends(user_id)
    puts friend[count]
    id_list=Friends.where(:stat=>1, :receiver => user_id ).select("sender")
    0.upto(id_list.length) do |i|
-     friends[i]=User.where(:id=>id_list[i]).select("name")
+     friends[i]=User.where(:id=>id_list[i]))
    end
  respond_to do |format|
       format.json { render json: @friends }
 end  
   
+end
 
-end
-end
 end
 end
