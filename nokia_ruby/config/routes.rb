@@ -27,6 +27,8 @@ NokiaRuby::Application.routes.draw do
   match "admins?search=:id" => "admins#search"
   match "/users/new" => "users#create"
   match '/add',  :to => 'interests#new'
+  match "stories/:id/comments/upc" => "stories#up_comment"
+  match "stories/:id/comments/downc" => "stories#down_comment"
   
   match '/pages/home' => 'pages#home'
 
