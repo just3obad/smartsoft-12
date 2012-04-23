@@ -11,29 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422172214) do
-
-  create_table "Verification_Codes", :force => true do |t|
-    t.string   "code"
-    t.integer  "account_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.boolean  "verified"
-  end
+ActiveRecord::Schema.define(:version => 20120422171320) do
 
   create_table "admins", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-# Could not dump table "comments" because of following StandardError
-#   Unknown type 'bool' for column 'hidden'
+  create_table "comments", :force => true do |t|
+    t.string   "content"
+    t.integer  "story_id"
+    t.integer  "user_id"
+    t.boolean  "hidden"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "downeds", :force => true do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "feeds", :force => true do |t|
+    t.string   "link"
+    t.integer  "interest_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "flags", :force => true do |t|
@@ -51,17 +56,21 @@ ActiveRecord::Schema.define(:version => 20120422172214) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "gaheem_accounts", :force => true do |t|
+  create_table "haccounts", :force => true do |t|
+    t.integer  "user_id"
     t.string   "email"
     t.string   "password"
-    t.integer  "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "interests", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "name"
+    t.string   "image"
+    t.string   "description"
+    t.boolean  "deleted"
   end
 
   create_table "likedislikes", :force => true do |t|
@@ -70,6 +79,18 @@ ActiveRecord::Schema.define(:version => 20120422172214) do
     t.integer  "action"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "loggingtype"
+    t.integer  "user_id_1"
+    t.integer  "user_id_2"
+    t.integer  "admin_id"
+    t.integer  "story_id"
+    t.integer  "interest_id"
+    t.string   "message"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "shares", :force => true do |t|
@@ -82,30 +103,17 @@ ActiveRecord::Schema.define(:version => 20120422172214) do
   add_index "shares", ["story_id"], :name => "index_shares_on_story_id"
   add_index "shares", ["user_id"], :name => "index_shares_on_user_id"
 
-  create_table "spams", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "story_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "stories", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "body"
-    t.integer  "rank"
-    t.string   "image"
-    t.string   "category"
     t.text     "content"
     t.boolean  "deleted"
     t.boolean  "hidden"
-    t.integer  "flags"
-    t.integer  "likes"
-    t.integer  "dislikes"
     t.integer  "interest_id"
     t.string   "title"
-    t.integer  "story_type"
-    t.boolean  "is_blocked"
+    t.date     "date"
+    t.integer  "rank"
   end
 
   create_table "twitter_accounts", :force => true do |t|
@@ -130,9 +138,15 @@ ActiveRecord::Schema.define(:version => 20120422172214) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "userinterests", :force => true do |t|
+  create_table "user_add_interests", :force => true do |t|
     t.integer  "user_id"
-    t.string   "interest"
+    t.integer  "interest_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "user_log_ins", :force => true do |t|
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -142,9 +156,20 @@ ActiveRecord::Schema.define(:version => 20120422172214) do
     t.datetime "updated_at",         :null => false
     t.string   "name"
     t.string   "email"
-    t.boolean  "verified"
+    t.boolean  "deactivated"
     t.string   "twitter_account_id"
     t.string   "twitter_request_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "date_of_birth"
+  end
+
+  create_table "verification_codes", :force => true do |t|
+    t.string   "code"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "verified"
   end
 
 end
