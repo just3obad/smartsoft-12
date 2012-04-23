@@ -11,20 +11,20 @@ module InterestsHelper
   deleted = Interest.find(interest_id).deleted_before_type_cast #to check if the interest is deleted or not
   
   #case 1 if the interest is deleted and it's created within the last 30 days
-  if deleted && interest_create_date > 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  date = interest_last_update - interest_create_date
+  if deleted && interest_create_date >= 30.days.ago.to_date && interest_create_date >= 30.days.ago.to_date
+  date = Time.zone.now.to_date - interest_create_date
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
-  elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date > 30.days.ago.to_date
-  date = interest_last_update - 30.days.ago.to_date
+  elsif deleted && interest_create_date < 30.days.ago.to_date && interest_create_date >= 30.days.ago.to_date
+  date = Time.zone.now.to_date - 30.days.ago.to_date
   #case 3 if the interest is deleted and it's created before the last 30 days and its last update was before the last 30 days
-  elsif deleted && interest_create_date <= 30.days.ago.to_date && interest_create_date <= 30.days.ago.to_date
-  date = 0
+  elsif deleted && interest_create_date < 30.days.ago.to_date && interest_create_date < 30.days.ago.to_date
+  date = -1
   #case 4 if the interest is not deleted and it's created before the last 30 days
-  elsif interest_create_date <= 30.days.ago.to_date
-  date = (Time.zone.now.to_date) - 30.days.ago.to_date
+  elsif interest_create_date < 30.days.ago.to_date
+  date = Time.zone.now.to_date - 30.days.ago.to_date
   #case 5 if the interest is not deleted and it's created within the last 30 days
   else
-  date = (Time.zone.now.to_date) - interest_create_date
+  date = Time.zone.now.to_date - interest_create_date
    end
   end
   
@@ -35,7 +35,7 @@ module InterestsHelper
   deleted = Interest.find(interest_id).deleted_before_type_cast #to check if the interest is deleted or not
   
   #case 1 if the interest is deleted and it's created within the last 30 days
-  if deleted && interest_create_date >= 30.days.ago.beginning_of_day && interest_last_update_date >= 30.days.ago.beginning_of_day
+  if deleted && interest_create_date >= 30.days.ago.to_date && interest_last_update_date >= 30.days.ago.to_date
   stories_per_day = Story.where(:created_at => interest_create_date.beginning_of_day..interest_last_update.end_of_day , :interest_id => interest_id , :deleted => false).group("date(created_at)").select("created_at , count(id) as strys_day") #to get all the stories within the creation and deletion of the interest and group by the date of creation
   (interest_create_date.to_date..interest_last_update.to_date).map do |date|
   story = stories_per_day.detect { |story| story.created_at.to_date == date}
@@ -44,7 +44,7 @@ module InterestsHelper
   end.inspect
   
   #case 2 if the interest is deleted and it's created before the last 30 days but its last update was within the last 30 days
-  elsif deleted && interest_create_date < 30.days.ago.beginning_of_day && interest_last_update_date >= 30.days.ago.to_date
+  elsif deleted && interest_create_date < 30.days.ago.to_date && interest_last_update_date >= 30.days.ago.to_date
   stories_per_day = Story.where(:created_at => 30.days.ago.beginning_of_day..interest_last_update.end_of_day , :interest_id => interest_id , :deleted => false).group("date(created_at)").select("created_at , count(id) as strys_day") #to get all the stories within the last 30 days and the last update of the interest and group by the date of creation
   (30.days.ago.to_date..interest_last_update.to_date).map do |date|
   story = stories_per_day.detect { |story| story.created_at.to_date == date}
@@ -129,12 +129,12 @@ module InterestsHelper
  #these methods are to get all the general info regarding the statistics of the interest from the database , given its id as a parameter
  #num stories
  def get_interest_num_stories(interestId) 
- num_videos_in_interest = Story.count.where(":interest = ?",interestId) #to get the count of the stories inside the given interest
+ num_stories_in_interest = Story.where(":interest = ?",interestId).count #to get the count of the stories inside the given interest
  end
  
  #num users who added interest
  def get_total_num_user_added_interest(interestId)
- num_users_added_interest = UserAddInterest.count.where(":interest = ?",interestId) #to get the count of the users who added this interest
+ num_users_added_interest = UserAddInterest.where(":interest = ?",interestId).count #to get the count of the users who added this interest
  end
 
 end
