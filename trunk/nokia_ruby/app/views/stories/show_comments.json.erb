@@ -1,8 +1,3 @@
-<% @comments.each do |c| %>
-id<%= c.id %>
-name<%= if User.find(c.user_id).name.nil? then "name" else User.find(c.user_id) end%> 
-content<%= if c.content.nil? then "content" else c.content  end%> 
-up<%= Upped.find_all_by_comment_id(c.id).length %> 
-down<%= Downed.find_all_by_comment_id(c.id).length %> 
-<% end %>
+{"Comments":[<% @n = @comments.length %><% @comments.each do |c| %><% @n-=1 %>{"id":"<%= c.id %>","user_name":"<%= if User.find(c.user_id).name.nil? then "name" else User.find(c.user_id) end%>","content":"<%= if c.content.nil? then "content" else c.content  end%>","story_id":"<%= c.story_id %>",
+"ups":"<%= Upped.find_all_by_comment_id(c.id).length %>","downs":"<%= Downed.find_all_by_comment_id(c.id).length %>"}<%= "," if(@n>0)%><% end %>]}
 
