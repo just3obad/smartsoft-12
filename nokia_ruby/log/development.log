@@ -23486,3 +23486,783 @@ ActionView::MissingTemplate (Missing template stories/down_comment, application/
 
 
   Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (1.4ms)
+
+
+Started GET "/stories/8/comments" for 127.0.0.1 at 2012-04-23 04:04:17 +0200
+Processing by StoriesController#show_comments as HTML
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (0.8ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8
+  Rendered stories/show_comments.html.erb within layouts/application (5.2ms)
+Compiled application.js  (11ms)  (pid 7035)
+Completed 200 OK in 517ms (Views: 434.3ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:18 +0200
+Served asset /application.css - 304 Not Modified (80ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:18 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:18 +0200
+Served asset /h_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:18 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:18 +0200
+Served asset /flags.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:18 +0200
+Served asset /custom.css - 304 Not Modified (95ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /likedislikes.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logs.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /logs.css - 304 Not Modified (19ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /statistics.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /spams.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /application.js - 200 OK (50ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /verification_code.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /twitter_requests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /verification_codes.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 04:04:19 +0200
+Served asset /exporting.js - 304 Not Modified (1ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:04:29 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.5ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (1.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 5]]
+  Rendered stories/show_comments.json.erb (358.0ms)
+Completed 500 Internal Server Error in 373ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=5):
+  app/views/stories/show_comments.json.erb:3:in `block in _app_views_stories_show_comments_json_erb___438412197985478393_36582480'
+  app/views/stories/show_comments.json.erb:1:in `each'
+  app/views/stories/show_comments.json.erb:1:in `_app_views_stories_show_comments_json_erb___438412197985478393_36582480'
+  app/controllers/stories_controller.rb:12:in `show_comments'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (14.8ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.0ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (36.0ms)
+
+
+Started GET "/stories/8/comments" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Processing by StoriesController#show_comments as HTML
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (1.0ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8
+  Rendered stories/show_comments.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 119ms (Views: 105.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /application.css - 304 Not Modified (152ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /custom.css - 304 Not Modified (64ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /flags.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /h_accounts.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logs.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /logs.css - 304 Not Modified (41ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /spams.css - 304 Not Modified (22ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:16 +0200
+Served asset /stories.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:17 +0200
+Served asset /twitter_requests.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:17 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:17 +0200
+Served asset /verification_code.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 04:05:17 +0200
+Served asset /verification_codes.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 04:05:17 +0200
+Served asset /jquery.min.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 04:05:17 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 04:05:17 +0200
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:05:21 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.2ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.2ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (45.5ms)
+Completed 200 OK in 66ms (Views: 57.4ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:16:04 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered stories/show_comments.json.erb (8.9ms)
+Completed 500 Internal Server Error in 22ms
+
+ActionView::Template::Error (undefined method `story_id' for nil:NilClass):
+    5: "{"id":"<%= c.id %>",
+    6: "user_name":"<%= if User.find(c.user_id).name.nil? then "name" else User.find(c.user_id) end%>",
+    7: "content":"<%= if c.content.nil? then "content" else c.content  end%>",
+    8: "story_id":"<%= @comment.story_id %>",
+    9: "ups":"<%= Upped.find_all_by_comment_id(c.id).length %>",
+    10: "downs":"<%= Downed.find_all_by_comment_id(c.id).length %>"}<%= "," if(@n>1)%>"
+    11: <% end %>
+  app/views/stories/show_comments.json.erb:8:in `block in _app_views_stories_show_comments_json_erb___438412197985478393_35979360'
+  app/views/stories/show_comments.json.erb:3:in `each'
+  app/views/stories/show_comments.json.erb:3:in `_app_views_stories_show_comments_json_erb___438412197985478393_35979360'
+  app/controllers/stories_controller.rb:12:in `show_comments'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (19.0ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (114.7ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (171.8ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:16:36 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.9ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.6ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (1.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.5ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.6ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.7ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.5ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.5ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.9ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.6ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (69.8ms)
+Completed 200 OK in 99ms (Views: 79.8ms | ActiveRecord: 9.7ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:17:54 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.5ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.2ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.6ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.5ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (57.0ms)
+Completed 200 OK in 68ms (Views: 56.5ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/stories/8/comments.json.json" for 192.168.1.2 at 2012-04-23 04:24:52 +0200
+
+ActionController::RoutingError (No route matches [GET] "/stories/8/comments.json.json"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.3ms)
+
+
+Started GET "/stories/8/comments.json.json" for 192.168.1.2 at 2012-04-23 04:26:52 +0200
+
+ActionController::RoutingError (No route matches [GET] "/stories/8/comments.json.json"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.8ms)
+
+
+Started GET "/stories/8/comments.json.json" for 192.168.1.2 at 2012-04-23 04:30:09 +0200
+
+ActionController::RoutingError (No route matches [GET] "/stories/8/comments.json.json"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.5ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:30:56 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (2.0ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (50.8ms)
+Completed 200 OK in 66ms (Views: 53.4ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:32:00 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.8ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (3.0ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.5ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.7ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (2.0ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.6ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.7ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.6ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.5ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.6ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.6ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (58.0ms)
+Completed 200 OK in 72ms (Views: 53.9ms | ActiveRecord: 12.0ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:35:51 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.5ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (44.7ms)
+Completed 200 OK in 58ms (Views: 46.1ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:37:38 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.2ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.5ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (36.6ms)
+Completed 200 OK in 48ms (Views: 38.6ms | ActiveRecord: 5.7ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:38:09 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (3.2ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.6ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.5ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (1.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.6ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (58.4ms)
+Completed 200 OK in 68ms (Views: 53.0ms | ActiveRecord: 11.0ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:38:45 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (16.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.5ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (1.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (3.1ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.6ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (64.4ms)
+Completed 200 OK in 93ms (Views: 62.3ms | ActiveRecord: 25.6ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:42:15 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (1.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.7ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (55.1ms)
+Completed 200 OK in 74ms (Views: 58.8ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:42:54 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.7ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.5ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.5ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (51.2ms)
+Completed 200 OK in 65ms (Views: 52.1ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:43:23 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (1.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (38.5ms)
+Completed 200 OK in 47ms (Views: 37.7ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/stories/8/comments.json" for 127.0.0.1 at 2012-04-23 04:44:09 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (6.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (7.5ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (61.7ms)
+Completed 200 OK in 86ms (Views: 62.8ms | ActiveRecord: 19.2ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:44:49 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (1.0ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.5ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.5ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (35.2ms)
+Completed 200 OK in 50ms (Views: 34.6ms | ActiveRecord: 5.9ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:47:39 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.6ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.4ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.5ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.3ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.3ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.4ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.4ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.3ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (35.5ms)
+Completed 200 OK in 47ms (Views: 36.6ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 04:56:30 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.2ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.1ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.1ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.1ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.2ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.1ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.1ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.1ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (8.7ms)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/stories/8/comments.json" for 192.168.1.2 at 2012-04-23 05:03:59 +0200
+Processing by StoriesController#show_comments as JSON
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 2[0m
+  [1m[35mDowned Load (0.1ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.1ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 3
+  [1m[36mDowned Load (0.1ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 3[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 4[0m
+  [1m[35mDowned Load (0.1ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 4
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUpped Load (0.1ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 5
+  [1m[36mDowned Load (0.1ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 5[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 6[0m
+  [1m[35mDowned Load (0.1ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 6
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mUpped Load (0.1ms)[0m  [1mSELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8[0m
+  [1m[35mDowned Load (0.1ms)[0m  SELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8
+  Rendered stories/show_comments.json.erb (8.6ms)
+Completed 200 OK in 11ms (Views: 8.6ms | ActiveRecord: 1.5ms)
