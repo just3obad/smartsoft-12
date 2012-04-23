@@ -11,21 +11,25 @@ import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.ImageItem;
 import javax.microedition.lcdui.*;
+import javax.microedition.midlet.MIDlet;
 
 /**
  *
  * @author Menisy
  */
 public class commentItem extends CustomItem {
-    int n,height=50;
-    int comment_id;
+
+    int n, height = 50;
+    String comment_id;
     StringItem user; //username of the comment
     String content; //content of the comment
     StringItem ups, downs; //number of thumbs up and down
+    HelloMIDlet MIDlet; //MIDlet to which the custom item belongs to
 
-    public commentItem(String user, String cont, String up, String down, int id) {
- 
+    public commentItem(String user, String cont, String up, String down, String id, HelloMIDlet mid) {
+
         super(null);
+        MIDlet = mid;
         comment_id = id;
         content = cont;
         this.user = new StringItem(null, user);
@@ -33,7 +37,8 @@ public class commentItem extends CustomItem {
         this.downs = new StringItem(null, down);
 
     }
- // helper method for wrapping long String into multiple lines.
+    // helper method for wrapping long Strings into multiple lines.
+
     static Vector wrap(String text, Font font, int width) {
         Vector result = new Vector();
         if (text == null) {
@@ -78,33 +83,34 @@ public class commentItem extends CustomItem {
         return result;
     }
     // Method used to divide a long String into multiple lines, uses wrap as its helper.
+
     static public int drawMultilineString(Graphics g, Font font, String str, int x, int y, int anchor, int width) {
- 
+
         Vector lines = wrap(str, font, width);
-        for (int i = 0; i < lines.size(); i++) 
-   {
-      int liney = y + (i * font.getHeight());
+        for (int i = 0; i < lines.size(); i++) {
+            int liney = y + (i * font.getHeight());
             g.drawString((String) lines.elementAt(i), x, liney, anchor);
         }
-       
+
         return y + (lines.size() * font.getHeight());
     }
 
     public int getMinContentWidth() {
         return 240;
     }
-     protected void pointerPressed(int x,
-                              int y){
-       System.out.println("dfjdkfjdkjf");
+
+    protected void pointerPressed(int x, int y) {
+       // System.out.println("pressed");
     }
-   
-    protected void pointerReleased(int x,
-                              int y){
-       System.out.println("dfjdkfjdkjf");
+
+    protected void pointerReleased(int x, int y) {
+      //  System.out.println("released");
+        MIDlet.viewCommentOne(this);
     }
+
     public int getMinContentHeight() {
-        int num = content.length()/18; // estimating number of line roughly as each line carries around 18 characters
-        return (num*21)+105;  // adjusting the height according to number of lines
+        int num = content.length() / 18; // estimating number of line roughly as each line carries around 18 characters
+        return (num * 21) + 105;  // adjusting the height according to number of lines
     }
 
     public int getPrefContentWidth(int width) {
@@ -115,17 +121,21 @@ public class commentItem extends CustomItem {
         return getMinContentHeight();
     }
     //Component Paint method that draws the needed values.
+
     public void paint(Graphics g, int w, int h) {
         g.drawRect(0, 0, w - 1, h - 1);
 
         g.setColor(53, 177, 255);
         g.drawString(user.getText(), 5, 0, 0);// Username
         g.setColor(0, 0, 0);
-        n =   drawMultilineString(g, g.getFont(),content , 8, 20, 0, 200);
+        n = drawMultilineString(g, g.getFont(), content, 8, 20, 0, 200);
         g.setColor(38, 193, 255);
-        g.drawString("Upped: " + ups.getText(), 100, n+5, 0); //Number of thumbs up
-        g.drawString("Downed: " + downs.getText(), 100, n+30, 0);  //Number of thumbs down
+        g.drawString("Upped: " + ups.getText(), 100, n + 5, 0); //Number of thumbs up
+        g.drawString("Downed: " + downs.getText(), 100, n + 30, 0);  //Number of thumbs down
 
 
     }
 }
+
+
+
