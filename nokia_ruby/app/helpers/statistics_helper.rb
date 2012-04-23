@@ -12,7 +12,7 @@ include UsersHelper
  def get_interest_stat(interest_id)
  sto = get_num_stories_in_interest_day(interest_id)
  usr = get_num_users_added_interest_day(interest_id)
- data ="[#{sto} , #{usr}]"
+ data ="[#{usr} , #{sto}]"
  end
  
 #This is the method that should return the data of statistics of an story
