@@ -11,9 +11,9 @@ def thumb
    thumped = Likedislike.where(:story_id => @story_id, :user_id => @user_id)
      if thumped.empty?
         Likedislike.create!(:user_id => @user_id, :story_id => @story_id , :action => @action)
-       @story = Story.find(@story_id)
-       @story.likes = @story.likes+1
-       @story.save   
+       #@story = Story.find(@story_id)
+       #@story.likes = @story.likes+1
+       #@story.save   
      end
   
 end

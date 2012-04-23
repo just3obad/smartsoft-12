@@ -1,6 +1,7 @@
 NokiaRuby::Application.routes.draw do
 
   post "h_accounts/sign_in"
+  match "users" => "users#feed"
   match "/users/new" => "users#create", :as => :create
   match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests" => "user_add_interests#getinterests"
@@ -31,7 +32,7 @@ NokiaRuby::Application.routes.draw do
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
   match "users/:id/friend_requests" => "users#friend_requests"
-  match "users/" => "users#index"
+  #match "users/" => "users#index"
   
   match '/pages/home' => 'pages#home'
 
