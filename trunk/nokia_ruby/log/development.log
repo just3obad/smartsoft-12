@@ -21182,3 +21182,1315 @@ Served asset /users.js - 304 Not Modified (5ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-22 23:51:43 +0200
 Served asset /application.js - 304 Not Modified (10ms)
+
+
+Started GET "/interests" for 127.0.0.1 at 2012-04-23 01:17:00 +0200
+Processing by InterestsController#index as HTML
+  [1m[36mInterest Load (0.3ms)[0m  [1mSELECT "interests".* FROM "interests" [0m
+Completed 500 Internal Server Error in 264ms
+
+ActionView::MissingTemplate (Missing template interests/index, application/index with {:locale=>[:en], :formats=>[:html], :handlers=>[:erb, :builder, :coffee]}. Searched in:
+  * "/home/menisy/projects/SE/trunk/nokia_app2/app/views"
+):
+  actionpack (3.2.3) lib/action_view/path_set.rb:58:in `find'
+  actionpack (3.2.3) lib/action_view/lookup_context.rb:109:in `find'
+  actionpack (3.2.3) lib/action_view/renderer/abstract_renderer.rb:3:in `find_template'
+  actionpack (3.2.3) lib/action_view/renderer/template_renderer.rb:34:in `determine_template'
+  actionpack (3.2.3) lib/action_view/renderer/template_renderer.rb:10:in `render'
+  actionpack (3.2.3) lib/action_view/renderer/renderer.rb:36:in `render_template'
+  actionpack (3.2.3) lib/action_view/renderer/renderer.rb:17:in `render'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:110:in `_render_template'
+  actionpack (3.2.3) lib/action_controller/metal/streaming.rb:225:in `_render_template'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:103:in `render_to_body'
+  actionpack (3.2.3) lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+  actionpack (3.2.3) lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:88:in `render'
+  actionpack (3.2.3) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+  activesupport (3.2.3) lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/benchmark.rb:310:in `realtime'
+  activesupport (3.2.3) lib/active_support/core_ext/benchmark.rb:5:in `ms'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+  activerecord (3.2.3) lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:39:in `render'
+  actionpack (3.2.3) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (3.2.3) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:167:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:414:in `_run__567097787294509517__process_action__4576640709310724125__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/abstract_controller/callbacks.rb:17:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.3) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.3) lib/active_support/notifications.rb:123:in `instrument'
+  actionpack (3.2.3) lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+  actionpack (3.2.3) lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+  activerecord (3.2.3) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (3.2.3) lib/abstract_controller/base.rb:121:in `process'
+  actionpack (3.2.3) lib/abstract_controller/rendering.rb:45:in `process'
+  actionpack (3.2.3) lib/action_controller/metal.rb:203:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+  actionpack (3.2.3) lib/action_controller/metal.rb:246:in `block in action'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:36:in `call'
+  journey (1.0.3) lib/journey/router.rb:68:in `block in call'
+  journey (1.0.3) lib/journey/router.rb:56:in `each'
+  journey (1.0.3) lib/journey/router.rb:56:in `call'
+  actionpack (3.2.3) lib/action_dispatch/routing/route_set.rb:600:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/cookies.rb:338:in `call'
+  activerecord (3.2.3) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.3) lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `_run__2391887360242960396__call__3343621752084926697__callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.3) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.3) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (8.9ms)
+
+
+Started GET "/interests/1" for 127.0.0.1 at 2012-04-23 01:17:25 +0200
+Processing by InterestsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mInterest Load (1.5ms)[0m  SELECT "interests".* FROM "interests" WHERE "interests"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 500 Internal Server Error in 9ms
+
+ActiveRecord::RecordNotFound (Couldn't find Interest with id=1):
+  app/controllers/interests_controller.rb:8:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (9.5ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.6ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (33.8ms)
+
+
+Started GET "/stories/1" for 127.0.0.1 at 2012-04-23 01:21:19 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 1[0m
+  [1m[35mStory Load (0.7ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "1"]]
+Completed 500 Internal Server Error in 91ms
+
+ActiveRecord::RecordNotFound (Couldn't find Story with id=1):
+  app/controllers/stories_controller.rb:7:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (6.7ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (2.6ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (26.3ms)
+
+
+Started GET "/stories/8" for 127.0.0.1 at 2012-04-23 01:21:23 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mComment Load (0.5ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 8[0m
+  [1m[35mStory Load (0.3ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "8"]]
+  Rendered stories/show.html.erb within layouts/application (79.8ms)
+Compiled logs.css  (2035ms)  (pid 7035)
+Compiled application.css  (2068ms)  (pid 7035)
+Completed 200 OK in 2602ms (Views: 2486.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/assets/logs.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /logs.css - 200 OK (104ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /comments.css - 304 Not Modified (20ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /application.css - 304 Not Modified (168ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /admins.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /flags.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /custom.css - 304 Not Modified (38ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /h_accounts.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /likedislikes.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /scaffolds.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /spams.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:26 +0200
+Served asset /statistics.css - 304 Not Modified (29ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /stories.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /twitter_requests.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /verification_code.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /users.css - 304 Not Modified (17ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /jquery.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /verification_codes.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /admins.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /chrisss.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /bootstrap-alert.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /exporting.js - 304 Not Modified (12ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /comments.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /flags.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /h_accounts.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /highcharts.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /interests.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /jquery.min.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /likedislikes.js - 304 Not Modified (11ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /rails.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /spams.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /twitter_requests.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /stories.js - 304 Not Modified (22ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /statistics.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /users.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /verification_code.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /verification_codes.js - 304 Not Modified (22ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-23 01:21:27 +0200
+Served asset /application.js - 304 Not Modified (100ms)
+
+
+Started GET "/stories/7" for 127.0.0.1 at 2012-04-23 01:21:59 +0200
+Processing by StoriesController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mComment Load (0.7ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."story_id" = 7[0m
+  [1m[35mStory Load (0.3ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  Rendered stories/show.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 332ms (Views: 324.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 01:21:59 +0200
+Served asset /application.css - 304 Not Modified (80ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /admins.css - 304 Not Modified (82ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /flags.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /h_accounts.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /comments.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /custom.css - 304 Not Modified (27ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /likedislikes.css - 304 Not Modified (14ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /statistics.css - 304 Not Modified (28ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /spams.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /twitter_requests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /users.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /verification_code.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /verification_codes.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /jquery.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /admins.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /bootstrap-alert.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /chrisss.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /comments.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /flags.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /exporting.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /h_accounts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /likedislikes.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /spams.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /application.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /verification_codes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:00 +0200
+Served asset /twitter_requests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:01 +0200
+Served asset /verification_code.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-23 01:22:01 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/stories/7/statistics" for 127.0.0.1 at 2012-04-23 02:24:03 +0200
+Processing by StatisticsController#stories as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mStory Load (0.4ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mShare Load (6.6ms)[0m  SELECT created_at, count(story_id) as noOfSharesPerDay FROM "shares" WHERE "shares"."story_id" = 7 AND ("shares"."created_at" BETWEEN '2012-04-20 00:00:00.000000' AND '2012-04-23 23:59:59.999999') GROUP BY date(created_at)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mLikedislike Load (0.6ms)[0m  SELECT created_at, count(story_id) as noOfLikesPerDay FROM "likedislikes" WHERE "likedislikes"."story_id" = 7 AND "likedislikes"."action" = 1 AND ("likedislikes"."created_at" BETWEEN '2012-04-20 00:00:00.000000' AND '2012-04-23 23:59:59.999999') GROUP BY date(created_at)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mCACHE (0.1ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mLikedislike Load (0.5ms)[0m  SELECT created_at, count(story_id) as noOfDislikesPerDay FROM "likedislikes" WHERE "likedislikes"."story_id" = 7 AND "likedislikes"."action" = -1 AND ("likedislikes"."created_at" BETWEEN '2012-04-20 00:00:00.000000' AND '2012-04-23 23:59:59.999999') GROUP BY date(created_at)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mFlag Load (0.4ms)[0m  SELECT created_at, count(story_id) as noOfSpamsPerDay FROM "flags" WHERE "flags"."story_id" = 7 AND ("flags"."created_at" BETWEEN '2012-04-20 00:00:00.000000' AND '2012-04-23 23:59:59.999999') GROUP BY date(created_at)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1[0m  [["id", "7"]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "stories".* FROM "stories" WHERE "stories"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "shares" WHERE "shares"."story_id" = 7[0m
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM "likedislikes" WHERE "likedislikes"."story_id" = 7 AND "likedislikes"."action" = 1
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "likedislikes" WHERE "likedislikes"."story_id" = 7 AND "likedislikes"."action" = -1[0m
+  [1m[35m (0.4ms)[0m  SELECT COUNT(*) FROM "flags" WHERE "flags"."story_id" = 7
+  [1m[36mShare Load (1.6ms)[0m  [1mSELECT "shares".* FROM "shares" WHERE "shares"."story_id" = 7 AND ("shares"."id" >= 0) ORDER BY "shares"."id" ASC LIMIT 1000[0m
+  Rendered statistics/stories.html.erb within layouts/statisticsPage (279.0ms)
+Completed 200 OK in 522ms (Views: 504.0ms | ActiveRecord: 16.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /application.css - 304 Not Modified (152ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /admins.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /comments.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /flags.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /custom.css - 304 Not Modified (116ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /h_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /likedislikes.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/logs.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /logs.css - 304 Not Modified (51ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /spams.css - 304 Not Modified (27ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /statistics.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /stories.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /twitter_requests.css - 304 Not Modified (15ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /verification_code.css - 304 Not Modified (22ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /jquery.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /verification_codes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:04 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /chrisss.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /flags.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /h_accounts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /rails.js - 304 Not Modified (40ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /statistics.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /twitter_requests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /users.js - 304 Not Modified (33ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /application.js - 304 Not Modified (35ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /verification_codes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:05 +0200
+Served asset /verification_code.js - 304 Not Modified (0ms)
+
+
+Started GET "/admins/statistics/all_interests" for 127.0.0.1 at 2012-04-23 02:24:15 +0200
+Processing by StatisticsController#all_interests as HTML
+  Rendered statistics/all_interests.html.erb within layouts/statisticsPage (0.9ms)
+Completed 200 OK in 234ms (Views: 232.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:15 +0200
+Served asset /application.css - 304 Not Modified (57ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:15 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:15 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:15 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /h_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /flags.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logs.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /logs.css - 304 Not Modified (44ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /scaffolds.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /spams.css - 304 Not Modified (11ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /custom.css - 304 Not Modified (83ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /verification_code.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /twitter_requests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /verification_codes.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /flags.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /exporting.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /chrisss.js - 304 Not Modified (18ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /h_accounts.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /comments.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /highcharts.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /interests.js - 304 Not Modified (17ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /likedislikes.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /rails.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /jquery.min.js - 304 Not Modified (15ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /statistics.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /verification_code.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:16 +0200
+Served asset /twitter_requests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:17 +0200
+Served asset /application.js - 304 Not Modified (25ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:17 +0200
+Served asset /verification_codes.js - 304 Not Modified (0ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-23 02:24:34 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 115ms (Views: 110.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:34 +0200
+Served asset /custom.css - 304 Not Modified (17ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /application.css - 304 Not Modified (139ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /h_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /flags.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /likedislikes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logs.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /logs.css - 304 Not Modified (42ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /spams.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /users.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /twitter_requests.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /verification_codes.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /verification_code.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /jquery.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /bootstrap-alert.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /admins.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /exporting.js - 304 Not Modified (16ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /flags.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /chrisss.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /h_accounts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /interests.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /likedislikes.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /jquery.min.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /rails.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /spams.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /twitter_requests.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:35 +0200
+Served asset /verification_code.js - 304 Not Modified (93ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:36 +0200
+Served asset /verification_codes.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-23 02:24:36 +0200
+Served asset /application.js - 304 Not Modified (18ms)
+
+
+Started GET "/comments/1.json" for 127.0.0.1 at 2012-04-23 02:24:40 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  Rendered comments/show.json.erb (103.4ms)
+Completed 200 OK in 114ms (Views: 107.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/comments/1.json" for 127.0.0.1 at 2012-04-23 02:26:41 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  Rendered comments/show.json.erb (3.0ms)
+Completed 200 OK in 14ms (Views: 8.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/comments/1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered comments/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 190ms (Views: 186.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/admins.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /admins.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /application.css - 304 Not Modified (85ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /custom.css - 304 Not Modified (29ms)
+
+
+Started GET "/assets/comments.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /comments.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/flags.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /flags.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/h_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /h_accounts.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/logs.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /logs.css - 304 Not Modified (23ms)
+
+
+Started GET "/assets/likedislikes.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /likedislikes.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /spams.css - 304 Not Modified (79ms)
+
+
+Started GET "/assets/statistics.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /statistics.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /twitter_accounts.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/stories.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /stories.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_requests.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /twitter_requests.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /users.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /verification_code.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_codes.css?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /verification_codes.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:08 +0200
+Served asset /jquery.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/admins.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /admins.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/comments.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /comments.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/exporting.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /exporting.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/flags.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /flags.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/h_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /h_accounts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/interests.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /interests.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/bootstrap-alert.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /bootstrap-alert.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/chrisss.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /chrisss.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/highcharts.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /highcharts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.min.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /jquery.min.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/likedislikes.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /likedislikes.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /rails.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/spams.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /spams.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/statistics.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /statistics.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/users.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/twitter_accounts.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /twitter_accounts.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/twitter_requests.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /twitter_requests.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/stories.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /stories.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/verification_code.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /verification_code.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /application.js - 304 Not Modified (14ms)
+
+
+Started GET "/assets/verification_codes.js?body=1" for 127.0.0.1 at 2012-04-23 02:29:09 +0200
+Served asset /verification_codes.js - 304 Not Modified (0ms)
+
+
+Started GET "/comments/2.json" for 127.0.0.1 at 2012-04-23 02:29:10 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"2"}
+  [1m[35mComment Load (0.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "2"]]
+  [1m[36mUser Load (0.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered comments/show.json.erb (5.0ms)
+Completed 200 OK in 18ms (Views: 9.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/comments/6.json" for 127.0.0.1 at 2012-04-23 02:30:10 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "6"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered comments/show.json.erb (2.5ms)
+Completed 200 OK in 12ms (Views: 6.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/comments/7.json" for 127.0.0.1 at 2012-04-23 02:30:36 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"7"}
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "7"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 5]]
+  Rendered comments/show.json.erb (4.7ms)
+Completed 500 Internal Server Error in 28ms
+
+ActiveRecord::RecordNotFound (Couldn't find User with id=5):
+  app/views/comments/show.json.erb:4:in `_app_views_comments_show_json_erb__1636824627799391798_38291700'
+  app/controllers/comments_controller.rb:19:in `show'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (14.5ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (5.0ms)
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (49.5ms)
+
+
+Started GET "/comments/6.json" for 127.0.0.1 at 2012-04-23 02:31:33 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"6"}
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "6"]]
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered comments/show.json.erb (9.7ms)
+Completed 200 OK in 30ms (Views: 21.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/comments/8/json" for 127.0.0.1 at 2012-04-23 02:34:01 +0200
+
+ActionController::RoutingError (No route matches [GET] "/comments/8/json"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  /home/menisy/.rvm/rubies/ruby-1.9.2-p318/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered /home/menisy/.rvm/gems/ruby-1.9.2-p318@rails3tutorial/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (2.0ms)
+
+
+Started GET "/comments/8.json" for 127.0.0.1 at 2012-04-23 02:34:04 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (1.2ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "8"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered comments/show.json.erb (3.4ms)
+Completed 200 OK in 18ms (Views: 10.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/comments/8.json" for 127.0.0.1 at 2012-04-23 02:34:42 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (0.6ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "8"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered comments/show.json.erb (6.6ms)
+Completed 200 OK in 56ms (Views: 48.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/comments/8.json" for 192.168.1.2 at 2012-04-23 02:39:27 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "8"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered comments/show.json.erb (3.2ms)
+Completed 200 OK in 12ms (Views: 8.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/comments/8.json" for 192.168.1.2 at 2012-04-23 02:40:28 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (0.3ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "8"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered comments/show.json.erb (4.9ms)
+Completed 200 OK in 12ms (Views: 8.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/comments/8.json" for 127.0.0.1 at 2012-04-23 02:45:42 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (1.5ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "8"]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUpped Load (0.6ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8
+  [1m[36mDowned Load (0.4ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8[0m
+  Rendered comments/show.json.erb (47.1ms)
+Completed 200 OK in 61ms (Views: 52.5ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/comments/8.json" for 192.168.1.2 at 2012-04-23 02:46:28 +0200
+Processing by CommentsController#show as JSON
+  Parameters: {"id"=>"8"}
+  [1m[35mComment Load (0.4ms)[0m  SELECT "comments".* FROM "comments" WHERE "comments"."id" = ? LIMIT 1  [["id", "8"]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mUpped Load (0.3ms)[0m  SELECT "uppeds".* FROM "uppeds" WHERE "uppeds"."comment_id" = 8
+  [1m[36mDowned Load (0.2ms)[0m  [1mSELECT "downeds".* FROM "downeds" WHERE "downeds"."comment_id" = 8[0m
+  Rendered comments/show.json.erb (7.0ms)
+Completed 200 OK in 16ms (Views: 11.3ms | ActiveRecord: 1.2ms)
