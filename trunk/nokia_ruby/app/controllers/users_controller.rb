@@ -48,7 +48,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(params[:name=>params[:name],:email=>params[:email],
+                    :first_name=>params[:first_name], :last_name=>params[:last_name],
+                    :date_of_birth=>params[:date_of_birth]])
+        redirect_to :controller => "h_accounts", :action => 'update', :email=>params[:email],
+        :password=>params[:password]
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
