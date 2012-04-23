@@ -1,5 +1,7 @@
 NokiaRuby::Application.routes.draw do
 
+  match "/users/new" => "users#create", :as => :create
+  match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests" => "user_add_interests#getinterests"
   match "flags" => "flags#flag"
   match "likedislikes" => "likedislikes#thumb"
@@ -12,7 +14,6 @@ NokiaRuby::Application.routes.draw do
    match "admins/statistics/all_stories" => "statistics#all_stories"
   match "users/:id/update" => "users#update"
   match "h_accounts/:id/update" => "h_accounts#update"
-  match "h_accounts/create" => "h_accounts#create", :as => :create
   match "authenticate/:u_id/get_twitter_url" => "twitter_requests#generate_request_token"
   match "authenticate/:u_id/new_twitter_account" =>  "twitter_requests#generate_access_token"
   match "Twitter/:u_id/delete" => "twitter_accounts#remove_twitter_account"
@@ -25,7 +26,6 @@ NokiaRuby::Application.routes.draw do
   match "h_accounts" => "h_accounts#index"
   match "/users/:id" => "users#feed"
   match "admins?search=:id" => "admins#search"
-  match "/users/new" => "users#create"
   match "/add"  => "interests#new", :as => :new
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
@@ -35,7 +35,8 @@ NokiaRuby::Application.routes.draw do
 
   root :to => 'pages#home'
   
-  resources :users
+#  resources :users
+#  resources :h_accounts
   resources :admins
   resources :stories
   resources :interests
