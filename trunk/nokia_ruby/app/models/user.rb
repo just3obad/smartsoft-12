@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
     if @share.nil? then		# if he/she didn't share this story before then make him/her share it
       Share.create :user_id=>self.id,:story_id=>story_id
       return true		# shared successfully, return true
-    else 			# else, dont allow to share
-      return false		# sharing failed, return false
+    else 			# else, dont allow to share it
+      return false		# and return false
     end
   end 
 
