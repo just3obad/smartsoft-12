@@ -1010,35 +1010,35 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
       }
       //</editor-fold>//GEN-END:|32-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
-    /**
-     * Returns an initiliazed instance of backCommand1 component.
-     * @return the initialized component instance
-     */
-    public Command getBackCommand1() {
-        if (backCommand1 == null) {//GEN-END:|34-getter|0|34-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
+      /**
+       * Returns an initiliazed instance of backCommand1 component.
+       * @return the initialized component instance
+       */
+      public Command getBackCommand1() {
+          if (backCommand1 == null) {//GEN-END:|34-getter|0|34-preInit
             // write pre-init user code here
-            backCommand1 = new Command("Back", Command.BACK, 0);//GEN-LINE:|34-getter|1|34-postInit
+              backCommand1 = new Command("Back", Command.BACK, 0);//GEN-LINE:|34-getter|1|34-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|34-getter|2|
-        return backCommand1;
-    }
-    //</editor-fold>//GEN-END:|34-getter|2|
+          }//GEN-BEGIN:|34-getter|2|
+          return backCommand1;
+      }
+      //</editor-fold>//GEN-END:|34-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToStory ">//GEN-BEGIN:|37-getter|0|37-preInit
-    /**
-     * Returns an initiliazed instance of backToStory component.
-     * @return the initialized component instance
-     */
-    public Command getBackToStory() {
-        if (backToStory == null) {//GEN-END:|37-getter|0|37-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToStory ">//GEN-BEGIN:|37-getter|0|37-preInit
+      /**
+       * Returns an initiliazed instance of backToStory component.
+       * @return the initialized component instance
+       */
+      public Command getBackToStory() {
+          if (backToStory == null) {//GEN-END:|37-getter|0|37-preInit
             // write pre-init user code here
-            backToStory = new Command("Back", Command.BACK, 0);//GEN-LINE:|37-getter|1|37-postInit
+              backToStory = new Command("Back", Command.BACK, 0);//GEN-LINE:|37-getter|1|37-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|37-getter|2|
-        return backToStory;
-    }
-    //</editor-fold>//GEN-END:|37-getter|2|
+          }//GEN-BEGIN:|37-getter|2|
+          return backToStory;
+      }
+      //</editor-fold>//GEN-END:|37-getter|2|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: AddComment ">//GEN-BEGIN:|39-getter|0|39-preInit
     /**
@@ -1344,11 +1344,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
             // write post-action user code here
             } else if (__selectedString.equals("Flickr")) {//GEN-LINE:|80-action|5|85-preAction
             // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|80-action|6|85-postAction
+                switchDisplayable(getComingSoon(), getConnectAccount());//GEN-LINE:|80-action|6|85-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Foursquare")) {//GEN-LINE:|80-action|7|86-preAction
             // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|80-action|8|86-postAction
+                switchDisplayable(getComingSoon(), getConnectAccount());//GEN-LINE:|80-action|8|86-postAction
             // write post-action user code here
             } else if (__selectedString.equals("Tumblr")) {//GEN-LINE:|80-action|9|87-preAction
             // write pre-action user code here
