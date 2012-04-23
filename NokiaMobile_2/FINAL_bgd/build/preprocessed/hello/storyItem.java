@@ -32,7 +32,7 @@ class storyItem extends CustomItem {
     private int id;
     Displayable display;
     HelloMIDlet Hello;
-    
+    String toReadMore;
     
     // method that takes a url and returns an image after fetching from internet through http connection
     public Image loadImage(String url) throws IOException {
@@ -55,6 +55,7 @@ class storyItem extends CustomItem {
 
   public storyItem(int id,String imageName,String title,String body,int rank,String category,Displayable display,HelloMIDlet Hello){
   super(null);
+  toReadMore = title + " , " + imageName + " , " + rank + " , " + body  + " , " + category;
   this.id=id;
   this.display = display;
   this.Hello = Hello;
@@ -126,7 +127,8 @@ class storyItem extends CustomItem {
       }
   }
         protected void pointerPressed(int x , int y){// if pressed switch display, getStroy should be edited by Omar to take an ID
-           Hello.switchDisplayable(null, Hello.getStory());
+           Hello.currentStoryString = this.toReadMore;
+            Hello.switchDisplayable(null, Hello.getReadMore());
        }
   
 }
