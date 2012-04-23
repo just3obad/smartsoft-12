@@ -236,12 +236,15 @@ count_of_stories_with_same_title = Story.where(:title => stitle).count
 #if it is a new story, it will enter automatically
 if count_of_stories_with_same_title == 0
 #getting the name of the interest 
-sinterest = Interest.where(:feeds => source).select("name").first
+sinterest = Interest.where(:feeds => source).select("interest_id")
 
-listOfStories[i] = Story.create(:title => stitle, :date => sdate, :body => sdescription, :rank => 0, :deleted => false, :hidden => false, :likes => 0, :dislikes => 0, :flags => 0, :interest => sinterest)
+listOfStories[i] = Story.create(:title => stitle, :date => sdate, :body => sdescription, :rank => 0, :deleted => false, :hidden => false, :interest_id => sinterest)
 elsif
 #if the story exists in the database it will enter the array without modifications
-listOfStories[i] = Story.where(:title => stitle).first
+#listOfStories[i] = 
+
+sid = Story.where(:title => stitle).select("story_id")
+listOfStories[i] = Story.find(sid)
 end
 i+=1
 if i < num
