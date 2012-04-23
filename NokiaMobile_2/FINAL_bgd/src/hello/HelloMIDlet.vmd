@@ -11,7 +11,7 @@
                         <Property name="eventHandler" typeID="C#EventHandler" value="R308"/>
                         <Component componentID="308" typeID="C#SwitchDisplayableEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R3"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R22"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R80"/>
                         </Component>
                     </Component>
                     <Component componentID="4" typeID="C#MobileDeviceResumeEventSource"/>
@@ -1427,9 +1427,9 @@
                     <Component componentID="270" typeID="Cjavax.microedition.lcdui.StringItem">
                         <Property name="instanceName" typeID="Pjava.lang.String" value="VstringItem1"/>
                         <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
-                        <Property name="label" typeID="Pjava.lang.String" value="VEmail Sent"/>
+                        <Property name="label" typeID="Pjava.lang.String" value="VAuthorizatoin almost complete"/>
                         <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R17"/>
-                        <Property name="text" typeID="Pjava.lang.String" value="U&quot;Please check your email to &quot;&#13;&#10; + &quot;authorize our app on twitter\n&quot;&#13;&#10; + &quot;Or click next to close the app and go to &quot;&#13;&#10; + &quot;authorization URL&quot;&#13;&#10;"/>
+                        <Property name="text" typeID="Pjava.lang.String" value="VPlease press next to go to twitter and authorize our app. Note that the browser will be opened. After authorization press next, then press authorized."/>
                     </Component>
                     <Component componentID="335" typeID="C#CommandEventSource">
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R258"/>
