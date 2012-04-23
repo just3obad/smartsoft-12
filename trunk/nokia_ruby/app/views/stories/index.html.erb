@@ -13,7 +13,7 @@
 <tr>
     <td><img width="150";height="100"; src=story.image></td>
     <td><%= story.id %></td>
-    <td><%= story.title %></td>
+    <td><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></td>
     <td><%= story.body %></td>
     <td><%= story.rank %></td>
     <td><%= @name %></td>

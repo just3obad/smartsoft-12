@@ -9,10 +9,10 @@
     <tr>
 
       <td><%= interest.id %></td>
-      <td><img width="150";height="100"; src=interest.image></td>
-      <td><%= interest.name %></td>
+      <td><img width="150";height="100"; src= interest.image></td>
+      <td><%= link_to(interest.name, {:controller => "interests", :action => "show", :id => interest.id} ) %></td>
       <td><%= interest.description %></td>
     </tr>
   <% end %>
 </table>
-<%= link_to("Add a new interest", {:controller => 'interests', :action => 'new'}, class: "btn") %>
+<%= link_to("Add a new interest", new_path, class: "btn") %>

@@ -10,7 +10,7 @@ class InterestsController < ApplicationController
     @feed = Feed.find_by_interest_id(params[:id])
 
     if @feed == nil 
-        @feed = Feed.new
+       @feed = Feed.new
     end
     @title = @interest.name
     @image = @interest.image
@@ -38,10 +38,3 @@ class InterestsController < ApplicationController
     end
  end
 end
-
-
- 
-
-
-
-
