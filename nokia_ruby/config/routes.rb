@@ -29,6 +29,7 @@ NokiaRuby::Application.routes.draw do
   match '/add'  :to => 'interests#new'
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
+  match "users/:id/friend_requests" => "users#friend_requests"
   
   match '/pages/home' => 'pages#home'
 
