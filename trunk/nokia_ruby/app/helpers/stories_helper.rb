@@ -205,7 +205,12 @@ end
 
 #the method of fetching rss feeds
 
-def fetch_stories_by_rss_feeds(link)
+require 'rss/1.0'
+require 'rss/2.0'
+require 'open-uri'
+
+
+def fetchRss(link)
 
 #source = "http://feeds.abcnews.com/abcnews/topstories" # url or local file
 source = link
