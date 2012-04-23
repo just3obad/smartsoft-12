@@ -12,10 +12,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import javax.microedition.io.Connector;
 import javax.microedition.io.HttpConnection;
+import org.json.me.*;
 
 /**
  * @author Essam Hafez
  */
+
 public class HelloMIDlet extends MIDlet implements CommandListener{
     String url;
    
@@ -863,28 +865,8 @@ CommentsMany = new Form ("Comments", new Item[] { getTextField () });//GEN-BEGIN
 CommentsMany.addCommand (getBackToStory ());
 CommentsMany.addCommand (getAddComment ());
 CommentsMany.setCommandListener (this);//GEN-END:|27-getter|1|27-postInit
-        parseComments("");
-// addComments();
-// write post-init user code here
-//addComments(); //adding dummy comments to test UI
-//  CustomCanvas cc = new CustomCanvas();
-//            try {
-//                CustomComment c = new CustomComment(cc,"lol",
-//                                  new Runnable() {
-//
-//                                      public void run() {
-//                                          // When Login is tapped, create a new screen and set it current
-//                                          System.out.println("im pressseddd");
-//                                          switchDisplayable(null, getStory());
-//                                      }
-//                                  });
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-//            cc.setFullScreenMode(true);
-//   getDisplay().setCurrent(cc);
-//   if(true) return null;
-  //Comment.insert(countInsertion++, pas);
+        parseComments("8");
+
                
 }//GEN-BEGIN:|27-getter|2|
 return CommentsMany;
@@ -2476,7 +2458,7 @@ return backToComments;
 public Command getLike () {
 if (Like == null) {//GEN-END:|210-getter|0|210-preInit
  // write pre-init user code here
-Like = new Command ("Item", Command.ITEM, 0);//GEN-LINE:|210-getter|1|210-postInit
+Like = new Command ("Like", Command.ITEM, 0);//GEN-LINE:|210-getter|1|210-postInit
  // write post-init user code here
 }//GEN-BEGIN:|210-getter|2|
 return Like;
@@ -2491,7 +2473,7 @@ return Like;
 public Command getDislike () {
 if (Dislike == null) {//GEN-END:|212-getter|0|212-preInit
  // write pre-init user code here
-Dislike = new Command ("Item", Command.ITEM, 0);//GEN-LINE:|212-getter|1|212-postInit
+Dislike = new Command ("Dislike", Command.ITEM, 0);//GEN-LINE:|212-getter|1|212-postInit
  // write post-init user code here
 }//GEN-BEGIN:|212-getter|2|
 return Dislike;
@@ -2770,19 +2752,41 @@ return Dislike;
     }
 }
         // view one of the comments of a certain story
-    public void viewCommentOne(commentItem item){
-        getCommentOne().insert(countInsertion++, item);
-        switchDisplayable(null, getCommentOne());
+    public void viewCommentOne(String id,String user,String content,String ups,String downs){
+      //  getCommentOne().
+        commentItem com = new commentItem(id, user, content, ups, downs, 1);
+       
+        getCommentOne().append(com);
+         switchDisplayable(null, getCommentOne());
     }
     // parse comments list comming from server
     public void parseComments(String storyID){
     HttpConnection httpConn = null;
-      String url = "http://192.168.1.3:3000/stories/"+storyID+"/comments.json" ;  
-      String urltest = "http://192.168.1.3:3000/comments/8";
-      String json = getData(urltest);  
-      CommentsMany.append(new commentItem(json,this));
-      switchDisplayable(null, CommentsMany);
-    
+      String url = "http://192.168.1.3:3000/stories/"+storyID+"/comments" ;  
+     // String urltest = "http://192.168.1.3:3000/comments/8";
+      String jsonS = getData(url);  
+      System.out.println(jsonS);
+      commentItem [] comments;
+   //   CommentsMany.append(new commentItem(json,this));
+   //   switchDisplayable(null, CommentsMany);
+   // sendData("http://192.168.1.3:3000/stories/:id/comments/downc", "{\"user_id\":\"3\",\"comment_id\":\"1\"}");
+      try {
+			JSONObject json = new JSONObject(jsonS);
+			
+			JSONArray jsonArray = json.getJSONArray("Comments");
+			int total = jsonArray.length();
+		
+                        comments = new commentItem[total];
+			for (int i=0;i<total;i++) {
+				String commJson = jsonArray.getString(i);
+				comments[i] = new commentItem(commJson,this);
+				CommentsMany.append(comments[i]);
+			}
+                        switchDisplayable(null, CommentsMany);
+			
+		} catch (JSONException ex) {
+			ex.printStackTrace();
+		}
         
     
     

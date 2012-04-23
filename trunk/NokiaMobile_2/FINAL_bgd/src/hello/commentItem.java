@@ -22,19 +22,26 @@ public class commentItem extends CustomItem {
 
     int n, height = 50;
     String comment_id;
+    int lonely;
     String user; //username of the comment
     String content; //content of the comment
     String ups, downs; //number of thumbs up and down
     HelloMIDlet MIDlet; //MIDlet to which the custom item belongs to
 
+    
+    public commentItem(String id,String us,String cont,String up,String down,int n){
+        super(null);
+        comment_id = id;
+        user = us;
+        content = cont;
+        ups = up;
+        downs = down;
+        lonely = n;
+    }
     public commentItem(String jsonString,HelloMIDlet mid) {
-
         super(null);
         fromJson(jsonString);
         MIDlet = mid;
-      
-        
-
     }
     
     public void fromJson(String js){
@@ -120,7 +127,8 @@ public class commentItem extends CustomItem {
 
     protected void pointerReleased(int x, int y) {
       //  System.out.println("released");
-        MIDlet.viewCommentOne(this);
+        if(lonely == 0)
+        MIDlet.viewCommentOne(comment_id,user,content,ups,downs);
     }
 
     public int getMinContentHeight() {

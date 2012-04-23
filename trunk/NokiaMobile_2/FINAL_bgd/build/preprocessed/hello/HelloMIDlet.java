@@ -12,10 +12,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import javax.microedition.io.Connector;
 import javax.microedition.io.HttpConnection;
+import org.json.me.*;
 
 /**
  * @author Essam Hafez
  */
+
 public class HelloMIDlet extends MIDlet implements CommandListener{
     String url;
    
@@ -31,8 +33,8 @@ private Command Comment1;
 private Command backCommand;
 private Command backCommand1;
 private Command okCommand;
-private Command comment2;
-private Command backCommand2;
+private Command AddComment;
+private Command backToStory;
 private Command cancelCommand;
 private Command ok;
 private Command back;
@@ -451,15 +453,11 @@ if (command == Dislike) {//GEN-END:|7-commandAction|1|213-preAction
  // write pre-action user code here
 //GEN-LINE:|7-commandAction|6|209-postAction
  // write post-action user code here
-}//GEN-BEGIN:|7-commandAction|7|38-preAction
+}//GEN-BEGIN:|7-commandAction|7|40-preAction
 } else if (displayable == CommentsMany) {
-if (command == backCommand2) {//GEN-END:|7-commandAction|7|38-preAction
+if (command == AddComment) {//GEN-END:|7-commandAction|7|40-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|8|38-postAction
-                // write post-action user code here
-} else if (command == comment2) {//GEN-LINE:|7-commandAction|9|40-preAction
-                // write pre-action user code here
-//GEN-LINE:|7-commandAction|10|40-postAction
+//GEN-LINE:|7-commandAction|8|40-postAction
                 // write post-action user code here
     String s = getTextField().getString();
     if(s.equals(null) || s.equals("")){
@@ -476,6 +474,10 @@ if (command == backCommand2) {//GEN-END:|7-commandAction|7|38-preAction
      //   switchDisplayable(CommentSucc, getComment());  //show success alert
       //  getDisplay().setCurrent(displayable);
     }
+} else if (command == backToStory) {//GEN-LINE:|7-commandAction|9|38-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|10|38-postAction
+                // write post-action user code here
 }//GEN-BEGIN:|7-commandAction|11|137-preAction
 } else if (displayable == LoginScreen) {
 if (command == backCommand5) {//GEN-END:|7-commandAction|11|137-preAction
@@ -860,31 +862,11 @@ if (CommentsMany == null) {//GEN-END:|27-getter|0|27-preInit
             // write pre-init user code here
     
 CommentsMany = new Form ("Comments", new Item[] { getTextField () });//GEN-BEGIN:|27-getter|1|27-postInit
-CommentsMany.addCommand (getBackCommand2 ());
-CommentsMany.addCommand (getComment2 ());
+CommentsMany.addCommand (getBackToStory ());
+CommentsMany.addCommand (getAddComment ());
 CommentsMany.setCommandListener (this);//GEN-END:|27-getter|1|27-postInit
-        parseComments("");
-// addComments();
-// write post-init user code here
-//addComments(); //adding dummy comments to test UI
-//  CustomCanvas cc = new CustomCanvas();
-//            try {
-//                CustomComment c = new CustomComment(cc,"lol",
-//                                  new Runnable() {
-//
-//                                      public void run() {
-//                                          // When Login is tapped, create a new screen and set it current
-//                                          System.out.println("im pressseddd");
-//                                          switchDisplayable(null, getStory());
-//                                      }
-//                                  });
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-//            cc.setFullScreenMode(true);
-//   getDisplay().setCurrent(cc);
-//   if(true) return null;
-  //Comment.insert(countInsertion++, pas);
+        parseComments("8");
+
                
 }//GEN-BEGIN:|27-getter|2|
 return CommentsMany;
@@ -951,33 +933,33 @@ return backCommand1;
 }
 //</editor-fold>//GEN-END:|34-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|37-getter|0|37-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToStory ">//GEN-BEGIN:|37-getter|0|37-preInit
 /**
- * Returns an initiliazed instance of backCommand2 component.
+ * Returns an initiliazed instance of backToStory component.
  * @return the initialized component instance
  */
-public Command getBackCommand2 () {
-if (backCommand2 == null) {//GEN-END:|37-getter|0|37-preInit
+public Command getBackToStory () {
+if (backToStory == null) {//GEN-END:|37-getter|0|37-preInit
             // write pre-init user code here
-backCommand2 = new Command ("Back", Command.BACK, 0);//GEN-LINE:|37-getter|1|37-postInit
+backToStory = new Command ("Back", Command.BACK, 0);//GEN-LINE:|37-getter|1|37-postInit
             // write post-init user code here
 }//GEN-BEGIN:|37-getter|2|
-return backCommand2;
+return backToStory;
 }
 //</editor-fold>//GEN-END:|37-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: comment2 ">//GEN-BEGIN:|39-getter|0|39-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: AddComment ">//GEN-BEGIN:|39-getter|0|39-preInit
 /**
- * Returns an initiliazed instance of comment2 component.
+ * Returns an initiliazed instance of AddComment component.
  * @return the initialized component instance
  */
-public Command getComment2 () {
-if (comment2 == null) {//GEN-END:|39-getter|0|39-preInit
+public Command getAddComment () {
+if (AddComment == null) {//GEN-END:|39-getter|0|39-preInit
             // write pre-init user code here
-comment2 = new Command ("Add", Command.OK, 0);//GEN-LINE:|39-getter|1|39-postInit
+AddComment = new Command ("Add", Command.OK, 0);//GEN-LINE:|39-getter|1|39-postInit
             // write post-init user code here
 }//GEN-BEGIN:|39-getter|2|
-return comment2;
+return AddComment;
 }
 //</editor-fold>//GEN-END:|39-getter|2|
 
@@ -2770,19 +2752,41 @@ return Dislike;
     }
 }
         // view one of the comments of a certain story
-    public void viewCommentOne(commentItem item){
-        getCommentOne().insert(countInsertion++, item);
-        switchDisplayable(null, getCommentOne());
+    public void viewCommentOne(String id,String user,String content,String ups,String downs){
+      //  getCommentOne().
+        commentItem com = new commentItem(id, user, content, ups, downs, 1);
+       
+        getCommentOne().append(com);
+         switchDisplayable(null, getCommentOne());
     }
     // parse comments list comming from server
     public void parseComments(String storyID){
     HttpConnection httpConn = null;
-      String url = "http://192.168.1.3:3000/stories/"+storyID+"/comments.json" ;  
-      String urltest = "http://192.168.1.3:3000/comments/8";
-      String json = getData(urltest);  
-      CommentsMany.append(new commentItem(json,this));
-      switchDisplayable(null, CommentsMany);
-    
+      String url = "http://192.168.1.3:3000/stories/"+storyID+"/comments" ;  
+     // String urltest = "http://192.168.1.3:3000/comments/8";
+      String jsonS = getData(url);  
+      System.out.println(jsonS);
+      commentItem [] comments;
+   //   CommentsMany.append(new commentItem(json,this));
+   //   switchDisplayable(null, CommentsMany);
+   // sendData("http://192.168.1.3:3000/stories/:id/comments/downc", "{\"user_id\":\"3\",\"comment_id\":\"1\"}");
+      try {
+			JSONObject json = new JSONObject(jsonS);
+			
+			JSONArray jsonArray = json.getJSONArray("Comments");
+			int total = jsonArray.length();
+		
+                        comments = new commentItem[total];
+			for (int i=0;i<total;i++) {
+				String commJson = jsonArray.getString(i);
+				comments[i] = new commentItem(commJson,this);
+				CommentsMany.append(comments[i]);
+			}
+                        switchDisplayable(null, CommentsMany);
+			
+		} catch (JSONException ex) {
+			ex.printStackTrace();
+		}
         
     
     
