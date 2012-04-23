@@ -3,11 +3,11 @@ class FriendsController < ApplicationController
   # GET /friends/new
   # GET /friends/new.json
 
-  def add(sender_id,receiver_name)
+  def add(user_id,receiver_name)
     
     @receiver_id = User.where(:name => receive_name).select("id")
      if (reciver != nil)
-       Friends.create!(:sender => sender_id, :receiver => receiver__id , :stat => 0)
+       Friends.create!(:sender => user_id, :receiver => receiver__id , :stat => 0)
      end
    end
        
@@ -29,7 +29,7 @@ class FriendsController < ApplicationController
   # POST /friends
   # POST /friends.json
   def create
-    @friend = Friend.new(params[:friend])
+    @friend = Friends.new(:sender=>params[user_id],:receiver=>params[receiver_id], :stat=>0)
 
     respond_to do |format|
       if @friend.save
@@ -48,7 +48,7 @@ class FriendsController < ApplicationController
     @friend = Friend.find(params[:id])
 
     respond_to do |format|
-      if @friend.update_attributes(params[:friend])
+      if @friend.update_attributes(:sender=>params[user_id],:receiver=>params[receiver_id], :stat=>1)
         format.html { redirect_to @friend, notice: 'Friend was successfully updated.' }
         format.json { head :no_content }
       else
@@ -61,7 +61,7 @@ class FriendsController < ApplicationController
   # DELETE /friends/1
   # DELETE /friends/1.json
   def destroy
-    @friend = Friend.find(params[:id])
+    @friend = Friend.find(:sender=>params[user_id],:receiver=>params[receiver_id])
     @friend.destroy
 
     respond_to do |format|
