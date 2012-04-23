@@ -2,7 +2,7 @@ class FriendsController < ApplicationController
 
   # GET /friends/new
   # GET /friends/new.json
-
+# Add a friend request after checking the incoming name
   def add(user_id,receiver_name)
     
     @receiver_id = User.where(:name => receive_name).select("id")
@@ -28,6 +28,7 @@ class FriendsController < ApplicationController
 
   # POST /friends
   # POST /friends.json
+#create the freind request and save it act as pending requests
   def create
     @friend = Friends.new(:sender=>params[user_id],:receiver=>params[receiver_id], :stat=>0)
 
@@ -44,6 +45,7 @@ class FriendsController < ApplicationController
 
   # PUT /friends/1
   # PUT /friends/1.json
+  # update the friend request and change it stat to 1 , act as acceptance
   def update
     @friend = Friend.find(params[:id])
 
@@ -60,6 +62,7 @@ class FriendsController < ApplicationController
 
   # DELETE /friends/1
   # DELETE /friends/1.json
+#Drop the friend request act as rejecting
   def destroy
     @friend = Friend.find(:sender=>params[user_id],:receiver=>params[receiver_id])
     @friend.destroy
