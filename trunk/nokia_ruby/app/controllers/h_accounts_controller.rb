@@ -22,6 +22,10 @@ class HAccountsController < ApplicationController
     end
   end
 
+  def forgot
+    @h_account = Haccount.find_by_email(params[:email])
+    
+  end
   def update
     @h_account = Haccount.find(params[:id])
 
@@ -35,6 +39,12 @@ class HAccountsController < ApplicationController
       end
     end
   end
+
+ def reset_password
+   @account = Haccount.find_by_email(params[:email])
+   Emailer.deliver_password_reset(@account)
+   format.json {render json: @account, notice: "Password Reset" }
+ end
 
  def index
     @h_accounts = Haccount.all
