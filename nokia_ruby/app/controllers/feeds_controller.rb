@@ -15,7 +15,8 @@ end
       flash[:success] = "RSS added Successfully !"
       redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
     else
-     puts @feed 
+     @title = "Add feed"
+     render 'new'
     end
   end
 
