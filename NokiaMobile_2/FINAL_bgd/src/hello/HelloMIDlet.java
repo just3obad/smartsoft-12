@@ -7,9 +7,11 @@ package hello;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import  com.nokia.mid.ui.LCDUIUtil;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Vector;
 import javax.microedition.io.Connector;
 import javax.microedition.io.HttpConnection;
 import org.json.me.*;
@@ -84,6 +86,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command BackToAccounts1;
     private Command Resend1;
     private Command backCommand10;
+    private Command friendsLike;
+    private Command friendsDislike;
+    private Command singOut;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -149,11 +154,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private StringItem stringItem2;
     private Form EmailSent;
     private StringItem stringItem1;
+    private List disliked;
     private Form AuthSuccessful;
     private StringItem stringItem3;
     private Form TwitterAuthFailed;
     private StringItem stringItem4;
-    private List disliked;
     private Image image1;
     //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -165,26 +170,25 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
      */
     public HelloMIDlet() {
     }
-
-    public Image getImage1(String s) {
+ public Image getImage1(String s) {
         if (image1 == null) {
-            // write pre-init user code here
             try {
                 image1 = Image.createImage(s);
             } catch (java.io.IOException e) {
                 e.printStackTrace();
             }
-            // write post-init user code here
         }
         return image1;
     }
     
-    public void jsonReadMoree() {
+public void jsonReadMoree() {
         //currentStoryString
-        String url = "id: 1 title:\"FaceBook \" body To launch the high quality TV channel TNT in Belgium we placed a big red push button on an average Flemish square of an average Flemish town. A sign with the...http://www.3run.co.uk/ - Home of the 3RUN Famly World Wide http://www.3runshop.com/ - Free Running Trainers, Clothing, DVD's, Bags, Accessories. 3RUN  : rank 5 image : /x.png category : arts";
-        String s = url;
-        
-        if(s.length() == 0) {
+        //String url = "id: 1 title:\"FaceBook \" body To launch the high quality TV channel TNT in Belgium we placed a big red push button on an average Flemish square of an average Flemish town. A sign with the...http://www.3run.co.uk/ - Home of the 3RUN Famly World Wide http://www.3runshop.com/ - Free Running Trainers, Clothing, DVD's, Bags, Accessories. 3RUN  : rank 5 image : /x.png category : arts";
+        //String s = url;  
+        //
+        String [] s = split(currentStoryString , "~");
+        //s[0] = title  s[1] = image s[2] = rank s[3] = body s[4] = category s[5] = id
+        if(s.length == 0) {
             readMore.append("sorry , the selected story was removed");
             readMore.removeCommand(thumbup);
             readMore.removeCommand(thumbdown);
@@ -196,48 +200,38 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
             readMore.removeCommand(blockstory); 
         }
                 else {
-                int idOccur = s.indexOf("id");   
-                int t = s.indexOf("title");
-                int b = s.indexOf("body");
-                int r = s.indexOf("rank");
-                int i = s.indexOf("image");
-                int c = s.indexOf("category");
-                t=t+7;
-                String title = s.substring(t, b-2); 
-                b+=4;
-                String body = s.substring(b, r-1);
-                r+=4;
-                String rank = s.substring(r, i-1);
-                i+=5;
-                String image = s.substring(i+3, c-1);
-                c +=8;
-                String category = s.substring(c, s.length()-1);
           
-             Image addedImage = getImage1(image);
-               
-           try {
-                addedImage = Image.createImage(image);
+                Image addedImage = new Image();              
+              try{
+        addedImage = loadImage(s[1]); // adds image from internet
+       }catch(Exception e){
+            System.out.println("Cannot find image");
+            try {
+                addedImage = Image.createImage("/x.png"); // if error happened, add a local presented image
             } catch (IOException ex) {
                 ex.printStackTrace();
-            }   
+            }
+        }
             
                 
                 //readMore.append("\n");
-                readMore.append( title.toUpperCase());
-                 if(addedImage != null) readMore.append(addedImage);
+                readMore.append( s[0].toUpperCase());
                 readMore.append("\n");
-                readMore.append("with ranking:   " + rank);
+                readMore.append("related to:  "+s[4]);
                 readMore.append("\n");
-                //readMore.append(image);
+                readMore.append(addedImage);
                 readMore.append("\n");
-                readMore.append(": " + body);
+                readMore.append("with ranking:   " + s[2]);
+                readMore.append("\n");
+                readMore.append("\n");
+                readMore.append(": " + s[3]);
 
         }
     }
   
     public void rm() {
         jsonReadMoree();
-    }
+    }	
     public void friendsConnection()
     {
           
@@ -871,59 +865,67 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
                  // write pre-action user code here
 //GEN-LINE:|7-commandAction|100|194-postAction
                  // write post-action user code here
-             } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|101|188-preAction
+             } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|101|319-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|102|188-postAction
+//GEN-LINE:|7-commandAction|102|319-postAction
                  // write post-action user code here
-             } else if (command == recommend1) {//GEN-LINE:|7-commandAction|103|198-preAction
+             } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|103|317-preAction
                  // write pre-action user code here
-                 switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|104|198-postAction
+//GEN-LINE:|7-commandAction|104|317-postAction
                  // write post-action user code here
-             } else if (command == share) {//GEN-LINE:|7-commandAction|105|196-preAction
+             } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|105|188-preAction
                  // write pre-action user code here
-                 method();//GEN-LINE:|7-commandAction|106|196-postAction
+//GEN-LINE:|7-commandAction|106|188-postAction
                  // write post-action user code here
-             } else if (command == signout) {//GEN-LINE:|7-commandAction|107|204-preAction
+             } else if (command == recommend1) {//GEN-LINE:|7-commandAction|107|198-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|108|204-postAction
+                 switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|108|198-postAction
                  // write post-action user code here
-             } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|109|192-preAction
+             } else if (command == share) {//GEN-LINE:|7-commandAction|109|196-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|110|192-postAction
+                 method();//GEN-LINE:|7-commandAction|110|196-postAction
                  // write post-action user code here
-             } else if (command == thumbup) {//GEN-LINE:|7-commandAction|111|190-preAction
+             } else if (command == singOut) {//GEN-LINE:|7-commandAction|111|321-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|112|190-postAction
+//GEN-LINE:|7-commandAction|112|321-postAction
                  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|113|115-preAction
+             } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|113|192-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|114|192-postAction
+                 // write post-action user code here
+             } else if (command == thumbup) {//GEN-LINE:|7-commandAction|115|190-preAction
+                 // write pre-action user code here
+//GEN-LINE:|7-commandAction|116|190-postAction
+                 // write post-action user code here
+             }//GEN-BEGIN:|7-commandAction|117|115-preAction
          } else if (displayable == recommend) {
-             if (command == backCommand3) {//GEN-END:|7-commandAction|113|115-preAction
+             if (command == backCommand3) {//GEN-END:|7-commandAction|117|115-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|114|115-postAction
+                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|118|115-postAction
                 // write post-action user code here
-             } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|115|124-preAction
+             } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|119|124-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|116|124-postAction
+                 switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|120|124-postAction
                 // write post-action user code here
-             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|117|113-preAction
+             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|121|113-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|118|113-postAction
+                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|122|113-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|119|35-preAction
+             }//GEN-BEGIN:|7-commandAction|123|35-preAction
          } else if (displayable == textBox) {
-             if (command == backCommand1) {//GEN-END:|7-commandAction|119|35-preAction
+             if (command == backCommand1) {//GEN-END:|7-commandAction|123|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|120|35-postAction
+//GEN-LINE:|7-commandAction|124|35-postAction
                 // write post-action user code here
-             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|121|33-preAction
+             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|125|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|122|33-postAction
+//GEN-LINE:|7-commandAction|126|33-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|123|7-postCommandAction
-         }//GEN-END:|7-commandAction|123|7-postCommandAction
+             }//GEN-BEGIN:|7-commandAction|127|7-postCommandAction
+         }//GEN-END:|7-commandAction|127|7-postCommandAction
         // write post-action user code here
-      }//GEN-BEGIN:|7-commandAction|124|
-      //</editor-fold>//GEN-END:|7-commandAction|124|
+      }//GEN-BEGIN:|7-commandAction|128|
+      //</editor-fold>//GEN-END:|7-commandAction|128|
 
 
 
@@ -996,57 +998,57 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
       }
       //</editor-fold>//GEN-END:|22-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
-    /**
-     * Returns an initiliazed instance of viewComments component.
-     * @return the initialized component instance
-     */
-    public Command getViewComments() {
-        if (viewComments == null) {//GEN-END:|24-getter|0|24-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
+      /**
+       * Returns an initiliazed instance of viewComments component.
+       * @return the initialized component instance
+       */
+      public Command getViewComments() {
+          if (viewComments == null) {//GEN-END:|24-getter|0|24-preInit
             // write pre-init user code here
-            viewComments = new Command("Ok", Command.OK, 0);//GEN-LINE:|24-getter|1|24-postInit
+              viewComments = new Command("Ok", Command.OK, 0);//GEN-LINE:|24-getter|1|24-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|24-getter|2|
-        return viewComments;
-    }
-    //</editor-fold>//GEN-END:|24-getter|2|
+          }//GEN-BEGIN:|24-getter|2|
+          return viewComments;
+      }
+      //</editor-fold>//GEN-END:|24-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
-    /**
-     * Returns an initiliazed instance of Story component.
-     * @return the initialized component instance
-     */
-    public Form getStory() {
-        if (Story == null) {//GEN-END:|23-getter|0|23-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
+      /**
+       * Returns an initiliazed instance of Story component.
+       * @return the initialized component instance
+       */
+      public Form getStory() {
+          if (Story == null) {//GEN-END:|23-getter|0|23-preInit
             // write pre-init user code here
-            Story = new Form("form1");//GEN-BEGIN:|23-getter|1|23-postInit
-            Story.addCommand(getOkCommand1());
-            Story.addCommand(getComment1());
-            Story.addCommand(getBackCommand());
-            Story.setCommandListener(this);//GEN-END:|23-getter|1|23-postInit
+              Story = new Form("form1");//GEN-BEGIN:|23-getter|1|23-postInit
+              Story.addCommand(getOkCommand1());
+              Story.addCommand(getComment1());
+              Story.addCommand(getBackCommand());
+              Story.setCommandListener(this);//GEN-END:|23-getter|1|23-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|23-getter|2|
-        return Story;
-    }
-    //</editor-fold>//GEN-END:|23-getter|2|
+          }//GEN-BEGIN:|23-getter|2|
+          return Story;
+      }
+      //</editor-fold>//GEN-END:|23-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
-    /**
-     * Returns an initiliazed instance of textBox component.
-     * @return the initialized component instance
-     */
-    public TextBox getTextBox() {
-        if (textBox == null) {//GEN-END:|26-getter|0|26-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
+      /**
+       * Returns an initiliazed instance of textBox component.
+       * @return the initialized component instance
+       */
+      public TextBox getTextBox() {
+          if (textBox == null) {//GEN-END:|26-getter|0|26-preInit
             // write pre-init user code here
-            textBox = new TextBox("textBox", null, 100, TextField.ANY);//GEN-BEGIN:|26-getter|1|26-postInit
-            textBox.addCommand(getOkCommand());
-            textBox.addCommand(getBackCommand1());
-            textBox.setCommandListener(this);//GEN-END:|26-getter|1|26-postInit
+              textBox = new TextBox("textBox", null, 100, TextField.ANY);//GEN-BEGIN:|26-getter|1|26-postInit
+              textBox.addCommand(getOkCommand());
+              textBox.addCommand(getBackCommand1());
+              textBox.setCommandListener(this);//GEN-END:|26-getter|1|26-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|26-getter|2|
-        return textBox;
-    }
-    //</editor-fold>//GEN-END:|26-getter|2|
+          }//GEN-BEGIN:|26-getter|2|
+          return textBox;
+      }
+      //</editor-fold>//GEN-END:|26-getter|2|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentsMany ">//GEN-BEGIN:|27-getter|0|27-preInit
     /**
@@ -2573,7 +2575,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
             readMore.addCommand(getRecommend1());
             readMore.addCommand(getBlockinterest());
             readMore.addCommand(getBlockstory());
-            readMore.addCommand(getSignout());
+            readMore.addCommand(getFriendsLike());
+            readMore.addCommand(getFriendsDislike());
+            readMore.addCommand(getSingOut());
             readMore.setCommandListener(this);//GEN-END:|184-getter|1|184-postInit
             // write post-init user code here
             rm();
@@ -3175,6 +3179,51 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     }//GEN-BEGIN:|311-action|2|
     //</editor-fold>//GEN-END:|311-action|2|
 
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsLike ">//GEN-BEGIN:|316-getter|0|316-preInit
+    /**
+     * Returns an initiliazed instance of friendsLike component.
+     * @return the initialized component instance
+     */
+    public Command getFriendsLike() {
+        if (friendsLike == null) {//GEN-END:|316-getter|0|316-preInit
+            // write pre-init user code here
+            friendsLike = new Command("Thumbed Up by", Command.OK, 0);//GEN-LINE:|316-getter|1|316-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|316-getter|2|
+        return friendsLike;
+    }
+    //</editor-fold>//GEN-END:|316-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsDislike ">//GEN-BEGIN:|318-getter|0|318-preInit
+    /**
+     * Returns an initiliazed instance of friendsDislike component.
+     * @return the initialized component instance
+     */
+    public Command getFriendsDislike() {
+        if (friendsDislike == null) {//GEN-END:|318-getter|0|318-preInit
+            // write pre-init user code here
+            friendsDislike = new Command("Thumbed Down by", Command.OK, 0);//GEN-LINE:|318-getter|1|318-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|318-getter|2|
+        return friendsDislike;
+    }
+    //</editor-fold>//GEN-END:|318-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: singOut ">//GEN-BEGIN:|320-getter|0|320-preInit
+    /**
+     * Returns an initiliazed instance of singOut component.
+     * @return the initialized component instance
+     */
+    public Command getSingOut() {
+        if (singOut == null) {//GEN-END:|320-getter|0|320-preInit
+            // write pre-init user code here
+            singOut = new Command("Sign out", Command.OK, 0);//GEN-LINE:|320-getter|1|320-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|320-getter|2|
+        return singOut;
+    }
+    //</editor-fold>//GEN-END:|320-getter|2|
+
 
 
 
@@ -3491,6 +3540,46 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     String x = getInterests();
     parseJsonInterest(x);
 }
+   
+   private static String[] split(String original,String separator) {  //string split method
+		    Vector nodes = new Vector();
+		    int index = original.indexOf(separator);
+		    while(index >= 0) {
+		        nodes.addElement( original.substring(0, index) );
+		        original = original.substring(index+separator.length());
+		        index = original.indexOf(separator);
+                    }
+		    nodes.addElement( original );
+
+		    String[] result = new String[ nodes.size() ];
+		    if( nodes.size() > 0 ) {
+		        for(int loop = 0; loop < nodes.size(); loop++)
+		        {
+		            result[loop] = (String)nodes.elementAt(loop);
+		     }
+
+		    } 
+		   return result;
+		}
+		
+		
+   public Image loadImage(String url) throws IOException {
+    HttpConnection hpc = null;
+    DataInputStream dis = null;
+    try {
+      hpc = (HttpConnection) Connector.open(url);
+      int length = (int) hpc.getLength();
+      byte[] data = new byte[length];
+      dis = new DataInputStream(hpc.openInputStream());
+      dis.readFully(data);
+      return Image.createImage(data, 0, data.length);
+    } finally {
+      if (hpc != null)
+        hpc.close();
+      if (dis != null)
+        dis.close();
+    }
+  }
    
      public void dummydata()
    {
