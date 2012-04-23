@@ -9,17 +9,13 @@ class User < ActiveRecord::Base
   has_one :twitter_request #If he requested another one, the old will be deleted
 
   email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
-  validates :name, :presence => true,
-  :length => { :maximum => 20 }
+  validates :name, :length => { :maximum => 20 }
   validates :email, :presence => true,
   :format=> {:with => email_regex },
 
   :uniqueness => { :case_sensitive => false}
-  validates :first_name, :presence => true,
-  :length => { :maximum => 20 }
-  validates :last_name, :presence => true,     #un-comment after db handling
-  :length => { :maximum => 20 }
-  validates :date_of_birth, :presence => true
+  validates :first_name, :length => { :maximum => 20 }
+  validates :last_name,  :length => { :maximum => 20 }
   
  # gets the shared stories of friends of a user
   def get_friends_stories()

@@ -21,20 +21,19 @@ class UsersController < ApplicationController
     end
 
   def create
-    @user = User.new(params[:name=>params[:name],:email=>params[:email],
-                    :first_name=>params[:first_name], :last_name=>params[:last_name],
-                    :date_of_birth=>params[:date_of_birth]])
-    redirect_to :controller => GaheemAccount, :action => 'create', :email=>params[:email],
-        :password=>params[:password]
+    @user = User.new(params[:user])
+    @user.save
+    @user.haccount = Haccount.new(:email => @user.email, :password=>params[:password], :user_id => @user.id)
+    #@user.haccount.save
     respond_to do |format|
-      if @user.save
+    #  if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    #    format.json { render json: @user, status: :created, location: @user }
+    #  else
+    #    format.html { render action: "new" }
+    #    format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
  # GET /users/1/edit
@@ -107,7 +106,7 @@ end
 
 def feed
  @id=params[:id]
- @interests = User.find_by_sql("select interests.name from user,user_add_interest,interest where user_id=@id AND user.id = user_add_interest.user_id AND user_add_interest.interest_id = interest.id ")
+# @interests = User.find_by_sql("select interests.name from user,user_add_interest,interest where user_id=@id AND user.id = user_add_interest.user_id AND user_add_interest.interest_id = interest.id ")
 # @stories_list = getStories(@interests)
 respond_to do |format|
       format.json { render json: @stories_list }
