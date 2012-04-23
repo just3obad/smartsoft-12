@@ -1,6 +1,7 @@
 <div>
 <%= form_for (@feed) do |f| %>
-  
+ 
+<%= render 'shared/error_feed' %>
 
   <div class="field">
     <%= f.text_field :link %>
