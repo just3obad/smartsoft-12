@@ -59,8 +59,12 @@ include UsersHelper
  def get_all_users_stat
  reg = get_num_registered_day
  log = get_num_logged_in_day
+ if reg.empty?
+ data = []
+ else 
  data = "[#{reg},#{log}]"
  end
+end
  
  
 end
