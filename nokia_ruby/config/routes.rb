@@ -1,7 +1,7 @@
 NokiaRuby::Application.routes.draw do
 
   post "h_accounts/sign_in"
-  match "users" => "users#feed"
+  match "users/:id" => "users#feed"
   match "/users/new" => "users#create", :as => :create
   match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests" => "user_add_interests#getinterests"
