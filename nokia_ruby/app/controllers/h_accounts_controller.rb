@@ -26,7 +26,7 @@ class HAccountsController < ApplicationController
     @h_account = HAccount.find(params[:id])
 
     respond_to do |format|
-      if @H_account.update_attributes(params[:h_account])
+      if @H_account.update_attributes(:email=>params[:email],:password => params[:password])
         format.html { redirect_to @h_account, notice: 'HAccount was successfully updated.' }
         format.json { head :no_content }
       else
