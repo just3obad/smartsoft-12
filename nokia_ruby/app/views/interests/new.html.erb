@@ -1,9 +1,9 @@
-
-<h1>
-<font size="15" face="arial" color=#06276F>
+<body class= "container">
+<h3>
+<font size="35" face="arial" color=#025167>
 Add Interest
 </font>
-</h1>
+</h3>
 <!.... the form_for helper method takes in  (@interest) an Active Record object and constructs a form using the interest’s attributes , ....>
 <%= form_for(@interest) do |f| %>
 <!..  @interest variable  is defined in the controller action corresponding to the new action in the "Interests" controller. The form_for helper knows that @interest is  Interest object, so we will refer to this form by creating a new Interest  , see "Interest.new " in the controller.. >
@@ -28,10 +28,11 @@ Add Interest
   </div>
 
 
-<%= f.submit "Submit" , class:"button round"%>
+<%= f.submit "Submit" , class:"btn btn-large btn-success"%>
 
 
 <% end %>
+</body>
 
 
 
