@@ -31,8 +31,8 @@ private Command Comment1;
 private Command backCommand;
 private Command backCommand1;
 private Command okCommand;
-private Command AddComment;
-private Command backToStory;
+private Command comment2;
+private Command backCommand2;
 private Command cancelCommand;
 private Command ok;
 private Command back;
@@ -395,7 +395,7 @@ private void initialize () {//GEN-END:|0-initialize|0|0-preInitialize
  */
 public void startMIDlet () {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-//GEN-LINE:|3-startMIDlet|1|3-postAction
+switchDisplayable (null, getCommentsMany ());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
 }//GEN-BEGIN:|3-startMIDlet|2|
 //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -451,11 +451,15 @@ if (command == Dislike) {//GEN-END:|7-commandAction|1|213-preAction
  // write pre-action user code here
 //GEN-LINE:|7-commandAction|6|209-postAction
  // write post-action user code here
-}//GEN-BEGIN:|7-commandAction|7|40-preAction
+}//GEN-BEGIN:|7-commandAction|7|38-preAction
 } else if (displayable == CommentsMany) {
-if (command == AddComment) {//GEN-END:|7-commandAction|7|40-preAction
+if (command == backCommand2) {//GEN-END:|7-commandAction|7|38-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|8|40-postAction
+//GEN-LINE:|7-commandAction|8|38-postAction
+                // write post-action user code here
+} else if (command == comment2) {//GEN-LINE:|7-commandAction|9|40-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|10|40-postAction
                 // write post-action user code here
     String s = getTextField().getString();
     if(s.equals(null) || s.equals("")){
@@ -472,10 +476,6 @@ if (command == AddComment) {//GEN-END:|7-commandAction|7|40-preAction
      //   switchDisplayable(CommentSucc, getComment());  //show success alert
       //  getDisplay().setCurrent(displayable);
     }
-} else if (command == backToStory) {//GEN-LINE:|7-commandAction|9|38-preAction
-                // write pre-action user code here
-//GEN-LINE:|7-commandAction|10|38-postAction
-                // write post-action user code here
 }//GEN-BEGIN:|7-commandAction|11|137-preAction
 } else if (displayable == LoginScreen) {
 if (command == backCommand5) {//GEN-END:|7-commandAction|11|137-preAction
@@ -860,8 +860,8 @@ if (CommentsMany == null) {//GEN-END:|27-getter|0|27-preInit
             // write pre-init user code here
     
 CommentsMany = new Form ("Comments", new Item[] { getTextField () });//GEN-BEGIN:|27-getter|1|27-postInit
-CommentsMany.addCommand (getBackToStory ());
-CommentsMany.addCommand (getAddComment ());
+CommentsMany.addCommand (getBackCommand2 ());
+CommentsMany.addCommand (getComment2 ());
 CommentsMany.setCommandListener (this);//GEN-END:|27-getter|1|27-postInit
         parseComments("");
 // addComments();
@@ -951,33 +951,33 @@ return backCommand1;
 }
 //</editor-fold>//GEN-END:|34-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToStory ">//GEN-BEGIN:|37-getter|0|37-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|37-getter|0|37-preInit
 /**
- * Returns an initiliazed instance of backToStory component.
+ * Returns an initiliazed instance of backCommand2 component.
  * @return the initialized component instance
  */
-public Command getBackToStory () {
-if (backToStory == null) {//GEN-END:|37-getter|0|37-preInit
+public Command getBackCommand2 () {
+if (backCommand2 == null) {//GEN-END:|37-getter|0|37-preInit
             // write pre-init user code here
-backToStory = new Command ("Back", Command.BACK, 0);//GEN-LINE:|37-getter|1|37-postInit
+backCommand2 = new Command ("Back", Command.BACK, 0);//GEN-LINE:|37-getter|1|37-postInit
             // write post-init user code here
 }//GEN-BEGIN:|37-getter|2|
-return backToStory;
+return backCommand2;
 }
 //</editor-fold>//GEN-END:|37-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: AddComment ">//GEN-BEGIN:|39-getter|0|39-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: comment2 ">//GEN-BEGIN:|39-getter|0|39-preInit
 /**
- * Returns an initiliazed instance of AddComment component.
+ * Returns an initiliazed instance of comment2 component.
  * @return the initialized component instance
  */
-public Command getAddComment () {
-if (AddComment == null) {//GEN-END:|39-getter|0|39-preInit
+public Command getComment2 () {
+if (comment2 == null) {//GEN-END:|39-getter|0|39-preInit
             // write pre-init user code here
-AddComment = new Command ("Add", Command.OK, 0);//GEN-LINE:|39-getter|1|39-postInit
+comment2 = new Command ("Add", Command.OK, 0);//GEN-LINE:|39-getter|1|39-postInit
             // write post-init user code here
 }//GEN-BEGIN:|39-getter|2|
-return AddComment;
+return comment2;
 }
 //</editor-fold>//GEN-END:|39-getter|2|
 
