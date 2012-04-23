@@ -12,7 +12,7 @@ NokiaRuby::Application.routes.draw do
   match "/admins/index" => "admins#index"
   match "admins/statistics/all_users" => "statistics#all_users"
   match "admins/statistics/all_interests" => "statistics#all_interests"
-   match "admins/statistics/all_stories" => "statistics#all_stories"
+  match "admins/statistics/all_stories" => "statistics#all_stories"
   match "users/:id/update" => "users#update"
   match "h_accounts/:id/update" => "h_accounts#update"
   match "authenticate/:u_id/get_twitter_url" => "twitter_requests#generate_request_token"
@@ -31,6 +31,7 @@ NokiaRuby::Application.routes.draw do
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
   match "users/:id/friend_requests" => "users#friend_requests"
+  match "users/" => "users#index"
   
   match '/pages/home' => 'pages#home'
 
