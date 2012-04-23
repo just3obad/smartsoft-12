@@ -117,16 +117,7 @@ def friends_feed
 end
 end
 
-#this method Passes a list of Interests according to the user_id to getStories method which should return list of stories according to these Interests and it converts it to a json file.
 
-def feed
- @id=params[:id]
- @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
-# @stories_list = getStories(@interests)
-respond_to do |format|
-    format.json { render json: @stories_list }
- end
- end
 def friend_requests
    @me=params[:user_id]
    id_list = Array.new()

@@ -26880,3 +26880,89 @@ Processing by UserAddInterestsController#getinterests as JSON
   [1m[35mInterest Load (0.4ms)[0m  SELECT "interests".* FROM "interests" WHERE "interests"."id" = ? LIMIT 1  [["id", 1]]
   [1m[36mInterest Load (0.2ms)[0m  [1mSELECT "interests".* FROM "interests" WHERE "interests"."id" = ? LIMIT 1[0m  [["id", 2]]
 Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/users?id=1" for 192.168.26.1 at 2012-04-23 12:34:59 -0700
+Processing by UsersController#feed as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUserAddInterest Load (3.4ms)[0m  SELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')
+Completed 406 Not Acceptable in 40ms (ActiveRecord: 3.4ms)
+
+
+Started GET "/users?id=1" for 192.168.26.1 at 2012-04-23 12:39:54 -0700
+Processing by UsersController#feed as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUserAddInterest Load (0.3ms)[0m  [1mSELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')[0m
+Completed 406 Not Acceptable in 27ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/users?id=1" for 192.168.26.1 at 2012-04-23 12:40:00 -0700
+Processing by UsersController#feed as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUserAddInterest Load (0.5ms)[0m  SELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')
+Completed 406 Not Acceptable in 21ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/users?id=1&format=json" for 192.168.26.1 at 2012-04-23 12:40:08 -0700
+Processing by UsersController#feed as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUserAddInterest Load (0.7ms)[0m  [1mSELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')[0m
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/1" for 192.168.26.1 at 2012-04-23 13:02:56 -0700
+Processing by UsersController#feed as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUserAddInterest Load (20.0ms)[0m  SELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')
+Completed 406 Not Acceptable in 79ms (ActiveRecord: 20.0ms)
+
+
+Started GET "/users/1.json" for 192.168.26.1 at 2012-04-23 13:03:01 -0700
+Processing by UsersController#feed as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUserAddInterest Load (0.3ms)[0m  [1mSELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')[0m
+Completed 200 OK in 21ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1" for 192.168.26.1 at 2012-04-23 13:06:37 -0700
+Processing by UsersController#feed as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUserAddInterest Load (0.3ms)[0m  SELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')
+Completed 406 Not Acceptable in 376ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/users/1.json" for 192.168.26.1 at 2012-04-23 13:06:41 -0700
+Processing by UsersController#feed as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUserAddInterest Load (0.6ms)[0m  [1mSELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')[0m
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/user_add_interests?id=1&format=json" for 192.168.26.1 at 2012-04-23 13:11:56 -0700
+Processing by UserAddInterestsController#getinterests as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUserAddInterest Load (0.5ms)[0m  SELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')
+  [1m[36mInterest Load (0.4ms)[0m  [1mSELECT "interests".* FROM "interests" WHERE "interests"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mInterest Load (0.2ms)[0m  SELECT "interests".* FROM "interests" WHERE "interests"."id" = ? LIMIT 1  [["id", 2]]
+Completed 200 OK in 133ms (Views: 0.3ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/users/1" for 192.168.26.1 at 2012-04-23 13:12:06 -0700
+Processing by UsersController#feed as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUserAddInterest Load (0.6ms)[0m  [1mSELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')[0m
+Completed 406 Not Acceptable in 4ms (ActiveRecord: 0.6ms)
+
+
+Started GET "/users/1.json" for 192.168.26.1 at 2012-04-23 13:12:15 -0700
+Processing by UsersController#feed as JSON
+  Parameters: {"id"=>"1"}
+  [1m[35mUserAddInterest Load (0.3ms)[0m  SELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1.json" for 192.168.26.1 at 2012-04-23 13:13:57 -0700
+Processing by UsersController#feed as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mUserAddInterest Load (0.5ms)[0m  [1mSELECT interest_id FROM "user_add_interests" WHERE (user_id = '1')[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.5ms)
