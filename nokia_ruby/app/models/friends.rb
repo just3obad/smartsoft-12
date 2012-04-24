@@ -8,18 +8,12 @@ class Friends < ActiveRecord::Base
   validates :sender, presence: true
   validates :stat, presence: true
   
-  def self.are_friends(user, friend)
-    return false if user == friend
-    return true unless find_by_user_id_and_friend_id(user, friend).nil?
-    return true unless find_by_user_id_and_friend_id(friend, user).nil?
-    false
-  end
   
   def self.request(user, friend)
-    return false if are_friends(user, friend)
+   
     return false if user == friend
-    f1 = new(:user => user, :friend => friend, :stat => "0")
-    f2 = new(:user => friend, :friend => user, :stat => "0")
+    f1 = new(:sender => user, :receiver => friend, :stat => "0")
+    f2 = new(:sender => friend, :rceiver => user, :stat => "0")
     transaction do
       f1.save
       f2.save

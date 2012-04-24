@@ -35,6 +35,7 @@ NokiaRuby::Application.routes.draw do
   match "stories/:id/comments/downc" => "stories#down_comment"
   match "users/:id/friend_requests" => "users#friend_requests"
   #match "users/" => "users#index"
+  match "friends/"=>"friends#index"
   
   match '/pages/home' => 'pages#home'
 
@@ -52,7 +53,7 @@ NokiaRuby::Application.routes.draw do
 
   resources :gaheem_accounts
   resources :twitter_accounts
-  resources :friends
+  #resources :friends
 #LogFiles
   resources :logs, :except => [:delete,:show]  
   match '/logs/filter/',    to: 'logs#filter'
