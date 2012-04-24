@@ -1,7 +1,8 @@
 class LogsController < ApplicationController
+
  
  #index
-  
+ 
   def index
         $datefilter = false
         if @emptydate!=true
@@ -12,7 +13,10 @@ class LogsController < ApplicationController
           @emptydate = false
         end
         $logs = Log.order("created_at DESC")
-        render :template => 'logs/Logs'
+        respond_to do |format|
+           format.html { render :template => 'logs/Logs' }
+           format.xls { send_data $logs.to_xls, content_type: 'application/vnd.ms-excel', filename: 'LogFile.xls' }
+         end
       end
 
 
@@ -73,11 +77,6 @@ class LogsController < ApplicationController
         redirect_to(:action => 'index')
      end  
   end
-  
- #Search
  
-  def search
-     $logs =  Log.find(:all,:conditions=>['date(created_at) >= ? AND date(created_at) <= ?', $from_date,$to_date], :order => "created_at DESC")
-  end
-  
+ 
  end
