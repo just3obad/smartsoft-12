@@ -7,6 +7,24 @@ class Admin < ActiveRecord::Base
 
 
   def self.search(query)
+    """
+    Given a query string, the method analyze the type of the field is being searched for, and 
+    returns all the users matching the query.
+
+    Args : query : string of the given query
+    Returns : A list of User objects.
+
+    The method work by trying to match the fields first_name, name, email
+    a regular expression is used for each of the fields
+
+    For any field, the same is done ::
+      if the regular expression of a field is R, then I use the regular expression '(R)(.*)'
+      to get the first matching to R, and then taking the rest of the string, and extract 
+      from it all that match with R; then a query is done on all users that matches the expressions
+
+    The users from each query are put in a set, to avoid repeated users, then the result returned
+    is then converted to an array.
+    """
     query_result = [].to_set
 
     email_query = query
@@ -26,23 +44,20 @@ class Admin < ActiveRecord::Base
 
     # Matched $EMAIL
 
-    # The next block is commented until the attributes of user are handled.
-    #
-    # name_query = query
+    name_query = query
 
-    # name_match = []
-    # while name_query =~ $NAME
-    #   match = $NAME.match(name_query)
-    #   name_match.push(match[1])
-    #   name_query = match[2]
-    # end
+    name_match = []
+    while name_query =~ $NAME
+      match = $NAME.match(name_query)
+      name_match.push(match[1])
+      name_query = match[2]
+    end
 
-    # for name_query in name_match
-    #   query_result += User.all.select {|user| not user.first_name.nil? and
-    #                                   (user.first_name =~ %r'#{name_match}' or name_query.downcase =~ %r'#{user.first_name}')}
-    # end
+    for name_query in name_match
+      query_result += User.all.select {|user| not user.first_name.nil? and
+                                      (user.first_name =~ %r'#{name_match}' or name_query.downcase =~ %r'#{user.first_name}')}
+    end
     # Matched names
-    # END OF BLOCK
     username_query = query
 
     username_match = []
@@ -54,16 +69,12 @@ class Admin < ActiveRecord::Base
 
     for username_query in username_match
       query_result += User.all.select {|user| not user.name.nil? and
-                                      (user.name =~ %r'#{username_query}' or username_query.downcase =~ %r'#{user.name}')}
+                                      (user.name.downcase =~ %r'#{username_query.downcase}' or 
+                                       username_query.downcase =~ %r'#{user.name.downcase}')}
     end
     # Matched username
 
     return query_result.to_a
-  end
-
-
-  def self.search_by_id(id)
-    return User.find(id)
   end
 
 end
