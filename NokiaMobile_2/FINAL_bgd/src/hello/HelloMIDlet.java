@@ -54,7 +54,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command okCommand1;
     private Command Back1;
     private Command Find;
-    private Command Add;
+    private Command verifyAccount;
     private Command choosefriend;
     private Command Add1;
     private Command okCommand2;
@@ -177,6 +177,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private StringItem stringItem4;
     private Form manyReq;
     private Form oneReq;
+    private Alert noInternetConn;
+    private Gauge indicator5;
+    private Alert noServerConn;
+    private Gauge indicator6;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -918,88 +922,92 @@ public void jsonReadMoree() {
 //               }
 //GEN-LINE:|7-commandAction|106|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|107|186-preAction
+            } else if (command == verifyAccount) {//GEN-LINE:|7-commandAction|107|345-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|108|345-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|109|186-preAction
         } else if (displayable == readMore) {
-            if (command == backCommand9) {//GEN-END:|7-commandAction|107|186-preAction
+            if (command == backCommand9) {//GEN-END:|7-commandAction|109|186-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|108|186-postAction
+//GEN-LINE:|7-commandAction|110|186-postAction
                  // write post-action user code here
-            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|109|200-preAction
+            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|111|200-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|110|200-postAction
+//GEN-LINE:|7-commandAction|112|200-postAction
                  // write post-action user code here
-            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|111|202-preAction
+            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|113|202-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|112|202-postAction
+//GEN-LINE:|7-commandAction|114|202-postAction
                  // write post-action user code here
-            } else if (command == flag) {//GEN-LINE:|7-commandAction|113|194-preAction
+            } else if (command == flag) {//GEN-LINE:|7-commandAction|115|194-preAction
                  // write pre-action user code here
                 getDataServer("http://192.168.26.148:3000/flags?uid=1&sid=1&format=json");
-//GEN-LINE:|7-commandAction|114|194-postAction
+//GEN-LINE:|7-commandAction|116|194-postAction
                  // write post-action user code here
-            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|115|319-preAction
+            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|117|319-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|116|319-postAction
+//GEN-LINE:|7-commandAction|118|319-postAction
                  // write post-action user code here
-            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|117|317-preAction
+            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|119|317-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|118|317-postAction
+//GEN-LINE:|7-commandAction|120|317-postAction
                  // write post-action user code here
-            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|119|188-preAction
+            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|121|188-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|120|188-postAction
+//GEN-LINE:|7-commandAction|122|188-postAction
                  // write post-action user code here
-            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|121|198-preAction
+            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|123|198-preAction
                  // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|122|198-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|124|198-postAction
                  // write post-action user code here
-            } else if (command == share) {//GEN-LINE:|7-commandAction|123|196-preAction
+            } else if (command == share) {//GEN-LINE:|7-commandAction|125|196-preAction
                  // write pre-action user code here
-                method();//GEN-LINE:|7-commandAction|124|196-postAction
+                method();//GEN-LINE:|7-commandAction|126|196-postAction
                  // write post-action user code here
-            } else if (command == singOut) {//GEN-LINE:|7-commandAction|125|321-preAction
+            } else if (command == singOut) {//GEN-LINE:|7-commandAction|127|321-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|126|321-postAction
+//GEN-LINE:|7-commandAction|128|321-postAction
                  // write post-action user code here
-            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|127|192-preAction
+            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|129|192-preAction
                  // write pre-action user code here
                                  getDataServer("http://192.168.26.148:3000/likedislikes?uid=2&sid=1&act=-1&format=json");
 
-//GEN-LINE:|7-commandAction|128|192-postAction
+//GEN-LINE:|7-commandAction|130|192-postAction
                  // write post-action user code here
-            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|129|190-preAction
+            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|131|190-preAction
                  getDataServer("http://192.168.26.148:3000/likedislikes?uid=2&sid=1&act=1&format=json");
-//GEN-LINE:|7-commandAction|130|190-postAction
+//GEN-LINE:|7-commandAction|132|190-postAction
                  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|131|115-preAction
+            }//GEN-BEGIN:|7-commandAction|133|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|131|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|133|115-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|132|115-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|134|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|133|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|135|124-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|134|124-postAction
+                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|136|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|135|113-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|137|113-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|136|113-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|138|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|137|35-preAction
+            }//GEN-BEGIN:|7-commandAction|139|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|137|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|139|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|138|35-postAction
+//GEN-LINE:|7-commandAction|140|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|139|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|141|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|140|33-postAction
+//GEN-LINE:|7-commandAction|142|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|141|7-postCommandAction
-        }//GEN-END:|7-commandAction|141|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|143|7-postCommandAction
+        }//GEN-END:|7-commandAction|143|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|142|
-//</editor-fold>//GEN-END:|7-commandAction|142|
+    }//GEN-BEGIN:|7-commandAction|144|
+//</editor-fold>//GEN-END:|7-commandAction|144|
 
 
 
@@ -1263,6 +1271,7 @@ public void jsonReadMoree() {
             profile = new Form("form1", new Item[]{getUserName(), getFirstName(), getLastName(), getDob(), getPas(), getConfPas()});//GEN-BEGIN:|47-getter|1|47-postInit
             profile.addCommand(getOk());
             profile.addCommand(getBack());
+            profile.addCommand(getVerifyAccount());
             profile.setCommandListener(this);//GEN-END:|47-getter|1|47-postInit
             // write post-init user code here
         }//GEN-BEGIN:|47-getter|2|
@@ -1596,19 +1605,19 @@ public void jsonReadMoree() {
     }
 //</editor-fold>//GEN-END:|97-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add ">//GEN-BEGIN:|102-getter|0|102-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: verifyAccount ">//GEN-BEGIN:|102-getter|0|102-preInit
     /**
-     * Returns an initialized instance of Add component.
+     * Returns an initialized instance of verifyAccount component.
      *
      * @return the initialized component instance
      */
-    public Command getAdd() {
-        if (Add == null) {//GEN-END:|102-getter|0|102-preInit
+    public Command getVerifyAccount() {
+        if (verifyAccount == null) {//GEN-END:|102-getter|0|102-preInit
         // write pre-init user code here
-            Add = new Command("Screen", Command.SCREEN, 0);//GEN-LINE:|102-getter|1|102-postInit
+            verifyAccount = new Command("Verify", Command.SCREEN, 0);//GEN-LINE:|102-getter|1|102-postInit
         // write post-init user code here
         }//GEN-BEGIN:|102-getter|2|
-        return Add;
+        return verifyAccount;
     }
 //</editor-fold>//GEN-END:|102-getter|2|
 
@@ -3598,6 +3607,74 @@ public void jsonReadMoree() {
         return FilterStories;
     }
 //</editor-fold>//GEN-END:|338-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: noInternetConn ">//GEN-BEGIN:|341-getter|0|341-preInit
+    /**
+     * Returns an initialized instance of noInternetConn component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getNoInternetConn() {
+        if (noInternetConn == null) {//GEN-END:|341-getter|0|341-preInit
+            // write pre-init user code here
+            noInternetConn = new Alert("no Internet Connection", "No Internet Connection found !", null, AlertType.ERROR);//GEN-BEGIN:|341-getter|1|341-postInit
+            noInternetConn.setIndicator(getIndicator5());
+            noInternetConn.setTimeout(Alert.FOREVER);//GEN-END:|341-getter|1|341-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|341-getter|2|
+        return noInternetConn;
+    }
+//</editor-fold>//GEN-END:|341-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator5 ">//GEN-BEGIN:|343-getter|0|343-preInit
+    /**
+     * Returns an initialized instance of indicator5 component.
+     *
+     * @return the initialized component instance
+     */
+    public Gauge getIndicator5() {
+        if (indicator5 == null) {//GEN-END:|343-getter|0|343-preInit
+            // write pre-init user code here
+            indicator5 = new Gauge(null, false, 100, 50);//GEN-LINE:|343-getter|1|343-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|343-getter|2|
+        return indicator5;
+    }
+//</editor-fold>//GEN-END:|343-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: noServerConn ">//GEN-BEGIN:|342-getter|0|342-preInit
+    /**
+     * Returns an initialized instance of noServerConn component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getNoServerConn() {
+        if (noServerConn == null) {//GEN-END:|342-getter|0|342-preInit
+            // write pre-init user code here
+            noServerConn = new Alert("Server Error", "Error Connecting to server", null, AlertType.ERROR);//GEN-BEGIN:|342-getter|1|342-postInit
+            noServerConn.setIndicator(getIndicator6());
+            noServerConn.setTimeout(Alert.FOREVER);//GEN-END:|342-getter|1|342-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|342-getter|2|
+        return noServerConn;
+    }
+//</editor-fold>//GEN-END:|342-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator6 ">//GEN-BEGIN:|344-getter|0|344-preInit
+    /**
+     * Returns an initialized instance of indicator6 component.
+     *
+     * @return the initialized component instance
+     */
+    public Gauge getIndicator6() {
+        if (indicator6 == null) {//GEN-END:|344-getter|0|344-preInit
+            // write pre-init user code here
+            indicator6 = new Gauge(null, false, 100, 50);//GEN-LINE:|344-getter|1|344-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|344-getter|2|
+        return indicator6;
+    }
+//</editor-fold>//GEN-END:|344-getter|2|
 
 
 
