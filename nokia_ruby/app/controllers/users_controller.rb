@@ -7,9 +7,9 @@ class UsersController < ApplicationController
 def feed
  @id=params[:id]
  @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
-# @stories_list = getStories(@interests)
+ @stories_list = StoriesHelper.get_stories(@interests)
 respond_to do |format|
-    format.json { render json: @interests }
+    format.json { render json: @stories_list }
  end
  end
 
