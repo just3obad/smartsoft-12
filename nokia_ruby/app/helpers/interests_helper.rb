@@ -6,8 +6,8 @@ module InterestsHelper
   
   #This method when called will return the difference between today and the day the interest was created in days.
   def get_interest_start_date(interest_id)
-  interest_create_date = Interest.find(interest_id).created_at_before_type_cast.to_date #to get when the interest was created
-  interest_last_update_date = Interest.find(interest_id).updated_at_before_type_cast.to_date #to get when the interest was updated last time
+  interest_create_date = Interest.find(interest_id).created_at #to get when the interest was created
+  interest_last_update_date = Interest.find(interest_id).updated_at #to get when the interest was updated last time
   deleted = Interest.find(interest_id).deleted_before_type_cast #to check if the interest is deleted or not
   
   #case 1 if the interest is deleted and it's created within the last 30 days
