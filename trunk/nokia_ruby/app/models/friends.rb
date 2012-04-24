@@ -8,46 +8,55 @@ class Friends < ActiveRecord::Base
   validates :sender, presence: true
   validates :stat, presence: true
   
+  map.resources :users do |user|
+  user.resources :friends
+  end
   
-  def self.request(user, friend)
+  
+  def new
+   @friendship1 = Friends.new
+   @friendship2 = Friends.new
+  end
+  
+  
+  def create
+   @user = User.find(params[:id])
+   @friend = User.find(params[:friend_id])
+    params[:friendship1] = {:user_id => @user.id, :friend_id => @friend.id, :stat => '1'}
+    params[:friendship2] = {:user_id => @friend.id, :friend_id => @user.id, :stat => '0'}
+   @friendship1 = Friends.create(params[:friendship1])
+   @friendship2 = Friends.create(params[:friendship2])
+   if @friendship1.save && @friendship2.save
+   return true
+   else
+   return false
+   end
+   end
    
-    return false if user == friend
-    f1 = new(:sender => user, :receiver => friend, :stat => "0")
-    f2 = new(:sender => friend, :rceiver => user, :stat => "0")
-    transaction do
-      f1.save
-      f2.save
-    end
-    return true
-  end
+   
+def update
+@user = User.find(params[:id])
+@friend = User.find(params[:friend_id])
+params[:friendship1] = {:user_id => @user.id, :friend_id => @friend.id, :stat => '2'}
+params[:friendship2] = {:user_id => @friend.id, :friend_id => @user.id, :stat => '2'}
+@friendship1 = Friends.find_by_user_id_and_friend_id(@user.id, @friend.id)
+@friendship2 = Friends.find_by_user_id_and_friend_id(@friend.id, @user.id)
+if @friendship1.update_attributes(params[:friendship1]) && @friendship2.update_attributes(params[:friendship2])
+flash[:notice] = 'Friend sucessfully accepted!'
+return true
+else
+return true
+end
+end
 
 
-def self.accept(user, friend)
-    f1 = find_by_user_id_and_friend_id(user, friend)
-    f2 = find_by_user_id_and_friend_id(friend, user)
-    if f1.nil? or f2.nil?
-      return false
-    else
-      transaction do
-        f1.update_attributes(:stat => "1")
-        f2.update_attributes(:stat => "1")
-      end
-    end
-    return true
-  end
-  
-  def self.reject(user, friend)
-    f1 = find_by_user_id_and_friend_id(user, friend)
-    f2 = find_by_user_id_and_friend_id(friend, user)
-    if f1.nil? or f2.nil?
-      return false
-    else
-      transaction do
-        f1.destroy
-        f2.destroy
-        return true
-      end
-    end
-  end
+
+def destroy
+@user = User.find(params[:id])
+@friend = User.find(params[:friend_id])
+@friendship1 = @user.friendships.find_by_friend_id(params[:id]).destroy
+@friendship2 = @friend.friendships.find_by_user_id(params[:friend_id]).destroy
+end
+end
   
 end

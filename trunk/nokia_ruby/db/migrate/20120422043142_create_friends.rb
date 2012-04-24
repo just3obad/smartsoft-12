@@ -7,9 +7,5 @@ class CreateFriends < ActiveRecord::Migration
 
       t.timestamps
     end
-    
-    add_index :friends, :sender
-    add_index :friends, :receiver
-    add_index :friends, [:sender, :receiver], unique: true
   end
 end

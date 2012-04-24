@@ -27777,3 +27777,697 @@ Processing by FriendsController#index as JSON
   [1m[36mFriends Load (0.2ms)[0m  [1mSELECT "friends".* FROM "friends" [0m
 Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
   [1m[36m (1.6ms)[0m  [1mbegin transaction[0m
+Errno::EIO: Input/output error - <STDERR>: rollback transaction
+  [1m[36m (0.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to CreateLikedislikes (20120419192619)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to AddDescriptionToStories (20120420131006)
+Migrating to AddBodyToStories (20120420183416)
+Migrating to AddStoryAttributesToStories (20120420185828)
+Migrating to AddFlagsToStories (20120421201153)
+Migrating to AddLikesToStories (20120421201221)
+Migrating to AddDislikesToStories (20120421201245)
+Migrating to CreateFlags (20120421201820)
+Migrating to AddDeactivatedToUsers (20120421232123)
+Migrating to CreateUppeds (20120422021029)
+Migrating to CreateDowneds (20120422021127)
+Migrating to AddTypeToStories (20120422022853)
+Migrating to AddInterestIdToStories (20120422023215)
+Migrating to CreateVerificationCodes (20120422032957)
+Migrating to AddVerifiedToUser (20120422035614)
+Migrating to CreateFriends (20120422043142)
+Migrating to RemoveTitleFromStories (20120422081000)
+Migrating to AddTitleToStories (20120422081045)
+Migrating to RemoveTypeFromStories (20120422081118)
+Migrating to AddStoryTypeToStories (20120422081152)
+Migrating to AddVerifiedToVerificationCode (20120422114919)
+Migrating to CreateTwitterRequests (20120422122800)
+Migrating to CreateTwitterAccounts (20120422122900)
+  [1m[35m (0.2ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "twitter_accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "auth_token" varchar(255), "auth_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+SQLite3::SQLException: table "twitter_accounts" already exists: CREATE TABLE "twitter_accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "auth_token" varchar(255), "auth_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to CreateLikedislikes (20120419192619)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to AddDescriptionToStories (20120420131006)
+Migrating to AddBodyToStories (20120420183416)
+Migrating to AddStoryAttributesToStories (20120420185828)
+Migrating to AddFlagsToStories (20120421201153)
+Migrating to AddLikesToStories (20120421201221)
+Migrating to AddDislikesToStories (20120421201245)
+Migrating to CreateFlags (20120421201820)
+Migrating to AddDeactivatedToUsers (20120421232123)
+Migrating to CreateUppeds (20120422021029)
+Migrating to CreateDowneds (20120422021127)
+Migrating to AddTypeToStories (20120422022853)
+Migrating to AddInterestIdToStories (20120422023215)
+Migrating to CreateVerificationCodes (20120422032957)
+Migrating to AddVerifiedToUser (20120422035614)
+Migrating to CreateFriends (20120422043142)
+Migrating to RemoveTitleFromStories (20120422081000)
+Migrating to AddTitleToStories (20120422081045)
+Migrating to RemoveTypeFromStories (20120422081118)
+Migrating to AddStoryTypeToStories (20120422081152)
+Migrating to AddVerifiedToVerificationCode (20120422114919)
+Migrating to CreateTwitterRequests (20120422122800)
+Migrating to CreateTwitterAccounts (20120422122900)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "twitter_accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "auth_token" varchar(255), "auth_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+SQLite3::SQLException: table "twitter_accounts" already exists: CREATE TABLE "twitter_accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "auth_token" varchar(255), "auth_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.5ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+Migrating to CreateAdmins (20120417185814)
+Migrating to CreateStories (20120417185845)
+Migrating to CreateInterests (20120417185917)
+Migrating to CreateShares (20120417213528)
+Migrating to CreateLikedislikes (20120419192619)
+Migrating to AddNameToUsers (20120420012304)
+Migrating to AddEmailToUsers (20120420012715)
+Migrating to AddDescriptionToStories (20120420131006)
+Migrating to AddBodyToStories (20120420183416)
+Migrating to AddStoryAttributesToStories (20120420185828)
+Migrating to AddFlagsToStories (20120421201153)
+Migrating to AddLikesToStories (20120421201221)
+Migrating to AddDislikesToStories (20120421201245)
+Migrating to CreateFlags (20120421201820)
+Migrating to AddDeactivatedToUsers (20120421232123)
+Migrating to CreateUppeds (20120422021029)
+Migrating to CreateDowneds (20120422021127)
+Migrating to AddTypeToStories (20120422022853)
+Migrating to AddInterestIdToStories (20120422023215)
+Migrating to CreateVerificationCodes (20120422032957)
+Migrating to AddVerifiedToUser (20120422035614)
+Migrating to CreateFriends (20120422043142)
+Migrating to RemoveTitleFromStories (20120422081000)
+Migrating to AddTitleToStories (20120422081045)
+Migrating to RemoveTypeFromStories (20120422081118)
+Migrating to AddStoryTypeToStories (20120422081152)
+Migrating to AddVerifiedToVerificationCode (20120422114919)
+Migrating to CreateTwitterRequests (20120422122800)
+Migrating to CreateTwitterAccounts (20120422122900)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "twitter_accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "auth_token" varchar(255), "auth_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+SQLite3::SQLException: table "twitter_accounts" already exists: CREATE TABLE "twitter_accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "auth_token" varchar(255), "auth_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (144.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (102.9ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateUsers (20120417185744)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120417185744')
+  [1m[36m (139.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAdmins (20120417185814)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120417185814')
+  [1m[36m (186.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStories (20120417185845)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120417185845')
+  [1m[36m (157.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateInterests (20120417185917)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "interests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120417185917')
+  [1m[36m (509.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateShares (20120417213528)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "shares" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "story_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("shares")
+  [1m[36m (0.5ms)[0m  [1mCREATE INDEX "index_shares_on_user_id" ON "shares" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("shares")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_shares_on_user_id')[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_shares_on_story_id" ON "shares" ("story_id")
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120417213528')[0m
+  [1m[35m (249.1ms)[0m  commit transaction
+Migrating to CreateLikedislikes (20120419192619)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "likedislikes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "story_id" integer, "action" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("likedislikes")[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_likedislikes_on_user_id" ON "likedislikes" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("likedislikes")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_likedislikes_on_user_id')
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_likedislikes_on_story_id" ON "likedislikes" ("story_id")[0m
+  [1m[35m (0.8ms)[0m  PRAGMA index_list("likedislikes")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_likedislikes_on_story_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_likedislikes_on_user_id')
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_likedislikes_on_action" ON "likedislikes" ("action")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("likedislikes")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_likedislikes_on_action')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_likedislikes_on_story_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_likedislikes_on_user_id')[0m
+  [1m[35m (1.3ms)[0m  CREATE UNIQUE INDEX "index_likedislikes_on_user_id_and_story_id" ON "likedislikes" ("user_id", "story_id")
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120419192619')[0m
+  [1m[35m (287.8ms)[0m  commit transaction
+Migrating to AddNameToUsers (20120420012304)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "users" ADD "name" varchar(255)
+  [1m[36m (4.8ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420012304')[0m
+  [1m[35m (98.7ms)[0m  commit transaction
+Migrating to AddEmailToUsers (20120420012715)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "users" ADD "email" varchar(255)
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420012715')[0m
+  [1m[35m (93.8ms)[0m  commit transaction
+Migrating to AddDescriptionToStories (20120420131006)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (26.6ms)[0m  ALTER TABLE "stories" ADD "description" varchar(255)
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420131006')[0m
+  [1m[35m (125.1ms)[0m  commit transaction
+Migrating to AddBodyToStories (20120420183416)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "stories" ADD "body" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420183416')[0m
+  [1m[35m (126.4ms)[0m  commit transaction
+Migrating to AddStoryAttributesToStories (20120420185828)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "stories" ADD "rank" integer
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "stories" ADD "image" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "stories" ADD "category" varchar(255)
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120420185828')[0m
+  [1m[35m (177.5ms)[0m  commit transaction
+Migrating to AddFlagsToStories (20120421201153)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "stories" ADD "flags" integer
+  [1m[36m (0.9ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120421201153')[0m
+  [1m[35m (96.7ms)[0m  commit transaction
+Migrating to AddLikesToStories (20120421201221)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.4ms)[0m  ALTER TABLE "stories" ADD "likes" integer
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120421201221')[0m
+  [1m[35m (102.3ms)[0m  commit transaction
+Migrating to AddDislikesToStories (20120421201245)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "stories" ADD "dislikes" integer
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120421201245')[0m
+  [1m[35m (140.6ms)[0m  commit transaction
+Migrating to CreateFlags (20120421201820)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.2ms)[0m  CREATE TABLE "flags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "story_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("flags")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_flags_on_user_id" ON "flags" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("flags")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_flags_on_user_id')
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_flags_on_story_id" ON "flags" ("story_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("flags")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_flags_on_story_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_flags_on_user_id')
+  [1m[36m (0.5ms)[0m  [1mCREATE UNIQUE INDEX "index_flags_on_user_id_and_story_id" ON "flags" ("user_id", "story_id")[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120421201820')
+  [1m[36m (217.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddDeactivatedToUsers (20120421232123)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (6.7ms)[0m  [1mALTER TABLE "users" ADD "deactivated" boolean DEFAULT 'f'[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120421232123')
+  [1m[36m (186.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateUppeds (20120422021029)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "uppeds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "comment_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("uppeds")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_uppeds_on_user_id" ON "uppeds" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("uppeds")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_uppeds_on_user_id')[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_uppeds_on_comment_id" ON "uppeds" ("comment_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("uppeds")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_uppeds_on_comment_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_uppeds_on_user_id')[0m
+  [1m[35m (0.8ms)[0m  CREATE UNIQUE INDEX "index_uppeds_on_user_id_and_comment_id" ON "uppeds" ("user_id", "comment_id")
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422021029')[0m
+  [1m[35m (138.5ms)[0m  commit transaction
+Migrating to CreateDowneds (20120422021127)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "downeds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "comment_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("downeds")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_downeds_on_user_id" ON "downeds" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("downeds")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_downeds_on_user_id')
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_downeds_on_comment_id" ON "downeds" ("comment_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("downeds")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_downeds_on_comment_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_downeds_on_user_id')
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_downeds_on_user_id_and_comment_id" ON "downeds" ("user_id", "comment_id")[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422021127')
+  [1m[36m (427.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddTypeToStories (20120422022853)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "stories" ADD "type" int[0m
+  [1m[35m (4.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422022853')
+  [1m[36m (182.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddInterestIdToStories (20120422023215)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "stories" ADD "interest_id" int[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422023215')
+  [1m[36m (88.3ms)[0m  [1mcommit transaction[0m
+Migrating to CreateVerificationCodes (20120422032957)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (10.1ms)[0m  [1mCREATE TABLE "verification_codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" varchar(255), "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422032957')
+  [1m[36m (182.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddVerifiedToUser (20120422035614)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (9.7ms)[0m  [1mALTER TABLE "users" ADD "verified" boolean[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422035614')
+  [1m[36m (162.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateFriends (20120422043142)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (7.3ms)[0m  [1mCREATE TABLE "friends" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "sender" integer, "receiver" integer, "stat" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("friends")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_friends_on_sender" ON "friends" ("sender")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("friends")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_friends_on_sender')[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_friends_on_receiver" ON "friends" ("receiver")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("friends")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_friends_on_receiver')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_friends_on_sender')[0m
+  [1m[35m (0.6ms)[0m  CREATE UNIQUE INDEX "index_friends_on_sender_and_receiver" ON "friends" ("sender", "receiver")
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422043142')[0m
+  [1m[35m (115.9ms)[0m  commit transaction
+Migrating to RemoveTitleFromStories (20120422081000)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "rank" integer, "image" varchar(255), "category" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "type" integer, "interest_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (13.5ms)[0m  SELECT * FROM "stories"
+  [1m[36m (2.5ms)[0m  [1mDROP TABLE "stories"[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "rank" integer, "image" varchar(255), "category" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "type" integer, "interest_id" integer) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("altered_stories")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_stories"
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "altered_stories"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422081000')
+  [1m[36m (92.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddTitleToStories (20120422081045)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "stories" ADD "title" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422081045')
+  [1m[36m (131.4ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveTypeFromStories (20120422081118)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "rank" integer, "image" varchar(255), "category" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "type" integer, "interest_id" integer, "title" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.5ms)[0m  [1mSELECT * FROM "stories"[0m
+  [1m[35m (58.0ms)[0m  DROP TABLE "stories"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "rank" integer, "image" varchar(255), "category" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255)) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("altered_stories")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_stories"[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "altered_stories"
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422081118')[0m
+  [1m[35m (132.0ms)[0m  commit transaction
+Migrating to AddStoryTypeToStories (20120422081152)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (3.2ms)[0m  ALTER TABLE "stories" ADD "story_type" int
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422081152')[0m
+  [1m[35m (111.1ms)[0m  commit transaction
+Migrating to AddVerifiedToVerificationCode (20120422114919)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "verification_codes" ADD "verified" boolean
+  [1m[36m (8.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422114919')[0m
+  [1m[35m (101.9ms)[0m  commit transaction
+Migrating to CreateTwitterRequests (20120422122800)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  CREATE TABLE "twitter_requests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "request_token" varchar(255), "request_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("twitter_requests")[0m
+  [1m[35m (1.1ms)[0m  CREATE UNIQUE INDEX "index_twitter_requests_on_user_id" ON "twitter_requests" ("user_id")
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422122800')[0m
+  [1m[35m (244.4ms)[0m  commit transaction
+Migrating to CreateTwitterAccounts (20120422122900)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "twitter_accounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "auth_token" varchar(255), "auth_secret" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("twitter_accounts")[0m
+  [1m[35m (0.5ms)[0m  CREATE UNIQUE INDEX "index_twitter_accounts_on_user_id" ON "twitter_accounts" ("user_id")
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422122900')[0m
+  [1m[35m (189.0ms)[0m  commit transaction
+Migrating to RemoveVerifiedFromUsers (20120422141724)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TEMPORARY TABLE "altered_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "name" varchar(255), "email" varchar(255), "deactivated" boolean DEFAULT 'f', "verified" boolean) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("users")[0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "name" varchar(255), "email" varchar(255), "deactivated" boolean DEFAULT 'f') 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("altered_users")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_users"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "altered_users"[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422141724')
+  [1m[36m (87.5ms)[0m  [1mcommit transaction[0m
+Migrating to AddNameToInterests (20120422142458)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "interests" ADD "name" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422142458')
+  [1m[36m (374.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddImageToInterests (20120422142823)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "interests" ADD "image" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422142823')
+  [1m[36m (110.3ms)[0m  [1mcommit transaction[0m
+Migrating to AddDescriptionToInterests (20120422143055)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.4ms)[0m  [1mALTER TABLE "interests" ADD "description" varchar(255)[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422143055')
+  [1m[36m (145.9ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveRankFromStories (20120422151403)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "rank" integer, "image" varchar(255), "category" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255), "story_type" integer) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.3ms)[0m  [1mSELECT * FROM "stories"[0m
+  [1m[35m (1.0ms)[0m  DROP TABLE "stories"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "category" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255), "story_type" integer) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("altered_stories")
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "altered_stories"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "altered_stories"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422151403')[0m
+  [1m[35m (177.8ms)[0m  commit transaction
+Migrating to RemoveCategoryFromStories (20120422151439)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "category" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255), "story_type" integer) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM "stories"
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "stories"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255), "story_type" integer) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("altered_stories")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_stories"
+  [1m[36m (0.2ms)[0m  [1mDROP TABLE "altered_stories"[0m
+  [1m[35m (8.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422151439')
+  [1m[36m (144.2ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveStoryTypeFromStories (20120422151532)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255), "story_type" integer) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (5.9ms)[0m  [1mSELECT * FROM "stories"[0m
+  [1m[35m (0.6ms)[0m  DROP TABLE "stories"
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("altered_stories")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_stories"[0m
+  [1m[35m (3.1ms)[0m  DROP TABLE "altered_stories"
+  [1m[36m (0.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422151532')[0m
+  [1m[35m (127.5ms)[0m  commit transaction
+Migrating to CreateLogs (20120422152443)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (6.7ms)[0m  CREATE TABLE "logs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "loggingtype" integer, "user_id_1" integer, "user_id_2" integer, "admin_id" integer, "story_id" integer, "interest_id" integer, "message" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422152443')[0m
+  [1m[35m (296.6ms)[0m  commit transaction
+Migrating to CreateUserLogIns (20120422153748)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "user_log_ins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("user_log_ins")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_user_log_ins_on_user_id" ON "user_log_ins" ("user_id")
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422153748')[0m
+  [1m[35m (240.1ms)[0m  commit transaction
+Migrating to AddFirstNameToUsers (20120422153857)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  ALTER TABLE "users" ADD "first_name" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422153857')[0m
+  [1m[35m (137.6ms)[0m  commit transaction
+Migrating to AddLastNameToUsers (20120422154029)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "users" ADD "last_name" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422154029')[0m
+  [1m[35m (171.9ms)[0m  commit transaction
+Migrating to AddDateOfBirthToUsers (20120422154226)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "users" ADD "date_of_birth" date
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422154226')[0m
+  [1m[35m (207.7ms)[0m  commit transaction
+Migrating to CreateComments (20120422155259)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (5.0ms)[0m  CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "story_id" integer, "user_id" integer, "hidden" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("comments")[0m
+  [1m[35m (0.7ms)[0m  CREATE INDEX "index_comments_on_story_id" ON "comments" ("story_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("comments")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_comments_on_story_id')
+  [1m[36m (0.3ms)[0m  [1mCREATE INDEX "index_comments_on_user_id" ON "comments" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("comments")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_comments_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_comments_on_story_id')
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_comments_on_hidden" ON "comments" ("hidden")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("comments")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_comments_on_hidden')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_comments_on_user_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_comments_on_story_id')[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_comments_on_content" ON "comments" ("content")
+  [1m[36m (34.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422155259')[0m
+  [1m[35m (1047.8ms)[0m  commit transaction
+Migrating to CreateUserAddInterests (20120422160226)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "user_add_interests" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "interest_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("user_add_interests")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_user_add_interests_on_user_id" ON "user_add_interests" ("user_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("user_add_interests")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_user_add_interests_on_user_id')
+  [1m[36m (0.4ms)[0m  [1mCREATE INDEX "index_user_add_interests_on_interest_id" ON "user_add_interests" ("interest_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("user_add_interests")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_user_add_interests_on_interest_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_user_add_interests_on_user_id')
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "index_user_add_interests_on_user_id_and_interest_id" ON "user_add_interests" ("user_id", "interest_id")[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422160226')
+  [1m[36m (200.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateHaccounts (20120422162006)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "haccounts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "email" varchar(255), "password" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("haccounts")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_haccounts_on_user_id" ON "haccounts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("haccounts")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_haccounts_on_user_id')[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_haccounts_on_email" ON "haccounts" ("email")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("haccounts")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_haccounts_on_email')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_haccounts_on_user_id')[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "index_haccounts_on_password" ON "haccounts" ("password")
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422162006')[0m
+  [1m[35m (351.3ms)[0m  commit transaction
+Migrating to AddDeletedToInterests (20120422165837)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "interests" ADD "deleted" boolean
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422165837')[0m
+  [1m[35m (201.7ms)[0m  commit transaction
+Migrating to RemoveLikesFromStories (20120422170250)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "likes" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (0.4ms)[0m  SELECT * FROM "stories"
+  [1m[36m (0.9ms)[0m  [1mDROP TABLE "stories"[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("altered_stories")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_stories"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "altered_stories"[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422170250')
+  [1m[36m (201.3ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveDislikesFromStories (20120422170315)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "dislikes" integer, "interest_id" integer, "title" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "stories"[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "stories"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "interest_id" integer, "title" varchar(255)) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("altered_stories")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_stories"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "altered_stories"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422170315')[0m
+  [1m[35m (72.2ms)[0m  commit transaction
+Migrating to RemoveFlagsFromStories (20120422170353)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "flags" integer, "interest_id" integer, "title" varchar(255)) 
+  [1m[36m (0.4ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (0.3ms)[0m  SELECT * FROM "stories"
+  [1m[36m (0.7ms)[0m  [1mDROP TABLE "stories"[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "interest_id" integer, "title" varchar(255)) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("altered_stories")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "altered_stories"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "altered_stories"[0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422170353')
+  [1m[36m (155.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddDateToStories (20120422170850)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.5ms)[0m  [1mALTER TABLE "stories" ADD "date" date[0m
+  [1m[35m (1.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422170850')
+  [1m[36m (28.4ms)[0m  [1mcommit transaction[0m
+Migrating to RemoveImageFromStories (20120422171102)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "image" varchar(255), "interest_id" integer, "title" varchar(255), "date" date) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "stories"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "stories"
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "interest_id" integer, "title" varchar(255), "date" date) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("altered_stories")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_stories"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "altered_stories"
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422171102')[0m
+  [1m[35m (62.1ms)[0m  commit transaction
+Migrating to AddRankToStories (20120422171152)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "stories" ADD "rank" integer
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422171152')[0m
+  [1m[35m (52.2ms)[0m  commit transaction
+Migrating to CreateFeeds (20120422171320)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  CREATE TABLE "feeds" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "link" varchar(255), "interest_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("feeds")[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_feeds_on_interest_id" ON "feeds" ("interest_id")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("feeds")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_feeds_on_interest_id')
+  [1m[36m (0.3ms)[0m  [1mCREATE INDEX "index_feeds_on_link" ON "feeds" ("link")[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120422171320')
+  [1m[36m (69.3ms)[0m  [1mcommit transaction[0m
+Migrating to FixCNames (20120422172214)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TEMPORARY TABLE "altered_Verification_Codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" varchar(255), "account_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "verified" boolean) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("Verification_Codes")
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "Verification_Codes"[0m
+  [1m[35m (0.6ms)[0m  DROP TABLE "Verification_Codes"
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "Verification_Codes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "code" varchar(255), "account_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "verified" boolean) [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("altered_Verification_Codes")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_Verification_Codes"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "altered_Verification_Codes"
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120422172214')[0m
+  [1m[35m (63.2ms)[0m  commit transaction
+Migrating to AddImageToStories (20120424123023)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "stories" ADD "image" varchar(255)
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120424123023')[0m
+  [1m[35m (144.2ms)[0m  commit transaction
+Migrating to AddIsBlockedToStories (20120424135627)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "stories" ADD "is_blocked" boolean
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120424135627')[0m
+  [1m[35m (96.1ms)[0m  commit transaction
+Migrating to AddIsBlockedToFriends (20120424135709)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  ALTER TABLE "friends" ADD "is_blocked" boolean
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120424135709')[0m
+  [1m[35m (56.3ms)[0m  commit transaction
+Migrating to AddCategoryToStories (20120424160004)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  ALTER TABLE "stories" ADD "category" varchar(255)
+  [1m[36m (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120424160004')[0m
+  [1m[35m (30.8ms)[0m  commit transaction
+Migrating to AddIndexToStories (20120424165501)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.6ms)[0m  [1mCREATE INDEX "index_stories_on_interest_id" ON "stories" ("interest_id")[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120424165501')
+  [1m[36m (31.3ms)[0m  [1mcommit transaction[0m
+Migrating to RenameImage (20120424174311)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "interest_id" integer, "title" varchar(255), "date" date, "rank" integer, "media_link" varchar(255), "is_blocked" boolean, "category" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_stories_on_interest_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("altered_stories")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "temp_index_altered_stories_on_interest_id" ON "altered_stories" ("interest_id")[0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM "stories"
+  [1m[36m (0.8ms)[0m  [1mDROP TABLE "stories"[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "interest_id" integer, "title" varchar(255), "date" date, "rank" integer, "media_link" varchar(255), "is_blocked" boolean, "category" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("altered_stories")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('temp_index_altered_stories_on_interest_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (0.3ms)[0m  CREATE INDEX "index_stories_on_interest_id" ON "stories" ("interest_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "altered_stories"[0m
+  [1m[35m (0.3ms)[0m  DROP TABLE "altered_stories"
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120424174311')[0m
+  [1m[35m (44.8ms)[0m  commit transaction
+Migrating to RemoveBodyFromStories (20120424174805)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TEMPORARY TABLE "altered_stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "body" varchar(255), "interest_id" integer, "title" varchar(255), "date" date, "rank" integer, "media_link" varchar(255), "is_blocked" boolean, "category" varchar(255)) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("stories")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_stories_on_interest_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("altered_stories")[0m
+  [1m[35m (0.2ms)[0m  CREATE INDEX "temp_index_altered_stories_on_interest_id" ON "altered_stories" ("interest_id")
+  [1m[36m (0.2ms)[0m  [1mSELECT * FROM "stories"[0m
+  [1m[35m (0.7ms)[0m  DROP TABLE "stories"
+  [1m[36m (2.0ms)[0m  [1mCREATE TABLE "stories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "description" varchar(255), "interest_id" integer, "title" varchar(255), "date" date, "rank" integer, "media_link" varchar(255), "is_blocked" boolean, "category" varchar(255)) [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("altered_stories")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('temp_index_altered_stories_on_interest_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.2ms)[0m  [1mCREATE INDEX "index_stories_on_interest_id" ON "stories" ("interest_id")[0m
+  [1m[35m (0.2ms)[0m  SELECT * FROM "altered_stories"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "altered_stories"[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120424174805')
+  [1m[36m (62.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddContentToStories (20120424174933)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.1ms)[0m  [1mALTER TABLE "stories" ADD "content" text[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120424174933')
+  [1m[36m (34.7ms)[0m  [1mcommit transaction[0m
+Migrating to AddHiddenToStories (20120424180703)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "stories" ADD "hidden" boolean[0m
+  [1m[35m (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120424180703')
+  [1m[36m (127.0ms)[0m  [1mcommit transaction[0m
+Migrating to AddDeletedToStories (20120424180751)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mALTER TABLE "stories" ADD "deleted" boolean[0m
+  [1m[35m (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120424180751')
+  [1m[36m (14.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.6ms)[0m  select sqlite_version(*)
+  [1m[36m (0.6ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("Verification_Codes")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("admins")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("comments")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_comments_on_content')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_comments_on_hidden')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_comments_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_comments_on_story_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("downeds")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_downeds_on_user_id_and_comment_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_downeds_on_comment_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_downeds_on_user_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("feeds")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_feeds_on_link')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_feeds_on_interest_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("flags")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_flags_on_user_id_and_story_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_flags_on_story_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_flags_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("friends")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_friends_on_sender_and_receiver')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_friends_on_receiver')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_friends_on_sender')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("haccounts")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_haccounts_on_password')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_haccounts_on_email')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_haccounts_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("interests")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("likedislikes")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_info('index_likedislikes_on_user_id_and_story_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_likedislikes_on_action')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_likedislikes_on_story_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_likedislikes_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("logs")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("shares")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_shares_on_story_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_shares_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("stories")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_stories_on_interest_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("twitter_accounts")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_twitter_accounts_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("twitter_requests")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_twitter_requests_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("uppeds")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_uppeds_on_user_id_and_comment_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_uppeds_on_comment_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_uppeds_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("user_add_interests")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_user_add_interests_on_user_id_and_interest_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_user_add_interests_on_interest_id')
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_user_add_interests_on_user_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("user_log_ins")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_info('index_user_log_ins_on_user_id')[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("users")
+  [1m[36m (3.8ms)[0m  [1mbegin transaction[0m
