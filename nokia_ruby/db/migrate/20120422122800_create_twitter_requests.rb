@@ -7,5 +7,6 @@ class CreateTwitterRequests < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index("twitter_requests", "user_id", :unique => true)
   end
 end
