@@ -35,8 +35,8 @@ def self.accept(user, friend)
       return false
     else
       transaction do
-        f1.update_attributes(:status => "accepted")
-        f2.update_attributes(:status => "accepted")
+        f1.update_attributes(:stat => "1")
+        f2.update_attributes(:stat => "1")
       end
     end
     return true
