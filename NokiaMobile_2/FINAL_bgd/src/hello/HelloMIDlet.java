@@ -1336,20 +1336,20 @@ public void jsonReadMoree() {
       }
       //</editor-fold>//GEN-END:|57-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: pas ">//GEN-BEGIN:|58-getter|0|58-preInit
-    /**
-     * Returns an initiliazed instance of pas component.
-     * @return the initialized component instance
-     */
-    public TextField getPas() {
-        if (pas == null) {//GEN-END:|58-getter|0|58-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: pas ">//GEN-BEGIN:|58-getter|0|58-preInit
+      /**
+       * Returns an initiliazed instance of pas component.
+       * @return the initialized component instance
+       */
+      public TextField getPas() {
+          if (pas == null) {//GEN-END:|58-getter|0|58-preInit
             // write pre-init user code here
-            pas = new TextField("New Password", null, 32, TextField.ANY | TextField.PASSWORD | TextField.SENSITIVE | TextField.NON_PREDICTIVE);//GEN-LINE:|58-getter|1|58-postInit
+              pas = new TextField("New Password", null, 32, TextField.ANY | TextField.PASSWORD | TextField.SENSITIVE | TextField.NON_PREDICTIVE);//GEN-LINE:|58-getter|1|58-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|58-getter|2|
-        return pas;
-    }
-    //</editor-fold>//GEN-END:|58-getter|2|
+          }//GEN-BEGIN:|58-getter|2|
+          return pas;
+      }
+      //</editor-fold>//GEN-END:|58-getter|2|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
     /**
@@ -1468,6 +1468,7 @@ public void jsonReadMoree() {
     public List getConnectAccount() {
         if (connectAccount == null) {//GEN-END:|80-getter|0|80-preInit
         // write pre-init user code here
+            
             connectAccount = new List("Network", Choice.IMPLICIT);//GEN-BEGIN:|80-getter|1|80-postInit
             connectAccount.append("Twitter", null);
             connectAccount.append("Facebook", null);
@@ -1478,6 +1479,7 @@ public void jsonReadMoree() {
             connectAccount.setCommandListener(this);
             connectAccount.setSelectedFlags(new boolean[] { false, false, false, false, false, false });//GEN-END:|80-getter|1|80-postInit
         // write post-init user code here
+            
         }//GEN-BEGIN:|80-getter|2|
         return connectAccount;
     }
