@@ -1,13 +1,38 @@
+	<div class="container-fluid maindiv">
+	
+	<div class="row-fluid">
 
-<% if not @user.nil? %>
-  <table>
-  <% @user.each do |user| %>
-  <tr>
-      <td><%= user.id %></td>
-      <td><%= user.name %></td>
-      <td><%= user.email %></td>
-  </tr>
-  <%end%>
-  </table>
-<% end %>
+	 <div class="left_panel">
+
+			
+		
+			  
+	    </div>
+
+
+      <% if not @user.nil? and @user.length > 0 %>
+	    <div class="right_panel pre-scrollable" >
+        <% @user.each do |user| %>
+        <div class="well-user-component">
+            <a href="    #"class="thumbnail-user-component"><img src="http://placehold.it/75x75"></a>
+            <div class="user-component-info">
+                <h4><%= user.first_name %> <%= user.last_name %></h4>
+                <h6 class ="user-component-text"><%= user.email %></h6>
+                <h6 class ="user-component-text"><%= user.name %><%=	link_to "User Statistics", logs_path, class: "user-component-button-absolute btn btn-primary"%> </h6>
+            
+            </div>
+          </div>
+  </div>
+        <%end%>
+      <% else %>
+      <div class="right_panel">
+        <div class="well">
+            There are no matching results.
+        </div>
+      </div>
+      <% end %>
+
+
+		</div>
+
 
