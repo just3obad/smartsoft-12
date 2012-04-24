@@ -1,7 +1,7 @@
 module InterestsHelper
-  #This method when called will return an array of ActiveRecords having all interests in the database.
+  #This method when called will return an array of ActiveRecords having all interests in the database that are not deleted.
   def get_all_interests
-    interests=Interest.where(:deleted => false)
+    interests=Interest.where(:deleted => nil)
   end
   
   #This method when called will return the difference between today and the day the interest was created in days.
