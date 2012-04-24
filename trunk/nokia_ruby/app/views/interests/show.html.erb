@@ -1,27 +1,20 @@
 <html>
 <body class="container">
 
-        <style>
-        
-           
-           header img   {padding: 1em;
-  background: grey;}
-        </style>
-
 <header >
 
       <h3>
           <font size="35" face="arial" color=#025167>
-          Interests :  <br/><br/>
+
         <%= @interest.name %><br/><br/>
 
            </font>
          
       </h3>
 
-<h1>
-             <%= image_tag(@interest.image, :alt => "default pic", :class => "round") %></br></br>
-</h1>
+<h3>
+             <%= image_tag(@interest.image, :alt => "logo.jpg", :class => "round") %></br></br>
+</h3>
 </header>
 
       <h3>
@@ -46,9 +39,10 @@ RSS Feeds : </br>
 
 
 <% unless @interest.feeds.empty? %>
+<font style="text-transform: lowercase;">
      
      <%= render @interest.feeds %></br></br>
-
+</font>
        
 <% end %>
 
@@ -57,11 +51,6 @@ RSS Feeds : </br>
 <%= link_to "Add RSS Feed ", {:controller => 'feeds', :action =>'new', :id => @interest.id },  :class => "btn btn-large btn-success "  %><br /><br />
     
     
-    
-
-
-
-
  
        <strong> </strong> <%= link_to "Edit Interest", '#', :class => "btn  btn-inverse" %>
 
