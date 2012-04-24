@@ -2,8 +2,8 @@ class Story < ActiveRecord::Base
 #definition of some attributes:-
 # :rank==>hottness of a story, :interest_id==>id of the related interest,
 # :type==> 1 (Article) 2 (Image) 3 (video)
-  attr_accessible :title, :date, :body, :rank,
-                 :content, :deleted, :hidden , :interest_id
+  attr_accessible :interest_id, :title, :date, :rank, 
+  		:media_link, :is_blocked, :category, :content, :deleted, :hidden
   belongs_to :interests
 
   #def initialize(title, date, body)
