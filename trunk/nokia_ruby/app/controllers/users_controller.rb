@@ -7,11 +7,25 @@ class UsersController < ApplicationController
 def feed
  @id=params[:id]
  @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
- @stories_list = StoriesHelper.get_stories(@interests)
+ @stories_list = get_stories(@interests)
 respond_to do |format|
     format.json { render json: @stories_list }
  end
  end
+
+
+#a method that takes list of interest_ids and returns list of stories related to those interests
+  def get_stories(interests)
+#create new array to return the stories in
+  @stories=Array.new
+#loop for each interest and queries the database to return all the stories which belongs to this specific interest and append them to the stories list.
+  interests.each do |interest|
+	 @stories += Story.find_all_by_interest_id(interest)
+  end
+#return the list after looping on all the entered interests
+  return @stories
+  end
+
 
 
  def show
