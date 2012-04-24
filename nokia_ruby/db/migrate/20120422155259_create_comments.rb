@@ -10,7 +10,7 @@ class CreateComments < ActiveRecord::Migration
     end
     
     add_index :comments, :story_id
-    add_index :comments, :interest_id
+    add_index :comments, :user_id
     add_index :comments, :hidden
     add_index :comments, :content
   end
