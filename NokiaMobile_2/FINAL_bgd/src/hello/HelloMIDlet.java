@@ -97,6 +97,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command friendsDislike;
     private Command Resend1;
     private Command backCommand10;
+    private Command FilterStories;
     private Command okCommand9;
     private Command backCommand11;
     private Command singOut;
@@ -104,7 +105,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command reject;
     private Command accept;
     private Command backCommand12;
-    private Command FilterStories;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -181,6 +181,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
     private OutputStream os;
+    public boolean internetConn;
+    public String checkConnURL = "http://www.google.com";
+    public Alert connAlert;
+    public String serverURL;
+    public boolean serverConn;
 
   
     /**
@@ -4305,6 +4310,123 @@ public void jsonReadMoree() {
         }
         return "";
 
+    }
+   
+   public void pingInternet() {
+   /*
+    * This Method Pings http://www.google.com to check if the user has
+    * access to the internet, if the ping was successful it sets the
+    * value of internetConn to true, otherwise it sets the value of
+    * internetConn to false
+    */
+       // Creates the HttpConnection, InputStream, OutputStream
+       // and StringBuffer to be used in the process
+            HttpConnection httpCheckConn = null;
+            OutputStream checkConnOS = null;
+            InputStream checkConnIS = null;
+            int ch;
+            StringBuffer checkConnBuffer = new StringBuffer();
+            try {
+       // sets the connection to http://www.google.com
+                httpCheckConn = (HttpConnection)Connector.open(checkConnURL);
+                
+                // Set the request method and headers
+                httpCheckConn.setRequestMethod(HttpConnection.POST);
+                httpCheckConn.setRequestProperty(
+                   "If-Modified-Since","7 Sep 2005 19:43:31 GMT");
+                
+                httpCheckConn.setRequestProperty(
+                   "User-Agent","Profile/MIDP-1.0 Configuration/CLDC-1.0");
+                
+                httpCheckConn.setRequestProperty("Content-Language", "en-US");
+                // Getting the output stream may flush the headers
+                checkConnOS = httpCheckConn.openOutputStream();
+                checkConnOS.write("Ping".getBytes());
+                checkConnOS.flush();
+                
+                checkConnIS = httpCheckConn.openInputStream();
+                while ((ch = checkConnIS.read()) != -1) {
+                    checkConnBuffer.append((char)ch);
+                }
+                System.out.println("connected");
+                // if ping success, sets internetConn to true
+                internetConn = true;
+            } catch(IOException e) {
+                // if ping failed, sets internetConn to false
+                System.out.println("error");
+                internetConn = false;
+            } 
+        }
+            
+            public void pingServer() {
+       /*
+    * This Method Pings the server to check if the user has
+    * access to the internet, if the ping was successful it sets the
+    * value of serverConn to true, otherwise it sets the value of
+    * serverConn to false
+    */
+       // Creates the HttpConnection, InputStream, OutputStream
+       // and StringBuffer to be used in the process     
+            HttpConnection httpCheckConn = null;
+            OutputStream checkConnOS = null;
+            InputStream checkConnIS = null;
+            int ch;
+            StringBuffer checkConnBuffer = new StringBuffer();
+            try {
+       // sets connection to the server address which is specifed in
+       // in the String serverURL
+                httpCheckConn = (HttpConnection)Connector.open(serverURL);
+                
+                // Set the request method and headers
+                httpCheckConn.setRequestMethod(HttpConnection.POST);
+                httpCheckConn.setRequestProperty(
+                   "If-Modified-Since","7 Sep 2005 19:43:31 GMT");
+                
+                httpCheckConn.setRequestProperty(
+                   "User-Agent","Profile/MIDP-1.0 Configuration/CLDC-1.0");
+                
+                httpCheckConn.setRequestProperty("Content-Language", "en-US");
+                // Getting the output stream may flush the headers
+                checkConnOS = httpCheckConn.openOutputStream();
+                checkConnOS.write("Ping".getBytes());
+                checkConnOS.flush();
+                
+                checkConnIS = httpCheckConn.openInputStream();
+                while ((ch = checkConnIS.read()) != -1) {
+                    checkConnBuffer.append((char)ch);
+                }
+                System.out.println("connected");
+            //if ping success, sets server connection to true    
+                serverConn = true;
+            } catch(IOException e) {
+                System.out.println("error");
+           //if ping failed, sets server connection to false 
+                serverConn = false;
+            } 
+        }
+            
+    public boolean checkInternetConn(){
+        /*
+         * This method checks if the device is connected to the internet,
+         * if it is connected it returns true, otherwise return false
+         */
+        pingInternet();
+        if (internetConn)
+            return true;
+        else return false;
+                
+    }
+    
+    public boolean checkServerConn(){
+        /*
+         * This method checks if the device is connected to the server,
+         * if it is connected it returns true, otherwise return false
+         */
+        pingServer();
+        if (serverConn)
+            return true;
+        else return false;
+                
     }
 
    
