@@ -1,12 +1,14 @@
 class AdminsController < ApplicationController
 
-  def index
-    @user = Admin.search(params[:search])
+  def search
+    @users = Admin.search(params[:query])
 
-    puts @user
     respond_to do |format|
       format.html #index.html.erb
-      format.json { render json: @user }
+      format.json { render json: @users }
     end
+  end
+
+  def index
   end
 end
