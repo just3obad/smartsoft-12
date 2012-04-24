@@ -8,7 +8,8 @@ class Feed < ActiveRecord::Base
     # link ignores upper/lower cas issue
   validates :link,  :presence => true,
             :format   => { :with => LINK_regex },
-            :uniqueness => { :case_sensitive => false }
+# this uniqueness line is to ensure that the compsite key ( link + interest_id is uniQue ) and this is to give the other  different interests the chance to dd the same link 
+            :uniqueness => {:scope => :interest_id , :case_sensitive => false}
 
 #interest _id should be there to create the RSS feed 
   validates :interest_id, :presence => true
