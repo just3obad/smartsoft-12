@@ -1351,20 +1351,20 @@ public void jsonReadMoree() {
       }
       //</editor-fold>//GEN-END:|58-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
-    /**
-     * Returns an initiliazed instance of confPas component.
-     * @return the initialized component instance
-     */
-    public TextField getConfPas() {
-        if (confPas == null) {//GEN-END:|59-getter|0|59-preInit
+      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
+      /**
+       * Returns an initiliazed instance of confPas component.
+       * @return the initialized component instance
+       */
+      public TextField getConfPas() {
+          if (confPas == null) {//GEN-END:|59-getter|0|59-preInit
             // write pre-init user code here
-            confPas = new TextField("Confirm  New Password", null, 32, TextField.ANY | TextField.PASSWORD | TextField.SENSITIVE | TextField.NON_PREDICTIVE);//GEN-LINE:|59-getter|1|59-postInit
+              confPas = new TextField("Confirm  New Password", null, 32, TextField.ANY | TextField.PASSWORD | TextField.SENSITIVE | TextField.NON_PREDICTIVE);//GEN-LINE:|59-getter|1|59-postInit
             // write post-init user code here
-        }//GEN-BEGIN:|59-getter|2|
-        return confPas;
-    }
-    //</editor-fold>//GEN-END:|59-getter|2|
+          }//GEN-BEGIN:|59-getter|2|
+          return confPas;
+      }
+      //</editor-fold>//GEN-END:|59-getter|2|
 
     //<editor-fold defaultstate="collapsed" desc=" Generated Getter: options ">//GEN-BEGIN:|62-getter|0|62-preInit
     /**
@@ -1714,6 +1714,10 @@ public void jsonReadMoree() {
     public Alert getComingSoon() {
         if (ComingSoon == null) {//GEN-END:|107-getter|0|107-preInit
             // write pre-init user code here
+            /*
+             * This is the alert whenever a user tries to connect to a non-added
+             * social network. 
+             */
             ComingSoon = new Alert("Coming Soon", "This network is coming soon", null, null);//GEN-BEGIN:|107-getter|1|107-postInit
             ComingSoon.setTimeout(Alert.FOREVER);//GEN-END:|107-getter|1|107-postInit
             // write post-init user code here
