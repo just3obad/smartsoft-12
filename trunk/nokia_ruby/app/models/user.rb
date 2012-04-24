@@ -17,27 +17,27 @@ class User < ActiveRecord::Base
   validates :first_name, :length => { :maximum => 20 }
   validates :last_name,  :length => { :maximum => 20 }
   
- # gets the shared stories of friends of a user
+ # gets the shared stories of friends of a user "note that these stories might contain duplicates"
   def get_friends_stories()
-    @friendsSent = Friends.find_all_by_sender_and_stat(self.id,1) #find all friends who approved my request
-    @friendsRec = Friends.find_all_by_receiver_and_stat(self.id,1) #find all friends whom I approved
-    @allFriends = @friendsSent + @friendsRec  # get all my friends by appending lists
-    @shares = Array.new
-    @allFriends.each do |friend|
-      @shares+=Share.find_all_by_user_id(friend.id)
+    friendsSent = Friends.find_all_by_sender_and_stat(self.id,1) #find all friends who approved my request
+    friendsRec = Friends.find_all_by_receiver_and_stat(self.id,1) #find all friends whom I approved
+    allFriends = friendsSent + friendsRec  # get all my friends by appending lists
+    shares = Array.new # init shares array
+    allFriends.each do |friend| # for all my friends
+      shares+=Share.find_all_by_user_id(friend.id) # get their shares and append it to shares array
     end
-    @stories=[]
-    @shares.each do |share|
-      @stories.append Story.find_by_id(share.story_id)
+    stories = Array.new
+    shares.each do |share|
+      stories.append Story.find_by_id(share.story_id)
     end
-    return @stories
+    return stories.uniq! # remove duplicates
   end
   
 
  # lets a user share a story given its id
   def share?(story_id)
-    @share = Share.find_by_user_id_and_story_id(self.id,story_id)
-    if @share.nil? then		# if he/she didn't share this story before then make him/her share it
+    share = Share.find_by_user_id_and_story_id(self.id,story_id)
+    if share.nil? then		# if he/she didn't share this story before then make him/her share it
       Share.create :user_id=>self.id,:story_id=>story_id
       return true		# shared successfully, return true
     else 			# else, dont allow to share it
