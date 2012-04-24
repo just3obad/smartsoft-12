@@ -21,7 +21,7 @@ class VerificationCodesController < ApplicationController
     respond_to do |format|
       if @account.resendCode?
       @result = true
-      #Emailer.deliver_registration_confirmation(@account)
+      Emailer.resend_code(@account).deliver
       format.json { render json: @result }
       else
       @result = false
