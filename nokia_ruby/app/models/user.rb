@@ -24,11 +24,11 @@ class User < ActiveRecord::Base
     allFriends = friendsSent + friendsRec  # get all my friends by appending lists
     shares = Array.new # init shares array
     allFriends.each do |friend| # for all my friends
-      shares+=Share.find_all_by_user_id(friend.id) # get their shares and append it to shares array
+      shares+=Share.find_all_by_user_id(friend.id) # get their shares and append them to shares array
     end
-    stories = Array.new
-    shares.each do |share|
-      stories.append Story.find_by_id(share.story_id)
+    stories = Array.new # init stories array
+    shares.each do |share| # for all my friends shares
+      stories.append Story.find_by_id(share.story_id) # get their stories and append them to stories array 
     end
     return stories.uniq! # remove duplicates
   end
