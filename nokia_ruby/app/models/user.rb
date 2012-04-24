@@ -22,7 +22,7 @@ has_many :friendships, :dependent => :destroy
   validates :first_name, :length => { :maximum => 20 }
   validates :last_name,  :length => { :maximum => 20 }
   
- # gets the shared stories of friends of a user "note that these stories might contain duplicates"
+ # gets the shared stories of friends of a user
   def get_friends_stories()
     friendsSent = Friends.find_all_by_sender_and_stat(self.id,1) #find all friends who approved my request
     friendsRec = Friends.find_all_by_receiver_and_stat(self.id,1) #find all friends whom I approved
@@ -35,7 +35,7 @@ has_many :friendships, :dependent => :destroy
     shares.each do |share| # for all my friends shares
       stories.append Story.find_by_id(share.story_id) # get their stories and append them to stories array 
     end
-    return stories.uniq! # remove duplicates
+    stories.uniq # remove duplicates, if stories is equal null return []
   end
   
 
