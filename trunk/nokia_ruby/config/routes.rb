@@ -1,12 +1,13 @@
 NokiaRuby::Application.routes.draw do
 
   post "h_accounts/sign_in"
-  match "users/:id" => "users#feed"
+  match "users/stories" => "users#feed"
   match "/users/new" => "users#create", :as => :create
   match "/h_accounts/create" => "h_accounts#create", :as => :create
-  match "user_add_interests" => "user_add_interests#getinterests"
-  match "flags" => "flags#flag"
-  match "likedislikes" => "likedislikes#thumb"
+  match "user_add_interests/interests" => "user_add_interests#getinterests"
+  match "flags/flag" => "flags#flag"
+  match "likedislikes/like" => "likedislikes#like"
+  match "likedislikes/dislike" => "likedislikes#dislike"
   match "/interests/:id/statistics" => "statistics#interests"
   match "/stories/:id/statistics" => "statistics#stories"
   match "/users/:id/statistics" => "statistics#users"
