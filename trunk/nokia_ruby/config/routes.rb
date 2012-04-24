@@ -53,7 +53,6 @@ NokiaRuby::Application.routes.draw do
   resources :feeds, :only => [:create, :destroy, :index, :new]
 
   resources :gaheem_accounts
-  resources :twitter_accounts
   #resources :friends
 #LogFiles
   resources :logs, :except => [:delete,:show]  
