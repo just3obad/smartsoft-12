@@ -248,7 +248,7 @@ public class commentItem extends CustomItem {
         int up = Integer.parseInt(ups);
         int down = Integer.parseInt(downs);
         int tot = up + down;
-        if(tot==0){
+        if(tot==0){ // avoid dividing by zero and paint a grey bar
             g.setColor(150, 150, 150);
             g.fillRoundRect(14, n + 40, 200, 8, 7, 7);
             Font f3 = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
