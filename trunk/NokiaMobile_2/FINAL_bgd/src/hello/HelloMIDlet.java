@@ -445,6 +445,7 @@ public void jsonReadMoree() {
         // write pre-initialize user code here
 //GEN-LINE:|0-initialize|1|0-postInitialize
         // write post-initialize user code here
+ 
     }//GEN-BEGIN:|0-initialize|2|
 //</editor-fold>//GEN-END:|0-initialize|2|
 
@@ -555,52 +556,60 @@ public void jsonReadMoree() {
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|14|135-postAction
                 // write post-action user code here
-                                                 HttpConnection httpConn = null;
-                InputStream is = null;
-                OutputStream os = null;
-             
-        try {
-        //Change IP accordingly
-        httpConn = (HttpConnection) Connector.open("http://10.37.129.2:3000/h_accounts/sign_in.json");
-        //Request method has to be POST
-        httpConn.setRequestMethod(HttpConnection.POST);
-        httpConn.setRequestProperty("User-Agent",
-                "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
-        httpConn.setRequestProperty("Accept_Language", "en-US");
-        //Content-Type is must to pass parameters in POST Request must be application/json
-        httpConn.setRequestProperty("Content-Type", "application/json");
-        // JSON String that you will send containing the attributes needed for sign up. 
-        
-        String dataToBeSend = "{\"email\":"+textField4.getString()+
-                ",\"password\":"+textField5.getString()+"}";
-        httpConn.setRequestProperty("Content-Length",
-                "" + dataToBeSend.length());
-        os = httpConn.openOutputStream();
-        os.write(dataToBeSend.getBytes());
-        os.flush();//data written will be flushed to server.
-        
-        System.out.println(httpConn.getResponseCode());
-        System.out.println(dataToBeSend);
-    } catch (Throwable t) {
-        System.out.println("Exception occured " + t.toString());
-    } //Since only limited number of network objects can be in open state
-    //it is necessary to clean them up as soon as we are done with them.
-    finally {
-        try {
-            if (os != null) {
-                os.close();
-            }
-        } catch (Throwable t) {
-            System.out.println("Exception occured " + t.toString());
-        }
-        try {
-            if (httpConn != null) {
-                httpConn.close();
-            }
-        } catch (Throwable t) {
-            System.out.println("Exception occured " + t.toString());
-        }
-    }
+                RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                if (regex.match(textField4.getString())) {
+                    HttpConnection httpConn = null;
+                    InputStream is = null;
+                    OutputStream os = null;
+
+                    try {
+                        //Change IP accordingly
+                        httpConn = (HttpConnection) Connector.open("http://10.37.129.2:3000/h_accounts/sign_in.json");
+                        //Request method has to be POST
+                        httpConn.setRequestMethod(HttpConnection.POST);
+                        httpConn.setRequestProperty("User-Agent",
+                                "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+                        httpConn.setRequestProperty("Accept_Language", "en-US");
+                        //Content-Type is must to pass parameters in POST Request must be application/json
+                        httpConn.setRequestProperty("Content-Type", "application/json");
+                        // JSON String that you will send containing the attributes needed for sign up. 
+
+                        String dataToBeSend = "{\"email\":" + textField4.getString()
+                                + ",\"password\":" + textField5.getString() + "}";
+                        httpConn.setRequestProperty("Content-Length",
+                                "" + dataToBeSend.length());
+                        os = httpConn.openOutputStream();
+                        os.write(dataToBeSend.getBytes());
+                        os.flush();//data written will be flushed to server.
+
+                        System.out.println(httpConn.getResponseCode());
+                        System.out.println(dataToBeSend);
+                    } catch (Throwable t) {
+                        System.out.println("Exception occured " + t.toString());
+                    } //Since only limited number of network objects can be in open state
+                    //it is necessary to clean them up as soon as we are done with them.
+                    finally {
+                        try {
+                            if (os != null) {
+                                os.close();
+                            }
+                        } catch (Throwable t) {
+                            System.out.println("Exception occured " + t.toString());
+                        }
+                        try {
+                            if (httpConn != null) {
+                                httpConn.close();
+                            }
+                        } catch (Throwable t) {
+                            System.out.println("Exception occured " + t.toString());
+                        }
+                    }
+                } else {
+                    //TODO wrong email format login
+                    Alert wrong_email_format = new Alert("Wrong email format", 
+                            "The email you entered was in a wrong format", 
+                            null, AlertType.ERROR);
+                }
             }//GEN-BEGIN:|7-commandAction|15|233-preAction
         } else if (displayable == MainFeed) {
             if (command == FilterFriends) {//GEN-END:|7-commandAction|15|233-preAction
@@ -670,12 +679,17 @@ public void jsonReadMoree() {
                                 System.out.println("Exception occured " + t.toString());
                             }
                         }
-                        
+
                     } else {
                         //TODO passwords don't match
+                        
                     }
                 } else {
                     //TODO wrong email format
+                    Alert wrong_email_format = new Alert("Wrong email_format",
+                            "The email you entered doesn't have the correct email format",
+                            null, AlertType.ERROR);
+                    wrong_email_format.isShown();
                 }
             }//GEN-BEGIN:|7-commandAction|23|29-preAction
         } else if (displayable == Story) {
