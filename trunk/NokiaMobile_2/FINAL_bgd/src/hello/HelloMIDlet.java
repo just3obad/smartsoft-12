@@ -104,10 +104,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command reject;
     private Command accept;
     private Command backCommand12;
+    private Command goToVerification;
     private Command viewCommentsMany;
     private Command FilterStories1;
     private Command FilterStories;
-    private Command goToVerification;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -3818,7 +3818,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Command getFilterStories1() {
         if (FilterStories1 == null) {//GEN-END:|364-getter|0|364-preInit
             // write pre-init user code here
-            FilterStories1 = new Command("Item", Command.ITEM, 0);//GEN-LINE:|364-getter|1|364-postInit
+            FilterStories1 = new Command("FilterStories", Command.ITEM, 0);//GEN-LINE:|364-getter|1|364-postInit
             // write post-init user code here
         }//GEN-BEGIN:|364-getter|2|
         return FilterStories1;
