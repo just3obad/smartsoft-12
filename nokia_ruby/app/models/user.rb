@@ -2,8 +2,13 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
   		:twitter_account, :twitter_request
-#:deactivated, :first_name, :last_name, :date_of_birth  # commented out till handling in tables
-  
+has_many :friends, :through => :friends, :conditions => "status = '2'"
+has_many :requested_friends, :through => :friends, :source => :friend, :conditions => "stat = '1'"
+has_many :pending_friends, :through => :friends, :source => :friend, :conditions => "stat = '0'"
+has_many :friendships, :dependent => :destroy
+  # stat 0 pending
+  # stat 1 requested
+  # stat 2 accepted
   has_one :haccount
   has_one :twitter_account
   has_one :twitter_request #If he requested another one, the old will be deleted
