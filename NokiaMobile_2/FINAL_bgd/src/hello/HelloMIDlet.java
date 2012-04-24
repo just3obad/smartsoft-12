@@ -39,7 +39,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     String json;
   //  int user_id; // The user id of logged in 
     String currentStoryString;
-    //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
+//<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
     private Command Comment1;
@@ -106,6 +106,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command reject;
     private Command accept;
     private Command backCommand12;
+    private Command viewCommentsMany;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -177,8 +178,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Form manyReq;
     private Form oneReq;
     private Alert StorynotFound;
+    private Form Dummy;
     private Image image1;
-    //</editor-fold>//GEN-END:|fields|0|
+//</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
     private OutputStream os;
     public boolean internetConn;
@@ -311,16 +313,18 @@ public void jsonReadMoree() {
     
      public void up(String comment_id){
          sendData("http://192.168.1.3:3000/stories/8/comments/upc", "{\"comment_id\":\""+comment_id+"\",\"user_id\":\""+user_id+"\"}");
-         CommentsMany = null;
+         CommentsMany = null;  //make null to re-init
          before = true;
-         switchDisplayable(null, getCommentsMany());
+         Dummy = null;  //make null to re-init
+         switchDisplayable(null, getDummy()); // switch to dummy display
          
      }
      public void down(String comment_id){
            sendData("http://192.168.1.3:3000/stories/8/comments/downc", "{\"comment_id\":\""+comment_id+"\",\"user_id\":\""+user_id+"\"}");
-           CommentsMany = null;
+           CommentsMany = null;  //make null to re-init
            before = true;
-           switchDisplayable(null, getCommentsMany()); 
+           Dummy = null;  //make null to re-init
+           switchDisplayable(null, getDummy()); // switch to dummy display
      }
     
      public void sendData(String ip, String data){
@@ -433,117 +437,118 @@ public void jsonReadMoree() {
      }
      
     
-      //<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
-      //</editor-fold>//GEN-END:|methods|0|
-      //<editor-fold defaultstate="collapsed" desc=" Generated Method: initialize ">//GEN-BEGIN:|0-initialize|0|0-preInitialize
-      /**
-       * Initializes the application.
-       * It is called only once when the MIDlet is started. The method is called before the <code>startMIDlet</code> method.
-       */
-      private void initialize() {//GEN-END:|0-initialize|0|0-preInitialize
+//<editor-fold defaultstate="collapsed" desc=" Generated Methods ">//GEN-BEGIN:|methods|0|
+//</editor-fold>//GEN-END:|methods|0|
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: initialize ">//GEN-BEGIN:|0-initialize|0|0-preInitialize
+    /**
+     * Initializes the application.
+     * It is called only once when the MIDlet is started. The method is called before the <code>startMIDlet</code> method.
+     */
+    private void initialize() {//GEN-END:|0-initialize|0|0-preInitialize
         // write pre-initialize user code here
 //GEN-LINE:|0-initialize|1|0-postInitialize
         // write post-initialize user code here
  
-      }//GEN-BEGIN:|0-initialize|2|
-      //</editor-fold>//GEN-END:|0-initialize|2|
+    }//GEN-BEGIN:|0-initialize|2|
+//</editor-fold>//GEN-END:|0-initialize|2|
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Method: startMIDlet ">//GEN-BEGIN:|3-startMIDlet|0|3-preAction
-      /**
-       * Performs an action assigned to the Mobile Device - MIDlet Started point.
-       */
-      public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: startMIDlet ">//GEN-BEGIN:|3-startMIDlet|0|3-preAction
+    /**
+     * Performs an action assigned to the Mobile Device - MIDlet Started point.
+     */
+    public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
+      
 //GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
-      }//GEN-BEGIN:|3-startMIDlet|2|
-      //</editor-fold>//GEN-END:|3-startMIDlet|2|
+    }//GEN-BEGIN:|3-startMIDlet|2|
+//</editor-fold>//GEN-END:|3-startMIDlet|2|
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Method: resumeMIDlet ">//GEN-BEGIN:|4-resumeMIDlet|0|4-preAction
-      /**
-       * Performs an action assigned to the Mobile Device - MIDlet Resumed point.
-       */
-      public void resumeMIDlet() {//GEN-END:|4-resumeMIDlet|0|4-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: resumeMIDlet ">//GEN-BEGIN:|4-resumeMIDlet|0|4-preAction
+    /**
+     * Performs an action assigned to the Mobile Device - MIDlet Resumed point.
+     */
+    public void resumeMIDlet() {//GEN-END:|4-resumeMIDlet|0|4-preAction
         // write pre-action user code here
 //GEN-LINE:|4-resumeMIDlet|1|4-postAction
         // write post-action user code here
-      }//GEN-BEGIN:|4-resumeMIDlet|2|
-      //</editor-fold>//GEN-END:|4-resumeMIDlet|2|
+    }//GEN-BEGIN:|4-resumeMIDlet|2|
+//</editor-fold>//GEN-END:|4-resumeMIDlet|2|
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Method: switchDisplayable ">//GEN-BEGIN:|5-switchDisplayable|0|5-preSwitch
-      /**
-       * Switches a current displayable in a display. The <code>display</code> instance is taken from <code>getDisplay</code> method. This method is used by all actions in the design for switching displayable.
-       * @param alert the Alert which is temporarily set to the display; if <code>null</code>, then <code>nextDisplayable</code> is set immediately
-       * @param nextDisplayable the Displayable to be set
-       */
-      public void switchDisplayable(Alert alert, Displayable nextDisplayable) {//GEN-END:|5-switchDisplayable|0|5-preSwitch
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: switchDisplayable ">//GEN-BEGIN:|5-switchDisplayable|0|5-preSwitch
+    /**
+     * Switches a current displayable in a display. The <code>display</code> instance is taken from <code>getDisplay</code> method. This method is used by all actions in the design for switching displayable.
+     * @param alert the Alert which is temporarily set to the display; if <code>null</code>, then <code>nextDisplayable</code> is set immediately
+     * @param nextDisplayable the Displayable to be set
+     */
+    public void switchDisplayable(Alert alert, Displayable nextDisplayable) {//GEN-END:|5-switchDisplayable|0|5-preSwitch
         // write pre-switch user code here
-          Display display = getDisplay();//GEN-BEGIN:|5-switchDisplayable|1|5-postSwitch
-          if (alert == null) {
-              display.setCurrent(nextDisplayable);
-          } else {
-              display.setCurrent(alert, nextDisplayable);
-          }//GEN-END:|5-switchDisplayable|1|5-postSwitch
+        Display display = getDisplay();//GEN-BEGIN:|5-switchDisplayable|1|5-postSwitch
+        if (alert == null) {
+            display.setCurrent(nextDisplayable);
+        } else {
+            display.setCurrent(alert, nextDisplayable);
+        }//GEN-END:|5-switchDisplayable|1|5-postSwitch
         // write post-switch user code here
-      }//GEN-BEGIN:|5-switchDisplayable|2|
-      //</editor-fold>//GEN-END:|5-switchDisplayable|2|
+    }//GEN-BEGIN:|5-switchDisplayable|2|
+//</editor-fold>//GEN-END:|5-switchDisplayable|2|
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Method: commandAction for Displayables ">//GEN-BEGIN:|7-commandAction|0|7-preCommandAction
-      /**
-       * Called by a system to indicated that a command has been invoked on a particular displayable.
-       * @param command the Command that was invoked
-       * @param displayable the Displayable where the command was invoked
-       */
-      public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: commandAction for Displayables ">//GEN-BEGIN:|7-commandAction|0|7-preCommandAction
+    /**
+     * Called by a system to indicated that a command has been invoked on a particular displayable.
+     * @param command the Command that was invoked
+     * @param displayable the Displayable where the command was invoked
+     */
+    public void commandAction(Command command, Displayable displayable) {//GEN-END:|7-commandAction|0|7-preCommandAction
         // write pre-action user code here
          this.displayable = displayable;
-         if (displayable == CommentsMany) {//GEN-BEGIN:|7-commandAction|1|40-preAction
-             if (command == AddComment) {//GEN-END:|7-commandAction|1|40-preAction
+        if (displayable == CommentsMany) {//GEN-BEGIN:|7-commandAction|1|40-preAction
+            if (command == AddComment) {//GEN-END:|7-commandAction|1|40-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|2|40-postAction
                 // write post-action user code here
-    String s = getTextField().getString();
-    if(s.equals(null) || s.equals("")){
-        switchDisplayable(CommentFail, displayable);  //show failure alert
+    String comment = getTextField().getString();
+    
+    if(comment.length()==0){
+        switchDisplayable(getCommentFail(), displayable);  //show failure alert
     }else{
-      //  addComment(s);
-      //  getTextField().delete(0, s.length());
-       // getTextField();
-     //   switchDisplayable(null, getStory());   //re-initializing comments list component
-     //   Comment = null;
-     //   getComment();
-      //  addComment(s);
-     //   getTextField().n
-     //   switchDisplayable(CommentSucc, getComment());  //show success alert
-      //  getDisplay().setCurrent(displayable);
+      currentStoryID = 8; //for testing
+      user_id = 3; //for testing
+      String url = "http://192.168.1.3:3000/stories/" + currentStoryID + "/comments/new";
+      String data = "{\"user_id\":\""+user_id+"\",\"story_id\":\""+currentStoryID+"\",\"content\":\""+comment+"\"}";
+      sendData(url, data);
+      textField.delete(0, getTextField().getString().length()) ; //cleat text in textfield
+      CommentsMany = null; //make null to re-init
+      Dummy = null; // make null to re-init
+      switchDisplayable(null, getDummy()); //switch to dummy display
     }
-             } else if (command == backToStory) {//GEN-LINE:|7-commandAction|3|38-preAction
+            } else if (command == backToStory) {//GEN-LINE:|7-commandAction|3|38-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|4|38-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|4|38-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|5|239-preAction
-         } else if (displayable == FriendList) {
-             if (command == Block) {//GEN-END:|7-commandAction|5|239-preAction
+            }//GEN-BEGIN:|7-commandAction|5|239-preAction
+        } else if (displayable == FriendList) {
+            if (command == Block) {//GEN-END:|7-commandAction|5|239-preAction
                  // write pre-action user code here
                 String r = recieveData("http://192.168.26.136:3000/users/block_friend_feed?id="+user_id);
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|6|239-postAction
                  // write post-action user code here
-             } else if (command == Filter) {//GEN-LINE:|7-commandAction|7|241-preAction
+            } else if (command == Filter) {//GEN-LINE:|7-commandAction|7|241-preAction
                 // write pre-action user code here
                 friendsConnection();
                 switchDisplayable(null, getFriendsStories());//GEN-LINE:|7-commandAction|8|241-postAction
                 // write post-action user code here
-             } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|9|230-preAction
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|9|230-preAction
                 // write pre-action user code here
-                 FriendListAction();//GEN-LINE:|7-commandAction|10|230-postAction
+                FriendListAction();//GEN-LINE:|7-commandAction|10|230-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|11|137-preAction
-         } else if (displayable == LoginScreen) {
-             if (command == backCommand5) {//GEN-END:|7-commandAction|11|137-preAction
+            }//GEN-BEGIN:|7-commandAction|11|137-preAction
+        } else if (displayable == LoginScreen) {
+            if (command == backCommand5) {//GEN-END:|7-commandAction|11|137-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|12|137-postAction
                 // write post-action user code here
-             } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|13|135-preAction
+            } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|13|135-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|14|135-postAction
                 // write post-action user code here
@@ -601,23 +606,23 @@ public void jsonReadMoree() {
                             "The email you entered was in a wrong format", 
                             null, AlertType.ERROR);
                 }
-             }//GEN-BEGIN:|7-commandAction|15|233-preAction
-         } else if (displayable == MainFeed) {
-             if (command == FilterFriends) {//GEN-END:|7-commandAction|15|233-preAction
+            }//GEN-BEGIN:|7-commandAction|15|233-preAction
+        } else if (displayable == MainFeed) {
+            if (command == FilterFriends) {//GEN-END:|7-commandAction|15|233-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getFriendList());//GEN-LINE:|7-commandAction|16|233-postAction
+                switchDisplayable(null, getFriendList());//GEN-LINE:|7-commandAction|16|233-postAction
                 // write post-action user code here
-             } else if (command == options) {//GEN-LINE:|7-commandAction|17|63-preAction
+            } else if (command == options) {//GEN-LINE:|7-commandAction|17|63-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|18|63-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|19|155-preAction
-         } else if (displayable == RegisterScreen) {
-             if (command == backCommand7) {//GEN-END:|7-commandAction|19|155-preAction
+            }//GEN-BEGIN:|7-commandAction|19|155-preAction
+        } else if (displayable == RegisterScreen) {
+            if (command == backCommand7) {//GEN-END:|7-commandAction|19|155-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|20|155-postAction
                 // write post-action user code here
-             } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|21|153-preAction
+            } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|21|153-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|22|153-postAction
                 // write post-action user code here
@@ -682,103 +687,103 @@ public void jsonReadMoree() {
                             null, AlertType.ERROR);
                     wrong_email_format.isShown();
                 }
-             }//GEN-BEGIN:|7-commandAction|23|29-preAction
-         } else if (displayable == Story) {
-             if (command == Comment1) {//GEN-END:|7-commandAction|23|29-preAction
+            }//GEN-BEGIN:|7-commandAction|23|29-preAction
+        } else if (displayable == Story) {
+            if (command == Comment1) {//GEN-END:|7-commandAction|23|29-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|24|29-postAction
                 // write post-action user code here
-             } else if (command == backCommand) {//GEN-LINE:|7-commandAction|25|31-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|25|31-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|26|31-postAction
                 // write post-action user code here
-             } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|27|79-preAction
+            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|27|79-preAction
  // write pre-action user code here
 //GEN-LINE:|7-commandAction|28|79-postAction
  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|29|345-preAction
-         } else if (displayable == URLCorrupted) {
-             if (command == okCommand11) {//GEN-END:|7-commandAction|29|345-preAction
+            }//GEN-BEGIN:|7-commandAction|29|345-preAction
+        } else if (displayable == URLCorrupted) {
+            if (command == okCommand11) {//GEN-END:|7-commandAction|29|345-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getAuthTwitter());//GEN-LINE:|7-commandAction|30|345-postAction
+                switchDisplayable(null, getAuthTwitter());//GEN-LINE:|7-commandAction|30|345-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|31|170-preAction
-         } else if (displayable == Verification) {
-             if (command == Resend) {//GEN-END:|7-commandAction|31|170-preAction
+            }//GEN-BEGIN:|7-commandAction|31|170-preAction
+        } else if (displayable == Verification) {
+            if (command == Resend) {//GEN-END:|7-commandAction|31|170-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|32|170-postAction
                 // write post-action user code here
-             } else if (command == Verify) {//GEN-LINE:|7-commandAction|33|168-preAction
+            } else if (command == Verify) {//GEN-LINE:|7-commandAction|33|168-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|34|168-postAction
                 // write post-action user code here
-             } else if (command == backV) {//GEN-LINE:|7-commandAction|35|166-preAction
+            } else if (command == backV) {//GEN-LINE:|7-commandAction|35|166-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|36|166-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|37|283-preAction
-         } else if (displayable == alreadyHaveTwitter) {
-             if (command == BackToAccounts) {//GEN-END:|7-commandAction|37|283-preAction
+            }//GEN-BEGIN:|7-commandAction|37|283-preAction
+        } else if (displayable == alreadyHaveTwitter) {
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|37|283-preAction
                  // write pre-action user code here
-                 switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|38|283-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|38|283-postAction
                  // write post-action user code here
-             } else if (command == ReplaceTwitterAccount) {//GEN-LINE:|7-commandAction|39|281-preAction
+            } else if (command == ReplaceTwitterAccount) {//GEN-LINE:|7-commandAction|39|281-preAction
                  // write pre-action user code here
-                 genReqURL();//GEN-LINE:|7-commandAction|40|281-postAction
+                genReqURL();//GEN-LINE:|7-commandAction|40|281-postAction
                  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|41|296-preAction
-         } else if (displayable == authSuccessful) {
-             if (command == BackToAccounts) {//GEN-END:|7-commandAction|41|296-preAction
+            }//GEN-BEGIN:|7-commandAction|41|296-preAction
+        } else if (displayable == authSuccessful) {
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|41|296-preAction
                  // write pre-action user code here
-                 switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|42|296-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|42|296-postAction
                  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|43|253-preAction
-         } else if (displayable == authTwitter) {
-             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|43|253-preAction
+            }//GEN-BEGIN:|7-commandAction|43|253-preAction
+        } else if (displayable == authTwitter) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|43|253-preAction
                  // write pre-action user code here
-                 authTwitterAction();//GEN-LINE:|7-commandAction|44|253-postAction
+                authTwitterAction();//GEN-LINE:|7-commandAction|44|253-postAction
                  // write post-action user code here
-             } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|45|266-preAction
+            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|45|266-preAction
                  // write pre-action user code here
-                 switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|46|266-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|46|266-postAction
                  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|47|123-preAction
-         } else if (displayable == choosefriend1) {
-             if (command == Find) {//GEN-END:|7-commandAction|47|123-preAction
+            }//GEN-BEGIN:|7-commandAction|47|123-preAction
+        } else if (displayable == choosefriend1) {
+            if (command == Find) {//GEN-END:|7-commandAction|47|123-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|48|123-postAction
+                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|48|123-postAction
                 // write post-action user code here
-             } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|49|117-preAction
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|49|117-preAction
                 // write pre-action user code here
-                 choosefriend1Action();//GEN-LINE:|7-commandAction|50|117-postAction
+                choosefriend1Action();//GEN-LINE:|7-commandAction|50|117-postAction
                 // write post-action user code here
-             } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|51|122-preAction
+            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|51|122-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|52|122-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|52|122-postAction
                 // write post-action user code here
-             } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|53|120-preAction
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|53|120-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|54|120-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|54|120-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|55|81-preAction
-         } else if (displayable == connectAccount) {
-             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|55|81-preAction
+            }//GEN-BEGIN:|7-commandAction|55|81-preAction
+        } else if (displayable == connectAccount) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|55|81-preAction
                 // write pre-action user code here
-                 connectAccountAction();//GEN-LINE:|7-commandAction|56|81-postAction
+                connectAccountAction();//GEN-LINE:|7-commandAction|56|81-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|57|312-preAction
-         } else if (displayable == disliked) {
-             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|57|312-preAction
+            }//GEN-BEGIN:|7-commandAction|57|312-preAction
+        } else if (displayable == disliked) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|57|312-preAction
                  // write pre-action user code here
-                 dislikedAction();//GEN-LINE:|7-commandAction|58|312-postAction
+                dislikedAction();//GEN-LINE:|7-commandAction|58|312-postAction
                  // write post-action user code here
-             } else if (command == backCommand) {//GEN-LINE:|7-commandAction|59|314-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|59|314-preAction
                  // write pre-action user code here
-                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|60|314-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|60|314-postAction
                  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|61|106-preAction
-         } else if (displayable == findFriend) {
-             if (command == Add1) {//GEN-END:|7-commandAction|61|106-preAction
+            }//GEN-BEGIN:|7-commandAction|61|106-preAction
+        } else if (displayable == findFriend) {
+            if (command == Add1) {//GEN-END:|7-commandAction|61|106-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|62|106-postAction
 
@@ -788,79 +793,79 @@ public void jsonReadMoree() {
                    String s =" \"receiver\":"+ this.search.getString()+" \"sender_id\":"+this.user_id;
                    this.sendData("friends/add/ip", s);
                 }
-             } else if (command == Back1) {//GEN-LINE:|7-commandAction|63|94-preAction
+            } else if (command == Back1) {//GEN-LINE:|7-commandAction|63|94-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|64|94-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|65|19-preAction
-         } else if (displayable == form) {
-             if (command == exitCommand) {//GEN-END:|7-commandAction|65|19-preAction
+            }//GEN-BEGIN:|7-commandAction|65|19-preAction
+        } else if (displayable == form) {
+            if (command == exitCommand) {//GEN-END:|7-commandAction|65|19-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|66|19-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|67|159-preAction
-         } else if (displayable == form1) {
-             if (command == backCommand8) {//GEN-END:|7-commandAction|67|159-preAction
+            }//GEN-BEGIN:|7-commandAction|67|159-preAction
+        } else if (displayable == form1) {
+            if (command == backCommand8) {//GEN-END:|7-commandAction|67|159-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|68|159-postAction
                 // write post-action user code here
-             } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|69|161-preAction
+            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|69|161-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|70|161-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|71|128-preAction
-         } else if (displayable == liked) {
-             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|71|128-preAction
+            }//GEN-BEGIN:|7-commandAction|71|128-preAction
+        } else if (displayable == liked) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|71|128-preAction
                 // write pre-action user code here
-                 likedAction();//GEN-LINE:|7-commandAction|72|128-postAction
+                likedAction();//GEN-LINE:|7-commandAction|72|128-postAction
                 // write post-action user code here
-             } else if (command == backCommand) {//GEN-LINE:|7-commandAction|73|130-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|73|130-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|74|130-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|74|130-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|75|182-preAction
-         } else if (displayable == list) {
-             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|75|182-preAction
+            }//GEN-BEGIN:|7-commandAction|75|182-preAction
+        } else if (displayable == list) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|75|182-preAction
                 // write pre-action user code here
-                 listAction();//GEN-LINE:|7-commandAction|76|182-postAction
+                listAction();//GEN-LINE:|7-commandAction|76|182-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|77|236-preAction
-         } else if (displayable == list1) {
-             if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|77|236-preAction
+            }//GEN-BEGIN:|7-commandAction|77|236-preAction
+        } else if (displayable == list1) {
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|77|236-preAction
                 // write pre-action user code here
-                 list1Action();//GEN-LINE:|7-commandAction|78|236-postAction
+                list1Action();//GEN-LINE:|7-commandAction|78|236-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|79|325-preAction
-         } else if (displayable == manyReq) {
-             if (command == backCommand11) {//GEN-END:|7-commandAction|79|325-preAction
+            }//GEN-BEGIN:|7-commandAction|79|325-preAction
+        } else if (displayable == manyReq) {
+            if (command == backCommand11) {//GEN-END:|7-commandAction|79|325-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|80|325-postAction
                 // write post-action user code here
-             } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|81|327-preAction
+            } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|81|327-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|82|327-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|83|331-preAction
-         } else if (displayable == oneReq) {
-             if (command == accept) {//GEN-END:|7-commandAction|83|331-preAction
+            }//GEN-BEGIN:|7-commandAction|83|331-preAction
+        } else if (displayable == oneReq) {
+            if (command == accept) {//GEN-END:|7-commandAction|83|331-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|84|331-postAction
                 // write post-action user code here
-             } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|85|329-preAction
+            } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|85|329-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|86|329-postAction
                 // write post-action user code here
-             } else if (command == reject) {//GEN-LINE:|7-commandAction|87|333-preAction
+            } else if (command == reject) {//GEN-LINE:|7-commandAction|87|333-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|88|333-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|89|53-preAction
-         } else if (displayable == profile) {
-             if (command == back) {//GEN-END:|7-commandAction|89|53-preAction
+            }//GEN-BEGIN:|7-commandAction|89|53-preAction
+        } else if (displayable == profile) {
+            if (command == back) {//GEN-END:|7-commandAction|89|53-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|90|53-postAction
                 // write post-action user code here
-             } else if (command == ok) {//GEN-LINE:|7-commandAction|91|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|91|49-preAction
                 // write pre-action user code here
                //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}"
                String s ="";
@@ -914,18 +919,18 @@ public void jsonReadMoree() {
 //               }
 //GEN-LINE:|7-commandAction|92|49-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|93|186-preAction
-         } else if (displayable == readMore) {
-             if (command == backCommand9) {//GEN-END:|7-commandAction|93|186-preAction
+            }//GEN-BEGIN:|7-commandAction|93|186-preAction
+        } else if (displayable == readMore) {
+            if (command == backCommand9) {//GEN-END:|7-commandAction|93|186-preAction
                  // write pre-action user code here
 //GEN-LINE:|7-commandAction|94|186-postAction
                  // write post-action user code here
-             } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|95|200-preAction
+            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|95|200-preAction
                  // write pre-action user code here
                 recieveData("http://192.168.26.148:3000/users/block_interest?story_id="+currentStoryID);
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|96|200-postAction
                  // write post-action user code here
-             } else if (command == blockstory) {//GEN-LINE:|7-commandAction|97|202-preAction
+            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|97|202-preAction
                  // write pre-action user code here
                 String r = recieveData("http://192.168.26.148:3000/users/block_story?story_id="+currentStoryID);
                 if(r.equals("story is blocked successfully")) {
@@ -933,84 +938,88 @@ public void jsonReadMoree() {
                 } else 
                     switchDisplayable(null,getStorynotFound());
                 // write post-action user code here
-             } else if (command == flag) {//GEN-LINE:|7-commandAction|99|194-preAction
+            } else if (command == flag) {//GEN-LINE:|7-commandAction|99|194-preAction
                  // write pre-action user code here
                 getDataServer("http://192.168.26.148:3000/flags?uid=1&sid=1&format=json");
 //GEN-LINE:|7-commandAction|100|194-postAction
                  // write post-action user code here
-             } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|101|319-preAction
+            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|101|319-preAction
                  // write pre-action user code here
 //GEN-LINE:|7-commandAction|102|319-postAction
                  // write post-action user code here
-             } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|103|317-preAction
+            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|103|317-preAction
                  // write pre-action user code here
 //GEN-LINE:|7-commandAction|104|317-postAction
                  // write post-action user code here
-             } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|105|188-preAction
+            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|105|188-preAction
                  // write pre-action user code here
 //GEN-LINE:|7-commandAction|106|188-postAction
                  // write post-action user code here
-             } else if (command == recommend1) {//GEN-LINE:|7-commandAction|107|198-preAction
+            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|107|198-preAction
                  // write pre-action user code here
-                 switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|108|198-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|108|198-postAction
                  // write post-action user code here
-             } else if (command == share) {//GEN-LINE:|7-commandAction|109|196-preAction
+            } else if (command == share) {//GEN-LINE:|7-commandAction|109|196-preAction
                  // write pre-action user code here
-                 method();//GEN-LINE:|7-commandAction|110|196-postAction
+                method();//GEN-LINE:|7-commandAction|110|196-postAction
                  // write post-action user code here
-             } else if (command == singOut) {//GEN-LINE:|7-commandAction|111|321-preAction
+            } else if (command == singOut) {//GEN-LINE:|7-commandAction|111|321-preAction
                  // write pre-action user code here
 //GEN-LINE:|7-commandAction|112|321-postAction
                  // write post-action user code here
-             } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|113|192-preAction
+            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|113|192-preAction
                  // write pre-action user code here
                                  getDataServer("http://192.168.26.148:3000/likedislikes?uid=2&sid=1&act=-1&format=json");
 
 //GEN-LINE:|7-commandAction|114|192-postAction
                  // write post-action user code here
-             } else if (command == thumbup) {//GEN-LINE:|7-commandAction|115|190-preAction
+            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|115|190-preAction
                  getDataServer("http://192.168.26.148:3000/likedislikes?uid=2&sid=1&act=1&format=json");
 //GEN-LINE:|7-commandAction|116|190-postAction
                  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|117|115-preAction
-         } else if (displayable == recommend) {
-             if (command == backCommand3) {//GEN-END:|7-commandAction|117|115-preAction
+            } else if (command == viewCommentsMany) {//GEN-LINE:|7-commandAction|117|356-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|118|115-postAction
+                switchDisplayable(null, getCommentsMany());//GEN-LINE:|7-commandAction|118|356-postAction
                 // write post-action user code here
-             } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|119|124-preAction
+            }//GEN-BEGIN:|7-commandAction|119|115-preAction
+        } else if (displayable == recommend) {
+            if (command == backCommand3) {//GEN-END:|7-commandAction|119|115-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|120|124-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|120|115-postAction
                 // write post-action user code here
-             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|121|113-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|121|124-preAction
                 // write pre-action user code here
-                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|122|113-postAction
+                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|122|124-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|123|35-preAction
-         } else if (displayable == textBox) {
-             if (command == backCommand1) {//GEN-END:|7-commandAction|123|35-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|123|113-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|124|35-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|124|113-postAction
                 // write post-action user code here
-             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|125|33-preAction
+            }//GEN-BEGIN:|7-commandAction|125|35-preAction
+        } else if (displayable == textBox) {
+            if (command == backCommand1) {//GEN-END:|7-commandAction|125|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|126|33-postAction
+//GEN-LINE:|7-commandAction|126|35-postAction
                 // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|127|305-preAction
-         } else if (displayable == twitterAuthFailed) {
-             if (command == BackToAccounts) {//GEN-END:|7-commandAction|127|305-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|127|33-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|128|33-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|129|305-preAction
+        } else if (displayable == twitterAuthFailed) {
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|129|305-preAction
                  // write pre-action user code here
-                 switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|128|305-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|130|305-postAction
                  // write post-action user code here
-             } else if (command == Resend1) {//GEN-LINE:|7-commandAction|129|302-preAction
+            } else if (command == Resend1) {//GEN-LINE:|7-commandAction|131|302-preAction
                  // write pre-action user code here
-                 genReqURL();//GEN-LINE:|7-commandAction|130|302-postAction
+                genReqURL();//GEN-LINE:|7-commandAction|132|302-postAction
                  // write post-action user code here
-             }//GEN-BEGIN:|7-commandAction|131|7-postCommandAction
-         }//GEN-END:|7-commandAction|131|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|133|7-postCommandAction
+        }//GEN-END:|7-commandAction|133|7-postCommandAction
         // write post-action user code here
-      }//GEN-BEGIN:|7-commandAction|132|
-      //</editor-fold>//GEN-END:|7-commandAction|132|
+    }//GEN-BEGIN:|7-commandAction|134|
+//</editor-fold>//GEN-END:|7-commandAction|134|
 
 
 
@@ -1020,73 +1029,73 @@ public void jsonReadMoree() {
 
 
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
-      /**
-       * Returns an initiliazed instance of exitCommand component.
-       * @return the initialized component instance
-       */
-      public Command getExitCommand() {
-          if (exitCommand == null) {//GEN-END:|18-getter|0|18-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
+    /**
+     * Returns an initiliazed instance of exitCommand component.
+     * @return the initialized component instance
+     */
+    public Command getExitCommand() {
+        if (exitCommand == null) {//GEN-END:|18-getter|0|18-preInit
             // write pre-init user code here
-              exitCommand = new Command("Exit", Command.EXIT, 0);//GEN-LINE:|18-getter|1|18-postInit
+            exitCommand = new Command("Exit", Command.EXIT, 0);//GEN-LINE:|18-getter|1|18-postInit
             // write post-init user code here
-          }//GEN-BEGIN:|18-getter|2|
-          return exitCommand;
-      }
-      //</editor-fold>//GEN-END:|18-getter|2|
+        }//GEN-BEGIN:|18-getter|2|
+        return exitCommand;
+    }
+//</editor-fold>//GEN-END:|18-getter|2|
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: form ">//GEN-BEGIN:|14-getter|0|14-preInit
-      /**
-       * Returns an initiliazed instance of form component.
-       * @return the initialized component instance
-       */
-      public Form getForm() {
-          if (form == null) {//GEN-END:|14-getter|0|14-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: form ">//GEN-BEGIN:|14-getter|0|14-preInit
+    /**
+     * Returns an initiliazed instance of form component.
+     * @return the initialized component instance
+     */
+    public Form getForm() {
+        if (form == null) {//GEN-END:|14-getter|0|14-preInit
             // write pre-init user code here
-              form = new Form("Welcome", new Item[] { getStringItem() });//GEN-BEGIN:|14-getter|1|14-postInit
-              form.addCommand(getExitCommand());
-              form.setCommandListener(this);//GEN-END:|14-getter|1|14-postInit
+            form = new Form("Welcome", new Item[]{getStringItem()});//GEN-BEGIN:|14-getter|1|14-postInit
+            form.addCommand(getExitCommand());
+            form.setCommandListener(this);//GEN-END:|14-getter|1|14-postInit
             // write post-init user code here
-          }//GEN-BEGIN:|14-getter|2|
-          return form;
-      }
-      //</editor-fold>//GEN-END:|14-getter|2|
+        }//GEN-BEGIN:|14-getter|2|
+        return form;
+    }
+//</editor-fold>//GEN-END:|14-getter|2|
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|16-getter|0|16-preInit
-      /**
-       * Returns an initiliazed instance of stringItem component.
-       * @return the initialized component instance
-       */
-      public StringItem getStringItem() {
-          if (stringItem == null) {//GEN-END:|16-getter|0|16-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|16-getter|0|16-preInit
+    /**
+     * Returns an initiliazed instance of stringItem component.
+     * @return the initialized component instance
+     */
+    public StringItem getStringItem() {
+        if (stringItem == null) {//GEN-END:|16-getter|0|16-preInit
             // write pre-init user code here
-              stringItem = new StringItem("Hello", "Hello, World!");//GEN-LINE:|16-getter|1|16-postInit
+            stringItem = new StringItem("Hello", "Hello, World!");//GEN-LINE:|16-getter|1|16-postInit
             // write post-init user code here
-          }//GEN-BEGIN:|16-getter|2|
-          return stringItem;
-      }
-      //</editor-fold>//GEN-END:|16-getter|2|
+        }//GEN-BEGIN:|16-getter|2|
+        return stringItem;
+    }
+//</editor-fold>//GEN-END:|16-getter|2|
 
-      //<editor-fold defaultstate="collapsed" desc=" Generated Getter: MainFeed ">//GEN-BEGIN:|22-getter|0|22-preInit
-      /**
-       * Returns an initiliazed instance of MainFeed component.
-       * @return the initialized component instance
-       */
-      public Form getMainFeed() {
-          if (MainFeed == null) {//GEN-END:|22-getter|0|22-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: MainFeed ">//GEN-BEGIN:|22-getter|0|22-preInit
+    /**
+     * Returns an initiliazed instance of MainFeed component.
+     * @return the initialized component instance
+     */
+    public Form getMainFeed() {
+        if (MainFeed == null) {//GEN-END:|22-getter|0|22-preInit
             // write pre-init user code here
-              MainFeed = new Form("form1");//GEN-BEGIN:|22-getter|1|22-postInit
-              MainFeed.addCommand(getOptions());
-              MainFeed.addCommand(getFilterFriends());
-              MainFeed.setCommandListener(this);//GEN-END:|22-getter|1|22-postInit
+            MainFeed = new Form("form1");//GEN-BEGIN:|22-getter|1|22-postInit
+            MainFeed.addCommand(getOptions());
+            MainFeed.addCommand(getFilterFriends());
+            MainFeed.setCommandListener(this);//GEN-END:|22-getter|1|22-postInit
             // write post-init user code here
             new createStories(url,MainFeed,displayable,this);
-          }//GEN-BEGIN:|22-getter|2|
-          return MainFeed;
-      }
-      //</editor-fold>//GEN-END:|22-getter|2|
+        }//GEN-BEGIN:|22-getter|2|
+        return MainFeed;
+    }
+//</editor-fold>//GEN-END:|22-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
     /**
      * Returns an initiliazed instance of viewComments component.
      * @return the initialized component instance
@@ -1099,9 +1108,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|24-getter|2|
         return viewComments;
     }
-    //</editor-fold>//GEN-END:|24-getter|2|
+//</editor-fold>//GEN-END:|24-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
     /**
      * Returns an initiliazed instance of Story component.
      * @return the initialized component instance
@@ -1118,9 +1127,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|23-getter|2|
         return Story;
     }
-    //</editor-fold>//GEN-END:|23-getter|2|
+//</editor-fold>//GEN-END:|23-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
     /**
      * Returns an initiliazed instance of textBox component.
      * @return the initialized component instance
@@ -1136,9 +1145,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|26-getter|2|
         return textBox;
     }
-    //</editor-fold>//GEN-END:|26-getter|2|
+//</editor-fold>//GEN-END:|26-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentsMany ">//GEN-BEGIN:|27-getter|0|27-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentsMany ">//GEN-BEGIN:|27-getter|0|27-preInit
     /**
      * Returns an initiliazed instance of CommentsMany component.
      * @return the initialized component instance
@@ -1146,20 +1155,21 @@ public void jsonReadMoree() {
     public Form getCommentsMany() {
         if (CommentsMany == null) {//GEN-END:|27-getter|0|27-preInit
             // write pre-init user code here
-    if(before) textField = null;
-    CommentsMany = new Form("Comments", new Item[] { getTextField() });//GEN-BEGIN:|27-getter|1|27-postInit
-    CommentsMany.addCommand(getBackToStory());
-    CommentsMany.addCommand(getAddComment());
-    CommentsMany.setCommandListener(this);//GEN-END:|27-getter|1|27-postInit
-        parseComments("8"); 
+            if(before) textField = null;
+            CommentsMany = new Form("Comments", new Item[]{getTextField()});//GEN-BEGIN:|27-getter|1|27-postInit
+            CommentsMany.addCommand(getBackToStory());
+            CommentsMany.addCommand(getAddComment());
+            CommentsMany.setCommandListener(this);//GEN-END:|27-getter|1|27-postInit
+            currentStoryID = 8; //for testing
+            parseComments(currentStoryID+""); 
 
                
         }//GEN-BEGIN:|27-getter|2|
         return CommentsMany;
     }
-    //</editor-fold>//GEN-END:|27-getter|2|
+//</editor-fold>//GEN-END:|27-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
     /**
      * Returns an initiliazed instance of Comment1 component.
      * @return the initialized component instance
@@ -1172,9 +1182,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|28-getter|2|
         return Comment1;
     }
-    //</editor-fold>//GEN-END:|28-getter|2|
+//</editor-fold>//GEN-END:|28-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
     /**
      * Returns an initiliazed instance of backCommand component.
      * @return the initialized component instance
@@ -1187,9 +1197,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|30-getter|2|
         return backCommand;
     }
-    //</editor-fold>//GEN-END:|30-getter|2|
+//</editor-fold>//GEN-END:|30-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
     /**
      * Returns an initiliazed instance of okCommand component.
      * @return the initialized component instance
@@ -1202,9 +1212,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|32-getter|2|
         return okCommand;
     }
-    //</editor-fold>//GEN-END:|32-getter|2|
+//</editor-fold>//GEN-END:|32-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
     /**
      * Returns an initiliazed instance of backCommand1 component.
      * @return the initialized component instance
@@ -1217,9 +1227,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|34-getter|2|
         return backCommand1;
     }
-    //</editor-fold>//GEN-END:|34-getter|2|
+//</editor-fold>//GEN-END:|34-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToStory ">//GEN-BEGIN:|37-getter|0|37-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToStory ">//GEN-BEGIN:|37-getter|0|37-preInit
     /**
      * Returns an initiliazed instance of backToStory component.
      * @return the initialized component instance
@@ -1232,9 +1242,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|37-getter|2|
         return backToStory;
     }
-    //</editor-fold>//GEN-END:|37-getter|2|
+//</editor-fold>//GEN-END:|37-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: AddComment ">//GEN-BEGIN:|39-getter|0|39-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: AddComment ">//GEN-BEGIN:|39-getter|0|39-preInit
     /**
      * Returns an initiliazed instance of AddComment component.
      * @return the initialized component instance
@@ -1247,9 +1257,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|39-getter|2|
         return AddComment;
     }
-    //</editor-fold>//GEN-END:|39-getter|2|
+//</editor-fold>//GEN-END:|39-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: profile ">//GEN-BEGIN:|47-getter|0|47-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: profile ">//GEN-BEGIN:|47-getter|0|47-preInit
     /**
      * Returns an initiliazed instance of profile component.
      * @return the initialized component instance
@@ -1257,7 +1267,7 @@ public void jsonReadMoree() {
     public Form getProfile() {
         if (profile == null) {//GEN-END:|47-getter|0|47-preInit
             // write pre-init user code here
-            profile = new Form("form1", new Item[] { getUserName(), getFirstName(), getLastName(), getDob(), getPas(), getConfPas() });//GEN-BEGIN:|47-getter|1|47-postInit
+            profile = new Form("form1", new Item[]{getUserName(), getFirstName(), getLastName(), getDob(), getPas(), getConfPas()});//GEN-BEGIN:|47-getter|1|47-postInit
             profile.addCommand(getOk());
             profile.addCommand(getBack());
             profile.setCommandListener(this);//GEN-END:|47-getter|1|47-postInit
@@ -1265,9 +1275,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|47-getter|2|
         return profile;
     }
-    //</editor-fold>//GEN-END:|47-getter|2|
+//</editor-fold>//GEN-END:|47-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ok ">//GEN-BEGIN:|48-getter|0|48-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ok ">//GEN-BEGIN:|48-getter|0|48-preInit
     /**
      * Returns an initiliazed instance of ok component.
      * @return the initialized component instance
@@ -1280,9 +1290,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|48-getter|2|
         return ok;
     }
-    //</editor-fold>//GEN-END:|48-getter|2|
+//</editor-fold>//GEN-END:|48-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: cancelCommand ">//GEN-BEGIN:|50-getter|0|50-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: cancelCommand ">//GEN-BEGIN:|50-getter|0|50-preInit
     /**
      * Returns an initiliazed instance of cancelCommand component.
      * @return the initialized component instance
@@ -1295,9 +1305,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|50-getter|2|
         return cancelCommand;
     }
-    //</editor-fold>//GEN-END:|50-getter|2|
+//</editor-fold>//GEN-END:|50-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: back ">//GEN-BEGIN:|52-getter|0|52-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: back ">//GEN-BEGIN:|52-getter|0|52-preInit
     /**
      * Returns an initiliazed instance of back component.
      * @return the initialized component instance
@@ -1310,9 +1320,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|52-getter|2|
         return back;
     }
-    //</editor-fold>//GEN-END:|52-getter|2|
+//</editor-fold>//GEN-END:|52-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: userName ">//GEN-BEGIN:|54-getter|0|54-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: userName ">//GEN-BEGIN:|54-getter|0|54-preInit
     /**
      * Returns an initiliazed instance of userName component.
      * @return the initialized component instance
@@ -1325,9 +1335,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|54-getter|2|
         return userName;
     }
-    //</editor-fold>//GEN-END:|54-getter|2|
+//</editor-fold>//GEN-END:|54-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: firstName ">//GEN-BEGIN:|55-getter|0|55-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: firstName ">//GEN-BEGIN:|55-getter|0|55-preInit
     /**
      * Returns an initiliazed instance of firstName component.
      * @return the initialized component instance
@@ -1340,9 +1350,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|55-getter|2|
         return firstName;
     }
-    //</editor-fold>//GEN-END:|55-getter|2|
+//</editor-fold>//GEN-END:|55-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: lastName ">//GEN-BEGIN:|56-getter|0|56-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: lastName ">//GEN-BEGIN:|56-getter|0|56-preInit
     /**
      * Returns an initiliazed instance of lastName component.
      * @return the initialized component instance
@@ -1355,9 +1365,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|56-getter|2|
         return lastName;
     }
-    //</editor-fold>//GEN-END:|56-getter|2|
+//</editor-fold>//GEN-END:|56-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: dob ">//GEN-BEGIN:|57-getter|0|57-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: dob ">//GEN-BEGIN:|57-getter|0|57-preInit
     /**
      * Returns an initiliazed instance of dob component.
      * @return the initialized component instance
@@ -1371,9 +1381,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|57-getter|2|
         return dob;
     }
-    //</editor-fold>//GEN-END:|57-getter|2|
+//</editor-fold>//GEN-END:|57-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: pas ">//GEN-BEGIN:|58-getter|0|58-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: pas ">//GEN-BEGIN:|58-getter|0|58-preInit
     /**
      * Returns an initiliazed instance of pas component.
      * @return the initialized component instance
@@ -1386,9 +1396,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|58-getter|2|
         return pas;
     }
-    //</editor-fold>//GEN-END:|58-getter|2|
+//</editor-fold>//GEN-END:|58-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
     /**
      * Returns an initiliazed instance of confPas component.
      * @return the initialized component instance
@@ -1401,9 +1411,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|59-getter|2|
         return confPas;
     }
-    //</editor-fold>//GEN-END:|59-getter|2|
+//</editor-fold>//GEN-END:|59-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: options ">//GEN-BEGIN:|62-getter|0|62-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: options ">//GEN-BEGIN:|62-getter|0|62-preInit
     /**
      * Returns an initiliazed instance of options component.
      * @return the initialized component instance
@@ -1416,9 +1426,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|62-getter|2|
         return options;
     }
-    //</editor-fold>//GEN-END:|62-getter|2|
+//</editor-fold>//GEN-END:|62-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField ">//GEN-BEGIN:|67-getter|0|67-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField ">//GEN-BEGIN:|67-getter|0|67-preInit
     /**
      * Returns an initiliazed instance of textField component.
      * @return the initialized component instance
@@ -1432,9 +1442,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|67-getter|2|
         return textField;
     }
-    //</editor-fold>//GEN-END:|67-getter|2|
+//</editor-fold>//GEN-END:|67-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentFail ">//GEN-BEGIN:|68-getter|0|68-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentFail ">//GEN-BEGIN:|68-getter|0|68-preInit
     /**
      * Returns an initiliazed instance of CommentFail component.
      * @return the initialized component instance
@@ -1449,9 +1459,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|68-getter|2|
         return CommentFail;
     }
-    //</editor-fold>//GEN-END:|68-getter|2|
+//</editor-fold>//GEN-END:|68-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator ">//GEN-BEGIN:|69-getter|0|69-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator ">//GEN-BEGIN:|69-getter|0|69-preInit
     /**
      * Returns an initiliazed instance of indicator component.
      * @return the initialized component instance
@@ -1464,9 +1474,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|69-getter|2|
         return indicator;
     }
-    //</editor-fold>//GEN-END:|69-getter|2|
+//</editor-fold>//GEN-END:|69-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentSucc ">//GEN-BEGIN:|71-getter|0|71-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentSucc ">//GEN-BEGIN:|71-getter|0|71-preInit
     /**
      * Returns an initiliazed instance of CommentSucc component.
      * @return the initialized component instance
@@ -1480,9 +1490,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|71-getter|2|
         return CommentSucc;
     }
-    //</editor-fold>//GEN-END:|71-getter|2|
+//</editor-fold>//GEN-END:|71-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand1 ">//GEN-BEGIN:|78-getter|0|78-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand1 ">//GEN-BEGIN:|78-getter|0|78-preInit
     /**
      * Returns an initiliazed instance of okCommand1 component.
      * @return the initialized component instance
@@ -1495,9 +1505,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|78-getter|2|
         return okCommand1;
     }
-    //</editor-fold>//GEN-END:|78-getter|2|
+//</editor-fold>//GEN-END:|78-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: connectAccount ">//GEN-BEGIN:|80-getter|0|80-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: connectAccount ">//GEN-BEGIN:|80-getter|0|80-preInit
     /**
      * Returns an initiliazed instance of connectAccount component.
      * @return the initialized component instance
@@ -1518,15 +1528,15 @@ public void jsonReadMoree() {
             connectAccount.append("Tumblr", null);
             connectAccount.append("Youtube", null);
             connectAccount.setCommandListener(this);
-            connectAccount.setSelectedFlags(new boolean[] { false, false, false, false, false, false });//GEN-END:|80-getter|1|80-postInit
+            connectAccount.setSelectedFlags(new boolean[]{false, false, false, false, false, false});//GEN-END:|80-getter|1|80-postInit
         // write post-init user code here
             
         }//GEN-BEGIN:|80-getter|2|
         return connectAccount;
     }
-    //</editor-fold>//GEN-END:|80-getter|2|
+//</editor-fold>//GEN-END:|80-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: connectAccountAction ">//GEN-BEGIN:|80-action|0|80-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: connectAccountAction ">//GEN-BEGIN:|80-action|0|80-preAction
     /**
      * Performs an action assigned to the selected list element in the connectAccount component.
      */
@@ -1562,11 +1572,11 @@ public void jsonReadMoree() {
         }//GEN-END:|80-action|13|80-postAction
     // enter post-action user code here
     }//GEN-BEGIN:|80-action|14|
-    //</editor-fold>//GEN-END:|80-action|14|
+//</editor-fold>//GEN-END:|80-action|14|
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: search ">//GEN-BEGIN:|97-getter|0|97-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: search ">//GEN-BEGIN:|97-getter|0|97-preInit
     /**
      * Returns an initiliazed instance of search component.
      * @return the initialized component instance
@@ -1579,9 +1589,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|97-getter|2|
         return search;
     }
-    //</editor-fold>//GEN-END:|97-getter|2|
+//</editor-fold>//GEN-END:|97-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add ">//GEN-BEGIN:|102-getter|0|102-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add ">//GEN-BEGIN:|102-getter|0|102-preInit
     /**
      * Returns an initiliazed instance of Add component.
      * @return the initialized component instance
@@ -1594,9 +1604,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|102-getter|2|
         return Add;
     }
-    //</editor-fold>//GEN-END:|102-getter|2|
+//</editor-fold>//GEN-END:|102-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: findFriend ">//GEN-BEGIN:|92-getter|0|92-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: findFriend ">//GEN-BEGIN:|92-getter|0|92-preInit
     /**
      * Returns an initiliazed instance of findFriend component.
      * @return the initialized component instance
@@ -1604,7 +1614,7 @@ public void jsonReadMoree() {
     public Form getFindFriend() {
         if (findFriend == null) {//GEN-END:|92-getter|0|92-preInit
         // write pre-init user code here
-            findFriend = new Form("form1", new Item[] { getSearch() });//GEN-BEGIN:|92-getter|1|92-postInit
+            findFriend = new Form("form1", new Item[]{getSearch()});//GEN-BEGIN:|92-getter|1|92-postInit
             findFriend.addCommand(getBack1());
             findFriend.addCommand(getAdd1());
             findFriend.setCommandListener(this);//GEN-END:|92-getter|1|92-postInit
@@ -1612,9 +1622,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|92-getter|2|
         return findFriend;
     }
-    //</editor-fold>//GEN-END:|92-getter|2|
+//</editor-fold>//GEN-END:|92-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Back1 ">//GEN-BEGIN:|93-getter|0|93-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Back1 ">//GEN-BEGIN:|93-getter|0|93-preInit
     /**
      * Returns an initiliazed instance of Back1 component.
      * @return the initialized component instance
@@ -1627,11 +1637,11 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|93-getter|2|
         return Back1;
     }
-    //</editor-fold>//GEN-END:|93-getter|2|
+//</editor-fold>//GEN-END:|93-getter|2|
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Error ">//GEN-BEGIN:|99-getter|0|99-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Error ">//GEN-BEGIN:|99-getter|0|99-preInit
     /**
      * Returns an initiliazed instance of Error component.
      * @return the initialized component instance
@@ -1645,11 +1655,11 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|99-getter|2|
         return Error;
     }
-    //</editor-fold>//GEN-END:|99-getter|2|
+//</editor-fold>//GEN-END:|99-getter|2|
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Find ">//GEN-BEGIN:|95-getter|0|95-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Find ">//GEN-BEGIN:|95-getter|0|95-preInit
     /**
      * Returns an initiliazed instance of Find component.
      * @return the initialized component instance
@@ -1662,9 +1672,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|95-getter|2|
         return Find;
     }
-    //</editor-fold>//GEN-END:|95-getter|2|
+//</editor-fold>//GEN-END:|95-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add1 ">//GEN-BEGIN:|105-getter|0|105-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add1 ">//GEN-BEGIN:|105-getter|0|105-preInit
     /**
      * Returns an initiliazed instance of Add1 component.
      * @return the initialized component instance
@@ -1677,9 +1687,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|105-getter|2|
         return Add1;
     }
-    //</editor-fold>//GEN-END:|105-getter|2|
+//</editor-fold>//GEN-END:|105-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Saved ">//GEN-BEGIN:|98-getter|0|98-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Saved ">//GEN-BEGIN:|98-getter|0|98-preInit
     /**
      * Returns an initiliazed instance of Saved component.
      * @return the initialized component instance
@@ -1693,9 +1703,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|98-getter|2|
         return Saved;
     }
-    //</editor-fold>//GEN-END:|98-getter|2|
+//</editor-fold>//GEN-END:|98-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Found ">//GEN-BEGIN:|100-getter|0|100-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Found ">//GEN-BEGIN:|100-getter|0|100-preInit
     /**
      * Returns an initiliazed instance of Found component.
      * @return the initialized component instance
@@ -1709,9 +1719,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|100-getter|2|
         return Found;
     }
-    //</editor-fold>//GEN-END:|100-getter|2|
+//</editor-fold>//GEN-END:|100-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: NotFound ">//GEN-BEGIN:|101-getter|0|101-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: NotFound ">//GEN-BEGIN:|101-getter|0|101-preInit
     /**
      * Returns an initiliazed instance of NotFound component.
      * @return the initialized component instance
@@ -1725,9 +1735,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|101-getter|2|
         return NotFound;
     }
-    //</editor-fold>//GEN-END:|101-getter|2|
+//</editor-fold>//GEN-END:|101-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: EnterUserNameEmail ">//GEN-BEGIN:|104-getter|0|104-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: EnterUserNameEmail ">//GEN-BEGIN:|104-getter|0|104-preInit
     /**
      * Returns an initiliazed instance of EnterUserNameEmail component.
      * @return the initialized component instance
@@ -1741,9 +1751,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|104-getter|2|
         return EnterUserNameEmail;
     }
-    //</editor-fold>//GEN-END:|104-getter|2|
+//</editor-fold>//GEN-END:|104-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ComingSoon ">//GEN-BEGIN:|107-getter|0|107-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ComingSoon ">//GEN-BEGIN:|107-getter|0|107-preInit
     /**
      * Returns an initiliazed instance of ComingSoon component.
      * @return the initialized component instance
@@ -1761,9 +1771,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|107-getter|2|
         return ComingSoon;
     }
-    //</editor-fold>//GEN-END:|107-getter|2|
+//</editor-fold>//GEN-END:|107-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend ">//GEN-BEGIN:|111-getter|0|111-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend ">//GEN-BEGIN:|111-getter|0|111-preInit
     /**
      * Returns an initiliazed instance of choosefriend component.
      * @return the initialized component instance
@@ -1776,9 +1786,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|111-getter|2|
         return choosefriend;
     }
-    //</editor-fold>//GEN-END:|111-getter|2|
+//</editor-fold>//GEN-END:|111-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand3 ">//GEN-BEGIN:|114-getter|0|114-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand3 ">//GEN-BEGIN:|114-getter|0|114-preInit
     /**
      * Returns an initiliazed instance of backCommand3 component.
      * @return the initialized component instance
@@ -1791,9 +1801,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|114-getter|2|
         return backCommand3;
     }
-    //</editor-fold>//GEN-END:|114-getter|2|
+//</editor-fold>//GEN-END:|114-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand2 ">//GEN-BEGIN:|119-getter|0|119-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand2 ">//GEN-BEGIN:|119-getter|0|119-preInit
     /**
      * Returns an initiliazed instance of okCommand2 component.
      * @return the initialized component instance
@@ -1806,9 +1816,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|119-getter|2|
         return okCommand2;
     }
-    //</editor-fold>//GEN-END:|119-getter|2|
+//</editor-fold>//GEN-END:|119-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand4 ">//GEN-BEGIN:|121-getter|0|121-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand4 ">//GEN-BEGIN:|121-getter|0|121-preInit
     /**
      * Returns an initiliazed instance of backCommand4 component.
      * @return the initialized component instance
@@ -1821,9 +1831,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|121-getter|2|
         return backCommand4;
     }
-    //</editor-fold>//GEN-END:|121-getter|2|
+//</editor-fold>//GEN-END:|121-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend ">//GEN-BEGIN:|108-getter|0|108-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend ">//GEN-BEGIN:|108-getter|0|108-preInit
     /**
      * Returns an initiliazed instance of recommend component.
      * @return the initialized component instance
@@ -1831,7 +1841,7 @@ public void jsonReadMoree() {
     public Form getRecommend() {
         if (recommend == null) {//GEN-END:|108-getter|0|108-preInit
             // write pre-init user code here
-            recommend = new Form("form1", new Item[] { getTextField2(), getTextField3() });//GEN-BEGIN:|108-getter|1|108-postInit
+            recommend = new Form("form1", new Item[]{getTextField2(), getTextField3()});//GEN-BEGIN:|108-getter|1|108-postInit
             recommend.addCommand(getOkCommand());
             recommend.addCommand(getBackCommand3());
             recommend.addCommand(getChoosefriend());
@@ -1840,9 +1850,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|108-getter|2|
         return recommend;
     }
-    //</editor-fold>//GEN-END:|108-getter|2|
+//</editor-fold>//GEN-END:|108-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|109-getter|0|109-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|109-getter|0|109-preInit
     /**
      * Returns an initiliazed instance of textField2 component.
      * @return the initialized component instance
@@ -1855,9 +1865,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|109-getter|2|
         return textField2;
     }
-    //</editor-fold>//GEN-END:|109-getter|2|
+//</editor-fold>//GEN-END:|109-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|110-getter|0|110-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|110-getter|0|110-preInit
     /**
      * Returns an initiliazed instance of textField3 component.
      * @return the initialized component instance
@@ -1870,9 +1880,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|110-getter|2|
         return textField3;
     }
-    //</editor-fold>//GEN-END:|110-getter|2|
+//</editor-fold>//GEN-END:|110-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
     /**
      * Returns an initiliazed instance of choosefriend1 component.
      * @return the initialized component instance
@@ -1889,9 +1899,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|116-getter|2|
         return choosefriend1;
     }
-    //</editor-fold>//GEN-END:|116-getter|2|
+//</editor-fold>//GEN-END:|116-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: choosefriend1Action ">//GEN-BEGIN:|116-action|0|116-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: choosefriend1Action ">//GEN-BEGIN:|116-action|0|116-preAction
     /**
      * Performs an action assigned to the selected list element in the choosefriend1 component.
      */
@@ -1900,9 +1910,9 @@ public void jsonReadMoree() {
         String __selectedString = getChoosefriend1().getString(getChoosefriend1().getSelectedIndex());//GEN-LINE:|116-action|1|116-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|116-action|2|
-    //</editor-fold>//GEN-END:|116-action|2|
+//</editor-fold>//GEN-END:|116-action|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storeypublished ">//GEN-BEGIN:|125-getter|0|125-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: storeypublished ">//GEN-BEGIN:|125-getter|0|125-preInit
     /**
      * Returns an initiliazed instance of storeypublished component.
      * @return the initialized component instance
@@ -1916,9 +1926,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|125-getter|2|
         return storeypublished;
     }
-    //</editor-fold>//GEN-END:|125-getter|2|
+//</editor-fold>//GEN-END:|125-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storynotpublished ">//GEN-BEGIN:|126-getter|0|126-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: storynotpublished ">//GEN-BEGIN:|126-getter|0|126-preInit
     /**
      * Returns an initiliazed instance of storynotpublished component.
      * @return the initialized component instance
@@ -1932,9 +1942,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|126-getter|2|
         return storynotpublished;
     }
-    //</editor-fold>//GEN-END:|126-getter|2|
+//</editor-fold>//GEN-END:|126-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: liked ">//GEN-BEGIN:|127-getter|0|127-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: liked ">//GEN-BEGIN:|127-getter|0|127-preInit
     /**
      * Returns an initiliazed instance of liked component.
      * @return the initialized component instance
@@ -1949,9 +1959,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|127-getter|2|
         return liked;
     }
-    //</editor-fold>//GEN-END:|127-getter|2|
+//</editor-fold>//GEN-END:|127-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: likedAction ">//GEN-BEGIN:|127-action|0|127-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: likedAction ">//GEN-BEGIN:|127-action|0|127-preAction
     /**
      * Performs an action assigned to the selected list element in the liked component.
      */
@@ -1960,9 +1970,9 @@ public void jsonReadMoree() {
         String __selectedString = getLiked().getString(getLiked().getSelectedIndex());//GEN-LINE:|127-action|1|127-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|127-action|2|
-    //</editor-fold>//GEN-END:|127-action|2|
+//</editor-fold>//GEN-END:|127-action|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand3 ">//GEN-BEGIN:|134-getter|0|134-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand3 ">//GEN-BEGIN:|134-getter|0|134-preInit
     /**
      * Returns an initiliazed instance of okCommand3 component.
      * @return the initialized component instance
@@ -1975,9 +1985,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|134-getter|2|
         return okCommand3;
     }
-    //</editor-fold>//GEN-END:|134-getter|2|
+//</editor-fold>//GEN-END:|134-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand5 ">//GEN-BEGIN:|136-getter|0|136-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand5 ">//GEN-BEGIN:|136-getter|0|136-preInit
     /**
      * Returns an initiliazed instance of backCommand5 component.
      * @return the initialized component instance
@@ -1990,9 +2000,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|136-getter|2|
         return backCommand5;
     }
-    //</editor-fold>//GEN-END:|136-getter|2|
+//</editor-fold>//GEN-END:|136-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand4 ">//GEN-BEGIN:|142-getter|0|142-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand4 ">//GEN-BEGIN:|142-getter|0|142-preInit
     /**
      * Returns an initiliazed instance of okCommand4 component.
      * @return the initialized component instance
@@ -2005,9 +2015,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|142-getter|2|
         return okCommand4;
     }
-    //</editor-fold>//GEN-END:|142-getter|2|
+//</editor-fold>//GEN-END:|142-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand6 ">//GEN-BEGIN:|144-getter|0|144-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand6 ">//GEN-BEGIN:|144-getter|0|144-preInit
     /**
      * Returns an initiliazed instance of backCommand6 component.
      * @return the initialized component instance
@@ -2020,9 +2030,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|144-getter|2|
         return backCommand6;
     }
-    //</editor-fold>//GEN-END:|144-getter|2|
+//</editor-fold>//GEN-END:|144-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|146-getter|0|146-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|146-getter|0|146-preInit
     /**
      * Returns an initiliazed instance of exitCommand1 component.
      * @return the initialized component instance
@@ -2035,9 +2045,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|146-getter|2|
         return exitCommand1;
     }
-    //</editor-fold>//GEN-END:|146-getter|2|
+//</editor-fold>//GEN-END:|146-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: LoginScreen ">//GEN-BEGIN:|131-getter|0|131-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: LoginScreen ">//GEN-BEGIN:|131-getter|0|131-preInit
     /**
      * Returns an initiliazed instance of LoginScreen component.
      * @return the initialized component instance
@@ -2045,7 +2055,7 @@ public void jsonReadMoree() {
     public Form getLoginScreen() {
         if (LoginScreen == null) {//GEN-END:|131-getter|0|131-preInit
             // write pre-init user code here
-            LoginScreen = new Form("LoginScreen", new Item[] { getTextField4(), getTextField5() });//GEN-BEGIN:|131-getter|1|131-postInit
+            LoginScreen = new Form("LoginScreen", new Item[]{getTextField4(), getTextField5()});//GEN-BEGIN:|131-getter|1|131-postInit
             LoginScreen.addCommand(getOkCommand3());
             LoginScreen.addCommand(getBackCommand5());
             LoginScreen.setCommandListener(this);//GEN-END:|131-getter|1|131-postInit
@@ -2053,9 +2063,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|131-getter|2|
         return LoginScreen;
     }
-    //</editor-fold>//GEN-END:|131-getter|2|
+//</editor-fold>//GEN-END:|131-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField4 ">//GEN-BEGIN:|132-getter|0|132-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField4 ">//GEN-BEGIN:|132-getter|0|132-preInit
     /**
      * Returns an initiliazed instance of textField4 component.
      * @return the initialized component instance
@@ -2068,9 +2078,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|132-getter|2|
         return textField4;
     }
-    //</editor-fold>//GEN-END:|132-getter|2|
+//</editor-fold>//GEN-END:|132-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField5 ">//GEN-BEGIN:|133-getter|0|133-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField5 ">//GEN-BEGIN:|133-getter|0|133-preInit
     /**
      * Returns an initiliazed instance of textField5 component.
      * @return the initialized component instance
@@ -2083,9 +2093,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|133-getter|2|
         return textField5;
     }
-    //</editor-fold>//GEN-END:|133-getter|2|
+//</editor-fold>//GEN-END:|133-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand5 ">//GEN-BEGIN:|152-getter|0|152-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand5 ">//GEN-BEGIN:|152-getter|0|152-preInit
     /**
      * Returns an initiliazed instance of okCommand5 component.
      * @return the initialized component instance
@@ -2098,9 +2108,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|152-getter|2|
         return okCommand5;
     }
-    //</editor-fold>//GEN-END:|152-getter|2|
+//</editor-fold>//GEN-END:|152-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand7 ">//GEN-BEGIN:|154-getter|0|154-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand7 ">//GEN-BEGIN:|154-getter|0|154-preInit
     /**
      * Returns an initiliazed instance of backCommand7 component.
      * @return the initialized component instance
@@ -2113,9 +2123,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|154-getter|2|
         return backCommand7;
     }
-    //</editor-fold>//GEN-END:|154-getter|2|
+//</editor-fold>//GEN-END:|154-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: RegisterScreen ">//GEN-BEGIN:|148-getter|0|148-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: RegisterScreen ">//GEN-BEGIN:|148-getter|0|148-preInit
     /**
      * Returns an initiliazed instance of RegisterScreen component.
      * @return the initialized component instance
@@ -2123,7 +2133,7 @@ public void jsonReadMoree() {
     public Form getRegisterScreen() {
         if (RegisterScreen == null) {//GEN-END:|148-getter|0|148-preInit
             // write pre-init user code here
-            RegisterScreen = new Form("RegisterScreen", new Item[] { getTextField6(), getTextField7(), getTextField8() });//GEN-BEGIN:|148-getter|1|148-postInit
+            RegisterScreen = new Form("RegisterScreen", new Item[]{getTextField6(), getTextField7(), getTextField8()});//GEN-BEGIN:|148-getter|1|148-postInit
             RegisterScreen.addCommand(getOkCommand5());
             RegisterScreen.addCommand(getBackCommand7());
             RegisterScreen.setCommandListener(this);//GEN-END:|148-getter|1|148-postInit
@@ -2131,9 +2141,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|148-getter|2|
         return RegisterScreen;
     }
-    //</editor-fold>//GEN-END:|148-getter|2|
+//</editor-fold>//GEN-END:|148-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField6 ">//GEN-BEGIN:|149-getter|0|149-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField6 ">//GEN-BEGIN:|149-getter|0|149-preInit
     /**
      * Returns an initiliazed instance of textField6 component.
      * @return the initialized component instance
@@ -2146,9 +2156,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|149-getter|2|
         return textField6;
     }
-    //</editor-fold>//GEN-END:|149-getter|2|
+//</editor-fold>//GEN-END:|149-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField7 ">//GEN-BEGIN:|150-getter|0|150-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField7 ">//GEN-BEGIN:|150-getter|0|150-preInit
     /**
      * Returns an initiliazed instance of textField7 component.
      * @return the initialized component instance
@@ -2161,9 +2171,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|150-getter|2|
         return textField7;
     }
-    //</editor-fold>//GEN-END:|150-getter|2|
+//</editor-fold>//GEN-END:|150-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField8 ">//GEN-BEGIN:|151-getter|0|151-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField8 ">//GEN-BEGIN:|151-getter|0|151-preInit
     /**
      * Returns an initiliazed instance of textField8 component.
      * @return the initialized component instance
@@ -2176,9 +2186,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|151-getter|2|
         return textField8;
     }
-    //</editor-fold>//GEN-END:|151-getter|2|
+//</editor-fold>//GEN-END:|151-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand8 ">//GEN-BEGIN:|158-getter|0|158-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand8 ">//GEN-BEGIN:|158-getter|0|158-preInit
     /**
      * Returns an initiliazed instance of backCommand8 component.
      * @return the initialized component instance
@@ -2191,9 +2201,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|158-getter|2|
         return backCommand8;
     }
-    //</editor-fold>//GEN-END:|158-getter|2|
+//</editor-fold>//GEN-END:|158-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand6 ">//GEN-BEGIN:|160-getter|0|160-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand6 ">//GEN-BEGIN:|160-getter|0|160-preInit
     /**
      * Returns an initiliazed instance of okCommand6 component.
      * @return the initialized component instance
@@ -2206,9 +2216,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|160-getter|2|
         return okCommand6;
     }
-    //</editor-fold>//GEN-END:|160-getter|2|
+//</editor-fold>//GEN-END:|160-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: form1 ">//GEN-BEGIN:|156-getter|0|156-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: form1 ">//GEN-BEGIN:|156-getter|0|156-preInit
     /**
      * Returns an initiliazed instance of form1 component.
      * @return the initialized component instance
@@ -2216,7 +2226,7 @@ public void jsonReadMoree() {
     public Form getForm1() {
         if (form1 == null) {//GEN-END:|156-getter|0|156-preInit
             // write pre-init user code here
-            form1 = new Form("ForgotPasswordScreen", new Item[] { getTextField9() });//GEN-BEGIN:|156-getter|1|156-postInit
+            form1 = new Form("ForgotPasswordScreen", new Item[]{getTextField9()});//GEN-BEGIN:|156-getter|1|156-postInit
             form1.addCommand(getBackCommand8());
             form1.addCommand(getOkCommand6());
             form1.setCommandListener(this);//GEN-END:|156-getter|1|156-postInit
@@ -2224,9 +2234,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|156-getter|2|
         return form1;
     }
-    //</editor-fold>//GEN-END:|156-getter|2|
+//</editor-fold>//GEN-END:|156-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField9 ">//GEN-BEGIN:|157-getter|0|157-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField9 ">//GEN-BEGIN:|157-getter|0|157-preInit
     /**
      * Returns an initiliazed instance of textField9 component.
      * @return the initialized component instance
@@ -2239,9 +2249,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|157-getter|2|
         return textField9;
     }
-    //</editor-fold>//GEN-END:|157-getter|2|
+//</editor-fold>//GEN-END:|157-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Resend ">//GEN-BEGIN:|169-getter|0|169-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Resend ">//GEN-BEGIN:|169-getter|0|169-preInit
     /**
      * Returns an initiliazed instance of Resend component.
      * @return the initialized component instance
@@ -2254,9 +2264,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|169-getter|2|
         return Resend;
     }
-    //</editor-fold>//GEN-END:|169-getter|2|
+//</editor-fold>//GEN-END:|169-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verify ">//GEN-BEGIN:|167-getter|0|167-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verify ">//GEN-BEGIN:|167-getter|0|167-preInit
     /**
      * Returns an initiliazed instance of Verify component.
      * @return the initialized component instance
@@ -2269,9 +2279,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|167-getter|2|
         return Verify;
     }
-    //</editor-fold>//GEN-END:|167-getter|2|
+//</editor-fold>//GEN-END:|167-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backV ">//GEN-BEGIN:|165-getter|0|165-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backV ">//GEN-BEGIN:|165-getter|0|165-preInit
     /**
      * Returns an initiliazed instance of backV component.
      * @return the initialized component instance
@@ -2284,9 +2294,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|165-getter|2|
         return backV;
     }
-    //</editor-fold>//GEN-END:|165-getter|2|
+//</editor-fold>//GEN-END:|165-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: IncorrectCode ">//GEN-BEGIN:|171-getter|0|171-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: IncorrectCode ">//GEN-BEGIN:|171-getter|0|171-preInit
     /**
      * Returns an initiliazed instance of IncorrectCode component.
      * @return the initialized component instance
@@ -2301,9 +2311,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|171-getter|2|
         return IncorrectCode;
     }
-    //</editor-fold>//GEN-END:|171-getter|2|
+//</editor-fold>//GEN-END:|171-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator1 ">//GEN-BEGIN:|175-getter|0|175-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator1 ">//GEN-BEGIN:|175-getter|0|175-preInit
     /**
      * Returns an initiliazed instance of indicator1 component.
      * @return the initialized component instance
@@ -2316,9 +2326,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|175-getter|2|
         return indicator1;
     }
-    //</editor-fold>//GEN-END:|175-getter|2|
+//</editor-fold>//GEN-END:|175-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ResentAlert ">//GEN-BEGIN:|174-getter|0|174-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ResentAlert ">//GEN-BEGIN:|174-getter|0|174-preInit
     /**
      * Returns an initiliazed instance of ResentAlert component.
      * @return the initialized component instance
@@ -2333,9 +2343,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|174-getter|2|
         return ResentAlert;
     }
-    //</editor-fold>//GEN-END:|174-getter|2|
+//</editor-fold>//GEN-END:|174-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator3 ">//GEN-BEGIN:|178-getter|0|178-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator3 ">//GEN-BEGIN:|178-getter|0|178-preInit
     /**
      * Returns an initiliazed instance of indicator3 component.
      * @return the initialized component instance
@@ -2348,9 +2358,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|178-getter|2|
         return indicator3;
     }
-    //</editor-fold>//GEN-END:|178-getter|2|
+//</editor-fold>//GEN-END:|178-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: VerifiedAlert ">//GEN-BEGIN:|173-getter|0|173-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: VerifiedAlert ">//GEN-BEGIN:|173-getter|0|173-preInit
     /**
      * Returns an initiliazed instance of VerifiedAlert component.
      * @return the initialized component instance
@@ -2365,9 +2375,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|173-getter|2|
         return VerifiedAlert;
     }
-    //</editor-fold>//GEN-END:|173-getter|2|
+//</editor-fold>//GEN-END:|173-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator2 ">//GEN-BEGIN:|177-getter|0|177-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator2 ">//GEN-BEGIN:|177-getter|0|177-preInit
     /**
      * Returns an initiliazed instance of indicator2 component.
      * @return the initialized component instance
@@ -2380,9 +2390,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|177-getter|2|
         return indicator2;
     }
-    //</editor-fold>//GEN-END:|177-getter|2|
+//</editor-fold>//GEN-END:|177-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: InvalidCode ">//GEN-BEGIN:|172-getter|0|172-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: InvalidCode ">//GEN-BEGIN:|172-getter|0|172-preInit
     /**
      * Returns an initiliazed instance of InvalidCode component.
      * @return the initialized component instance
@@ -2397,9 +2407,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|172-getter|2|
         return InvalidCode;
     }
-    //</editor-fold>//GEN-END:|172-getter|2|
+//</editor-fold>//GEN-END:|172-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator4 ">//GEN-BEGIN:|179-getter|0|179-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator4 ">//GEN-BEGIN:|179-getter|0|179-preInit
     /**
      * Returns an initiliazed instance of indicator4 component.
      * @return the initialized component instance
@@ -2412,9 +2422,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|179-getter|2|
         return indicator4;
     }
-    //</editor-fold>//GEN-END:|179-getter|2|
+//</editor-fold>//GEN-END:|179-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verification ">//GEN-BEGIN:|162-getter|0|162-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verification ">//GEN-BEGIN:|162-getter|0|162-preInit
     /**
      * Returns an initiliazed instance of Verification component.
      * @return the initialized component instance
@@ -2422,7 +2432,7 @@ public void jsonReadMoree() {
     public Form getVerification() {
         if (Verification == null) {//GEN-END:|162-getter|0|162-preInit
             // write pre-init user code here
-            Verification = new Form("form2", new Item[] { getVTF(), getVSI() });//GEN-BEGIN:|162-getter|1|162-postInit
+            Verification = new Form("form2", new Item[]{getVTF(), getVSI()});//GEN-BEGIN:|162-getter|1|162-postInit
             Verification.addCommand(getBackV());
             Verification.addCommand(getVerify());
             Verification.addCommand(getResend());
@@ -2431,9 +2441,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|162-getter|2|
         return Verification;
     }
-    //</editor-fold>//GEN-END:|162-getter|2|
+//</editor-fold>//GEN-END:|162-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: vTF ">//GEN-BEGIN:|163-getter|0|163-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: vTF ">//GEN-BEGIN:|163-getter|0|163-preInit
     /**
      * Returns an initiliazed instance of vTF component.
      * @return the initialized component instance
@@ -2446,9 +2456,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|163-getter|2|
         return vTF;
     }
-    //</editor-fold>//GEN-END:|163-getter|2|
+//</editor-fold>//GEN-END:|163-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: vSI ">//GEN-BEGIN:|164-getter|0|164-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: vSI ">//GEN-BEGIN:|164-getter|0|164-preInit
     /**
      * Returns an initiliazed instance of vSI component.
      * @return the initialized component instance
@@ -2461,9 +2471,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|164-getter|2|
         return vSI;
     }
-    //</editor-fold>//GEN-END:|164-getter|2|
+//</editor-fold>//GEN-END:|164-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FriendsStories ">//GEN-BEGIN:|180-getter|0|180-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: FriendsStories ">//GEN-BEGIN:|180-getter|0|180-preInit
     /**
      * Returns an initiliazed instance of FriendsStories component.
      * @return the initialized component instance
@@ -2476,9 +2486,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|180-getter|2|
         return FriendsStories;
     }
-    //</editor-fold>//GEN-END:|180-getter|2|
+//</editor-fold>//GEN-END:|180-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: list ">//GEN-BEGIN:|181-getter|0|181-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: list ">//GEN-BEGIN:|181-getter|0|181-preInit
     /**
      * Returns an initiliazed instance of list component.
      * @return the initialized component instance
@@ -2492,9 +2502,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|181-getter|2|
         return list;
     }
-    //</editor-fold>//GEN-END:|181-getter|2|
+//</editor-fold>//GEN-END:|181-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: listAction ">//GEN-BEGIN:|181-action|0|181-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: listAction ">//GEN-BEGIN:|181-action|0|181-preAction
     /**
      * Performs an action assigned to the selected list element in the list component.
      */
@@ -2505,9 +2515,9 @@ public void jsonReadMoree() {
                 switchDisplayable(null, getMainFeed());
 
     }//GEN-BEGIN:|181-action|2|
-    //</editor-fold>//GEN-END:|181-action|2|
+//</editor-fold>//GEN-END:|181-action|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand9 ">//GEN-BEGIN:|185-getter|0|185-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand9 ">//GEN-BEGIN:|185-getter|0|185-preInit
     /**
      * Returns an initiliazed instance of backCommand9 component.
      * @return the initialized component instance
@@ -2520,9 +2530,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|185-getter|2|
         return backCommand9;
     }
-    //</editor-fold>//GEN-END:|185-getter|2|
+//</editor-fold>//GEN-END:|185-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand7 ">//GEN-BEGIN:|187-getter|0|187-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand7 ">//GEN-BEGIN:|187-getter|0|187-preInit
     /**
      * Returns an initiliazed instance of okCommand7 component.
      * @return the initialized component instance
@@ -2535,9 +2545,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|187-getter|2|
         return okCommand7;
     }
-    //</editor-fold>//GEN-END:|187-getter|2|
+//</editor-fold>//GEN-END:|187-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbup ">//GEN-BEGIN:|189-getter|0|189-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbup ">//GEN-BEGIN:|189-getter|0|189-preInit
     /**
      * Returns an initiliazed instance of thumbup component.
      * @return the initialized component instance
@@ -2550,9 +2560,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|189-getter|2|
         return thumbup;
     }
-    //</editor-fold>//GEN-END:|189-getter|2|
+//</editor-fold>//GEN-END:|189-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbdown ">//GEN-BEGIN:|191-getter|0|191-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbdown ">//GEN-BEGIN:|191-getter|0|191-preInit
     /**
      * Returns an initiliazed instance of thumbdown component.
      * @return the initialized component instance
@@ -2565,9 +2575,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|191-getter|2|
         return thumbdown;
     }
-    //</editor-fold>//GEN-END:|191-getter|2|
+//</editor-fold>//GEN-END:|191-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: flag ">//GEN-BEGIN:|193-getter|0|193-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: flag ">//GEN-BEGIN:|193-getter|0|193-preInit
     /**
      * Returns an initiliazed instance of flag component.
      * @return the initialized component instance
@@ -2580,9 +2590,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|193-getter|2|
         return flag;
     }
-    //</editor-fold>//GEN-END:|193-getter|2|
+//</editor-fold>//GEN-END:|193-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: share ">//GEN-BEGIN:|195-getter|0|195-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: share ">//GEN-BEGIN:|195-getter|0|195-preInit
     /**
      * Returns an initiliazed instance of share component.
      * @return the initialized component instance
@@ -2595,9 +2605,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|195-getter|2|
         return share;
     }
-    //</editor-fold>//GEN-END:|195-getter|2|
+//</editor-fold>//GEN-END:|195-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend1 ">//GEN-BEGIN:|197-getter|0|197-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend1 ">//GEN-BEGIN:|197-getter|0|197-preInit
     /**
      * Returns an initiliazed instance of recommend1 component.
      * @return the initialized component instance
@@ -2610,9 +2620,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|197-getter|2|
         return recommend1;
     }
-    //</editor-fold>//GEN-END:|197-getter|2|
+//</editor-fold>//GEN-END:|197-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockinterest ">//GEN-BEGIN:|199-getter|0|199-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockinterest ">//GEN-BEGIN:|199-getter|0|199-preInit
     /**
      * Returns an initiliazed instance of blockinterest component.
      * @return the initialized component instance
@@ -2625,9 +2635,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|199-getter|2|
         return blockinterest;
     }
-    //</editor-fold>//GEN-END:|199-getter|2|
+//</editor-fold>//GEN-END:|199-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockstory ">//GEN-BEGIN:|201-getter|0|201-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockstory ">//GEN-BEGIN:|201-getter|0|201-preInit
     /**
      * Returns an initiliazed instance of blockstory component.
      * @return the initialized component instance
@@ -2640,9 +2650,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|201-getter|2|
         return blockstory;
     }
-    //</editor-fold>//GEN-END:|201-getter|2|
+//</editor-fold>//GEN-END:|201-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: signout ">//GEN-BEGIN:|203-getter|0|203-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: signout ">//GEN-BEGIN:|203-getter|0|203-preInit
     /**
      * Returns an initiliazed instance of signout component.
      * @return the initialized component instance
@@ -2655,9 +2665,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|203-getter|2|
         return signout;
     }
-    //</editor-fold>//GEN-END:|203-getter|2|
+//</editor-fold>//GEN-END:|203-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: readMore ">//GEN-BEGIN:|184-getter|0|184-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: readMore ">//GEN-BEGIN:|184-getter|0|184-preInit
     /**
      * Returns an initiliazed instance of readMore component.
      * @return the initialized component instance
@@ -2665,13 +2675,14 @@ public void jsonReadMoree() {
     public Form getReadMore() {
         if (readMore == null) {//GEN-END:|184-getter|0|184-preInit
             // write pre-init user code here
-            readMore = new Form("form2", new Item[] { getImageItem() });//GEN-BEGIN:|184-getter|1|184-postInit
+            readMore = new Form("form2", new Item[]{getImageItem()});//GEN-BEGIN:|184-getter|1|184-postInit
             readMore.addCommand(getBackCommand9());
             readMore.addCommand(getOkCommand7());
+            readMore.addCommand(getViewCommentsMany());
             readMore.addCommand(getThumbup());
             readMore.addCommand(getThumbdown());
-            readMore.addCommand(getFlag());
             readMore.addCommand(getShare());
+            readMore.addCommand(getFlag());
             readMore.addCommand(getRecommend1());
             readMore.addCommand(getBlockinterest());
             readMore.addCommand(getBlockstory());
@@ -2684,9 +2695,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|184-getter|2|
         return readMore;
     }
-    //</editor-fold>//GEN-END:|184-getter|2|
+//</editor-fold>//GEN-END:|184-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: imageItem ">//GEN-BEGIN:|205-getter|0|205-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: imageItem ">//GEN-BEGIN:|205-getter|0|205-preInit
     /**
      * Returns an initiliazed instance of imageItem component.
      * @return the initialized component instance
@@ -2699,9 +2710,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|205-getter|2|
         return imageItem;
     }
-    //</editor-fold>//GEN-END:|205-getter|2|
+//</editor-fold>//GEN-END:|205-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: image1 ">//GEN-BEGIN:|206-getter|0|206-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: image1 ">//GEN-BEGIN:|206-getter|0|206-preInit
     /**
      * Returns an initiliazed instance of image1 component.
      * @return the initialized component instance
@@ -2714,11 +2725,11 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|206-getter|2|
         return image1;
     }
-    //</editor-fold>//GEN-END:|206-getter|2|
+//</editor-fold>//GEN-END:|206-getter|2|
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToComments ">//GEN-BEGIN:|208-getter|0|208-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToComments ">//GEN-BEGIN:|208-getter|0|208-preInit
     /**
      * Returns an initiliazed instance of backToComments component.
      * @return the initialized component instance
@@ -2731,9 +2742,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|208-getter|2|
         return backToComments;
     }
-    //</editor-fold>//GEN-END:|208-getter|2|
+//</editor-fold>//GEN-END:|208-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Like ">//GEN-BEGIN:|210-getter|0|210-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Like ">//GEN-BEGIN:|210-getter|0|210-preInit
     /**
      * Returns an initiliazed instance of Like component.
      * @return the initialized component instance
@@ -2746,9 +2757,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|210-getter|2|
         return Like;
     }
-    //</editor-fold>//GEN-END:|210-getter|2|
+//</editor-fold>//GEN-END:|210-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Dislike ">//GEN-BEGIN:|212-getter|0|212-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Dislike ">//GEN-BEGIN:|212-getter|0|212-preInit
     /**
      * Returns an initiliazed instance of Dislike component.
      * @return the initialized component instance
@@ -2761,9 +2772,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|212-getter|2|
         return Dislike;
     }
-    //</editor-fold>//GEN-END:|212-getter|2|
+//</editor-fold>//GEN-END:|212-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: method ">//GEN-BEGIN:|214-if|0|214-preIf
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: method ">//GEN-BEGIN:|214-if|0|214-preIf
     /**
      * Performs an action assigned to the method if-point.
      */
@@ -2780,11 +2791,11 @@ public void jsonReadMoree() {
         }//GEN-LINE:|214-if|5|214-postIf
     // enter post-if user code here
     }//GEN-BEGIN:|214-if|6|
-    //</editor-fold>//GEN-END:|214-if|6|
+//</editor-fold>//GEN-END:|214-if|6|
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FriendList ">//GEN-BEGIN:|229-getter|0|229-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: FriendList ">//GEN-BEGIN:|229-getter|0|229-preInit
     /**
      * Returns an initiliazed instance of FriendList component.
      * @return the initialized component instance
@@ -2800,7 +2811,7 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|229-getter|2|
         return FriendList;
     }
-    //</editor-fold>//GEN-END:|229-getter|2|
+//</editor-fold>//GEN-END:|229-getter|2|
 
 
 
@@ -2836,7 +2847,7 @@ public void jsonReadMoree() {
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterFriends ">//GEN-BEGIN:|232-getter|0|232-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterFriends ">//GEN-BEGIN:|232-getter|0|232-preInit
     /**
      * Returns an initiliazed instance of FilterFriends component.
      * @return the initialized component instance
@@ -2849,9 +2860,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|232-getter|2|
         return FilterFriends;
     }
-    //</editor-fold>//GEN-END:|232-getter|2|
+//</editor-fold>//GEN-END:|232-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: FriendListAction ">//GEN-BEGIN:|229-action|0|229-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: FriendListAction ">//GEN-BEGIN:|229-action|0|229-preAction
     /**
      * Performs an action assigned to the selected list element in the FriendList component.
      */
@@ -2860,9 +2871,9 @@ public void jsonReadMoree() {
         String __selectedString = getFriendList().getString(getFriendList().getSelectedIndex());//GEN-LINE:|229-action|1|229-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|229-action|2|
-    //</editor-fold>//GEN-END:|229-action|2|
+//</editor-fold>//GEN-END:|229-action|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: list1 ">//GEN-BEGIN:|235-getter|0|235-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: list1 ">//GEN-BEGIN:|235-getter|0|235-preInit
     /**
      * Returns an initiliazed instance of list1 component.
      * @return the initialized component instance
@@ -2876,9 +2887,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|235-getter|2|
         return list1;
     }
-    //</editor-fold>//GEN-END:|235-getter|2|
+//</editor-fold>//GEN-END:|235-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: list1Action ">//GEN-BEGIN:|235-action|0|235-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: list1Action ">//GEN-BEGIN:|235-action|0|235-preAction
     /**
      * Performs an action assigned to the selected list element in the list1 component.
      */
@@ -2887,9 +2898,9 @@ public void jsonReadMoree() {
         String __selectedString = getList1().getString(getList1().getSelectedIndex());//GEN-LINE:|235-action|1|235-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|235-action|2|
-    //</editor-fold>//GEN-END:|235-action|2|
+//</editor-fold>//GEN-END:|235-action|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Block ">//GEN-BEGIN:|238-getter|0|238-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Block ">//GEN-BEGIN:|238-getter|0|238-preInit
     /**
      * Returns an initiliazed instance of Block component.
      * @return the initialized component instance
@@ -2902,9 +2913,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|238-getter|2|
         return Block;
     }
-    //</editor-fold>//GEN-END:|238-getter|2|
+//</editor-fold>//GEN-END:|238-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Filter ">//GEN-BEGIN:|240-getter|0|240-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Filter ">//GEN-BEGIN:|240-getter|0|240-preInit
     /**
      * Returns an initiliazed instance of Filter component.
      * @return the initialized component instance
@@ -2917,9 +2928,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|240-getter|2|
         return Filter;
     }
-    //</editor-fold>//GEN-END:|240-getter|2|
+//</editor-fold>//GEN-END:|240-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand8 ">//GEN-BEGIN:|242-getter|0|242-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand8 ">//GEN-BEGIN:|242-getter|0|242-preInit
     /**
      * Returns an initiliazed instance of okCommand8 component.
      * @return the initialized component instance
@@ -2932,9 +2943,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|242-getter|2|
         return okCommand8;
     }
-    //</editor-fold>//GEN-END:|242-getter|2|
+//</editor-fold>//GEN-END:|242-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: haveTwitterAcount ">//GEN-BEGIN:|255-if|0|255-preIf
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: haveTwitterAcount ">//GEN-BEGIN:|255-if|0|255-preIf
     /**
      * Performs an action assigned to the haveTwitterAcount if-point.
      */
@@ -2952,9 +2963,9 @@ public void jsonReadMoree() {
         }//GEN-LINE:|255-if|5|255-postIf
         // enter post-if user code here
     }//GEN-BEGIN:|255-if|6|
-    //</editor-fold>//GEN-END:|255-if|6|
+//</editor-fold>//GEN-END:|255-if|6|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: isAuthSuccess ">//GEN-BEGIN:|259-if|0|259-preIf
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: isAuthSuccess ">//GEN-BEGIN:|259-if|0|259-preIf
     /**
      * Performs an action assigned to the isAuthSuccess if-point.
      */
@@ -2972,9 +2983,9 @@ public void jsonReadMoree() {
         }//GEN-LINE:|259-if|5|259-postIf
         // enter post-if user code here
     }//GEN-BEGIN:|259-if|6|
-    //</editor-fold>//GEN-END:|259-if|6|
+//</editor-fold>//GEN-END:|259-if|6|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: authTwitter ">//GEN-BEGIN:|252-getter|0|252-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: authTwitter ">//GEN-BEGIN:|252-getter|0|252-preInit
     /**
      * Returns an initiliazed instance of authTwitter component.
      * @return the initialized component instance
@@ -2987,14 +2998,14 @@ public void jsonReadMoree() {
             authTwitter.append("Authorized", null);
             authTwitter.addCommand(getBackCommand2());
             authTwitter.setCommandListener(this);
-            authTwitter.setSelectedFlags(new boolean[] { false, false });//GEN-END:|252-getter|1|252-postInit
+            authTwitter.setSelectedFlags(new boolean[]{false, false});//GEN-END:|252-getter|1|252-postInit
             // write post-init user code here
         }//GEN-BEGIN:|252-getter|2|
         return authTwitter;
     }
-    //</editor-fold>//GEN-END:|252-getter|2|
+//</editor-fold>//GEN-END:|252-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: authTwitterAction ">//GEN-BEGIN:|252-action|0|252-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: authTwitterAction ">//GEN-BEGIN:|252-action|0|252-preAction
     /**
      * Performs an action assigned to the selected list element in the authTwitter component.
      */
@@ -3014,11 +3025,11 @@ public void jsonReadMoree() {
         }//GEN-END:|252-action|5|252-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|252-action|6|
-    //</editor-fold>//GEN-END:|252-action|6|
+//</editor-fold>//GEN-END:|252-action|6|
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|265-getter|0|265-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|265-getter|0|265-preInit
     /**
      * Returns an initiliazed instance of backCommand2 component.
      * @return the initialized component instance
@@ -3031,9 +3042,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|265-getter|2|
         return backCommand2;
     }
-    //</editor-fold>//GEN-END:|265-getter|2|
+//</editor-fold>//GEN-END:|265-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: BackToAccounts1 ">//GEN-BEGIN:|271-getter|0|271-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: BackToAccounts1 ">//GEN-BEGIN:|271-getter|0|271-preInit
     /**
      * Returns an initiliazed instance of BackToAccounts1 component.
      * @return the initialized component instance
@@ -3046,9 +3057,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|271-getter|2|
         return BackToAccounts1;
     }
-    //</editor-fold>//GEN-END:|271-getter|2|
+//</editor-fold>//GEN-END:|271-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ReplaceTwitterAccount ">//GEN-BEGIN:|280-getter|0|280-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ReplaceTwitterAccount ">//GEN-BEGIN:|280-getter|0|280-preInit
     /**
      * Returns an initiliazed instance of ReplaceTwitterAccount component.
      * @return the initialized component instance
@@ -3061,9 +3072,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|280-getter|2|
         return ReplaceTwitterAccount;
     }
-    //</editor-fold>//GEN-END:|280-getter|2|
+//</editor-fold>//GEN-END:|280-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: BackToAccounts ">//GEN-BEGIN:|282-getter|0|282-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: BackToAccounts ">//GEN-BEGIN:|282-getter|0|282-preInit
     /**
      * Returns an initiliazed instance of BackToAccounts component.
      * @return the initialized component instance
@@ -3076,9 +3087,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|282-getter|2|
         return BackToAccounts;
     }
-    //</editor-fold>//GEN-END:|282-getter|2|
+//</editor-fold>//GEN-END:|282-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Resend1 ">//GEN-BEGIN:|301-getter|0|301-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Resend1 ">//GEN-BEGIN:|301-getter|0|301-preInit
     /**
      * Returns an initiliazed instance of Resend1 component.
      * @return the initialized component instance
@@ -3091,9 +3102,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|301-getter|2|
         return Resend1;
     }
-    //</editor-fold>//GEN-END:|301-getter|2|
+//</editor-fold>//GEN-END:|301-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand10 ">//GEN-BEGIN:|303-getter|0|303-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand10 ">//GEN-BEGIN:|303-getter|0|303-preInit
     /**
      * Returns an initiliazed instance of backCommand10 component.
      * @return the initialized component instance
@@ -3106,11 +3117,11 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|303-getter|2|
         return backCommand10;
     }
-    //</editor-fold>//GEN-END:|303-getter|2|
+//</editor-fold>//GEN-END:|303-getter|2|
 
 
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alreadyHaveTwitter ">//GEN-BEGIN:|276-getter|0|276-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: alreadyHaveTwitter ">//GEN-BEGIN:|276-getter|0|276-preInit
     /**
      * Returns an initiliazed instance of alreadyHaveTwitter component.
      * @return the initialized component instance
@@ -3118,7 +3129,7 @@ public void jsonReadMoree() {
     public Form getAlreadyHaveTwitter() {
         if (alreadyHaveTwitter == null) {//GEN-END:|276-getter|0|276-preInit
             // write pre-init user code here
-            alreadyHaveTwitter = new Form("Twitter Authorization", new Item[] { getStringItem2() });//GEN-BEGIN:|276-getter|1|276-postInit
+            alreadyHaveTwitter = new Form("Twitter Authorization", new Item[]{getStringItem2()});//GEN-BEGIN:|276-getter|1|276-postInit
             alreadyHaveTwitter.addCommand(getReplaceTwitterAccount());
             alreadyHaveTwitter.addCommand(getBackToAccounts());
             alreadyHaveTwitter.setCommandListener(this);//GEN-END:|276-getter|1|276-postInit
@@ -3126,9 +3137,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|276-getter|2|
         return alreadyHaveTwitter;
     }
-    //</editor-fold>//GEN-END:|276-getter|2|
+//</editor-fold>//GEN-END:|276-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem2 ">//GEN-BEGIN:|279-getter|0|279-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem2 ">//GEN-BEGIN:|279-getter|0|279-preInit
     /**
      * Returns an initiliazed instance of stringItem2 component.
      * @return the initialized component instance
@@ -3141,9 +3152,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|279-getter|2|
         return stringItem2;
     }
-    //</editor-fold>//GEN-END:|279-getter|2|
+//</editor-fold>//GEN-END:|279-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: authSuccessful ">//GEN-BEGIN:|289-getter|0|289-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: authSuccessful ">//GEN-BEGIN:|289-getter|0|289-preInit
     /**
      * Returns an initiliazed instance of authSuccessful component.
      * @return the initialized component instance
@@ -3151,16 +3162,16 @@ public void jsonReadMoree() {
     public Form getAuthSuccessful() {
         if (authSuccessful == null) {//GEN-END:|289-getter|0|289-preInit
             // write pre-init user code here
-            authSuccessful = new Form("Twitter Authorization", new Item[] { getStringItem3() });//GEN-BEGIN:|289-getter|1|289-postInit
+            authSuccessful = new Form("Twitter Authorization", new Item[]{getStringItem3()});//GEN-BEGIN:|289-getter|1|289-postInit
             authSuccessful.addCommand(getBackToAccounts());
             authSuccessful.setCommandListener(this);//GEN-END:|289-getter|1|289-postInit
             // write post-init user code here
         }//GEN-BEGIN:|289-getter|2|
         return authSuccessful;
     }
-    //</editor-fold>//GEN-END:|289-getter|2|
+//</editor-fold>//GEN-END:|289-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem3 ">//GEN-BEGIN:|293-getter|0|293-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem3 ">//GEN-BEGIN:|293-getter|0|293-preInit
     /**
      * Returns an initiliazed instance of stringItem3 component.
      * @return the initialized component instance
@@ -3173,9 +3184,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|293-getter|2|
         return stringItem3;
     }
-    //</editor-fold>//GEN-END:|293-getter|2|
+//</editor-fold>//GEN-END:|293-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: twitterAuthFailed ">//GEN-BEGIN:|300-getter|0|300-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: twitterAuthFailed ">//GEN-BEGIN:|300-getter|0|300-preInit
     /**
      * Returns an initiliazed instance of twitterAuthFailed component.
      * @return the initialized component instance
@@ -3183,7 +3194,7 @@ public void jsonReadMoree() {
     public Form getTwitterAuthFailed() {
         if (twitterAuthFailed == null) {//GEN-END:|300-getter|0|300-preInit
             // write pre-init user code here
-            twitterAuthFailed = new Form("Twitter Authorization", new Item[] { getStringItem4() });//GEN-BEGIN:|300-getter|1|300-postInit
+            twitterAuthFailed = new Form("Twitter Authorization", new Item[]{getStringItem4()});//GEN-BEGIN:|300-getter|1|300-postInit
             twitterAuthFailed.addCommand(getResend1());
             twitterAuthFailed.addCommand(getBackToAccounts());
             twitterAuthFailed.setCommandListener(this);//GEN-END:|300-getter|1|300-postInit
@@ -3191,9 +3202,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|300-getter|2|
         return twitterAuthFailed;
     }
-    //</editor-fold>//GEN-END:|300-getter|2|
+//</editor-fold>//GEN-END:|300-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem4 ">//GEN-BEGIN:|306-getter|0|306-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem4 ">//GEN-BEGIN:|306-getter|0|306-preInit
     /**
      * Returns an initiliazed instance of stringItem4 component.
      * @return the initialized component instance
@@ -3206,9 +3217,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|306-getter|2|
         return stringItem4;
     }
-    //</editor-fold>//GEN-END:|306-getter|2|
+//</editor-fold>//GEN-END:|306-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: disliked ">//GEN-BEGIN:|311-getter|0|311-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: disliked ">//GEN-BEGIN:|311-getter|0|311-preInit
     /**
      * Returns an initiliazed instance of disliked component.
      * @return the initialized component instance
@@ -3223,9 +3234,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|311-getter|2|
         return disliked;
     }
-    //</editor-fold>//GEN-END:|311-getter|2|
+//</editor-fold>//GEN-END:|311-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: dislikedAction ">//GEN-BEGIN:|311-action|0|311-preAction
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: dislikedAction ">//GEN-BEGIN:|311-action|0|311-preAction
     /**
      * Performs an action assigned to the selected list element in the disliked component.
      */
@@ -3234,9 +3245,9 @@ public void jsonReadMoree() {
         String __selectedString = getDisliked().getString(getDisliked().getSelectedIndex());//GEN-LINE:|311-action|1|311-postAction
         // enter post-action user code here
     }//GEN-BEGIN:|311-action|2|
-    //</editor-fold>//GEN-END:|311-action|2|
+//</editor-fold>//GEN-END:|311-action|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsLike ">//GEN-BEGIN:|316-getter|0|316-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsLike ">//GEN-BEGIN:|316-getter|0|316-preInit
     /**
      * Returns an initiliazed instance of friendsLike component.
      * @return the initialized component instance
@@ -3249,9 +3260,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|316-getter|2|
         return friendsLike;
     }
-    //</editor-fold>//GEN-END:|316-getter|2|
+//</editor-fold>//GEN-END:|316-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsDislike ">//GEN-BEGIN:|318-getter|0|318-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsDislike ">//GEN-BEGIN:|318-getter|0|318-preInit
     /**
      * Returns an initiliazed instance of friendsDislike component.
      * @return the initialized component instance
@@ -3264,9 +3275,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|318-getter|2|
         return friendsDislike;
     }
-    //</editor-fold>//GEN-END:|318-getter|2|
+//</editor-fold>//GEN-END:|318-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: singOut ">//GEN-BEGIN:|320-getter|0|320-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: singOut ">//GEN-BEGIN:|320-getter|0|320-preInit
     /**
      * Returns an initiliazed instance of singOut component.
      * @return the initialized component instance
@@ -3279,9 +3290,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|320-getter|2|
         return singOut;
     }
-    //</editor-fold>//GEN-END:|320-getter|2|
+//</editor-fold>//GEN-END:|320-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand11 ">//GEN-BEGIN:|324-getter|0|324-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand11 ">//GEN-BEGIN:|324-getter|0|324-preInit
     /**
      * Returns an initiliazed instance of backCommand11 component.
      * @return the initialized component instance
@@ -3294,9 +3305,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|324-getter|2|
         return backCommand11;
     }
-    //</editor-fold>//GEN-END:|324-getter|2|
+//</editor-fold>//GEN-END:|324-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand9 ">//GEN-BEGIN:|326-getter|0|326-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand9 ">//GEN-BEGIN:|326-getter|0|326-preInit
     /**
      * Returns an initiliazed instance of okCommand9 component.
      * @return the initialized component instance
@@ -3309,9 +3320,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|326-getter|2|
         return okCommand9;
     }
-    //</editor-fold>//GEN-END:|326-getter|2|
+//</editor-fold>//GEN-END:|326-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand12 ">//GEN-BEGIN:|328-getter|0|328-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand12 ">//GEN-BEGIN:|328-getter|0|328-preInit
     /**
      * Returns an initiliazed instance of backCommand12 component.
      * @return the initialized component instance
@@ -3324,9 +3335,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|328-getter|2|
         return backCommand12;
     }
-    //</editor-fold>//GEN-END:|328-getter|2|
+//</editor-fold>//GEN-END:|328-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: accept ">//GEN-BEGIN:|330-getter|0|330-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: accept ">//GEN-BEGIN:|330-getter|0|330-preInit
     /**
      * Returns an initiliazed instance of accept component.
      * @return the initialized component instance
@@ -3339,9 +3350,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|330-getter|2|
         return accept;
     }
-    //</editor-fold>//GEN-END:|330-getter|2|
+//</editor-fold>//GEN-END:|330-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: reject ">//GEN-BEGIN:|332-getter|0|332-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: reject ">//GEN-BEGIN:|332-getter|0|332-preInit
     /**
      * Returns an initiliazed instance of reject component.
      * @return the initialized component instance
@@ -3354,9 +3365,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|332-getter|2|
         return reject;
     }
-    //</editor-fold>//GEN-END:|332-getter|2|
+//</editor-fold>//GEN-END:|332-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: manyReq ">//GEN-BEGIN:|322-getter|0|322-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: manyReq ">//GEN-BEGIN:|322-getter|0|322-preInit
     /**
      * Returns an initiliazed instance of manyReq component.
      * @return the initialized component instance
@@ -3372,9 +3383,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|322-getter|2|
         return manyReq;
     }
-    //</editor-fold>//GEN-END:|322-getter|2|
+//</editor-fold>//GEN-END:|322-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: oneReq ">//GEN-BEGIN:|323-getter|0|323-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: oneReq ">//GEN-BEGIN:|323-getter|0|323-preInit
     /**
      * Returns an initiliazed instance of oneReq component.
      * @return the initialized component instance
@@ -3391,9 +3402,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|323-getter|2|
         return oneReq;
     }
-    //</editor-fold>//GEN-END:|323-getter|2|
+//</editor-fold>//GEN-END:|323-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand10 ">//GEN-BEGIN:|334-getter|0|334-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand10 ">//GEN-BEGIN:|334-getter|0|334-preInit
     /**
      * Returns an initiliazed instance of okCommand10 component.
      * @return the initialized component instance
@@ -3406,9 +3417,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|334-getter|2|
         return okCommand10;
     }
-    //</editor-fold>//GEN-END:|334-getter|2|
+//</editor-fold>//GEN-END:|334-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Method: genReqURL ">//GEN-BEGIN:|338-if|0|338-preIf
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: genReqURL ">//GEN-BEGIN:|338-if|0|338-preIf
     /**
      * Performs an action assigned to the genReqURL if-point.
      */
@@ -3436,9 +3447,9 @@ public void jsonReadMoree() {
         }//GEN-LINE:|338-if|5|338-postIf
         // enter post-if user code here
     }//GEN-BEGIN:|338-if|6|
-    //</editor-fold>//GEN-END:|338-if|6|
+//</editor-fold>//GEN-END:|338-if|6|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand11 ">//GEN-BEGIN:|344-getter|0|344-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand11 ">//GEN-BEGIN:|344-getter|0|344-preInit
     /**
      * Returns an initiliazed instance of okCommand11 component.
      * @return the initialized component instance
@@ -3451,9 +3462,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|344-getter|2|
         return okCommand11;
     }
-    //</editor-fold>//GEN-END:|344-getter|2|
+//</editor-fold>//GEN-END:|344-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: URLCorrupted ">//GEN-BEGIN:|342-getter|0|342-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: URLCorrupted ">//GEN-BEGIN:|342-getter|0|342-preInit
     /**
      * Returns an initiliazed instance of URLCorrupted component.
      * @return the initialized component instance
@@ -3469,9 +3480,9 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|342-getter|2|
         return URLCorrupted;
     }
-    //</editor-fold>//GEN-END:|342-getter|2|
+//</editor-fold>//GEN-END:|342-getter|2|
 
-    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: StorynotFound ">//GEN-BEGIN:|353-getter|0|353-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: StorynotFound ">//GEN-BEGIN:|353-getter|0|353-preInit
     /**
      * Returns an initiliazed instance of StorynotFound component.
      * @return the initialized component instance
@@ -3485,7 +3496,38 @@ public void jsonReadMoree() {
         }//GEN-BEGIN:|353-getter|2|
         return StorynotFound;
     }
-    //</editor-fold>//GEN-END:|353-getter|2|
+//</editor-fold>//GEN-END:|353-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Dummy ">//GEN-BEGIN:|354-getter|0|354-preInit
+    /**
+     * Returns an initiliazed instance of Dummy component.
+     * @return the initialized component instance
+     */
+    public Form getDummy() {
+        if (Dummy == null) {//GEN-END:|354-getter|0|354-preInit
+            // write pre-init user code here
+            Dummy = new Form("form2");//GEN-LINE:|354-getter|1|354-postInit
+            //this dummy form is used as a temp form which switches back to CommentsMany "to avoid illegalStateException
+            switchDisplayable(null, getCommentsMany()); return null;  //switch back to getCommentsMany
+        }//GEN-BEGIN:|354-getter|2|
+        return Dummy;
+    }
+//</editor-fold>//GEN-END:|354-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewCommentsMany ">//GEN-BEGIN:|355-getter|0|355-preInit
+    /**
+     * Returns an initiliazed instance of viewCommentsMany component.
+     * @return the initialized component instance
+     */
+    public Command getViewCommentsMany() {
+        if (viewCommentsMany == null) {//GEN-END:|355-getter|0|355-preInit
+            // write pre-init user code here
+            viewCommentsMany = new Command("Comments", Command.ITEM, 0);//GEN-LINE:|355-getter|1|355-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|355-getter|2|
+        return viewCommentsMany;
+    }
+//</editor-fold>//GEN-END:|355-getter|2|
 
 
 
