@@ -1,7 +1,11 @@
 class LogsController < ApplicationController
 
  
- #index
+ #index called when when we want to see all logs
+ #or refreshing the view from any filtering 
+ #as you can see there is only one acess to the database
+ 
+ #show all
  
   def index
         $datefilter = false
@@ -18,7 +22,8 @@ class LogsController < ApplicationController
            format.xls { send_data $logs.to_xls, content_type: 'application/vnd.ms-excel', filename: 'LogFile.xls' }
          end
       end
-
+ #used by a post http request to enter new logs into the database
+ #from outside of the server
 
  #insertion
   
@@ -30,7 +35,9 @@ class LogsController < ApplicationController
           render :nothing => true 
       end
   end
-  
+ #used to set attributes from the filtring
+ #the real filter is happening in the view  
+ 
  #Filter
  
   def filter
@@ -41,6 +48,8 @@ class LogsController < ApplicationController
     $typefilter = true
      render :template => 'logs/Logs'
   end
+  #used to set attributes from the filtring
+  #the real filter is happening in the view
   
  #Period selection 
  
