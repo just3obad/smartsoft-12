@@ -4,6 +4,7 @@
  */
 package hello;
 
+import javax.microedition.io.ConnectionNotFoundException;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import  com.nokia.mid.ui.LCDUIUtil;
@@ -23,7 +24,8 @@ import org.json.me.*;
 public class HelloMIDlet extends MIDlet implements CommandListener{
     
     // YAHIA : i added those for sake of teting
-    static String SERVER_IP = "172.20.10.4";
+    //static String SERVER_IP = "172.20.10.4";
+    static String SERVER_IP = "192.168.1.64";
     static int PORT = 3000;
     static int USER_ID = 2;
     // YAHIA END
@@ -89,7 +91,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command Filter;
     private Command BackToAccounts;
     private Command ReplaceTwitterAccount;
-    private Command FilterStories;
+    private Command backCommand2;
     private Command BackToAccounts1;
     private Command friendsLike;
     private Command friendsDislike;
@@ -98,9 +100,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener{
     private Command okCommand9;
     private Command backCommand11;
     private Command singOut;
+    private Command okCommand10;
     private Command reject;
     private Command accept;
     private Command backCommand12;
+    private Command FilterStories;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -426,7 +430,7 @@ public void jsonReadMoree() {
      */
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-//GEN-LINE:|3-startMIDlet|1|3-postAction
+        switchDisplayable(null, getMainFeed());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
 //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -490,17 +494,17 @@ public void jsonReadMoree() {
         } else if (displayable == AuthSuccessful) {
             if (command == BackToAccounts) {//GEN-END:|7-commandAction|5|296-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|6|296-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|6|296-postAction
                  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|7|266-preAction
+            }//GEN-BEGIN:|7-commandAction|7|253-preAction
         } else if (displayable == AuthTwitter) {
-            if (command == FilterStories) {//GEN-END:|7-commandAction|7|266-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|7|253-preAction
                  // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|8|266-postAction
+                AuthTwitterAction();//GEN-LINE:|7-commandAction|8|253-postAction
                  // write post-action user code here
-            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|9|253-preAction
+            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|9|266-preAction
                  // write pre-action user code here
-                AuthTwitterAction();//GEN-LINE:|7-commandAction|10|253-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|10|266-postAction
                  // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|11|213-preAction
         } else if (displayable == CommentOne) {
@@ -547,29 +551,40 @@ public void jsonReadMoree() {
                  // write pre-action user code here
                 switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|22|272-postAction
                  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|23|239-preAction
-        } else if (displayable == FriendList) {
-            if (command == Block) {//GEN-END:|7-commandAction|23|239-preAction
+            } else if (command == okCommand10) {//GEN-LINE:|7-commandAction|23|335-preAction
                  // write pre-action user code here
-                switchDisplayable(null, getFriendsStories());//GEN-LINE:|7-commandAction|24|239-postAction
+                String authURL = getTwitterAuthURL(SERVER_IP, PORT);
+                System.out.println("command url is " + authURL);
+                try {
+                    platformRequest(authURL);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+//GEN-LINE:|7-commandAction|24|335-postAction
                  // write post-action user code here
-            } else if (command == Filter) {//GEN-LINE:|7-commandAction|25|241-preAction
+            }//GEN-BEGIN:|7-commandAction|25|239-preAction
+        } else if (displayable == FriendList) {
+            if (command == Block) {//GEN-END:|7-commandAction|25|239-preAction
+                 // write pre-action user code here
+                switchDisplayable(null, getFriendsStories());//GEN-LINE:|7-commandAction|26|239-postAction
+                 // write post-action user code here
+            } else if (command == Filter) {//GEN-LINE:|7-commandAction|27|241-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFriendsStories());//GEN-LINE:|7-commandAction|26|241-postAction
+                switchDisplayable(null, getFriendsStories());//GEN-LINE:|7-commandAction|28|241-postAction
                 // write post-action user code here
-            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|27|230-preAction
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|29|230-preAction
                 // write pre-action user code here
-                FriendListAction();//GEN-LINE:|7-commandAction|28|230-postAction
+                FriendListAction();//GEN-LINE:|7-commandAction|30|230-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|29|137-preAction
+            }//GEN-BEGIN:|7-commandAction|31|137-preAction
         } else if (displayable == LoginScreen) {
-            if (command == backCommand5) {//GEN-END:|7-commandAction|29|137-preAction
+            if (command == backCommand5) {//GEN-END:|7-commandAction|31|137-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|30|137-postAction
+//GEN-LINE:|7-commandAction|32|137-postAction
                 // write post-action user code here
-            } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|31|135-preAction
+            } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|33|135-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|32|135-postAction
+//GEN-LINE:|7-commandAction|34|135-postAction
                 // write post-action user code here
                                                  HttpConnection httpConn = null;
                 InputStream is = null;
@@ -617,29 +632,29 @@ public void jsonReadMoree() {
             System.out.println("Exception occured " + t.toString());
         }
     }
-            }//GEN-BEGIN:|7-commandAction|33|233-preAction
+            }//GEN-BEGIN:|7-commandAction|35|233-preAction
         } else if (displayable == MainFeed) {
-            if (command == FilterFriends) {//GEN-END:|7-commandAction|33|233-preAction
+            if (command == FilterFriends) {//GEN-END:|7-commandAction|35|233-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFriendList());//GEN-LINE:|7-commandAction|34|233-postAction
+                switchDisplayable(null, getFriendList());//GEN-LINE:|7-commandAction|36|233-postAction
                 // write post-action user code here
-            } else if (command == FilterStories) {//GEN-LINE:|7-commandAction|35|334-preAction
+            } else if (command == FilterStories) {//GEN-LINE:|7-commandAction|37|339-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|36|334-postAction
+                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|38|339-postAction
                 // write post-action user code here
-            } else if (command == options) {//GEN-LINE:|7-commandAction|37|63-preAction
+            } else if (command == options) {//GEN-LINE:|7-commandAction|39|63-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|38|63-postAction
+//GEN-LINE:|7-commandAction|40|63-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|39|155-preAction
+            }//GEN-BEGIN:|7-commandAction|41|155-preAction
         } else if (displayable == RegisterScreen) {
-            if (command == backCommand7) {//GEN-END:|7-commandAction|39|155-preAction
+            if (command == backCommand7) {//GEN-END:|7-commandAction|41|155-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|40|155-postAction
+//GEN-LINE:|7-commandAction|42|155-postAction
                 // write post-action user code here
-            } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|41|153-preAction
+            } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|43|153-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|42|153-postAction
+//GEN-LINE:|7-commandAction|44|153-postAction
                 // write post-action user code here
                                 // write post-action user code here
                                   HttpConnection httpConn = null;
@@ -688,83 +703,83 @@ public void jsonReadMoree() {
             System.out.println("Exception occured " + t.toString());
         }
     }
-            }//GEN-BEGIN:|7-commandAction|43|29-preAction
+            }//GEN-BEGIN:|7-commandAction|45|29-preAction
         } else if (displayable == Story) {
-            if (command == Comment1) {//GEN-END:|7-commandAction|43|29-preAction
+            if (command == Comment1) {//GEN-END:|7-commandAction|45|29-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|44|29-postAction
+//GEN-LINE:|7-commandAction|46|29-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|45|31-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|47|31-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|46|31-postAction
+//GEN-LINE:|7-commandAction|48|31-postAction
                 // write post-action user code here
-            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|47|79-preAction
+            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|49|79-preAction
  // write pre-action user code here
-//GEN-LINE:|7-commandAction|48|79-postAction
+//GEN-LINE:|7-commandAction|50|79-postAction
  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|49|305-preAction
+            }//GEN-BEGIN:|7-commandAction|51|305-preAction
         } else if (displayable == TwitterAuthFailed) {
-            if (command == BackToAccounts) {//GEN-END:|7-commandAction|49|305-preAction
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|51|305-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|50|305-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|52|305-postAction
                  // write post-action user code here
-            } else if (command == Resend1) {//GEN-LINE:|7-commandAction|51|302-preAction
+            } else if (command == Resend1) {//GEN-LINE:|7-commandAction|53|302-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|52|302-postAction
+//GEN-LINE:|7-commandAction|54|302-postAction
                  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|53|170-preAction
+            }//GEN-BEGIN:|7-commandAction|55|170-preAction
         } else if (displayable == Verification) {
-            if (command == Resend) {//GEN-END:|7-commandAction|53|170-preAction
+            if (command == Resend) {//GEN-END:|7-commandAction|55|170-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|54|170-postAction
+//GEN-LINE:|7-commandAction|56|170-postAction
                 // write post-action user code here
-            } else if (command == Verify) {//GEN-LINE:|7-commandAction|55|168-preAction
+            } else if (command == Verify) {//GEN-LINE:|7-commandAction|57|168-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|56|168-postAction
+//GEN-LINE:|7-commandAction|58|168-postAction
                 // write post-action user code here
-            } else if (command == backV) {//GEN-LINE:|7-commandAction|57|166-preAction
+            } else if (command == backV) {//GEN-LINE:|7-commandAction|59|166-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|58|166-postAction
+//GEN-LINE:|7-commandAction|60|166-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|59|123-preAction
+            }//GEN-BEGIN:|7-commandAction|61|123-preAction
         } else if (displayable == choosefriend1) {
-            if (command == Find) {//GEN-END:|7-commandAction|59|123-preAction
+            if (command == Find) {//GEN-END:|7-commandAction|61|123-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|60|123-postAction
+                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|62|123-postAction
                 // write post-action user code here
-            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|61|117-preAction
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|63|117-preAction
                 // write pre-action user code here
-                choosefriend1Action();//GEN-LINE:|7-commandAction|62|117-postAction
+                choosefriend1Action();//GEN-LINE:|7-commandAction|64|117-postAction
                 // write post-action user code here
-            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|63|122-preAction
+            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|65|122-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|64|122-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|66|122-postAction
                 // write post-action user code here
-            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|65|120-preAction
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|67|120-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|66|120-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|68|120-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|67|81-preAction
+            }//GEN-BEGIN:|7-commandAction|69|81-preAction
         } else if (displayable == connectAccount) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|67|81-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|69|81-preAction
                 // write pre-action user code here
-                connectAccountAction();//GEN-LINE:|7-commandAction|68|81-postAction
+                connectAccountAction();//GEN-LINE:|7-commandAction|70|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|69|312-preAction
+            }//GEN-BEGIN:|7-commandAction|71|312-preAction
         } else if (displayable == disliked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|69|312-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|71|312-preAction
                  // write pre-action user code here
-                dislikedAction();//GEN-LINE:|7-commandAction|70|312-postAction
+                dislikedAction();//GEN-LINE:|7-commandAction|72|312-postAction
                  // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|71|314-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|73|314-preAction
                  // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|72|314-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|74|314-postAction
                  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|73|106-preAction
+            }//GEN-BEGIN:|7-commandAction|75|106-preAction
         } else if (displayable == findFriend) {
-            if (command == Add1) {//GEN-END:|7-commandAction|73|106-preAction
+            if (command == Add1) {//GEN-END:|7-commandAction|75|106-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|74|106-postAction
+//GEN-LINE:|7-commandAction|76|106-postAction
 
                 // write post-action user code here
                 if(this.search.getString().length()!=0){
@@ -772,79 +787,79 @@ public void jsonReadMoree() {
                    String s =" \"receiver\":"+ this.search.getString()+" \"sender_id\":"+this.user_id;
                    this.sendData("friends/add/ip", s);
                 }
-            } else if (command == Back1) {//GEN-LINE:|7-commandAction|75|94-preAction
+            } else if (command == Back1) {//GEN-LINE:|7-commandAction|77|94-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|76|94-postAction
+//GEN-LINE:|7-commandAction|78|94-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|77|19-preAction
+            }//GEN-BEGIN:|7-commandAction|79|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|77|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|79|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|78|19-postAction
+//GEN-LINE:|7-commandAction|80|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|79|159-preAction
+            }//GEN-BEGIN:|7-commandAction|81|159-preAction
         } else if (displayable == form1) {
-            if (command == backCommand8) {//GEN-END:|7-commandAction|79|159-preAction
+            if (command == backCommand8) {//GEN-END:|7-commandAction|81|159-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|80|159-postAction
+//GEN-LINE:|7-commandAction|82|159-postAction
                 // write post-action user code here
-            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|81|161-preAction
+            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|83|161-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|82|161-postAction
+//GEN-LINE:|7-commandAction|84|161-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|83|128-preAction
+            }//GEN-BEGIN:|7-commandAction|85|128-preAction
         } else if (displayable == liked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|83|128-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|85|128-preAction
                 // write pre-action user code here
-                likedAction();//GEN-LINE:|7-commandAction|84|128-postAction
+                likedAction();//GEN-LINE:|7-commandAction|86|128-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|85|130-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|87|130-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|86|130-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|88|130-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|87|182-preAction
+            }//GEN-BEGIN:|7-commandAction|89|182-preAction
         } else if (displayable == list) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|87|182-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|89|182-preAction
                 // write pre-action user code here
-                listAction();//GEN-LINE:|7-commandAction|88|182-postAction
+                listAction();//GEN-LINE:|7-commandAction|90|182-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|89|236-preAction
+            }//GEN-BEGIN:|7-commandAction|91|236-preAction
         } else if (displayable == list1) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|89|236-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|91|236-preAction
                 // write pre-action user code here
-                list1Action();//GEN-LINE:|7-commandAction|90|236-postAction
+                list1Action();//GEN-LINE:|7-commandAction|92|236-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|91|325-preAction
+            }//GEN-BEGIN:|7-commandAction|93|325-preAction
         } else if (displayable == manyReq) {
-            if (command == backCommand11) {//GEN-END:|7-commandAction|91|325-preAction
+            if (command == backCommand11) {//GEN-END:|7-commandAction|93|325-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|92|325-postAction
+//GEN-LINE:|7-commandAction|94|325-postAction
                 // write post-action user code here
-            } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|93|327-preAction
+            } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|95|327-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|94|327-postAction
+//GEN-LINE:|7-commandAction|96|327-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|95|331-preAction
+            }//GEN-BEGIN:|7-commandAction|97|331-preAction
         } else if (displayable == oneReq) {
-            if (command == accept) {//GEN-END:|7-commandAction|95|331-preAction
+            if (command == accept) {//GEN-END:|7-commandAction|97|331-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|96|331-postAction
+//GEN-LINE:|7-commandAction|98|331-postAction
                 // write post-action user code here
-            } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|97|329-preAction
+            } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|99|329-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|98|329-postAction
+//GEN-LINE:|7-commandAction|100|329-postAction
                 // write post-action user code here
-            } else if (command == reject) {//GEN-LINE:|7-commandAction|99|333-preAction
+            } else if (command == reject) {//GEN-LINE:|7-commandAction|101|333-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|100|333-postAction
+//GEN-LINE:|7-commandAction|102|333-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|101|53-preAction
+            }//GEN-BEGIN:|7-commandAction|103|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|101|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|103|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|102|53-postAction
+//GEN-LINE:|7-commandAction|104|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|103|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|105|49-preAction
                 // write pre-action user code here
                //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}"
                String s ="";
@@ -896,87 +911,91 @@ public void jsonReadMoree() {
 //                       }
 //                   }
 //               }
-//GEN-LINE:|7-commandAction|104|49-postAction
+//GEN-LINE:|7-commandAction|106|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|105|186-preAction
+            }//GEN-BEGIN:|7-commandAction|107|186-preAction
         } else if (displayable == readMore) {
-            if (command == backCommand9) {//GEN-END:|7-commandAction|105|186-preAction
+            if (command == backCommand9) {//GEN-END:|7-commandAction|107|186-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|106|186-postAction
+//GEN-LINE:|7-commandAction|108|186-postAction
                  // write post-action user code here
-            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|107|200-preAction
+            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|109|200-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|108|200-postAction
+//GEN-LINE:|7-commandAction|110|200-postAction
                  // write post-action user code here
-            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|109|202-preAction
+            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|111|202-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|110|202-postAction
+//GEN-LINE:|7-commandAction|112|202-postAction
                  // write post-action user code here
-            } else if (command == flag) {//GEN-LINE:|7-commandAction|111|194-preAction
+            } else if (command == flag) {//GEN-LINE:|7-commandAction|113|194-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|112|194-postAction
+                getDataServer("http://192.168.26.148:3000/flags?uid=1&sid=1&format=json");
+//GEN-LINE:|7-commandAction|114|194-postAction
                  // write post-action user code here
-            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|113|319-preAction
+            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|115|319-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|114|319-postAction
+//GEN-LINE:|7-commandAction|116|319-postAction
                  // write post-action user code here
-            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|115|317-preAction
+            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|117|317-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|116|317-postAction
+//GEN-LINE:|7-commandAction|118|317-postAction
                  // write post-action user code here
-            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|117|188-preAction
+            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|119|188-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|118|188-postAction
+//GEN-LINE:|7-commandAction|120|188-postAction
                  // write post-action user code here
-            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|119|198-preAction
+            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|121|198-preAction
                  // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|120|198-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|122|198-postAction
                  // write post-action user code here
-            } else if (command == share) {//GEN-LINE:|7-commandAction|121|196-preAction
+            } else if (command == share) {//GEN-LINE:|7-commandAction|123|196-preAction
                  // write pre-action user code here
-                method();//GEN-LINE:|7-commandAction|122|196-postAction
+                method();//GEN-LINE:|7-commandAction|124|196-postAction
                  // write post-action user code here
-            } else if (command == singOut) {//GEN-LINE:|7-commandAction|123|321-preAction
+            } else if (command == singOut) {//GEN-LINE:|7-commandAction|125|321-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|124|321-postAction
+//GEN-LINE:|7-commandAction|126|321-postAction
                  // write post-action user code here
-            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|125|192-preAction
+            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|127|192-preAction
                  // write pre-action user code here
-//GEN-LINE:|7-commandAction|126|192-postAction
+                                 getDataServer("http://192.168.26.148:3000/likedislikes?uid=2&sid=1&act=-1&format=json");
+
+//GEN-LINE:|7-commandAction|128|192-postAction
                  // write post-action user code here
-            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|127|190-preAction
-                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|128|190-postAction
+            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|129|190-preAction
+                 getDataServer("http://192.168.26.148:3000/likedislikes?uid=2&sid=1&act=1&format=json");
+//GEN-LINE:|7-commandAction|130|190-postAction
                  // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|129|115-preAction
+            }//GEN-BEGIN:|7-commandAction|131|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|129|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|131|115-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|130|115-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|132|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|131|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|133|124-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|132|124-postAction
+                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|134|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|133|113-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|135|113-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|134|113-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|136|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|135|35-preAction
+            }//GEN-BEGIN:|7-commandAction|137|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|135|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|137|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|136|35-postAction
+//GEN-LINE:|7-commandAction|138|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|137|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|139|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|138|33-postAction
+//GEN-LINE:|7-commandAction|140|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|139|7-postCommandAction
-        }//GEN-END:|7-commandAction|139|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|141|7-postCommandAction
+        }//GEN-END:|7-commandAction|141|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|140|
-//</editor-fold>//GEN-END:|7-commandAction|140|
+    }//GEN-BEGIN:|7-commandAction|142|
+//</editor-fold>//GEN-END:|7-commandAction|142|
+
 
 
 
@@ -2548,6 +2567,8 @@ public void jsonReadMoree() {
         // enter pre-action user code here
         String __selectedString = getList().getString(getList().getSelectedIndex());//GEN-LINE:|181-action|1|181-postAction
         filter(__selectedString);
+                switchDisplayable(null, getMainFeed());
+
     }//GEN-BEGIN:|181-action|2|
 //</editor-fold>//GEN-END:|181-action|2|
 
@@ -3072,7 +3093,7 @@ public void jsonReadMoree() {
             AuthTwitter = new List("Twitter Authorization", Choice.IMPLICIT);//GEN-BEGIN:|252-getter|1|252-postInit
             AuthTwitter.append("Go to Authorization page", null);
             AuthTwitter.append("Authorized", null);
-            AuthTwitter.addCommand(getFilterStories());
+            AuthTwitter.addCommand(getBackCommand2());
             AuthTwitter.setCommandListener(this);
             AuthTwitter.setSelectedFlags(new boolean[]{false, false});//GEN-END:|252-getter|1|252-postInit
             // write post-init user code here
@@ -3113,8 +3134,14 @@ public void jsonReadMoree() {
     public Form getEmailSent() {
         if (EmailSent == null) {//GEN-END:|258-getter|0|258-preInit
             // write pre-init user code here
+            String authURL = getTwitterAuthURL(SERVER_IP, PORT);
+            if (authURL.equals("n/a")){
+                
+            }
+            System.out.println("Auth URL is " + authURL);            
             EmailSent = new Form("Twitter Authorization", new Item[]{getStringItem1()});//GEN-BEGIN:|258-getter|1|258-postInit
             EmailSent.addCommand(getBackToAccounts1());
+            EmailSent.addCommand(getOkCommand10());
             EmailSent.setCommandListener(this);//GEN-END:|258-getter|1|258-postInit
             // write post-init user code here
         }//GEN-BEGIN:|258-getter|2|
@@ -3122,19 +3149,19 @@ public void jsonReadMoree() {
     }
 //</editor-fold>//GEN-END:|258-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterStories ">//GEN-BEGIN:|265-getter|0|265-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|265-getter|0|265-preInit
     /**
-     * Returns an initialized instance of FilterStories component.
+     * Returns an initialized instance of backCommand2 component.
      *
      * @return the initialized component instance
      */
-    public Command getFilterStories() {
-        if (FilterStories == null) {//GEN-END:|265-getter|0|265-preInit
+    public Command getBackCommand2() {
+        if (backCommand2 == null) {//GEN-END:|265-getter|0|265-preInit
             // write pre-init user code here
-            FilterStories = new Command("Back", Command.BACK, 0);//GEN-LINE:|265-getter|1|265-postInit
+            backCommand2 = new Command("Back", Command.BACK, 0);//GEN-LINE:|265-getter|1|265-postInit
             // write post-init user code here
         }//GEN-BEGIN:|265-getter|2|
-        return FilterStories;
+        return backCommand2;
     }
 //</editor-fold>//GEN-END:|265-getter|2|
 
@@ -3227,7 +3254,7 @@ public void jsonReadMoree() {
     public StringItem getStringItem1() {
         if (stringItem1 == null) {//GEN-END:|270-getter|0|270-preInit
             // write pre-init user code here
-            stringItem1 = new StringItem("Email Sent", "Please check your email to authorize our app on twitter");//GEN-LINE:|270-getter|1|270-postInit
+            stringItem1 = new StringItem("Authorizatoin almost complete", "Please press next to go to twitter and authorize our app. Note that the browser will be opened. After authorization press next, then press authorized.");//GEN-LINE:|270-getter|1|270-postInit
             // write post-init user code here
         }//GEN-BEGIN:|270-getter|2|
         return stringItem1;
@@ -3535,6 +3562,38 @@ public void jsonReadMoree() {
     }
 //</editor-fold>//GEN-END:|323-getter|2|
 
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand10 ">//GEN-BEGIN:|334-getter|0|334-preInit
+    /**
+     * Returns an initialized instance of okCommand10 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getOkCommand10() {
+        if (okCommand10 == null) {//GEN-END:|334-getter|0|334-preInit
+            // write pre-init user code here
+            okCommand10 = new Command("Next", Command.OK, 0);//GEN-LINE:|334-getter|1|334-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|334-getter|2|
+        return okCommand10;
+    }
+//</editor-fold>//GEN-END:|334-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterStories ">//GEN-BEGIN:|338-getter|0|338-preInit
+    /**
+     * Returns an initialized instance of FilterStories component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getFilterStories() {
+        if (FilterStories == null) {//GEN-END:|338-getter|0|338-preInit
+            // write pre-init user code here
+            FilterStories = new Command("Ok", Command.OK, 0);//GEN-LINE:|338-getter|1|338-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|338-getter|2|
+        return FilterStories;
+    }
+//</editor-fold>//GEN-END:|338-getter|2|
+
 
 
 
@@ -3600,66 +3659,66 @@ public void jsonReadMoree() {
     
     
     public void httpconn() /*this method should intiate the connection between the server and the mobile client which
-                           should return the json file of list of stories according to the client interests.*/
-    {
-          HttpConnection httpConn = null;
-      String url = "http://192.168.26.136:3000/users/1.json";  
+    should return the json file of list of stories according to the client interests.*/ {
+        HttpConnection httpConn = null;
+        String url = "http://192.168.26.136:3000/users/1.json";
 
-    InputStream is = null;
-    OutputStream os = null;
+        InputStream is = null;
+        OutputStream os = null;
 
-    try {
-      // Open an HTTP Connection object
-      httpConn = (HttpConnection)Connector.open(url);
+        try {
+            // Open an HTTP Connection object
+            httpConn = (HttpConnection) Connector.open(url);
 
-      // Setup HTTP Request
-      httpConn.setRequestMethod(HttpConnection.GET);
-      httpConn.setRequestProperty("User-Agent",
-        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+            // Setup HTTP Request
+            httpConn.setRequestMethod(HttpConnection.GET);
+            httpConn.setRequestProperty("User-Agent",
+                    "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
 
 
-      int respCode = httpConn.getResponseCode();
-      if (respCode == httpConn.HTTP_OK) {
-        StringBuffer sb = new StringBuffer();
-        os = httpConn.openOutputStream();
-        is = httpConn.openDataInputStream();
-        int chr;
-        while ((chr = is.read()) != -1)
-          sb.append((char) chr);
+            int respCode = httpConn.getResponseCode();
+            if (respCode == httpConn.HTTP_OK) {
+                StringBuffer sb = new StringBuffer();
+                os = httpConn.openOutputStream();
+                is = httpConn.openDataInputStream();
+                int chr;
+                while ((chr = is.read()) != -1) {
+                    sb.append((char) chr);
+                }
 
-       json =sb.toString();
-        System.out.println( sb.toString());
-      }
-      else {
-        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
-      }}catch(Exception e){
-          
-      
-
-      } finally {
-        if(is!= null)
-            try {
-                is.close();
-            } catch (IOException ex) {
+                json = sb.toString();
+                System.out.println(sb.toString());
+            } else {
+                System.out.println("Error in opening HTTP Connection. Error#" + respCode);
             }
-          if(os != null)
-            try {
-                os.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+        } catch (Exception e) {
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException ex) {
+                }
             }
-      if(httpConn != null)
-            try {
-                httpConn.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
-     
+            if (httpConn != null) {
+                try {
+                    httpConn.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        }
     }
-    }
 
-public String getTwitterAuthURL(String serverIP, int port) {
-        String sendURL = "/authenticate/get_twitter_url";
+    public String getTwitterAuthURL(String serverIP, int port) {
+        String sendURL = "/authenticate/" + USER_ID + "/get_twitter_url";
         return getHttpResponse(serverIP, port, sendURL);
     }
     
@@ -3678,7 +3737,7 @@ public String getTwitterAuthURL(String serverIP, int port) {
             return true;
     }
     
-    public String getHttpResponse(String serverIP, int port, String url){
+    public String getHttpResponse(String serverIP, int port, String url) {
         url = "http://" + serverIP + ":" + port + url;
         System.out.println(url);
         InputStream is = null;
@@ -3738,95 +3797,92 @@ public String getTwitterAuthURL(String serverIP, int port) {
                 }
             }
         }
-        
+
         return "n/a";
     }
     
-    public static String getInterests() /*this method should intiate the connection between the server and the mobile client which
-                         should return the json file of list of stories according to the client interests.*/
-    {
-       
-          HttpConnection httpConn = null;
-      String url = "http://192.168.26.148:3000/user_add_interests?id=1&format=json" ;  
-
-    InputStream is = null;
-    OutputStream os = null;
-
-    try {
-      // Open an HTTP Connection object
-      httpConn = (HttpConnection)Connector.open(url);
-
-      // Setup HTTP Request
-      httpConn.setRequestMethod(HttpConnection.GET);
-      httpConn.setRequestProperty("User-Agent",
-        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
-
-
-      int respCode = httpConn.getResponseCode();
-      if (respCode == httpConn.HTTP_OK) {
-        StringBuffer sb = new StringBuffer();
-        os = httpConn.openOutputStream();
-        is = httpConn.openDataInputStream();
-        int chr;
-        while ((chr = is.read()) != -1)
-          sb.append((char) chr);
-
-    String x = sb.toString();
-    
-        System.out.println( sb.toString());
-        return x;
-      }
-      else {
-        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
-      }}catch(Exception e){
-          
-      
-
-      } finally {
-        if(is!= null)
-            try {
-                is.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-          if(os != null)
-            try {
-                os.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-      if(httpConn != null)
-            try {
-                httpConn.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-     
-    }
-    return "";
-
-    }
-//        public  void parseJsonInterest(String x) // user to parse json interests
-//{
-//    String interest = "";
-//    for(int i=0; i<x.length(); i++)
-//    {
-//        interest ="";
-//        if(x.charAt(i) == ':')
-//        {
-//            i = i+2;
-//            while(x.charAt(i)!= '"')
-//            {
-//                interest = interest + x.charAt(i);
-//                i++;
-//               
+//    public static String getInterests() /*this method should intiate the connection between the server and the mobile client which
+//    should return the json file of list of stories according to the client interests.*/ {
+//
+//        HttpConnection httpConn = null;
+//        String url = "http://192.168.26.148:3000/user_add_interests?id=1&format=json";
+//
+//        InputStream is = null;
+//        OutputStream os = null;
+//
+//        try {
+//            // Open an HTTP Connection object
+//            httpConn = (HttpConnection) Connector.open(url);
+//
+//            // Setup HTTP Request
+//            httpConn.setRequestMethod(HttpConnection.GET);
+//            httpConn.setRequestProperty("User-Agent",
+//                    "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+//
+//
+//            int respCode = httpConn.getResponseCode();
+//            if (respCode == httpConn.HTTP_OK) {
+//                StringBuffer sb = new StringBuffer();
+//                os = httpConn.openOutputStream();
+//                is = httpConn.openDataInputStream();
+//                int chr;
+//                while ((chr = is.read()) != -1) {
+//                    sb.append((char) chr);
+//                }
+//
+//                String x = sb.toString();
+//
+//                System.out.println(sb.toString());
+//                return x;
+//            } else {
+//                System.out.println("Error in opening HTTP Connection. Error#" + respCode);
 //            }
-//            list.append(interest, null);
-//            System.out.println(interest);
-//             //list.append(interest, null);
+//        } catch (Exception e) {
+//        } finally {
+//            if (is != null) {
+//                try {
+//                    is.close();
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//            if (os != null) {
+//                try {
+//                    os.close();
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//            if (httpConn != null) {
+//                try {
+//                    httpConn.close();
+//                } catch (IOException ex) {
+//                    ex.printStackTrace();
+//                }
+//            }
+//
+//        }
+//        return "";
+//    }
+
+//    public void parseJsonInterest(String x) // user to parse json interests
+//    {
+//        String interest = "";
+//        for (int i = 0; i < x.length(); i++) {
+//            interest = "";
+//            if (x.charAt(i) == ':') {
+//                i = i + 2;
+//                while (x.charAt(i) != '"') {
+//                    interest = interest + x.charAt(i);
+//                    i++;
+//
+//                }
+//                list.append(interest, null);
+//                System.out.println(interest);
+//                //list.append(interest, null);
+//            }
 //        }
 //    }
-//}
         // view one of the comments of a certain story
     public void viewCommentOne(String id,String user,String content,String ups,String downs,String date){
       //  getCommentOne().
@@ -3836,243 +3892,238 @@ public String getTwitterAuthURL(String serverIP, int port) {
          switchDisplayable(null, getCommentOne());
     }
     // parse comments list comming from server
-    public void parseComments(String storyID){
-    HttpConnection httpConn = null;
-      String url = "http://192.168.1.3:3000/stories/"+storyID+"/comments" ;  
-     // String urltest = "http://192.168.1.3:3000/comments/8";
-      String jsonS = getData(url);  
-      System.out.println(jsonS);
-      commentItem [] comments;
-   //   CommentsMany.append(new commentItem(json,this));
-   //   switchDisplayable(null, CommentsMany);
-   // sendData("http://192.168.1.3:3000/stories/:id/comments/downc", "{\"user_id\":\"3\",\"comment_id\":\"1\"}");
-      try {
-			JSONObject json = new JSONObject(jsonS);
-			
-			JSONArray jsonArray = json.getJSONArray("Comments");
-			int total = jsonArray.length();
-		
-                        comments = new commentItem[total];
-			for (int i=0;i<total;i++) {
-				String commJson = jsonArray.getString(i);
-				comments[i] = new commentItem(commJson,this);
-				CommentsMany.append(comments[i]);
-			}
-                        switchDisplayable(null, CommentsMany);
-			
-		} catch (JSONException ex) {
-			ex.printStackTrace();
-		}
-        
-    
-    
-    }
+    public void parseComments(String storyID) {
+        HttpConnection httpConn = null;
+        String url = "http://192.168.1.3:3000/stories/" + storyID + "/comments";
+        // String urltest = "http://192.168.1.3:3000/comments/8";
+        String jsonS = getData(url);
+        System.out.println(jsonS);
+        commentItem[] comments;
+        //   CommentsMany.append(new commentItem(json,this));
+        //   switchDisplayable(null, CommentsMany);
+        // sendData("http://192.168.1.3:3000/stories/:id/comments/downc", "{\"user_id\":\"3\",\"comment_id\":\"1\"}");
+        try {
+            JSONObject json = new JSONObject(jsonS);
 
-   
-   private static String[] split(String original,String separator) {  //string split method
-		    Vector nodes = new Vector();
-		    int index = original.indexOf(separator);
-		    while(index >= 0) {
-		        nodes.addElement( original.substring(0, index) );
-		        original = original.substring(index+separator.length());
-		        index = original.indexOf(separator);
-                    }
-		    nodes.addElement( original );
+            JSONArray jsonArray = json.getJSONArray("Comments");
+            int total = jsonArray.length();
 
-		    String[] result = new String[ nodes.size() ];
-		    if( nodes.size() > 0 ) {
-		        for(int loop = 0; loop < nodes.size(); loop++)
-		        {
-		            result[loop] = (String)nodes.elementAt(loop);
-		     }
+            comments = new commentItem[total];
+            for (int i = 0; i < total; i++) {
+                String commJson = jsonArray.getString(i);
+                comments[i] = new commentItem(commJson, this);
+                CommentsMany.append(comments[i]);
+            }
+            switchDisplayable(null, CommentsMany);
 
-		    } 
-		   return result;
-		}
-		
-		
-   public Image loadImage(String url) throws IOException {
-    HttpConnection hpc = null;
-    DataInputStream dis = null;
-    try {
-      hpc = (HttpConnection) Connector.open(url);
-      int length = (int) hpc.getLength();
-      byte[] data = new byte[length];
-      dis = new DataInputStream(hpc.openInputStream());
-      dis.readFully(data);
-      return Image.createImage(data, 0, data.length);
-    } finally {
-      if (hpc != null)
-        hpc.close();
-      if (dis != null)
-        dis.close();
-    }
-  }
-   
-
-   
-   
-   public void filter(String interest){
-   for(int i=0;i<MainFeed.size();i++){
-        if (MainFeed.get(i) instanceof storyItem){
-          storyItem temp =(storyItem) MainFeed.get(i);
-            if(temp.storyCategory.getText() != interest){
-               MainFeed.delete(i);
-           }
+        } catch (JSONException ex) {
+            ex.printStackTrace();
         }
-   }
-}
+
+
+
+    }
+
+   
+    private static String[] split(String original, String separator) {  //string split method
+        Vector nodes = new Vector();
+        int index = original.indexOf(separator);
+        while (index >= 0) {
+            nodes.addElement(original.substring(0, index));
+            original = original.substring(index + separator.length());
+            index = original.indexOf(separator);
+        }
+        nodes.addElement(original);
+
+        String[] result = new String[nodes.size()];
+        if (nodes.size() > 0) {
+            for (int loop = 0; loop < nodes.size(); loop++) {
+                result[loop] = (String) nodes.elementAt(loop);
+            }
+
+        }
+        return result;
+    }
+
+		
+    public Image loadImage(String url) throws IOException {
+        HttpConnection hpc = null;
+        DataInputStream dis = null;
+        try {
+            hpc = (HttpConnection) Connector.open(url);
+            int length = (int) hpc.getLength();
+            byte[] data = new byte[length];
+            dis = new DataInputStream(hpc.openInputStream());
+            dis.readFully(data);
+            return Image.createImage(data, 0, data.length);
+        } finally {
+            if (hpc != null) {
+                hpc.close();
+            }
+            if (dis != null) {
+                dis.close();
+            }
+        }
+    }
+   
+
+   
+   
+    public void filter(String interest) {
+        for (int i = 0; i < MainFeed.size(); i++) {
+            if (MainFeed.get(i) instanceof storyItem) {
+                storyItem temp = (storyItem) MainFeed.get(i);
+                if (temp.storyCategory.getText() != interest) {
+                    MainFeed.delete(i);
+                }
+            }
+        }
+    }
       boolean flist=false;
     boolean fliked=false;
     boolean fdisliked=false;
     
-   public String [] getfriendslike() throws IOException  {
- String like_url = "http://192.168.1.1:3000/stories/view_friends_like?";
-   String jsonS1 = getData(like_url); 
- String [] friendlist= null;
-  try {
-			JSONObject json = new JSONObject(jsonS1);
-			
-			JSONArray jsonArray = json.getJSONArray("stories");
-			int total = jsonArray.length();
-		
-                        friendlist = new String [total];
-			for (int i=0;i<total;i++) {
-				String commJson = jsonArray.getString(i);
-				friendlist[i] = new String(commJson);
-                        }
-		} catch (JSONException ex) {
-			ex.printStackTrace();
-		}
-  fliked=true;
-   return friendlist;
- 
-   }
- 
- public String [] getfriendsdislike() throws IOException  {
-   String dislike_url = "http://192.168.1.1:3000/stories/view_friends_dislike?";
-  String jsonS2 = getData(dislike_url); 
-    String [] friendlist = null;
-    try {
-			JSONObject json = new JSONObject(jsonS2);
-			
-			JSONArray jsonArray = json.getJSONArray("stories");
-			int total = jsonArray.length();
-		
-                        friendlist = new String [total];
-			for (int i=0;i<total;i++) {
-				String commJson = jsonArray.getString(i);
-				friendlist[i] = new String(commJson);
-				
-			}
-			
-		} catch (JSONException ex) {
-			ex.printStackTrace();
-		}
-    
-    fdisliked=true;
-    return friendlist;
- 
-   }
- 
- 
-   public String [] getrecstory() throws IOException  {
-
-      
-      String mess_url = "http://192.168.1.1:3000/stories/recommend_story?";
-    
-  
-    String jsonS = getData(mess_url);  
-      
-        
-     String [] friendlist= null;  
+    public String[] getfriendslike() throws IOException {
+        String like_url = "http://192.168.1.1:3000/stories/view_friends_like?";
+        String jsonS1 = getData(like_url);
+        String[] friendlist = null;
         try {
-			JSONObject json = new JSONObject(jsonS);
-			
-			JSONArray jsonArray = json.getJSONArray("stories");
-			int total = jsonArray.length();
-		
-                        friendlist = new String [total];
-			for (int i=0;i<total;i++) {
-				String commJson = jsonArray.getString(i);
-				friendlist[i] = new String(commJson);
-				
-			}
-			
-		} catch (JSONException ex) {
-			ex.printStackTrace();
-		}
-       flist=true;
-       return friendlist;
-}
-    
-    
-    public  void parseJsonfriends(String [] choosefriend) // user to parse json frindlist
-{
-    String friend = "";
-    for(int j=0;j<choosefriend.length;j++){
-    for(int i=0; i<choosefriend[j].length(); i++)
-    {
-        friend ="";
-        if(choosefriend[j].charAt(i)=='"' || choosefriend[j].charAt(i)=='{' || choosefriend[j].charAt(i)=='}' || choosefriend[j].charAt(i) == ':'){
-             
-            }else{
-                friend=friend+choosefriend[j].charAt(i);
+            JSONObject json = new JSONObject(jsonS1);
+
+            JSONArray jsonArray = json.getJSONArray("stories");
+            int total = jsonArray.length();
+
+            friendlist = new String[total];
+            for (int i = 0; i < total; i++) {
+                String commJson = jsonArray.getString(i);
+                friendlist[i] = new String(commJson);
             }
-            
-           
+        } catch (JSONException ex) {
+            ex.printStackTrace();
         }
-    choosefriend1.append(friend, null);
+        fliked = true;
+        return friendlist;
+
     }
+ 
+    public String[] getfriendsdislike() throws IOException {
+        String dislike_url = "http://192.168.1.1:3000/stories/view_friends_dislike?";
+        String jsonS2 = getData(dislike_url);
+        String[] friendlist = null;
+        try {
+            JSONObject json = new JSONObject(jsonS2);
+
+            JSONArray jsonArray = json.getJSONArray("stories");
+            int total = jsonArray.length();
+
+            friendlist = new String[total];
+            for (int i = 0; i < total; i++) {
+                String commJson = jsonArray.getString(i);
+                friendlist[i] = new String(commJson);
+
+            }
+
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+
+        fdisliked = true;
+        return friendlist;
+
+    }
+ 
+ 
+    public String[] getrecstory() throws IOException {
+
+
+        String mess_url = "http://192.168.1.1:3000/stories/recommend_story?";
+
+
+        String jsonS = getData(mess_url);
+
+
+        String[] friendlist = null;
+        try {
+            JSONObject json = new JSONObject(jsonS);
+
+            JSONArray jsonArray = json.getJSONArray("stories");
+            int total = jsonArray.length();
+
+            friendlist = new String[total];
+            for (int i = 0; i < total; i++) {
+                String commJson = jsonArray.getString(i);
+                friendlist[i] = new String(commJson);
+
+            }
+
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+        flist = true;
+        return friendlist;
+    }
+    
+    
+    public void parseJsonfriends(String[] choosefriend) // user to parse json frindlist
+    {
+        String friend = "";
+        for (int j = 0; j < choosefriend.length; j++) {
+            for (int i = 0; i < choosefriend[j].length(); i++) {
+                friend = "";
+                if (choosefriend[j].charAt(i) == '"' || choosefriend[j].charAt(i) == '{' || choosefriend[j].charAt(i) == '}' || choosefriend[j].charAt(i) == ':') {
+                } else {
+                    friend = friend + choosefriend[j].charAt(i);
+                }
+
+
+            }
+            choosefriend1.append(friend, null);
+        }
     }
 
-     public  void parseJsonfriendsliked(String [] choosefriend) // user to parse json frindlist
-{
-    String friend = "";
-    for(int j=0;j<choosefriend.length;j++){
-    for(int i=0; i<choosefriend[j].length(); i++)
+    public void parseJsonfriendsliked(String[] choosefriend) // user to parse json frindlist
     {
-        friend ="";
-        if(choosefriend[j].charAt(i)=='"' || choosefriend[j].charAt(i)=='{' || choosefriend[j].charAt(i)=='}' || choosefriend[j].charAt(i) == ':'){
-             
-            }else{
-                friend=friend+choosefriend[j].charAt(i);
+        String friend = "";
+        for (int j = 0; j < choosefriend.length; j++) {
+            for (int i = 0; i < choosefriend[j].length(); i++) {
+                friend = "";
+                if (choosefriend[j].charAt(i) == '"' || choosefriend[j].charAt(i) == '{' || choosefriend[j].charAt(i) == '}' || choosefriend[j].charAt(i) == ':') {
+                } else {
+                    friend = friend + choosefriend[j].charAt(i);
+                }
+
+
             }
-            
-           
+            liked.append(friend, null);
         }
-    liked.append(friend, null);
     }
-}
      
-      public  void parseJsonfriendsdisliked(String [] choosefriend) // user to parse json frindlist
-{
-    String friend = "";
- for(int j=0;j<choosefriend.length;j++){
-    for(int i=0; i<choosefriend[j].length(); i++)
+    public void parseJsonfriendsdisliked(String[] choosefriend) // user to parse json frindlist
     {
-        friend ="";
-        if(choosefriend[j].charAt(i)=='"' || choosefriend[j].charAt(i)=='{' || choosefriend[j].charAt(i)=='}' || choosefriend[j].charAt(i) == ':'){
-             
-            }else{
-                friend=friend+choosefriend[j].charAt(i);
+        String friend = "";
+        for (int j = 0; j < choosefriend.length; j++) {
+            for (int i = 0; i < choosefriend[j].length(); i++) {
+                friend = "";
+                if (choosefriend[j].charAt(i) == '"' || choosefriend[j].charAt(i) == '{' || choosefriend[j].charAt(i) == '}' || choosefriend[j].charAt(i) == ':') {
+                } else {
+                    friend = friend + choosefriend[j].charAt(i);
+                }
+
+
             }
-           
-           
+            disliked.append(friend, null);
         }
-     disliked.append(friend, null);
- }   
- }
+    }
    public  void insertfriendsintolist () throws IOException
-{
-    String[] x = getrecstory();
-     String[] y = getfriendslike();
-      String[] z = getfriendsdislike();
-    
-    if(flist){
-    parseJsonfriends(x);
-    flist=false;
-}
+    {
+        String[] x = getrecstory();
+         String[] y = getfriendslike();
+          String[] z = getfriendsdislike();
+
+        if(flist){
+        parseJsonfriends(x);
+        flist=false;
+    }
     else{
         if(fliked){
             parseJsonfriendsliked(x);
@@ -4122,18 +4173,17 @@ public String getTwitterAuthURL(String serverIP, int port) {
    
     void viewReq(int req_id, String frName, String frEmail) {
         reqItem com = new reqItem(req_id, frName, frEmail, true);
-       
         getOneReq().append(com);
-         switchDisplayable(null, getOneReq());
+        switchDisplayable(null, getOneReq());
     }
        
     public  void test ()
-{
-    String x = getInterests();
-   String y ;
-   y = x.substring(2, x.length()-2);
-   parseJsonfile(y);   
-}
+    {
+        String x = getDataServer("http://192.168.26.148:3000/user_add_interests?id=1&format=json");
+        String y ;
+        y = x.substring(2, x.length()-2);
+        parseJsonfile(y);   
+    }
 
     public  void parseJsonfile(String x)
     {
@@ -4150,11 +4200,6 @@ public String getTwitterAuthURL(String serverIP, int port) {
             }
             
             interest = interest + x.charAt(i);
-            
-            
-            
-
-//            
         }
          String [] z = split(interest);
          int k=0;
@@ -4167,33 +4212,100 @@ public String getTwitterAuthURL(String serverIP, int port) {
     }
     
     private String[] split(String original) {
-Vector nodes = new Vector();
-String separator = "   ";
-System.out.println("split start...................");
-// Parse nodes into vector
-int index = original.indexOf(separator);
-while(index>=0) {
-nodes.addElement( original.substring(0, index) );
-original = original.substring(index+separator.length());
-index = original.indexOf(separator);
-}
-// Get the last node
-nodes.addElement( original );
+        Vector nodes = new Vector();
+        String separator = "   ";
+        System.out.println("split start...................");
+        // Parse nodes into vector
+        int index = original.indexOf(separator);
+        while(index>=0) {
+            nodes.addElement( original.substring(0, index) );
+            original = original.substring(index+separator.length());
+            index = original.indexOf(separator);
+        }
+        // Get the last node
+        nodes.addElement( original );
 
-// Create splitted string array
-String[] result = new String[ nodes.size() ];
-if( nodes.size()>0 ) {
-for(int loop=0; loop<nodes.size(); loop++)
-{
-result[loop] = (String)nodes.elementAt(loop);
-System.out.println(result[loop]);
-}
+        // Create splitted string array
+        String[] result = new String[ nodes.size() ];
+        if( nodes.size()>0 ) {
+            for(int loop=0; loop<nodes.size(); loop++)
+            {
+                result[loop] = (String)nodes.elementAt(loop);
+                System.out.println(result[loop]);
+                }
 
-}
+            }
 
-return result;
-}
-   
+        return result;
+    }
+    
+   public static String getDataServer(String link) /*
+     * this method should intiate the connection between the server and the
+     * mobile client which should return the json file of list of stories
+     * according to the client interests.
+     */ {
+        
+        HttpConnection httpConn = null;
+        String url = link;
+
+        InputStream is = null;
+        OutputStream os = null;
+
+        try {
+            // Open an HTTP Connection object
+            httpConn = (HttpConnection) Connector.open(url);
+
+            // Setup HTTP Request
+            httpConn.setRequestMethod(HttpConnection.GET);
+            httpConn.setRequestProperty("User-Agent",
+                    "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+
+            int respCode = httpConn.getResponseCode();
+            if (respCode == httpConn.HTTP_OK) {
+                StringBuffer sb = new StringBuffer();
+                os = httpConn.openOutputStream();
+                is = httpConn.openDataInputStream();
+                int chr;
+                while ((chr = is.read()) != -1) {
+                    sb.append((char) chr);
+                }
+
+                String x = sb.toString();
+
+                System.out.println(sb.toString());
+                return x;
+            } else {
+                System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+            }
+        } catch (Exception e) {
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (os != null) {
+                try {
+                    os.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (httpConn != null) {
+                try {
+                    httpConn.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+        }
+        return "";
+
+    }
 
    
     
