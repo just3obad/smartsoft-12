@@ -13,9 +13,9 @@ class Haccount < ActiveRecord::Base
 
   # this methods generates a verification code for the user and adds an entry to Verification_Code
   def generateVerificationCode?()
-  @verification_code = VerificationCode.find_by_account_id(self.id)
+  @verification_code = VerificationCode.find_by_user_id(self.id)
       if @verification_code.nil? then
-      VerificationCode.create :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join,:account_id=>self.id, :verified=>false
+      VerificationCode.create :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join,:user_id=>self.id, :verified=>false
       return true               
     else                        
       return false              
@@ -24,7 +24,7 @@ class Haccount < ActiveRecord::Base
   
   #This methods verfies the account
   def verifyAccount?(verCode)
-    @verEntry = VerificationCode.find_by_account_id(self.id)
+    @verEntry = VerificationCode.find_by_user_id(self.id)
     if @verEntry.code == verCode then
       @verEntry.update_attributes(verified: true)
       return true
@@ -36,11 +36,11 @@ class Haccount < ActiveRecord::Base
  
   #This methods resets the verification code
   def resendCode?
-    @verEntry = VerificationCode.find_by_account_id(self.id)
+    @varEntry = VerificationCode.find_by_user_id(self.id)
     if @varEntry.verified
        return false
     else
-    @verEntry.update_attributes(code: ( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join)
+    @varEntry.update_attributes(code: ( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join)
        return true
     end
   end

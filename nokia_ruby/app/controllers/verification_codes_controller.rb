@@ -4,24 +4,28 @@ class VerificationCodesController < ApplicationController
   def verify
 
   @code = params[:code]
-  @account = GaheemAccount.find_by_id(params[:id])
+  @account = Haccount.find_by_id(params[:id])
     respond_to do |format|
       if @account.verifyAccount?(@code)
-      format.json { render json: @account, notice: "account succesfully verified" }
+      @result = true
+      format.json { render json: @result }
       else
-      format.json { render json: @account.errors, status: :unprocessable_entity }
+      @result = false
+      format.json { render json: @result }
       end
     end
   end
 
   def resend
-  @account = GaheemAccount.find_by_id(params[:id])
+  @account = Haccount.find_by_id(params[:id])
     respond_to do |format|
       if @account.resendCode?
-      Emailer.deliver_registration_confirmation(@account)
-      format.json { render json: @account, notice: "Verification Code Resent" }
+      @result = true
+      #Emailer.deliver_registration_confirmation(@account)
+      format.json { render json: @result }
       else
-      format.json { render json: @account.errors, status: :unprocessable_entity }
+      @result = false
+      format.json { render json: @result }
       end
     end
   end
