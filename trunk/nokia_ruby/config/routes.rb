@@ -30,7 +30,7 @@ NokiaRuby::Application.routes.draw do
   match "h_accounts/:id/resend" => "verification_codes#resend"
   match "h_accounts" => "h_accounts#index"
   match "/users/:id" => "users#feed"
-  match "admins?search=:id" => "admins#search"
+  match "/admins/search" => "admins#search"
   match "/add"  => "interests#new", :as => :new
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
