@@ -1,5 +1,9 @@
 module StoriesHelper
 
+
+
+
+
 #This method gets the number of shares of a certain story using its id in the last 30 days
 def get_no_of_shares(story_id)
 
