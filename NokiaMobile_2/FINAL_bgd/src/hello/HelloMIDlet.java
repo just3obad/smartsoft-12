@@ -1468,7 +1468,11 @@ public void jsonReadMoree() {
     public List getConnectAccount() {
         if (connectAccount == null) {//GEN-END:|80-getter|0|80-preInit
         // write pre-init user code here
-            
+            /*
+             * This method redirects different Social acocunts to their 
+             * corresponding flow. If the social account is not included
+             * yet, an alert method will be displayed. 
+             */
             connectAccount = new List("Network", Choice.IMPLICIT);//GEN-BEGIN:|80-getter|1|80-postInit
             connectAccount.append("Twitter", null);
             connectAccount.append("Facebook", null);
