@@ -55,7 +55,7 @@ class Admin < ActiveRecord::Base
 
     for name_query in name_match
       query_result += User.all.select {|user| not user.first_name.nil? and
-                                      (user.first_name =~ %r'#{name_match}' or name_query.downcase =~ %r'#{user.first_name}')}
+                                      (user.first_name.downcase =~ %r'#{name_query}' or name_query.downcase =~ %r'#{user.first_name}')}
     end
     # Matched names
     username_query = query
@@ -69,8 +69,8 @@ class Admin < ActiveRecord::Base
 
     for username_query in username_match
       query_result += User.all.select {|user| not user.name.nil? and
-                                      (user.name.downcase =~ %r'#{username_query.downcase}' or 
-                                       username_query.downcase =~ %r'#{user.name.downcase}')}
+                                       (user.name.downcase =~ %r'#{username_query.downcase}' or 
+                                        username_query.downcase =~ %r'#{user.name.downcase}')}
     end
     # Matched username
 
