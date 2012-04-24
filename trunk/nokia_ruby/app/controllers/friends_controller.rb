@@ -1,22 +1,30 @@
 class FriendsController < ApplicationController
 
+def index
+    @gaheem_accounts = Friends.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @gaheem_accounts }
+    end
+  end
 def req
-    @user = params[:user_id]
-     @fr = params[:friend_name]
+    @user = params[:id]
+    @fr = params[:friend_name]
     @friend = User.where(:name => @fr).select("id")
     unless @friend.nil?
       if Friends.request(@user, @friend)
         flash[:notice] = "Friendship with #{@friend.full_name} requested"
-         respond_to do |format|
     format.json { render json: "1" }
  end
       else
         flash[:notice] = "Friendship with #{@friend.full_name} cannot be requested"
-      end
-    end
-    respond_to do |format|
+        respond_to do |format|
     format.json { render json: "0" }
  end
+      end
+    end
+   
   end
   
   
