@@ -8,10 +8,7 @@ class Friends < ActiveRecord::Base
   validates :sender, presence: true
   validates :stat, presence: true
   
-  map.resources :users do |user|
-  user.resources :friends
-  end
-  
+ 
   
   def new
    @friendship1 = Friends.new
@@ -56,7 +53,6 @@ def destroy
 @friend = User.find(params[:friend_id])
 @friendship1 = @user.friendships.find_by_friend_id(params[:id]).destroy
 @friendship2 = @friend.friendships.find_by_user_id(params[:friend_id]).destroy
-end
 end
   
 end
