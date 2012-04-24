@@ -35,6 +35,14 @@ public class commentItem extends CustomItem {
     int likesX, likesY, dislikesX, dislikesY; //positions of the thumbs up and down images "to be used for listeners"
     Image likes = null, dislikes = null; //thumbs up and down images
 
+    
+    public commentItem(String jsonString, HelloMIDlet mid) {
+        super(null);
+        fromJson(jsonString);
+        MIDlet = mid;
+        fancyDateTime(date);
+    }
+    
     public commentItem(String id, String us, String cont, String up, String down, String dateCreated, boolean lon) {
         super(null);
         comment_id = id;
@@ -60,11 +68,6 @@ public class commentItem extends CustomItem {
 
     }
 
-    public commentItem(String jsonString, HelloMIDlet mid) {
-        super(null);
-        fromJson(jsonString);
-        MIDlet = mid;
-    }
     // make time pretty
 
     public String prettifyTime(String h, String mins) {
@@ -244,9 +247,16 @@ public class commentItem extends CustomItem {
         dislikesY = n + 8;
         int up = Integer.parseInt(ups);
         int down = Integer.parseInt(downs);
-        up = 100;
-        down = 20;
         int tot = up + down;
+        if(tot==0){
+            g.setColor(150, 150, 150);
+            g.fillRoundRect(14, n + 40, 200, 8, 7, 7);
+            Font f3 = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
+            g.setColor(12, 16, 255);
+            g.setFont(f3);
+            g.drawString(date, 17, n + 13, 0);
+            return;
+        }
         int upR = ((up * 200) / tot);
         int downR = ((down * 200) / tot);
         g.setColor(67, 186, 70);
