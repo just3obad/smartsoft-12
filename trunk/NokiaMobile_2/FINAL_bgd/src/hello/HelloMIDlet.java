@@ -318,8 +318,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 
     public void up(String comment_id) {
-        currentStoryID = 8; // for testing
-        sendData("http://192.168.1.3:3000/stories/"+currentStoryID+"/comments/upc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + user_id + "\"}");
+     //   currentStoryID = 8; // for testing
+        sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/upc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + user_id + "\"}");
         CommentsMany = null;  //make null to re-init
         before = true; //to re-init textfield in the CommentsMany form
         Dummy = null;  //make null to re-init
@@ -328,8 +328,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 
     public void down(String comment_id) {
-        currentStoryID = 8; // for testing
-        sendData("http://192.168.1.3:3000/stories/"+currentStoryID+"/comments/downc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + user_id + "\"}");
+   //     currentStoryID = 8; // for testing
+        sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/downc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + user_id + "\"}");
         CommentsMany = null;  //make null to re-init
         before = true;  //to re-init textfield in the CommentsMany form
         Dummy = null;  //make null to re-init
@@ -528,9 +528,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 if (comment.length() == 0) {
                     switchDisplayable(getCommentFail(), displayable);  //show failure alert
                 } else {
-                    currentStoryID = 8; //for testing
-                    user_id = 3; //for testing
-                    String url = "http://192.168.1.3:3000/stories/" + currentStoryID + "/comments/new";
+                //    currentStoryID = 8; //for testing
+                //    user_id = 3; //for testing
+                    String url = "http://"+SERVER_IP+":3000/stories/" + currentStoryID + "/comments/new";
                     String data = "{\"user_id\":\"" + user_id + "\",\"story_id\":\"" + currentStoryID + "\",\"content\":\"" + comment + "\"}";
                     sendData(url, data);
                     textField.delete(0, getTextField().getString().length()); //cleat text in textfield
@@ -1330,7 +1330,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             CommentsMany.addCommand(getBackToStory());
             CommentsMany.addCommand(getAddComment());
             CommentsMany.setCommandListener(this);//GEN-END:|27-getter|1|27-postInit
-            currentStoryID = 8; //for testing
+        //    currentStoryID = 8; //for testing
             parseComments(currentStoryID + "");
 
 
@@ -4164,27 +4164,27 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     // parse comments list comming from server
     public void parseComments(String storyID) {
         HttpConnection httpConn = null;
-        String url = "http://192.168.1.3:3000/stories/" + storyID + "/comments";
+        String url = "http://"+SERVER_IP+":3000/stories/" + storyID + "/comments";
         // String urltest = "http://192.168.1.3:3000/comments/8";
-        String jsonS = getData(url);
-        System.out.println(jsonS);
-        commentItem[] comments;
+        String jsonS = getData(url); //get json data
+     //   System.out.println(jsonS);
+        commentItem[] comments; //commentItem array to be added to CommentsMany form
         //   CommentsMany.append(new commentItem(json,this));
         //   switchDisplayable(null, CommentsMany);
         // sendData("http://192.168.1.3:3000/stories/:id/comments/downc", "{\"user_id\":\"3\",\"comment_id\":\"1\"}");
         try {
-            JSONObject json = new JSONObject(jsonS);
+            JSONObject json = new JSONObject(jsonS);  // create json object from string
 
-            JSONArray jsonArray = json.getJSONArray("Comments");
+            JSONArray jsonArray = json.getJSONArray("Comments");  // get array
             int total = jsonArray.length();
 
-            comments = new commentItem[total];
+            comments = new commentItem[total];  // init commentItem array
             for (int i = 0; i < total; i++) {
-                String commJson = jsonArray.getString(i);
-                comments[i] = new commentItem(commJson, this);
-                CommentsMany.append(comments[i]);
+                String commJson = jsonArray.getString(i); // get json representation of comment
+                comments[i] = new commentItem(commJson, this); // create a commentItem using it
+                CommentsMany.append(comments[i]); // append commentItem tp form
             }
-            switchDisplayable(null, CommentsMany);
+            switchDisplayable(null, CommentsMany); 
 
         } catch (JSONException ex) {
             ex.printStackTrace();
