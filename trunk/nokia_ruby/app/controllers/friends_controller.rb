@@ -2,10 +2,14 @@ class FriendsController < ApplicationController
 
 def req
     @user = params[:user_id]
-    @friend = User.where(:name => friend_name).select("id")
+     @fr = params[:friend_name]
+    @friend = User.where(:name => @fr).select("id")
     unless @friend.nil?
-      if Friendship.request(@user, @friend)
+      if Friends.request(@user, @friend)
         flash[:notice] = "Friendship with #{@friend.full_name} requested"
+         respond_to do |format|
+    format.json { render json: "1" }
+ end
       else
         flash[:notice] = "Friendship with #{@friend.full_name} cannot be requested"
       end
@@ -18,28 +22,40 @@ def req
   
   def accept
    @user = params[:user_id]
-    @friend = User.where(:name => friend_name).select("id")
+    @fr = params[:friend_name]
+    @friend = User.where(:name => @fr).select("id")
     unless @friend.nil?
-      if Friendship.accept(@user, @friend)
+      if Friends.accept(@user, @friend)
         flash[:notice] = "Friendship with #{@friend.full_name} accepted"
+         respond_to do |format|
+    format.json { render json: "1" }
+ end
       else
         flash[:notice] = "Friendship with #{@friend.full_name} cannot be accepted"
       end
     end
-    redirect_to :controller => :user, :action => :index
+    respond_to do |format|
+    format.json { render json: "0" }
+ end
   end
 
   def reject
    @user = params[:user_id]
-    @friend = User.where(:name => friend_name).select("id")
+   @fr = params[:friend_name]
+   @friend = User.where(:name => @fr).select("id")
     unless @friend.nil?
-      if Friendship.reject(@user, @friend)
+      if Friends.reject(@user, @friend)
         flash[:notice] = "Friendship with #{@friend.full_name} rejected"
+        respond_to do |format|
+    format.json { render json: "1" }
+ end
       else
         flash[:notice] = "Friendship with #{@friend.full_name} cannot be rejected"
+        respond_to do |format|
+    format.json { render json: "0" }
+ end
       end
     end
-    redirect_to :controller => :user, :action => :index
   end
 
 end
