@@ -3592,17 +3592,46 @@ public void jsonReadMoree() {
         }
     }
 
+    /**
+     * This method triggers the first phase of the authentication between 
+     * twitter and our system. It triggers the authentication from the 
+     * twitter_request_controller.rb from the server and gets in return an 
+     * authorization url. For more info about the authorization process, check 
+     * twitter_request_controller.rb
+     * @param serverIP: The IP of the server 
+     * @param port: The port of the server
+     * @return a string which corresponds to the authorization URL which the 
+     * user needs to go to to authorize our app.
+     */
     public String getTwitterAuthURL(String serverIP, int port) {
         String sendURL = "/authenticate/" + user_id + "/get_twitter_url";
         return getHttpResponse(serverIP, port, sendURL);
     }
     
+    /**
+     * This method checks if the user with userID has a twitter account or not. 
+     * This is done by calling the corresponding method (exists?) on the server
+     * backend.
+     * @param serverIP
+     * @param port
+     * @param userID
+     * @return boolean if the user already have a twitter account
+     */
     public boolean isTwitterAccountExists(String serverIP, int port, int userID){
         String sendURL = "/twitter/" + userID + "/exists";
         String resp = getHttpResponse(serverIP, port, sendURL);
         return resp.equals("true");
     }
     
+    /**
+     * This method tries to create a new twitter account and hooks it with the
+     * user of id userID. This is done by calling the corresponding method in 
+     * twitter_requests_controller.rb
+     * @param serverIP
+     * @param port
+     * @param userID
+     * @return boolean if the creation was successfull
+     */
     public boolean createTwitterAccount(String serverIP, int port, int userID){
         String sendURL = "/authenticate/" + userID + "/new_twitter_account";
         String resp = getHttpResponse(serverIP, port, sendURL);
@@ -3614,6 +3643,17 @@ public void jsonReadMoree() {
             return true;
     }
     
+    /**
+     * This is a helper method in which it takes a crertain IP, port and URL
+     * then makes the actual url by appending IP, port and url into one string.
+     * Then it sends the http request and open a thread to take the response 
+     * from the server. if problems occurred, a string 'n/a' is returned
+     * @param serverIP
+     * @param port
+     * @param url
+     * @return String which is the response of the server or 'n/a' if problems
+     * occurred
+     */
     public String getHttpResponse(String serverIP, int port, String url) {
         url = "http://" + serverIP + ":" + port + url;
 //        System.out.println("Getting http response for " + url);
