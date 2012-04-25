@@ -24,8 +24,8 @@ has_many :friendships, :dependent => :destroy
   
  # gets the shared stories of friends of a user
   def get_friends_stories()
-    friendsSent = Friends.find_all_by_sender_and_stat(self.id,1) #find all friends who approved my request
-    friendsRec = Friends.find_all_by_receiver_and_stat(self.id,1) #find all friends whom I approved
+    friendsSent = Friend.find_all_by_sender_and_stat(self.id,1) #find all friends who approved my request
+    friendsRec = Friend.find_all_by_receiver_and_stat(self.id,1) #find all friends whom I approved
     allFriends = friendsSent + friendsRec  # get all my friends by appending lists
     shares = Array.new # init shares array
     allFriends.each do |friend| # for all my friends
