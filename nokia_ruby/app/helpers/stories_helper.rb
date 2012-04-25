@@ -242,7 +242,7 @@ sdate = rss.items[i].date
 sdescription =  rss.items[i].description
 
 #check if the story already exists in the database
-count_of_stories_with_same_title = Story.where(:title => stitle).count
+count_of_stories_with_same_title = Story.where(:title => stitle).select("count(story_id)")
 
 #if it is a new story, it will enter automatically
 if count_of_stories_with_same_title == 0
@@ -287,6 +287,5 @@ end
 #return the list after looping on all the entered interests
   return @stories
   end
-
 
 end
