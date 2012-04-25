@@ -149,7 +149,6 @@ end
 
 def view_friends_like
 
-  @storyid=params[:sid]
   @userid=params[:uid]
   
   @flistlike=Array.new
@@ -163,7 +162,6 @@ end
 
 def view_friends_dislike
 
-    @storyid=params[:sid]
     @userid=params[:uid]
 
   @flistdislike=Array.new
