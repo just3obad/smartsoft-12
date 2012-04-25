@@ -242,7 +242,7 @@ sdate = rss.items[i].date
 sdescription =  rss.items[i].description
 
 #check if the story already exists in the database
-count_of_stories_with_same_title = Story.where(:title => stitle).select("count(story_id)")
+count_of_stories_with_same_title = Story.where(:title => stitle).select("count(story id)")
 
 #if it is a new story, it will enter automatically
 if count_of_stories_with_same_title == 0
@@ -254,7 +254,7 @@ elsif
 #if the story exists in the database it will enter the array without modifications
 #listOfStories[i] = 
 
-sid = Story.where(:title => stitle).select("story_id").first
+sid = Story.where(:title => stitle).select("story id").firsts
 listOfStories[i] = Story.find(sid)
 end
 i+=1
