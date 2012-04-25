@@ -77,9 +77,9 @@ public class createStories {
             while(temp.indexOf("id")>=0) { //loop till no more id written
                 int idOccur = temp.indexOf("id");    //get first occurance of it
                 int titleOccur = temp.indexOf("title"); 
-                int bodyOccur = temp.indexOf("body");
+                int bodyOccur = temp.indexOf("content");
                 int rankOccur = temp.indexOf("rank");
-                int imageOccur = temp.indexOf("image");
+                int imageOccur = temp.indexOf("media_link");
                 int categoryOccur = temp.indexOf("category");
                 idOccur+=2;
                 id = temp.substring(idOccur,titleOccur-1);
