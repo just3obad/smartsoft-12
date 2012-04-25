@@ -226,3 +226,134 @@ div.well-user-component:hover {
 	float:right;
 	margin-left:25px;
 }
+
+
+.well-story-component {
+  background-color:#e0e0e0;
+  margin-bottom:20px;
+  width:600px;
+  height:80px;
+  border:1px solid #f89406;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+}
+
+.thumbnail-story-component {
+  display: block;
+  margin:2px;
+  float:left;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+div.well-story-component:hover {
+  border-color: #c67605;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+.story-component-info{
+	float:left;
+	width:515px;
+	height:80px;
+
+	border-left:3px solid #ddd;
+}
+.story-component-text{
+   color:#999;
+}
+.story-component-button-absolute{
+	  font-weight: normal;
+	 text-transform: none;
+	float:right;
+	margin-left:25px;
+}
+
+
+.thumbnail-interest-page {
+  display: block;
+  margin:2px;
+ width:320px;
+ height:320px;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+a.thumbnail-interest-page:hover {
+  border-color: #0088cc;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+.interest-page-text{
+   color:#999;
+}
+.intereset-page-links{
+	  font-weight: normal;
+	 text-transform: none;
+
+}
+.interest-page-description{
+	float:left;
+	width:320px;
+
+}
+.interest-page-well
+{
+	  background-color:#e5e5e5;
+	  margin-bottom:20px;
+	  padding:19px;
+	  min-height:20px;
+	  border:1px solid #eeeeee;
+	  border:1px solid rgba(0,0,0,0.05);
+	  -webkit-border-radius:4px;
+	  -moz-border-radius:4px;
+	  border-radius:4px;
+	  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	  box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+
+}
+.main-right-interset{
+	   width:1000px;
+	margin-left:10px;
+	padding-left:20px;
+	padding-bottom:20px;
+		float:left;
+}
+.middle-interest-panel{
+   width:320px;
+margin-left:10px;
+padding-left:20px;
+padding-bottom:20px;
+	float:left;
+}
+.right-interest-panel{
+	
+   width:650px;
+margin-left:20px;
+padding-left:20px;
+padding-bottom:20px;
+	float:left;
+}
+
+
+.interest-control-center{
+	margin:10px;
+}
+.interest-control-absolute {
+	position:absolute;
+	float:left;
+}
