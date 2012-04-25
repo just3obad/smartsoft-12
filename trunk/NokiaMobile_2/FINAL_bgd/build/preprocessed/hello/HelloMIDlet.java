@@ -27,7 +27,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     //static String SERVER_IP = "172.20.10.4";
     static String SERVER_IP = "192.168.1.64";
     static int PORT = 3000;
-    static int user_id = 2;
     // YAHIA END <-- lol..Menisy! :p
     String url;
     int currentStoryID;
@@ -37,6 +36,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     String json;
     //  int user_id; // The user id of logged in 
     String currentStoryString;
+    int userID;
 //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
@@ -105,9 +105,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command accept;
     private Command backCommand12;
     private Command goToVerification;
+    private Command backCommand14;
+    private Command backCommand13;
+    private Command choose;
     private Command viewCommentsMany;
     private Command FilterStories1;
     private Command FilterStories;
+    private Command okCommand13;
+    private Command itemCommand;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -178,8 +183,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert URLCorrupted;
     private Form manyReq;
     private Form oneReq;
+    private Form Toggle;
+    private ChoiceGroup choiceGroup;
+    private Form interestConfirm;
     private Alert StorynotFound;
     private Form Dummy;
+    private Alert AlreadyVerified;
+    private Alert ConnectionError;
+    private Gauge indicator5;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -194,6 +205,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public OutputStream checkConnOS1;
     public String response1;
     int hID;
+    Vector interests ,user;
+    static String json1 = "[\"sports\" ,\"cars\" ,\"nature\" ,{\"created_at\":\"2012-04-22T21:31:19Z\",\"name\":\"sports\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"deleted\":null,\"description\":\"shfgsgsgts\",\"id\":1,\"image\":\"http://www.floral-directory.com/flower.gif\",\"name\":\"science\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"nature\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"cars\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"music\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"arts\",\"updated_at\":\"2012-04-22T21:31:19Z\"}]";
 
     /**
      * The HelloMIDlet constructor.
@@ -201,6 +214,20 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public HelloMIDlet() {
     }
 
+    public void getUserID(String details){
+        int ind = details.indexOf("\"id\":");
+        ind += 5;
+        String ret = "";
+        while(details.charAt(ind) != ','){
+            System.out.println(details.charAt(ind));
+            ret = ret + details.charAt(ind);
+            ind++;
+        }
+        System.out.println(ret);
+        int reti = Integer.parseInt(ret);
+        userID = reti;
+    }
+    
     public Image getImage1(String s) {
         if (image1 == null) {
             try {
@@ -212,7 +239,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return image1;
     }
 
-    public void jsonReadMoree() {
+    public void jsonReadMoree() { //fill in readmore form with content of story item
         //currentStoryString
         //String url = "id: 1 title:\"FaceBook \" body To launch the high quality TV channel TNT in Belgium we placed a big red push button on an average Flemish square of an average Flemish town. A sign with the...http://www.3run.co.uk/ - Home of the 3RUN Famly World Wide http://www.3runshop.com/ - Free Running Trainers, Clothing, DVD's, Bags, Accessories. 3RUN  : rank 5 image : /x.png category : arts";
         //String s = url;  
@@ -312,14 +339,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     public void friendsConnection() {
 
-        String url = "http://192.168.26.136:3000/users/friends_feed?id=" + user_id;
+        String url = "http://192.168.26.136:3000/users/friends_feed?id=" + userID;
         String friendsStories = recieveData(url);
         createStories st = new createStories(friendsStories, FriendsStories, displayable, this);
     }
 
     public void up(String comment_id) {
-        currentStoryID = 8; // for testing
-        sendData("http://192.168.1.3:3000/stories/"+currentStoryID+"/comments/upc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + user_id + "\"}");
+     //   currentStoryID = 8; // for testing
+        sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/upc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + userID + "\"}");
         CommentsMany = null;  //make null to re-init
         before = true; //to re-init textfield in the CommentsMany form
         Dummy = null;  //make null to re-init
@@ -328,8 +355,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 
     public void down(String comment_id) {
-        currentStoryID = 8; // for testing
-        sendData("http://192.168.1.3:3000/stories/"+currentStoryID+"/comments/downc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + user_id + "\"}");
+   //     currentStoryID = 8; // for testing
+        sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/downc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + userID + "\"}");
         CommentsMany = null;  //make null to re-init
         before = true;  //to re-init textfield in the CommentsMany form
         Dummy = null;  //make null to re-init
@@ -467,7 +494,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-        switchDisplayable(null, getMainFeed());//GEN-LINE:|3-startMIDlet|1|3-postAction
+        switchDisplayable(null, getLoginScreen());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
 //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -528,10 +555,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 if (comment.length() == 0) {
                     switchDisplayable(getCommentFail(), displayable);  //show failure alert
                 } else {
-                    currentStoryID = 8; //for testing
-                    user_id = 3; //for testing
-                    String url = "http://192.168.1.3:3000/stories/" + currentStoryID + "/comments/new";
-                    String data = "{\"user_id\":\"" + user_id + "\",\"story_id\":\"" + currentStoryID + "\",\"content\":\"" + comment + "\"}";
+                //    currentStoryID = 8; //for testing
+                //    user_id = 3; //for testing
+                    String url = "http://"+SERVER_IP+":3000/stories/" + currentStoryID + "/comments/new";
+                    String data = "{\"user_id\":\"" + userID + "\",\"story_id\":\"" + currentStoryID + "\",\"content\":\"" + comment + "\"}";
                     sendData(url, data);
                     textField.delete(0, getTextField().getString().length()); //cleat text in textfield
                     CommentsMany = null; //make null to re-init
@@ -546,7 +573,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == FriendList) {
             if (command == Block) {//GEN-END:|7-commandAction|5|239-preAction
                 // write pre-action user code here
-                String r = recieveData("http://192.168.26.136:3000/users/block_friend_feed?id=" + user_id);
+                String r = recieveData("http://192.168.26.136:3000/users/block_friend_feed?id=" + userID);
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|6|239-postAction
                 // write post-action user code here
             } else if (command == Filter) {//GEN-LINE:|7-commandAction|7|241-preAction
@@ -564,10 +591,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|12|137-postAction
                 // write post-action user code here
-            } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|13|135-preAction
+            } else if (command == itemCommand) {//GEN-LINE:|7-commandAction|13|395-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|14|135-postAction
+//GEN-LINE:|7-commandAction|14|395-postAction
                 // write post-action user code here
+            } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|15|135-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|16|135-postAction
+                // write post-action user code here
+               String user_details = "";
                 RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
                 if (regex.match(textField4.getString())) {
                     HttpConnection httpConn = null;
@@ -576,7 +608,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
                     try {
                         //Change IP accordingly
-                        httpConn = (HttpConnection) Connector.open("http://10.37.129.2:3000/h_accounts/sign_in.json");
+                        httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"
+                                +String.valueOf(PORT)+"/h_accounts/sign_in.json");
                         //Request method has to be POST
                         httpConn.setRequestMethod(HttpConnection.POST);
                         httpConn.setRequestProperty("User-Agent",
@@ -586,16 +619,32 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         httpConn.setRequestProperty("Content-Type", "application/json");
                         // JSON String that you will send containing the attributes needed for sign up. 
 
-                        String dataToBeSend = "{\"email\":" + textField4.getString()
-                                + ",\"password\":" + textField5.getString() + "}";
+                        String dataToBeSend = "{\"email\":\"" + textField4.getString()
+                                + "\",\"password\":\"" + textField5.getString() + "\"}";
                         httpConn.setRequestProperty("Content-Length",
                                 "" + dataToBeSend.length());
                         os = httpConn.openOutputStream();
                         os.write(dataToBeSend.getBytes());
                         os.flush();//data written will be flushed to server.
-
-                        System.out.println(httpConn.getResponseCode());
+                        int respCode = httpConn.getResponseCode();
+                        System.out.println(respCode);
                         System.out.println(dataToBeSend);
+                        
+                        if(respCode == 200){
+                                StringBuffer sb = new StringBuffer();
+                                os = httpConn.openOutputStream();
+                                is = httpConn.openDataInputStream();
+                                int chr;
+                                while ((chr = is.read()) != -1){
+                                    sb.append((char) chr);
+                                }
+                                System.out.println(sb.toString());
+                                user_details = sb.toString();
+                                getUserID(user_details);
+                        }
+                        if(respCode == 400){
+                            //TODO wrong pass
+                        }
                     } catch (Throwable t) {
                         System.out.println("Exception occured " + t.toString());
                     } //Since only limited number of network objects can be in open state
@@ -618,126 +667,159 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     }
                 } else {
                     //TODO wrong email format login
-                    Alert wrong_email_format = new Alert("Wrong email format",
-                            "The email you entered was in a wrong format",
-                            null, AlertType.ERROR);
+                    System.out.println("reached");
+                    try{
+                    //switchDisplayable(WrongEmailFormat, displayable);
+                    } catch(Throwable t){
+                        t.toString();
+                    }
                 }
-            }//GEN-BEGIN:|7-commandAction|15|233-preAction
+            }//GEN-BEGIN:|7-commandAction|17|233-preAction
         } else if (displayable == MainFeed) {
-            if (command == FilterFriends) {//GEN-END:|7-commandAction|15|233-preAction
+            if (command == FilterFriends) {//GEN-END:|7-commandAction|17|233-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFriendList());//GEN-LINE:|7-commandAction|16|233-postAction
+                switchDisplayable(null, getFriendList());//GEN-LINE:|7-commandAction|18|233-postAction
                 // write post-action user code here
-            } else if (command == FilterStories1) {//GEN-LINE:|7-commandAction|17|365-preAction
+            } else if (command == FilterStories1) {//GEN-LINE:|7-commandAction|19|365-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|18|365-postAction
+                switchDisplayable(null, getList());//GEN-LINE:|7-commandAction|20|365-postAction
                 // write post-action user code here
-            } else if (command == goToVerification) {//GEN-LINE:|7-commandAction|19|370-preAction
+            } else if (command == goToVerification) {//GEN-LINE:|7-commandAction|21|370-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|20|370-postAction
+                switchDisplayable(null, getVerification());//GEN-LINE:|7-commandAction|22|370-postAction
                 // write post-action user code here
-            } else if (command == options) {//GEN-LINE:|7-commandAction|21|63-preAction
+            } else if (command == options) {//GEN-LINE:|7-commandAction|23|63-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|22|63-postAction
+//GEN-LINE:|7-commandAction|24|63-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|23|155-preAction
+            }//GEN-BEGIN:|7-commandAction|25|155-preAction
         } else if (displayable == RegisterScreen) {
-            if (command == backCommand7) {//GEN-END:|7-commandAction|23|155-preAction
+            if (command == backCommand7) {//GEN-END:|7-commandAction|25|155-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|24|155-postAction
+//GEN-LINE:|7-commandAction|26|155-postAction
                 // write post-action user code here
-            } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|25|153-preAction
+            } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|27|153-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|26|153-postAction
+//GEN-LINE:|7-commandAction|28|153-postAction
                 // write post-action user code here
+                String user_details = "";
                 RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-                if (regex.match(textField6.getString())) {
-                    if (textField7.getString().equals(textField8.getString())) {
-                        HttpConnection httpConn = null;
-                        InputStream is = null;
-                        OutputStream os = null;
+                if (regex.match(textField4.getString())) {
+                    HttpConnection httpConn = null;
+                    InputStream is = null;
+                    OutputStream os = null;
 
+                    try {
+                        //Change IP accordingly
+                        httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"
+                                +String.valueOf(PORT)+"/h_accounts/sign_in.json");
+                        //Request method has to be POST
+                        httpConn.setRequestMethod(HttpConnection.POST);
+                        httpConn.setRequestProperty("User-Agent",
+                                "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+                        httpConn.setRequestProperty("Accept_Language", "en-US");
+                        //Content-Type is must to pass parameters in POST Request must be application/json
+                        httpConn.setRequestProperty("Content-Type", "application/json");
+                        // JSON String that you will send containing the attributes needed for sign up. 
+
+                        String dataToBeSend = "{\"email\":\"" + textField4.getString()
+                                + "\",\"password\":\"" + textField5.getString() + "\"}";
+                        httpConn.setRequestProperty("Content-Length",
+                                "" + dataToBeSend.length());
+                        os = httpConn.openOutputStream();
+                        os.write(dataToBeSend.getBytes());
+                        os.flush();//data written will be flushed to server.
+                        int respCode = httpConn.getResponseCode();
+                        System.out.println(respCode);
+                        System.out.println(dataToBeSend);
+                        
+                        if(respCode == 200){
+                                StringBuffer sb = new StringBuffer();
+                                os = httpConn.openOutputStream();
+                                is = httpConn.openDataInputStream();
+                                int chr;
+                                while ((chr = is.read()) != -1){
+                                    sb.append((char) chr);
+                                }
+                                System.out.println(sb.toString());
+                                user_details = sb.toString();
+                                getUserID(user_details);
+                        }
+                        if(respCode == 400){
+                            //TODO wrong pass
+                        }
+                    } catch (Throwable t) {
+                        System.out.println("Exception occured " + t.toString());
+                    } //Since only limited number of network objects can be in open state
+                    //it is necessary to clean them up as soon as we are done with them.
+                    finally {
                         try {
-                            //Change IP accordingly
-                            httpConn = (HttpConnection) Connector.open("http://10.37.129.2:3000/users/new.json");
-                            //Request method has to be POST
-                            httpConn.setRequestMethod(HttpConnection.POST);
-                            httpConn.setRequestProperty("User-Agent",
-                                    "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
-                            httpConn.setRequestProperty("Accept_Language", "en-US");
-                            //Content-Type is must to pass parameters in POST Request must be application/json
-                            httpConn.setRequestProperty("Content-Type", "application/json");
-                            // JSON String that you will send containing the attributes needed for sign up. 
-
-                            String dataToBeSend = "{\"email\":" + textField6.getString()
-                                    + ",\"password\":" + textField7.getString() + "}";
-                            httpConn.setRequestProperty("Content-Length",
-                                    "" + dataToBeSend.length());
-                            os = httpConn.openOutputStream();
-                            os.write(dataToBeSend.getBytes());
-                            os.flush();//data written will be flushed to server.
-
-                            System.out.println(httpConn.getResponseCode());
-                            System.out.println(dataToBeSend);
+                            if (os != null) {
+                                os.close();
+                            }
                         } catch (Throwable t) {
                             System.out.println("Exception occured " + t.toString());
-                        } //Since only limited number of network objects can be in open state
-                        //it is necessary to clean them up as soon as we are done with them.
-                        finally {
-                            try {
-                                if (os != null) {
-                                    os.close();
-                                }
-                            } catch (Throwable t) {
-                                System.out.println("Exception occured " + t.toString());
-                            }
-                            try {
-                                if (httpConn != null) {
-                                    httpConn.close();
-                                }
-                            } catch (Throwable t) {
-                                System.out.println("Exception occured " + t.toString());
-                            }
                         }
-
-                    } else {
-                        //TODO passwords don't match
+                        try {
+                            if (httpConn != null) {
+                                httpConn.close();
+                            }
+                        } catch (Throwable t) {
+                            System.out.println("Exception occured " + t.toString());
+                        }
                     }
                 } else {
-                    //TODO wrong email format
-                    Alert wrong_email_format = new Alert("Wrong email_format",
-                            "The email you entered doesn't have the correct email format",
-                            null, AlertType.ERROR);
-                    wrong_email_format.isShown();
+                    //TODO wrong email format login
+                    System.out.println("reached");
+                    try{
+                    //switchDisplayable(WrongEmailFormat, displayable);
+                    } catch(Throwable t){
+                        t.toString();
+                    }
                 }
-            }//GEN-BEGIN:|7-commandAction|27|29-preAction
+            }//GEN-BEGIN:|7-commandAction|29|29-preAction
         } else if (displayable == Story) {
-            if (command == Comment1) {//GEN-END:|7-commandAction|27|29-preAction
+            if (command == Comment1) {//GEN-END:|7-commandAction|29|29-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|28|29-postAction
+//GEN-LINE:|7-commandAction|30|29-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|29|31-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|31|31-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|30|31-postAction
+//GEN-LINE:|7-commandAction|32|31-postAction
                 // write post-action user code here
-            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|31|79-preAction
+            } else if (command == okCommand1) {//GEN-LINE:|7-commandAction|33|79-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|32|79-postAction
+//GEN-LINE:|7-commandAction|34|79-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|33|345-preAction
+            }//GEN-BEGIN:|7-commandAction|35|378-preAction
+        } else if (displayable == Toggle) {
+            if (command == backCommand13) {//GEN-END:|7-commandAction|35|378-preAction
+                // write pre-action user code here
+//GEN-LINE:|7-commandAction|36|378-postAction
+                // write post-action user code here
+            } else if (command == choose) {//GEN-LINE:|7-commandAction|37|380-preAction
+                // write pre-action user code here
+                user.removeAllElements();
+                for(int i = 0; i <getChoiceGroup().size(); i++) {
+                if(getChoiceGroup().isSelected(i) == true) 
+                user.addElement(getChoiceGroup().getString(i));
+  }
+                switchDisplayable(null, getInterestConfirm());//GEN-LINE:|7-commandAction|38|380-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|39|345-preAction
         } else if (displayable == URLCorrupted) {
-            if (command == okCommand11) {//GEN-END:|7-commandAction|33|345-preAction
+            if (command == okCommand11) {//GEN-END:|7-commandAction|39|345-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getAuthTwitter());//GEN-LINE:|7-commandAction|34|345-postAction
+                switchDisplayable(null, getAuthTwitter());//GEN-LINE:|7-commandAction|40|345-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|35|170-preAction
+            }//GEN-BEGIN:|7-commandAction|41|170-preAction
         } else if (displayable == Verification) {
-            if (command == Resend) {//GEN-END:|7-commandAction|35|170-preAction
+            if (command == Resend) {//GEN-END:|7-commandAction|41|170-preAction
                 // write pre-action user code here
                 if(checkInternetConn() && checkServerConn()){
                     
                      httpCheckConn1 = null;
-      String url = "http://192.168.1.9:3000/h_accounts/1/resend.json" ;  
+      String url = "http://"+SERVER_IP+":3000/h_accounts/"+hID+"/resend.json" ;  
 
     InputStream is1 = null;
     OutputStream os1 = null;
@@ -761,6 +843,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         while ((chr = is1.read()) != -1)
           sb.append((char) chr);
 
+        if(sb.toString().equalsIgnoreCase("true")){
+            switchDisplayable(ResentAlert, getVerification());
+        }
+        else{
+            switchDisplayable(AlreadyVerified, getVerification());
+        }
     
         System.out.println("response: "+ sb.toString());
       }
@@ -792,15 +880,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      
     }
                 
-               switchDisplayable(ResentAlert, getVerification()); 
+               //switchDisplayable(ResentAlert, getVerification()); 
                     
                 }
                 else{
-                    
+                    switchDisplayable(ConnectionError, getVerification());
                 }
-//GEN-LINE:|7-commandAction|36|170-postAction
+//GEN-LINE:|7-commandAction|42|170-postAction
                 // write post-action user code here
-            } else if (command == Verify) {//GEN-LINE:|7-commandAction|37|168-preAction
+            } else if (command == Verify) {//GEN-LINE:|7-commandAction|43|168-preAction
                 // write pre-action user code here
                 if(checkInternetConn() && checkServerConn()){
                     if(vTF.getString().length()!=4){
@@ -810,7 +898,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             httpCheckConn1 = null;     
                  try {
         //Change IP accordingly
-        httpCheckConn1 = (HttpConnection) Connector.open("http://192.168.1.9:3000/h_accounts/verify");
+        httpCheckConn1 = (HttpConnection) Connector.open("http://"+SERVER_IP+":3000/h_accounts/verify");
         //Request method has to be POST
         httpCheckConn1.setRequestMethod(HttpConnection.POST);
         httpCheckConn1.setRequestProperty("User-Agent",
@@ -819,7 +907,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         //Content-Type is must to pass parameters in POST Request must be application/json
         httpCheckConn1.setRequestProperty("Content-Type", "application/json");
         //String code = "fnay";
-        hID =4;
+        //hID =4;
         // JSON String that you will send containing the attributes needed for sign up. 
         String dataToBeSend = "{\"id\":\""+hID+"\",\"code\":\""+vTF.getString()+"\"}";
        // String dataToBeSend = "{\"id\":\"3\",\"code\":\"fcay\"}";
@@ -841,7 +929,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         while ((chr = checkConnIS1.read()) != -1)
           sb.append((char) chr);
 
-        response1 = sb.toString();
+        if(sb.toString().equalsIgnoreCase("true")){
+            switchDisplayable(VerifiedAlert, getMainFeed());
+            getMainFeed().removeCommand(goToVerification);
+        }
+        else{
+            switchDisplayable(IncorrectCode,getVerification());
+        }
+        
+       // response1 = sb.toString();
         System.out.println("response: "+ sb.toString());
     
     } catch (Throwable t) {
@@ -864,175 +960,186 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             System.out.println("Exception occured " + t.toString());
         }
     }
-                 if(response1.equalsIgnoreCase("true")){
-                switchDisplayable(VerifiedAlert, getVerification());
-            }
-         else{
-             switchDisplayable(IncorrectCode, getVerification());
-         }                       
+               //  if(response1.equalsIgnoreCase("true")){
+                //switchDisplayable(VerifiedAlert, getVerification());
+            //}
+         //else{
+           //  switchDisplayable(IncorrectCode, getVerification());
+         //}                       
                     }
                 }
                 else {
-                 // conn & server alert
+                 switchDisplayable(ConnectionError, getVerification());
                 }
-                if(response1.equalsIgnoreCase("true")){
-                    switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|38|168-postAction
-                }// write post-action user code here
+              //  if(response1.equalsIgnoreCase("true")){
+//GEN-LINE:|7-commandAction|44|168-postAction
+              //  }// write post-action user code here
                 
-            } else if (command == backV) {//GEN-LINE:|7-commandAction|39|166-preAction
+            } else if (command == backV) {//GEN-LINE:|7-commandAction|45|166-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|40|166-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|46|166-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|41|283-preAction
+            }//GEN-BEGIN:|7-commandAction|47|283-preAction
         } else if (displayable == alreadyHaveTwitter) {
-            if (command == BackToAccounts) {//GEN-END:|7-commandAction|41|283-preAction
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|47|283-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|42|283-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|48|283-postAction
                 // write post-action user code here
-            } else if (command == ReplaceTwitterAccount) {//GEN-LINE:|7-commandAction|43|281-preAction
+            } else if (command == ReplaceTwitterAccount) {//GEN-LINE:|7-commandAction|49|281-preAction
                 // write pre-action user code here
-                genReqURL();//GEN-LINE:|7-commandAction|44|281-postAction
+                genReqURL();//GEN-LINE:|7-commandAction|50|281-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|45|296-preAction
+            }//GEN-BEGIN:|7-commandAction|51|296-preAction
         } else if (displayable == authSuccessful) {
-            if (command == BackToAccounts) {//GEN-END:|7-commandAction|45|296-preAction
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|51|296-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|46|296-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|52|296-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|47|253-preAction
+            }//GEN-BEGIN:|7-commandAction|53|253-preAction
         } else if (displayable == authTwitter) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|47|253-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|53|253-preAction
                 // write pre-action user code here
-                authTwitterAction();//GEN-LINE:|7-commandAction|48|253-postAction
+                authTwitterAction();//GEN-LINE:|7-commandAction|54|253-postAction
                 // write post-action user code here
-            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|49|266-preAction
+            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|55|266-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|50|266-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|56|266-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|51|123-preAction
+            }//GEN-BEGIN:|7-commandAction|57|123-preAction
         } else if (displayable == choosefriend1) {
-            if (command == Find) {//GEN-END:|7-commandAction|51|123-preAction
+            if (command == Find) {//GEN-END:|7-commandAction|57|123-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|52|123-postAction
+                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|58|123-postAction
                 // write post-action user code here
-            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|53|117-preAction
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|59|117-preAction
                 // write pre-action user code here
-                choosefriend1Action();//GEN-LINE:|7-commandAction|54|117-postAction
+                choosefriend1Action();//GEN-LINE:|7-commandAction|60|117-postAction
                 // write post-action user code here
-            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|55|122-preAction
+            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|61|122-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|56|122-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|62|122-postAction
                 // write post-action user code here
-            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|57|120-preAction
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|63|120-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|58|120-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|64|120-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|59|81-preAction
+            }//GEN-BEGIN:|7-commandAction|65|81-preAction
         } else if (displayable == connectAccount) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|59|81-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|65|81-preAction
                 // write pre-action user code here
-                connectAccountAction();//GEN-LINE:|7-commandAction|60|81-postAction
+                connectAccountAction();//GEN-LINE:|7-commandAction|66|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|61|312-preAction
+            }//GEN-BEGIN:|7-commandAction|67|312-preAction
         } else if (displayable == disliked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|61|312-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|67|312-preAction
                 // write pre-action user code here
-                dislikedAction();//GEN-LINE:|7-commandAction|62|312-postAction
+                dislikedAction();//GEN-LINE:|7-commandAction|68|312-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|63|314-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|69|314-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|64|314-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|70|314-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|65|106-preAction
+            }//GEN-BEGIN:|7-commandAction|71|106-preAction
         } else if (displayable == findFriend) {
-            if (command == Add1) {//GEN-END:|7-commandAction|65|106-preAction
+            if (command == Add1) {//GEN-END:|7-commandAction|71|106-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|66|106-postAction
+//GEN-LINE:|7-commandAction|72|106-postAction
 
                 // write post-action user code here
                 if (this.search.getString().length() != 0) {
                     //" \"date_of_birth\":"+this.dob.getDate().toString()
-                    String s = " \"receiver\":" + this.search.getString() + " \"sender_id\":" + this.user_id;
+                    String s = " \"receiver\":" + this.search.getString() + " \"sender_id\":" + this.userID;
                     this.sendData("friends/add/ip", s);
                 }
-            } else if (command == Back1) {//GEN-LINE:|7-commandAction|67|94-preAction
+            } else if (command == Back1) {//GEN-LINE:|7-commandAction|73|94-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|68|94-postAction
+//GEN-LINE:|7-commandAction|74|94-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|69|19-preAction
+            }//GEN-BEGIN:|7-commandAction|75|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|69|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|75|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|70|19-postAction
+//GEN-LINE:|7-commandAction|76|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|71|159-preAction
+            }//GEN-BEGIN:|7-commandAction|77|159-preAction
         } else if (displayable == form1) {
-            if (command == backCommand8) {//GEN-END:|7-commandAction|71|159-preAction
+            if (command == backCommand8) {//GEN-END:|7-commandAction|77|159-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|72|159-postAction
+//GEN-LINE:|7-commandAction|78|159-postAction
                 // write post-action user code here
-            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|73|161-preAction
+            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|79|161-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|74|161-postAction
+//GEN-LINE:|7-commandAction|80|161-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|75|128-preAction
+            }//GEN-BEGIN:|7-commandAction|81|383-preAction
+        } else if (displayable == interestConfirm) {
+            if (command == backCommand14) {//GEN-END:|7-commandAction|81|383-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getToggle());//GEN-LINE:|7-commandAction|82|383-postAction
+                // write post-action user code here
+            } else if (command == okCommand13) {//GEN-LINE:|7-commandAction|83|385-preAction
+                // write pre-action user code here
+                   UserInterestsJson();
+//GEN-LINE:|7-commandAction|84|385-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|85|128-preAction
         } else if (displayable == liked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|75|128-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|85|128-preAction
                 // write pre-action user code here
-                likedAction();//GEN-LINE:|7-commandAction|76|128-postAction
+                likedAction();//GEN-LINE:|7-commandAction|86|128-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|77|130-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|87|130-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|78|130-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|88|130-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|79|182-preAction
+            }//GEN-BEGIN:|7-commandAction|89|182-preAction
         } else if (displayable == list) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|79|182-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|89|182-preAction
                 // write pre-action user code here
-                listAction();//GEN-LINE:|7-commandAction|80|182-postAction
+                listAction();//GEN-LINE:|7-commandAction|90|182-postAction
                 // write post-action user code here
-            } else if (command == back) {//GEN-LINE:|7-commandAction|81|367-preAction
+            } else if (command == back) {//GEN-LINE:|7-commandAction|91|367-preAction
                 // write pre-action user code here
                  switchDisplayable(null, getMainFeed());
-//GEN-LINE:|7-commandAction|82|367-postAction
+//GEN-LINE:|7-commandAction|92|367-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|83|236-preAction
+            }//GEN-BEGIN:|7-commandAction|93|236-preAction
         } else if (displayable == list1) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|83|236-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|93|236-preAction
                 // write pre-action user code here
-                list1Action();//GEN-LINE:|7-commandAction|84|236-postAction
+                list1Action();//GEN-LINE:|7-commandAction|94|236-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|85|325-preAction
+            }//GEN-BEGIN:|7-commandAction|95|325-preAction
         } else if (displayable == manyReq) {
-            if (command == backCommand11) {//GEN-END:|7-commandAction|85|325-preAction
+            if (command == backCommand11) {//GEN-END:|7-commandAction|95|325-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|86|325-postAction
+//GEN-LINE:|7-commandAction|96|325-postAction
                 // write post-action user code here
-            } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|87|327-preAction
+            } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|97|327-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|88|327-postAction
+//GEN-LINE:|7-commandAction|98|327-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|89|331-preAction
+            }//GEN-BEGIN:|7-commandAction|99|331-preAction
         } else if (displayable == oneReq) {
-            if (command == accept) {//GEN-END:|7-commandAction|89|331-preAction
+            if (command == accept) {//GEN-END:|7-commandAction|99|331-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|90|331-postAction
+//GEN-LINE:|7-commandAction|100|331-postAction
                 // write post-action user code here
-            } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|91|329-preAction
+            } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|101|329-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|92|329-postAction
+//GEN-LINE:|7-commandAction|102|329-postAction
                 // write post-action user code here
-            } else if (command == reject) {//GEN-LINE:|7-commandAction|93|333-preAction
+            } else if (command == reject) {//GEN-LINE:|7-commandAction|103|333-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|94|333-postAction
+//GEN-LINE:|7-commandAction|104|333-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|95|53-preAction
+            }//GEN-BEGIN:|7-commandAction|105|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|95|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|105|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|96|53-postAction
+//GEN-LINE:|7-commandAction|106|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|97|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|107|49-preAction
                 // write pre-action user code here
                 //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}"
                 String s = "";
@@ -1045,7 +1152,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 }
                 if (this.pas.getString().length() != 0 || this.confPas.getString().length() != 0) {
                     if (this.pas.getString() == this.confPas.getString()) {
-                        s += " \"password\":" + this.userName.getString() + " \"user_id\":" + this.user_id;
+                        s += " \"password\":" + this.userName.getString() + " \"userID\":" + this.userID;
                         //  passInt = 1;
 
                     } else {
@@ -1065,7 +1172,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     // anyInfo = 1;
                 }
 
-                String url = "http://192.168.26.136:3000/users/update?id=" + this.user_id;
+                String url = "http://192.168.26.136:3000/users/update?id=" + this.userID;
                 this.sendData(url, s);
 
                 //check the return value confirmed or error
@@ -1083,109 +1190,133 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 //                       }
 //                   }
 //               }
-//GEN-LINE:|7-commandAction|98|49-postAction
+//GEN-LINE:|7-commandAction|108|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|99|186-preAction
+            }//GEN-BEGIN:|7-commandAction|109|186-preAction
         } else if (displayable == readMore) {
-            if (command == backCommand9) {//GEN-END:|7-commandAction|99|186-preAction
+            if (command == backCommand9) {//GEN-END:|7-commandAction|109|186-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|100|186-postAction
+//GEN-LINE:|7-commandAction|110|186-postAction
                 // write post-action user code here
-            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|101|200-preAction
+            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|111|200-preAction
                 // write pre-action user code here
                 recieveData("http://192.168.26.148:3000/users/block_interest?story_id=" + currentStoryID);
-                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|102|200-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|112|200-postAction
                 // write post-action user code here
-            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|103|202-preAction
+            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|113|202-preAction
                 // write pre-action user code here
                 String r = recieveData("http://192.168.26.148:3000/users/block_story?story_id=" + currentStoryID);
                 if (r.equals("story is blocked successfully")) {
-                    switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|104|202-postAction
+                    switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|114|202-postAction
                 } else
                     switchDisplayable(null, getStorynotFound());
                 // write post-action user code here
-            } else if (command == flag) {//GEN-LINE:|7-commandAction|105|194-preAction
+            } else if (command == flag) {//GEN-LINE:|7-commandAction|115|194-preAction
                 // write pre-action user code here
                 getDataServer("http://192.168.26.148:3000/flags/flag?uid=1&sid=1&format=json");
-//GEN-LINE:|7-commandAction|106|194-postAction
+//GEN-LINE:|7-commandAction|116|194-postAction
                 // write post-action user code here
-            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|107|319-preAction
+            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|117|319-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|108|319-postAction
+                try {
+                    // write pre-action user code here
+                             
+                insertfriendsintolist(3);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                switchDisplayable(null, getDisliked());//GEN-LINE:|7-commandAction|118|319-postAction
                 // write post-action user code here
-            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|109|317-preAction
+            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|119|317-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|110|317-postAction
+                try {
+                    // write pre-action user code here
+                             
+                insertfriendsintolist(2);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                switchDisplayable(null, getLiked());//GEN-LINE:|7-commandAction|120|317-postAction
                 // write post-action user code here
-            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|111|188-preAction
+            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|121|188-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|112|188-postAction
+//GEN-LINE:|7-commandAction|122|188-postAction
                 // write post-action user code here
-            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|113|198-preAction
+            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|123|198-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|114|198-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|124|198-postAction
                 // write post-action user code here
-            } else if (command == share) {//GEN-LINE:|7-commandAction|115|196-preAction
+            } else if (command == share) {//GEN-LINE:|7-commandAction|125|196-preAction
                 // write pre-action user code here
-                method();//GEN-LINE:|7-commandAction|116|196-postAction
+                shareonnetwork();//GEN-LINE:|7-commandAction|126|196-postAction
                 // write post-action user code here
-            } else if (command == singOut) {//GEN-LINE:|7-commandAction|117|321-preAction
+            } else if (command == singOut) {//GEN-LINE:|7-commandAction|127|321-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|118|321-postAction
+//GEN-LINE:|7-commandAction|128|321-postAction
                 // write post-action user code here
-            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|119|192-preAction
+            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|129|192-preAction
                 // write pre-action user code here
                 getDataServer("http://192.168.26.148:3000/likedislikes/dislike?uid=2&sid=1&act=-1&format=json");
 
-//GEN-LINE:|7-commandAction|120|192-postAction
+//GEN-LINE:|7-commandAction|130|192-postAction
                 // write post-action user code here
-            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|121|190-preAction
+            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|131|190-preAction
                 getDataServer("http://192.168.26.148:3000/likedislikes/like?uid=2&sid=1&act=1&format=json");
-//GEN-LINE:|7-commandAction|122|190-postAction
+//GEN-LINE:|7-commandAction|132|190-postAction
                 // write post-action user code here
-            } else if (command == viewCommentsMany) {//GEN-LINE:|7-commandAction|123|356-preAction
+            } else if (command == viewCommentsMany) {//GEN-LINE:|7-commandAction|133|356-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getCommentsMany());//GEN-LINE:|7-commandAction|124|356-postAction
+                switchDisplayable(null, getCommentsMany());//GEN-LINE:|7-commandAction|134|356-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|125|115-preAction
+            }//GEN-BEGIN:|7-commandAction|135|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|125|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|135|115-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|126|115-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|136|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|127|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|137|124-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|128|124-postAction
+                try {
+                    // write pre-action user code here
+                    insertfriendsintolist(1);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|138|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|129|113-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|139|113-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|130|113-postAction
+                  String ss="user:"+getChoosefriend1()+"email:"+getTextField2()+" message:"+getTextField3();
+     
+        sendData("http://192.168.1.1:3000/stories/recommend_story", ss);
+        
+//GEN-LINE:|7-commandAction|140|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|131|35-preAction
+            }//GEN-BEGIN:|7-commandAction|141|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|131|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|141|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|132|35-postAction
+//GEN-LINE:|7-commandAction|142|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|133|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|143|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|134|33-postAction
+//GEN-LINE:|7-commandAction|144|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|135|305-preAction
+            }//GEN-BEGIN:|7-commandAction|145|305-preAction
         } else if (displayable == twitterAuthFailed) {
-            if (command == BackToAccounts) {//GEN-END:|7-commandAction|135|305-preAction
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|145|305-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|136|305-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|146|305-postAction
                 // write post-action user code here
-            } else if (command == Resend1) {//GEN-LINE:|7-commandAction|137|302-preAction
+            } else if (command == Resend1) {//GEN-LINE:|7-commandAction|147|302-preAction
                 // write pre-action user code here
-                genReqURL();//GEN-LINE:|7-commandAction|138|302-postAction
+                genReqURL();//GEN-LINE:|7-commandAction|148|302-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|139|7-postCommandAction
-        }//GEN-END:|7-commandAction|139|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|149|7-postCommandAction
+        }//GEN-END:|7-commandAction|149|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|140|
-//</editor-fold>//GEN-END:|7-commandAction|140|
+    }//GEN-BEGIN:|7-commandAction|150|
+//</editor-fold>//GEN-END:|7-commandAction|150|
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
@@ -1330,7 +1461,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             CommentsMany.addCommand(getBackToStory());
             CommentsMany.addCommand(getAddComment());
             CommentsMany.setCommandListener(this);//GEN-END:|27-getter|1|27-postInit
-            currentStoryID = 8; //for testing
+        //    currentStoryID = 8; //for testing
             parseComments(currentStoryID + "");
 
 
@@ -2277,6 +2408,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             LoginScreen = new Form("LoginScreen", new Item[]{getTextField4(), getTextField5()});//GEN-BEGIN:|131-getter|1|131-postInit
             LoginScreen.addCommand(getOkCommand3());
             LoginScreen.addCommand(getBackCommand5());
+            LoginScreen.addCommand(getItemCommand());
             LoginScreen.setCommandListener(this);//GEN-END:|131-getter|1|131-postInit
             // write post-init user code here
         }//GEN-BEGIN:|131-getter|2|
@@ -2507,7 +2639,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Command getVerify() {
         if (Verify == null) {//GEN-END:|167-getter|0|167-preInit
             // write pre-init user code here
-            Verify = new Command("Verify", Command.SCREEN, 1);//GEN-LINE:|167-getter|1|167-postInit
+            Verify = new Command("Verify", Command.SCREEN, 2);//GEN-LINE:|167-getter|1|167-postInit
             // write post-init user code here
         }//GEN-BEGIN:|167-getter|2|
         return Verify;
@@ -3037,22 +3169,30 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|212-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Method: method ">//GEN-BEGIN:|214-if|0|214-preIf
+//<editor-fold defaultstate="collapsed" desc=" Generated Method: shareonnetwork ">//GEN-BEGIN:|214-if|0|214-preIf
     /**
-     * Performs an action assigned to the method if-point.
+     * Performs an action assigned to the shareonnetwork if-point.
      */
-    public void method() {//GEN-END:|214-if|0|214-preIf
-        // enter pre-if user code here
-        if (true) {//GEN-LINE:|214-if|1|215-preAction
+    public void shareonnetwork() {//GEN-END:|214-if|0|214-preIf
+        try {
+            // enter pre-if user code here
+            boolean x = parsestoryshare(getstoryshare());
+        
+            if (x) {//GEN-LINE:|214-if|1|215-preAction
             // write pre-action user code here
-            switchDisplayable(null, getStoreypublished());//GEN-LINE:|214-if|2|215-postAction
+                switchDisplayable(null, getStoreypublished());//GEN-LINE:|214-if|2|215-postAction
             // write post-action user code here
-        } else {//GEN-LINE:|214-if|3|216-preAction
+            } else {//GEN-LINE:|214-if|3|216-preAction
             // write pre-action user code here
-            switchDisplayable(null, getStorynotpublished());//GEN-LINE:|214-if|4|216-postAction
+                switchDisplayable(null, getStorynotpublished());//GEN-LINE:|214-if|4|216-postAction
             // write post-action user code here
-        }//GEN-LINE:|214-if|5|214-postIf
+            }//GEN-LINE:|214-if|5|214-postIf
         // enter post-if user code here
+        }
+        //</editor-fold>
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }//GEN-BEGIN:|214-if|6|
 //</editor-fold>//GEN-END:|214-if|6|
 
@@ -3186,7 +3326,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void haveTwitterAcount() {//GEN-END:|255-if|0|255-preIf
         // enter pre-if user code here
-        boolean hasAccount = isTwitterAccountExists(SERVER_IP, PORT, user_id);
+        boolean hasAccount = isTwitterAccountExists(SERVER_IP, PORT, userID);
         if (hasAccount) {//GEN-LINE:|255-if|1|256-preAction
             // write pre-action user code here
             switchDisplayable(null, getAlreadyHaveTwitter());//GEN-LINE:|255-if|2|256-postAction
@@ -3206,7 +3346,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void isAuthSuccess() {//GEN-END:|259-if|0|259-preIf
         // enter pre-if user code here
-        boolean accountCreated = createTwitterAccount(SERVER_IP, PORT, user_id);
+        boolean accountCreated = createTwitterAccount(SERVER_IP, PORT, userID);
         if (accountCreated) {//GEN-LINE:|259-if|1|260-preAction
             // write pre-action user code here
             switchDisplayable(null, getAuthSuccessful());//GEN-LINE:|259-if|2|260-postAction
@@ -3841,6 +3981,193 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|369-getter|2|
 
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand13 ">//GEN-BEGIN:|377-getter|0|377-preInit
+    /**
+     * Returns an initialized instance of backCommand13 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBackCommand13() {
+        if (backCommand13 == null) {//GEN-END:|377-getter|0|377-preInit
+            // write pre-init user code here
+            backCommand13 = new Command("Back", Command.BACK, 0);//GEN-LINE:|377-getter|1|377-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|377-getter|2|
+        return backCommand13;
+    }
+//</editor-fold>//GEN-END:|377-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choose ">//GEN-BEGIN:|379-getter|0|379-preInit
+    /**
+     * Returns an initialized instance of choose component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getChoose() {
+        if (choose == null) {//GEN-END:|379-getter|0|379-preInit
+            // write pre-init user code here
+            choose = new Command("Choose", Command.OK, 0);//GEN-LINE:|379-getter|1|379-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|379-getter|2|
+        return choose;
+    }
+//</editor-fold>//GEN-END:|379-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: Toggle ">//GEN-BEGIN:|375-getter|0|375-preInit
+    /**
+     * Returns an initialized instance of Toggle component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getToggle() {
+        if (Toggle == null) {//GEN-END:|375-getter|0|375-preInit
+            // write pre-init user code here
+            Toggle = new Form("form2", new Item[]{getChoiceGroup()});//GEN-BEGIN:|375-getter|1|375-postInit
+            Toggle.addCommand(getBackCommand13());
+            Toggle.addCommand(getChoose());
+            Toggle.setCommandListener(this);//GEN-END:|375-getter|1|375-postInit
+            // write post-init user code here
+            help();
+        }//GEN-BEGIN:|375-getter|2|
+        return Toggle;
+    }
+//</editor-fold>//GEN-END:|375-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: choiceGroup ">//GEN-BEGIN:|376-getter|0|376-preInit
+    /**
+     * Returns an initialized instance of choiceGroup component.
+     *
+     * @return the initialized component instance
+     */
+    public ChoiceGroup getChoiceGroup() {
+        if (choiceGroup == null) {//GEN-END:|376-getter|0|376-preInit
+            // write pre-init user code here
+            choiceGroup = new ChoiceGroup("choiceGroup", Choice.MULTIPLE);//GEN-LINE:|376-getter|1|376-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|376-getter|2|
+        return choiceGroup;
+    }
+//</editor-fold>//GEN-END:|376-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand14 ">//GEN-BEGIN:|382-getter|0|382-preInit
+    /**
+     * Returns an initialized instance of backCommand14 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getBackCommand14() {
+        if (backCommand14 == null) {//GEN-END:|382-getter|0|382-preInit
+            // write pre-init user code here
+            backCommand14 = new Command("Back", Command.BACK, 0);//GEN-LINE:|382-getter|1|382-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|382-getter|2|
+        return backCommand14;
+    }
+//</editor-fold>//GEN-END:|382-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand13 ">//GEN-BEGIN:|384-getter|0|384-preInit
+    /**
+     * Returns an initialized instance of okCommand13 component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getOkCommand13() {
+        if (okCommand13 == null) {//GEN-END:|384-getter|0|384-preInit
+            // write pre-init user code here
+            okCommand13 = new Command("Ok", Command.OK, 0);//GEN-LINE:|384-getter|1|384-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|384-getter|2|
+        return okCommand13;
+    }
+//</editor-fold>//GEN-END:|384-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: interestConfirm ">//GEN-BEGIN:|381-getter|0|381-preInit
+    /**
+     * Returns an initialized instance of interestConfirm component.
+     *
+     * @return the initialized component instance
+     */
+    public Form getInterestConfirm() {
+        if (interestConfirm == null) {//GEN-END:|381-getter|0|381-preInit
+            // write pre-init user code here
+            interestConfirm = new Form("form2");//GEN-BEGIN:|381-getter|1|381-postInit
+            interestConfirm.addCommand(getBackCommand14());
+            interestConfirm.addCommand(getOkCommand13());
+            interestConfirm.setCommandListener(this);//GEN-END:|381-getter|1|381-postInit
+            // write post-init user code here
+            help1();
+        }//GEN-BEGIN:|381-getter|2|
+        return interestConfirm;
+    }
+//</editor-fold>//GEN-END:|381-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ConnectionError ">//GEN-BEGIN:|389-getter|0|389-preInit
+    /**
+     * Returns an initialized instance of ConnectionError component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getConnectionError() {
+        if (ConnectionError == null) {//GEN-END:|389-getter|0|389-preInit
+            // write pre-init user code here
+            ConnectionError = new Alert("Connection Error", "Error connecting to the server, check your internet connection", null, AlertType.ERROR);//GEN-BEGIN:|389-getter|1|389-postInit
+            ConnectionError.setIndicator(getIndicator5());
+            ConnectionError.setTimeout(Alert.FOREVER);//GEN-END:|389-getter|1|389-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|389-getter|2|
+        return ConnectionError;
+    }
+//</editor-fold>//GEN-END:|389-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator5 ">//GEN-BEGIN:|390-getter|0|390-preInit
+    /**
+     * Returns an initialized instance of indicator5 component.
+     *
+     * @return the initialized component instance
+     */
+    public Gauge getIndicator5() {
+        if (indicator5 == null) {//GEN-END:|390-getter|0|390-preInit
+            // write pre-init user code here
+            indicator5 = new Gauge(null, false, 100, 50);//GEN-LINE:|390-getter|1|390-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|390-getter|2|
+        return indicator5;
+    }
+//</editor-fold>//GEN-END:|390-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: AlreadyVerified ">//GEN-BEGIN:|391-getter|0|391-preInit
+    /**
+     * Returns an initialized instance of AlreadyVerified component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getAlreadyVerified() {
+        if (AlreadyVerified == null) {//GEN-END:|391-getter|0|391-preInit
+            // write pre-init user code here
+            AlreadyVerified = new Alert("Already Verified", "Sorry, you have already verified your account", null, null);//GEN-BEGIN:|391-getter|1|391-postInit
+            AlreadyVerified.setTimeout(Alert.FOREVER);//GEN-END:|391-getter|1|391-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|391-getter|2|
+        return AlreadyVerified;
+    }
+//</editor-fold>//GEN-END:|391-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: itemCommand ">//GEN-BEGIN:|394-getter|0|394-preInit
+    /**
+     * Returns an initialized instance of itemCommand component.
+     *
+     * @return the initialized component instance
+     */
+    public Command getItemCommand() {
+        if (itemCommand == null) {//GEN-END:|394-getter|0|394-preInit
+            // write pre-init user code here
+            itemCommand = new Command("Item", Command.ITEM, 0);//GEN-LINE:|394-getter|1|394-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|394-getter|2|
+        return itemCommand;
+    }
+//</editor-fold>//GEN-END:|394-getter|2|
+
     /**
      * Returns a display instance.
      * @return the display instance.
@@ -3957,7 +4284,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      * user needs to go to to authorize our app.
      */
     public String getTwitterAuthURL(String serverIP, int port) {
-        String sendURL = "/authenticate/" + user_id + "/get_twitter_url";
+        String sendURL = "/authenticate/" + userID + "/get_twitter_url";
         return getHttpResponse(serverIP, port, sendURL);
     }
 
@@ -4164,27 +4491,27 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     // parse comments list comming from server
     public void parseComments(String storyID) {
         HttpConnection httpConn = null;
-        String url = "http://192.168.1.3:3000/stories/" + storyID + "/comments";
+        String url = "http://"+SERVER_IP+":3000/stories/" + storyID + "/comments";
         // String urltest = "http://192.168.1.3:3000/comments/8";
-        String jsonS = getData(url);
-        System.out.println(jsonS);
-        commentItem[] comments;
+        String jsonS = getData(url); //get json data
+     //   System.out.println(jsonS);
+        commentItem[] comments; //commentItem array to be added to CommentsMany form
         //   CommentsMany.append(new commentItem(json,this));
         //   switchDisplayable(null, CommentsMany);
         // sendData("http://192.168.1.3:3000/stories/:id/comments/downc", "{\"user_id\":\"3\",\"comment_id\":\"1\"}");
         try {
-            JSONObject json = new JSONObject(jsonS);
+            JSONObject json = new JSONObject(jsonS);  // create json object from string
 
-            JSONArray jsonArray = json.getJSONArray("Comments");
+            JSONArray jsonArray = json.getJSONArray("Comments");  // get array
             int total = jsonArray.length();
 
-            comments = new commentItem[total];
+            comments = new commentItem[total];  // init commentItem array
             for (int i = 0; i < total; i++) {
-                String commJson = jsonArray.getString(i);
-                comments[i] = new commentItem(commJson, this);
-                CommentsMany.append(comments[i]);
+                String commJson = jsonArray.getString(i); // get json representation of comment
+                comments[i] = new commentItem(commJson, this); // create a commentItem using it
+                CommentsMany.append(comments[i]); // append commentItem tp form
             }
-            switchDisplayable(null, CommentsMany);
+            switchDisplayable(null, CommentsMany); 
 
         } catch (JSONException ex) {
             ex.printStackTrace();
@@ -4193,6 +4520,129 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 
     }
+    
+    public void UserInterestsJson() { // parse user interests after confirmation to json array to send to server still needs url modification
+                String dataToBeSend = "\"id\": \"" + 2+ "\" , \"interests\": {";
+       for(int i=0; i<user.size(); i++) {
+           
+           dataToBeSend = dataToBeSend + "\"" +((String)user.elementAt(i)) + "\" ," ;
+           
+       }
+       dataToBeSend = dataToBeSend.substring(0, (dataToBeSend.length()-1)) ;
+       dataToBeSend = dataToBeSend + "}";      
+       System.out.println(dataToBeSend);
+       
+       if(checkInternetConn() && checkServerConn() ){
+            try {
+        //Change IP accordingly
+        httpConn = (HttpConnection) Connector.open("http://192.168.1.107:3000/users/");
+        //Request method has to be POST
+        httpConn.setRequestMethod(HttpConnection.POST);
+        httpConn.setRequestProperty("User-Agent",
+                "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+        httpConn.setRequestProperty("Accept_Language", "en-US");
+        //Content-Type is must to pass parameters in POST Request must be application/json
+        httpConn.setRequestProperty("Content-Type", "application/json");
+        // JSON String that you will send containing the attributes needed for sign up. 
+        //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}";
+        httpConn.setRequestProperty("Content-Length",
+                "" + dataToBeSend.length());
+        os = httpConn.openOutputStream();
+        os.write(dataToBeSend.getBytes());
+
+        os.flush();//data written will be flushed to server.
+        System.out.println(httpConn.getResponseCode());
+        System.out.println(dataToBeSend);
+    
+    } catch (Throwable t) {
+        System.out.println("Exception occured " + t.toString());
+    } //Since only limited number of network objects can be in open state
+    //it is necessary to clean them up as soon as we are done with them.
+    finally {
+        try {
+            if (os != null) {
+                os.close();
+            }
+        } catch (Throwable t) {
+            System.out.println("Exception occured " + t.toString());
+        }
+        try {
+            if (httpConn != null) {
+                httpConn.close();
+            }
+        } catch (Throwable t) {
+            System.out.println("Exception occured " + t.toString());
+        }
+    }
+
+       }
+       else {
+           System.out.println("no connection");
+       }
+   }
+   
+ public static Vector allInterests(String g) {  //parse all interests into interests vector
+		String a = g;
+		int firstName = 0;
+		int first = 0;
+		Vector interests = new Vector();
+		while (a.indexOf("name\":") != -1) {
+			firstName = a.indexOf("name\":");
+			firstName += 7;
+			first = a.indexOf("updated_at");
+			interests.addElement(a.substring(firstName, first - 3));
+			a = a.substring(first + 4, a.length());
+		}
+		return interests;
+	}
+   public static Vector userInterests(String g) { //parse user interests into user vector
+		Vector user = new Vector();
+		//String u = g.substring(1, json.indexOf("{"));
+                String u = g;
+		while (u.indexOf(",") != -1) {
+			int f = u.indexOf("\"");
+			int s = u.indexOf(",");
+			user.addElement(u.substring(f + 1, s - 2));
+			u = u.substring(s + 1, u.length());
+		}    
+                return user;
+	}
+   public void help() {  //fill interets inside toggle form
+       //json1 string is the Json String from server with same format just for testing 
+       
+       interests = allInterests(json1);
+       user = userInterests(json1.substring(1, json1.indexOf("{")));
+       
+         for(int j = 0; j <interests.size(); j++) {
+      getChoiceGroup().append((String)interests.elementAt(j), null);
+  }
+  if(user.size() > 0) {
+  for(int i = 0; i <user.size(); i++) {
+      for(int k = 0; k <interests.size(); k++) {
+          if(((String)user.elementAt(i)).equalsIgnoreCase(getChoiceGroup().getString(k)))
+              getChoiceGroup().setSelectedIndex(k, true); }
+  }
+  }
+
+   }
+   
+   public void help1() { // confirmation form helper
+           
+       if(user.size() > 0) {
+                interestConfirm.append("Your Selected Interets :");
+                interestConfirm.append("\n \n \n");
+                for(int i = 0; i<user.size(); i++) {
+                    interestConfirm.append(((String) user.elementAt(i)));
+                    interestConfirm.append("\n \n \n");
+                }
+                interestConfirm.append("to confrim press OK \n");
+                }
+            else {
+                interestConfirm.append("You Didn't Select Any Interest !!");
+                interestConfirm.append("to confrim press OK \n");
+            }
+    
+   }
 
     private static String[] split(String original, String separator) {  //string split method
         Vector nodes = new Vector();
@@ -4214,7 +4664,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return result;
     }
 
-    public Image loadImage(String url) throws IOException {
+    public Image loadImage(String url) throws IOException { //loads image from internet given image url
         HttpConnection hpc = null;
         DataInputStream dis = null;
         try {
@@ -4244,9 +4694,51 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             }
         }
     }
-    boolean flist = false;
-    boolean fliked = false;
-    boolean fdisliked = false;
+   
+    
+     public String[] getstoryshare() throws IOException {
+        String like_url = "http://192.168.1.1:3000/stories/share_story_social_network?";
+        String jsonS1 = getData(like_url);
+        String[] share = null;
+        try {
+            JSONObject json = new JSONObject(jsonS1);
+
+            JSONArray jsonArray = json.getJSONArray("stories");
+            int total = jsonArray.length();
+
+            share = new String[total];
+            for (int i = 0; i < total; i++) {
+                String commJson = jsonArray.getString(i);
+                share[i] = new String(commJson);
+            }
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+        return share;
+
+    }
+     
+     public boolean parsestoryshare(String[] share) {
+        String state = "";
+        boolean sss = false;
+        for (int j = 0; j < share.length; j++) {
+            for (int i = 0; i < share[j].length(); i++) {
+                state = "";
+                if (share[j].charAt(i) == '"' || share[j].charAt(i) == '{' || share[j].charAt(i) == '}' || share[j].charAt(i) == ':') {
+                } else {
+                    state = state + share[j].charAt(i);
+                }
+ }
+        }
+        if (state.startsWith("true")){
+            sss= true;
+        }
+        else {
+            if (state.startsWith("false"))
+            sss= false;
+    }
+        return sss;
+     }
 
     public String[] getfriendslike() throws IOException {
         String like_url = "http://192.168.1.1:3000/stories/view_friends_like?";
@@ -4266,7 +4758,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-        fliked = true;
         return friendlist;
 
     }
@@ -4292,12 +4783,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             ex.printStackTrace();
         }
 
-        fdisliked = true;
+ 
         return friendlist;
 
     }
 
-    public String[] getrecstory() throws IOException {
+    public String[] getfriendrecstory() throws IOException {
 
 
         String mess_url = "http://192.168.1.1:3000/stories/recommend_story?";
@@ -4323,7 +4814,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-        flist = true;
+
         return friendlist;
     }
 
@@ -4378,22 +4869,19 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         }
     }
 
-    public void insertfriendsintolist() throws IOException {
-        String[] x = getrecstory();
+    public void insertfriendsintolist(int n) throws IOException {
+        String[] x = getfriendrecstory();
         String[] y = getfriendslike();
         String[] z = getfriendsdislike();
 
-        if (flist) {
+        if (n==1) {
             parseJsonfriends(x);
-            flist = false;
         } else {
-            if (fliked) {
+            if (n==2) {
                 parseJsonfriendsliked(x);
-                fliked = false;
             } else {
-                if (fdisliked) {
+                if (n==3) {
                     parseJsonfriendsdisliked(x);
-                    fdisliked = false;
                 }
             }
 
@@ -4401,10 +4889,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 
     }
+    
 
     public void parseRequests(String userID) {
         HttpConnection httpConn = null;
-        String url = "http://192.168.1.3:3000/friend_requests/" + this.user_id;
+        String url = "http://192.168.1.3:3000/friend_requests/" + this.userID;
         // String urltest = "http://192.168.1.3:3000/comments/8";
         String jsonS = getData(url);
         System.out.println(jsonS);

@@ -111,8 +111,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command viewCommentsMany;
     private Command FilterStories1;
     private Command FilterStories;
-    private Command okCommand13;
     private Command itemCommand;
+    private Command okCommand13;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -191,6 +191,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert AlreadyVerified;
     private Alert ConnectionError;
     private Gauge indicator5;
+    private Alert alert;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -1101,7 +1102,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             } else if (command == back) {//GEN-LINE:|7-commandAction|91|367-preAction
                 // write pre-action user code here
                  switchDisplayable(null, getMainFeed());
-//GEN-LINE:|7-commandAction|92|367-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|92|367-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|93|236-preAction
         } else if (displayable == list1) {
@@ -1213,7 +1214,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == flag) {//GEN-LINE:|7-commandAction|115|194-preAction
                 // write pre-action user code here
+                if(checkInternetConn())
+                {
                 getDataServer("http://192.168.26.148:3000/flags/flag?uid=1&sid=1&format=json");
+                }
+                else
+                {
+                    switchDisplayable(getAlert(), getReadMore());
+                }
 //GEN-LINE:|7-commandAction|116|194-postAction
                 // write post-action user code here
             } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|117|319-preAction
@@ -1256,12 +1264,25 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|129|192-preAction
                 // write pre-action user code here
+                if(checkInternetConn())
+                {
                 getDataServer("http://192.168.26.148:3000/likedislikes/dislike?uid=2&sid=1&act=-1&format=json");
-
+                }
+                else
+                {
+                    switchDisplayable(getAlert(), getReadMore());
+                }
 //GEN-LINE:|7-commandAction|130|192-postAction
                 // write post-action user code here
             } else if (command == thumbup) {//GEN-LINE:|7-commandAction|131|190-preAction
+                if(checkInternetConn())
+                {
                 getDataServer("http://192.168.26.148:3000/likedislikes/like?uid=2&sid=1&act=1&format=json");
+                }
+                else
+                {
+                   switchDisplayable(getAlert(), getReadMore());
+                }
 //GEN-LINE:|7-commandAction|132|190-postAction
                 // write post-action user code here
             } else if (command == viewCommentsMany) {//GEN-LINE:|7-commandAction|133|356-preAction
@@ -4168,6 +4189,24 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|394-getter|2|
 
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: alert ">//GEN-BEGIN:|396-getter|0|396-preInit
+    /**
+     * Returns an initialized instance of alert component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getAlert() {
+        if (alert == null) {//GEN-END:|396-getter|0|396-preInit
+            // write pre-init user code here
+            alert = new Alert("Connection Lost");//GEN-BEGIN:|396-getter|1|396-postInit
+            alert.setTimeout(Alert.FOREVER);//GEN-END:|396-getter|1|396-postInit
+            // write post-init user code here
+            alert.setString("No Internet Connection");
+        }//GEN-BEGIN:|396-getter|2|
+        return alert;
+    }
+//</editor-fold>//GEN-END:|396-getter|2|
+
     /**
      * Returns a display instance.
      * @return the display instance.
@@ -4684,7 +4723,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         }
     }
 
-    public void filter(String interest) {
+    public void filter(String interest){ // takes a certain interest and filters the main feed on it
         for (int i = 0; i < MainFeed.size(); i++) {
             if (MainFeed.get(i) instanceof storyItem) {
                 storyItem temp = (storyItem) MainFeed.get(i);
@@ -4933,7 +4972,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         parseJsonfile(y);
     }
 
-    public void parseJsonfile(String x) { // parses json string from server
+    public void parseJsonfile(String x) { // parses json string of interests from server
 
         String interest = "";
 
@@ -4955,7 +4994,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     }
 
-    private String[] split(String original) {
+    private String[] split(String original) { // split method 
         Vector nodes = new Vector();
         String separator = "   ";
         System.out.println("split start...................");
@@ -4984,8 +5023,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     public static String getDataServer(String link) /*
      * this method should intiate the connection between the server and the
-     * mobile client which should return the json file of list of stories
-     * according to the client interests.
+     * mobile client and returns a String with the Returned Data
      */ {
 
         HttpConnection httpConn = null;
