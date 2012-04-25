@@ -1,4 +1,6 @@
 NokiaRuby::Application.routes.draw do
+  match "users/:id/profile" => "users#profile"
+  match "h_accounts/:id/profile" => "h_accounts#profile"
   match "users/:id/stories" => "users#feed"
   post "h_accounts/sign_in"
   match 'users/block_friends_feed' => 'users#block_friends_feed'
@@ -23,8 +25,6 @@ NokiaRuby::Application.routes.draw do
   match "admins/statistics/all_users" => "statistics#all_users"
   match "admins/statistics/all_interests" => "statistics#all_interests"
   match "admins/statistics/all_stories" => "statistics#all_stories"
-  match "users/profile" => "users#profile"
-  match "h_accounts/profile" => "h_accounts#profile"
   match "authenticate/:u_id/get_twitter_url" => "twitter_requests#generate_request_token"
   match "authenticate/:u_id/new_twitter_account" =>  "twitter_requests#generate_access_token"
   match "twitter/:u_id/delete" => "twitter_accounts#remove_twitter_account"
