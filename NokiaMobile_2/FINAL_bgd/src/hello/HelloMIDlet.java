@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of teting
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "192.168.1.64";
+    static String SERVER_IP = "192.168.1.12";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -156,13 +156,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private TextField textField7;
     private TextField textField8;
     private Alert IncorrectCode;
-    private Gauge indicator1;
     private Alert ResentAlert;
-    private Gauge indicator3;
     private Alert VerifiedAlert;
-    private Gauge indicator2;
     private Alert InvalidCode;
-    private Gauge indicator4;
     private Form Verification;
     private TextField vTF;
     private StringItem vSI;
@@ -188,10 +184,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Form interestConfirm;
     private Alert StorynotFound;
     private Form Dummy;
-    private Alert AlreadyVerified;
-    private Alert ConnectionError;
-    private Gauge indicator5;
     private Alert alert;
+    private Alert AlreadyVerified;
+    private Alert InternetError;
+    private Alert ServerError;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -206,6 +202,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public OutputStream checkConnOS1;
     public String response1;
     int hID;
+    //ti5r
     Vector interests ,user;
     static String json1;// = "[\"sports\" ,\"cars\" ,\"nature\" ,{\"created_at\":\"2012-04-22T21:31:19Z\",\"name\":\"sports\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"deleted\":null,\"description\":\"shfgsgsgts\",\"id\":1,\"image\":\"http://www.floral-directory.com/flower.gif\",\"name\":\"science\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"nature\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"cars\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"music\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"arts\",\"updated_at\":\"2012-04-22T21:31:19Z\"}]";
 
@@ -817,17 +814,25 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == Verification) {
             if (command == Resend) {//GEN-END:|7-commandAction|41|170-preAction
                 // write pre-action user code here
-                if(checkInternetConn() && checkServerConn()){
+                if(!checkInternetConn()){
+                    switchDisplayable(getInternetError(),getVerification()); //internet alert
+                    return;
+                }
+				
+				if(!checkServerConn()){
+                    switchDisplayable(getServerError(),getVerification()); //server alert
+                    return;
+                }
                     
                      httpCheckConn1 = null;
-      String url = "http://"+SERVER_IP+":3000/h_accounts/"+hID+"/resend.json" ;  
+      String urlR = "http://"+SERVER_IP+":3000/h_accounts/"+hID+"/resend.json" ;  
 
     InputStream is1 = null;
     OutputStream os1 = null;
 
     try {
       // Open an HTTP Connection object
-      httpCheckConn1 = (HttpConnection)Connector.open(url);
+      httpCheckConn1 = (HttpConnection)Connector.open(urlR);
 
       // Setup HTTP Request
       httpCheckConn1.setRequestMethod(HttpConnection.GET);
@@ -845,10 +850,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
           sb.append((char) chr);
 
         if(sb.toString().equalsIgnoreCase("true")){
-            switchDisplayable(ResentAlert, getVerification());
+            switchDisplayable(getResentAlert(), getVerification());
+            System.out.println("resend done");
         }
         else{
-            switchDisplayable(AlreadyVerified, getVerification());
+            switchDisplayable(getAlreadyVerified(), getVerification());
+            System.out.println("resend error");
         }
     
         System.out.println("response: "+ sb.toString());
@@ -878,24 +885,33 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+      System.out.println("resend end");
      
     }
                 
                //switchDisplayable(ResentAlert, getVerification()); 
                     
-                }
-                else{
-                    switchDisplayable(ConnectionError, getVerification());
-                }
+                             
 //GEN-LINE:|7-commandAction|42|170-postAction
                 // write post-action user code here
             } else if (command == Verify) {//GEN-LINE:|7-commandAction|43|168-preAction
                 // write pre-action user code here
-                if(checkInternetConn() && checkServerConn()){
+
                     if(vTF.getString().length()!=4){
-                        switchDisplayable(InvalidCode,getVerification());
+                        switchDisplayable(getInvalidCode(),getVerification());
+						return;
                     }
-                    else{
+					
+					if(!checkInternetConn()){
+                    switchDisplayable(getInternetError(),getVerification()); //internet alert
+                    return;
+                }
+				
+				if(!checkServerConn()){
+                    switchDisplayable(getServerError(),getVerification()); //server alert
+                    return;
+                }
+
             httpCheckConn1 = null;     
                  try {
         //Change IP accordingly
@@ -930,15 +946,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         while ((chr = checkConnIS1.read()) != -1)
           sb.append((char) chr);
 
-        if(sb.toString().equalsIgnoreCase("true")){
-            switchDisplayable(VerifiedAlert, getMainFeed());
-            getMainFeed().removeCommand(goToVerification);
-        }
-        else{
-            switchDisplayable(IncorrectCode,getVerification());
-        }
-        
-       // response1 = sb.toString();
+        response1 =sb.toString();
+
+       
+           // switchDisplayable(VerifiedAlert, getMainFeed());
+          //  getMainFeed().removeCommand(goToVerification);			
+
         System.out.println("response: "+ sb.toString());
     
     } catch (Throwable t) {
@@ -961,20 +974,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             System.out.println("Exception occured " + t.toString());
         }
     }
-               //  if(response1.equalsIgnoreCase("true")){
-                //switchDisplayable(VerifiedAlert, getVerification());
-            //}
-         //else{
-           //  switchDisplayable(IncorrectCode, getVerification());
-         //}                       
-                    }
-                }
-                else {
-                 switchDisplayable(ConnectionError, getVerification());
-                }
-              //  if(response1.equalsIgnoreCase("true")){
+           
+                    
+            if(response1.equalsIgnoreCase("true")){
+                //switchDisplayable(getVerifiedAlert(),getVerification());
+                switchDisplayable(getVerifiedAlert(),getMainFeed());
 //GEN-LINE:|7-commandAction|44|168-postAction
-              //  }// write post-action user code here
+            }
+            else {
+                switchDisplayable(getIncorrectCode(),getVerification());
+            }
+            //  }// write post-action user code here
                 
             } else if (command == backV) {//GEN-LINE:|7-commandAction|45|166-preAction
                 // write pre-action user code here
@@ -2693,7 +2703,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         if (IncorrectCode == null) {//GEN-END:|171-getter|0|171-preInit
             // write pre-init user code here
             IncorrectCode = new Alert("Incorrect Verification", "Incorrect verification code", null, AlertType.ERROR);//GEN-BEGIN:|171-getter|1|171-postInit
-            IncorrectCode.setIndicator(getIndicator1());
             IncorrectCode.setTimeout(Alert.FOREVER);//GEN-END:|171-getter|1|171-postInit
             // write post-init user code here
         }//GEN-BEGIN:|171-getter|2|
@@ -2701,21 +2710,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|171-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator1 ">//GEN-BEGIN:|175-getter|0|175-preInit
-    /**
-     * Returns an initialized instance of indicator1 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator1() {
-        if (indicator1 == null) {//GEN-END:|175-getter|0|175-preInit
-            // write pre-init user code here
-            indicator1 = new Gauge(null, false, 100, 50);//GEN-LINE:|175-getter|1|175-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|175-getter|2|
-        return indicator1;
-    }
-//</editor-fold>//GEN-END:|175-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ResentAlert ">//GEN-BEGIN:|174-getter|0|174-preInit
     /**
@@ -2727,7 +2722,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         if (ResentAlert == null) {//GEN-END:|174-getter|0|174-preInit
             // write pre-init user code here
             ResentAlert = new Alert("Code Resent", "The verification code has been sent to your email", null, AlertType.CONFIRMATION);//GEN-BEGIN:|174-getter|1|174-postInit
-            ResentAlert.setIndicator(getIndicator3());
             ResentAlert.setTimeout(Alert.FOREVER);//GEN-END:|174-getter|1|174-postInit
             // write post-init user code here
         }//GEN-BEGIN:|174-getter|2|
@@ -2735,21 +2729,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|174-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator3 ">//GEN-BEGIN:|178-getter|0|178-preInit
-    /**
-     * Returns an initialized instance of indicator3 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator3() {
-        if (indicator3 == null) {//GEN-END:|178-getter|0|178-preInit
-            // write pre-init user code here
-            indicator3 = new Gauge(null, false, 100, 50);//GEN-LINE:|178-getter|1|178-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|178-getter|2|
-        return indicator3;
-    }
-//</editor-fold>//GEN-END:|178-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: VerifiedAlert ">//GEN-BEGIN:|173-getter|0|173-preInit
     /**
@@ -2761,7 +2741,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         if (VerifiedAlert == null) {//GEN-END:|173-getter|0|173-preInit
             // write pre-init user code here
             VerifiedAlert = new Alert("Account Verified", "your account has been successfully verified", null, AlertType.CONFIRMATION);//GEN-BEGIN:|173-getter|1|173-postInit
-            VerifiedAlert.setIndicator(getIndicator2());
             VerifiedAlert.setTimeout(Alert.FOREVER);//GEN-END:|173-getter|1|173-postInit
             // write post-init user code here
         }//GEN-BEGIN:|173-getter|2|
@@ -2769,21 +2748,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|173-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator2 ">//GEN-BEGIN:|177-getter|0|177-preInit
-    /**
-     * Returns an initialized instance of indicator2 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator2() {
-        if (indicator2 == null) {//GEN-END:|177-getter|0|177-preInit
-            // write pre-init user code here
-            indicator2 = new Gauge(null, false, 100, 50);//GEN-LINE:|177-getter|1|177-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|177-getter|2|
-        return indicator2;
-    }
-//</editor-fold>//GEN-END:|177-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: InvalidCode ">//GEN-BEGIN:|172-getter|0|172-preInit
     /**
@@ -2795,7 +2760,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         if (InvalidCode == null) {//GEN-END:|172-getter|0|172-preInit
             // write pre-init user code here
             InvalidCode = new Alert("Invalid Verification", "The verification code can\'t be less than 4 characters", null, AlertType.ERROR);//GEN-BEGIN:|172-getter|1|172-postInit
-            InvalidCode.setIndicator(getIndicator4());
             InvalidCode.setTimeout(Alert.FOREVER);//GEN-END:|172-getter|1|172-postInit
             // write post-init user code here
         }//GEN-BEGIN:|172-getter|2|
@@ -2803,21 +2767,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|172-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator4 ">//GEN-BEGIN:|179-getter|0|179-preInit
-    /**
-     * Returns an initialized instance of indicator4 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator4() {
-        if (indicator4 == null) {//GEN-END:|179-getter|0|179-preInit
-            // write pre-init user code here
-            indicator4 = new Gauge(null, false, 100, 50);//GEN-LINE:|179-getter|1|179-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|179-getter|2|
-        return indicator4;
-    }
-//</editor-fold>//GEN-END:|179-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verification ">//GEN-BEGIN:|162-getter|0|162-preInit
     /**
@@ -4122,39 +4072,24 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|381-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ConnectionError ">//GEN-BEGIN:|389-getter|0|389-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: InternetError ">//GEN-BEGIN:|389-getter|0|389-preInit
     /**
-     * Returns an initialized instance of ConnectionError component.
+     * Returns an initialized instance of InternetError component.
      *
      * @return the initialized component instance
      */
-    public Alert getConnectionError() {
-        if (ConnectionError == null) {//GEN-END:|389-getter|0|389-preInit
+    public Alert getInternetError() {
+        if (InternetError == null) {//GEN-END:|389-getter|0|389-preInit
             // write pre-init user code here
-            ConnectionError = new Alert("Connection Error", "Error connecting to the server, check your internet connection", null, AlertType.ERROR);//GEN-BEGIN:|389-getter|1|389-postInit
-            ConnectionError.setIndicator(getIndicator5());
-            ConnectionError.setTimeout(Alert.FOREVER);//GEN-END:|389-getter|1|389-postInit
+            InternetError = new Alert("Connection Error", "Cannot connect to the Internet, please check your connection", null, AlertType.ERROR);//GEN-BEGIN:|389-getter|1|389-postInit
+            InternetError.setTimeout(Alert.FOREVER);//GEN-END:|389-getter|1|389-postInit
             // write post-init user code here
         }//GEN-BEGIN:|389-getter|2|
-        return ConnectionError;
+        return InternetError;
     }
 //</editor-fold>//GEN-END:|389-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator5 ">//GEN-BEGIN:|390-getter|0|390-preInit
-    /**
-     * Returns an initialized instance of indicator5 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator5() {
-        if (indicator5 == null) {//GEN-END:|390-getter|0|390-preInit
-            // write pre-init user code here
-            indicator5 = new Gauge(null, false, 100, 50);//GEN-LINE:|390-getter|1|390-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|390-getter|2|
-        return indicator5;
-    }
-//</editor-fold>//GEN-END:|390-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: AlreadyVerified ">//GEN-BEGIN:|391-getter|0|391-preInit
     /**
@@ -4165,7 +4100,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Alert getAlreadyVerified() {
         if (AlreadyVerified == null) {//GEN-END:|391-getter|0|391-preInit
             // write pre-init user code here
-            AlreadyVerified = new Alert("Already Verified", "Sorry, you have already verified your account", null, null);//GEN-BEGIN:|391-getter|1|391-postInit
+            AlreadyVerified = new Alert("Already Verified", "Sorry, you have already verified your account", null, AlertType.ALARM);//GEN-BEGIN:|391-getter|1|391-postInit
             AlreadyVerified.setTimeout(Alert.FOREVER);//GEN-END:|391-getter|1|391-postInit
             // write post-init user code here
         }//GEN-BEGIN:|391-getter|2|
@@ -4206,6 +4141,25 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return alert;
     }
 //</editor-fold>//GEN-END:|396-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ServerError ">//GEN-BEGIN:|399-getter|0|399-preInit
+    /**
+     * Returns an initialized instance of ServerError component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getServerError() {
+        if (ServerError == null) {//GEN-END:|399-getter|0|399-preInit
+            // write pre-init user code here
+            ServerError = new Alert("Server Error", "Error connecting to the server, please try again later", null, AlertType.ERROR);//GEN-BEGIN:|399-getter|1|399-postInit
+            ServerError.setTimeout(Alert.FOREVER);//GEN-END:|399-getter|1|399-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|399-getter|2|
+        return ServerError;
+    }
+//</editor-fold>//GEN-END:|399-getter|2|
+
+
 
     /**
      * Returns a display instance.
@@ -5187,6 +5141,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             System.out.println("error");
             internetConn = false;
         }
+        finally {
+               try{
+                checkConnOS.close();
+                httpCheckConn.close();}
+               catch(Exception e){
+                   e.printStackTrace();
+               }
+            }
     }
 
     public void pingServer() {
@@ -5206,7 +5168,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         try {
             // sets connection to the server address which is specifed in
             // in the String serverURL
-            httpCheckConn = (HttpConnection) Connector.open(serverURL);
+            httpCheckConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":3000");
 
             // Set the request method and headers
             httpCheckConn.setRequestMethod(HttpConnection.POST);
@@ -5234,6 +5196,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             //if ping failed, sets server connection to false 
             serverConn = false;
         }
+        finally {
+               try{
+                checkConnOS.close();
+                httpCheckConn.close();}
+               catch(Exception e){
+                   e.printStackTrace();
+               }
+            }
     }
 
     public boolean checkInternetConn() {
