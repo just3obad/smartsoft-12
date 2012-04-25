@@ -7,9 +7,10 @@
 <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "jquery.min" %>
+    <%= javascript_include_tag "jquery" %>
         <%= javascript_include_tag "exporting" %>
     <%= javascript_include_tag "highcharts" %>
-
+<%= javascript_include_tag "bootstrap-modal" %>
   <%= javascript_include_tag "chrisss" %>
 
   <%= csrf_meta_tags %>
@@ -26,13 +27,10 @@
 <header class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
           <%= link_to "LA2ETLAK", {controller: 'admins' ,action: 'index'}, id: "logo" %>
 
-        <form class="navbar-search pull-left" action="/admins/search">
-          <input type="text" class="search-query" placeholder="Search User" name="query">
+        <form class="navbar-search pull-left">
+          <input type="text" class="search-query" placeholder="Search" name="search" id="query" action="search">
         </form>
           <nav>
             <ul class="nav pull-right">
@@ -47,7 +45,6 @@
     </header>
 <body>
       <%= yield %>
-    </div>
 
 </body>
 </html>
