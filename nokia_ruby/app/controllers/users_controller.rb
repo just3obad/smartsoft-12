@@ -100,7 +100,7 @@ end
   @user_id = params[:uid]
   @story_id = params[:id]
   @interest_id = Story.find(:first, :conditions => { :id => @story_id},:select => "interest_id")
-  @story_list = User.find(:first, :conditions => { :uid => @user_id}).get_stories(@interest_id) 
+  @story_list = User.find(:first, :conditions => { :id => @user_id}).get_stories(@interest_id) 
        if (@story_list!=nil)
          0.upto(@story_list.length) do |i|
          @story_list[i].is_blocked = true
