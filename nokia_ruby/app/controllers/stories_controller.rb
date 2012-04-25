@@ -89,32 +89,31 @@ end
 #it depend on the method share_story which take the story id and the account id and return true or false if it returns true then a pop up message will display thet the story published successfully
 #if it returned false a pop up message will disply thet an error happend and to try again
  def share_story_social_network
-  flag=share_Story self.id, user.id 
+  @storyid=params[:sid]
+  @userid=params[:uid]
+  flag=User.find_by_id(@userid).share?(@storyid) 
 
-  respond_to do |format|
     if flag
-      format.json { message :story_published_successfuly }
+      respond_with{"true" }
     else
-     format.json { message  :an_error_happend_plz_try_again_later }
+     respond_with {"false"}
     end
-  end
  end
    
 
 #recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page 
 
 def recommend_story
+
+  @userid=params[:uid]
   @flist=Array.new
-  @flist=user.get_Friend_List() 
+  @flist=User.find_by_id(@userid).get_Friend_List() 
 
-   
-
-  respond_to do |mess|
-    if @flist.Empty
-      mess.json { message :sorry_you_dont_have_any_friends }
+  
+    if @flist.empty?
+      respond_with {"sorry_you_dont_have_any_friends" }
     else
-        list.json { render json: @flist}
-  end
+        respond_with{@flist}
  end
 
   respond_from do |format|
@@ -124,13 +123,13 @@ def recommend_story
     message=parsed_json[message]
    end
 
-  if user.Empty
+  if user.empty?
 
  user1=Array.new
  user1=User.where(:user_mail => email)
 
   if
-    user1.Empty
+    user1.empty?
     Net::SMTP.start( smtp.gmail.com, 25) do |smtp|
     smtp.send_message "invitation to gaheem application", user.email, [email]
      end
@@ -149,20 +148,17 @@ end
 #view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
 
 def view_friends_like_dislike()
+    @storyid=params[:sid]
 
   @flistlike=Array.new
   @flistdislike=Array.new
   
-   @flistlike=extractFriends( liked self.id )
-   @flistdislike=extractFriends( disliked self.id )
+   @flistlike=extractFriends( liked  @storyid )
+   @flistdislike=extractFriends( disliked  @storyid )
 
-  respond_to do |listlike|
-    listlike.json { render json: @flistlike, status: :liked}
-   end
-  
-  respond_to do |listdislike|
-    listdislike.json { render json: @flistdislike, status: :dislike}
-   end
+  respond_with { @flistlike}
+ 
+  respond_with {@flistdislike}
   
 end
 
