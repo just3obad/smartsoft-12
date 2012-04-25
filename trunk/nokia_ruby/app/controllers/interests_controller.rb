@@ -1,7 +1,7 @@
 class InterestsController < ApplicationController
   
   def index
-    @interests = Interest.all
+    @interests = Interest.all #passing a list of all interests to show them all in the view
   end
 
   def show
