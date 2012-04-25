@@ -38,11 +38,71 @@ has_many :friendships, :dependent => :destroy
     stories.uniq # remove duplicates, if stories is equal nil this will return [] 3:)
   end
   
+  #dummy data to be returned until it created in sprint 2
 
- # lets a user share a story given its id
+  def get_Friend_List()   
+
+  @list=Array.new
+  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
+  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @list <<@user1 <<@user2 <<@user3 <<@user4
+
+  return @list
+    
+ end
+
+
+ #dummy data to be returned until it created in sprint 2
+
+  def liked()  
+ 
+  @list=Array.new
+  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
+  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @list <<@user1 <<@user2 <<@user3 <<@user4
+
+  return @list
+    
+ end
+
+ #dummy data to be returned until it created in sprint 2
+
+  def disliked()  
+ 
+  @list=Array.new
+  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
+  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @list <<@user1 <<@user2 <<@user3 <<@user4
+
+  return @list
+    
+ end
+
+ #dummy data to be returned until it created in sprint 2
+
+  def extractFriends()  
+ 
+  @list=Array.new
+  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
+  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @list <<@user1 <<@user2 <<@user3 <<@user4
+
+  return @list
+    
+ end
+
+# lets a user share a story given its id
   def share?(story_id)
     share = Share.find_by_user_id_and_story_id(self.id,story_id)
-    if share.nil? then		# if he/she didn't share this story before then make him/her share it
+    if share.nil? then	# if he/she didn't share this story before then make him/her share it
       Share.create :user_id=>self.id,:story_id=>story_id
       return true		# shared successfully, return true
     else 			# else, dont allow to share it
