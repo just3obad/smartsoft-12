@@ -72,14 +72,8 @@ end
     end
   end
 
- # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-  end
-
- # PUT /users/1
-  # PUT /users/1.json
-#this method takes user name email and password and his basic info and updates the current info
+ 
+#Method profile : Responsible for updating the profile information about a certain user (First name , Last name , Date of Birth , Username), It updates the user`s Haccount as well (if the user wished to change his password). 
   def profile
     @user_id =(params[:id])
     #@user=User.find(@user_id)
