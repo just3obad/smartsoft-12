@@ -14,9 +14,9 @@
 	    <div class="right_panel pre-scrollable" >
         <% @users.each do |user| %>
         <div class="well-user-component">
-            <a href="    #"class="thumbnail-user-component"><img src="http://placehold.it/75x75"></a>
+            <a href="/users/<%= user.id %>"class="thumbnail-user-component"><img src="http://placehold.it/75x75"></a>
             <div class="user-component-info">
-                <h4><%= user.first_name.downcase.capitalize %> <%= user.last_name.downcase.capitalize %></h4>
+                <h4><%= user.first_name.nil? ? '' : user.first_name.downcase.capitalize %> <%= user.last_name.nil? ? '' : user.last_name.downcase.capitalize %></h4>
                 <h6 class ="user-component-text"><%= user.email %></h6>
                 <h6 class ="user-component-text"><%= user.name %><%=	link_to "User Statistics", logs_path, class: "user-component-button-absolute btn btn-primary"%> </h6>
             
