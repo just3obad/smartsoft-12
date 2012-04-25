@@ -1180,6 +1180,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 if (this.dob.getDate().toString().length() != 0) {
                     s += " \"date_of_birth\":" + "\""+this.dob.getDate().toString()+"\",";
                 }
+
                 if(s.toString()=="")
                     this.switchDisplayable(null, this.emptyFields);
                 s=s.substring(0,s.length()-1);
@@ -1303,10 +1304,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|138|124-postAction
                 // write post-action user code here
             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|139|113-preAction
-                // write pre-action user code here
-                  String ss="user:"+getChoosefriend1()+"email:"+getTextField2()+" message:"+getTextField3();
+                
+                //save what the user enters and send it via send data
+                 String ss="user:"+getChoosefriend1()+"email:"+getTextField2()+" message:"+getTextField3();
      
-        sendData("http://192.168.1.1:3000/stories/recommend_story", ss);
+       sendData("http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?uid="+userID, ss);
         
 //GEN-LINE:|7-commandAction|140|113-postAction
                 // write post-action user code here
@@ -4773,7 +4775,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         }
     }
    
-    
+    //the getstoryshare method get the json file from the back end of
+    //share_story_social_network method and change it to array of string
      public String[] getstoryshare() throws IOException {
         String like_url = "http://" + SERVER_IP + ":" + PORT+"/stories/share_story_social_network?sid="+currentStoryID+"&uid="+userID+"&format=json";
         String jsonS1 = getData(like_url);
@@ -4796,6 +4799,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     }
      
+     //the parsestoryshare method is to parse the array and return the result stored in it
+     
      public boolean parsestoryshare(String[] share) {
         String state = "";
         boolean sss = false;
@@ -4817,7 +4822,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
         return sss;
      }
-
+ //the getfriendslike method get the json file from the back end of
+    //view_friends_like method and change it to array of string
     public String[] getfriendslike() throws IOException {
         String like_url =  "http://" + SERVER_IP + ":" + PORT+"/stories/view_friends_like?sid="+currentStoryID+"&format=json";
 
@@ -4840,7 +4846,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return friendlist;
 
     }
-
+ //the getfriendsdislike method get the json file from the back end of
+    //view_friends_dislike method and change it to array of string
     public String[] getfriendsdislike() throws IOException {
         String dislike_url =  "http://" + SERVER_IP + ":" + PORT+"/stories/view_friends_dislike?sid="+currentStoryID+"&format=json";
         String jsonS2 = getData(dislike_url);
@@ -4866,7 +4873,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return friendlist;
 
     }
-
+ //the getfriendrecstory method get the json file from the back end of
+    //recommend_story method and change it to array of string
     public String[] getfriendrecstory() throws IOException {
 
 
@@ -4896,7 +4904,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
         return friendlist;
     }
-
+//parseJsonfriends method is to parse the array and insert each friend in the list of friends
     public void parseJsonfriends(String[] choosefriend) // user to parse json frindlist
     {
         String friend = "";
@@ -4913,7 +4921,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             choosefriend1.append(friend, null);
         }
     }
-
+//parseJsonfriends method is to parse the array and insert each friend in the list of friends who liked this story
     public void parseJsonfriendsliked(String[] choosefriend) // user to parse json frindlist
     {
         String friend = "";
@@ -4930,7 +4938,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             liked.append(friend, null);
         }
     }
-
+//parseJsonfriends method is to parse the array and insert each friend in the list of friends who disliked this story
     public void parseJsonfriendsdisliked(String[] choosefriend) // user to parse json frindlist
     {
         String friend = "";
@@ -4947,7 +4955,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             disliked.append(friend, null);
         }
     }
-
+//insertfriendsintolist method is to call the method that generates the friends that will be inserted into the lists
     public void insertfriendsintolist(int n) throws IOException {
         String[] x = getfriendrecstory();
         String[] y = getfriendslike();
