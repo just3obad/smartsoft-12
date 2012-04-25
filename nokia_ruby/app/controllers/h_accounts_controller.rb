@@ -35,7 +35,7 @@ class HAccountsController < ApplicationController
 
   def profile
 #    @h_account = Haccount.find(params[:id])
-    @h_account.Haccount.find(params[:id]).update_attributes(:password => params[:password])
+    @h_account=Haccount.find(params[:id]).update_attributes(:password => params[:password])
     if @h_account
     #format.json { render json: "updated" }
     respond_with("updated")

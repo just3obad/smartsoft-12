@@ -83,7 +83,7 @@ end
   def profile
     @user_id =(params[:id])
     #@user=User.find(@user_id)
-    @user=User.find(@user_id).update_attributes(:name=>params[:name],:first_name=>params[:first_name],:last_name=>params[:last_name])
+    @user=User.find(@user_id).update_attributes(:name=>params[:name],:first_name=>params[:first_name],:last_name=>params[:last_name],:date_of_birth=>params[:date_of_birth] )
     @huser=Haccount.find(@user_id).update_attributes(:password => params[:password])
     if @user&@huser
     #format.json { render json: "updated" }
