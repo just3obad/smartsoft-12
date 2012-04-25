@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of teting
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "192.168.1.12";
+    static String SERVER_IP = "10.104.83.229";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -36,7 +36,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     String json;
     //  int user_id; // The user id of logged in 
     String currentStoryString;
-    int userID;
+    int userID=1;
     //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
@@ -1395,6 +1395,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Form getMainFeed() {
         if (MainFeed == null) {//GEN-END:|22-getter|0|22-preInit
             // write pre-init user code here
+            if(!checkInternetConn()){
+                switchDisplayable(getInternetError(),getVerification());
+                //return;
+            }
+            if(!checkServerConn()){
+                switchDisplayable(getServerError(),getVerification());
+            }
             MainFeed = new Form("form1");//GEN-BEGIN:|22-getter|1|22-postInit
             MainFeed.addCommand(getOptions());
             MainFeed.addCommand(getFilterFriends());
@@ -1402,6 +1409,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             MainFeed.addCommand(getGoToVerification());
             MainFeed.setCommandListener(this);//GEN-END:|22-getter|1|22-postInit
             // write post-init user code here
+            this.url = getDataServer("http://" + SERVER_IP + ":" + PORT + "/users/"+userID+"/stories?format=json");
+            this.url = "{ \"storyItem\" :" + this.url + "}";
             new createStories(url, MainFeed, displayable, this);
         }//GEN-BEGIN:|22-getter|2|
         return MainFeed;
