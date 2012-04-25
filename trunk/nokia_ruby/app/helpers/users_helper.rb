@@ -53,7 +53,7 @@ end
  first_user_log_date = UserLogIn.first.created_at #to get the creation date of the first user
  #case 1 if the first login was within last 30 days
  if first_user_log_date >= 30.days.ago.to_date
- logged_per_day = UserLogIn.where(:created_at => first_user_log_date.beginning_of_day..Time.zone.now.end_of_day).group("date(created_at)").select("created_at , count(distinct(id)) as logs_day") #to get all the users who logged in within first user login until the current date and group by the date of creation
+ logged_per_day = UserLogIn.where(:created_at => first_user_log_date.beginning_of_day..Time.zone.now.end_of_day).group("date(created_at)").select("created_at , count(distinct(user_id)) as logs_day") #to get all the users who logged in within first user login until the current date and group by the date of creation
  (first_user_log_date.to_date..Time.zone.now.to_date).map do |date|
   log = logged_per_day.detect { |log| log.created_at.to_date == date}
   log && log.logs_day.to_i || 0
@@ -61,7 +61,7 @@ end
  #case 2 if the first user login was before 30 days ago
   end.inspect
  else
- logged_per_day = UserLogIn.where(:created_at => 30.days.ago.beginning_of_date..Time.zone.now.end_of_day).group("date(created_at)").select("created_at , count(distinct(id)) as logs_day") #to get all the users who logged in within 30 days ago until the current date and group by the date of creation
+ logged_per_day = UserLogIn.where(:created_at => 30.days.ago.beginning_of_date..Time.zone.now.end_of_day).group("date(created_at)").select("created_at , count(distinct(user_id)) as logs_day") #to get all the users who logged in within 30 days ago until the current date and group by the date of creation
  (30.days.ago.to_date..Time.zone.now.to_date).map do |date|
   log = logged_per_day.detect { |log| log.created_at.to_date == date}
   log && log.logs_day.to_i || 0
