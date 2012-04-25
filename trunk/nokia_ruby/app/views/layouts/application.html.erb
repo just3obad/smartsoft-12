@@ -31,8 +31,8 @@
         <div class="container">
           <%= link_to "LA2ETLAK", {controller: 'admins' ,action: 'index'}, id: "logo" %>
 
-        <form class="navbar-search pull-left">
-          <input type="text" class="search-query" placeholder="Search" name="search" id="query" action="search">
+        <form class="navbar-search pull-left" action="/admins/search">
+          <input type="text" class="search-query" placeholder="Search User" name="query">
         </form>
           <nav>
             <ul class="nav pull-right">
