@@ -1,40 +1,56 @@
-<body class= "container">
-<h3>
-<font size="35" face="arial" color=#025167>
-Add Interest
-</font>
-</h3>
-<!.... the form_for helper method takes in  (@interest) an Active Record object and constructs a form using the interest’s attributes , ....>
+<SCRIPT language="javascript">
+
+
+	function callmodal(){
+		$('#myModal').modal();
+	}
+</SCRIPT>
+<div>
+<input type="button" class="btn btn-primary" value="Add new interest" onclick="callmodal()"/>	
+		<!-- sample modal content -->
+	          <div id="myModal" class="modal hide fade">
+	            <div class="modal-header">
+	              <button class="close" data-dismiss="modal">&times;</button>
+	              <h3>Create New Interest</h3>
+	            </div>
+	            <div class="modal-body">
+				
+	
 <%= form_for(@interest) do |f| %>
-<!..  @interest variable  is defined in the controller action corresponding to the new action in the "Interests" controller. The form_for helper knows that @interest is  Interest object, so we will refer to this form by creating a new Interest  , see "Interest.new " in the controller.. >
  
 
   <%= render 'shared/error_messages' %>
-<!.. here we render the partial responsible for errors messages in the /shared directory .. >
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
 
-  <div class="field">
-    <%= f.label :image,"Image" %><br />
-    <%= f.text_field :image %>
+    <%= f.label :name ,"Name :",  :class => "logs-take-input " %><br />
+    <%= f.text_field :name , :class => "input-xlarge" %>
+   
+
+
+
+    <%= f.label :description,"Description:",  :class => "logs-take-input "  %><br />
+    <%= f.text_area :description , :class => "input-xxlarge", :cols => "40", :rows => "6", :placeholder => "add description"%>
+
+
+
+
+    <%= f.label :image,"Image:",  :class => "logs-take-input "  %><br />
+    <%= f.text_field :image,  :placeholder => "Insert Image URL"%><br/><br/>
  
-  </div>
 
 
-<%= f.submit "Submit" , class:"btn btn-large btn-success"%>
 
 
+<%= f.submit "Submit" , class:"span2 btn-large btn btn-primary"%>
 <% end %>
-</body>
-
-
+	            </div>
+	            <div class="modal-footer">
+	              <a href="#" class="btn" data-dismiss="modal" >Close</a>
+	            
+				
+	            </div>
+	          </div>
+</div>
 
 
  
