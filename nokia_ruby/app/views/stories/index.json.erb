@@ -3,9 +3,9 @@
 <% @stories.each do |story| %>
 "id" :  "<%= story.id %>"
 "title" : "<%= story.title %>"
-"body" : "<%= story.body %>"
+"body" : "<%= story.content %>"
 "rank" : "<%= story.rank %>"
-"image" : "<%= story.image %>"
+"image" : "<%= story.media_link %>"
 "category" : "<%= story.category %>"
 
 <%end%>

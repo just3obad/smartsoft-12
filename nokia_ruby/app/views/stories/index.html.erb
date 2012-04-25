@@ -11,10 +11,10 @@
   </thead>
 <% @stories.each do |story| %>
 <tr>
-    <td><img width="150";height="100"; src=story.image></td>
+    <td><img width="150";height="100"; src=story.media_link></td>
     <td><%= story.id %></td>
     <td><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></td>
-    <td><%= story.body %></td>
+    <td><%= story.content %></td>
     <td><%= story.rank %></td>
     <td><%= @name %></td>
 </tr>
