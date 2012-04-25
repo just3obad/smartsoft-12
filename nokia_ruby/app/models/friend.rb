@@ -1,4 +1,4 @@
-class Friends < ActiveRecord::Base
+class Friend < ActiveRecord::Base
   attr_accessible :receiver, :sender, :status
   
   belongs_to :user
@@ -6,6 +6,6 @@ class Friends < ActiveRecord::Base
 
   validates :receiver, presence: true
   validates :sender, presence: true
-  validates :stat, presence: true
+  validates :status, presence: true
   
 end
