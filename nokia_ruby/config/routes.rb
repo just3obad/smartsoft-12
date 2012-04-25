@@ -50,6 +50,10 @@ NokiaRuby::Application.routes.draw do
   match "/feeds/:id" => "feeds#create"
   match "users/:id/toggle" => "users#toggle"   
   match "user_add_interests" => "user_add_interests#add"
+  match 'users/block_friends_feed' => 'users#block_friends_feed'
+  match 'users/friends_feed' => 'users#friends_feed'
+  match 'users/block_story' => 'users#block_story'
+  match 'users/block_interest' => 'users#block_interest'
 
 
   root :to => 'pages#home'
