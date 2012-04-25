@@ -10,4 +10,13 @@ def getinterests
 
 end
 end
+#end
+
+def add
+@userid = param[:id]
+@interests = param[:interests]
+@interests.each do |element|
+  @intid = Interest.find_by_name(element).interest_id
+  UserAddInterest.create("user_id":@userid , "interest_id":@intid)
+end
 end
