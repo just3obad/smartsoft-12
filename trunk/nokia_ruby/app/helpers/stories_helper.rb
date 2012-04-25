@@ -227,7 +227,7 @@ open(source) do |s| content = s.read end
 rss = RSS::Parser.parse(content, false)
 
 
-i = 1
+i = 0
 num = rss.items.size
 #creating the array of stories
 listOfStories = Array.new()
@@ -248,10 +248,12 @@ p count_of_stories_with_same_title
 
 #if it is a new story, it will enter automatically
 if count_of_stories_with_same_title == 0
-#getting the name of the interest 
+#getting the id of the interest 
 sinterest = Feed.where(:link => source).select("interest_id")
 
-storynow = Story.new(:title => stitle, :date => sdate, :rank => 0, :deleted => false, :hidden => false, :interest_id => sinterest)
+storynow = Story.new(:title => stitle, :rank => 0, :media_link => "nothing", :is_blocked => false, :category => "not Yet", :content => "", :deleted => false, :hidden => false, :interest_id => sinterest)
+#storynow = Story.new(:title => stitle)
+
 
 storynow.description = sdescription
 storynow.save
