@@ -72,7 +72,7 @@ end
  end
  #to get the start day of the statistics graph 
  def get_all_users_start_date
- first_user_create_date = User.first.created_at #to get the creation date of the first user
+ first_user_create_date = User.first.created_at.to_date #to get the creation date of the first user
  #case 1 if the creation day was within last 30 days
  if first_user_create_date >= 30.days.ago.to_date
  date = Time.zone.now.to_date - first_user_create_date #to set the start date of the statistics to the creation of the first User
