@@ -209,6 +209,23 @@ def get_interest_of_story(story_id)
   interest = Interest.find(interestID).name
 end
 
+#This method returns the number of distinct users who shared the story. This means that if a user shares a story two times, this method will count him once.
+def get_distinct_number_of_users_who_shared(story_id)
+  number = Share.where(:story_id => story_id).select("distinct(user_id)").count
+end
+
+#This method returns the percentage of the likes to the total number of likes and dislikes
+def getWidth(story_id)
+   likes = get_total_number_of_likes(story_id)
+   dislikes =  get_total_number_of_dislikes(story_id)
+   total = likes + dislikes
+   if total == 0
+    width = 0
+   else 
+    width = likes*100/total
+   end
+end
+
 #the method of fetching rss feeds
 
 require 'rss/1.0'
