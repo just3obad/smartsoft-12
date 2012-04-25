@@ -1,3 +1,4 @@
+<html>
 <div class="container-fluid maindiv">
 
   <div class="row-fluid">
@@ -12,9 +13,7 @@
             
             <%= form_for (@feed) do |f| %>
  
-               <%= render 'shared/error_feed' %>
-
-
+                <%= render 'shared/error_feed' %>
                 <%= f.text_field :link %>
                 <%= f.hidden_field :interest_id, :value =>@interest.id%>
                 <%= f.submit "Submit"  , class:"btn btn-primary"%>
@@ -63,21 +62,20 @@
 			<li class="divider"></li>
 
 			<%= form_tag("/logs/filterbydate", :method => "get") %>
-				  <label for="name" class="logs-take-input" >Name :</label>
-				  <input type="text" class="input-medium" placeholder="Name"  name="name"id="name">
-				 <label for="description"class="logs-take-input" >Description :</label>
-				  <textarea type="text" class="input-medium" placeholder="Description" name="description" id="description"></textarea>
-				<label for="image"class="logs-take-input" >Image :</label>
-				  <input type="text" class="input-medium" placeholder="Image URL" name="image" id="image">
-				 	<input class="btn btn-primary" name="commit" type="submit" 
-					         value="Edit" />
+			  <label for="name" class="logs-take-input" >Name :</label>
+			  <input type="text" class="input-medium" placeholder="Name"  name="name"id="name">
+		          <label for="description"class="logs-take-input" >Description :</label>
+			  <textarea type="text" class="input-medium" placeholder="Description" name="description" id="description"></textarea>
+			  <label for="image"class="logs-take-input" >Image :</label>
+			  <input type="text" class="input-medium" placeholder="Image URL" name="image" id="image">
+			  <input class="btn btn-primary" name="commit" type="submit" value="Edit" />
 							
-					</form>
+			</form>
 
-						<li class="divider"></li>
-<!.. deleting the interest .. no action at the moment .. >						<li class="nav-header">Delete this Interest </li>
-									<%= link_to 'Delete it !!', "#" ,class: "control-absolute btn btn-primary btn-danger"%>
-
+			<li class="divider"></li>
+<!.. deleting the interest .. no action at the moment .. >
+			<li class="nav-header">Delete this Interest </li>
+			<%= link_to 'Delete it !!', "#" ,class: "control-absolute btn btn-primary btn-danger"%>
 
 			</ul>
 </div>
@@ -85,11 +83,11 @@
 
 
 
-<div class="main-right-interse">
-<div class="middle-interest-panel" >
-	<h1><%= @interest.name %></h1>
+			<div class="main-right-interse">
+			<div class="middle-interest-panel" >
+			<h1><%= @interest.name %></h1>
 <! the interest's image .. the alternative is Nokia Logo image .. >
-<a href="#"class="thumbnail-interest-page"><img src= <%= @interest.image %> width="320" height="315" ><alt src= "logo.jpg"> </a>
+			<a href="#"class="thumbnail-interest-page"><img src= <%= @interest.image %> width="320" height="315" ><alt src= "logo.jpg"> </a>
 	
 	<div class="interest-page-description">
 		<ul class="nav nav-list" >
@@ -115,7 +113,7 @@ RSS Feeds :
 <! .. adding the RSS feeds added to this interest unless the table is empty ..>
 <% unless @interest.feeds.empty? %>
 
-   <li> <h3 class="intereset-page-text"> <%= render @interest.feeds %><h3></li>
+   <li> <h3 class="interest-page-text"> <%= render @interest.feeds %><h3></li>
 <% end %>
 </div>
 	<ul class="nav nav-list" >
@@ -135,33 +133,33 @@ RSS Feeds :
 <!.. these are two dummy user stories .. who is responsible for the stories page should  add them here ..>
 			<div class="pre-scrollable">
 			<div class="well-story-component ">
-					<a href="    #"class="thumbnail-story-component"><img src="http://placehold.it/75x75"></a>
-					<div class="story-component-info">
-							<h3>Dummy User</h3>
-							<h6 class ="story-component-text">Email: Dummy_Dumdum@lalaland.com</h6>
-							<h6 class ="story-component-text">A user since: 1901
-							<%=	link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> </h6>
+			<a href="    #"class="thumbnail-story-component"><img src="http://placehold.it/75x75"></a>
+			<div class="story-component-info">
+			<h3>Dummy User</h3>
+			<h6 class ="story-component-text">Email: Dummy_Dumdum@lalaland.com</h6>
+			<h6 class ="story-component-text">A user since: 1901
+			<%=	link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> </h6>
 
 					</div>
 		</div>
 
 
 			<div class="well-story-component ">
-					<a href="    #"class="thumbnail-story-component"><img src="http://placehold.it/75x75"></a>
-					<div class="story-component-info">
-							<h3>Dummy User</h3>
-							<h6 class ="story-component-text">Email: Dummy_Dumdum@lalaland.com</h6>
-							<h6 class ="story-component-text">A user since: 1901
-							<%=	link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> </h6>
+			<a href="    #"class="thumbnail-story-component"><img src="http://placehold.it/75x75"></a>
+			<div class="story-component-info">
+			<h3>Dummy User</h3>
+			<h6 class ="story-component-text">Email: Dummy_Dumdum@lalaland.com</h6>
+			<h6 class ="story-component-text">A user since: 1901
+			<%=	link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> </h6>
 
-					</div>
 		</div>
+	</div>
 
 	
 		
-		</div>
+</div>
 </div>
 	
 </div>
 </div>
-
+</html>
