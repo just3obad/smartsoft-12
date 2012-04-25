@@ -249,7 +249,7 @@ if count_of_stories_with_same_title == 0
 #getting the name of the interest 
 sinterest = Interest.where(:feeds => source).select("interest_id")
 
-listOfStories[i] = Story.create(:title => stitle, :date => sdate, :body => sdescription, :rank => 0, :deleted => false, :hidden => false, :interest_id => sinterest)
+listOfStories[i] = Story.create(:title => stitle, :date => sdate, :content => sdescription, :rank => 0, :deleted => false, :hidden => false, :interest_id => sinterest)
 elsif
 #if the story exists in the database it will enter the array without modifications
 #listOfStories[i] = 
@@ -287,5 +287,6 @@ end
 #return the list after looping on all the entered interests
   return @stories
   end
-
+ module_function :fetchRss
 end
+puts StoriesHelper.fetchRss("http://feeds.abcnews.com/abcnews/topstories")
