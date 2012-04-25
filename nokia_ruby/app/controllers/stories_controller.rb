@@ -147,31 +147,62 @@ end
 
 #view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
 
-def view_friends_like()
+def view_friends_like
 
   @storyid=params[:sid]
   @userid=params[:uid]
   
   @flistlike=Array.new
    
-  @flistlike << User.find_by_id(@userid).extractFriends( liked  @storyid )
+  @flistlike << User.find_by_id(@userid).extractFriends( liked )
   
   respond_with { @flistlike}
  
   
 end
 
-def view_friends_dislike()
+def view_friends_dislike
 
     @storyid=params[:sid]
     @userid=params[:uid]
 
   @flistdislike=Array.new
   
-  @flistdislike << User.find_by_id(@userid).extractFriends( disliked  @storyid )
+  @flistdislike << User.find_by_id(@userid).extractFriends( disliked )
 
   respond_with {@flistdislike}
   
 end
+
+
+ #dummy data to be returned until it created in sprint 2
+
+  def liked()  
+
+  @list=Array.new
+  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
+  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @list <<@user1 <<@user2 <<@user3 <<@user4
+
+  return @list
+    
+ end
+
+ #dummy data to be returned until it created in sprint 2
+
+  def disliked()  
+  
+  @list=Array.new
+  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
+  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @list <<@user1 <<@user2 <<@user3 <<@user4
+
+  return @list
+    
+ end
 
 end
