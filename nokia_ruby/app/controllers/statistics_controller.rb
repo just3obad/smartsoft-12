@@ -1,5 +1,4 @@
 class StatisticsController < ApplicationController
- #layout 'statisticsPage'
  def index
    @interests= Interest.all
  end
@@ -8,6 +7,9 @@ class StatisticsController < ApplicationController
  end
  def stories
    @id=params[:id]
+   @story= Story.find(@id)
+   @interest_id= @story.interest_id
+   @interest = Interest.find(@interest_id)
  end
  def users
    @id=params[:id]

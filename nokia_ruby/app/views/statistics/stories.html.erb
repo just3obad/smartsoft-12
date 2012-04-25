@@ -14,117 +14,126 @@
       //the time interval between one point and another in the graph.
       pointInterval= <%= 1.day * 1000 %> 
       // Start point of the graph.
-      x = <%= get_story_start_date(@id).to_i %>;
+      start_date = <%= get_story_start_date(@id).to_i %>
       //check if the story was deleted before the last 30 days
       //if no, then render the graph normally. if yes, then show the warning described in the HTML part below
-      if(x != -1) {
+      if(start_date != 1) {
       pointStart= <%= get_story_start_date(@id).days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
       yl="Number";
       titleOfGraph="Story Stat";
-      document.getElementById("deletedStory").style.display= "none"; 
-      document.getElementById("backButtonWarning").style.display = "none";
+      document.getElementById("deletedStory").style.display = "none";
       //call the method that renders the graph with the calculated parameters.
       Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
       } else {
+      document.getElementById("ccc").style.display = "none";
+      document.getElementById("graphTitle").style.display = "none";
       document.getElementById("deletedStory").style.display = "block";
-      document.getElementById("backButtonWarning").style.display = "block";
-      document.getElementById("graph").style.display = "none";
-      document.getElementById("backButton").style.display = "none";
       }  
+       likes= <%= get_total_number_of_likes(@id) %>;
+   dislikes = <%= get_total_number_of_dislikes(@id) %>;
+   total = likes + dislikes;
+   if(total == 0) {
+     	document.getElementById("progressbar").style.display = "none";
+   } else {
+        document.getElementById("progressbar").style.display = "block";
+   }
    });
-</script>
-
-  <div class="row-fluid">
-  
-   <!--This warning will appear only if the given story was deleted before the last 30 days so that the admin knows that there are no graphs for this story:-->
    
-   <div class="span12">
-   <div id= "backButtonWarning" style="display: none;">
-      <%= link_to "Back to the stories page", {:controller => 'stories', :action => 'show', :id => @id}, class: "btn btn-large btn-primary" %>
-      </div>
-      <br/>
-      <br/>
-     <div class="alert" id="deletedStory" style="display: none;">
-  
+</script>
+<div class="container-fluid maindiv">
+	<div id="graphTitle" style="display: none;"> 
+    	<h1>Graph</h1></div>
+    	<div class="alert" id="deletedStory" style="display: none;">
            <a class="close" data-dismiss="alert">×</a>
-           <h1><strong>Warning!</strong> Story was deleted before the last 30 days.</h1>
-     </div>
-    <div class = "row-fluid">
-      <!--That's the content of the sidebar:-->
-      <div class="span4" id = "Sidebar">
-       
-       <div id= "backButton">
-      <%= link_to "Back to the stories page", {:controller => 'stories', :action => 'show', :id => @id}, class: "btn btn-large btn-primary" %>
-      <br/>
-      <br/>
-      </div>
-       
-       <div class="well sidebar-nav">
-            
-            <!--Here we'll get the number shares, likes, dislikes and spams of the given story:-->
-            <h4><div class="alert alert-info">
-            Number of shares:
-            </div></h4>
-            <h4>
-            <%= get_total_number_of_shares(@id) %>
-            </h4>
-            <br />
-            
-            <h4><div class="alert alert-info">
-            Number of likes:
-            </div></h4>
-            <h4>
-            <%= get_total_number_of_likes(@id) %>
-            </h4>
-            <br />
-            
-            <h4><div class="alert alert-info">
-            Number of dislikes:
-            </div></h4>
-            <h4>
-            <%= get_total_number_of_dislikes(@id) %>
-            </h4>
-            <br />
-            
-            <h4><div class="alert alert-info">
-            Number of spams:
-            </div></h4>
-            <h4>
-            <%= get_total_number_of_flags(@id) %>
-            </h4>
-            <br />
-            
-            <h4><div class="alert alert-info">
-            This story belongs to the following Interest:
-            </div></h4>
-            <h4>
-            <%= get_interest_of_story(@id) %>
-            </h4>
-            <br />
-            
-            <!--Here we'll get the users who shared the given story with a link to the profile page of each user:-->
-            <h4><div class="alert alert-info">
-            Users who shared this story:
-            </div></h4>
-            <% Share.where(:story_id => @id).find_each do |share| %>
-            <%= link_to User.find(share.user_id).email, {:controller => 'users', :action => 'show', :id => share.user_id}, class: "btn btn-large btn-primary" %>
-            <br />
-            <% end %>
-              
-          </div>
-      
-    </div>
-    <!--The content of the right side of the page:-->
-    <div class="span8">
-      
-     <!-- ccc is the id of the div that the graph would render to -->
-      <div class="hero-unit" id="graph">
-      <div id="ccc"></div>
-         
-      </div>
-    </div>
-   </div>
- </div>
+           <h1><strong>Warning!</strong> Story was hidden before the last 30 days.</h1>
+     	</div>
+    	<!-- ccc is the id of the div that the graph would render to -->
+	<div class= "border-graph" id="ccc">
+	</div>
+	<div class="row-fluid">
+		<div class="statistics-left-panel " id="graph">
+			<ul class="nav nav-list">	
+				
+			<li class="divider"></li>
+			<div class="statistics-page-well">
+				<div class="accordion-inner">
+					<h3 class="statistics-component-text">
+		Likes/Dislikes :<%= get_total_number_of_likes(@id) %> , <%= get_total_number_of_dislikes(@id) %></h3> 
+				<div class="progresscustom" id="progressbar" style="display: none;">
+					<div class="barcustom" id="barofprogress" style="width: <%= getWidth(@id)%>%"></div>
+				</div>						      					<h3 class="statistics-component-text">
+			Number of Flags : <%= get_total_number_of_likes(@id) %> Flags
+				</h3>
+				<h3 class="statistics-component-text">
+			Number of Shares : <%= get_total_number_of_shares(@id) %> Shares
+				</h3>
+					</div>
+				</div>
+	<h3 class="statistics-component-text">Story</h3>
+		<li class="divider"></li>
+		<div class="well-story-component ">
+				<a href="#"class="thumbnail-story-component"><img src="http://placehold.it/75x75" /></a>
+				<div class="story-component-info">
+						<h3><% if @story.title.nil? %>
+						   <%= "No Title" %>
+						   <% else %>
+						   <%= @story.title  %>
+						   <%  end %>
+						</h3>
+					    <%=	link_to "Go to story main Page", {:controller => 'stories', :action => 'show',:id => @id }, class: "story-component-button-absolute btn btn-primary"%>
+
+				</div>
+		</div>
+	<h3 class="statistics-component-text">Interest related</h3>
+		<li class="divider"></li>
+		<div class="well-interest-component">
+				<a href="#"class="thumbnail-interest-component"><img src="http://placehold.it/75x75" /></a>
+				<div class="interest-component-info">
+						<h3><% if @interest.name.nil? %>
+						   <%= "No Name" %>
+						   <% else %>
+						   <%= @interest.name  %>
+						   <%  end %>
+						</h3>
+						<h6><% if @interest.description.nil? %>
+						   <%= "No Description " %>
+						   <% else %>
+						   <%= @interest.description  %>
+						   <%  end %>
+						</h6>
+					    <%=	link_to "Go to Interest main Page", {:controller => 'interests', :action => 'show',:id => @interest_id }, class: "interest-component-button-absolute btn btn-primary"%>
+
+				</div>
+		</div>
+			</ul>
+	 </div>
+	 <div class="statistics-right-panel ">
+<ul class="nav nav-list">
+		
+	
+	<h3 class="statistics-component-text">Shared by <%= get_distinct_number_of_users_who_shared(@id) %> 
+	<% if get_distinct_number_of_users_who_shared(@id) == 1 %>
+	<%= "user" %>
+	<% else %>
+	<%= "users"  %>
+	<%  end %></h3>
+	
+	<li class="divider"></li>
+	<div class="pre-scrollable-statistics"><% Share.where(:story_id => @id).select("distinct(user_id)").find_each do |share| %>
+		<div class="well-user-component">
+		<a href="/users/<%= @id%>"class="thumbnail-user-component"><img src="http://placehold.it/75x75" /></a>
+			<div class="user-component-info">
+				<h3><%= User.find(share.user_id).email %></h3>
+						<%= link_to "view Statistics", {:controller => 'users', :action => 'show', :id => share.user_id}, class: "user-component-button-absolute btn btn-primary"%>
+			</div>
+		</div>
+		<% end %>
+	</div>
+			
+					
+</ul>
+</div>
+</div>
 </div>
