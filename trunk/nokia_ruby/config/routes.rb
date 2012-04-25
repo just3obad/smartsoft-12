@@ -4,6 +4,9 @@ NokiaRuby::Application.routes.draw do
   match "users/index" => "users#index"
   match "users/:id" => "users#show"
   match "/users/new" => "users#create", :as => :create
+  match "stories/share_story_social_network" => "stories#share_story_social_network"
+  match "stories/recommend_story" => "stories#recommend_story"
+  match "stories/view_friends_like_dislike" => "stories#view_friends_like_dislike"
   match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests/interests" => "user_add_interests#getinterests"  
   match "flags/flag" => "flags#flag"
