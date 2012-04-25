@@ -103,7 +103,7 @@ end
 
 #recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page 
 
-def recommend_story
+def recommend_story()
 
   @userid=params[:uid]
   @flist=Array.new
@@ -147,17 +147,26 @@ end
 
 #view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
 
-def view_friends_like_dislike()
+def view_friends_like()
     @storyid=params[:sid]
 
   @flistlike=Array.new
-  @flistdislike=Array.new
+   
+  @flistlike=extractFriends( liked  @storyid )
   
-   @flistlike=extractFriends( liked  @storyid )
-   @flistdislike=extractFriends( disliked  @storyid )
-
   respond_with { @flistlike}
  
+  
+end
+
+def view_friends_dislike()
+    @storyid=params[:sid]
+
+
+  @flistdislike=Array.new
+  
+  @flistdislike=extractFriends( disliked  @storyid )
+
   respond_with {@flistdislike}
   
 end
