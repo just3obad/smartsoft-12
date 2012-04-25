@@ -61,7 +61,6 @@
         chart: {
         renderTo: 'ccc',
         type: 'line',
-        zoomType: 'x',
         marginRight: 130,
         plotBackgroundColor: 'E5E5E5',
         height: 500
