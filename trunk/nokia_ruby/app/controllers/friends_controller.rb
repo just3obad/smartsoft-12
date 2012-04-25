@@ -8,62 +8,73 @@ def index
       format.json { render json: @gaheem_accounts }
     end
   end
-def req
-    @user = params[:id]
-    @fr = params[:friend_name]
-    @friend = User.where(:name => @fr).select("id")
-    unless @friend.nil?
-      if Friends.request(@user, @friend)
-        flash[:notice] = "Friendship with #{@friend.full_name} requested"
-    format.json { render json: "1" }
- end
-      else
-        flash[:notice] = "Friendship with #{@friend.full_name} cannot be requested"
-        respond_to do |format|
-    format.json { render json: "0" }
- end
+  
+  
+  def myreq
+   @me=params[:id]
+   #@id_list = Array.new()
+   @friend_list = Array.new
+   #@ids = Array.new
+   #@name = Array.new
+   #@mail = Array.new
+   #count = Friend.where(:stat=>1, :receiver => @me ).select("sender").count
+   #puts @id_list[count]
+   #puts @friend_list[count]
+   @id_list=Friend.where(:stat=>1, :receiver=>@me).select("sender").uniq.map{|x|x.sender}
+
+   #@id_list=Friend.where(:stat=>1, :receiver => @me ).select("sender").uniq
+   0.upto(@id_list.length) do |i|
+     @friend_list.append(User.find(@id_list[i]))
+   end
+ respond_to do |format|
+      format.json { render json: @friend_list }
+end
+end
+  
+  def find
+   @name=params[:name]
+   @list = User.where(:name=>@name).select("name ,id , email")
+   respond_to do |format|
+      format.json { render json: @list }
       end
-    end
-   
   end
   
-  
-  def accept
-   @user = params[:user_id]
-    @fr = params[:friend_name]
-    @friend = User.where(:name => @fr).select("id")
-    unless @friend.nil?
-      if Friends.accept(@user, @friend)
-        flash[:notice] = "Friendship with #{@friend.full_name} accepted"
-         respond_to do |format|
-    format.json { render json: "1" }
- end
-      else
-        flash[:notice] = "Friendship with #{@friend.full_name} cannot be accepted"
+
+  def req
+    @user=params[:id]
+    @friend=params[:friend]
+    @friendship1 = Friend.new(:sender=>@user, :receiver=>@friend, :stat=>"0").save!
+    @friendship2 = Friend.new(:sender=>@friend, :receiver=>@user, :stat=>"1").save!
+    if @friendship1 && @friendship2
+        respond_to do |format|
+      format.json { render json: @friendship1 }
       end
     end
-    respond_to do |format|
-    format.json { render json: "0" }
- end
+  end
+  
+  def accept
+    @user=params[:id]
+    @friend=params[:friend]
+    @friendship1 =Friend.where(:sender=>@user, :receiver=>@friend).first.update_attributes(:stat => 2)
+    @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.update_attributes(:stat => 2)
+    if @friendship1 && @friendship2
+        respond_to do |format|
+      format.json { render json: "succes" }
+      end
+    end
   end
 
   def reject
-   @user = params[:user_id]
-   @fr = params[:friend_name]
-   @friend = User.where(:name => @fr).select("id")
-    unless @friend.nil?
-      if Friends.reject(@user, @friend)
-        flash[:notice] = "Friendship with #{@friend.full_name} rejected"
+    @user=params[:id]
+    @friend=params[:friend]
+    @friendship1 =Friend.where(:sender=>@user, :receiver=>@friend).first.destroy
+    @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.destroy
+    if @friendship1 && @friendship2
         respond_to do |format|
-    format.json { render json: "1" }
- end
-      else
-        flash[:notice] = "Friendship with #{@friend.full_name} cannot be rejected"
-        respond_to do |format|
-    format.json { render json: "0" }
- end
+      format.json { render json: "succes" }
       end
     end
   end
+
 
 end
