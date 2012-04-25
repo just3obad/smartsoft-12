@@ -1,5 +1,7 @@
 class UserAddInterestsController < ApplicationController
 
+
+#this method takes as input user_id and it get the Interests of this user
 def getinterests
 @id = params[:id]
 @interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| Interest.find(id).name}

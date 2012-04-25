@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	respond_to :html,:json
 
 
-#this method Passes a list of Interests according to the user_id to getStories method which should return list of stories according to these Interests and it converts it to a json file.
+#this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
 
 def feed
  @id=params[:id]
