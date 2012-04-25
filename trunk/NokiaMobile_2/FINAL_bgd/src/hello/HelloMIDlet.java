@@ -207,7 +207,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public String response1;
     int hID;
     Vector interests ,user;
-    static String json1 = "[\"sports\" ,\"cars\" ,\"nature\" ,{\"created_at\":\"2012-04-22T21:31:19Z\",\"name\":\"sports\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"deleted\":null,\"description\":\"shfgsgsgts\",\"id\":1,\"image\":\"http://www.floral-directory.com/flower.gif\",\"name\":\"science\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"nature\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"cars\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"music\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"arts\",\"updated_at\":\"2012-04-22T21:31:19Z\"}]";
+    static String json1;// = "[\"sports\" ,\"cars\" ,\"nature\" ,{\"created_at\":\"2012-04-22T21:31:19Z\",\"name\":\"sports\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"deleted\":null,\"description\":\"shfgsgsgts\",\"id\":1,\"image\":\"http://www.floral-directory.com/flower.gif\",\"name\":\"science\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"nature\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"cars\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"music\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"arts\",\"updated_at\":\"2012-04-22T21:31:19Z\"}]";
 
     /**
      * The HelloMIDlet constructor.
@@ -4561,7 +4561,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
     
     public void UserInterestsJson() { // parse user interests after confirmation to json array to send to server still needs url modification
-                String dataToBeSend = "\"id\": \"" + 2+ "\" , \"interests\": {";
+                String dataToBeSend = "\"id\": \"" +2+ "\" , \"interests\": {";
        for(int i=0; i<user.size(); i++) {
            
            dataToBeSend = dataToBeSend + "\"" +((String)user.elementAt(i)) + "\" ," ;
@@ -4574,7 +4574,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
        if(checkInternetConn() && checkServerConn() ){
             try {
         //Change IP accordingly
-        httpConn = (HttpConnection) Connector.open("http://192.168.1.107:3000/users/");
+        httpConn = (HttpConnection) Connector.open("http://192.168.1.107:3000/user_add_interests");
         //Request method has to be POST
         httpConn.setRequestMethod(HttpConnection.POST);
         httpConn.setRequestProperty("User-Agent",
@@ -4648,7 +4648,62 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 	}
    public void help() {  //fill interets inside toggle form
        //json1 string is the Json String from server with same format just for testing 
-       
+       HttpConnection httpConn = null;
+      String url = "http://192.168.1.9:3000/users/"+2+"/toggle.json" ;  
+
+    InputStream is = null;
+    OutputStream os = null;
+
+    try {
+      // Open an HTTP Connection object
+      httpConn = (HttpConnection)Connector.open(url);
+
+      // Setup HTTP Request
+      httpConn.setRequestMethod(HttpConnection.GET);
+      httpConn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+
+      int respCode = httpConn.getResponseCode();
+      if (respCode == httpConn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1) {
+          sb.append((char) chr); }
+          json1 = sb.toString();
+      }
+             
+      else {
+        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+      }}catch(Exception e){
+          
+      
+
+      } finally {
+        if(is!= null)
+            try {
+                is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+          if(os != null)
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+      if(httpConn != null)
+            try {
+                httpConn.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+     
+    }
+
+
        interests = allInterests(json1);
        user = userInterests(json1.substring(1, json1.indexOf("{")));
        
