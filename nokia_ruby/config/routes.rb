@@ -5,7 +5,7 @@ NokiaRuby::Application.routes.draw do
   match "users/:id" => "users#show"
   match "/users/new" => "users#create", :as => :create
   match "/h_accounts/create" => "h_accounts#create", :as => :create
-  match "user_add_interests/interests" => "user_add_interests#getinterests"
+  match "user_add_interests/interests" => "user_add_interests#getinterests"  
   match "flags/flag" => "flags#flag"
   match "likedislikes/like" => "likedislikes#like"
   match "likedislikes/dislike" => "likedislikes#dislike"
@@ -43,6 +43,8 @@ NokiaRuby::Application.routes.draw do
   match "friends/myreq"=>"friends#myreq"
   match "users/" => "users#index"
   match '/pages/home' => 'pages#home'
+  match "users/:id/toggle" => "users#toggle"   
+  match "user_add_interests" => "user_add_interests#add"
 
   root :to => 'pages#home'
   
