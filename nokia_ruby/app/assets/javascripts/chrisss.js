@@ -62,7 +62,7 @@
         renderTo: 'ccc',
         type: 'line',
         marginRight: 130,
-        plotBackgroundColor: 'E5E5E5',
+        plotBackgroundColor: '#E5E5E5',
         height: 500
     },
     xAxis: {
