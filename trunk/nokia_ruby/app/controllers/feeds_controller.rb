@@ -20,17 +20,17 @@ end
     end
   end
 
+def destroy
+end
 
-
-  def destroy
+  def delete # a method that deletes RSS feeds from the database.
+      Feed.find(params[:id]).destroy
+      redirect_to :action => 'delete_page'
   end
   
   def delete_page #method to redirect to a page where feeds will be deleted.
-   @feeds = Feed.find(params[:interest_id])
+   @feeds = Feed.find_all_by_interest_id(params[:interest_id])
   end
 
-  def delete # a method that deletes RSS feeds from the database.
-    
-  end
 end
 
