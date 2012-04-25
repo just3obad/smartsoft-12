@@ -19,43 +19,10 @@
                 <%= f.submit "Submit"  , class:"btn btn-primary"%>
 
 <% end %>
-            <SCRIPT language="javascript">
-		var counter = 0
-        	function add() {
-		counter++;
-	        //Create an input type dynamically.
-	        var element1 = document.createElement("input");
-		var element2= document.createElement("input");
+<!DELETING RSS>
+            <%= link_to("Manage RSS feeds", {:controller => "feeds", :action => "delete_page", :interest_id =>@interest.id}, class: "btn btn-warning" ) %>
 
- 	        //Assign different attributes to the element.
-                element1.setAttribute("type", "text");
-	        element1.setAttribute("placeholder", "RSS url");
-	        element1.setAttribute("name","link["+counter+"]");
-		element1.setAttribute("class","input-medium");
-		element1.setAttribute("id",counter);
-		element2.setAttribute("type", "button");
-	        element2.setAttribute("value","-");
-	        element2.setAttribute("name",counter);
-		element2.onclick = removeElement;
-	 	element2.setAttribute("class","control-absolute btn btn-primary btn-danger");
-	        var foo = document.getElementById("fooBar");
-
-	        //Append the element in page (in span).
-	        foo.appendChild(element1);
- 		foo.appendChild(element2);
-	}
-		function removeElement() {
-
-		  var d = document.getElementById("fooBar");
-
-		  var olddiv = document.getElementById(this.name);
-		  d.removeChild(olddiv);
-		  d.removeChild(this)
-
-		}
-
-
-</SCRIPT>
+            
 <! edit interest part .. to be added later >
 			<li class="divider"></li>
 			<li class="nav-header">Interest Edit</li>
@@ -164,9 +131,9 @@ RSS Feeds :
 	
 </div>
 </div>
-<<<<<<< .mine
+
 </html>
 
-=======
+
 </html>
->>>>>>> .r653
+
