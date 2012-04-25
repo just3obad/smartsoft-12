@@ -52,6 +52,7 @@ NokiaRuby::Application.routes.draw do
   match '/pages/home' => 'pages#home'
 
   match "/feeds/:id" => "feeds#create"
+  match "/feeds/delete/:interest_id" => "feeds#delete_page"
   match "users/:id/toggle" => "users#toggle"   
   match "user_add_interests" => "user_add_interests#add"
   
