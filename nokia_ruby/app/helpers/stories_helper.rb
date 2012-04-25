@@ -227,7 +227,7 @@ open(source) do |s| content = s.read end
 rss = RSS::Parser.parse(content, false)
 
 
-i = 0
+i = 1
 num = rss.items.size
 #creating the array of stories
 listOfStories = Array.new()
@@ -242,32 +242,37 @@ sdate = rss.items[i].date
 sdescription =  rss.items[i].description
 
 #check if the story already exists in the database
-count_of_stories_with_same_title = Story.where(:title => stitle).select("count(story id)")
+count_of_stories_with_same_title = Story.where(:title => stitle).select("title").count
+
+p count_of_stories_with_same_title
 
 #if it is a new story, it will enter automatically
 if count_of_stories_with_same_title == 0
 #getting the name of the interest 
-sinterest = Interest.where(:feeds => source).select("interest_id")
+sinterest = Feed.where(:link => source).select("interest_id")
 
-listOfStories[i] = Story.create(:title => stitle, :date => sdate, :description => sdescription, :rank => 0, :deleted => false, :hidden => false, :interest_id => sinterest)
-elsif
+storynow = Story.new(:title => stitle, :date => sdate, :rank => 0, :deleted => false, :hidden => false, :interest_id => sinterest)
+
+storynow.description = sdescription
+storynow.save
+
+listOfStories[i] = storynow
+else
 #if the story exists in the database it will enter the array without modifications
-#listOfStories[i] = 
 
-sid = Story.where(:title => stitle).select("story id").first
-listOfStories[i] = Story.find(sid)
+#sid = Story.where(:title => stitle).select("title").first
+listOfStories[i] = Story.find_by_title(stitle)
 end
 i+=1
-if i < num
+
+if i == num
 #if the array is full, return it
 return listOfStories
 end
 end
 
 #handling the errors of the links are not valid
-rescue NoMethodError
-p ' enter valid rss link'
-return
+
 rescue Errno::ENOENT
 p 'enter valid link'
  return
@@ -276,8 +281,7 @@ p 'enter valid rss feed link form'
 
 end
 
-
-
+module_function :fetch_rss
 end
 
 
