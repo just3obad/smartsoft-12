@@ -13,6 +13,18 @@ respond_to do |format|
  end
  end
 
+#this method takes id as param and return user intersts and all interests 
+def toggle
+@id=params[:id]
+@user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| Interest.find(id).name}
+@all_interests =  Interest.all()
+
+respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: (@user_interests + @all_interests)  }
+
+end
+end
 
 #a method that takes list of interest_ids and returns list of stories related to those interests
   def get_stories(interests)
@@ -135,4 +147,3 @@ end
 end
 
 end
-
