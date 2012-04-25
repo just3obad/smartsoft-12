@@ -9,7 +9,7 @@ def index
     end
   end
   
-  
+# Method myreq : Its responsible for getting a list of the user that wish to be friends with the current user  
   def myreq
    @me=params[:id]
    #@id_list = Array.new()
@@ -23,6 +23,8 @@ def index
 end
 end
   
+  
+ # Method find : Its responsible for finding a list of user, when the current user enters a name its responsible for getting all matches for this name 
   def find
    @name=params[:name]
    @list = User.where(:name=>@name).select("name ,id , email")
@@ -31,7 +33,7 @@ end
       end
   end
   
-
+# Method req : Its responsible for the friendship request action between two users (sender and receiver)
   def req
     @user=params[:id]
     @friend=params[:friend]
@@ -44,6 +46,7 @@ end
     end
   end
   
+ #Method accept : Its responsible for friendship action accept, when a user wishes to accept an incoming friendship request from another user, what it does is that it changes the status of the friendship request from pending (status => 0 ) into accepted (friends status => 1)  
   def accept
     @user=params[:id]
     @friend=params[:friend]
@@ -56,6 +59,7 @@ end
     end
   end
 
+# Method Reject : Its responsible for friendship action reject, when a user wishes to reject an incoming friendship request from another user, what it does is that it changes the status of the friendship request from pending (status => 0 ) into rejected (friends status => 2) 
   def reject
     @user=params[:id]
     @friend=params[:friend]
