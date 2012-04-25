@@ -35,7 +35,7 @@ has_many :friendships, :dependent => :destroy
     shares.each do |share| # for all my friends shares
       stories.append Story.find_by_id(share.story_id) # get their stories and append them to stories array 
     end
-    stories.uniq # remove duplicates, if stories is equal null return []
+    stories.uniq # remove duplicates, if stories is equal null return [] ;)
   end
   
 
