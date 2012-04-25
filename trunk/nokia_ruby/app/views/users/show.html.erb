@@ -26,9 +26,19 @@ p3 {font-size:14px;}
 	  <h2>
 	  	   Activated : <%= @user.deactivated %><br /><br /> 
 	  </h2>
-
+<table>
+<tr>
+    <td><%= @user.first_name %></td>
+    <td><%= @user.last_name %></td>
+    <td><%= @user.user_id %></td>
+    
+</tr>
+<%end%>
+</table>
 </body>
 </html>
+
+
 
 
 
