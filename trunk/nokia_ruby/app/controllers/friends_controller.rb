@@ -44,7 +44,7 @@ end
     @user=params[:id]
     @friend=params[:friend]
     @friendship1 = Friend.new(:sender=>@user, :receiver=>@friend, :stat=>"0").save!
-    @friendship2 = Friend.new(:sender=>@friend, :receiver=>@user, :stat=>"1").save!
+    @friendship2 = Friend.new(:sender=>@friend, :receiver=>@user, :stat=>"0").save!
     if @friendship1 && @friendship2
         respond_to do |format|
       format.json { render json: @friendship1 }
@@ -55,8 +55,8 @@ end
   def accept
     @user=params[:id]
     @friend=params[:friend]
-    @friendship1 =Friend.where(:sender=>@user, :receiver=>@friend).first.update_attributes(:stat => 2)
-    @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.update_attributes(:stat => 2)
+    @friendship1 =Friend.where(:sender=>@user, :receiver=>@friend).first.update_attributes(:stat => 1)
+    @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.update_attributes(:stat => 1)
     if @friendship1 && @friendship2
         respond_to do |format|
       format.json { render json: "succes" }
@@ -67,8 +67,8 @@ end
   def reject
     @user=params[:id]
     @friend=params[:friend]
-    @friendship1 =Friend.where(:sender=>@user, :receiver=>@friend).first.destroy
-    @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.destroy
+    @friendship1 =Friend.where(:sender=>@user, :receiver=>@friend).first.update_attributes(:stat => 2)
+    @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.update_attributes(:stat => 2)
     if @friendship1 && @friendship2
         respond_to do |format|
       format.json { render json: "succes" }
