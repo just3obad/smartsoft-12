@@ -1,0 +1,41 @@
+
+<div class="row-fluid">
+   <div class="span3">
+      <!--Sidebar content-->
+      <div class="well sidebar-nav">
+    <ul class="nav nav-list">
+    
+      <li class="nav-header">
+        Statistics
+      </li>
+      <li>
+       <%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
+      </li>
+       <li >
+       <%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
+       </li>
+        <li class="active">
+       <%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
+       </li>
+ 
+     </ul>
+    </div>
+    </div>
+    <div class="span9">
+<div class="alert" id="noUser" style="display: none;">
+  
+           <a class="close" data-dismiss="alert">×</a>
+           <h1><strong>Warning!</strong> No Stories.</h1>
+     </div>
+
+<div id="ccc"></div>
+<div class="general info">
+            
+            <!--Here we'll get the number of users in the system:-->
+            <h4><div class="alert alert-info">Stories Page 
+            </div></h4>
+            
+          
+          </div>
+          </div>
+          </div>
