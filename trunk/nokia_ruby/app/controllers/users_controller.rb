@@ -38,8 +38,6 @@ end
   return @stories
   end
 
-
-
  def show
     @user = User.find(params[:id])
 
@@ -96,22 +94,26 @@ end
   def index
     respond_with(@users = User.all)
   end
- #this method blocks interests from the user's feed by changing the is_blocked attribute to true. The method depends on another method that gets the list of stories under these interests.
+ #This method blocks interests from the user's feed by changing the is_blocked attribute to true. The method depends on another method that gets the list of stories under these interests. The inputs to this method are the user_id and story_id
    
-  def block_interest(story_id)
-  @interest_id = Story.find(:first, :condtions => { :id => story_id},:select => "interest_id")
-  @interests = Interest.find(:first, :conditions => {:id => @interest_id})
-    #@story_list = getStories(@user_interests)
-    0.upto(@story_list.length) do |i|
-       @story_list[i].is_blocked = true
+  def block_interest
+  @user_id = params[:uid]
+  @story_id = params[:id]
+  @interest_id = Story.find(:first, :conditions => { :id => @story_id},:select => "interest_id")
+  @story_list = User.find(:first, :conditions => { :uid => @user_id}).get_stories(@interest_id) 
+       if (@story_list!=nil)
+         0.upto(@story_list.length) do |i|
+         @story_list[i].is_blocked = true
+         end
     end
   end
 
-  #this method takes a story id as input and blocks its story by setting the is_blocked attribute to true.
+  #This method takes a story id as input and blocks its story by setting the is_blocked attribute to true. If the story is not found, it responds with a message that the story is not found.
 
   
-  def block_story(story_id)
-   @story = Story.find(:first, :conditions => { :id => story_id})
+  def block_story
+   @story_id = params[:id]
+   @story = Story.find(:first, :conditions => { :id => @story_id})
     if (@story != nil)
     @story.is_blocked = true
     respond_with("story is blocked successfully")
@@ -120,24 +122,25 @@ end
     end
   end
 
-  #this method blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend.
+#This method gets the stories of a friend through method get_friends_stories() and converts them to a json file. It takes as input the user_id.
 
-  def block_friend_feed(user_id)
-    user_id = params[:id]
-    #@friend_stories = getFriendsStories()
-    0.upto(@friend_stories.length) do |i|
-       @friend_stories[i].is_blocked = true
-    end
-  end
-
-#this method gets the stories of a friend through method getFriendsStories and converts them to a json file.
-
-def friends_feed(user_id)
- user_id = params[:id]
-#@friend_stories = getFriendsStories()
+def friends_feed
+  @user_id = params[:id]
+  @friend_stories = User.find(:first, :conditions => { :id => @user_id}).get_friends_stories()
   respond_with(@friend_stories)
 end
-end
+
+  #This method blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend. It takes as an input the user_id.
+
+  def block_friends_feed
+    @user_id = params[:id]
+    @friend_stories = User.find(:first, :conditions => { :id => @user_id}).get_friends_stories()
+    if (@friend_stories!= nil)
+      0.upto(@friend_stories.length) do |i|
+         @friend_stories[i].is_blocked = true
+      end
+    end
+  end
 
 #a method that takes list of interest_ids and returns list of stories related to those interests
   def get_stories(interests)
@@ -151,4 +154,4 @@ end
     return @stories
   end
 
-
+end
