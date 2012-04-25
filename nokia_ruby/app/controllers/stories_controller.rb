@@ -68,7 +68,7 @@ end
 end
 
   def index
-    respond_with(@stories = Story.all)
+    respond_with(@stories = Story.all) # passing a list of all stories to the view .
   end
 
   def new
