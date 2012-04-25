@@ -1,69 +1,119 @@
-<html>
-<body class="container">
 
-<header >
 
-      <h3>
-          <font size="35" face="arial" color=#025167>
+	<div class="container-fluid maindiv">
 
-        <%= @interest.name %><br/><br/>
+	<div class="row-fluid">
 
-           </font>
-         
-      </h3>
+	 <div class="left_panel">
+			<ul class="nav nav-list left_panel ">
 
-<h3>
-             <%= image_tag(@interest.image, :alt => "logo.jpg", :class => "round") %></br></br>
-</h3>
-</header>
+		<li class="nav-header">Add Rss Feed</li>
+<! .. ADDING RSS FEED .. >
 
-      <h3>
-         <font  size="5"face="arial" color=#025167>
+<! edit interest part .. to be added later >
+			<li class="divider"></li>
+			<li class="nav-header">Interest Edit</li>
+			<li class="divider"></li>
+
+			<%= form_tag("/logs/filterbydate", :method => "get") %>
+				  <label for="name" class="logs-take-input" >Name :</label>
+				  <input type="text" class="input-medium" placeholder="Name"  name="name"id="name">
+				 <label for="description"class="logs-take-input" >Description :</label>
+				  <textarea type="text" class="input-medium" placeholder="Description" name="description" id="description"></textarea>
+				<label for="image"class="logs-take-input" >Image :</label>
+				  <input type="text" class="input-medium" placeholder="Image URL" name="image" id="image">
+				 	<input class="btn btn-primary" name="commit" type="submit" 
+					         value="Edit" />
+							
+					</form>
+
+						<li class="divider"></li>
+<!.. deleting the interest .. no action at the moment .. >						<li class="nav-header">Delete this Interest </li>
+									<%= link_to 'Delete it !!', "#" ,class: "control-absolute btn btn-primary btn-danger"%>
+
+
+			</ul>
+</div>
+
+
+
+
+<div class="main-right-interse">
+<div class="middle-interest-panel" >
+	<h1><%= @interest.name %></h1>
+<! the interest's image .. the alternative is Nokia Logo image .. >
+<a href="#"class="thumbnail-interest-page"><img src= <%= @interest.image %> width="320" height="315" ><alt src= "logo.jpg"> </a>
+	
+	<div class="interest-page-description">
+		<ul class="nav nav-list" >
+			<li class="divider"></li>
+
+		</ul>
+      <h3 class="interest-page-text">
        Description:
-             </font>
       </h3>
+<div class="interest-page-well">
+         <%= @interest.description %>
+</div>
 
-      <p>
-                 <font  size = "3" face="arial" >
-         <%= @interest.description %><br /><br />
-             </font>
-      </p>
+<ul class="nav nav-list" >
+	<li class="divider"></li>
 
-<h3>
- <font  face="arial" color=#025167>
-RSS Feeds : </br>
-    </font>
+</ul>
+<h3 class="interest-page-text">
+RSS Feeds :
 </h3>
 
- 
-
-
+<div class="interest-page-well">
+<! .. adding the RSS feeds aded to this interest unless the table is empty ..>
 <% unless @interest.feeds.empty? %>
-<font style="text-transform: lowercase;">
-     
-     <%= render @interest.feeds %></br></br>
-</font>
-       
+
+   <li> <h3 class="intereset-page-text"> <%= render @interest.feeds %><h3></li>
 <% end %>
+</div>
+	<ul class="nav nav-list" >
+		<li class="divider"></li>
+	
+	</ul>	
+		
+	</div>
+</div>
+	<div class="right-interest-panel interest-page-well" >
+		<h2 class = "logs-take-input" >Stories List<h2>
+			<ul class="nav nav-list" >
+				<li class="divider"></li>
 
-<strong>Number Of Feeds : </strong> <%= @interest.feeds.count %></br></br></br>
-<! ..  Button to add an RSS feed ..>
-<%= link_to "Add RSS Feed ", {:controller => 'feeds', :action =>'new', :id => @interest.id },  :class => "btn btn-large btn-success "  %><br /><br />
-    
-    
- 
-       <strong> </strong> <%= link_to "Edit Interest", '#', :class => "btn  btn-inverse" %>
+			</ul>
 
-       <strong> </strong> <%= link_to "Delete Interest", '#', :class => "btn  btn-inverse" %>
+<!.. these are two dummy user stories .. who is responsible for the stories page should  add them here ..>
+			<div class="pre-scrollable">
+			<div class="well-story-component ">
+					<a href="    #"class="thumbnail-story-component"><img src="http://placehold.it/75x75"></a>
+					<div class="story-component-info">
+							<h3>Dummy User</h3>
+							<h6 class ="story-component-text">Email: Dummy_Dumdum@lalaland.com</h6>
+							<h6 class ="story-component-text">A user since: 1901
+							<%=	link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> </h6>
 
-       <strong> </strong> <%= link_to "View Stories", '#', :class => "btn  btn-inverse " %><br /><br /><br />
-
-
- <strong> Interest's URL : </strong> <%= link_to interest_path(@interest), @interest %><br /> 
-
-</body>
-</html>
+					</div>
+		</div>
 
 
+			<div class="well-story-component ">
+					<a href="    #"class="thumbnail-story-component"><img src="http://placehold.it/75x75"></a>
+					<div class="story-component-info">
+							<h3>Dummy User</h3>
+							<h6 class ="story-component-text">Email: Dummy_Dumdum@lalaland.com</h6>
+							<h6 class ="story-component-text">A user since: 1901
+							<%=	link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> </h6>
 
+					</div>
+		</div>
 
+	
+		
+		</div>
+</div>
+	
+</div>
+</div>
