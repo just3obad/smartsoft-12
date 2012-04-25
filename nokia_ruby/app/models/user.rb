@@ -35,7 +35,7 @@ has_many :friendships, :dependent => :destroy
     shares.each do |share| # for all my friends' shares
       stories.append Story.find(share.story_id) # get their stories and append them to stories array 
     end
-    stories.uniq # remove duplicates, if stories is equal nil this will return [] 3:)
+    stories.uniq # remove duplicates, if stories is equal nil this will return []
   end
   
   #dummy data to be returned until it created in sprint 2
@@ -80,7 +80,7 @@ has_many :friendships, :dependent => :destroy
       return false		# and return false
     end
   end 
-
+ 
  # this methods generates a verification code for the user and adds an entry to Verification_Code
   def generateVerificationCode?()
   @verification_code = VerificationCode.find_by_user_id(self.id)
