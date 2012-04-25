@@ -8,7 +8,8 @@ $(document).ready(function() {
       //the time interval between one point and another in the graph.
       pointInterval= <%= 1.day * 1000 %> 
       // Start point of the graph.
-      
+      x= <%= get_all_users_start_date %>
+      if(x != -1) {
       pointStart= <%= get_all_users_start_date.days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
@@ -18,6 +19,10 @@ $(document).ready(function() {
      document.getElementById("noUser").style.display= "none"; 
       Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
       } else {
+       document.getElementById("noUser").style.display= "block";  
+        document.getElementById("ccc").style.display= "none"; 
+      }
+      } else {
         document.getElementById("noUser").style.display= "block";  
         document.getElementById("ccc").style.display= "none"; 
       }
@@ -25,7 +30,7 @@ $(document).ready(function() {
    });
 </script>
 <div class="row-fluid">
-    <div class="span3">
+   <div class="span3">
       <!--Sidebar content-->
       <div class="well sidebar-nav">
     <ul class="nav nav-list">
@@ -45,7 +50,7 @@ $(document).ready(function() {
  
      </ul>
     </div>
-     </div>
+    </div>
     <div class="span9">
 <div class="alert" id="noUser" style="display: none;">
   
