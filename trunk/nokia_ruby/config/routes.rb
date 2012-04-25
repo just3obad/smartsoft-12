@@ -24,9 +24,6 @@ NokiaRuby::Application.routes.draw do
   match "twitter/:u_id/exists" => "twitter_accounts#exists?"
   match "stories/:id/comments"  => "stories#show_comments"
   match "stories/:id/comments/new" => "stories#create_comment"
-  match "friends/req:id" => "friends#req"
-  match "friends/:id/accept" => "friends#accept"
-  match "friends/:id/reject" => "friends#reject"
   match "h_accounts/verify" => "verification_codes#verify"
   match "h_accounts/:id/resend" => "verification_codes#resend"
   match "h_accounts" => "h_accounts#index"
@@ -38,6 +35,12 @@ NokiaRuby::Application.routes.draw do
   match "users/:id/friend_requests" => "users#friend_requests"
   #match "users/" => "users#index"
   match "friends/"=>"friends#index"
+  match "friends/req" => "friends#req"
+  match "friends/accept" => "friends#accept"
+  match "friends/reject" => "friends#reject"
+  match "friends/index"=>"friends#index"
+  match "friends/find"=>"friends#find"
+  match "friends/myreq"=>"friends#myreq"
   
   match '/pages/home' => 'pages#home'
 
