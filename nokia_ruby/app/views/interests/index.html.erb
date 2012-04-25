@@ -1,6 +1,6 @@
 <table class="table table-striped table-bodered">
   <tr>
-    <th> Number </th>
+
     <th>  </th>
     <th> Title </th>
     <th> Description </th>
@@ -8,7 +8,7 @@
   <% for interest in @interests %>
     <tr>
 
-      <td><%= interest.id %></td>
+
       <td><img width="150";height="100"; src= <%= interest.image %> ></td>
       <td><%= link_to(interest.name, {:controller => "interests", :action => "show", :id => interest.id} ) %></td>
       <td><%= interest.description %></td>
