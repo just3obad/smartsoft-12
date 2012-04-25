@@ -244,7 +244,6 @@ sdescription =  rss.items[i].description
 #check if the story already exists in the database
 count_of_stories_with_same_title = Story.where(:title => stitle).select("title").count
 
-p count_of_stories_with_same_title
 
 #if it is a new story, it will enter automatically
 if count_of_stories_with_same_title == 0
@@ -267,7 +266,7 @@ listOfStories[i] = Story.find_by_title(stitle)
 end
 i+=1
 
-if i == num
+if i == num || i ==50
 #if the array is full, return it
 return listOfStories
 end
