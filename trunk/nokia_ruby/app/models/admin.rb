@@ -26,6 +26,12 @@ class Admin < ActiveRecord::Base
     is then converted to an array.
     """
     query_result = [].to_set
+    
+    if query.instance_of? String
+      query = query.downcase
+    else
+      return query_result.to_a
+    end
 
     email_query = query
 
