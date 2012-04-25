@@ -1,26 +1,10 @@
 <%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => @story.id}, class: "btn btn-large btn-primary") %>
 <!-- This table class is from bootstrap and we show a table with the stoy attributes -->
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Related Interest</th>
-      <th>Description</th>
-      <th>Content</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= @story.title %></td>
-      <td><%= @story.interest_id %></td> 
-      <td><%= @story.description %></td>
-      <td><%= @story.content %></td>
-  <% @comments.each do |comment| %>
-      <td><%= comment.id %></td> 
-      <td><%= comment.content %></td>
-      <td><%= comment.user_id %></td>
-      <td><%= comment.story_id %></td>
-      <%end%>
-    </tr>
-  </tbody>
-</table>
+<div id="container" style="width:1150px;float:right">
+<div class="page-header" style="color:#00FFFF">
+  <h1><%= @story.title %></h1>
+</div>   
+         
+<a href="#"class="thumbnail-story-page"><img src= <%= @story.media_link %> width="300" height="200" ><alt src= "story.jpg"> </a>
+</div>
+</div>
