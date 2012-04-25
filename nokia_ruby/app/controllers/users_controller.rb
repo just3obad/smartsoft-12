@@ -134,21 +134,5 @@ def friends_feed(user_id)
 end
 end
 
-# This method takes the id as a param and it searchs for the pending requests in table friends where the stat is 0 and returns them in array
-def friend_requests
-   @me=params[:user_id]
-   id_list = Array.new()
-   @friend_list = Array.new()
-   count = Friends.where(:stat=>0, :receiver => user_id ).select("sender").count
-   puts id_list[count]
-   puts friend_list[count]
-   id_list=Friends.where(:stat=>0, :receiver => user_id ).select("sender")
-   0.upto(id_list.length) do |i|
-     friend_list[i]=User.where(@me=>id_list[i])
-   end
- respond_to do |format|
-      format.json { render json: @friend_list }
-end
-
 end
 
