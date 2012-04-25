@@ -63,23 +63,27 @@
         type: 'line',
         zoomType: 'x',
         marginRight: 130,
-        plotBackgroundColor: {
-                linearGradient: [0, 0, 500, 500],
-                stops: [
-                    [0, 'rgb(255, 255, 255)'],
-                    [1, 'rgb(100, 237, 255)']
-                ]
-            }
+        plotBackgroundColor: 'E5E5E5',
+        height: 500
     },
     xAxis: {
         type: "datetime",
         title: {
-           text: xl
+           text: xl,
+            style: {
+            color: '#999',
+            font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+         }
         }
+        
       },
       yAxis: {
         title: {
-           text: yl
+           text: yl,
+            style: {
+            color: '#999',
+            font: 'bold 12px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+         }
         }
       },
      legend: {
@@ -88,10 +92,20 @@
                 verticalAlign: 'top',
                 x: -10,
                 y: 100,
-                borderWidth: 0
+                borderWidth: 0,
+      itemHoverStyle: {
+         color: '#000'
+      },
+      itemHiddenStyle: {
+         color: '#333'
+      }
             },
       title: {
-             text: titleOfGraph
+             text: titleOfGraph,
+             style: {
+            color: '#999',
+            font: 'bold 20px Lucida Grande, Lucida Sans Unicode, Verdana, Arial, Helvetica, sans-serif'
+         }
             },
     series: [{
         name: names[0],
