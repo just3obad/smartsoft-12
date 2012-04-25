@@ -119,21 +119,29 @@ def recommend_story
 
   respond_from do |format|
     parsed_json = ActiveSupport::JSON.decode(format)
+    user=parsed_json[user]
     email=parsed_json[email]
     message=parsed_json[message]
    end
 
- userlist=Array.new
- userlist=User.where(:user_mail => email)
+  if user.Empty
 
-  if userlist.Empty
+ user1=Array.new
+ user1=User.where(:user_mail => email)
+
+  if
+    user1.Empty
     Net::SMTP.start( smtp.gmail.com, 25) do |smtp|
     smtp.send_message "invitation to gaheem application", user.email, [email]
      end
 
    else
-    self.show email, message
+    self.show user1, message
   end
+
+ else
+  self.show user, message
+ end
 
 end
 
