@@ -1,5 +1,5 @@
 class StatisticsController < ApplicationController
- layout 'statisticsPage'
+ #layout 'statisticsPage'
  def index
    @interests= Interest.all
  end
