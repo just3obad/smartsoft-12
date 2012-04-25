@@ -5,7 +5,7 @@ class Story < ActiveRecord::Base
   attr_accessible :interest_id, :title, :date, :rank, :description, 
   		:media_link, :is_blocked, :category, :content, :deleted, :hidden
   belongs_to :interests
-
+  has_many :comments
   #def initialize(title, date, body)
    # @title = title
     #@body = body
