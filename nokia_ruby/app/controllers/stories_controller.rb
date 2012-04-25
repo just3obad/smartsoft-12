@@ -107,7 +107,7 @@ def recommend_story()
 
   @userid=params[:uid]
   @flist=Array.new
-  @flist=User.find_by_id(@userid).get_Friend_List() 
+  @flist << User.find_by_id(@userid).get_Friend_List() 
 
   
     if @flist.empty?
@@ -126,7 +126,7 @@ def recommend_story()
   if user.empty?
 
  user1=Array.new
- user1=User.where(:user_mail => email)
+ user1 << User.where(:user_mail => email)
 
   if
     user1.empty?
@@ -148,11 +148,13 @@ end
 #view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
 
 def view_friends_like()
-    @storyid=params[:sid]
 
+  @storyid=params[:sid]
+  @userid=params[:uid]
+  
   @flistlike=Array.new
    
-  @flistlike=extractFriends( liked  @storyid )
+  @flistlike << User.find_by_id(@userid).extractFriends( liked  @storyid )
   
   respond_with { @flistlike}
  
@@ -160,12 +162,13 @@ def view_friends_like()
 end
 
 def view_friends_dislike()
-    @storyid=params[:sid]
 
+    @storyid=params[:sid]
+    @userid=params[:uid]
 
   @flistdislike=Array.new
   
-  @flistdislike=extractFriends( disliked  @storyid )
+  @flistdislike << User.find_by_id(@userid).extractFriends( disliked  @storyid )
 
   respond_with {@flistdislike}
   
