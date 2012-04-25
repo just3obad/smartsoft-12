@@ -11,7 +11,11 @@ class Haccount < ActiveRecord::Base
   :uniqueness => { :case_sensitive => false}
   validates :user_id, :uniqueness =>true
 
-  # this methods generates a verification code for the user and adds an entry to Verification_Code
+# This method generateVerificationCode? generates a verification code for the 'Haccount'
+# and adds an entry to the verification codes table in the database.
+# The verification code is 4 characters from (0-->9) and (a-->z).
+# Returns true if it succeeded to create the entry, otherwise it returns false.
+
   def generateVerificationCode?()
   @verification_code = VerificationCode.find_by_user_id(self.id)
       if @verification_code.nil? then
@@ -22,7 +26,10 @@ class Haccount < ActiveRecord::Base
     end
   end 
   
-  #This methods verfies the account
+# This method verifyAccount?(verCode) takes the verCode entered by the user to verify his Haccount
+# and it tries to match this code with the Haccount's code.
+# returns true and sets verified to true if the user entered the correct code,
+# otherwise it returns false.
   def verifyAccount?(verCode)
     @verEntry = VerificationCode.find_by_user_id(self.id)
     if @verEntry.code == verCode then
@@ -34,7 +41,9 @@ class Haccount < ActiveRecord::Base
   end
 
  
-  #This methods resets the verification code
+# This method resendCode? resets the verification Code of a specific Haccount and updates the
+# entry in the database.
+# This method returns true if the accout wasnt verified yet, otherwise it returns false.
   def resendCode?
     @varEntry = VerificationCode.find_by_user_id(self.id)
     if @varEntry.verified
