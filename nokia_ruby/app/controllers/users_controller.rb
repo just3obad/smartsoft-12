@@ -83,21 +83,26 @@ end
   # PUT /users/1.json
 #this method takes user name email and password and his basic info and updates the current info
   def profile
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:name=>params[:name],:email=>params[:email],
-                    :first_name=>params[:first_name], :last_name=>params[:last_name],
-                    :date_of_birth=>params[:date_of_birth]])
-        redirect_to :controller => "h_accounts", :action => 'update', :email=>params[:email],
-        :password=>params[:password]
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    @user_id =(params[:id])
+    @user=User.find(@user_id)
+    User.where(:id=>@user_id).first.update_attributes(:name=>params[:name],:first_name=>params[:first_name],:last_name=>params[:last_name])
+    @User.haccount = Haccount.update_attributes(:password=>params[:password])
+      #              :date_of_birth=>params[:date_of_birth]])
+     #               :first_name=>params[:first_name], :last_name=>params[:last_name],
+      #              :date_of_birth=>params[:date_of_birth]])
+   # respond_to do |format|
+    #  if @user.update_attributes(params[:name=>params[:name],:email=>params[:email],
+     #               :first_name=>params[:first_name], :last_name=>params[:last_name],
+      #              :date_of_birth=>params[:date_of_birth]])
+       # redirect_to :controller => "h_accounts", :action => 'update', :email=>params[:email],
+        #:password=>params[:password]
+        #format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        #format.json { head :no_content }
+      #else
+       # format.html { render action: "edit" }
+        #format.json { render json: @user.errors, status: :unprocessable_entity }
+      #end
+    #end
   end
 
   def index
