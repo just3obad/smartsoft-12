@@ -7,11 +7,8 @@ class Emailer < ActionMailer::Base
   mail(:to => account.email, :subject => "2allak Verification Code")
   end
 
-  #def password_reset(account)
-  #recipients account.email
-  #from       "mina.adel.fahmy@gmail.com"
-  #subject    "Your password reset email"
-  #body       (:account => account,:password ==>Haccount.new_pass(user.id))
-  #end
-
+  def password_reset(h_account)
+    @pass = ([*('A'..'Z'),*('0'..'9')]-%w( 0 1 I O)).sample(6).join
+    mail(:to => h_account.email, :subject => "2allak New Password")
+  end
 end
