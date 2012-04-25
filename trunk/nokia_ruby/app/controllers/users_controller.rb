@@ -70,7 +70,7 @@ respond_to do |format|
  # PUT /users/1
   # PUT /users/1.json
 #this method takes user name email and password and his basic info and updates the current info
-  def update
+  def profile
     @user = User.find(params[:id])
 
     respond_to do |format|
