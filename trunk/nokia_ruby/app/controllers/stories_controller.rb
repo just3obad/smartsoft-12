@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
   end
     # show comments of a certain story
     def show_comments
-    @comments = Comment.find_all_by_story_id(params[:id])
+    @comments = Comment.find_all_by_story_id(params[:id]).reverse
     end
 
     # create a new comment for a certain story
