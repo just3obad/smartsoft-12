@@ -20,22 +20,23 @@ include UsersHelper
 #second one is "No Of Likes"
 #third one is "No of Dislikes"
 #and forth one is "No of Flags"
- def get_story_stat(story_id)
+ def get_story_stat
  
- s = get_no_of_shares(story_id)
- n = get_no_of_likes(story_id)
- m = get_no_of_dislikes(story_id)
- p = get_no_of_flags(story_id)
- data = "[#{s},#{n},#{m},#{p}]"
+ shares = get_no_of_activity(@shares, @creation_date, @last_update, @hidden)
+ likes = get_no_of_activity(@likes, @creation_date, @last_update, @hidden)
+ dislikes = get_no_of_activity(@dislikes, @creation_date, @last_update, @hidden)
+ flags = get_no_of_activity(@flags, @creation_date, @last_update, @hidden)
+ data = "[#{shares},#{likes},#{dislikes},#{flags}]"
  end
 
-
- #This is the method that should return the data of statistics of an story
-#with this format first element in the data arrays is ARRAY OF "No Of Shares",
-#second one is "No Of Likes"
-#third one is "No of Dislikes"
-#and forth one is "No of Flags"
-#and fifth one is "No of Comments"
+  '''
+  This is the method that should return the data of statistics of an story
+  with this format first element in the data arrays is ARRAY OF "No Of Shares",
+  second one is "No Of Likes"
+  third one is "No of Dislikes"
+  and forth one is "No of Flags"
+  and fifth one is "No of Comments"
+  '''
  def get_user_stat(user_id)
   s = get_no_of_shares_user(user_id)
  n = get_no_of_likes_user(user_id)
