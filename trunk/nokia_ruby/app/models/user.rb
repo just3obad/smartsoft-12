@@ -30,7 +30,7 @@ has_many :friendships, :dependent => :destroy
     shares.each do |share|
       stories.append(Story.find(share.story_id))
     end
-    stories.uinq
+    stories.uniq
   end
  # gets the shared stories of friends of a user
   def get_friends_stories()
