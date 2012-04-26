@@ -208,6 +208,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert DownedBefore;
     private Alert alert2;
     private Alert UserDoesntExist;
+    private Alert UserExists;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -829,6 +830,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         }
                         else if(respCode == 400){
                             //TODO wrong pass
+                            switchDisplayable(getPasswordsDontMatch(), displayable);
+                            return;
+                        }
+                        else if(respCode == 500){
+                            switchDisplayable(getUserExists(), displayable);
+                            return;
                         }
                     } catch (Throwable t) {
                         System.out.println("Exception occured " + t.toString());
@@ -853,6 +860,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     } else{
                         //TODO passes don't match
                         switchDisplayable(getPasswordsDontMatch(),displayable);
+                        return;
                     }
                 } else {
                     //TODO wrong email format register
@@ -4715,6 +4723,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         // enter post-action user code here
     }//GEN-BEGIN:|116-action|2|
 //</editor-fold>//GEN-END:|116-action|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: UserExists ">//GEN-BEGIN:|440-getter|0|440-preInit
+    /**
+     * Returns an initialized instance of UserExists component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getUserExists() {
+        if (UserExists == null) {//GEN-END:|440-getter|0|440-preInit
+            // write pre-init user code here
+            UserExists = new Alert("alert3", "The email you entered already exists in our database.", null, null);//GEN-BEGIN:|440-getter|1|440-postInit
+            UserExists.setTimeout(Alert.FOREVER);//GEN-END:|440-getter|1|440-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|440-getter|2|
+        return UserExists;
+    }
+//</editor-fold>//GEN-END:|440-getter|2|
 
 
 
