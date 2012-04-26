@@ -22,13 +22,14 @@ has_many :friendships, :dependent => :destroy
   validates :first_name, :length => { :maximum => 20 }
   validates :last_name,  :length => { :maximum => 20 }
   
-
  # gets the shared stories of one friend given his/her id
-  def get_one_friend_stories(friend_id)
-    shares = Share.find_all_by_user_id(friend_id)
+ # to get your own shared stories supply your own ID
+ # as the param friend id
+  def get_one_friend_stories(friend_id) 
+    shares = Share.find_all_by_user_id(friend_id) # get all his/her shared stories
     stories = Array.new
     shares.each do |share|
-      stories.append(Story.find(share.story_id))
+      stories.append(Story.find(share.story_id)) #
     end
     stories.uniq
   end
