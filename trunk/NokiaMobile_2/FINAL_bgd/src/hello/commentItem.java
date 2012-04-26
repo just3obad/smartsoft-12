@@ -259,14 +259,29 @@ public class commentItem extends CustomItem {
         }
         int upR = ((up * 200) / tot);
         int downR = ((down * 200) / tot);
-        g.setColor(67, 186, 70);
-        g.fillRoundRect(14, n + 40, upR + 2, 8, 7, 7);
-        g.setColor(238, 44, 44);
-        g.fillRoundRect(14 + upR - 2, n + 40, downR, 8, 7, 7);
-        g.setColor(12, 16, 255);
+        if(up<down){                              //if ups are more, make them on top "curvey end on top"
+        g.setColor(67,186,70);
+        g.fillRoundRect(14, n+42 , upR+2, 8,7,7);
+        g.setColor(238,44,44);
+        g.fillRoundRect(14+upR-2, n+42 , downR, 8,7,7);
+        }
+        else if(up>down){                       //if downs are more, make them on top "curvey end on top"
+            g.setColor(238,44,44);
+        g.fillRoundRect(14+upR-2, n+42 , downR, 8,7,7);
+           g.setColor(67,186,70);
+        g.fillRoundRect(14, n+42 , upR+2, 8,7,7); 
+        }else{                                  //if equal draw 2 squares with red and green to cover the round edges
+          g.setColor(238,44,44);                // and make them look equal
+        g.fillRoundRect(14+upR-2, n+42 , downR, 8,7,7);
+        g.fillRect(80, n+42, 20, 8);
+           g.setColor(67,186,70);
+        g.fillRoundRect(14, n+42 , upR+2, 8,7,7); 
+        g.fillRect(100, n+42, 20, 8);
+        }
+        g.setColor(12,16,255);
         Font f3 = Font.getFont(Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
         g.setFont(f3);
-        g.drawString(date, 17, n + 13, 0);
+        g.drawString(date,17 , n+13, 0);         // draw the date
 
     }
 }

@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of teting
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "192.168.1.64";
+    static String SERVER_IP = "192.168.1.101";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -36,7 +36,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     String json;
     //  int user_id; // The user id of logged in 
     String currentStoryString;
-    int userID;
+    int userID=1;
 //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
     private Command viewComments;
@@ -111,8 +111,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command viewCommentsMany;
     private Command FilterStories1;
     private Command FilterStories;
-    private Command okCommand13;
+    private Command backCommand15;
     private Command itemCommand;
+    private Command okCommand13;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -156,13 +157,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private TextField textField7;
     private TextField textField8;
     private Alert IncorrectCode;
-    private Gauge indicator1;
     private Alert ResentAlert;
-    private Gauge indicator3;
     private Alert VerifiedAlert;
-    private Gauge indicator2;
     private Alert InvalidCode;
-    private Gauge indicator4;
     private Form Verification;
     private TextField vTF;
     private StringItem vSI;
@@ -188,9 +185,20 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Form interestConfirm;
     private Alert StorynotFound;
     private Form Dummy;
+    private Alert PasswordsDontMatch;
+    private Alert WrongEmailPassCombination;
+    private Alert WrongEmailFormat;
+    private Alert emptyFields;
+    private Alert passMissMatch;
+    private Alert alert1;
+    private Alert ServerError;
+    private Alert alert;
     private Alert AlreadyVerified;
-    private Alert ConnectionError;
-    private Gauge indicator5;
+    private Alert InternetError;
+    private Alert commentSent;
+    private Alert UppedBefore;
+    private Alert DownedBefore;
+    private Alert CommentFailed;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -205,8 +213,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public OutputStream checkConnOS1;
     public String response1;
     int hID;
+    //ti5r
     Vector interests ,user;
-    static String json1 = "[\"sports\" ,\"cars\" ,\"nature\" ,{\"created_at\":\"2012-04-22T21:31:19Z\",\"name\":\"sports\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"deleted\":null,\"description\":\"shfgsgsgts\",\"id\":1,\"image\":\"http://www.floral-directory.com/flower.gif\",\"name\":\"science\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"nature\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"cars\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"music\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"arts\",\"updated_at\":\"2012-04-22T21:31:19Z\"}]";
+    static String json1;// = "[\"sports\" ,\"cars\" ,\"nature\" ,{\"created_at\":\"2012-04-22T21:31:19Z\",\"name\":\"sports\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"deleted\":null,\"description\":\"shfgsgsgts\",\"id\":1,\"image\":\"http://www.floral-directory.com/flower.gif\",\"name\":\"science\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"nature\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"cars\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"music\",\"updated_at\":\"2012-04-22T21:31:19Z\",\"name\":\"arts\",\"updated_at\":\"2012-04-22T21:31:19Z\"}]";
 
     /**
      * The HelloMIDlet constructor.
@@ -246,19 +255,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         //
         String[] s = split(currentStoryString, "~");
         //s[0] = title  s[1] = image s[2] = rank s[3] = body s[4] = category s[5] = id
-        if (s.length == 0) {
-            readMore.append("sorry , the selected story was removed");
-            readMore.removeCommand(thumbup);
-            readMore.removeCommand(thumbdown);
-            readMore.removeCommand(flag);
-            readMore.removeCommand(recommend1);
-            readMore.removeCommand(share);
-            readMore.removeCommand(signout);
-            readMore.removeCommand(blockinterest);
-            readMore.removeCommand(blockstory);
+        if (s.length == 0 || s == null) {
+            switchDisplayable(getAlert1(), displayable);
         } else {
 
-            Image addedImage = new Image();
+            Image addedImage = null;
             try {
                 addedImage = loadImage(s[1]); // adds image from internet
             } catch (Exception e) {
@@ -290,10 +291,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         jsonReadMoree();
     }
 
-    public String recieveData(String url) {
+    public String recieveData(String url) { //method to get data from server
         InputStream is = null;
         OutputStream os = null;
         String r = null;
+        url+="&format=json";
+        
 
         try {
             // Open an HTTP Connection object
@@ -337,33 +340,56 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return r;
     }
 
-    public void friendsConnection() {
+    public void friendsConnection() { //method to get friends_feed
 
-        String url = "http://192.168.26.136:3000/users/friends_feed?id=" + userID;
+        String url = "http://"+SERVER_IP+":"+PORT+"/users/friends_feed?id=" +userID;
         String friendsStories = recieveData(url);
         createStories st = new createStories(friendsStories, FriendsStories, displayable, this);
     }
 
     public void up(String comment_id) {
      //   currentStoryID = 8; // for testing
-        sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/upc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + userID + "\"}");
-        CommentsMany = null;  //make null to re-init
-        before = true; //to re-init textfield in the CommentsMany form
-        Dummy = null;  //make null to re-init
-        switchDisplayable(null, getDummy()); // switch to dummy display
+        String s = sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/upc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + userID + "\"}");
+     //   CommentsMany = null;  //make null to re-init
+     //   before = true; //to re-init textfield in the CommentsMany form
+     //   Dummy = null;  //make null to re-init
+        if(getTextField().getString().length()!=0)
+        textField.delete(0, getTextField().getString().length()); //cleat text in textfield
+        CommentsMany.deleteAll();
+                   // CommentsMany = null;
+      CommentsMany.append(getTextField());
+      parseComments(currentStoryID+"");
+                //    switchDisplayable(null, getCommentsMany());
+       if(s.equals("ok"))
+        switchDisplayable(null, getCommentsMany()); // switch to dummy display
+        else{
+        switchDisplayable(getUppedBefore(), getCommentsMany()); // switch to dummy display and show alert
+        }
 
     }
 
     public void down(String comment_id) {
    //     currentStoryID = 8; // for testing
-        sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/downc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + userID + "\"}");
-        CommentsMany = null;  //make null to re-init
-        before = true;  //to re-init textfield in the CommentsMany form
-        Dummy = null;  //make null to re-init
-        switchDisplayable(null, getDummy()); // switch to dummy display
+       String s =  sendData("http://"+SERVER_IP+":3000/stories/"+currentStoryID+"/comments/downc", "{\"comment_id\":\"" + comment_id + "\",\"user_id\":\"" + userID + "\"}");
+   //     CommentsMany = null;  //make null to re-init
+    //    before = true;  //to re-init textfield in the CommentsMany form
+   //     Dummy = null;  //make null to re-init
+       if(getTextField().getString().length()!=0)
+       textField.delete(0, getTextField().getString().length()); //cleat text in textfield
+       
+        CommentsMany.deleteAll();
+                   // CommentsMany = null;
+      CommentsMany.append(getTextField());
+      parseComments(currentStoryID+"");
+                //    switchDisplayable(null, getCommentsMany());
+       if(s.equals("ok"))
+        switchDisplayable(null, getCommentsMany()); // switch to dummy display
+        else{
+        switchDisplayable(getDownedBefore(), getCommentsMany()); // switch to dummy display and show alert
+       }
     }
-
-    public void sendData(String ip, String data) {
+// This method is to send data to a specific ip in the json format
+    public String sendData(String ip, String data) {
 
 
         try {
@@ -383,10 +409,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     "" + dataToBeSend.length());
             os = httpConn.openOutputStream();
             os.write(dataToBeSend.getBytes());
-
-            os.flush();//data written will be flushed to server.
+            InputStream is = null;
+              os.flush();//data written will be flushed to server.
+              is = httpConn.openDataInputStream();
             System.out.println(httpConn.getResponseCode());
             System.out.println(dataToBeSend);
+            
+            StringBuffer sb = new StringBuffer();
+             //   os = httpConn.openOutputStream();
+                
+                int chr;
+                while ((chr = is.read()) != -1) {
+                    sb.append((char) chr);
+                }
+
+
+                System.out.println(sb.toString());
+                return sb.toString();
 
         } catch (Throwable t) {
             System.out.println("Exception occured " + t.toString());
@@ -408,9 +447,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 System.out.println("Exception occured " + t.toString());
             }
         }
-
+        return "";
     }
-
+// This Method us responsible for getting a json string from a given ip, to save reusing the code to get ths json string
     public String getData(String ip) {
         String ret = "";
         HttpConnection httpConn = null;
@@ -477,9 +516,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 //</editor-fold>//GEN-END:|methods|0|
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: initialize ">//GEN-BEGIN:|0-initialize|0|0-preInitialize
     /**
-     * Initializes the application. It is called only once when the MIDlet is
-     * started. The method is called before the
-     * <code>startMIDlet</code> method.
+     * Initializes the application.
+     * It is called only once when the MIDlet is started. The method is called before the <code>startMIDlet</code> method.
      */
     private void initialize() {//GEN-END:|0-initialize|0|0-preInitialize
         // write pre-initialize user code here
@@ -494,6 +532,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
+        currentStoryID=4;
+        SERVER_IP = "192.168.1.3";
+        userID = 3;
+        switchDisplayable(null,getCommentsMany()); if(true) return;
         switchDisplayable(null, getLoginScreen());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
@@ -512,14 +554,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: switchDisplayable ">//GEN-BEGIN:|5-switchDisplayable|0|5-preSwitch
     /**
-     * Switches a current displayable in a display. The
-     * <code>display</code> instance is taken from
-     * <code>getDisplay</code> method. This method is used by all actions in the
-     * design for switching displayable.
-     *
-     * @param alert the Alert which is temporarily set to the display; if
-     * <code>null</code>, then
-     * <code>nextDisplayable</code> is set immediately
+     * Switches a current displayable in a display. The <code>display</code> instance is taken from <code>getDisplay</code> method. This method is used by all actions in the design for switching displayable.
+     * @param alert the Alert which is temporarily set to the display; if <code>null</code>, then <code>nextDisplayable</code> is set immediately
      * @param nextDisplayable the Displayable to be set
      */
     public void switchDisplayable(Alert alert, Displayable nextDisplayable) {//GEN-END:|5-switchDisplayable|0|5-preSwitch
@@ -536,9 +572,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: commandAction for Displayables ">//GEN-BEGIN:|7-commandAction|0|7-preCommandAction
     /**
-     * Called by a system to indicated that a command has been invoked on a
-     * particular displayable.
-     *
+     * Called by a system to indicated that a command has been invoked on a particular displayable.
      * @param command the Command that was invoked
      * @param displayable the Displayable where the command was invoked
      */
@@ -559,11 +593,16 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 //    user_id = 3; //for testing
                     String url = "http://"+SERVER_IP+":3000/stories/" + currentStoryID + "/comments/new";
                     String data = "{\"user_id\":\"" + userID + "\",\"story_id\":\"" + currentStoryID + "\",\"content\":\"" + comment + "\"}";
-                    sendData(url, data);
+                 String s =  sendData(url, data);
                     textField.delete(0, getTextField().getString().length()); //cleat text in textfield
-                    CommentsMany = null; //make null to re-init
-                    Dummy = null; // make null to re-init
-                    switchDisplayable(null, getDummy()); //switch to dummy display
+                     CommentsMany.deleteAll();
+                   // CommentsMany = null;
+                    CommentsMany.append(getTextField());
+                    parseComments(currentStoryID+"");
+                    if(s.equals("ok"))
+                    switchDisplayable(getCommentSent(), getCommentsMany());
+                    else
+                    switchDisplayable(getCommentFailed(),getCommentsMany());
                 }
             } else if (command == backToStory) {//GEN-LINE:|7-commandAction|3|38-preAction
                 // write pre-action user code here
@@ -573,11 +612,29 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == FriendList) {
             if (command == Block) {//GEN-END:|7-commandAction|5|239-preAction
                 // write pre-action user code here
-                String r = recieveData("http://192.168.26.136:3000/users/block_friend_feed?id=" + userID);
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
+                String r = recieveData("http://"+SERVER_IP+":"+PORT+"/users/block_friends_feed?id=" +userID);
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|6|239-postAction
                 // write post-action user code here
             } else if (command == Filter) {//GEN-LINE:|7-commandAction|7|241-preAction
                 // write pre-action user code here
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
                 friendsConnection();
                 switchDisplayable(null, getFriendsStories());//GEN-LINE:|7-commandAction|8|241-postAction
                 // write post-action user code here
@@ -593,14 +650,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == itemCommand) {//GEN-LINE:|7-commandAction|13|395-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|14|395-postAction
+                switchDisplayable(null, getRegisterScreen());//GEN-LINE:|7-commandAction|14|395-postAction
                 // write post-action user code here
             } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|15|135-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|16|135-postAction
                 // write post-action user code here
                String user_details = "";
-                RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)"
+                        + "*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
                 if (regex.match(textField4.getString())) {
                     HttpConnection httpConn = null;
                     InputStream is = null;
@@ -608,8 +666,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
                     try {
                         //Change IP accordingly
-                        httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"
-                                +String.valueOf(PORT)+"/h_accounts/sign_in.json");
+                        httpConn = (HttpConnection) Connector.open("http://"
+                                +SERVER_IP+":"+String.valueOf(PORT)+
+                                "/h_accounts/sign_in.json");
                         //Request method has to be POST
                         httpConn.setRequestMethod(HttpConnection.POST);
                         httpConn.setRequestProperty("User-Agent",
@@ -644,6 +703,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         }
                         if(respCode == 400){
                             //TODO wrong pass
+                            switchDisplayable(getWrongEmailPassCombination(),displayable);
                         }
                     } catch (Throwable t) {
                         System.out.println("Exception occured " + t.toString());
@@ -667,12 +727,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     }
                 } else {
                     //TODO wrong email format login
-                    System.out.println("reached");
-                    try{
-                    //switchDisplayable(WrongEmailFormat, displayable);
-                    } catch(Throwable t){
-                        t.toString();
-                    }
+                    switchDisplayable(getWrongEmailFormat(), displayable);
                 }
             }//GEN-BEGIN:|7-commandAction|17|233-preAction
         } else if (displayable == MainFeed) {
@@ -696,7 +751,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == RegisterScreen) {
             if (command == backCommand7) {//GEN-END:|7-commandAction|25|155-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|26|155-postAction
+                switchDisplayable(null, getLoginScreen());//GEN-LINE:|7-commandAction|26|155-postAction
                 // write post-action user code here
             } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|27|153-preAction
                 // write pre-action user code here
@@ -704,7 +759,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
                 String user_details = "";
                 RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-                if (regex.match(textField4.getString())) {
+                if (regex.match(textField6.getString())) {
+                    if(textField7.getString().equals(textField8.getString())){
                     HttpConnection httpConn = null;
                     InputStream is = null;
                     OutputStream os = null;
@@ -712,7 +768,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     try {
                         //Change IP accordingly
                         httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"
-                                +String.valueOf(PORT)+"/h_accounts/sign_in.json");
+                                +String.valueOf(PORT)+"/users/new.json");
                         //Request method has to be POST
                         httpConn.setRequestMethod(HttpConnection.POST);
                         httpConn.setRequestProperty("User-Agent",
@@ -722,8 +778,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         httpConn.setRequestProperty("Content-Type", "application/json");
                         // JSON String that you will send containing the attributes needed for sign up. 
 
-                        String dataToBeSend = "{\"email\":\"" + textField4.getString()
-                                + "\",\"password\":\"" + textField5.getString() + "\"}";
+                        String dataToBeSend = "{\"email\":\"" + textField6.getString()
+                                + "\",\"password\":\"" + textField7.getString() + "\"}";
                         httpConn.setRequestProperty("Content-Length",
                                 "" + dataToBeSend.length());
                         os = httpConn.openOutputStream();
@@ -745,7 +801,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                                 user_details = sb.toString();
                                 getUserID(user_details);
                         }
-                        if(respCode == 400){
+                        else if(respCode == 400){
                             //TODO wrong pass
                         }
                     } catch (Throwable t) {
@@ -768,14 +824,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                             System.out.println("Exception occured " + t.toString());
                         }
                     }
-                } else {
-                    //TODO wrong email format login
-                    System.out.println("reached");
-                    try{
-                    //switchDisplayable(WrongEmailFormat, displayable);
-                    } catch(Throwable t){
-                        t.toString();
+                    } else{
+                        //TODO passes don't match
+                        switchDisplayable(getPasswordsDontMatch(),displayable);
                     }
+                } else {
+                    //TODO wrong email format register
+                    switchDisplayable(getWrongEmailFormat(), displayable);
                 }
             }//GEN-BEGIN:|7-commandAction|29|29-preAction
         } else if (displayable == Story) {
@@ -804,6 +859,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 if(getChoiceGroup().isSelected(i) == true) 
                 user.addElement(getChoiceGroup().getString(i));
   }
+                getInterestConfirm();
                 switchDisplayable(null, getInterestConfirm());//GEN-LINE:|7-commandAction|38|380-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|39|345-preAction
@@ -816,17 +872,25 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == Verification) {
             if (command == Resend) {//GEN-END:|7-commandAction|41|170-preAction
                 // write pre-action user code here
-                if(checkInternetConn() && checkServerConn()){
+                if(!checkInternetConn()){
+                    switchDisplayable(getInternetError(),getVerification()); //internet alert
+                    return;
+                }
+				
+				if(!checkServerConn()){
+                    switchDisplayable(getServerError(),getVerification()); //server alert
+                    return;
+                }
                     
                      httpCheckConn1 = null;
-      String url = "http://"+SERVER_IP+":3000/h_accounts/"+hID+"/resend.json" ;  
+      String urlR = "http://"+SERVER_IP+":3000/h_accounts/"+hID+"/resend.json" ;  
 
     InputStream is1 = null;
     OutputStream os1 = null;
 
     try {
       // Open an HTTP Connection object
-      httpCheckConn1 = (HttpConnection)Connector.open(url);
+      httpCheckConn1 = (HttpConnection)Connector.open(urlR);
 
       // Setup HTTP Request
       httpCheckConn1.setRequestMethod(HttpConnection.GET);
@@ -844,10 +908,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
           sb.append((char) chr);
 
         if(sb.toString().equalsIgnoreCase("true")){
-            switchDisplayable(ResentAlert, getVerification());
+            switchDisplayable(getResentAlert(), getVerification());
+            System.out.println("resend done");
         }
         else{
-            switchDisplayable(AlreadyVerified, getVerification());
+            switchDisplayable(getAlreadyVerified(), getVerification());
+            System.out.println("resend error");
         }
     
         System.out.println("response: "+ sb.toString());
@@ -877,24 +943,33 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+      System.out.println("resend end");
      
     }
                 
                //switchDisplayable(ResentAlert, getVerification()); 
                     
-                }
-                else{
-                    switchDisplayable(ConnectionError, getVerification());
-                }
+                             
 //GEN-LINE:|7-commandAction|42|170-postAction
                 // write post-action user code here
             } else if (command == Verify) {//GEN-LINE:|7-commandAction|43|168-preAction
                 // write pre-action user code here
-                if(checkInternetConn() && checkServerConn()){
+
                     if(vTF.getString().length()!=4){
-                        switchDisplayable(InvalidCode,getVerification());
+                        switchDisplayable(getInvalidCode(),getVerification());
+						return;
                     }
-                    else{
+					
+					if(!checkInternetConn()){
+                    switchDisplayable(getInternetError(),getVerification()); //internet alert
+                    return;
+                }
+				
+				if(!checkServerConn()){
+                    switchDisplayable(getServerError(),getVerification()); //server alert
+                    return;
+                }
+
             httpCheckConn1 = null;     
                  try {
         //Change IP accordingly
@@ -929,15 +1004,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         while ((chr = checkConnIS1.read()) != -1)
           sb.append((char) chr);
 
-        if(sb.toString().equalsIgnoreCase("true")){
-            switchDisplayable(VerifiedAlert, getMainFeed());
-            getMainFeed().removeCommand(goToVerification);
-        }
-        else{
-            switchDisplayable(IncorrectCode,getVerification());
-        }
-        
-       // response1 = sb.toString();
+        response1 =sb.toString();
+
+       
+           // switchDisplayable(VerifiedAlert, getMainFeed());
+          //  getMainFeed().removeCommand(goToVerification);			
+
         System.out.println("response: "+ sb.toString());
     
     } catch (Throwable t) {
@@ -960,90 +1032,93 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             System.out.println("Exception occured " + t.toString());
         }
     }
-               //  if(response1.equalsIgnoreCase("true")){
-                //switchDisplayable(VerifiedAlert, getVerification());
-            //}
-         //else{
-           //  switchDisplayable(IncorrectCode, getVerification());
-         //}                       
-                    }
-                }
-                else {
-                 switchDisplayable(ConnectionError, getVerification());
-                }
-              //  if(response1.equalsIgnoreCase("true")){
+           
+                    
+            if(response1.equalsIgnoreCase("true")){
+                //switchDisplayable(getVerifiedAlert(),getVerification());
+                switchDisplayable(getVerifiedAlert(),getMainFeed());
 //GEN-LINE:|7-commandAction|44|168-postAction
-              //  }// write post-action user code here
+            }
+            else {
+                switchDisplayable(getIncorrectCode(),getVerification());
+            }
+            //  }// write post-action user code here
                 
             } else if (command == backV) {//GEN-LINE:|7-commandAction|45|166-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|46|166-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|47|283-preAction
+            }//GEN-BEGIN:|7-commandAction|47|406-preAction
+        } else if (displayable == alert1) {
+            if (command == backCommand15) {//GEN-END:|7-commandAction|47|406-preAction
+                // write pre-action user code here
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|48|406-postAction
+                // write post-action user code here
+            }//GEN-BEGIN:|7-commandAction|49|283-preAction
         } else if (displayable == alreadyHaveTwitter) {
-            if (command == BackToAccounts) {//GEN-END:|7-commandAction|47|283-preAction
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|49|283-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|48|283-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|50|283-postAction
                 // write post-action user code here
-            } else if (command == ReplaceTwitterAccount) {//GEN-LINE:|7-commandAction|49|281-preAction
+            } else if (command == ReplaceTwitterAccount) {//GEN-LINE:|7-commandAction|51|281-preAction
                 // write pre-action user code here
-                genReqURL();//GEN-LINE:|7-commandAction|50|281-postAction
+                genReqURL();//GEN-LINE:|7-commandAction|52|281-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|51|296-preAction
+            }//GEN-BEGIN:|7-commandAction|53|296-preAction
         } else if (displayable == authSuccessful) {
-            if (command == BackToAccounts) {//GEN-END:|7-commandAction|51|296-preAction
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|53|296-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|52|296-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|54|296-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|53|253-preAction
+            }//GEN-BEGIN:|7-commandAction|55|253-preAction
         } else if (displayable == authTwitter) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|53|253-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|55|253-preAction
                 // write pre-action user code here
-                authTwitterAction();//GEN-LINE:|7-commandAction|54|253-postAction
+                authTwitterAction();//GEN-LINE:|7-commandAction|56|253-postAction
                 // write post-action user code here
-            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|55|266-preAction
+            } else if (command == backCommand2) {//GEN-LINE:|7-commandAction|57|266-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|56|266-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|58|266-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|57|123-preAction
+            }//GEN-BEGIN:|7-commandAction|59|123-preAction
         } else if (displayable == choosefriend1) {
-            if (command == Find) {//GEN-END:|7-commandAction|57|123-preAction
+            if (command == Find) {//GEN-END:|7-commandAction|59|123-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|58|123-postAction
+                switchDisplayable(null, getFindFriend());//GEN-LINE:|7-commandAction|60|123-postAction
                 // write post-action user code here
-            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|59|117-preAction
+            } else if (command == List.SELECT_COMMAND) {//GEN-LINE:|7-commandAction|61|117-preAction
                 // write pre-action user code here
-                choosefriend1Action();//GEN-LINE:|7-commandAction|60|117-postAction
+                choosefriend1Action();//GEN-LINE:|7-commandAction|62|117-postAction
                 // write post-action user code here
-            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|61|122-preAction
+            } else if (command == backCommand4) {//GEN-LINE:|7-commandAction|63|122-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|62|122-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|64|122-postAction
                 // write post-action user code here
-            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|63|120-preAction
+            } else if (command == okCommand2) {//GEN-LINE:|7-commandAction|65|120-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|64|120-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|66|120-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|65|81-preAction
+            }//GEN-BEGIN:|7-commandAction|67|81-preAction
         } else if (displayable == connectAccount) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|65|81-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|67|81-preAction
                 // write pre-action user code here
-                connectAccountAction();//GEN-LINE:|7-commandAction|66|81-postAction
+                connectAccountAction();//GEN-LINE:|7-commandAction|68|81-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|67|312-preAction
+            }//GEN-BEGIN:|7-commandAction|69|312-preAction
         } else if (displayable == disliked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|67|312-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|69|312-preAction
                 // write pre-action user code here
-                dislikedAction();//GEN-LINE:|7-commandAction|68|312-postAction
+                dislikedAction();//GEN-LINE:|7-commandAction|70|312-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|69|314-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|71|314-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|70|314-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|72|314-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|71|106-preAction
+            }//GEN-BEGIN:|7-commandAction|73|106-preAction
         } else if (displayable == findFriend) {
-            if (command == Add1) {//GEN-END:|7-commandAction|71|106-preAction
+            if (command == Add1) {//GEN-END:|7-commandAction|73|106-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|72|106-postAction
+//GEN-LINE:|7-commandAction|74|106-postAction
 
                 // write post-action user code here
                 if (this.search.getString().length() != 0) {
@@ -1051,172 +1126,184 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     String s = " \"receiver\":" + this.search.getString() + " \"sender_id\":" + this.userID;
                     this.sendData("friends/add/ip", s);
                 }
-            } else if (command == Back1) {//GEN-LINE:|7-commandAction|73|94-preAction
+            } else if (command == Back1) {//GEN-LINE:|7-commandAction|75|94-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|74|94-postAction
+//GEN-LINE:|7-commandAction|76|94-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|75|19-preAction
+            }//GEN-BEGIN:|7-commandAction|77|19-preAction
         } else if (displayable == form) {
-            if (command == exitCommand) {//GEN-END:|7-commandAction|75|19-preAction
+            if (command == exitCommand) {//GEN-END:|7-commandAction|77|19-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|76|19-postAction
+//GEN-LINE:|7-commandAction|78|19-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|77|159-preAction
+            }//GEN-BEGIN:|7-commandAction|79|159-preAction
         } else if (displayable == form1) {
-            if (command == backCommand8) {//GEN-END:|7-commandAction|77|159-preAction
+            if (command == backCommand8) {//GEN-END:|7-commandAction|79|159-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|78|159-postAction
+//GEN-LINE:|7-commandAction|80|159-postAction
                 // write post-action user code here
-            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|79|161-preAction
+            } else if (command == okCommand6) {//GEN-LINE:|7-commandAction|81|161-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|80|161-postAction
+//GEN-LINE:|7-commandAction|82|161-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|81|383-preAction
+            }//GEN-BEGIN:|7-commandAction|83|383-preAction
         } else if (displayable == interestConfirm) {
-            if (command == backCommand14) {//GEN-END:|7-commandAction|81|383-preAction
+            if (command == backCommand14) {//GEN-END:|7-commandAction|83|383-preAction
+               interestConfirm = null;
                 // write pre-action user code here
-                switchDisplayable(null, getToggle());//GEN-LINE:|7-commandAction|82|383-postAction
+                switchDisplayable(null, getToggle());//GEN-LINE:|7-commandAction|84|383-postAction
                 // write post-action user code here
-            } else if (command == okCommand13) {//GEN-LINE:|7-commandAction|83|385-preAction
+            } else if (command == okCommand13) {//GEN-LINE:|7-commandAction|85|385-preAction
                 // write pre-action user code here
                    UserInterestsJson();
-//GEN-LINE:|7-commandAction|84|385-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|86|385-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|85|128-preAction
+            }//GEN-BEGIN:|7-commandAction|87|128-preAction
         } else if (displayable == liked) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|85|128-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|87|128-preAction
                 // write pre-action user code here
-                likedAction();//GEN-LINE:|7-commandAction|86|128-postAction
+                likedAction();//GEN-LINE:|7-commandAction|88|128-postAction
                 // write post-action user code here
-            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|87|130-preAction
+            } else if (command == backCommand) {//GEN-LINE:|7-commandAction|89|130-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|88|130-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|90|130-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|89|182-preAction
+            }//GEN-BEGIN:|7-commandAction|91|182-preAction
         } else if (displayable == list) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|89|182-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|91|182-preAction
                 // write pre-action user code here
-                listAction();//GEN-LINE:|7-commandAction|90|182-postAction
+                listAction();//GEN-LINE:|7-commandAction|92|182-postAction
                 // write post-action user code here
-            } else if (command == back) {//GEN-LINE:|7-commandAction|91|367-preAction
+            } else if (command == back) {//GEN-LINE:|7-commandAction|93|367-preAction
                 // write pre-action user code here
                  switchDisplayable(null, getMainFeed());
-//GEN-LINE:|7-commandAction|92|367-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|94|367-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|93|236-preAction
+            }//GEN-BEGIN:|7-commandAction|95|236-preAction
         } else if (displayable == list1) {
-            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|93|236-preAction
+            if (command == List.SELECT_COMMAND) {//GEN-END:|7-commandAction|95|236-preAction
                 // write pre-action user code here
-                list1Action();//GEN-LINE:|7-commandAction|94|236-postAction
+                list1Action();//GEN-LINE:|7-commandAction|96|236-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|95|325-preAction
+            }//GEN-BEGIN:|7-commandAction|97|325-preAction
         } else if (displayable == manyReq) {
-            if (command == backCommand11) {//GEN-END:|7-commandAction|95|325-preAction
+            if (command == backCommand11) {//GEN-END:|7-commandAction|97|325-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|96|325-postAction
+//GEN-LINE:|7-commandAction|98|325-postAction
                 // write post-action user code here
-            } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|97|327-preAction
+            } else if (command == okCommand9) {//GEN-LINE:|7-commandAction|99|327-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|98|327-postAction
+//GEN-LINE:|7-commandAction|100|327-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|99|331-preAction
+            }//GEN-BEGIN:|7-commandAction|101|331-preAction
         } else if (displayable == oneReq) {
-            if (command == accept) {//GEN-END:|7-commandAction|99|331-preAction
+            if (command == accept) {//GEN-END:|7-commandAction|101|331-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|100|331-postAction
+//GEN-LINE:|7-commandAction|102|331-postAction
                 // write post-action user code here
-            } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|101|329-preAction
+            } else if (command == backCommand12) {//GEN-LINE:|7-commandAction|103|329-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|102|329-postAction
+//GEN-LINE:|7-commandAction|104|329-postAction
                 // write post-action user code here
-            } else if (command == reject) {//GEN-LINE:|7-commandAction|103|333-preAction
+            } else if (command == reject) {//GEN-LINE:|7-commandAction|105|333-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|104|333-postAction
+//GEN-LINE:|7-commandAction|106|333-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|105|53-preAction
+            }//GEN-BEGIN:|7-commandAction|107|53-preAction
         } else if (displayable == profile) {
-            if (command == back) {//GEN-END:|7-commandAction|105|53-preAction
+            if (command == back) {//GEN-END:|7-commandAction|107|53-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|106|53-postAction
+//GEN-LINE:|7-commandAction|108|53-postAction
                 // write post-action user code here
-            } else if (command == ok) {//GEN-LINE:|7-commandAction|107|49-preAction
+            } else if (command == ok) {//GEN-LINE:|7-commandAction|109|49-preAction
                 // write pre-action user code here
-                //String dataToBeSend = "{\"created_at\":\"nil\",\"email\":\"menisy@abfcge.com\",\"name\":\"menisy\",\"updated_at\":\"nil\"}"
-                String s = "";
-//               int anyInfo = 0;
-//               int passInt = 0;
-
+                // The code here is responsible for getting thr data that will sent using string s
+                 String s = ""; // String s to carry all the data that will be sent
+                 boolean first = false; // Boolean flag to to check the first argument that will be sent (to match the json format)
+                    
                 if (this.userName.getString().length() != 0) {
-                    s += " \"name\":" + this.userName.getString();
-                    // anyInfo = 1;
+                    s += "{\"name\":" + "\""+this.userName.getString()+"\",";
+                    first=true;
                 }
                 if (this.pas.getString().length() != 0 || this.confPas.getString().length() != 0) {
                     if (this.pas.getString() == this.confPas.getString()) {
-                        s += " \"password\":" + this.userName.getString() + " \"userID\":" + this.userID;
-                        //  passInt = 1;
-
+                    String g = (!first)?"{":"";
+                   s +=g+ " \"password\":" +"\""+this.userName.getString()+"\","  ;
+                        first = true;
                     } else {
-                        //Alert pass and confpass mismatch
+                        switchDisplayable(null, this.passMissMatch);
                     }
                 }
                 if (this.firstName.getString().length() != 0) {
-                    s += " \"first_Name\":" + this.firstName.getString();
-                    // anyInfo = 1;
+                    s += " \"first_Name\":" + "\"this.firstName.getString()\",";
                 }
                 if (this.lastName.getString().length() != 0) {
-                    s += " \"last_Name\":" + this.lastName.getString();
-                    //anyInfo = 1;
+                    s += " \"last_Name\":" + "\""+this.lastName.getString()+"\",";
                 }
                 if (this.dob.getDate().toString().length() != 0) {
-                    s += " \"date_of_birth\":" + this.dob.getDate().toString();
-                    // anyInfo = 1;
+                    s += " \"date_of_birth\":" + "\""+this.dob.getDate().toString()+"\",";
                 }
 
-                String url = "http://192.168.26.136:3000/users/update?id=" + this.userID;
-                this.sendData(url, s);
+                if(s.toString()=="")
+                    this.switchDisplayable(null, this.emptyFields);
+                s=s.substring(0,s.length()-1);
+                
+                s+="}";
 
-                //check the return value confirmed or error
-
-//               if(passInt==1&&anyInfo==1){
-//                   //this.sendData("haccount/modify/IP", s);
-//                     
-//               }else{
-//                   if(passInt==1&&anyInfo==0){
-//                       this.sendData("haccount/modify/IP", s);
-//                   }
-//                   else{
-//                       if(passInt==0&&anyInfo==0){
-//                           this.sendData("user/modify/IP", s);
-//                       }
-//                   }
-//               }
-//GEN-LINE:|7-commandAction|108|49-postAction
+                //String url = "http://192.168.26.136:3000/users/"+1+"/profile";
+                this.sendData(this.serverURL, s);
+//GEN-LINE:|7-commandAction|110|49-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|109|186-preAction
+            }//GEN-BEGIN:|7-commandAction|111|186-preAction
         } else if (displayable == readMore) {
-            if (command == backCommand9) {//GEN-END:|7-commandAction|109|186-preAction
+            if (command == backCommand9) {//GEN-END:|7-commandAction|111|186-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|110|186-postAction
+//GEN-LINE:|7-commandAction|112|186-postAction
                 // write post-action user code here
-            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|111|200-preAction
+            } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|113|200-preAction
                 // write pre-action user code here
-                recieveData("http://192.168.26.148:3000/users/block_interest?story_id=" + currentStoryID);
-                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|112|200-postAction
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
+                recieveData("http://"+SERVER_IP+":"+PORT+"/users/block_interest?uid=" +userID +"&id="+ currentStoryID);
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|114|200-postAction
                 // write post-action user code here
-            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|113|202-preAction
+            } else if (command == blockstory) {//GEN-LINE:|7-commandAction|115|202-preAction
                 // write pre-action user code here
-                String r = recieveData("http://192.168.26.148:3000/users/block_story?story_id=" + currentStoryID);
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
+                String r = recieveData("http://"+SERVER_IP+":"+PORT+"/users/block_story?uid=" +userID +"&id="+ currentStoryID);
                 if (r.equals("story is blocked successfully")) {
-                    switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|114|202-postAction
+                    switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|116|202-postAction
                 } else
                     switchDisplayable(null, getStorynotFound());
                 // write post-action user code here
-            } else if (command == flag) {//GEN-LINE:|7-commandAction|115|194-preAction
+            } else if (command == flag) {//GEN-LINE:|7-commandAction|117|194-preAction
                 // write pre-action user code here
-                getDataServer("http://192.168.26.148:3000/flags/flag?uid=1&sid=1&format=json");
-//GEN-LINE:|7-commandAction|116|194-postAction
+                if(checkInternetConn())
+                {
+                getDataServer("http://"+SERVER_IP+":"+PORT+"/flags/flag?uid="+userID+"&sid="+currentStoryID+"&format=json");
+                }
+                else
+                {
+                    switchDisplayable(getAlert(), getReadMore());
+                }
+//GEN-LINE:|7-commandAction|118|194-postAction
                 // write post-action user code here
-            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|117|319-preAction
+            } else if (command == friendsDislike) {//GEN-LINE:|7-commandAction|119|319-preAction
                 // write pre-action user code here
                 try {
                     // write pre-action user code here
@@ -1225,9 +1312,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                switchDisplayable(null, getDisliked());//GEN-LINE:|7-commandAction|118|319-postAction
+                switchDisplayable(null, getDisliked());//GEN-LINE:|7-commandAction|120|319-postAction
                 // write post-action user code here
-            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|119|317-preAction
+            } else if (command == friendsLike) {//GEN-LINE:|7-commandAction|121|317-preAction
                 // write pre-action user code here
                 try {
                     // write pre-action user code here
@@ -1236,45 +1323,59 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                switchDisplayable(null, getLiked());//GEN-LINE:|7-commandAction|120|317-postAction
+                switchDisplayable(null, getLiked());//GEN-LINE:|7-commandAction|122|317-postAction
                 // write post-action user code here
-            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|121|188-preAction
+            } else if (command == okCommand7) {//GEN-LINE:|7-commandAction|123|188-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|122|188-postAction
+//GEN-LINE:|7-commandAction|124|188-postAction
                 // write post-action user code here
-            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|123|198-preAction
+            } else if (command == recommend1) {//GEN-LINE:|7-commandAction|125|198-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|124|198-postAction
+                switchDisplayable(null, getRecommend());//GEN-LINE:|7-commandAction|126|198-postAction
                 // write post-action user code here
-            } else if (command == share) {//GEN-LINE:|7-commandAction|125|196-preAction
+            } else if (command == share) {//GEN-LINE:|7-commandAction|127|196-preAction
                 // write pre-action user code here
-                shareonnetwork();//GEN-LINE:|7-commandAction|126|196-postAction
+                shareonnetwork();//GEN-LINE:|7-commandAction|128|196-postAction
                 // write post-action user code here
-            } else if (command == singOut) {//GEN-LINE:|7-commandAction|127|321-preAction
+            } else if (command == singOut) {//GEN-LINE:|7-commandAction|129|321-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|128|321-postAction
+//GEN-LINE:|7-commandAction|130|321-postAction
                 // write post-action user code here
-            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|129|192-preAction
+            } else if (command == thumbdown) {//GEN-LINE:|7-commandAction|131|192-preAction
                 // write pre-action user code here
-                getDataServer("http://192.168.26.148:3000/likedislikes/dislike?uid=2&sid=1&act=-1&format=json");
-
-//GEN-LINE:|7-commandAction|130|192-postAction
+                if(checkInternetConn())
+                {
+                getDataServer("http://"+SERVER_IP+":"+PORT+"/likedislikes/dislike?uid="+userID+"&sid="+currentStoryID+"&format=json");
+                }
+                else
+                {
+                    switchDisplayable(getAlert(), getReadMore());
+                }
+//GEN-LINE:|7-commandAction|132|192-postAction
                 // write post-action user code here
-            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|131|190-preAction
-                getDataServer("http://192.168.26.148:3000/likedislikes/like?uid=2&sid=1&act=1&format=json");
-//GEN-LINE:|7-commandAction|132|190-postAction
+            } else if (command == thumbup) {//GEN-LINE:|7-commandAction|133|190-preAction
+                if(checkInternetConn())
+                {
+                    
+                getDataServer("http://"+SERVER_IP+":"+PORT+"/likedislikes/like?uid="+userID+"&sid="+currentStoryID+"&format=json");
+                }
+                else
+                {
+                   switchDisplayable(getAlert(), getReadMore());
+                }
+//GEN-LINE:|7-commandAction|134|190-postAction
                 // write post-action user code here
-            } else if (command == viewCommentsMany) {//GEN-LINE:|7-commandAction|133|356-preAction
+            } else if (command == viewCommentsMany) {//GEN-LINE:|7-commandAction|135|356-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getCommentsMany());//GEN-LINE:|7-commandAction|134|356-postAction
+                switchDisplayable(null, getCommentsMany());//GEN-LINE:|7-commandAction|136|356-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|135|115-preAction
+            }//GEN-BEGIN:|7-commandAction|137|115-preAction
         } else if (displayable == recommend) {
-            if (command == backCommand3) {//GEN-END:|7-commandAction|135|115-preAction
+            if (command == backCommand3) {//GEN-END:|7-commandAction|137|115-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|136|115-postAction
+                switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|138|115-postAction
                 // write post-action user code here
-            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|137|124-preAction
+            } else if (command == choosefriend) {//GEN-LINE:|7-commandAction|139|124-preAction
                 // write pre-action user code here
                 try {
                     // write pre-action user code here
@@ -1282,46 +1383,46 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|138|124-postAction
+                switchDisplayable(null, getChoosefriend1());//GEN-LINE:|7-commandAction|140|124-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|139|113-preAction
-                // write pre-action user code here
-                  String ss="user:"+getChoosefriend1()+"email:"+getTextField2()+" message:"+getTextField3();
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|141|113-preAction
+                
+                //save what the user enters and send it via send data
+                 String ss="user:"+getChoosefriend1()+"email:"+getTextField2()+" message:"+getTextField3();
      
-        sendData("http://192.168.1.1:3000/stories/recommend_story", ss);
+       sendData("http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?uid="+userID, ss);
         
-//GEN-LINE:|7-commandAction|140|113-postAction
+//GEN-LINE:|7-commandAction|142|113-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|141|35-preAction
+            }//GEN-BEGIN:|7-commandAction|143|35-preAction
         } else if (displayable == textBox) {
-            if (command == backCommand1) {//GEN-END:|7-commandAction|141|35-preAction
+            if (command == backCommand1) {//GEN-END:|7-commandAction|143|35-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|142|35-postAction
+//GEN-LINE:|7-commandAction|144|35-postAction
                 // write post-action user code here
-            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|143|33-preAction
+            } else if (command == okCommand) {//GEN-LINE:|7-commandAction|145|33-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|144|33-postAction
+//GEN-LINE:|7-commandAction|146|33-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|145|305-preAction
+            }//GEN-BEGIN:|7-commandAction|147|305-preAction
         } else if (displayable == twitterAuthFailed) {
-            if (command == BackToAccounts) {//GEN-END:|7-commandAction|145|305-preAction
+            if (command == BackToAccounts) {//GEN-END:|7-commandAction|147|305-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|146|305-postAction
+                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|148|305-postAction
                 // write post-action user code here
-            } else if (command == Resend1) {//GEN-LINE:|7-commandAction|147|302-preAction
+            } else if (command == Resend1) {//GEN-LINE:|7-commandAction|149|302-preAction
                 // write pre-action user code here
-                genReqURL();//GEN-LINE:|7-commandAction|148|302-postAction
+                genReqURL();//GEN-LINE:|7-commandAction|150|302-postAction
                 // write post-action user code here
-            }//GEN-BEGIN:|7-commandAction|149|7-postCommandAction
-        }//GEN-END:|7-commandAction|149|7-postCommandAction
+            }//GEN-BEGIN:|7-commandAction|151|7-postCommandAction
+        }//GEN-END:|7-commandAction|151|7-postCommandAction
         // write post-action user code here
-    }//GEN-BEGIN:|7-commandAction|150|
-//</editor-fold>//GEN-END:|7-commandAction|150|
+    }//GEN-BEGIN:|7-commandAction|152|
+//</editor-fold>//GEN-END:|7-commandAction|152|
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand ">//GEN-BEGIN:|18-getter|0|18-preInit
     /**
-     * Returns an initialized instance of exitCommand component.
-     *
+     * Returns an initiliazed instance of exitCommand component.
      * @return the initialized component instance
      */
     public Command getExitCommand() {
@@ -1336,8 +1437,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: form ">//GEN-BEGIN:|14-getter|0|14-preInit
     /**
-     * Returns an initialized instance of form component.
-     *
+     * Returns an initiliazed instance of form component.
      * @return the initialized component instance
      */
     public Form getForm() {
@@ -1354,8 +1454,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem ">//GEN-BEGIN:|16-getter|0|16-preInit
     /**
-     * Returns an initialized instance of stringItem component.
-     *
+     * Returns an initiliazed instance of stringItem component.
      * @return the initialized component instance
      */
     public StringItem getStringItem() {
@@ -1370,13 +1469,19 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: MainFeed ">//GEN-BEGIN:|22-getter|0|22-preInit
     /**
-     * Returns an initialized instance of MainFeed component.
-     *
+     * Returns an initiliazed instance of MainFeed component.
      * @return the initialized component instance
      */
     public Form getMainFeed() {
         if (MainFeed == null) {//GEN-END:|22-getter|0|22-preInit
             // write pre-init user code here
+            if(!checkInternetConn()){
+                switchDisplayable(getInternetError(),getVerification());
+                //return;
+            }
+            if(!checkServerConn()){
+                switchDisplayable(getServerError(),getVerification());
+            }
             MainFeed = new Form("form1");//GEN-BEGIN:|22-getter|1|22-postInit
             MainFeed.addCommand(getOptions());
             MainFeed.addCommand(getFilterFriends());
@@ -1384,6 +1489,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             MainFeed.addCommand(getGoToVerification());
             MainFeed.setCommandListener(this);//GEN-END:|22-getter|1|22-postInit
             // write post-init user code here
+            this.url = getDataServer("http://" + SERVER_IP + ":" + PORT + "/users/"+userID+"/stories?format=json");
+            this.url = "{ \"storyItem\" :" + this.url + "}";
             new createStories(url, MainFeed, displayable, this);
         }//GEN-BEGIN:|22-getter|2|
         return MainFeed;
@@ -1392,8 +1499,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewComments ">//GEN-BEGIN:|24-getter|0|24-preInit
     /**
-     * Returns an initialized instance of viewComments component.
-     *
+     * Returns an initiliazed instance of viewComments component.
      * @return the initialized component instance
      */
     public Command getViewComments() {
@@ -1408,8 +1514,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Story ">//GEN-BEGIN:|23-getter|0|23-preInit
     /**
-     * Returns an initialized instance of Story component.
-     *
+     * Returns an initiliazed instance of Story component.
      * @return the initialized component instance
      */
     public Form getStory() {
@@ -1428,8 +1533,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textBox ">//GEN-BEGIN:|26-getter|0|26-preInit
     /**
-     * Returns an initialized instance of textBox component.
-     *
+     * Returns an initiliazed instance of textBox component.
      * @return the initialized component instance
      */
     public TextBox getTextBox() {
@@ -1447,8 +1551,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentsMany ">//GEN-BEGIN:|27-getter|0|27-preInit
     /**
-     * Returns an initialized instance of CommentsMany component.
-     *
+     * Returns an initiliazed instance of CommentsMany component.
      * @return the initialized component instance
      */
     public Form getCommentsMany() {
@@ -1472,8 +1575,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Comment1 ">//GEN-BEGIN:|28-getter|0|28-preInit
     /**
-     * Returns an initialized instance of Comment1 component.
-     *
+     * Returns an initiliazed instance of Comment1 component.
      * @return the initialized component instance
      */
     public Command getComment1() {
@@ -1488,8 +1590,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand ">//GEN-BEGIN:|30-getter|0|30-preInit
     /**
-     * Returns an initialized instance of backCommand component.
-     *
+     * Returns an initiliazed instance of backCommand component.
      * @return the initialized component instance
      */
     public Command getBackCommand() {
@@ -1504,8 +1605,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand ">//GEN-BEGIN:|32-getter|0|32-preInit
     /**
-     * Returns an initialized instance of okCommand component.
-     *
+     * Returns an initiliazed instance of okCommand component.
      * @return the initialized component instance
      */
     public Command getOkCommand() {
@@ -1520,8 +1620,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand1 ">//GEN-BEGIN:|34-getter|0|34-preInit
     /**
-     * Returns an initialized instance of backCommand1 component.
-     *
+     * Returns an initiliazed instance of backCommand1 component.
      * @return the initialized component instance
      */
     public Command getBackCommand1() {
@@ -1536,8 +1635,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToStory ">//GEN-BEGIN:|37-getter|0|37-preInit
     /**
-     * Returns an initialized instance of backToStory component.
-     *
+     * Returns an initiliazed instance of backToStory component.
      * @return the initialized component instance
      */
     public Command getBackToStory() {
@@ -1552,8 +1650,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: AddComment ">//GEN-BEGIN:|39-getter|0|39-preInit
     /**
-     * Returns an initialized instance of AddComment component.
-     *
+     * Returns an initiliazed instance of AddComment component.
      * @return the initialized component instance
      */
     public Command getAddComment() {
@@ -1568,8 +1665,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: profile ">//GEN-BEGIN:|47-getter|0|47-preInit
     /**
-     * Returns an initialized instance of profile component.
-     *
+     * Returns an initiliazed instance of profile component.
      * @return the initialized component instance
      */
     public Form getProfile() {
@@ -1587,8 +1683,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ok ">//GEN-BEGIN:|48-getter|0|48-preInit
     /**
-     * Returns an initialized instance of ok component.
-     *
+     * Returns an initiliazed instance of ok component.
      * @return the initialized component instance
      */
     public Command getOk() {
@@ -1603,8 +1698,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: cancelCommand ">//GEN-BEGIN:|50-getter|0|50-preInit
     /**
-     * Returns an initialized instance of cancelCommand component.
-     *
+     * Returns an initiliazed instance of cancelCommand component.
      * @return the initialized component instance
      */
     public Command getCancelCommand() {
@@ -1619,8 +1713,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: back ">//GEN-BEGIN:|52-getter|0|52-preInit
     /**
-     * Returns an initialized instance of back component.
-     *
+     * Returns an initiliazed instance of back component.
      * @return the initialized component instance
      */
     public Command getBack() {
@@ -1635,8 +1728,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: userName ">//GEN-BEGIN:|54-getter|0|54-preInit
     /**
-     * Returns an initialized instance of userName component.
-     *
+     * Returns an initiliazed instance of userName component.
      * @return the initialized component instance
      */
     public TextField getUserName() {
@@ -1651,8 +1743,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: firstName ">//GEN-BEGIN:|55-getter|0|55-preInit
     /**
-     * Returns an initialized instance of firstName component.
-     *
+     * Returns an initiliazed instance of firstName component.
      * @return the initialized component instance
      */
     public TextField getFirstName() {
@@ -1667,8 +1758,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: lastName ">//GEN-BEGIN:|56-getter|0|56-preInit
     /**
-     * Returns an initialized instance of lastName component.
-     *
+     * Returns an initiliazed instance of lastName component.
      * @return the initialized component instance
      */
     public TextField getLastName() {
@@ -1683,8 +1773,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: dob ">//GEN-BEGIN:|57-getter|0|57-preInit
     /**
-     * Returns an initialized instance of dob component.
-     *
+     * Returns an initiliazed instance of dob component.
      * @return the initialized component instance
      */
     public DateField getDob() {
@@ -1700,8 +1789,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: pas ">//GEN-BEGIN:|58-getter|0|58-preInit
     /**
-     * Returns an initialized instance of pas component.
-     *
+     * Returns an initiliazed instance of pas component.
      * @return the initialized component instance
      */
     public TextField getPas() {
@@ -1716,8 +1804,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: confPas ">//GEN-BEGIN:|59-getter|0|59-preInit
     /**
-     * Returns an initialized instance of confPas component.
-     *
+     * Returns an initiliazed instance of confPas component.
      * @return the initialized component instance
      */
     public TextField getConfPas() {
@@ -1732,8 +1819,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: options ">//GEN-BEGIN:|62-getter|0|62-preInit
     /**
-     * Returns an initialized instance of options component.
-     *
+     * Returns an initiliazed instance of options component.
      * @return the initialized component instance
      */
     public Command getOptions() {
@@ -1748,8 +1834,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField ">//GEN-BEGIN:|67-getter|0|67-preInit
     /**
-     * Returns an initialized instance of textField component.
-     *
+     * Returns an initiliazed instance of textField component.
      * @return the initialized component instance
      */
     public TextField getTextField() {
@@ -1765,8 +1850,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentFail ">//GEN-BEGIN:|68-getter|0|68-preInit
     /**
-     * Returns an initialized instance of CommentFail component.
-     *
+     * Returns an initiliazed instance of CommentFail component.
      * @return the initialized component instance
      */
     public Alert getCommentFail() {
@@ -1783,8 +1867,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator ">//GEN-BEGIN:|69-getter|0|69-preInit
     /**
-     * Returns an initialized instance of indicator component.
-     *
+     * Returns an initiliazed instance of indicator component.
      * @return the initialized component instance
      */
     public Gauge getIndicator() {
@@ -1799,8 +1882,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentSucc ">//GEN-BEGIN:|71-getter|0|71-preInit
     /**
-     * Returns an initialized instance of CommentSucc component.
-     *
+     * Returns an initiliazed instance of CommentSucc component.
      * @return the initialized component instance
      */
     public Alert getCommentSucc() {
@@ -1816,8 +1898,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand1 ">//GEN-BEGIN:|78-getter|0|78-preInit
     /**
-     * Returns an initialized instance of okCommand1 component.
-     *
+     * Returns an initiliazed instance of okCommand1 component.
      * @return the initialized component instance
      */
     public Command getOkCommand1() {
@@ -1832,8 +1913,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: connectAccount ">//GEN-BEGIN:|80-getter|0|80-preInit
     /**
-     * Returns an initialized instance of connectAccount component.
-     *
+     * Returns an initiliazed instance of connectAccount component.
      * @return the initialized component instance
      */
     public List getConnectAccount() {
@@ -1862,8 +1942,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: connectAccountAction ">//GEN-BEGIN:|80-action|0|80-preAction
     /**
-     * Performs an action assigned to the selected list element in the
-     * connectAccount component.
+     * Performs an action assigned to the selected list element in the connectAccount component.
      */
     public void connectAccountAction() {//GEN-END:|80-action|0|80-preAction
         // enter pre-action user code here
@@ -1901,8 +1980,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: search ">//GEN-BEGIN:|97-getter|0|97-preInit
     /**
-     * Returns an initialized instance of search component.
-     *
+     * Returns an initiliazed instance of search component.
      * @return the initialized component instance
      */
     public TextField getSearch() {
@@ -1917,8 +1995,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add ">//GEN-BEGIN:|102-getter|0|102-preInit
     /**
-     * Returns an initialized instance of Add component.
-     *
+     * Returns an initiliazed instance of Add component.
      * @return the initialized component instance
      */
     public Command getAdd() {
@@ -1933,8 +2010,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: findFriend ">//GEN-BEGIN:|92-getter|0|92-preInit
     /**
-     * Returns an initialized instance of findFriend component.
-     *
+     * Returns an initiliazed instance of findFriend component.
      * @return the initialized component instance
      */
     public Form getFindFriend() {
@@ -1952,8 +2028,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Back1 ">//GEN-BEGIN:|93-getter|0|93-preInit
     /**
-     * Returns an initialized instance of Back1 component.
-     *
+     * Returns an initiliazed instance of Back1 component.
      * @return the initialized component instance
      */
     public Command getBack1() {
@@ -1968,8 +2043,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Error ">//GEN-BEGIN:|99-getter|0|99-preInit
     /**
-     * Returns an initialized instance of Error component.
-     *
+     * Returns an initiliazed instance of Error component.
      * @return the initialized component instance
      */
     public Alert getError() {
@@ -1985,8 +2059,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Find ">//GEN-BEGIN:|95-getter|0|95-preInit
     /**
-     * Returns an initialized instance of Find component.
-     *
+     * Returns an initiliazed instance of Find component.
      * @return the initialized component instance
      */
     public Command getFind() {
@@ -2001,8 +2074,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Add1 ">//GEN-BEGIN:|105-getter|0|105-preInit
     /**
-     * Returns an initialized instance of Add1 component.
-     *
+     * Returns an initiliazed instance of Add1 component.
      * @return the initialized component instance
      */
     public Command getAdd1() {
@@ -2017,8 +2089,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Saved ">//GEN-BEGIN:|98-getter|0|98-preInit
     /**
-     * Returns an initialized instance of Saved component.
-     *
+     * Returns an initiliazed instance of Saved component.
      * @return the initialized component instance
      */
     public Alert getSaved() {
@@ -2034,8 +2105,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Found ">//GEN-BEGIN:|100-getter|0|100-preInit
     /**
-     * Returns an initialized instance of Found component.
-     *
+     * Returns an initiliazed instance of Found component.
      * @return the initialized component instance
      */
     public Alert getFound() {
@@ -2051,8 +2121,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: NotFound ">//GEN-BEGIN:|101-getter|0|101-preInit
     /**
-     * Returns an initialized instance of NotFound component.
-     *
+     * Returns an initiliazed instance of NotFound component.
      * @return the initialized component instance
      */
     public Alert getNotFound() {
@@ -2068,8 +2137,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: EnterUserNameEmail ">//GEN-BEGIN:|104-getter|0|104-preInit
     /**
-     * Returns an initialized instance of EnterUserNameEmail component.
-     *
+     * Returns an initiliazed instance of EnterUserNameEmail component.
      * @return the initialized component instance
      */
     public Alert getEnterUserNameEmail() {
@@ -2085,8 +2153,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ComingSoon ">//GEN-BEGIN:|107-getter|0|107-preInit
     /**
-     * Returns an initialized instance of ComingSoon component.
-     *
+     * Returns an initiliazed instance of ComingSoon component.
      * @return the initialized component instance
      */
     public Alert getComingSoon() {
@@ -2106,8 +2173,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend ">//GEN-BEGIN:|111-getter|0|111-preInit
     /**
-     * Returns an initialized instance of choosefriend component.
-     *
+     * Returns an initiliazed instance of choosefriend component.
      * @return the initialized component instance
      */
     public Command getChoosefriend() {
@@ -2122,8 +2188,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand3 ">//GEN-BEGIN:|114-getter|0|114-preInit
     /**
-     * Returns an initialized instance of backCommand3 component.
-     *
+     * Returns an initiliazed instance of backCommand3 component.
      * @return the initialized component instance
      */
     public Command getBackCommand3() {
@@ -2138,8 +2203,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand2 ">//GEN-BEGIN:|119-getter|0|119-preInit
     /**
-     * Returns an initialized instance of okCommand2 component.
-     *
+     * Returns an initiliazed instance of okCommand2 component.
      * @return the initialized component instance
      */
     public Command getOkCommand2() {
@@ -2154,8 +2218,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand4 ">//GEN-BEGIN:|121-getter|0|121-preInit
     /**
-     * Returns an initialized instance of backCommand4 component.
-     *
+     * Returns an initiliazed instance of backCommand4 component.
      * @return the initialized component instance
      */
     public Command getBackCommand4() {
@@ -2170,8 +2233,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend ">//GEN-BEGIN:|108-getter|0|108-preInit
     /**
-     * Returns an initialized instance of recommend component.
-     *
+     * Returns an initiliazed instance of recommend component.
      * @return the initialized component instance
      */
     public Form getRecommend() {
@@ -2190,8 +2252,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField2 ">//GEN-BEGIN:|109-getter|0|109-preInit
     /**
-     * Returns an initialized instance of textField2 component.
-     *
+     * Returns an initiliazed instance of textField2 component.
      * @return the initialized component instance
      */
     public TextField getTextField2() {
@@ -2206,8 +2267,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField3 ">//GEN-BEGIN:|110-getter|0|110-preInit
     /**
-     * Returns an initialized instance of textField3 component.
-     *
+     * Returns an initiliazed instance of textField3 component.
      * @return the initialized component instance
      */
     public TextField getTextField3() {
@@ -2222,8 +2282,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
     /**
-     * Returns an initialized instance of choosefriend1 component.
-     *
+     * Returns an initiliazed instance of choosefriend1 component.
      * @return the initialized component instance
      */
     public List getChoosefriend1() {
@@ -2242,8 +2301,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: choosefriend1Action ">//GEN-BEGIN:|116-action|0|116-preAction
     /**
-     * Performs an action assigned to the selected list element in the
-     * choosefriend1 component.
+     * Performs an action assigned to the selected list element in the choosefriend1 component.
      */
     public void choosefriend1Action() {//GEN-END:|116-action|0|116-preAction
         // enter pre-action user code here
@@ -2254,8 +2312,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storeypublished ">//GEN-BEGIN:|125-getter|0|125-preInit
     /**
-     * Returns an initialized instance of storeypublished component.
-     *
+     * Returns an initiliazed instance of storeypublished component.
      * @return the initialized component instance
      */
     public Alert getStoreypublished() {
@@ -2271,8 +2328,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: storynotpublished ">//GEN-BEGIN:|126-getter|0|126-preInit
     /**
-     * Returns an initialized instance of storynotpublished component.
-     *
+     * Returns an initiliazed instance of storynotpublished component.
      * @return the initialized component instance
      */
     public Alert getStorynotpublished() {
@@ -2288,8 +2344,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: liked ">//GEN-BEGIN:|127-getter|0|127-preInit
     /**
-     * Returns an initialized instance of liked component.
-     *
+     * Returns an initiliazed instance of liked component.
      * @return the initialized component instance
      */
     public List getLiked() {
@@ -2306,8 +2361,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: likedAction ">//GEN-BEGIN:|127-action|0|127-preAction
     /**
-     * Performs an action assigned to the selected list element in the liked
-     * component.
+     * Performs an action assigned to the selected list element in the liked component.
      */
     public void likedAction() {//GEN-END:|127-action|0|127-preAction
         // enter pre-action user code here
@@ -2318,8 +2372,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand3 ">//GEN-BEGIN:|134-getter|0|134-preInit
     /**
-     * Returns an initialized instance of okCommand3 component.
-     *
+     * Returns an initiliazed instance of okCommand3 component.
      * @return the initialized component instance
      */
     public Command getOkCommand3() {
@@ -2334,8 +2387,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand5 ">//GEN-BEGIN:|136-getter|0|136-preInit
     /**
-     * Returns an initialized instance of backCommand5 component.
-     *
+     * Returns an initiliazed instance of backCommand5 component.
      * @return the initialized component instance
      */
     public Command getBackCommand5() {
@@ -2350,8 +2402,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand4 ">//GEN-BEGIN:|142-getter|0|142-preInit
     /**
-     * Returns an initialized instance of okCommand4 component.
-     *
+     * Returns an initiliazed instance of okCommand4 component.
      * @return the initialized component instance
      */
     public Command getOkCommand4() {
@@ -2366,8 +2417,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand6 ">//GEN-BEGIN:|144-getter|0|144-preInit
     /**
-     * Returns an initialized instance of backCommand6 component.
-     *
+     * Returns an initiliazed instance of backCommand6 component.
      * @return the initialized component instance
      */
     public Command getBackCommand6() {
@@ -2382,8 +2432,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: exitCommand1 ">//GEN-BEGIN:|146-getter|0|146-preInit
     /**
-     * Returns an initialized instance of exitCommand1 component.
-     *
+     * Returns an initiliazed instance of exitCommand1 component.
      * @return the initialized component instance
      */
     public Command getExitCommand1() {
@@ -2398,8 +2447,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: LoginScreen ">//GEN-BEGIN:|131-getter|0|131-preInit
     /**
-     * Returns an initialized instance of LoginScreen component.
-     *
+     * Returns an initiliazed instance of LoginScreen component.
      * @return the initialized component instance
      */
     public Form getLoginScreen() {
@@ -2418,8 +2466,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField4 ">//GEN-BEGIN:|132-getter|0|132-preInit
     /**
-     * Returns an initialized instance of textField4 component.
-     *
+     * Returns an initiliazed instance of textField4 component.
      * @return the initialized component instance
      */
     public TextField getTextField4() {
@@ -2434,8 +2481,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField5 ">//GEN-BEGIN:|133-getter|0|133-preInit
     /**
-     * Returns an initialized instance of textField5 component.
-     *
+     * Returns an initiliazed instance of textField5 component.
      * @return the initialized component instance
      */
     public TextField getTextField5() {
@@ -2450,8 +2496,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand5 ">//GEN-BEGIN:|152-getter|0|152-preInit
     /**
-     * Returns an initialized instance of okCommand5 component.
-     *
+     * Returns an initiliazed instance of okCommand5 component.
      * @return the initialized component instance
      */
     public Command getOkCommand5() {
@@ -2466,8 +2511,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand7 ">//GEN-BEGIN:|154-getter|0|154-preInit
     /**
-     * Returns an initialized instance of backCommand7 component.
-     *
+     * Returns an initiliazed instance of backCommand7 component.
      * @return the initialized component instance
      */
     public Command getBackCommand7() {
@@ -2482,8 +2526,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: RegisterScreen ">//GEN-BEGIN:|148-getter|0|148-preInit
     /**
-     * Returns an initialized instance of RegisterScreen component.
-     *
+     * Returns an initiliazed instance of RegisterScreen component.
      * @return the initialized component instance
      */
     public Form getRegisterScreen() {
@@ -2501,8 +2544,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField6 ">//GEN-BEGIN:|149-getter|0|149-preInit
     /**
-     * Returns an initialized instance of textField6 component.
-     *
+     * Returns an initiliazed instance of textField6 component.
      * @return the initialized component instance
      */
     public TextField getTextField6() {
@@ -2517,8 +2559,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField7 ">//GEN-BEGIN:|150-getter|0|150-preInit
     /**
-     * Returns an initialized instance of textField7 component.
-     *
+     * Returns an initiliazed instance of textField7 component.
      * @return the initialized component instance
      */
     public TextField getTextField7() {
@@ -2533,8 +2574,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField8 ">//GEN-BEGIN:|151-getter|0|151-preInit
     /**
-     * Returns an initialized instance of textField8 component.
-     *
+     * Returns an initiliazed instance of textField8 component.
      * @return the initialized component instance
      */
     public TextField getTextField8() {
@@ -2549,8 +2589,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand8 ">//GEN-BEGIN:|158-getter|0|158-preInit
     /**
-     * Returns an initialized instance of backCommand8 component.
-     *
+     * Returns an initiliazed instance of backCommand8 component.
      * @return the initialized component instance
      */
     public Command getBackCommand8() {
@@ -2565,8 +2604,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand6 ">//GEN-BEGIN:|160-getter|0|160-preInit
     /**
-     * Returns an initialized instance of okCommand6 component.
-     *
+     * Returns an initiliazed instance of okCommand6 component.
      * @return the initialized component instance
      */
     public Command getOkCommand6() {
@@ -2581,8 +2619,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: form1 ">//GEN-BEGIN:|156-getter|0|156-preInit
     /**
-     * Returns an initialized instance of form1 component.
-     *
+     * Returns an initiliazed instance of form1 component.
      * @return the initialized component instance
      */
     public Form getForm1() {
@@ -2600,8 +2637,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: textField9 ">//GEN-BEGIN:|157-getter|0|157-preInit
     /**
-     * Returns an initialized instance of textField9 component.
-     *
+     * Returns an initiliazed instance of textField9 component.
      * @return the initialized component instance
      */
     public TextField getTextField9() {
@@ -2616,8 +2652,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Resend ">//GEN-BEGIN:|169-getter|0|169-preInit
     /**
-     * Returns an initialized instance of Resend component.
-     *
+     * Returns an initiliazed instance of Resend component.
      * @return the initialized component instance
      */
     public Command getResend() {
@@ -2632,8 +2667,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verify ">//GEN-BEGIN:|167-getter|0|167-preInit
     /**
-     * Returns an initialized instance of Verify component.
-     *
+     * Returns an initiliazed instance of Verify component.
      * @return the initialized component instance
      */
     public Command getVerify() {
@@ -2648,8 +2682,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backV ">//GEN-BEGIN:|165-getter|0|165-preInit
     /**
-     * Returns an initialized instance of backV component.
-     *
+     * Returns an initiliazed instance of backV component.
      * @return the initialized component instance
      */
     public Command getBackV() {
@@ -2664,15 +2697,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: IncorrectCode ">//GEN-BEGIN:|171-getter|0|171-preInit
     /**
-     * Returns an initialized instance of IncorrectCode component.
-     *
+     * Returns an initiliazed instance of IncorrectCode component.
      * @return the initialized component instance
      */
     public Alert getIncorrectCode() {
         if (IncorrectCode == null) {//GEN-END:|171-getter|0|171-preInit
             // write pre-init user code here
             IncorrectCode = new Alert("Incorrect Verification", "Incorrect verification code", null, AlertType.ERROR);//GEN-BEGIN:|171-getter|1|171-postInit
-            IncorrectCode.setIndicator(getIndicator1());
             IncorrectCode.setTimeout(Alert.FOREVER);//GEN-END:|171-getter|1|171-postInit
             // write post-init user code here
         }//GEN-BEGIN:|171-getter|2|
@@ -2680,33 +2711,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|171-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator1 ">//GEN-BEGIN:|175-getter|0|175-preInit
-    /**
-     * Returns an initialized instance of indicator1 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator1() {
-        if (indicator1 == null) {//GEN-END:|175-getter|0|175-preInit
-            // write pre-init user code here
-            indicator1 = new Gauge(null, false, 100, 50);//GEN-LINE:|175-getter|1|175-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|175-getter|2|
-        return indicator1;
-    }
-//</editor-fold>//GEN-END:|175-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ResentAlert ">//GEN-BEGIN:|174-getter|0|174-preInit
     /**
-     * Returns an initialized instance of ResentAlert component.
-     *
+     * Returns an initiliazed instance of ResentAlert component.
      * @return the initialized component instance
      */
     public Alert getResentAlert() {
         if (ResentAlert == null) {//GEN-END:|174-getter|0|174-preInit
             // write pre-init user code here
             ResentAlert = new Alert("Code Resent", "The verification code has been sent to your email", null, AlertType.CONFIRMATION);//GEN-BEGIN:|174-getter|1|174-postInit
-            ResentAlert.setIndicator(getIndicator3());
             ResentAlert.setTimeout(Alert.FOREVER);//GEN-END:|174-getter|1|174-postInit
             // write post-init user code here
         }//GEN-BEGIN:|174-getter|2|
@@ -2714,33 +2729,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|174-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator3 ">//GEN-BEGIN:|178-getter|0|178-preInit
-    /**
-     * Returns an initialized instance of indicator3 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator3() {
-        if (indicator3 == null) {//GEN-END:|178-getter|0|178-preInit
-            // write pre-init user code here
-            indicator3 = new Gauge(null, false, 100, 50);//GEN-LINE:|178-getter|1|178-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|178-getter|2|
-        return indicator3;
-    }
-//</editor-fold>//GEN-END:|178-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: VerifiedAlert ">//GEN-BEGIN:|173-getter|0|173-preInit
     /**
-     * Returns an initialized instance of VerifiedAlert component.
-     *
+     * Returns an initiliazed instance of VerifiedAlert component.
      * @return the initialized component instance
      */
     public Alert getVerifiedAlert() {
         if (VerifiedAlert == null) {//GEN-END:|173-getter|0|173-preInit
             // write pre-init user code here
             VerifiedAlert = new Alert("Account Verified", "your account has been successfully verified", null, AlertType.CONFIRMATION);//GEN-BEGIN:|173-getter|1|173-postInit
-            VerifiedAlert.setIndicator(getIndicator2());
             VerifiedAlert.setTimeout(Alert.FOREVER);//GEN-END:|173-getter|1|173-postInit
             // write post-init user code here
         }//GEN-BEGIN:|173-getter|2|
@@ -2748,33 +2747,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|173-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator2 ">//GEN-BEGIN:|177-getter|0|177-preInit
-    /**
-     * Returns an initialized instance of indicator2 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator2() {
-        if (indicator2 == null) {//GEN-END:|177-getter|0|177-preInit
-            // write pre-init user code here
-            indicator2 = new Gauge(null, false, 100, 50);//GEN-LINE:|177-getter|1|177-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|177-getter|2|
-        return indicator2;
-    }
-//</editor-fold>//GEN-END:|177-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: InvalidCode ">//GEN-BEGIN:|172-getter|0|172-preInit
     /**
-     * Returns an initialized instance of InvalidCode component.
-     *
+     * Returns an initiliazed instance of InvalidCode component.
      * @return the initialized component instance
      */
     public Alert getInvalidCode() {
         if (InvalidCode == null) {//GEN-END:|172-getter|0|172-preInit
             // write pre-init user code here
             InvalidCode = new Alert("Invalid Verification", "The verification code can\'t be less than 4 characters", null, AlertType.ERROR);//GEN-BEGIN:|172-getter|1|172-postInit
-            InvalidCode.setIndicator(getIndicator4());
             InvalidCode.setTimeout(Alert.FOREVER);//GEN-END:|172-getter|1|172-postInit
             // write post-init user code here
         }//GEN-BEGIN:|172-getter|2|
@@ -2782,26 +2765,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|172-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator4 ">//GEN-BEGIN:|179-getter|0|179-preInit
-    /**
-     * Returns an initialized instance of indicator4 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator4() {
-        if (indicator4 == null) {//GEN-END:|179-getter|0|179-preInit
-            // write pre-init user code here
-            indicator4 = new Gauge(null, false, 100, 50);//GEN-LINE:|179-getter|1|179-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|179-getter|2|
-        return indicator4;
-    }
-//</editor-fold>//GEN-END:|179-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Verification ">//GEN-BEGIN:|162-getter|0|162-preInit
     /**
-     * Returns an initialized instance of Verification component.
-     *
+     * Returns an initiliazed instance of Verification component.
      * @return the initialized component instance
      */
     public Form getVerification() {
@@ -2820,8 +2788,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: vTF ">//GEN-BEGIN:|163-getter|0|163-preInit
     /**
-     * Returns an initialized instance of vTF component.
-     *
+     * Returns an initiliazed instance of vTF component.
      * @return the initialized component instance
      */
     public TextField getVTF() {
@@ -2836,8 +2803,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: vSI ">//GEN-BEGIN:|164-getter|0|164-preInit
     /**
-     * Returns an initialized instance of vSI component.
-     *
+     * Returns an initiliazed instance of vSI component.
      * @return the initialized component instance
      */
     public StringItem getVSI() {
@@ -2852,8 +2818,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FriendsStories ">//GEN-BEGIN:|180-getter|0|180-preInit
     /**
-     * Returns an initialized instance of FriendsStories component.
-     *
+     * Returns an initiliazed instance of FriendsStories component.
      * @return the initialized component instance
      */
     public Form getFriendsStories() {
@@ -2868,8 +2833,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: list ">//GEN-BEGIN:|181-getter|0|181-preInit
     /**
-     * Returns an initialized instance of list component.
-     *
+     * Returns an initiliazed instance of list component.
      * @return the initialized component instance
      */
     public List getList() {
@@ -2886,8 +2850,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: listAction ">//GEN-BEGIN:|181-action|0|181-preAction
     /**
-     * Performs an action assigned to the selected list element in the list
-     * component.
+     * Performs an action assigned to the selected list element in the list component.
      */
     public void listAction() {//GEN-END:|181-action|0|181-preAction
         // enter pre-action user code here
@@ -2900,8 +2863,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand9 ">//GEN-BEGIN:|185-getter|0|185-preInit
     /**
-     * Returns an initialized instance of backCommand9 component.
-     *
+     * Returns an initiliazed instance of backCommand9 component.
      * @return the initialized component instance
      */
     public Command getBackCommand9() {
@@ -2916,8 +2878,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand7 ">//GEN-BEGIN:|187-getter|0|187-preInit
     /**
-     * Returns an initialized instance of okCommand7 component.
-     *
+     * Returns an initiliazed instance of okCommand7 component.
      * @return the initialized component instance
      */
     public Command getOkCommand7() {
@@ -2932,8 +2893,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbup ">//GEN-BEGIN:|189-getter|0|189-preInit
     /**
-     * Returns an initialized instance of thumbup component.
-     *
+     * Returns an initiliazed instance of thumbup component.
      * @return the initialized component instance
      */
     public Command getThumbup() {
@@ -2948,8 +2908,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: thumbdown ">//GEN-BEGIN:|191-getter|0|191-preInit
     /**
-     * Returns an initialized instance of thumbdown component.
-     *
+     * Returns an initiliazed instance of thumbdown component.
      * @return the initialized component instance
      */
     public Command getThumbdown() {
@@ -2964,8 +2923,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: flag ">//GEN-BEGIN:|193-getter|0|193-preInit
     /**
-     * Returns an initialized instance of flag component.
-     *
+     * Returns an initiliazed instance of flag component.
      * @return the initialized component instance
      */
     public Command getFlag() {
@@ -2980,8 +2938,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: share ">//GEN-BEGIN:|195-getter|0|195-preInit
     /**
-     * Returns an initialized instance of share component.
-     *
+     * Returns an initiliazed instance of share component.
      * @return the initialized component instance
      */
     public Command getShare() {
@@ -2996,8 +2953,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: recommend1 ">//GEN-BEGIN:|197-getter|0|197-preInit
     /**
-     * Returns an initialized instance of recommend1 component.
-     *
+     * Returns an initiliazed instance of recommend1 component.
      * @return the initialized component instance
      */
     public Command getRecommend1() {
@@ -3012,8 +2968,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockinterest ">//GEN-BEGIN:|199-getter|0|199-preInit
     /**
-     * Returns an initialized instance of blockinterest component.
-     *
+     * Returns an initiliazed instance of blockinterest component.
      * @return the initialized component instance
      */
     public Command getBlockinterest() {
@@ -3028,8 +2983,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: blockstory ">//GEN-BEGIN:|201-getter|0|201-preInit
     /**
-     * Returns an initialized instance of blockstory component.
-     *
+     * Returns an initiliazed instance of blockstory component.
      * @return the initialized component instance
      */
     public Command getBlockstory() {
@@ -3044,8 +2998,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: signout ">//GEN-BEGIN:|203-getter|0|203-preInit
     /**
-     * Returns an initialized instance of signout component.
-     *
+     * Returns an initiliazed instance of signout component.
      * @return the initialized component instance
      */
     public Command getSignout() {
@@ -3060,14 +3013,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: readMore ">//GEN-BEGIN:|184-getter|0|184-preInit
     /**
-     * Returns an initialized instance of readMore component.
-     *
+     * Returns an initiliazed instance of readMore component.
      * @return the initialized component instance
      */
     public Form getReadMore() {
         if (readMore == null) {//GEN-END:|184-getter|0|184-preInit
             // write pre-init user code here
-            readMore = new Form("form2", new Item[]{getImageItem()});//GEN-BEGIN:|184-getter|1|184-postInit
+            readMore = new Form("2allak", new Item[]{getImageItem()});//GEN-BEGIN:|184-getter|1|184-postInit
             readMore.addCommand(getBackCommand9());
             readMore.addCommand(getOkCommand7());
             readMore.addCommand(getViewCommentsMany());
@@ -3091,8 +3043,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: imageItem ">//GEN-BEGIN:|205-getter|0|205-preInit
     /**
-     * Returns an initialized instance of imageItem component.
-     *
+     * Returns an initiliazed instance of imageItem component.
      * @return the initialized component instance
      */
     public ImageItem getImageItem() {
@@ -3107,8 +3058,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: image1 ">//GEN-BEGIN:|206-getter|0|206-preInit
     /**
-     * Returns an initialized instance of image1 component.
-     *
+     * Returns an initiliazed instance of image1 component.
      * @return the initialized component instance
      */
     public Image getImage1() {
@@ -3123,8 +3073,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backToComments ">//GEN-BEGIN:|208-getter|0|208-preInit
     /**
-     * Returns an initialized instance of backToComments component.
-     *
+     * Returns an initiliazed instance of backToComments component.
      * @return the initialized component instance
      */
     public Command getBackToComments() {
@@ -3139,8 +3088,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Like ">//GEN-BEGIN:|210-getter|0|210-preInit
     /**
-     * Returns an initialized instance of Like component.
-     *
+     * Returns an initiliazed instance of Like component.
      * @return the initialized component instance
      */
     public Command getLike() {
@@ -3155,8 +3103,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Dislike ">//GEN-BEGIN:|212-getter|0|212-preInit
     /**
-     * Returns an initialized instance of Dislike component.
-     *
+     * Returns an initiliazed instance of Dislike component.
      * @return the initialized component instance
      */
     public Command getDislike() {
@@ -3198,8 +3145,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FriendList ">//GEN-BEGIN:|229-getter|0|229-preInit
     /**
-     * Returns an initialized instance of FriendList component.
-     *
+     * Returns an initiliazed instance of FriendList component.
      * @return the initialized component instance
      */
     public List getFriendList() {
@@ -3217,8 +3163,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterFriends ">//GEN-BEGIN:|232-getter|0|232-preInit
     /**
-     * Returns an initialized instance of FilterFriends component.
-     *
+     * Returns an initiliazed instance of FilterFriends component.
      * @return the initialized component instance
      */
     public Command getFilterFriends() {
@@ -3233,8 +3178,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: FriendListAction ">//GEN-BEGIN:|229-action|0|229-preAction
     /**
-     * Performs an action assigned to the selected list element in the
-     * FriendList component.
+     * Performs an action assigned to the selected list element in the FriendList component.
      */
     public void FriendListAction() {//GEN-END:|229-action|0|229-preAction
         // enter pre-action user code here
@@ -3245,8 +3189,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: list1 ">//GEN-BEGIN:|235-getter|0|235-preInit
     /**
-     * Returns an initialized instance of list1 component.
-     *
+     * Returns an initiliazed instance of list1 component.
      * @return the initialized component instance
      */
     public List getList1() {
@@ -3262,8 +3205,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: list1Action ">//GEN-BEGIN:|235-action|0|235-preAction
     /**
-     * Performs an action assigned to the selected list element in the list1
-     * component.
+     * Performs an action assigned to the selected list element in the list1 component.
      */
     public void list1Action() {//GEN-END:|235-action|0|235-preAction
         // enter pre-action user code here
@@ -3274,8 +3216,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Block ">//GEN-BEGIN:|238-getter|0|238-preInit
     /**
-     * Returns an initialized instance of Block component.
-     *
+     * Returns an initiliazed instance of Block component.
      * @return the initialized component instance
      */
     public Command getBlock() {
@@ -3290,8 +3231,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Filter ">//GEN-BEGIN:|240-getter|0|240-preInit
     /**
-     * Returns an initialized instance of Filter component.
-     *
+     * Returns an initiliazed instance of Filter component.
      * @return the initialized component instance
      */
     public Command getFilter() {
@@ -3306,8 +3246,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand8 ">//GEN-BEGIN:|242-getter|0|242-preInit
     /**
-     * Returns an initialized instance of okCommand8 component.
-     *
+     * Returns an initiliazed instance of okCommand8 component.
      * @return the initialized component instance
      */
     public Command getOkCommand8() {
@@ -3362,8 +3301,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: authTwitter ">//GEN-BEGIN:|252-getter|0|252-preInit
     /**
-     * Returns an initialized instance of authTwitter component.
-     *
+     * Returns an initiliazed instance of authTwitter component.
      * @return the initialized component instance
      */
     public List getAuthTwitter() {
@@ -3383,8 +3321,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: authTwitterAction ">//GEN-BEGIN:|252-action|0|252-preAction
     /**
-     * Performs an action assigned to the selected list element in the
-     * authTwitter component.
+     * Performs an action assigned to the selected list element in the authTwitter component.
      */
     public void authTwitterAction() {//GEN-END:|252-action|0|252-preAction
         // enter pre-action user code here
@@ -3406,8 +3343,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand2 ">//GEN-BEGIN:|265-getter|0|265-preInit
     /**
-     * Returns an initialized instance of backCommand2 component.
-     *
+     * Returns an initiliazed instance of backCommand2 component.
      * @return the initialized component instance
      */
     public Command getBackCommand2() {
@@ -3422,8 +3358,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: BackToAccounts1 ">//GEN-BEGIN:|271-getter|0|271-preInit
     /**
-     * Returns an initialized instance of BackToAccounts1 component.
-     *
+     * Returns an initiliazed instance of BackToAccounts1 component.
      * @return the initialized component instance
      */
     public Command getBackToAccounts1() {
@@ -3438,8 +3373,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: ReplaceTwitterAccount ">//GEN-BEGIN:|280-getter|0|280-preInit
     /**
-     * Returns an initialized instance of ReplaceTwitterAccount component.
-     *
+     * Returns an initiliazed instance of ReplaceTwitterAccount component.
      * @return the initialized component instance
      */
     public Command getReplaceTwitterAccount() {
@@ -3454,8 +3388,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: BackToAccounts ">//GEN-BEGIN:|282-getter|0|282-preInit
     /**
-     * Returns an initialized instance of BackToAccounts component.
-     *
+     * Returns an initiliazed instance of BackToAccounts component.
      * @return the initialized component instance
      */
     public Command getBackToAccounts() {
@@ -3470,8 +3403,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Resend1 ">//GEN-BEGIN:|301-getter|0|301-preInit
     /**
-     * Returns an initialized instance of Resend1 component.
-     *
+     * Returns an initiliazed instance of Resend1 component.
      * @return the initialized component instance
      */
     public Command getResend1() {
@@ -3486,8 +3418,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand10 ">//GEN-BEGIN:|303-getter|0|303-preInit
     /**
-     * Returns an initialized instance of backCommand10 component.
-     *
+     * Returns an initiliazed instance of backCommand10 component.
      * @return the initialized component instance
      */
     public Command getBackCommand10() {
@@ -3502,8 +3433,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alreadyHaveTwitter ">//GEN-BEGIN:|276-getter|0|276-preInit
     /**
-     * Returns an initialized instance of alreadyHaveTwitter component.
-     *
+     * Returns an initiliazed instance of alreadyHaveTwitter component.
      * @return the initialized component instance
      */
     public Form getAlreadyHaveTwitter() {
@@ -3521,8 +3451,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem2 ">//GEN-BEGIN:|279-getter|0|279-preInit
     /**
-     * Returns an initialized instance of stringItem2 component.
-     *
+     * Returns an initiliazed instance of stringItem2 component.
      * @return the initialized component instance
      */
     public StringItem getStringItem2() {
@@ -3537,8 +3466,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: authSuccessful ">//GEN-BEGIN:|289-getter|0|289-preInit
     /**
-     * Returns an initialized instance of authSuccessful component.
-     *
+     * Returns an initiliazed instance of authSuccessful component.
      * @return the initialized component instance
      */
     public Form getAuthSuccessful() {
@@ -3555,8 +3483,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem3 ">//GEN-BEGIN:|293-getter|0|293-preInit
     /**
-     * Returns an initialized instance of stringItem3 component.
-     *
+     * Returns an initiliazed instance of stringItem3 component.
      * @return the initialized component instance
      */
     public StringItem getStringItem3() {
@@ -3571,8 +3498,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: twitterAuthFailed ">//GEN-BEGIN:|300-getter|0|300-preInit
     /**
-     * Returns an initialized instance of twitterAuthFailed component.
-     *
+     * Returns an initiliazed instance of twitterAuthFailed component.
      * @return the initialized component instance
      */
     public Form getTwitterAuthFailed() {
@@ -3590,8 +3516,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: stringItem4 ">//GEN-BEGIN:|306-getter|0|306-preInit
     /**
-     * Returns an initialized instance of stringItem4 component.
-     *
+     * Returns an initiliazed instance of stringItem4 component.
      * @return the initialized component instance
      */
     public StringItem getStringItem4() {
@@ -3606,8 +3531,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: disliked ">//GEN-BEGIN:|311-getter|0|311-preInit
     /**
-     * Returns an initialized instance of disliked component.
-     *
+     * Returns an initiliazed instance of disliked component.
      * @return the initialized component instance
      */
     public List getDisliked() {
@@ -3624,8 +3548,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Method: dislikedAction ">//GEN-BEGIN:|311-action|0|311-preAction
     /**
-     * Performs an action assigned to the selected list element in the disliked
-     * component.
+     * Performs an action assigned to the selected list element in the disliked component.
      */
     public void dislikedAction() {//GEN-END:|311-action|0|311-preAction
         // enter pre-action user code here
@@ -3636,8 +3559,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsLike ">//GEN-BEGIN:|316-getter|0|316-preInit
     /**
-     * Returns an initialized instance of friendsLike component.
-     *
+     * Returns an initiliazed instance of friendsLike component.
      * @return the initialized component instance
      */
     public Command getFriendsLike() {
@@ -3652,8 +3574,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: friendsDislike ">//GEN-BEGIN:|318-getter|0|318-preInit
     /**
-     * Returns an initialized instance of friendsDislike component.
-     *
+     * Returns an initiliazed instance of friendsDislike component.
      * @return the initialized component instance
      */
     public Command getFriendsDislike() {
@@ -3668,8 +3589,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: singOut ">//GEN-BEGIN:|320-getter|0|320-preInit
     /**
-     * Returns an initialized instance of singOut component.
-     *
+     * Returns an initiliazed instance of singOut component.
      * @return the initialized component instance
      */
     public Command getSingOut() {
@@ -3684,8 +3604,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand11 ">//GEN-BEGIN:|324-getter|0|324-preInit
     /**
-     * Returns an initialized instance of backCommand11 component.
-     *
+     * Returns an initiliazed instance of backCommand11 component.
      * @return the initialized component instance
      */
     public Command getBackCommand11() {
@@ -3700,8 +3619,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand9 ">//GEN-BEGIN:|326-getter|0|326-preInit
     /**
-     * Returns an initialized instance of okCommand9 component.
-     *
+     * Returns an initiliazed instance of okCommand9 component.
      * @return the initialized component instance
      */
     public Command getOkCommand9() {
@@ -3716,8 +3634,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand12 ">//GEN-BEGIN:|328-getter|0|328-preInit
     /**
-     * Returns an initialized instance of backCommand12 component.
-     *
+     * Returns an initiliazed instance of backCommand12 component.
      * @return the initialized component instance
      */
     public Command getBackCommand12() {
@@ -3732,8 +3649,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: accept ">//GEN-BEGIN:|330-getter|0|330-preInit
     /**
-     * Returns an initialized instance of accept component.
-     *
+     * Returns an initiliazed instance of accept component.
      * @return the initialized component instance
      */
     public Command getAccept() {
@@ -3748,8 +3664,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: reject ">//GEN-BEGIN:|332-getter|0|332-preInit
     /**
-     * Returns an initialized instance of reject component.
-     *
+     * Returns an initiliazed instance of reject component.
      * @return the initialized component instance
      */
     public Command getReject() {
@@ -3764,8 +3679,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: manyReq ">//GEN-BEGIN:|322-getter|0|322-preInit
     /**
-     * Returns an initialized instance of manyReq component.
-     *
+     * Returns an initiliazed instance of manyReq component.
      * @return the initialized component instance
      */
     public Form getManyReq() {
@@ -3783,8 +3697,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: oneReq ">//GEN-BEGIN:|323-getter|0|323-preInit
     /**
-     * Returns an initialized instance of oneReq component.
-     *
+     * Returns an initiliazed instance of oneReq component.
      * @return the initialized component instance
      */
     public Form getOneReq() {
@@ -3803,8 +3716,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand10 ">//GEN-BEGIN:|334-getter|0|334-preInit
     /**
-     * Returns an initialized instance of okCommand10 component.
-     *
+     * Returns an initiliazed instance of okCommand10 component.
      * @return the initialized component instance
      */
     public Command getOkCommand10() {
@@ -3849,8 +3761,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand11 ">//GEN-BEGIN:|344-getter|0|344-preInit
     /**
-     * Returns an initialized instance of okCommand11 component.
-     *
+     * Returns an initiliazed instance of okCommand11 component.
      * @return the initialized component instance
      */
     public Command getOkCommand11() {
@@ -3865,8 +3776,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: URLCorrupted ">//GEN-BEGIN:|342-getter|0|342-preInit
     /**
-     * Returns an initialized instance of URLCorrupted component.
-     *
+     * Returns an initiliazed instance of URLCorrupted component.
      * @return the initialized component instance
      */
     public Alert getURLCorrupted() {
@@ -3884,8 +3794,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: StorynotFound ">//GEN-BEGIN:|353-getter|0|353-preInit
     /**
-     * Returns an initialized instance of StorynotFound component.
-     *
+     * Returns an initiliazed instance of StorynotFound component.
      * @return the initialized component instance
      */
     public Alert getStorynotFound() {
@@ -3901,8 +3810,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Dummy ">//GEN-BEGIN:|354-getter|0|354-preInit
     /**
-     * Returns an initialized instance of Dummy component.
-     *
+     * Returns an initiliazed instance of Dummy component.
      * @return the initialized component instance
      */
     public Form getDummy() {
@@ -3919,8 +3827,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: viewCommentsMany ">//GEN-BEGIN:|355-getter|0|355-preInit
     /**
-     * Returns an initialized instance of viewCommentsMany component.
-     *
+     * Returns an initiliazed instance of viewCommentsMany component.
      * @return the initialized component instance
      */
     public Command getViewCommentsMany() {
@@ -3935,8 +3842,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterStories ">//GEN-BEGIN:|360-getter|0|360-preInit
     /**
-     * Returns an initialized instance of FilterStories component.
-     *
+     * Returns an initiliazed instance of FilterStories component.
      * @return the initialized component instance
      */
     public Command getFilterStories() {
@@ -3951,8 +3857,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterStories1 ">//GEN-BEGIN:|364-getter|0|364-preInit
     /**
-     * Returns an initialized instance of FilterStories1 component.
-     *
+     * Returns an initiliazed instance of FilterStories1 component.
      * @return the initialized component instance
      */
     public Command getFilterStories1() {
@@ -3967,8 +3872,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: goToVerification ">//GEN-BEGIN:|369-getter|0|369-preInit
     /**
-     * Returns an initialized instance of goToVerification component.
-     *
+     * Returns an initiliazed instance of goToVerification component.
      * @return the initialized component instance
      */
     public Command getGoToVerification() {
@@ -3983,8 +3887,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand13 ">//GEN-BEGIN:|377-getter|0|377-preInit
     /**
-     * Returns an initialized instance of backCommand13 component.
-     *
+     * Returns an initiliazed instance of backCommand13 component.
      * @return the initialized component instance
      */
     public Command getBackCommand13() {
@@ -3999,8 +3902,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choose ">//GEN-BEGIN:|379-getter|0|379-preInit
     /**
-     * Returns an initialized instance of choose component.
-     *
+     * Returns an initiliazed instance of choose component.
      * @return the initialized component instance
      */
     public Command getChoose() {
@@ -4015,14 +3917,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: Toggle ">//GEN-BEGIN:|375-getter|0|375-preInit
     /**
-     * Returns an initialized instance of Toggle component.
-     *
+     * Returns an initiliazed instance of Toggle component.
      * @return the initialized component instance
      */
     public Form getToggle() {
         if (Toggle == null) {//GEN-END:|375-getter|0|375-preInit
             // write pre-init user code here
-            Toggle = new Form("form2", new Item[]{getChoiceGroup()});//GEN-BEGIN:|375-getter|1|375-postInit
+            Toggle = new Form("Interests", new Item[]{getChoiceGroup()});//GEN-BEGIN:|375-getter|1|375-postInit
             Toggle.addCommand(getBackCommand13());
             Toggle.addCommand(getChoose());
             Toggle.setCommandListener(this);//GEN-END:|375-getter|1|375-postInit
@@ -4035,8 +3936,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choiceGroup ">//GEN-BEGIN:|376-getter|0|376-preInit
     /**
-     * Returns an initialized instance of choiceGroup component.
-     *
+     * Returns an initiliazed instance of choiceGroup component.
      * @return the initialized component instance
      */
     public ChoiceGroup getChoiceGroup() {
@@ -4051,8 +3951,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand14 ">//GEN-BEGIN:|382-getter|0|382-preInit
     /**
-     * Returns an initialized instance of backCommand14 component.
-     *
+     * Returns an initiliazed instance of backCommand14 component.
      * @return the initialized component instance
      */
     public Command getBackCommand14() {
@@ -4067,8 +3966,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: okCommand13 ">//GEN-BEGIN:|384-getter|0|384-preInit
     /**
-     * Returns an initialized instance of okCommand13 component.
-     *
+     * Returns an initiliazed instance of okCommand13 component.
      * @return the initialized component instance
      */
     public Command getOkCommand13() {
@@ -4083,14 +3981,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: interestConfirm ">//GEN-BEGIN:|381-getter|0|381-preInit
     /**
-     * Returns an initialized instance of interestConfirm component.
-     *
+     * Returns an initiliazed instance of interestConfirm component.
      * @return the initialized component instance
      */
     public Form getInterestConfirm() {
         if (interestConfirm == null) {//GEN-END:|381-getter|0|381-preInit
             // write pre-init user code here
-            interestConfirm = new Form("form2");//GEN-BEGIN:|381-getter|1|381-postInit
+            interestConfirm = new Form("2allak");//GEN-BEGIN:|381-getter|1|381-postInit
             interestConfirm.addCommand(getBackCommand14());
             interestConfirm.addCommand(getOkCommand13());
             interestConfirm.setCommandListener(this);//GEN-END:|381-getter|1|381-postInit
@@ -4101,50 +3998,33 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|381-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ConnectionError ">//GEN-BEGIN:|389-getter|0|389-preInit
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: InternetError ">//GEN-BEGIN:|389-getter|0|389-preInit
     /**
-     * Returns an initialized instance of ConnectionError component.
-     *
+     * Returns an initiliazed instance of InternetError component.
      * @return the initialized component instance
      */
-    public Alert getConnectionError() {
-        if (ConnectionError == null) {//GEN-END:|389-getter|0|389-preInit
+    public Alert getInternetError() {
+        if (InternetError == null) {//GEN-END:|389-getter|0|389-preInit
             // write pre-init user code here
-            ConnectionError = new Alert("Connection Error", "Error connecting to the server, check your internet connection", null, AlertType.ERROR);//GEN-BEGIN:|389-getter|1|389-postInit
-            ConnectionError.setIndicator(getIndicator5());
-            ConnectionError.setTimeout(Alert.FOREVER);//GEN-END:|389-getter|1|389-postInit
+            InternetError = new Alert("Connection Error", "Cannot connect to the Internet, please check your connection", null, AlertType.ERROR);//GEN-BEGIN:|389-getter|1|389-postInit
+            InternetError.setTimeout(Alert.FOREVER);//GEN-END:|389-getter|1|389-postInit
             // write post-init user code here
         }//GEN-BEGIN:|389-getter|2|
-        return ConnectionError;
+        return InternetError;
     }
 //</editor-fold>//GEN-END:|389-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: indicator5 ">//GEN-BEGIN:|390-getter|0|390-preInit
-    /**
-     * Returns an initialized instance of indicator5 component.
-     *
-     * @return the initialized component instance
-     */
-    public Gauge getIndicator5() {
-        if (indicator5 == null) {//GEN-END:|390-getter|0|390-preInit
-            // write pre-init user code here
-            indicator5 = new Gauge(null, false, 100, 50);//GEN-LINE:|390-getter|1|390-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|390-getter|2|
-        return indicator5;
-    }
-//</editor-fold>//GEN-END:|390-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: AlreadyVerified ">//GEN-BEGIN:|391-getter|0|391-preInit
     /**
-     * Returns an initialized instance of AlreadyVerified component.
-     *
+     * Returns an initiliazed instance of AlreadyVerified component.
      * @return the initialized component instance
      */
     public Alert getAlreadyVerified() {
         if (AlreadyVerified == null) {//GEN-END:|391-getter|0|391-preInit
             // write pre-init user code here
-            AlreadyVerified = new Alert("Already Verified", "Sorry, you have already verified your account", null, null);//GEN-BEGIN:|391-getter|1|391-postInit
+            AlreadyVerified = new Alert("Already Verified", "Sorry, you have already verified your account", null, AlertType.ALARM);//GEN-BEGIN:|391-getter|1|391-postInit
             AlreadyVerified.setTimeout(Alert.FOREVER);//GEN-END:|391-getter|1|391-postInit
             // write post-init user code here
         }//GEN-BEGIN:|391-getter|2|
@@ -4154,8 +4034,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: itemCommand ">//GEN-BEGIN:|394-getter|0|394-preInit
     /**
-     * Returns an initialized instance of itemCommand component.
-     *
+     * Returns an initiliazed instance of itemCommand component.
      * @return the initialized component instance
      */
     public Command getItemCommand() {
@@ -4167,6 +4046,218 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return itemCommand;
     }
 //</editor-fold>//GEN-END:|394-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: alert ">//GEN-BEGIN:|396-getter|0|396-preInit
+    /**
+     * Returns an initiliazed instance of alert component.
+     * @return the initialized component instance
+     */
+    public Alert getAlert() {
+        if (alert == null) {//GEN-END:|396-getter|0|396-preInit
+            // write pre-init user code here
+            alert = new Alert("Connection Lost");//GEN-BEGIN:|396-getter|1|396-postInit
+            alert.setTimeout(Alert.FOREVER);//GEN-END:|396-getter|1|396-postInit
+            // write post-init user code here
+            alert.setString("No Internet Connection");
+        }//GEN-BEGIN:|396-getter|2|
+        return alert;
+    }
+//</editor-fold>//GEN-END:|396-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: ServerError ">//GEN-BEGIN:|399-getter|0|399-preInit
+    /**
+     * Returns an initiliazed instance of ServerError component.
+     * @return the initialized component instance
+     */
+    public Alert getServerError() {
+        if (ServerError == null) {//GEN-END:|399-getter|0|399-preInit
+            // write pre-init user code here
+            ServerError = new Alert("Server Error", "Error connecting to the server, please try again later", null, AlertType.ERROR);//GEN-BEGIN:|399-getter|1|399-postInit
+            ServerError.setTimeout(Alert.FOREVER);//GEN-END:|399-getter|1|399-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|399-getter|2|
+        return ServerError;
+    }
+//</editor-fold>//GEN-END:|399-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: passMissMatch ">//GEN-BEGIN:|401-getter|0|401-preInit
+    /**
+     * Returns an initiliazed instance of passMissMatch component.
+     * @return the initialized component instance
+     */
+    public Alert getPassMissMatch() {
+        if (passMissMatch == null) {//GEN-END:|401-getter|0|401-preInit
+            // write pre-init user code here
+            passMissMatch = new Alert("alert1", "Password Missmatch", null, AlertType.ALARM);//GEN-BEGIN:|401-getter|1|401-postInit
+            passMissMatch.setTimeout(Alert.FOREVER);//GEN-END:|401-getter|1|401-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|401-getter|2|
+        return passMissMatch;
+    }
+//</editor-fold>//GEN-END:|401-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: emptyFields ">//GEN-BEGIN:|402-getter|0|402-preInit
+    /**
+     * Returns an initiliazed instance of emptyFields component.
+     * @return the initialized component instance
+     */
+    public Alert getEmptyFields() {
+        if (emptyFields == null) {//GEN-END:|402-getter|0|402-preInit
+            // write pre-init user code here
+            emptyFields = new Alert("alert1", "You Have Entered Nothing", null, AlertType.ERROR);//GEN-BEGIN:|402-getter|1|402-postInit
+            emptyFields.setTimeout(Alert.FOREVER);//GEN-END:|402-getter|1|402-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|402-getter|2|
+        return emptyFields;
+    }
+//</editor-fold>//GEN-END:|402-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: backCommand15 ">//GEN-BEGIN:|405-getter|0|405-preInit
+    /**
+     * Returns an initiliazed instance of backCommand15 component.
+     * @return the initialized component instance
+     */
+    public Command getBackCommand15() {
+        if (backCommand15 == null) {//GEN-END:|405-getter|0|405-preInit
+            // write pre-init user code here
+            backCommand15 = new Command("Back", Command.BACK, 0);//GEN-LINE:|405-getter|1|405-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|405-getter|2|
+        return backCommand15;
+    }
+//</editor-fold>//GEN-END:|405-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: alert1 ">//GEN-BEGIN:|404-getter|0|404-preInit
+    /**
+     * Returns an initiliazed instance of alert1 component.
+     * @return the initialized component instance
+     */
+    public Alert getAlert1() {
+        if (alert1 == null) {//GEN-END:|404-getter|0|404-preInit
+            // write pre-init user code here
+            alert1 = new Alert("alert1", "The selected story was removed!", null, null);//GEN-BEGIN:|404-getter|1|404-postInit
+            alert1.addCommand(getBackCommand15());
+            alert1.setCommandListener(this);
+            alert1.setTimeout(Alert.FOREVER);//GEN-END:|404-getter|1|404-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|404-getter|2|
+        return alert1;
+    }
+//</editor-fold>//GEN-END:|404-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: WrongEmailFormat ">//GEN-BEGIN:|409-getter|0|409-preInit
+    /**
+     * Returns an initiliazed instance of WrongEmailFormat component.
+     * @return the initialized component instance
+     */
+    public Alert getWrongEmailFormat() {
+        if (WrongEmailFormat == null) {//GEN-END:|409-getter|0|409-preInit
+            // write pre-init user code here
+            WrongEmailFormat = new Alert("Wrong Email Format", "The email you entered is incorrectly formatted", null, null);//GEN-BEGIN:|409-getter|1|409-postInit
+            WrongEmailFormat.setTimeout(Alert.FOREVER);//GEN-END:|409-getter|1|409-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|409-getter|2|
+        return WrongEmailFormat;
+    }
+//</editor-fold>//GEN-END:|409-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: PasswordsDontMatch ">//GEN-BEGIN:|410-getter|0|410-preInit
+    /**
+     * Returns an initiliazed instance of PasswordsDontMatch component.
+     * @return the initialized component instance
+     */
+    public Alert getPasswordsDontMatch() {
+        if (PasswordsDontMatch == null) {//GEN-END:|410-getter|0|410-preInit
+            // write pre-init user code here
+            PasswordsDontMatch = new Alert("Passwords Not Matching Error", "The passwords you entered don\'t match", null, null);//GEN-BEGIN:|410-getter|1|410-postInit
+            PasswordsDontMatch.setTimeout(Alert.FOREVER);//GEN-END:|410-getter|1|410-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|410-getter|2|
+        return PasswordsDontMatch;
+    }
+//</editor-fold>//GEN-END:|410-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: WrongEmailPassCombination ">//GEN-BEGIN:|411-getter|0|411-preInit
+    /**
+     * Returns an initiliazed instance of WrongEmailPassCombination component.
+     * @return the initialized component instance
+     */
+    public Alert getWrongEmailPassCombination() {
+        if (WrongEmailPassCombination == null) {//GEN-END:|411-getter|0|411-preInit
+            // write pre-init user code here
+            WrongEmailPassCombination = new Alert("Wrong Email/Password Combination", "The email/password combination you entered doesn\'t exist", null, null);//GEN-BEGIN:|411-getter|1|411-postInit
+            WrongEmailPassCombination.setTimeout(Alert.FOREVER);//GEN-END:|411-getter|1|411-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|411-getter|2|
+        return WrongEmailPassCombination;
+    }
+//</editor-fold>//GEN-END:|411-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: commentSent ">//GEN-BEGIN:|414-getter|0|414-preInit
+    /**
+     * Returns an initiliazed instance of commentSent component.
+     * @return the initialized component instance
+     */
+    public Alert getCommentSent() {
+        if (commentSent == null) {//GEN-END:|414-getter|0|414-preInit
+            // write pre-init user code here
+            commentSent = new Alert("alert2", "Comment Posted!", null, AlertType.INFO);//GEN-BEGIN:|414-getter|1|414-postInit
+            commentSent.setTimeout(Alert.FOREVER);//GEN-END:|414-getter|1|414-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|414-getter|2|
+        return commentSent;
+    }
+//</editor-fold>//GEN-END:|414-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: UppedBefore ">//GEN-BEGIN:|415-getter|0|415-preInit
+    /**
+     * Returns an initiliazed instance of UppedBefore component.
+     * @return the initialized component instance
+     */
+    public Alert getUppedBefore() {
+        if (UppedBefore == null) {//GEN-END:|415-getter|0|415-preInit
+            // write pre-init user code here
+            UppedBefore = new Alert("alert2", "You Upped this comment before!", null, AlertType.WARNING);//GEN-BEGIN:|415-getter|1|415-postInit
+            UppedBefore.setTimeout(Alert.FOREVER);//GEN-END:|415-getter|1|415-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|415-getter|2|
+        return UppedBefore;
+    }
+//</editor-fold>//GEN-END:|415-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: DownedBefore ">//GEN-BEGIN:|416-getter|0|416-preInit
+    /**
+     * Returns an initiliazed instance of DownedBefore component.
+     * @return the initialized component instance
+     */
+    public Alert getDownedBefore() {
+        if (DownedBefore == null) {//GEN-END:|416-getter|0|416-preInit
+            // write pre-init user code here
+            DownedBefore = new Alert("alert2", "You downed this comment before!", null, AlertType.WARNING);//GEN-BEGIN:|416-getter|1|416-postInit
+            DownedBefore.setTimeout(Alert.FOREVER);//GEN-END:|416-getter|1|416-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|416-getter|2|
+        return DownedBefore;
+    }
+//</editor-fold>//GEN-END:|416-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: CommentFailed ">//GEN-BEGIN:|417-getter|0|417-preInit
+    /**
+     * Returns an initiliazed instance of CommentFailed component.
+     * @return the initialized component instance
+     */
+    public Alert getCommentFailed() {
+        if (CommentFailed == null) {//GEN-END:|417-getter|0|417-preInit
+            // write pre-init user code here
+            CommentFailed = new Alert("alert2", "Failed to post your comment, please try again later.", null, null);//GEN-BEGIN:|417-getter|1|417-postInit
+            CommentFailed.setTimeout(Alert.FOREVER);//GEN-END:|417-getter|1|417-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|417-getter|2|
+        return CommentFailed;
+    }
+//</editor-fold>//GEN-END:|417-getter|2|
+
+
 
     /**
      * Returns a display instance.
@@ -4522,20 +4613,21 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
     
     public void UserInterestsJson() { // parse user interests after confirmation to json array to send to server still needs url modification
-                String dataToBeSend = "\"id\": \"" + 2+ "\" , \"interests\": {";
+                String dataToBeSend = "{\"id\": " +userID+ " , \"interests\": [";
        for(int i=0; i<user.size(); i++) {
            
            dataToBeSend = dataToBeSend + "\"" +((String)user.elementAt(i)) + "\" ," ;
            
        }
        dataToBeSend = dataToBeSend.substring(0, (dataToBeSend.length()-1)) ;
-       dataToBeSend = dataToBeSend + "}";      
+       dataToBeSend = dataToBeSend + "]}"; 
+       //dataToBeSend = "ayhaga 3alasajfiosdfsdfs";
        System.out.println(dataToBeSend);
        
        if(checkInternetConn() && checkServerConn() ){
             try {
         //Change IP accordingly
-        httpConn = (HttpConnection) Connector.open("http://192.168.1.107:3000/users/");
+        httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"+PORT+"/user_add_interests.json");
         //Request method has to be POST
         httpConn.setRequestMethod(HttpConnection.POST);
         httpConn.setRequestProperty("User-Agent",
@@ -4582,36 +4674,96 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
    }
    
  public static Vector allInterests(String g) {  //parse all interests into interests vector
-		String a = g;
-		int firstName = 0;
-		int first = 0;
-		Vector interests = new Vector();
-		while (a.indexOf("name\":") != -1) {
-			firstName = a.indexOf("name\":");
-			firstName += 7;
-			first = a.indexOf("updated_at");
-			interests.addElement(a.substring(firstName, first - 3));
-			a = a.substring(first + 4, a.length());
-		}
-		return interests;
-	}
+String a = g;
+int firstName = 0;
+int first = 0;
+Vector interests = new Vector();
+while (a.indexOf("name\":") != -1) {
+firstName = a.indexOf("name\":");
+firstName += 7;
+first = a.indexOf("updated_at");
+interests.addElement(a.substring(firstName, first - 3));
+a = a.substring(first + 4, a.length());
+}
+return interests;
+}
    public static Vector userInterests(String g) { //parse user interests into user vector
-		Vector user = new Vector();
-		//String u = g.substring(1, json.indexOf("{"));
+Vector user = new Vector();
+//String u = g.substring(1, json.indexOf("{"));
                 String u = g;
-		while (u.indexOf(",") != -1) {
-			int f = u.indexOf("\"");
-			int s = u.indexOf(",");
-			user.addElement(u.substring(f + 1, s - 2));
-			u = u.substring(s + 1, u.length());
-		}    
+while (u.indexOf(",") != -1) {
+int f = u.indexOf("\"");
+int s = u.indexOf(",");
+user.addElement(u.substring(f + 1, s - 1));
+u = u.substring(s + 1, u.length());
+}    
                 return user;
-	}
+}
    public void help() {  //fill interets inside toggle form
        //json1 string is the Json String from server with same format just for testing 
-       
+       System.out.println("Inside");
+       HttpConnection httpConn = null;
+      String url = "http://"+SERVER_IP+":"+PORT+"/users/"+userID+"/toggle.json" ;  
+
+    InputStream is = null;
+    OutputStream os = null;
+
+    try {
+      // Open an HTTP Connection object
+      httpConn = (HttpConnection)Connector.open(url);
+
+      // Setup HTTP Request
+      httpConn.setRequestMethod(HttpConnection.GET);
+      httpConn.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+
+      int respCode = httpConn.getResponseCode();
+      if (respCode == httpConn.HTTP_OK) {
+        StringBuffer sb = new StringBuffer();
+        os = httpConn.openOutputStream();
+        is = httpConn.openDataInputStream();
+        int chr;
+        while ((chr = is.read()) != -1) {
+          sb.append((char) chr); }
+          json1 = sb.toString();
+          System.out.println(json1);
+      }
+             
+      else {
+        System.out.println("Error in opening HTTP Connection. Error#" + respCode);
+      }}catch(Exception e){
+          
+      
+
+      } finally {
+        if(is!= null)
+            try {
+                is.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+          if(os != null)
+            try {
+                os.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+      if(httpConn != null)
+            try {
+                httpConn.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+     
+    }
+
+
        interests = allInterests(json1);
        user = userInterests(json1.substring(1, json1.indexOf("{")));
+       for(int i = 0; i <user.size(); i++) {
+           System.out.println(user.elementAt(i));
+       }
        
          for(int j = 0; j <interests.size(); j++) {
       getChoiceGroup().append((String)interests.elementAt(j), null);
@@ -4625,8 +4777,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
   }
 
    }
-   
-   public void help1() { // confirmation form helper
+   public void help1() { // confirmation form helper adds content
            
        if(user.size() > 0) {
                 interestConfirm.append("Your Selected Interets :");
@@ -4684,7 +4835,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         }
     }
 
-    public void filter(String interest) {
+    public void filter(String interest){ // takes a certain interest and filters the main feed on it
         for (int i = 0; i < MainFeed.size(); i++) {
             if (MainFeed.get(i) instanceof storyItem) {
                 storyItem temp = (storyItem) MainFeed.get(i);
@@ -4695,9 +4846,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         }
     }
    
-    
+    //the getstoryshare method get the json file from the back end of
+    //share_story_social_network method and change it to array of string
      public String[] getstoryshare() throws IOException {
-        String like_url = "http://192.168.1.1:3000/stories/share_story_social_network?";
+        String like_url = "http://" + SERVER_IP + ":" + PORT+"/stories/share_story_social_network?sid="+currentStoryID+"&uid="+userID+"&format=json";
         String jsonS1 = getData(like_url);
         String[] share = null;
         try {
@@ -4717,6 +4869,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return share;
 
     }
+     
+     //the parsestoryshare method is to parse the array and return the result stored in it
      
      public boolean parsestoryshare(String[] share) {
         String state = "";
@@ -4739,9 +4893,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
         return sss;
      }
-
+ //the getfriendslike method get the json file from the back end of
+    //view_friends_like method and change it to array of string
     public String[] getfriendslike() throws IOException {
-        String like_url = "http://192.168.1.1:3000/stories/view_friends_like?";
+        String like_url =  "http://" + SERVER_IP + ":" + PORT+"/stories/view_friends_like?sid="+currentStoryID+"&format=json";
+
         String jsonS1 = getData(like_url);
         String[] friendlist = null;
         try {
@@ -4761,9 +4917,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return friendlist;
 
     }
-
+ //the getfriendsdislike method get the json file from the back end of
+    //view_friends_dislike method and change it to array of string
     public String[] getfriendsdislike() throws IOException {
-        String dislike_url = "http://192.168.1.1:3000/stories/view_friends_dislike?";
+        String dislike_url =  "http://" + SERVER_IP + ":" + PORT+"/stories/view_friends_dislike?sid="+currentStoryID+"&format=json";
         String jsonS2 = getData(dislike_url);
         String[] friendlist = null;
         try {
@@ -4787,11 +4944,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return friendlist;
 
     }
-
+ //the getfriendrecstory method get the json file from the back end of
+    //recommend_story method and change it to array of string
     public String[] getfriendrecstory() throws IOException {
 
 
-        String mess_url = "http://192.168.1.1:3000/stories/recommend_story?";
+        String mess_url =  "http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?uid="+userID+"&format=json";
 
 
         String jsonS = getData(mess_url);
@@ -4817,7 +4975,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
         return friendlist;
     }
-
+//parseJsonfriends method is to parse the array and insert each friend in the list of friends
     public void parseJsonfriends(String[] choosefriend) // user to parse json frindlist
     {
         String friend = "";
@@ -4834,7 +4992,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             choosefriend1.append(friend, null);
         }
     }
-
+//parseJsonfriends method is to parse the array and insert each friend in the list of friends who liked this story
     public void parseJsonfriendsliked(String[] choosefriend) // user to parse json frindlist
     {
         String friend = "";
@@ -4851,7 +5009,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             liked.append(friend, null);
         }
     }
-
+//parseJsonfriends method is to parse the array and insert each friend in the list of friends who disliked this story
     public void parseJsonfriendsdisliked(String[] choosefriend) // user to parse json frindlist
     {
         String friend = "";
@@ -4868,7 +5026,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             disliked.append(friend, null);
         }
     }
-
+//insertfriendsintolist method is to call the method that generates the friends that will be inserted into the lists
     public void insertfriendsintolist(int n) throws IOException {
         String[] x = getfriendrecstory();
         String[] y = getfriendslike();
@@ -4927,13 +5085,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 
     public void test() { //get data from server and passes it to be parsed
-        String x = getDataServer("http://192.168.26.141:3000/user_add_interests/interests?id=1&format=json");
+        String x = getDataServer("http://"+SERVER_IP+":"+PORT+"/user_add_interests/interests?id="+userID+"&format=json");
         String y;
         y = x.substring(2, x.length() - 2);
         parseJsonfile(y);
     }
 
-    public void parseJsonfile(String x) { // parses json string from server
+    public void parseJsonfile(String x) { // parses json string of interests from server
 
         String interest = "";
 
@@ -4955,7 +5113,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     }
 
-    private String[] split(String original) {
+    private String[] split(String original) { // split method 
         Vector nodes = new Vector();
         String separator = "   ";
         System.out.println("split start...................");
@@ -4984,8 +5142,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     public static String getDataServer(String link) /*
      * this method should intiate the connection between the server and the
-     * mobile client which should return the json file of list of stories
-     * according to the client interests.
+     * mobile client and returns a String with the Returned Data
      */ {
 
         HttpConnection httpConn = null;
@@ -5094,6 +5251,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             System.out.println("error");
             internetConn = false;
         }
+        finally {
+               try{
+                checkConnOS.close();
+                httpCheckConn.close();}
+               catch(Exception e){
+                   e.printStackTrace();
+               }
+            }
     }
 
     public void pingServer() {
@@ -5113,7 +5278,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         try {
             // sets connection to the server address which is specifed in
             // in the String serverURL
-            httpCheckConn = (HttpConnection) Connector.open(serverURL);
+            httpCheckConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":3000");
 
             // Set the request method and headers
             httpCheckConn.setRequestMethod(HttpConnection.POST);
@@ -5141,6 +5306,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             //if ping failed, sets server connection to false 
             serverConn = false;
         }
+        finally {
+               try{
+                checkConnOS.close();
+                httpCheckConn.close();}
+               catch(Exception e){
+                   e.printStackTrace();
+               }
+            }
     }
 
     public boolean checkInternetConn() {
@@ -5170,4 +5343,5 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         }
 
     }
+    
 }

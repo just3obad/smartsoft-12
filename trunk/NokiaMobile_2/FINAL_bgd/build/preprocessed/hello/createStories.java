@@ -5,6 +5,9 @@
 package hello;
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
+import org.json.me.JSONArray;
+import org.json.me.JSONException;
+import org.json.me.JSONObject;
  
 /**
  *
@@ -70,6 +73,7 @@ public class createStories {
       // methdo that works on a given url to get out the contents required to create the story item
       // a json file formatted on server back end that returns the specifies string to be parsed
     public void parseJsonStory(){
+        System.out.println(content);
         String temp = content;
         String id,title,body,rank,image,category;
         try{
@@ -119,9 +123,65 @@ public class createStories {
             e.printStackTrace();
         }
     }
+ public void fromJson(String js) {
+        try {
+            JSONObject json = new JSONObject(js);
+            int id = json.getInt("id");
+            String title = json.getString("title");
+            String content = (json.getString("content"));
+            String category = json.getString("category");
+            int rank = json.getInt("rank");
+            String media = json.getString("media_link");
+            storyItem a = new storyItem(id,media,title,content,rank,category,display,this.Hello);
+             MainFeed.append(a);
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
 
+    }
+    
+    public void parseNew() throws JSONException{
+         JSONObject json = null;  
+        try {
+            System.out.println(content);
+            json = new JSONObject(content); // create json object from string
+        } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
+            
+            JSONArray jsonArray = json.getJSONArray("storyItem");  // get array
+            int total = jsonArray.length();
+       
+            for (int i = 0; i < total; i++) {
+                     String x = jsonArray.getString(i);
+                     System.out.println("\n here is x\n\n" + x + "\n\n");
+                     x = "{ storyItem :" + x + "}";
+                     JSONObject json2 = new JSONObject(x);
+                     JSONArray jsonArray2 = json2.getJSONArray("storyItem");
+                     
+                     for (int j=0;j<jsonArray2.length();j++){
+                        String commJson = jsonArray2.getString(j); // get json representation of comment
+                        System.out.println("\n" + commJson);
+                        
+                        fromJson(commJson);
+                     }
+                
+               
+                
+              // storyItem a = new storyItem(commJson, this); // create a commentItem using it
+                //CommentsMany.append(comments[i]); // append commentItem tp form
+            }
+    }
+    
     public void helpMainFeed() {
-        parseJsonStory(); // calls method that actually helps
+        try {
+            parseNew();
+            System.out.println("back from parse without error");
+            //parseJsonStory(); // calls method that actually helps
+        } catch (JSONException ex) {
+            helpMainFeed();
+            ex.printStackTrace();
+        }
     }
 
 }
