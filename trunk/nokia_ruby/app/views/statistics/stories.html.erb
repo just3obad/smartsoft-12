@@ -17,13 +17,14 @@
       start_date = <%= get_story_start_date(@id).to_i %>
       //check if the story was deleted before the last 30 days
       //if no, then render the graph normally. if yes, then show the warning described in the HTML part below
-      if(start_date != 1) {
+      if(start_date != -1) {
       pointStart= <%= get_story_start_date(@id).days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
       yl="Number";
       titleOfGraph="Story Stat";
       document.getElementById("deletedStory").style.display = "none";
+      document.getElementById("graphTitle").style.display = "block";
       //call the method that renders the graph with the calculated parameters.
       Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
       } else {
@@ -43,14 +44,14 @@
    
 </script>
 <div class="container-fluid maindiv">
-	<div id="graphTitle" style="display: none;"> 
+	<div id="graphTitle" style="display: none; margin-left: 30px;"> 
     	<h1>Graph</h1></div>
     	<div class="alert" id="deletedStory" style="display: none;">
            <a class="close" data-dismiss="alert">×</a>
            <h1><strong>Warning!</strong> Story was hidden before the last 30 days.</h1>
      	</div>
     	<!-- ccc is the id of the div that the graph would render to -->
-	<div class= "border-graph" id="ccc">
+	<div class= "border-graph" id="ccc" style="width: 1230px; margin-left: 30px;">
 	</div>
 	<div class="row-fluid">
 		<div class="statistics-left-panel " id="graph">
