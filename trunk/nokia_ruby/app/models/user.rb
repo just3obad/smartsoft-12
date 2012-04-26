@@ -29,9 +29,9 @@ has_many :friendships, :dependent => :destroy
     shares = Share.find_all_by_user_id(friend_id) # get all his/her shared stories
     stories = Array.new
     shares.each do |share|
-      stories.append(Story.find(share.story_id)) #
+      stories.append(Story.find(share.story_id)) # get the stories of these shares and append to stories
     end
-    stories.uniq
+    stories.uniq # remove tuplicates, if stories is equal nil this will return []
   end
  # gets the shared stories of friends of a user
   def get_friends_stories()
