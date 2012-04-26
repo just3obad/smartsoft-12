@@ -5273,8 +5273,14 @@ String[] friendlist = null;
         }
         finally {
                try{
+                   if(checkConnIS != null)
+                checkConnIS.close();
+                   if(checkConnOS != null)
                 checkConnOS.close();
-                httpCheckConn.close();}
+                   if(httpCheckConn != null)
+                httpCheckConn.close();
+                   
+               }
                catch(Exception e){
                    e.printStackTrace();
                }
@@ -5328,8 +5334,14 @@ String[] friendlist = null;
         }
         finally {
                try{
+                   if(checkConnIS != null)
+                checkConnIS.close();
+                   if(checkConnOS != null)
                 checkConnOS.close();
-                httpCheckConn.close();}
+                   if(httpCheckConn != null)
+                httpCheckConn.close();
+                   
+               }
                catch(Exception e){
                    e.printStackTrace();
                }
