@@ -1204,8 +1204,13 @@
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="items" typeID="1Cjavax.microedition.lcdui.Item" value="A3:4_R1494_R1504_R151"/>
                     <Component componentID="153" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R437"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R148"/>
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R152"/>
+                        <Component componentID="437" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R153"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R375"/>
+                        </Component>
                     </Component>
                     <Component componentID="155" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R412"/>
