@@ -4,11 +4,13 @@
 <% if @interest.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@interest.errors.count, "error") %> 
-        prohibited this interest from being saved:</h2>
+        prohibited this interest from being saved </br>
+PLEASE CLICK the "Add new Interest" button again to resubmit :</h2>
     <p>There were problems with the following fields:</p>
     <ul>
     <% @interest.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
+
     <% end %>
     </ul>
   </div>
