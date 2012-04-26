@@ -2,11 +2,6 @@ class StoriesController < ApplicationController
   respond_to :html,:json
   require 'net/smtp'
 
-
-
-
-
-
   def show
    @comments = Comment.find_all_by_story_id(params[:id]) # get comments of this story
    @story = Story.find(params[:id])
@@ -116,39 +111,34 @@ end
   flag=User.find_by_id(@userid).share?(@storyid) 
 
     if flag
-      respond_with{"true" }
+   respond_to do |format|
+      format.json{render json: "true" }
+        end  
     else
-     respond_with {"false"}
+      respond_to do |format|
+     format.json{render json:"false"}
     end
+   end 
+
  end
    
 
-#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page 
+#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page or the user could write an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
 
 def recommend_story()
 
   @userid=params[:uid]
-  @flist=Array.new
-  @flist << User.find_by_id(@userid).get_Friend_List() 
+    friend=params[:friend]
+    email=params[:email]
+    message=params[:message]
 
-  
-    if @flist.empty?
-      respond_with {"sorry_you_dont_have_any_friends" }
-    else
-        respond_with{@flist}
- end
-
-  respond_from do |format|
-    parsed_json = ActiveSupport::JSON.decode(format)
-    user=parsed_json[user]
-    email=parsed_json[email]
-    message=parsed_json[message]
-   end
-
-  if user.empty?
+   friend1=Array.new
+   friend1 << friend
+  if friend1.empty?
 
  user1=Array.new
- user1 << User.where(:user_mail => email)
+ user2=User.find_by_email(email)
+ user1 << User.where(:email => email)
 
   if
     user1.empty?
@@ -157,15 +147,36 @@ def recommend_story()
      end
 
    else
-    self.show user1, message
+    self.show user2, message
   end
 
  else
-  self.show user, message
+  self.show friend, message
  end
 
 end
 
+#i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
+def get_friends()
+ @userid=params[:uid] 
+
+  @flist=Array.new
+  @flist << User.find_by_id(@userid).get_Friend_List() 
+
+  
+    if @flist.empty?
+       respond_to do |format|
+     format.json{render json:"sorry_you_dont_have_any_friends" }
+      end
+
+    else
+        respond_to do |format|
+     format.json{render json:@flist}
+      end
+
+ end
+
+end
 
 #view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
 
@@ -174,11 +185,11 @@ def view_friends_like
   @userid=params[:uid]
   
   @flistlike=Array.new
-   
-  @flistlike << User.find_by_id(@userid).extractFriends( liked )
-  
-  respond_with { @flistlike}
- 
+  @flistlike << User.find_by_id(@userid).liked() 
+
+   respond_to do |format|
+     format.json{render json:@flistlike}
+     end
   
 end
 
@@ -187,42 +198,12 @@ def view_friends_dislike
     @userid=params[:uid]
 
   @flistdislike=Array.new
-  
-  @flistdislike << User.find_by_id(@userid).extractFriends( disliked )
+  @flistdislike << User.find_by_id(@userid).disliked()
 
-  respond_with {@flistdislike}
-  
+   respond_to do |format|
+     format.json{render json:@flistdislike}
+    end
 end
 
-
- #dummy data to be returned until it created in sprint 2
-
-  def liked()  
-
-  @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
-  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
-  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
-  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
-  @list <<@user1 <<@user2 <<@user3 <<@user4
-
-  return @list
-    
- end
-
- #dummy data to be returned until it created in sprint 2
-
-  def disliked()  
-  
-  @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
-  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
-  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
-  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
-  @list <<@user1 <<@user2 <<@user3 <<@user4
-
-  return @list
-    
- end
 
 end
