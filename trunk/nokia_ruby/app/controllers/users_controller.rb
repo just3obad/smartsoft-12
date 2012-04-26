@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 def feed
  @id=params[:id]
  @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
- @stories_list = get_stories(@interests)
+ @stories_list = StoriesHelper.get_stories(@interests)
 respond_to do |format|
     format.json { render json: @stories_list }
  end
@@ -61,8 +61,10 @@ end
     @user = User.new(params[:user])
     @user.haccount = Haccount.new(:email => @user.email, 
                                   :password=>params[:password], :user_id => @user.id)
+    @uLog = UserLogIn.create(:user_id => @user.id)
     respond_to do |format|
       if @user.save
+        @uLog = UserLogIn.create(:user_id => @user.id)
     #    format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created }
       else
