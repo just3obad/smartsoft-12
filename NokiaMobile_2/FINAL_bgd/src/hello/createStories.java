@@ -145,10 +145,8 @@ public class createStories {
         try {
             System.out.println(content);
             json = new JSONObject(content); // create json object from string
-        } catch (JSONException ex) {
-            ex.printStackTrace();
-        }
-            try{
+        
+            
             JSONArray jsonArray = json.getJSONArray("storyItem");  // get array
             int total = jsonArray.length();
        
@@ -171,9 +169,9 @@ public class createStories {
               // storyItem a = new storyItem(commJson, this); // create a commentItem using it
                 //CommentsMany.append(comments[i]); // append commentItem tp form
             }
-            }catch (Exception e){
-                
-            }
+            } catch (JSONException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void helpMainFeed() {
