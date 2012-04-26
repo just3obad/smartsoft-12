@@ -80,9 +80,9 @@ end
  # def profile
   #  @user_id =(params[:id])
     #@user=User.find(@user_id)
-    @user=User.find(@user_id).update_attributes(:name=>params[:name],:first_name=>params[:first_name],:last_name=>params[:last_name],:date_of_birth=>params[:date_of_birth] )
-    @huser=Haccount.find(@user_id).update_attributes(:password => params[:password])
-    if @user&@huser
+    #@user=User.find(@user_id).update_attributes(:name=>params[:name],:first_name=>params[:first_name],:last_name=>params[:last_name],:date_of_birth=>params[:date_of_birth] )
+   # @huser=Haccount.find(@user_id).update_attributes(:password => params[:password])
+  # if @user&@huser
     #format.json { render json: "updated" }
     #respond_with("updated")
     #end
@@ -172,5 +172,5 @@ Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, st
     end
   end
 
-end
+#nd
 end
