@@ -72,7 +72,7 @@ NokiaRuby::Application.routes.draw do
   resources :shares 
   resources :comments
 
-  resources :feeds, :only => [:create, :destroy, :index, :new]
+  resources :feeds, :only => [:create, :destroy, :index, :new, :delete]
 
   resources :gaheem_accounts
   #resources :friends
