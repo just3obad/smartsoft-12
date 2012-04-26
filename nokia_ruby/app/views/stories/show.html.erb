@@ -1,11 +1,110 @@
-<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => @story.id}, class: "btn btn-large btn-primary") %>
-<!-- This table class is from bootstrap and we show a table with the stoy attributes -->
-<div id="container" style="width:1150px;float:right">
-<div class="page-header" style="color:#00FFFF">
-  <h1><%= @story.title %></h1>
- <h2> <%=@story.content %>
-</div>   
-         
-<a href="#"class="thumbnail-story-page"><img src= <%= @story.media_link %> width="300" height="200" ><alt src= "story.jpg"> </a>
+	<SCRIPT language="javascript">
+		var counter = 0
+	function add() {
+		counter++;
+	    //Create an input type dynamically.
+	    var element1 = document.createElement("input");
+		var element2= document.createElement("input");
+
+	    //Assign different attributes to the element.
+	    element1.setAttribute("type", "text");
+	    element1.setAttribute("placeholder", "RSS url");
+	    element1.setAttribute("name","url"+counter);
+		element1.setAttribute("class","input-medium");
+		element1.setAttribute("id",counter);
+		element2.setAttribute("type", "button");
+	    element2.setAttribute("value","-");
+	 element2.setAttribute("name",counter);
+		element2.onclick = removeElement;
+	 	element2.setAttribute("class","control-absolute btn btn-primary btn-warning");
+	    var foo = document.getElementById("fooBar");
+
+	    //Append the element in page (in span).
+	    foo.appendChild(element1);
+ 		foo.appendChild(element2);
+	}
+		function removeElement() {
+
+		 var d = document.getElementById("fooBar");
+
+		 var olddiv = document.getElementById(this.name);
+		  d.removeChild(olddiv);
+		 d.removeChild(this)
+
+		}
+	</SCRIPT>
+<div class="container-fluid maindiv">
+
+	<div class="row-fluid">
+
+	 	<div class="left_panel">
+		<ul class="nav nav-list">
+				<li class="nav-header">Statistics</li>
+						
+						<%= link_to 'View Statistics', "#" ,class: "span2 btn btn-primary"%>
+
+		</ul>	
+
+		</div>
+			<div class="story-show-page-right-panel">
+			<h1><%= @story.title %></h1>
+				<ul class="nav nav-list" >
+				<li class="divider"></li>
+				</ul>
+		<div class="story-media">
+			<a href="#"class="thumbnail-story-show-page story-image-float"><img src="<%= @story.media_link %>"><alt src= "logo.jpg"></a>
+					<div class="story-page-description-part story-image-float">
+					<!--<h3 class="story-page-text">Description:</h3>
+					<div class="story-page-well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget eros est, a auctor risus. Praesent id nisl leo. Sed mollis, ipsum et ornare vestibulum, mi tortor feugiat felis, a bibendum purus sapien a massa. Phasellus vel dolor nec justo eleifend porttitor vitae vitae eros. Phasellus a turpis metus. Integer eu est neque. Aenean lobortis, ante at pellentesque ullamcorper,</div>-->
+					<h3 class="story-page-text ">Story Status :</h3>
+					<div class="story-page-well"><% if !(@story.deleted || @story.hidden) %>
+							<span class="greenbadge">Active</span>
+							<% elsif @story.deleted %>
+							<span class="redbadge">Deleted</span>
+							<% elsif @story.hidden %>
+							<span class="yellowbadge">Hidden</span>
+							<% end %></div>
+					<h3 class="story-page-text ">Date :</h3>
+					<div class="story-page-well"><%= @story.date %></div>
+					<ul class="nav nav-list" >
+					<li class="divider"></li>
+					</ul>
+					</div>
+		</div>
+		<h2>Content</h2>
+			<ul class="nav nav-list" >
+			<li class="divider"></li>
+			</ul>
+					<div class="story-body story-page-well">
+					
+					
+					<div class="pre-scrollable">
+						<p><font size="5"><%= @story.content %></p>
+					</div>		
+					</div>
+					<div class=body>
+					<h2>Comments</h2>
+					<ul class="nav nav-list" >
+					<li class="divider"></li>
+					</ul>
+					<div class="story-comments pre-scrollable">
+				<% @comments.each do |comment| %>
+							
+						<div class="well-comment-component">
+<a href=" #"class="thumbnail-comment-component"><img src="http://placehold.it/75x75"></a>
+<div class="comment-component-info">
+<h3><%= User.find(comment.user_id).name %></h3>
+<div class="comment-component-well">
+<p><font size="2"><%= comment.content %>
+</p>
+</div>
+
 </div>
 </div>
+<%end%>	
+					</div>
+			</div>
+	</div>
+</div>
+
+
