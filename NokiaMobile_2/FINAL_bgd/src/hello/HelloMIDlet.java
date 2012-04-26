@@ -199,6 +199,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert InternetError;
     private Alert CommentFailed;
     private Alert DownedBefore;
+    private Alert alert2;
     private Image image1;
     //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -1388,7 +1389,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 //save what the user enters and send it via send data
            String ss="friend:"+getChoosefriend1()+"email:"+getTextField2()+" message:"+getTextField3();
      
-       sendData("http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?uid="+userID, ss);
+       sendData("http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?sid="+currentStoryString+"&uid="+userID, ss);
         
 //GEN-LINE:|7-commandAction|142|113-postAction
                 }else{switchDisplayable(getAlert(), getRecommend());
@@ -4256,6 +4257,22 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
     //</editor-fold>//GEN-END:|417-getter|2|
 
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: alert2 ">//GEN-BEGIN:|418-getter|0|418-preInit
+    /**
+     * Returns an initiliazed instance of alert2 component.
+     * @return the initialized component instance
+     */
+    public Alert getAlert2() {
+        if (alert2 == null) {//GEN-END:|418-getter|0|418-preInit
+            // write pre-init user code here
+            alert2 = new Alert("Alert", "No interests on the system yet!", null, null);//GEN-BEGIN:|418-getter|1|418-postInit
+            alert2.setTimeout(Alert.FOREVER);//GEN-END:|418-getter|1|418-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|418-getter|2|
+        return alert2;
+    }
+    //</editor-fold>//GEN-END:|418-getter|2|
+
 
 
     /**
@@ -4700,7 +4717,6 @@ u = u.substring(s + 1, u.length());
 }
    public void help() {  //fill interets inside toggle form
        //json1 string is the Json String from server with same format just for testing 
-       System.out.println("Inside");
        HttpConnection httpConn = null;
       String url = "http://"+SERVER_IP+":"+PORT+"/users/"+userID+"/toggle.json" ;  
 
@@ -4757,7 +4773,7 @@ u = u.substring(s + 1, u.length());
      
     }
 
-
+        if(json1 != null) {
        interests = allInterests(json1);
        user = userInterests(json1.substring(1, json1.indexOf("{")));
        for(int i = 0; i <user.size(); i++) {
@@ -4774,7 +4790,10 @@ u = u.substring(s + 1, u.length());
               getChoiceGroup().setSelectedIndex(k, true); }
   }
   }
-
+        }
+        else {
+            switchDisplayable(getAlert2(), getLoginScreen());
+        }
    }
    public void help1() { // confirmation form helper adds content
            
