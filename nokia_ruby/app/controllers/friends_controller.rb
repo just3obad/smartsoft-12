@@ -1,7 +1,7 @@
 class FriendsController < ApplicationController
 
 def index
-    @gaheem_accounts = Friends.all
+    @gaheem_accounts = Friend.all
 
     respond_to do |format|
       format.html # index.html.erb
