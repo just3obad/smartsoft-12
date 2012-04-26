@@ -36,7 +36,7 @@ class StoriesController < ApplicationController
 
       # adding data to log
       commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed UP the comment " + Comment.find(params[:comment_id]).content + " by " + User.find(commenterID).name )
+      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed UP the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
 	render json: "ok" and return true
      # return true
     else if !disliked.nil? then #if user disliked it, now make him like it! 
@@ -45,7 +45,7 @@ class StoriesController < ApplicationController
 
 # adding data to log
       commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed UP the comment " + Comment.find(params[:comment_id]).content + " by " + User.find(commenterID).name )
+      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed UP the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
 
      render json: "ok" and return true
     # no extra conditions are needed to be checked for
@@ -64,7 +64,7 @@ end
 
 # adding data to log
       commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed DOWN the comment " + Comment.find(params[:comment_id]).content + " by " + User.find(commenterID).name )
+      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed DOWN the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
 
     render json: "ok" and  return true
     else if !liked.nil?  then #if user liked it, now make him dislike it! 
@@ -73,7 +73,7 @@ end
 
 # adding data to log
       commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed DOWN the comment " + Comment.find(params[:comment_id]).content + " by " + User.find(commenterID).name )
+      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed DOWN the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
 	render json: "ok" and return true
   
     # no extra conditions are needed to be checked for
