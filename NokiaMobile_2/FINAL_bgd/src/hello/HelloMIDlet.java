@@ -114,9 +114,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command backCommand15;
     private Command registerCommand;
     private Command okCommand13;
-    private Command backCommand17;
-    private Command okCommand14;
-    private Command backCommand18;
     private Command okCommand12;
     private Command resendPasswordCommand;
     private Command backCommand16;
@@ -205,15 +202,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert alert;
     private Alert AlreadyVerified;
     private Alert InternetError;
-    private Form friendlist;
-    private ChoiceGroup choiceGroup1;
     private Form ResendPassword;
     private TextField textField1;
     private Alert CommentFailed;
     private Alert DownedBefore;
     private Alert alert2;
     private Alert UserDoesntExist;
-    private Alert UserDoesntExist1;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -3366,7 +3360,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return FriendList;
     }
 //</editor-fold>//GEN-END:|229-getter|2|
-
+ 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: FilterFriends ">//GEN-BEGIN:|232-getter|0|232-preInit
     /**
      * Returns an initialized instance of FilterFriends component.
@@ -4688,22 +4682,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|438-getter|2|
 
-//<editor-fold defaultstate="collapsed" desc=" Generated Getter: UserDoesntExist1 ">//GEN-BEGIN:|439-getter|0|439-preInit
-    /**
-     * Returns an initialized instance of UserDoesntExist1 component.
-     *
-     * @return the initialized component instance
-     */
-    public Alert getUserDoesntExist1() {
-        if (UserDoesntExist1 == null) {//GEN-END:|439-getter|0|439-preInit
-            // write pre-init user code here
-            UserDoesntExist1 = new Alert("Email Not Found Error", "The email you entered doesn\'t exist in our database", null, null);//GEN-BEGIN:|439-getter|1|439-postInit
-            UserDoesntExist1.setTimeout(Alert.FOREVER);//GEN-END:|439-getter|1|439-postInit
-            // write post-init user code here
-        }//GEN-BEGIN:|439-getter|2|
-        return UserDoesntExist1;
-    }
-//</editor-fold>//GEN-END:|439-getter|2|
+
 
 //<editor-fold defaultstate="collapsed" desc=" Generated Getter: choosefriend1 ">//GEN-BEGIN:|116-getter|0|116-preInit
     /**
