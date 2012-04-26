@@ -97,18 +97,37 @@ end
   @user_id = params[:uid]
   @story_id = params[:id]
   @interest_id = Story.find(:first, :conditions => { :id => @story_id},:select => "interest_id")
-  @story_list = User.find(:first, :conditions => { :id => @user_id}).get_stories(@interest_id) 
+  @interest_list = Array.new
+  @interest_list << @interest_id 
+  @story_list = User.find(:first,:conditions => {:id => @user_id}).get_stories(@interest_list) 
        if (@story_list!=nil)
          0.upto(@story_list.length) do |i|
-         @story_list[i].is_blocked = true
+         @id = @story_list[i].id
+         @title = @story_list[i].title
+         @date = @story_list[i].date
+         @rank = @story_list[i].rank
+         @media_link = @story_list[i].media_link
+         @category = @story_list[i].category
+         @content = @story_list[i].content
+         @hidden = @story_list[i].hidden
+         @deleted = @story_list[i].deleted
+         @story_list[i].destroy
+         Story.create!(:id => @id, :interest_id => @interest_id , :title => @title, :date => @date, :rank => @rank, :media_link => @media_link, :is_blocked => true, :category => @category, :content => @content, :hidden => @hidden, :deleted => @deleted )
          end
-    end
+       end
+ @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
+ @storytitle = Story.find(:first, :conditions => { :id => @story_id},:select => "title")
+  @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
+  @message = "#{@username}block_story#{@storytitle}+#{@interesttitle}"
+Log.create!(loggingtype: 3,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: @story_id, interest_id: @interest_id, message: @message)
+
   end
 
   #This method takes a story id as input and blocks its story by setting the is_blocked attribute to true. If the story is not found, it responds with a message that the story is not found.
 
   
   def block_story
+   @user_id = params[:uid]
    @story_id = params[:id]
    @story = Story.find(:first, :conditions => { :id => @story_id})
     if (@story != nil)
@@ -117,6 +136,12 @@ end
     else 
     respond_with("story is not found")
     end
+    @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
+    @storytitle = Story.find(:first, :conditions => { :id => @story_id},:select => "title")
+    @interest_id = Story.find(:first, :conditions => { :id => @story_id},:select => "interest_id")
+    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
+  @message = "#{@username}block_story#{@storytitle}+#{@interesttitle}" 
+Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: @story_id, interest_id: @interest_id, message: @message)
   end
 
 #This method gets the stories of a friend through method get_friends_stories() and converts them to a json file. It takes as input the user_id.
@@ -125,6 +150,9 @@ def friends_feed
   @user_id = params[:id]
   @friend_stories = User.find(:first, :conditions => { :id => @user_id}).get_friends_stories()
   respond_with(@friend_stories)
+  @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
+  @message = "#{@username}friends_feed" 
+Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
 end
 
   #This method blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend. It takes as an input the user_id.
@@ -133,22 +161,15 @@ end
     @user_id = params[:id]
     @friend_stories = User.find(:first, :conditions => { :id => @user_id}).get_friends_stories()
     if (@friend_stories!= nil)
-      0.upto(@friend_stories.length) do |i|
-         @friend_stories[i].is_blocked = true
-      end
+     @friend_stories.each {|x| x.is_blocked =true}
+     # 0.upto(@friend_stories.length) do |i|
+      #   @friend_stories[i].is_blocked = true
+      #end
+      @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
+      @message = "#{@username}block_friends_feed" 
+Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
     end
   end
 
-#a method that takes list of interest_ids and returns list of stories related to those interests
-  def get_stories(interests)
-#create new array to return the stories in
-    @stories=Array.new
-#loop for each interest and queries the database to return all the stories which belongs to this specific interest and append them to the stories list.
-    interests.each do |interest|
-	@stories.append(Story.find_all_by_interest_id(interest))
-    end
-#return the list after looping on all the entered interests
-    return @stories
-  end
-
+end
 end
