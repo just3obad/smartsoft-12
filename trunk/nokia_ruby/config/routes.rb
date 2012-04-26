@@ -58,7 +58,7 @@ NokiaRuby::Application.routes.draw do
   match "/feeds/delete_page/:interest_id" => "feeds#delete_page"
   match "/feeds/delete/:id" => "feeds#delete"
   match "users/:id/toggle" => "users#toggle"   
-  match "user_add_interests" => "user_add_interests#add"
+  match "user_add_interests" => "user_add_interests#addwithduplicates"
   
 
 
