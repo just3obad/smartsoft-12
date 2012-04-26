@@ -4462,7 +4462,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
        if(checkInternetConn() && checkServerConn() ){
             try {
         //Change IP accordingly
-        httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":3000/user_add_interests.json");
+        httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"+PORT+"/user_add_interests.json");
         //Request method has to be POST
         httpConn.setRequestMethod(HttpConnection.POST);
         httpConn.setRequestProperty("User-Agent",
@@ -4538,7 +4538,7 @@ u = u.substring(s + 1, u.length());
        //json1 string is the Json String from server with same format just for testing 
        System.out.println("Inside");
        HttpConnection httpConn = null;
-      String url = "http://"+SERVER_IP+":3000/users/"+userID+"/toggle.json" ;  
+      String url = "http://"+SERVER_IP+":"+PORT+"/users/"+userID+"/toggle.json" ;  
 
     InputStream is = null;
     OutputStream os = null;
