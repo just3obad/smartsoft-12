@@ -14,12 +14,16 @@ end
 end
 #end
 
-def add #add interests user choosed into table 
+def add #add interests user choosed into table
 @userid = params[:id]
 @interests = params[:interests]
+ interestsss = UserAddInterest.find_all_by_user_id(@userid)
+ interestsss.each do |t|
+ t.destroy
+ end
 @interests.each do |element|
   @intid = Interest.find_by_name(element).id
-  UserAddInterest.create(user_id:@userid , interest_id:@intid)
+  UserAddInterest.create(:user_id => @userid , :interest_id => @intid)
 end
 respond_to do |format|
       format.html # index.html.erb
@@ -27,6 +31,7 @@ respond_to do |format|
 end
 end
 end
+
 
 
 
