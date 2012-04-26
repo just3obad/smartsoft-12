@@ -55,7 +55,7 @@ class storyItem extends CustomItem {
 
   public storyItem(int id,String imageName,String title,String body,int rank,String category,Displayable display,HelloMIDlet Hello){
   super(null);
-  toReadMore = title + " ~ " + imageName + " ~ " + rank + " ~ " + body  + " ~ " + category + " ~ " + id;
+  toReadMore = title + "~" + imageName + "~" + rank + "~" + body  + "~" + category + "~" + id;
   this.id=id;
   this.display = display;
   this.Hello = Hello;
