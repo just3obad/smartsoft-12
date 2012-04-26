@@ -2,7 +2,8 @@ NokiaRuby::Application.routes.draw do
   match "users/:id/profile" => "users#profile"
   match "h_accounts/:id/profile" => "h_accounts#profile"
   match "users/:id/stories" => "users#feed"
-  post "h_accounts/sign_in"
+  post  "h_accounts/sign_in"
+  post  "h_accounts/password" => "h_accounts#forgot_password"
   match 'users/block_friends_feed' => 'users#block_friends_feed'
   match 'users/friends_feed' => 'users#friends_feed'
   match 'users/block_story' => 'users#block_story'
