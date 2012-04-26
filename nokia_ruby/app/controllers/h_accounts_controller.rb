@@ -44,16 +44,10 @@ class HAccountsController < ApplicationController
 #this method takes user name email and password  updates the current info
 
   def update
-    @h_account = Haccount.find(params[:id])
-
-    respond_to do |format|
-      if @h_account.update_attributes(:email=>params[:email],:password => params[:password])
-        format.html { redirect_to @h_account, notice: 'HAccount was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @h_account.errors, status: :unprocessable_entity }
-      end
+    @h_account = Haccount.update_attributes(:password => params[:password])
+     
+      if @h_account
+        respond_with("updated")
     end
   end
 
