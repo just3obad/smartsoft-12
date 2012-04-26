@@ -8,8 +8,8 @@ NokiaRuby::Application.routes.draw do
   match 'users/block_story' => 'users#block_story'
   match 'users/block_interest' => 'users#block_interest'
   match "users/index" => "users#index"
-  match "users/:id" => "users#show"
   match "/users/new" => "users#create", :as => :create
+  match "users/:id" => "users#show"
   match "stories/share_story_social_network" => "stories#share_story_social_network"
   match "stories/recommend_story" => "stories#recommend_story"
   match "stories/view_friends_like" => "stories#view_friends_like"
