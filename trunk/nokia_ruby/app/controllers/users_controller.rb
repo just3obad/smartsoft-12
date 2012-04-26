@@ -57,17 +57,14 @@ end
     end
 
   def create
-    @user = User.new(params[:user])
-    @user.haccount = Haccount.new(:email => @user.email, 
-                                  :password=>params[:password], :user_id => @user.id)
-    @uLog = UserLogIn.create(:user_id => @user.id)
+    @user = User.new(params[:user.downcase])
     respond_to do |format|
       if @user.save
+        @user.haccount = Haccount.new(:email => @user.email.downcase,
+                                      :password=>params[:password.downcase], :user_id => @user.id)
         @uLog = UserLogIn.create(:user_id => @user.id)
-    #    format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created }
       else
-    #    format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

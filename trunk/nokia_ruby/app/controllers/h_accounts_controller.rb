@@ -22,24 +22,22 @@ class HAccountsController < ApplicationController
   
   def sign_in
     @h_account = Haccount.find_by_email(params[:email])
-    if @h_account.password.eql? params[:password]
+    if @h_account
+    if @h_account.password ==  params[:password]
       @uLog = UserLogIn.create(params[@h_account.id])
       render json: @h_account
     else
       render json: @h_account.errors, status: :unprocessable_entity
     end
+    end
   end
 
   def forgot_password
     @h_account = Haccount.find_by_email(params[:email])
-    if @h_account
-      @pass = ([*('A'..'Z'),*('0'..'9')]-%w( 0 1 I O)).sample(6).join
-      @h_account.update_attributes(password: @pass)
-      Emailer.password_reset(@h_account, @pass).deliver
+    @pass = ([*('A'..'Z'),*('0'..'9')]-%w( 0 1 I O)).sample(6).join
+    @h_account.update(:password => @pass)
+    Emailer.password_reset(@h_account, @pass).deliver
     render json: true
-    else
-      render json: false
-    end
   end
 #this method takes user name email and password  updates the current info
 
