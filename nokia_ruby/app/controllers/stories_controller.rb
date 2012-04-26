@@ -176,8 +176,8 @@ def get_friends_email()
   @flistemail=Array.new
   @flist = User.find_by_id(@userid).get_Friend_List()
 
-   0.upto(@flist.length) do |i|
-    @flistemail << @flist[i].map {|user| user.email}
+    (0..(@flist.length-1)).each do |i|
+    @flistemail << (@flist[i].email)
       end  
 
     if @flist.empty?
@@ -204,7 +204,12 @@ def view_friends_like
   @userid=params[:uid]
   
   @flistlike=Array.new
-  @flistlike << User.find_by_id(@userid).liked() 
+  @flistliked=Array.new
+  @flistlike = User.find_by_id(@userid).liked() 
+
+   (0..(@flistlike.length-1)).each do |i|
+    @flistliked << (@flistlike[i].email)
+      end  
 
    respond_to do |format|
      format.json{render json:@flistlike}
@@ -223,7 +228,12 @@ def view_friends_dislike
     @userid=params[:uid]
 
   @flistdislike=Array.new
-  @flistdislike << User.find_by_id(@userid).disliked()
+  @flistdisliked
+  @flistdislike = User.find_by_id(@userid).disliked()
+
+   (0..(@flistdislike.length-1)).each do |i|
+    @flistdisliked << (@flistdislike[i].email)
+      end  
 
    respond_to do |format|
      format.json{render json:@flistdislike}
