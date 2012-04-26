@@ -25,7 +25,7 @@ class Haccount < ActiveRecord::Base
       return false              
     end
   end 
-  
+
 # This method verifyAccount?(verCode) takes the verCode entered by the user to verify his Haccount
 # and it tries to match this code with the Haccount's code.
 # returns true and sets verified to true if the user entered the correct code,
