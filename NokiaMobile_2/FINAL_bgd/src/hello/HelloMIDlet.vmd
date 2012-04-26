@@ -1956,6 +1956,14 @@
                     <Property name="string" typeID="Pjava.lang.String" value="VThe email you entered doesn't exist in our database"/>
                     <Property name="timeout" typeID="Pint" value="V-2"/>
                 </Component>
+                <Component componentID="440" typeID="Cjavax.microedition.lcdui.Alert">
+                    <Property name="instanceName" typeID="Pjava.lang.String" value="VUserExists"/>
+                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
+                    <Property name="title" typeID="Pjava.lang.String" value="Valert3"/>
+                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
+                    <Property name="string" typeID="Pjava.lang.String" value="VThe email you entered already exists in our database."/>
+                    <Property name="timeout" typeID="Pint" value="V-2"/>
+                </Component>
             </Component>
             <Component componentID="13" typeID="C#ResourcesCategory">
                 <Component componentID="206" typeID="Cjavax.microedition.lcdui.Image">
@@ -2011,6 +2019,7 @@
         <Node componentID="23" descriptorID="componentNode23" x="3170" y="521"/>
         <Node componentID="414" descriptorID="componentNode414" x="287" y="1090"/>
         <Node componentID="399" descriptorID="componentNode399" x="7336" y="564"/>
+        <Node componentID="440" descriptorID="componentNode440" x="2603" y="690"/>
         <Node componentID="214" descriptorID="componentNode214" x="745" y="521"/>
         <Node componentID="14" descriptorID="componentNode14" x="3426" y="521"/>
         <Node componentID="127" descriptorID="componentNode127" x="34" y="351"/>
