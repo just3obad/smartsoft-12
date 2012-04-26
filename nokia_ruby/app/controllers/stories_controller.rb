@@ -174,11 +174,12 @@ def get_friends_email()
 
   @flist=Array.new
   @flistemail=Array.new
-  @flist << User.find_by_id(@userid).get_Friend_List()
+  @flist = User.find_by_id(@userid).get_Friend_List()
 
    0.upto(@flist.length) do |i|
-    @flistemail << @flist[i].email
-  
+    @flistemail << @flist[i].map {|user| user.email}
+      end  
+
     if @flist.empty?
        respond_to do |format|
      format.json{render json:"sorry_you_dont_have_any_friends" }
