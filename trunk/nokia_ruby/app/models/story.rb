@@ -11,6 +11,12 @@ class Story < ActiveRecord::Base
     #@body = body
   #end
 
+  URL_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
+# putting some validations on the title and interest_id that they are present
+  validates :title , :presence=true
+  validates :interest_id, :presence=true
+# checking that the media_link is a valid URL according to the regex defined above.
+  validates :media_link, :format=> {:with => URL_regex}
 # get_story is a method that takes a specific story_id as an input  and searches the database for the stroy with this id and returns #this story to the caller
 
   def get_story(story_id)
