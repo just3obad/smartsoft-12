@@ -16,7 +16,7 @@ class StoriesController < ApplicationController
     # parameters are stored in POST HTTP request body
     # that was sent from the mobile client
     def create_comment
-     @comment = Comment.new({:content=>params[:content],:user_id=>params[:user_id],:story_id=>params[:id]})
+#     @comment = Comment.new({:content=>params[:content],:user_id=>params[:user_id],:story_id=>params[:id]})
 
       if @comment.save then
 

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 	respond_to :html,:json
 
-new_record=User.new( :name =>"khaled", :email => "khaled@abc.com")
-new_record.save!
+#new_record=User.new( :name =>"khaled", :email => "khaled@abc.com")
+#new_record.save!
 #this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
 
 def feed
@@ -156,6 +156,7 @@ Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, st
 end
 
   #This method blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend. It takes as an input the user_id.
+
 
   def block_friends_feed
     @user_id = params[:id]
