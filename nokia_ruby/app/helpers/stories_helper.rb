@@ -277,13 +277,13 @@ sid = Story.find_by_title(stitle).id
 
 Log.create(loggingtype: 0,story_id: sid,message: "new story")
 
-#listOfStories[i] = storynow
 listOfStories.append(storynow)
 else
 #if the story exists in the database it will enter the array without modifications
 
 #sid = Story.where(:title => stitle).select("title").first
-listOfStories[i] = Story.find_by_title(stitle)
+storynow = Story.find_by_title(stitle)
+listOfStories.append(storynow)
 end
 i+=1
 
