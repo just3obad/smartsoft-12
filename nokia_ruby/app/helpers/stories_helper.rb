@@ -273,9 +273,11 @@ storynow = Story.new(:title => stitle, :rank => 0, :media_link => "", :is_blocke
 storynow.content = sdescription
 storynow.save
 
-sid = Story.find_by_title(stitle).id
+p storynow.id
 
-Log.create(loggingtype: 0,story_id: sid,message: "new story")
+#sid = Story.find_by_title(stitle).id
+
+#Log.create(loggingtype: 0,story_id: sid,message: "new story")
 
 listOfStories.append(storynow)
 else
