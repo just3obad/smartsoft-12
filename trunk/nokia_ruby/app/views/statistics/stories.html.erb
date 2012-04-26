@@ -65,10 +65,20 @@
 				<div class="progresscustom" id="progressbar" style="display: none;">
 					<div class="barcustom" id="barofprogress" style="width: <%= getWidth(@id)%>%"></div>
 				</div>						      					<h3 class="statistics-component-text">
-			Number of Flags : <%= get_total_number_of_likes(@id) %> Flags
+			Number of Flags : <%= get_total_number_of_flags(@id) %>
+			<% if get_total_number_of_flags(@id) == 1 %>
+			<%= "Flag" %>
+			<% else %>
+			<%= "Flags"  %>
+			<%  end %>
 				</h3>
 				<h3 class="statistics-component-text">
-			Number of Shares : <%= get_total_number_of_shares(@id) %> Shares
+			Number of Shares : <%= get_total_number_of_shares(@id) %>
+			<% if get_total_number_of_flags(@id) == 1 %>
+			<%= "Share" %>
+			<% else %>
+			<%= "Shares"  %>
+			<%  end %>
 				</h3>
 					</div>
 				</div>
