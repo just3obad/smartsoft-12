@@ -1,10 +1,11 @@
-<html>
+<%= render 'shared/logs_error_messages' %>
 <div class="container-fluid maindiv">
 
   <div class="row-fluid">
 
     <div class="left_panel">
       <ul class="nav nav-list left_panel ">
+               <%= render 'shared/error_feed' %>
 
 	<li class="nav-header">Add Rss Feed</li>
         <! .. ADDING RSS FEED .. >
@@ -14,7 +15,7 @@
             <%= form_for (@feed) do |f| %>
  
                 <%= render 'shared/error_feed' %>
-                <%= f.text_field :link %>
+                <%= f.text_field :link , :value => '' , :placeholder=> 'RSS link' %>
                 <%= f.hidden_field :interest_id, :value =>@interest.id%>
                 <%= f.submit "Submit"  , class:"btn btn-primary"%>
 
@@ -122,8 +123,4 @@ RSS Feeds :
 </div>
 </div>
 
-</html>
-
-
-</html>
 

@@ -14,12 +14,12 @@ end
     if @feed.save # if we succeded to add a new RSS feed then a flash message in a green box will appear with a message indicating that , we will redirect to the interests page again .
 
       redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
-      flash[:success] = "link added successfully" 
+      flash[:success] = "Link added successfully" 
     else #if saving faild a flash message box will appear with the errors
-     redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
-     flash[:warning] = "link not added. Please try again" 
-     
-    end
+     flash[:error] = "link not added. Please try again" 
+      redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
+
+end
   end
 
 def destroy
@@ -27,7 +27,7 @@ end
 
   def delete # a method that deletes RSS feeds from the database.
       Feed.find(params[:id]).destroy
-      redirect_to :action => 'delete_page'
+      render 'feeds/delete_page', :interest_id => @interest.id
   end
   
   def delete_page #method to redirect to a page where feeds will be deleted.
