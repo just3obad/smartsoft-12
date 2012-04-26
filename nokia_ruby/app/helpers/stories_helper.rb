@@ -273,11 +273,9 @@ storynow = Story.new(:title => stitle, :rank => 0, :media_link => "", :is_blocke
 storynow.content = sdescription
 storynow.save
 
-p storynow.id
+sid = Story.find_by_title(stitle).id
 
-#sid = Story.find_by_title(stitle).id
-
-#Log.create(loggingtype: 0,story_id: sid,message: "new story")
+Log.create(loggingtype: 0,story_id: sid,message: "new story")
 
 listOfStories.append(storynow)
 else
@@ -296,7 +294,13 @@ end
 end
 
 #handling the errors of the links are not valid
-
+rescue SocketError
+return false
+rescue RuntimeError
+return false
+rescue NoMethodError
+p 'enter valid link not a website'
+return false
 rescue Errno::ENOENT
 p 'enter valid link'
  return
@@ -305,7 +309,36 @@ p 'enter valid rss feed link form'
 
 end
 
+def check_rss(link)
+
+source = link
+content = "" # raw content of rss feed will be loaded here
+
+#parsing the url
+open(source) do |s| content = s.read end
+rss = RSS::Parser.parse(content, false)
+scategory = rss.channel.link
+return true
+
+rescue SocketError
+return false
+rescue RuntimeError
+return false
+rescue NoMethodError
+p 'enter valid link not a website'
+return false
+rescue Errno::ENOENT
+p 'enter valid link'
+ return false
+rescue RSS::NotWellFormedError
+p 'enter valid rss feed link form'
+return false
+
+return false
+end
+
 module_function :fetch_rss
+module_function :check_rss
 end
 
 
