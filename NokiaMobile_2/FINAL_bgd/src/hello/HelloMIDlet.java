@@ -850,9 +850,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 } else {
                     //TODO wrong email format register
                     switchDisplayable(getWrongEmailFormat(), displayable);
-                }
+                }help();
+                 if(json1.length() > 3) {       
+                //OMAR CODE
                 switchDisplayable(null, getToggle());//GEN-LINE:|7-commandAction|32|153-postAction
                 // write post-action user code here
+            }
+                 else
+                     switchDisplayable(getAlert2(), getLoginScreen());
             }//GEN-BEGIN:|7-commandAction|33|431-preAction
         } else if (displayable == ResendPassword) {
             if (command == backCommand16) {//GEN-END:|7-commandAction|33|431-preAction
@@ -5187,10 +5192,6 @@ u = u.substring(s + 1, u.length());
               getChoiceGroup().setSelectedIndex(k, true); }
   }
   }
-        }
-        else {
-            System.out.println("badkhol hena");
-            switchDisplayable(getAlert2(), getLoginScreen());
         }
    }
    public void help1() { // confirmation form helper adds content
