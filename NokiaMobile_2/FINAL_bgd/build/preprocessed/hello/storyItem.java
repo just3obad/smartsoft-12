@@ -55,7 +55,7 @@ class storyItem extends CustomItem {
 
   public storyItem(int id,String imageName,String title,String body,int rank,String category,Displayable display,HelloMIDlet Hello){
   super(null);
-  toReadMore = title + " ~ " + imageName + " ~ " + rank + " ~ " + body  + " ~ " + category + " ~ " + id;
+  toReadMore = title + "~" + imageName + "~" + rank + "~" + body  + "~" + category + "~" + id;
   this.id=id;
   this.display = display;
   this.Hello = Hello;
@@ -108,7 +108,7 @@ class storyItem extends CustomItem {
   g.drawString(storyCategory.getText(), 0, 0, 0);// draw category up left
   g.drawString(storyTitle.getText(), 0, 20, 0); // draw title down category
    g.setColor(31,36,107);
-  g.drawString(storyBody.getText().substring(0,storyBody.getText().length()/2), 0, 50, 0); // draw body down title on 2 lines
+  g.drawString(storyBody.getText().substring(0,storyBody.getText().length()/2) + "-", 0, 50, 0); // draw body down title on 2 lines
   g.drawString(storyBody.getText().substring(storyBody.getText().length()/2), 0, 75, 0);
   //g.drawString(storyRank.getText(),160,20, 0);
   drawRank(g);
@@ -128,6 +128,7 @@ class storyItem extends CustomItem {
   }
         protected void pointerPressed(int x , int y){// if pressed switch display, getStroy should be edited by Omar to take an ID
            Hello.currentStoryString = this.toReadMore;
+           System.out.println("de  " + Hello.currentStoryString);
             Hello.switchDisplayable(null, Hello.getReadMore());
        }
   
