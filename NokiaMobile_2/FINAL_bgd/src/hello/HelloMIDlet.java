@@ -691,13 +691,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         httpConn.setRequestProperty("Content-Length",
                                 "" + dataToBeSend.length());
                         os = httpConn.openOutputStream();
-                        System.out.println("weselna");
                         os.write(dataToBeSend.getBytes());
                         os.flush();//data written will be flushed to server.
                         int respCode = httpConn.getResponseCode();
                         System.out.println(respCode);
                         System.out.println(dataToBeSend);
-                        
                         if(respCode == 200 || respCode == 201){
                                 StringBuffer sb = new StringBuffer();
                                 os = httpConn.openOutputStream();
@@ -712,10 +710,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         }
                         else if(respCode == 400 || respCode == 422){
                             //TODO wrong pass
+                            textField5.setString("");
                             switchDisplayable(getWrongEmailPassCombination(),displayable);
                             return;
                         } else if(respCode == 500){
                             //TODO user doesn't exist
+                            textField4.setString("");
+                            textField5.setString("");
                             switchDisplayable(this.getUserDoesntExist(),displayable);
                             return;
                         }
@@ -939,6 +940,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                             //TODO wrong pass
                             switchDisplayable(getWrongEmailPassCombination(),displayable);
                         }
+                        if(respCode == 500){
+                            //TODO user doesn't exist
+                            switchDisplayable(getUserDoesntExist(), displayable);
+                        }
                     } catch (Throwable t) {
                         System.out.println("Exception occured " + t.toString());
                     } //Since only limited number of network objects can be in open state
@@ -961,6 +966,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     }
                 } else {
                     //TODO wrong email format login
+                    textField1.setString("");
                     switchDisplayable(getWrongEmailFormat(), displayable);
                 }
 //GEN-LINE:|7-commandAction|36|434-postAction
