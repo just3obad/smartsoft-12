@@ -247,8 +247,8 @@ i = 0
 num = rss.items.size
 #creating the array of stories
 listOfStories = Array.new()
-#puts listOfStories[num]
 
+scategory = rss.channel.link
 
 #creating the stories and put them in the array
 while i < num do
@@ -266,11 +266,11 @@ if count_of_stories_with_same_title == 0
 #getting the id of the interest 
 sinterest = Feed.where(:link => source).select("interest_id")
 
-storynow = Story.new(:title => stitle, :rank => 0, :media_link => "nothing", :is_blocked => false, :category => "not Yet", :content => "", :deleted => false, :hidden => false, :interest_id => sinterest)
+storynow = Story.new(:title => stitle, :rank => 0, :media_link => "", :is_blocked => false, :category => scategory, :deleted => false, :hidden => false, :interest_id => sinterest)
 #storynow = Story.new(:title => stitle)
 
 
-storynow.description = sdescription
+storynow.content = sdescription
 storynow.save
 
 sid = Story.find_by_title(stitle).id
