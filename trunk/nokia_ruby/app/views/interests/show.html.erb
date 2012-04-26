@@ -82,7 +82,7 @@ RSS Feeds :
 <! .. adding the RSS feeds added to this interest unless the table is empty ..>
 <% unless @interest.feeds.empty? %>
 
-   <li> <h3 class="interest-page-text"> <%= render @interest.feeds %><h3></li>
+     <%= render @interest.feeds %> 
 <% end %>
 </div>
 	<ul class="nav nav-list" >
