@@ -8,6 +8,6 @@ class Emailer < ActionMailer::Base
 
   def password_reset(h_account, pass)
     @passw = pass
-    mail(:to => "silversword360@gmail.com", :subject => "2allak New Password")
+    mail(:to => h_account.email, :subject => "2allak New Password")
   end
 end
