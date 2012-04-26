@@ -41,7 +41,7 @@
 		<ul class="nav nav-list">
 				<li class="nav-header">Statistics</li>
 						
-						<%= link_to 'View Statistics', "#" ,class: "span2 btn btn-primary"%>
+						<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => @story.id}, class: "btn btn-large btn-primary") %>
 
 		</ul>	
 
