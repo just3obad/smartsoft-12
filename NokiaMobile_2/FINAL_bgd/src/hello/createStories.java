@@ -148,7 +148,7 @@ public class createStories {
         } catch (JSONException ex) {
             ex.printStackTrace();
         }
-            
+            try{
             JSONArray jsonArray = json.getJSONArray("storyItem");  // get array
             int total = jsonArray.length();
        
@@ -170,6 +170,9 @@ public class createStories {
                 
               // storyItem a = new storyItem(commJson, this); // create a commentItem using it
                 //CommentsMany.append(comments[i]); // append commentItem tp form
+            }
+            }catch (Exception e){
+                
             }
     }
     
