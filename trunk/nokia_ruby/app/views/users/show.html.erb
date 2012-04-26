@@ -27,13 +27,12 @@ p3 {font-size:14px;}
 	  	   Activated : <%= @user.deactivated %><br /><br /> 
 	  </h2>
 <table>
-<tr>
-    <td><%= @user.first_name %></td>
-    <td><%= @user.last_name %></td>
-    <td><%= @user.user_id %></td>
+<tr> <%= @user.first_name %> </tr>
+<tr> <%= @user.last_name %>  </tr>
+<tr>    <%= @user.id %> </tr>
     
-</tr>
-<%end%>
+
+
 </table>
 </body>
 </html>
