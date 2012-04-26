@@ -1956,14 +1956,6 @@
                     <Property name="string" typeID="Pjava.lang.String" value="VThe email you entered doesn't exist in our database"/>
                     <Property name="timeout" typeID="Pint" value="V-2"/>
                 </Component>
-                <Component componentID="439" typeID="Cjavax.microedition.lcdui.Alert">
-                    <Property name="instanceName" typeID="Pjava.lang.String" value="VUserDoesntExist1"/>
-                    <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
-                    <Property name="title" typeID="Pjava.lang.String" value="VEmail Not Found Error"/>
-                    <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
-                    <Property name="string" typeID="Pjava.lang.String" value="VThe email you entered doesn't exist in our database"/>
-                    <Property name="timeout" typeID="Pint" value="V-2"/>
-                </Component>
             </Component>
             <Component componentID="13" typeID="C#ResourcesCategory">
                 <Component componentID="206" typeID="Cjavax.microedition.lcdui.Image">
@@ -2038,7 +2030,6 @@
         <Node componentID="415" descriptorID="componentNode415" x="106" y="1052"/>
         <Node componentID="125" descriptorID="componentNode125" x="995" y="901"/>
         <Node componentID="181" descriptorID="componentNode181" x="520" y="1283"/>
-        <Node componentID="439" descriptorID="componentNode439" x="2267" y="450"/>
         <Node componentID="322" descriptorID="componentNode322" x="6209" y="521"/>
         <Node componentID="402" descriptorID="componentNode402" x="3680" y="698"/>
         <Node componentID="418" descriptorID="componentNode418" x="2933" y="768"/>
