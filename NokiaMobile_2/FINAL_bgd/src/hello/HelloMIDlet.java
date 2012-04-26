@@ -114,11 +114,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command backCommand15;
     private Command registerCommand;
     private Command okCommand13;
-    private Command connectSocialAccount;
-    private Command backToMainFeed;
+    private Command okCommand12;
     private Command resendPasswordCommand;
     private Command backCommand16;
-    private Command okCommand12;
+    private Command connectSocialAccount;
+    private Command backToMainFeed;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -202,11 +202,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert alert;
     private Alert AlreadyVerified;
     private Alert InternetError;
+    private Form ResendPassword;
+    private TextField textField1;
     private Alert CommentFailed;
     private Alert DownedBefore;
     private Alert alert2;
-    private Form ResendPassword;
-    private TextField textField1;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -2646,7 +2646,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public TextField getTextField4() {
         if (textField4 == null) {//GEN-END:|132-getter|0|132-preInit
             // write pre-init user code here
-            textField4 = new TextField("Email", null, 32, TextField.ANY);//GEN-LINE:|132-getter|1|132-postInit
+            textField4 = new TextField("Email", null, 32, TextField.EMAILADDR | TextField.PASSWORD);//GEN-LINE:|132-getter|1|132-postInit
             // write post-init user code here
         }//GEN-BEGIN:|132-getter|2|
         return textField4;
@@ -2662,7 +2662,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public TextField getTextField5() {
         if (textField5 == null) {//GEN-END:|133-getter|0|133-preInit
             // write pre-init user code here
-            textField5 = new TextField("Password", null, 32, TextField.ANY);//GEN-LINE:|133-getter|1|133-postInit
+            textField5 = new TextField("Password", null, 32, TextField.ANY | TextField.PASSWORD);//GEN-LINE:|133-getter|1|133-postInit
             // write post-init user code here
         }//GEN-BEGIN:|133-getter|2|
         return textField5;
@@ -2729,7 +2729,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public TextField getTextField6() {
         if (textField6 == null) {//GEN-END:|149-getter|0|149-preInit
             // write pre-init user code here
-            textField6 = new TextField("Email", null, 32, TextField.ANY);//GEN-LINE:|149-getter|1|149-postInit
+            textField6 = new TextField("Email", null, 32, TextField.EMAILADDR);//GEN-LINE:|149-getter|1|149-postInit
             // write post-init user code here
         }//GEN-BEGIN:|149-getter|2|
         return textField6;
@@ -2745,7 +2745,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public TextField getTextField7() {
         if (textField7 == null) {//GEN-END:|150-getter|0|150-preInit
             // write pre-init user code here
-            textField7 = new TextField("Password", null, 32, TextField.ANY);//GEN-LINE:|150-getter|1|150-postInit
+            textField7 = new TextField("Password", null, 32, TextField.ANY | TextField.PASSWORD);//GEN-LINE:|150-getter|1|150-postInit
             // write post-init user code here
         }//GEN-BEGIN:|150-getter|2|
         return textField7;
@@ -2761,7 +2761,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public TextField getTextField8() {
         if (textField8 == null) {//GEN-END:|151-getter|0|151-preInit
             // write pre-init user code here
-            textField8 = new TextField("Confirm Password", null, 32, TextField.ANY);//GEN-LINE:|151-getter|1|151-postInit
+            textField8 = new TextField("Confirm Password", null, 32, TextField.ANY | TextField.PASSWORD);//GEN-LINE:|151-getter|1|151-postInit
             // write post-init user code here
         }//GEN-BEGIN:|151-getter|2|
         return textField8;
@@ -4188,7 +4188,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             Toggle.addCommand(getChoose());
             Toggle.setCommandListener(this);//GEN-END:|375-getter|1|375-postInit
             // write post-init user code here
-            help();
         }//GEN-BEGIN:|375-getter|2|
         return Toggle;
     }
@@ -5140,6 +5139,7 @@ u = u.substring(s + 1, u.length());
           sb.append((char) chr); }
           json1 = sb.toString();
           System.out.println(json1);
+          System.out.println(json1.length());
       }
              
       else {
@@ -5169,8 +5169,8 @@ u = u.substring(s + 1, u.length());
             }
      
     }
-        String m = "[]";
-        if(json1 != m) {
+        
+        if(json1.length() > 3) {
        interests = allInterests(json1);
        user = userInterests(json1.substring(1, json1.indexOf("{")));
        for(int i = 0; i <user.size(); i++) {
@@ -5189,6 +5189,7 @@ u = u.substring(s + 1, u.length());
   }
         }
         else {
+            System.out.println("badkhol hena");
             switchDisplayable(getAlert2(), getLoginScreen());
         }
    }
