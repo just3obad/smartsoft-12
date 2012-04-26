@@ -284,10 +284,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         jsonReadMoree();
     }
 
-    public String recieveData(String url) {
+    public String recieveData(String url) { //method to get data from server
         InputStream is = null;
         OutputStream os = null;
         String r = null;
+        url+="&format=json";
+        
 
         try {
             // Open an HTTP Connection object
@@ -331,9 +333,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return r;
     }
 
-    public void friendsConnection() {
+    public void friendsConnection() { //method to get friends_feed
 
-        String url = "http://192.168.26.136:3000/users/friends_feed?id=" + userID;
+        String url = "http://"+SERVER_IP+":"+PORT+"/users/friends_feed?id=" +userID;
         String friendsStories = recieveData(url);
         createStories st = new createStories(friendsStories, FriendsStories, displayable, this);
     }
@@ -558,11 +560,29 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == FriendList) {
             if (command == Block) {//GEN-END:|7-commandAction|5|239-preAction
                 // write pre-action user code here
-                String r = recieveData("http://192.168.26.136:3000/users/block_friend_feed?id=" + userID);
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
+                String r = recieveData("http://"+SERVER_IP+":"+PORT+"/users/block_friends_feed?id=" +userID);
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|6|239-postAction
                 // write post-action user code here
             } else if (command == Filter) {//GEN-LINE:|7-commandAction|7|241-preAction
                 // write pre-action user code here
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
                 friendsConnection();
                 switchDisplayable(null, getFriendsStories());//GEN-LINE:|7-commandAction|8|241-postAction
                 // write post-action user code here
@@ -1190,12 +1210,30 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|113|200-preAction
                 // write pre-action user code here
-                recieveData("http://192.168.26.148:3000/users/block_interest?story_id=" + currentStoryID);
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
+                recieveData("http://"+SERVER_IP+":"+PORT+"/users/block_interest?uid=" +userID +"&id="+ currentStoryID);
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|114|200-postAction
                 // write post-action user code here
             } else if (command == blockstory) {//GEN-LINE:|7-commandAction|115|202-preAction
                 // write pre-action user code here
-                String r = recieveData("http://192.168.26.148:3000/users/block_story?story_id=" + currentStoryID);
+                if (!checkInternetConn()) {
+                    switchDisplayable(getInternetError(), getVerification()); //internet alert
+                    return;
+                }
+
+                if (!checkServerConn()) {
+                    switchDisplayable(getServerError(), getVerification()); //server alert
+                    return;
+                }
+                String r = recieveData("http://"+SERVER_IP+":"+PORT+"/users/block_story?uid=" +userID +"&id="+ currentStoryID);
                 if (r.equals("story is blocked successfully")) {
                     switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|116|202-postAction
                 } else
