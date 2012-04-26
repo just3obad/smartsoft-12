@@ -1,205 +1,116 @@
 module StoriesHelper
+  '''
+  This method gets the number of a certain activity (shares, likes, dislikes, 
+  flags) of a certain story using its id in each day in the last 30 days.
+  There are several cases, concerning the date of creation, last update and
+  hiding of the story, that has to handeled:
+  1) If the story was created and hidden within the last 30 days, then I only 
+  return the activity from the table between the creation date and the last 
+  update which is the hiding.
+  2) If the story was created before the last 30 days and hidden within the last
+  30 days, then I only return the activity from the table between the last 30 
+  days and the last update which is the hiding.
+  3) If the story was created and hidden before the last 30 days, then I will 
+  return an empty array.
+  4) If the story was not hidden and it was created before the last 30 days, 
+  then I return the activity from the table between the last 30 days and the 
+  current date.
+  5) If the story was not hidden and it was created within the last 30 days, 
+  then I return the activity from the table between the creation date of the 
+  story and the current date.
+  '''
+  def get_no_of_activity(needed_graph, creation_date, last_update, hidden)
 
-  #This method gets the number of shares of a certain story using its id in the last 30 days
-  def get_no_of_shares(story_id)
-
-    creationOfStory = Story.find(story_id).created_at.beginning_of_day
-    lastUpdated = Story.find(story_id).updated_at.end_of_day
-    hidden = Story.find(story_id).hidden_before_type_cast
-    #There are several cases concerning the date of creation, last update and hiding of the story that has to handeled:
-    #1) If the story was created and hidden within the last 30 days, then I only return the shares from the table between the creation date and the last update which is the hiding:
-    if hidden && creationOfStory >= 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      shares_by_day = Share.where(:created_at => creationOfStory..lastUpdated, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSharesPerDay")
-      (creationOfStory.to_date..lastUpdated.to_date).map do |date|
-        share = shares_by_day.detect { |share| share.created_at.to_date == date }
-        share && share.noOfSharesPerDay.to_i || 0
+    if hidden && creation_date >= 30.days.ago.to_date && 
+       last_update >= 30.days.ago.to_date
+      activities_by_day = needed_graph.where(:created_at => 
+      creation_date..last_update).group("date(created_at)").select("created_at, 
+      count(story_id) as noPerDay")
+      (creation_date.to_date..last_update.to_date).map do |date|
+        activity = activities_by_day.detect { |activity| 
+        activity.created_at.to_date == date }
+        activity && activity.noPerDay.to_i || 0
       end.inspect
-    #2) If the story was created before the last 30 days and hidden within the last 30 days, then I only return the shares from the table between the last 30 days and the last update which is the hiding:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      shares_by_day = Share.where(:created_at => 30.days.ago.beginning_of_day..lastUpdated, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSharesPerDay")
-      (30.days.ago.to_date..lastUpdated.to_date).map do |date|
-        share = shares_by_day.detect { |share| share.created_at.to_date == date }
-        share && share.noOfSharesPerDay.to_i || 0
+      
+    elsif hidden && creation_date < 30.days.ago.to_date && 
+          last_update >= 30.days.ago.to_date
+      activities_by_day = needed_graph.where(:created_at => 
+      30.days.ago.beginning_of_day..last_update).group(
+      "date(created_at)").select("created_at, count(story_id) as noPerDay")
+      (30.days.ago.to_date..last_update.to_date).map do |date|
+        activity = activities_by_day.detect { |activity| 
+        activity.created_at.to_date == date }
+        activity && activity.noPerDay.to_i || 0
       end.inspect
-    #3) If the story was created and hidden before the last 30 days, then I will return an empty array:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated < 30.days.ago.to_date
-      shares_by_day = []
-    #4) If the story wasn't hidden and it was created before the last 30 days, then I return the shares from the table between the last 30 days and the current date:
-    elsif creationOfStory < 30.days.ago.to_date
-      shares_by_day = Share.where(:created_at => 30.days.ago.beginning_of_day..Time.zone.now.end_of_day, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSharesPerDay")
+      
+    elsif hidden && creation_date < 30.days.ago.to_date && 
+          last_update < 30.days.ago.to_date
+      activities_by_day = []
+      
+    elsif creation_date < 30.days.ago.to_date
+      activities_by_day = needed_graph.where(:created_at => 30.days.ago.beginning_of_day..Time.zone.now.end_of_day).group(
+      "date(created_at)").select("created_at, count(story_id) as noPerDay")
       (30.days.ago.to_date..Time.zone.now.to_date).map do |date|
-        share = shares_by_day.detect { |share| share.created_at.to_date == date }
-        share && share.noOfSharesPerDay.to_i || 0
+        activity = activities_by_day.detect { |activity| 
+        activity.created_at.to_date == date }
+        activity && activity.noPerDay.to_i || 0
      end.inspect
-    #5) If the story wasn't hidden and it was created within the last 30 days, then I return the shares from the table between the creation date of the story and the current date:
     else
-      shares_by_day = Share.where(:created_at => creationOfStory..Time.zone.now.end_of_day, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSharesPerDay")
-      (creationOfStory.to_date..Time.zone.now.to_date).map do |date|
-        share = shares_by_day.detect { |share| share.created_at.to_date == date }
-        share && share.noOfSharesPerDay.to_i || 0
+    
+      activities_by_day = needed_graph.where(
+      :created_at => creation_date..Time.zone.now.end_of_day).group(
+      "date(created_at)").select("created_at, count(story_id) as noPerDay")
+      (creation_date.to_date..Time.zone.now.to_date).map do |date|
+        activity = activities_by_day.detect { |activity| 
+        activity.created_at.to_date == date }
+        activity && activity.noPerDay.to_i || 0
       end.inspect
     end
   end
 
-  #This method gets the number of likes of a certain story using its id in the last 30 days
-  def get_no_of_likes(story_id)
-
-    creationOfStory = Story.find(story_id).created_at.beginning_of_day
-    lastUpdated = Story.find(story_id).updated_at.end_of_day
-    hidden = Story.find(story_id).hidden_before_type_cast
-    #There are several cases concerning the date of creation, last update and hiding of the story that has to handeled:
-    #1) If the story was created and hidden within the last 30 days, then I only return the likes from the table between the creation date and the last update which is the hiding:
-    if hidden && creationOfStory >= 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      likes_by_day = Likedislike.where(:created_at => creationOfStory..lastUpdated, :story_id => story_id, :action => 1).group("date(created_at)").select("created_at, count(story_id) as noOfLikesPerDay")
-      (creationOfStory.to_date..lastUpdated.to_date).map do |date|
-        like = likes_by_day.detect { |like| like.created_at.to_date == date }
-        like && like.noOfLikesPerDay.to_i || 0
-      end.inspect
-    #2) If the story was created before the last 30 days and hidden within the last 30 days, then I only return the likes from the table between the last 30 days and the last update which is the hiding:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      likes_by_day = Likedislike.where(:created_at => 30.days.ago.beginning_of_day..lastUpdated, :story_id => story_id, :action => 1).group("date(created_at)").select("created_at, count(story_id) as noOfLikesPerDay")
-      (30.days.ago.to_date..lastUpdated.to_date).map do |date|
-        like = likes_by_day.detect { |like| like.created_at.to_date == date }
-        like && like.noOfLikesPerDay.to_i || 0
-      end.inspect
-    #3) If the story was created and hidden before the last 30 days, then I will return an empty array:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated < 30.days.ago.to_date
-      likes_by_day = []
-    #4) If the story wasn't hidden and it was created before the last 30 days, then I return the likes from the table between the last 30 days and the current date:
-    elsif creationOfStory < 30.days.ago.to_date
-      likes_by_day = Likedislike.where(:created_at => 30.days.ago.beginning_of_day..Time.zone.now.end_of_day, :story_id => story_id, :action => 1).group("date(created_at)").select("created_at, count(story_id) as noOfLikesPerDay")
-      (30.days.ago.to_date..Time.zone.now.to_date).map do |date|
-        like = likes_by_day.detect { |like| like.created_at.to_date == date }
-        like && like.noOfLikesPerDay.to_i || 0
-      end.inspect
-    #5) If the story wasn't hidden and it was created within the last 30 days, then I return the likes from the table between the creation date of the story and the current date:
+  '''
+  This method when called will return the difference between today and the day 
+  the story was created in in days in all cases as mentioned in the above 
+  methods:
+  '''
+  def get_story_start_date(creation_date, last_update, hidden)
+    
+    if (hidden && creation_date.to_date < 30.days.ago.to_date && 
+          last_update.to_date >= 30.days.ago.to_date) ||
+          (creation_date.to_date < 30.days.ago.to_date)
+            date = Time.zone.now.to_date - 30.days.ago.to_date
+    
+    elsif hidden && creation_date.to_date < 30.days.ago.to_date && 
+          last_update.to_date < 30.days.ago.to_date
+            date = -1
+            
     else
-      likes_by_day = Likedislike.where(:created_at => creationOfStory..Time.zone.now.end_of_day, :story_id => story_id, :action => 1).group("date(created_at)").select("created_at, count(story_id) as noOfLikesPerDay")
-      (creationOfStory.to_date..Time.zone.now.to_date).map do |date|
-        like = likes_by_day.detect { |like| like.created_at.to_date == date }
-        like && like.noOfLikesPerDay.to_i || 0
-      end.inspect
-    end
-  end
-  
-  #This method gets the number of dislikes of a certain story using its id in the last 30 days
-  def get_no_of_dislikes(story_id)
-
-    creationOfStory = Story.find(story_id).created_at.beginning_of_day
-    lastUpdated = Story.find(story_id).updated_at.end_of_day
-    hidden = Story.find(story_id).hidden_before_type_cast
-    #There are several cases concerning the date of creation, last update and deletion of the story that has to handeled:
-    #1) If the story was created and hiding within the last 30 days, then I only return the dislikes from the table between the creation date and the last update which is the deletion:
-    if hidden && creationOfStory >= 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      dislikes_by_day = Likedislike.where(:created_at => creationOfStory..lastUpdated, :story_id => story_id, :action => -1).group("date(created_at)").select("created_at, count(story_id) as noOfDislikesPerDay")
-      (creationOfStory.to_date..lastUpdated.to_date).map do |date|
-         dislike = dislikes_by_day.detect { |dislike| dislike.created_at.to_date == date }
-         dislike && like.noOfDislikesPerDay.to_i || 0
-      end.inspect
-    #2) If the story was created before the last 30 days and hidden within the last 30 days, then I only return the dislikes from the table between the last 30 days and the last update which is the hiding:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated >+ 30.days.ago.to_date
-      dislikes_by_day = Likedislike.where(:created_at => 30.days.ago.beginning_of_day..lastUpdated, :story_id => story_id, :action => -1).group("date(created_at)").select("created_at, count(story_id) as noOfDislikesPerDay")
-      (30.days.ago.to_date..lastUpdated.to_date).map do |date|
-        dislike = dislikes_by_day.detect { |dislike| dislike.created_at.to_date == date }
-        dislike && dislike.noOfDislikesPerDay.to_i || 0
-      end.inspect
-    #3) If the story was created and hidden before the last 30 days, then I will return an empty array:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated < 30.days.ago.to_date
-      dislikes_by_day = []
-    #4) If the story wasn't hidden and it was created before the last 30 days, then I return the dislikes from the table between the last 30 days and the current date:
-    elsif creationOfStory < 30.days.ago.to_date
-      dislikes_by_day = Likedislike.where(:created_at => 30.days.ago.beginning_of_day..Time.zone.now.end_of_day, :story_id => story_id, :action => -1).group("date(created_at)").select("created_at, count(story_id) as noOfDislikesPerDay")
-      (30.days.ago.to_date..Time.zone.now.to_date).map do |date|
-        dislike = dislikes_by_day.detect { |dislike| dislike.created_at.to_date == date }
-        dislike && dislike.noOfDislikesPerDay.to_i || 0
-      end.inspect
-    #5) If the story wasn't hidden and it was created within the last 30 days, then I return the dislikes from the table between the creation date of the story and the current date:
-    else
-      dislikes_by_day = Likedislike.where(:created_at => creationOfStory..Time.zone.now.end_of_day, :story_id => story_id, :action => -1).group("date(created_at)").select("created_at, count(story_id) as noOfDislikesPerDay")
-      (creationOfStory.to_date..Time.zone.now.to_date).map do |date|
-        dislike = dislikes_by_day.detect { |dislike| dislike.created_at.to_date == date }
-        dislike && dislike.noOfDislikesPerDay.to_i || 0
-      end.inspect
-    end
-  end
-  
-  #This method gets the number of flags of a certain story using its id in the last 30 days
-  def get_no_of_flags(story_id)
-
-    creationOfStory = Story.find(story_id).created_at.beginning_of_day
-    lastUpdated = Story.find(story_id).updated_at.end_of_day
-    hidden = Story.find(story_id).hidden_before_type_cast
-    #There are several cases concerning the date of creation, last update and hiding of the story that has to handeled:
-    #1) If the story was created and hidden within the last 30 days, then I only return the flags from the table between the creation date and the last update which is the hiding:
-    if hidden && creationOfStory >= 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      flags_by_day = Flag.where(:created_at => creationOfStory..lastUpdated, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSpamsPerDay")
-      (creationOfStory.to_date..lastUpdated.to_date).map do |date|
-        flag = flags_by_day.detect { |flag| flag.created_at.to_date == date }
-        flag && flag.noOfFlagsPerDay.to_i || 0
-      end.inspect
-    #2) If the story was created before the last 30 days and hidden within the last 30 days, then I only return the flags from the table between the last 30 days and the last update which is the hiding:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      flags_by_day = Flag.where(:created_at => 30.days.ago.beginning_of_day..lastUpdated, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSpamsPerDay")
-      (30.days.ago.to_date..lastUpdated.to_date).map do |date|
-        flag = flags_by_day.detect { |flag| flag.created_at.to_date == date }
-        flag && flag.noOfFlagsPerDay.to_i || 0
-      end.inspect
-    #3) If the story was created and hidden before the last 30 days, then I will return an empty array:
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated < 30.days.ago.to_date
-      flags_by_day = []
-    #4) If the story wasn't hidden and it was created before the last 30 days, then I return the flags from the table between the last 30 days and the current date:
-    elsif creationOfStory < 30.days.ago.to_date
-      flags_by_day = Flag.where(:created_at => 30.days.ago.beginning_of_day..Time.zone.now.end_of_day, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSpamsPerDay")
-      (30.days.ago.to_date..Time.zone.now.to_date).map do |date|
-        flag = flags_by_day.detect { |flag| flag.created_at.to_date == date }
-        flag && flag.noOfFlagsPerDay.to_i || 0
-      end.inspect
-    #5) If the story wasn't hidden and it was created within the last 30 days, then I return the flags from the table between the creation date of the story and the current date:
-    else
-      flags_by_day = Flag.where(:created_at => creationOfStory..Time.zone.now.end_of_day, :story_id => story_id).group("date(created_at)").select("created_at, count(story_id) as noOfSpamsPerDay")
-      (creationOfStory.to_date..Time.zone.now.to_date).map do |date|
-        flag = flags_by_day.detect { |flag| flag.created_at.to_date == date }
-        flag && spam.noOfFlagsPerDay.to_i || 0
-      end.inspect
-    end
-  end
-
-  #This method when called will return the difference between today and the day the story was created in in days in all cases as mentioned in the above methods:
-  def get_story_start_date(story_id)
-    creationOfStory = Story.find(story_id).created_at.to_date
-    lastUpdated = Story.find(story_id).updated_at.to_date
-    hidden = Story.find(story_id).hidden_before_type_cast
-    if hidden && creationOfStory >= 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      date = Time.zone.now.to_date - creationOfStory
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated >= 30.days.ago.to_date
-      date = Time.zone.now.to_date - 30.days.ago.to_date
-    elsif hidden && creationOfStory < 30.days.ago.to_date && lastUpdated < 30.days.ago.to_date
-      date = -1
-    elsif creationOfStory < 30.days.ago.to_date
-      date = Time.zone.now.to_date - 30.days.ago.to_date
-    else
-      date = Time.zone.now.to_date - creationOfStory
+            date = Time.zone.now.to_date - creation_date.to_date
     end
   end
 
   #This method gets the number of total shares of a certain story given its id:
-  def get_total_number_of_shares(story_id)
-    number = Share.where(:story_id => story_id).count
+  def get_total_number_of_shares
+    number = @total_shares
   end
 
   #This method gets the number of total likes of a certain story given its id:
-  def get_total_number_of_likes(story_id)
-    number = Likedislike.where(:story_id => story_id, :action => 1).count
+  def get_total_number_of_likes
+    number = @total_likes
   end
 
   #This method gets the number of total dislikes of a certain story given its id:
-  def get_total_number_of_dislikes(story_id)
-    number = Likedislike.where(:story_id => story_id, :action => -1).count
+  def get_total_number_of_dislikes
+    number = @total_dislikes
   end
 
   #This method gets the number of total flags of a certain story given its id:
-  def get_total_number_of_flags(story_id)
-    number = Flag.where(:story_id => story_id).count
+  def get_total_number_of_flags
+    number = @total_flags
+  end
+  
+  def get_number_of_shares(user_id)
+    number = @shares.where(:user_id => user_id).count
   end
 
   #This method gets the interest that the story belongs too:
@@ -208,15 +119,22 @@ module StoriesHelper
     interest = Interest.find(interestID).name
   end
 
-  #This method returns the number of distinct users who shared the story. This means that if a user shares a story two times, this method will count him once.
-  def get_distinct_number_of_users_who_shared(story_id)
-    number = Share.where(:story_id => story_id).select("distinct(user_id)").count
+  '''
+  This method returns the number of distinct users who shared the story. 
+  This means that if a user shares a story two times, this method will count 
+  him once.
+  '''
+  def get_distinct_number_of_users_who_shared
+    number = @shares.select("distinct(user_id)").count
   end
-
-  #This method returns the percentage of the likes to the total number of likes and dislikes
-  def getWidth(story_id)
-    likes = get_total_number_of_likes(story_id)
-    dislikes =  get_total_number_of_dislikes(story_id)
+  
+  '''
+  This method returns the percentage of the likes to the total number 
+  of likes and dislikes
+  '''
+  def get_width
+    likes = get_total_number_of_likes
+    dislikes =  get_total_number_of_dislikes
     total = likes + dislikes
     if total == 0
       width = 0
