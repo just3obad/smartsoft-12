@@ -43,7 +43,7 @@ class HAccountsController < ApplicationController
   end
 #this method takes user name email and password  updates the current info
 
-  def update
+  def profile
     @h_account = Haccount.update_attributes(:password => params[:password])
      
       if @h_account
