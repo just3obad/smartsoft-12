@@ -79,11 +79,9 @@ end
 #Method profile : Responsible for updating the profile information about a certain user (First name , Last name , Date of Birth , Username), It updates the user`s Haccount as well (if the user wished to change his password). 
   def profile
    @user_id =(params[:id])
-    #@user=User.find(@user_id)
     @user=User.find(@user_id).update_attributes(:name=>params[:name],:first_name=>params[:first_name],:last_name=>params[:last_name],:date_of_birth=>params[:date_of_birth] )
     @huser=Haccount.find(@user_id).update_attributes(:password => params[:password])
    if @user&@huser or @user or @huser
-    #format.json { render json: "updated" }
     respond_with("updated")
     end
   end
