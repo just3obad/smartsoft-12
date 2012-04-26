@@ -294,6 +294,8 @@ end
 end
 
 #handling the errors of the links are not valid
+rescue OpenURI::HTTPError
+return false
 rescue SocketError
 return false
 rescue RuntimeError
@@ -320,6 +322,8 @@ rss = RSS::Parser.parse(content, false)
 scategory = rss.channel.link
 return true
 
+rescue OpenURI::HTTPError
+return false
 rescue SocketError
 return false
 rescue RuntimeError
