@@ -101,12 +101,12 @@ end
    else 
       render text: "interest already blocked"    
    end
-   #log file
+   # for log file
  @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
  @storytitle = Story.find(:first, :conditions => { :id => @story_id},:select => "title")
   @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
-  @message = "#{@username}block_story#{@storytitle}+#{@interesttitle}"
-Log.create!(loggingtype: 3,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: @story_id, interest_id: @interest_id, message: @message)
+  @message = "#{@username}blocks interest called#{@interesttitle}"
+Log.create!(loggingtype: 3,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: @interest_id, message: @message)
 
   end
 
@@ -128,7 +128,7 @@ Log.create!(loggingtype: 3,user_id_1: @user_id,user_id_2: nil, admin_id: nil, st
     @storytitle = Story.find(:first, :conditions => { :id => @story_id},:select => "title")
     @interest_id = Story.find(:first, :conditions => { :id => @story_id},:select => "interest_id")
     @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
-  @message = "#{@username}block_story#{@storytitle}#{@interesttitle}" 
+  @message = "#{@username}blocks a story with title:#{@storytitle}belonging to#{@interesttitle}interest" 
 Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: @story_id, interest_id: @interest_id, message: @message)
   end
 
@@ -141,8 +141,9 @@ def friends_feed
   respond_with(@friend_stories)
   #for log file
   @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
-  @message = "#{@username}friends_feed" 
-Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
+  @user2 = User.find(:first, :conditions => { :id => @friend_id},:select => "name")
+  @message = "#{@username} views the feed of#{@user2}" 
+Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: @friend_id, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
 end
 
   #This method blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend. It takes as an input the user_id.
@@ -168,7 +169,8 @@ end
     end
     #for log file    
       @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
-      @message = "#{@username}block_friends_feed" 
-Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
+      @user2 = User.find(:first, :conditions => { :id => @friend_id},:select => "name")
+      @message = "#{@username}blocks the feed of#{@user2}" 
+Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: @friend_id, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
   end
 end
