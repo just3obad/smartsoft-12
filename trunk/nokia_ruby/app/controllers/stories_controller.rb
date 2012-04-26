@@ -119,14 +119,20 @@ end
      format.json{render json:"false"}
     end
    end 
+@username = User.find(:first, :conditions => { :id => @userid},:select => "name")
+    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
+    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
+    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
+  @message = "#{@username}share_story_social_network#{@storytitle}+#{@interesttitle}"
 
+Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2:nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
  end
    
 
-#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page or the user could write an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
+#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page or the user could write an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him3
 
 def recommend_story()
-
+  @storyid=params[:sid]
   @userid=params[:uid]
     friend=params[:friend]
     email=params[:email]
@@ -153,7 +159,13 @@ def recommend_story()
  else
   self.show friend, message
  end
+@username = User.find(:first, :conditions => { :id => @userid},:select => "name")
+    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
+    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
+    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
+  @message = "#{@username}recommend_story#{@storytitle}+#{@interesttitle}"
 
+Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 end
 
 #i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
@@ -175,13 +187,16 @@ def get_friends()
       end
 
  end
+  @username = User.find(:first, :conditions => { :id => @userid},:select => "name")
+  @message = "#{@username}get_friends"
 
+Log.create!(loggingtype: 1,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: nil,message: @message )
 end
 
 #view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
 
 def view_friends_like
-
+  @storyid=params[:sid]
   @userid=params[:uid]
   
   @flistlike=Array.new
@@ -190,11 +205,17 @@ def view_friends_like
    respond_to do |format|
      format.json{render json:@flistlike}
      end
-  
+ @username = User.find(:first, :conditions => { :id => @userid},:select => "name")
+    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
+    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
+    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
+  @message = "#{@username}view_friends_like#{@storytitle}+#{@interesttitle}"
+
+Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 end
 
 def view_friends_dislike
-
+    @storyid=params[:sid]
     @userid=params[:uid]
 
   @flistdislike=Array.new
@@ -203,6 +224,13 @@ def view_friends_dislike
    respond_to do |format|
      format.json{render json:@flistdislike}
     end
+@username = User.find(:first, :conditions => { :id => @userid},:select => "name")
+    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
+    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
+    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
+  @message = "#{@username}view_friends_dislike#{@storytitle}+#{@interesttitle}"
+
+Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 end
 
 
