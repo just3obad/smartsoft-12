@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of teting
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "10.104.83.229";
+    static String SERVER_IP = "192.168.1.101";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -192,6 +192,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert alert;
     private Alert AlreadyVerified;
     private Alert InternetError;
+    private Alert WrongEmailFormat;
+    private Alert PasswordsDontMatch;
+    private Alert WrongEmailPassCombination;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -607,14 +610,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == itemCommand) {//GEN-LINE:|7-commandAction|13|395-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|14|395-postAction
+                switchDisplayable(null, getRegisterScreen());//GEN-LINE:|7-commandAction|14|395-postAction
                 // write post-action user code here
             } else if (command == okCommand3) {//GEN-LINE:|7-commandAction|15|135-preAction
                 // write pre-action user code here
 //GEN-LINE:|7-commandAction|16|135-postAction
                 // write post-action user code here
                String user_details = "";
-                RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)"
+                        + "*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
                 if (regex.match(textField4.getString())) {
                     HttpConnection httpConn = null;
                     InputStream is = null;
@@ -622,8 +626,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
                     try {
                         //Change IP accordingly
-                        httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"
-                                +String.valueOf(PORT)+"/h_accounts/sign_in.json");
+                        httpConn = (HttpConnection) Connector.open("http://"
+                                +SERVER_IP+":"+String.valueOf(PORT)+
+                                "/h_accounts/sign_in.json");
                         //Request method has to be POST
                         httpConn.setRequestMethod(HttpConnection.POST);
                         httpConn.setRequestProperty("User-Agent",
@@ -658,6 +663,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         }
                         if(respCode == 400){
                             //TODO wrong pass
+                            switchDisplayable(getWrongEmailPassCombination(),displayable);
                         }
                     } catch (Throwable t) {
                         System.out.println("Exception occured " + t.toString());
@@ -681,12 +687,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     }
                 } else {
                     //TODO wrong email format login
-                    System.out.println("reached");
-                    try{
-                    //switchDisplayable(WrongEmailFormat, displayable);
-                    } catch(Throwable t){
-                        t.toString();
-                    }
+                    switchDisplayable(getWrongEmailFormat(), displayable);
                 }
             }//GEN-BEGIN:|7-commandAction|17|233-preAction
         } else if (displayable == MainFeed) {
@@ -710,7 +711,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == RegisterScreen) {
             if (command == backCommand7) {//GEN-END:|7-commandAction|25|155-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|26|155-postAction
+                switchDisplayable(null, getLoginScreen());//GEN-LINE:|7-commandAction|26|155-postAction
                 // write post-action user code here
             } else if (command == okCommand5) {//GEN-LINE:|7-commandAction|27|153-preAction
                 // write pre-action user code here
@@ -718,7 +719,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
                 String user_details = "";
                 RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-                if (regex.match(textField4.getString())) {
+                if (regex.match(textField6.getString())) {
+                    if(textField7.getString().equals(textField8.getString())){
                     HttpConnection httpConn = null;
                     InputStream is = null;
                     OutputStream os = null;
@@ -726,7 +728,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     try {
                         //Change IP accordingly
                         httpConn = (HttpConnection) Connector.open("http://"+SERVER_IP+":"
-                                +String.valueOf(PORT)+"/h_accounts/sign_in.json");
+                                +String.valueOf(PORT)+"/users/new.json");
                         //Request method has to be POST
                         httpConn.setRequestMethod(HttpConnection.POST);
                         httpConn.setRequestProperty("User-Agent",
@@ -736,8 +738,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         httpConn.setRequestProperty("Content-Type", "application/json");
                         // JSON String that you will send containing the attributes needed for sign up. 
 
-                        String dataToBeSend = "{\"email\":\"" + textField4.getString()
-                                + "\",\"password\":\"" + textField5.getString() + "\"}";
+                        String dataToBeSend = "{\"email\":\"" + textField6.getString()
+                                + "\",\"password\":\"" + textField7.getString() + "\"}";
                         httpConn.setRequestProperty("Content-Length",
                                 "" + dataToBeSend.length());
                         os = httpConn.openOutputStream();
@@ -759,7 +761,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                                 user_details = sb.toString();
                                 getUserID(user_details);
                         }
-                        if(respCode == 400){
+                        else if(respCode == 400){
                             //TODO wrong pass
                         }
                     } catch (Throwable t) {
@@ -782,14 +784,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                             System.out.println("Exception occured " + t.toString());
                         }
                     }
-                } else {
-                    //TODO wrong email format login
-                    System.out.println("reached");
-                    try{
-                    //switchDisplayable(WrongEmailFormat, displayable);
-                    } catch(Throwable t){
-                        t.toString();
+                    } else{
+                        //TODO passes don't match
+                        switchDisplayable(getPasswordsDontMatch(),displayable);
                     }
+                } else {
+                    //TODO wrong email format register
+                    switchDisplayable(getWrongEmailFormat(), displayable);
                 }
             }//GEN-BEGIN:|7-commandAction|29|29-preAction
         } else if (displayable == Story) {
@@ -4264,6 +4265,57 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return alert1;
     }
 //</editor-fold>//GEN-END:|404-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: WrongEmailFormat ">//GEN-BEGIN:|409-getter|0|409-preInit
+    /**
+     * Returns an initialized instance of WrongEmailFormat component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getWrongEmailFormat() {
+        if (WrongEmailFormat == null) {//GEN-END:|409-getter|0|409-preInit
+            // write pre-init user code here
+            WrongEmailFormat = new Alert("Wrong Email Format", "The email you entered is incorrectly formatted", null, null);//GEN-BEGIN:|409-getter|1|409-postInit
+            WrongEmailFormat.setTimeout(Alert.FOREVER);//GEN-END:|409-getter|1|409-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|409-getter|2|
+        return WrongEmailFormat;
+    }
+//</editor-fold>//GEN-END:|409-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: PasswordsDontMatch ">//GEN-BEGIN:|410-getter|0|410-preInit
+    /**
+     * Returns an initialized instance of PasswordsDontMatch component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getPasswordsDontMatch() {
+        if (PasswordsDontMatch == null) {//GEN-END:|410-getter|0|410-preInit
+            // write pre-init user code here
+            PasswordsDontMatch = new Alert("Passwords Not Matching Error", "The passwords you entered don\'t match", null, null);//GEN-BEGIN:|410-getter|1|410-postInit
+            PasswordsDontMatch.setTimeout(Alert.FOREVER);//GEN-END:|410-getter|1|410-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|410-getter|2|
+        return PasswordsDontMatch;
+    }
+//</editor-fold>//GEN-END:|410-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: WrongEmailPassCombination ">//GEN-BEGIN:|411-getter|0|411-preInit
+    /**
+     * Returns an initialized instance of WrongEmailPassCombination component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getWrongEmailPassCombination() {
+        if (WrongEmailPassCombination == null) {//GEN-END:|411-getter|0|411-preInit
+            // write pre-init user code here
+            WrongEmailPassCombination = new Alert("Wrong Email/Password Combination", "The email/password combination you entered doesn\'t exist", null, null);//GEN-BEGIN:|411-getter|1|411-postInit
+            WrongEmailPassCombination.setTimeout(Alert.FOREVER);//GEN-END:|411-getter|1|411-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|411-getter|2|
+        return WrongEmailPassCombination;
+    }
+//</editor-fold>//GEN-END:|411-getter|2|
 
 
 
