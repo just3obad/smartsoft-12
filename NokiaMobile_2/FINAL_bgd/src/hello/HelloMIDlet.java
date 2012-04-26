@@ -747,6 +747,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 } else {
                     //TODO wrong email format login
                     switchDisplayable(getWrongEmailFormat(), displayable);
+                    return;
                 }
                 switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|14|135-postAction
                 // write post-action user code here
