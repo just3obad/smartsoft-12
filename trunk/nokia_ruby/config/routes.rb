@@ -13,6 +13,7 @@ NokiaRuby::Application.routes.draw do
   match "stories/share_story_social_network" => "stories#share_story_social_network"
   match "stories/recommend_story" => "stories#recommend_story"
   match "stories/view_friends_like" => "stories#view_friends_like"
+  match "stories/get_friends" => "stories#get_friends"
   match "stories/view_friends_dislike" => "stories#view_friends_dislike"
   match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests/interests" => "user_add_interests#getinterests"  
