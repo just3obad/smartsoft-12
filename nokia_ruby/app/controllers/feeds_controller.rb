@@ -14,9 +14,10 @@ end
     if @feed.save # if we succeded to add a new RSS feed then a flash message in a green box will appear with a message indicating that , we will redirect to the interests page again .
 
       redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
-      flash[:warning] = "Thank you, we have updated your order with " 
+      flash[:success] = "link added successfully" 
     else #if saving faild a flash message box will appear with the errors
      redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
+     flash[:warning] = "link not added. Please try again" 
      
     end
   end
