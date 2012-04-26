@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of teting
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "10.37.129.2";
+    static String SERVER_IP = "10.42.43.1";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -114,6 +114,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command backCommand15;
     private Command registerCommand;
     private Command okCommand13;
+    private Command backCommand17;
+    private Command okCommand14;
+    private Command backCommand18;
     private Command okCommand12;
     private Command resendPasswordCommand;
     private Command backCommand16;
@@ -202,6 +205,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert alert;
     private Alert AlreadyVerified;
     private Alert InternetError;
+    private Form friendlist;
+    private ChoiceGroup choiceGroup1;
     private Form ResendPassword;
     private TextField textField1;
     private Alert CommentFailed;

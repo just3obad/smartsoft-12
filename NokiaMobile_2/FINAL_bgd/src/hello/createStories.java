@@ -173,14 +173,37 @@ public class createStories {
             ex.printStackTrace();
         }
     }
+     public void parseNewArray() throws JSONException{
+         JSONObject json = null;  
+            System.out.println(content);
+            json = new JSONObject(content); // create json object from string
+
+            
+            JSONArray jsonArray = json.getJSONArray("storyItem");  // get array
+            int total = jsonArray.length();
+
+            for (int i = 0; i < total; i++) {
+                String commJson = jsonArray.getString(i); // get json representation of comment
+                System.out.println(commJson);
+                fromJson(commJson);
+                
+              // storyItem a = new storyItem(commJson, this); // create a commentItem using it
+                //CommentsMany.append(comments[i]); // append commentItem tp form
+            }
+    }
+ 
     
     public void helpMainFeed() {
         try {
-            parseNew();
+            parseNewArray();
             System.out.println("back from parse without error");
             //parseJsonStory(); // calls method that actually helps
         } catch (JSONException ex) {
-            helpMainFeed();
+            try {
+                parseNew();
+            } catch (JSONException ex1) {
+                ex1.printStackTrace();
+            }
             ex.printStackTrace();
         }
     }
