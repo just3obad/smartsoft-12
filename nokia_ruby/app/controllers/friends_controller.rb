@@ -28,7 +28,7 @@ end
  # Method find : Its responsible for finding a list of user, when the current user enters a name its responsible for getting all matches for this name 
   def find
    @name=params[:name]
-   @list = User.where(:name=>@name).select("name ,id , email")
+   @list = User.where(:name=>@name).select("name ,id , email").map {|friend|{:name=>friend.name}}
    respond_to do |format|
       format.json { render json: @list }
       end
@@ -42,7 +42,7 @@ end
     @friendship2 = Friend.new(:sender=>@friend, :receiver=>@user, :status=>"0").save!
     if @friendship1 && @friendship2
         respond_to do |format|
-      format.json { render json: @friendship1 }
+      format.json { render json: "Success" }
       end
     end
   end
@@ -55,7 +55,7 @@ end
     @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.update_attributes(:status => 1)
     if @friendship1 && @friendship2
         respond_to do |format|
-      format.json { render json: "succes" }
+      format.json { render json: "Succes" }
       end
     end
   end
@@ -68,7 +68,7 @@ end
     @friendship2 =Friend.where(:sender=>@friend, :receiver=>@user).first.update_attributes(:status => 2)
     if @friendship1 && @friendship2
         respond_to do |format|
-      format.json { render json: "succes" }
+      format.json { render json: "Succes" }
       end
     end
   end

@@ -45,9 +45,8 @@ class HAccountsController < ApplicationController
 
   def profile
     @h_account = Haccount.update_attributes(:password => params[:password])
-     
       if @h_account
-        respond_with("updated")
+       respond_with("updated")
     end
   end
 
