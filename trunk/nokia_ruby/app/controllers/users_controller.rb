@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
 	respond_to :html,:json
 
-new_record=User.new( :name =>"khaled", :email => "khaled@abc.com")
-new_record.save!
 #this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
 
 def feed
@@ -139,7 +137,7 @@ Log.create!(loggingtype: 2,user_id_1: @user_id,user_id_2: nil, admin_id: nil, st
 def friends_feed
   @user_id = params[:id]
   @friend_id = params[:fid]
-  @friend_stories = User.find_by_id(@user_id).get_friends_stories(@friend_id)
+  @friend_stories = User.find_by_id(@user_id).get_one_friend_stories(@friend_id)
   respond_with(@friend_stories)
   #for log file
   @username = User.find(:first, :conditions => { :id => @user_id},:select => "name")
