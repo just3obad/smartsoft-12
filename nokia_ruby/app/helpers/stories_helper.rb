@@ -247,7 +247,7 @@ i = 0
 num = rss.items.size
 #creating the array of stories
 listOfStories = Array.new()
-puts listOfStories[num]
+#puts listOfStories[num]
 
 
 #creating the stories and put them in the array
@@ -273,7 +273,12 @@ storynow = Story.new(:title => stitle, :rank => 0, :media_link => "nothing", :is
 storynow.description = sdescription
 storynow.save
 
-listOfStories[i] = storynow
+sid = Story.find_by_title(stitle).id
+
+Log.create(loggingtype: 0,story_id: sid,message: "new story")
+
+#listOfStories[i] = storynow
+listOfStories.append(storynow)
 else
 #if the story exists in the database it will enter the array without modifications
 
