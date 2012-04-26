@@ -169,12 +169,15 @@ Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story
 end
 
 #i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
-def get_friends()
+def get_friends_email()
  @userid=params[:uid] 
 
   @flist=Array.new
-  @flist << User.find_by_id(@userid).get_Friend_List() 
+  @flistemail=Array.new
+  @flist << User.find_by_id(@userid).get_Friend_List()
 
+   0.upto(@flist.length) do |i|
+    @flistemail << @flist[i].email
   
     if @flist.empty?
        respond_to do |format|
@@ -183,7 +186,7 @@ def get_friends()
 
     else
         respond_to do |format|
-     format.json{render json:@flist}
+     format.json{render json:@flistemail}
       end
 
  end
