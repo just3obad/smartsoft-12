@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424180751) do
+ActiveRecord::Schema.define(:version => 20120426065354) do
 
   create_table "Verification_Codes", :force => true do |t|
     t.string   "code"
-    t.integer  "account_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.boolean  "verified"
@@ -75,15 +75,11 @@ ActiveRecord::Schema.define(:version => 20120424180751) do
   create_table "friends", :force => true do |t|
     t.integer  "sender"
     t.integer  "receiver"
-    t.integer  "stat"
+    t.integer  "status"
+    t.boolean  "is_blocked"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.boolean  "is_blocked"
   end
-
-  add_index "friends", ["receiver"], :name => "index_friends_on_receiver"
-  add_index "friends", ["sender", "receiver"], :name => "index_friends_on_sender_and_receiver", :unique => true
-  add_index "friends", ["sender"], :name => "index_friends_on_sender"
 
   create_table "haccounts", :force => true do |t|
     t.integer  "user_id"
@@ -144,7 +140,6 @@ ActiveRecord::Schema.define(:version => 20120424180751) do
   create_table "stories", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "description"
     t.integer  "interest_id"
     t.string   "title"
     t.date     "date"
@@ -218,6 +213,7 @@ ActiveRecord::Schema.define(:version => 20120424180751) do
     t.string   "first_name"
     t.string   "last_name"
     t.date     "date_of_birth"
+    t.string   "image"
   end
 
 end

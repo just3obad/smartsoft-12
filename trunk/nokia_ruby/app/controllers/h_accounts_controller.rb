@@ -34,7 +34,7 @@ class HAccountsController < ApplicationController
     @h_account = Haccount.find_by_email(params[:email])
     if @h_account
       @pass = ([*('A'..'Z'),*('0'..'9')]-%w( 0 1 I O)).sample(6).join
-      @h_account.password = @pass
+      @h_account.update_attributes(password: @pass)
       Emailer.password_reset(@h_account, @pass).deliver
     render json: true
     else
