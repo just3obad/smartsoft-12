@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of teting
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "10.42.43.1";
+    static String SERVER_IP = "10.211.55.2";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -202,13 +202,14 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert alert;
     private Alert AlreadyVerified;
     private Alert InternetError;
+    private Alert UserExists;
+    private Alert UserDoesntExist;
     private Form ResendPassword;
     private TextField textField1;
     private Alert CommentFailed;
     private Alert DownedBefore;
     private Alert alert2;
-    private Alert UserDoesntExist;
-    private Alert UserExists;
+    private Alert PasswordLessThan6Chars;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -672,7 +673,6 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     HttpConnection httpConn = null;
                     InputStream is = null;
                     OutputStream os = null;
-
                     try {
                         //Change IP accordingly
                         httpConn = (HttpConnection) Connector.open("http://"
@@ -686,12 +686,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         //Content-Type is must to pass parameters in POST Request must be application/json
                         httpConn.setRequestProperty("Content-Type", "application/json");
                         // JSON String that you will send containing the attributes needed for sign up. 
-
                         String dataToBeSend = "{\"email\":\"" + textField4.getString()
                                 + "\",\"password\":\"" + textField5.getString() + "\"}";
                         httpConn.setRequestProperty("Content-Length",
                                 "" + dataToBeSend.length());
                         os = httpConn.openOutputStream();
+                        System.out.println("weselna");
                         os.write(dataToBeSend.getBytes());
                         os.flush();//data written will be flushed to server.
                         int respCode = httpConn.getResponseCode();
@@ -788,6 +788,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
                 if (regex.match(textField6.getString())) {
                     if(textField7.getString().equals(textField8.getString())){
+                        if(textField7.getString().length() < 6){
                     HttpConnection httpConn = null;
                     InputStream is = null;
                     OutputStream os = null;
@@ -830,10 +831,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         }
                         else if(respCode == 400){
                             //TODO wrong pass
+                            textField7.setString("");
+                            textField8.setString("");
                             switchDisplayable(getPasswordsDontMatch(), displayable);
                             return;
                         }
                         else if(respCode == 500){
+                            //TODO user exists
                             switchDisplayable(getUserExists(), displayable);
                             return;
                         }
@@ -857,8 +861,17 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                             System.out.println("Exception occured " + t.toString());
                         }
                     }
+                        } else{
+                            //TODO pass less than 6 characters
+                            textField7.setString("");
+                            textField8.setString("");
+                            switchDisplayable(getPasswordLessThan6Chars(), displayable);
+                            return;
+                        }
                     } else{
                         //TODO passes don't match
+                        textField7.setString("");
+                        textField8.setString("");
                         switchDisplayable(getPasswordsDontMatch(),displayable);
                         return;
                     }
@@ -4741,6 +4754,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 //</editor-fold>//GEN-END:|440-getter|2|
 
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: PasswordLessThan6Chars ">//GEN-BEGIN:|441-getter|0|441-preInit
+    /**
+     * Returns an initialized instance of PasswordLessThan6Chars component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getPasswordLessThan6Chars() {
+        if (PasswordLessThan6Chars == null) {//GEN-END:|441-getter|0|441-preInit
+            // write pre-init user code here
+            PasswordLessThan6Chars = new Alert("alert3", "Please enter a password larger than 6 characters.", null, null);//GEN-BEGIN:|441-getter|1|441-postInit
+            PasswordLessThan6Chars.setTimeout(Alert.FOREVER);//GEN-END:|441-getter|1|441-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|441-getter|2|
+        return PasswordLessThan6Chars;
+    }
+//</editor-fold>//GEN-END:|441-getter|2|
+
 
 
     /**
@@ -5495,7 +5525,7 @@ String[] friendlist = null;
 
 
             }
-            choiceGroup1.append(friend, null);
+           // choiceGroup1.append(friend, null);
         }
     }
 //parseJsonfriends method is to parse the array and insert each friend in the list of friends who liked this story
