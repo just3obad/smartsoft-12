@@ -5064,7 +5064,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Alert getPleaseTryAgain() {
         if (PleaseTryAgain == null) {//GEN-END:|470-getter|0|470-preInit
             // write pre-init user code here
-            PleaseTryAgain = new Alert("alert3", "Unexpected Error Please Try Again", null, null);//GEN-BEGIN:|470-getter|1|470-postInit
+            PleaseTryAgain = new Alert("alert3");//GEN-BEGIN:|470-getter|1|470-postInit
             PleaseTryAgain.setTimeout(Alert.FOREVER);//GEN-END:|470-getter|1|470-postInit
             // write post-init user code here
         }//GEN-BEGIN:|470-getter|2|
