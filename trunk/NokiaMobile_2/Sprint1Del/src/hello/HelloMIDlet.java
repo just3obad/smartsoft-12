@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -537,7 +538,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     //</editor-fold>//GEN-END:|methods|0|
     //<editor-fold defaultstate="collapsed" desc=" Generated Method: initialize ">//GEN-BEGIN:|0-initialize|0|0-preInitialize
     /**
-     * Initilizes the application.
+     * Initializes the application.
      * It is called only once when the MIDlet is started. The method is called before the <code>startMIDlet</code> method.
      */
     private void initialize() {//GEN-END:|0-initialize|0|0-preInitialize
@@ -1597,7 +1598,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == Resend1) {//GEN-LINE:|7-commandAction|159|302-preAction
                 // write pre-action user code here
-                genReqURL();//GEN-LINE:|7-commandAction|160|302-postAction
+                switchDisplayable(null, getAuthTwitter());//GEN-LINE:|7-commandAction|160|302-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|161|7-postCommandAction
         }//GEN-END:|7-commandAction|161|7-postCommandAction
