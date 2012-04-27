@@ -53,7 +53,7 @@ NokiaRuby::Application.routes.draw do
   match "friends/myreq"=>"friends#myreq"
   match "users/" => "users#index"
   match '/pages/home' => 'pages#home'
-
+  match "check" => "verification_codes#check"
   match "/feeds/:id" => "feeds#create"
   match "/feeds/delete_page/:interest_id" => "feeds#delete_page"
   match "/feeds/delete/:id" => "feeds#delete"

@@ -11,13 +11,18 @@ class VerificationCodesController < ApplicationController
 
   @code = params[:code]
   @account = Haccount.find_by_id(params[:id])
+  @v = VerificationCode.find_by_id(@account.id)
     respond_to do |format|
-      if @account.verifyAccount?(@code)
-      @result = true
+      if @v.verified != false
+      @result = "verified"
+      format.json { render json: @result }
+     else if @account.verifyAccount?(@code)
+      @result = "true"
       format.json { render json: @result }
       else
-      @result = false
+      @result = "false"
       format.json { render json: @result }
+      end
       end
     end
   end
