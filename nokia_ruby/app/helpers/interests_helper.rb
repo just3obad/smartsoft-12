@@ -238,8 +238,8 @@ module InterestsHelper
 
   elsif interest_create_date < 30.days.ago.to_date
   
-      users_per_day = UserAddInterest.where(:created_at => 30.days.ago.beginning_of_day
-      ..Time.zone.now.end_of_day , :interest_id => interest_id)
+      users_per_day = UserAddInterest.where(:created_at => 30.days.ago.beginning_of_day..
+      Time.zone.now.end_of_day , :interest_id => interest_id)
       .group("date(created_at)").select("created_at , count(user_id) as usrs_day") 
   
       (30.days.ago.to_date..Time.zone.now.to_date).map do |date|
