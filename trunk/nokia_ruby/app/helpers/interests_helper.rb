@@ -129,12 +129,12 @@ module InterestsHelper
  #these methods are to get all the general info regarding the statistics of the interest from the database , given its id as a parameter
  #num stories
  def get_interest_num_stories(interestId) 
- num_stories_in_interest = Story.where(":interest = ?",interestId).count #to get the count of the stories inside the given interest
+ num_stories_in_interest = Story.where(:interest_id => interestId).count #to get the count of the stories inside the given interest
  end
  
  #num users who added interest
  def get_total_num_user_added_interest(interestId)
- num_users_added_interest = UserAddInterest.where(":interest = ?",interestId).count #to get the count of the users who added this interest
+ num_users_added_interest = UserAddInterest.where(:interest_id => interestId).count #to get the count of the users who added this interest
  end
 
 end
