@@ -1658,7 +1658,7 @@
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R282"/>
                         <Component componentID="337" typeID="C#SwitchDisplayableEventHandler">
                             <Property name="eventSource" typeID="C#EventSource" value="R305"/>
-                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R80"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R252"/>
                         </Component>
                     </Component>
                     <Component componentID="306" typeID="Cjavax.microedition.lcdui.StringItem">
@@ -1666,7 +1666,7 @@
                         <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
                         <Property name="label" typeID="Pjava.lang.String" value="VAuthorization Failed"/>
                         <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R17"/>
-                        <Property name="text" typeID="Pjava.lang.String" value="VPlease press resend to resend the authorization url "/>
+                        <Property name="text" typeID="Pjava.lang.String" value="VPlease press resend to resend the authorization url. Note that twitter times out requests."/>
                     </Component>
                     <Component componentID="302" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R350"/>
@@ -2128,6 +2128,12 @@
         <Node componentID="404" descriptorID="componentNode404" x="524" y="534"/>
         <Node componentID="108" descriptorID="componentNode108" x="520" y="351"/>
         <Node componentID="401" descriptorID="componentNode401" x="3665" y="645"/>
+        <Node componentID="396" descriptorID="componentNode396" x="9291" y="521"/>
+        <Node componentID="354" descriptorID="componentNode354" x="6773" y="521"/>
+        <Node componentID="311" descriptorID="componentNode311" x="520" y="901"/>
+        <Node componentID="342" descriptorID="componentNode342" x="1498" y="901"/>
+        <Node componentID="172" descriptorID="componentNode172" x="7036" y="521"/>
+        <Node componentID="391" descriptorID="componentNode391" x="8146" y="521"/>
         <Node componentID="171" descriptorID="componentNode171" x="4506" y="521"/>
         <Node componentID="389" descriptorID="componentNode389" x="7321" y="521"/>
         <Node componentID="148" descriptorID="componentNode148" x="2586" y="741"/>
