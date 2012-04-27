@@ -620,11 +620,11 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                    // CommentsMany = null;
                     CommentsMany.append(getTextField());
                     parseComments(currentStoryID+"");
-                    if(s.equals("ok"))
+             //       if(s.equals("ok"))
                     switchDisplayable(getCommentSent(), getCommentsMany());
-                    else
-                    switchDisplayable(getCommentFailed(),getCommentsMany());
-                }
+                //    else
+                //    switchDisplayable(getCommentFailed(),getCommentsMany());
+               // 
             } else if (command == backToStory) {//GEN-LINE:|7-commandAction|3|38-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|4|38-postAction
@@ -782,7 +782,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == options) {//GEN-LINE:|7-commandAction|29|63-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|30|63-postAction
+                switchDisplayable(null, getToggle());//GEN-LINE:|7-commandAction|30|63-postAction
                 // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|31|155-preAction
         } else if (displayable == RegisterScreen) {
@@ -999,7 +999,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == Toggle) {
             if (command == backCommand13) {//GEN-END:|7-commandAction|45|378-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|46|378-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|46|378-postAction
                 // write post-action user code here
             } else if (command == choose) {//GEN-LINE:|7-commandAction|47|380-preAction
                 // write pre-action user code here
@@ -1490,7 +1490,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == readMore) {
             if (command == backCommand9) {//GEN-END:|7-commandAction|123|186-preAction
                 // write pre-action user code here
-//GEN-LINE:|7-commandAction|124|186-postAction
+                switchDisplayable(null, getMainFeed());//GEN-LINE:|7-commandAction|124|186-postAction
                 // write post-action user code here
             } else if (command == blockinterest) {//GEN-LINE:|7-commandAction|125|200-preAction
                 // write pre-action user code here
