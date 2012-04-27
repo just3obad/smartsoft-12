@@ -13,6 +13,7 @@
       <% if not @users.nil? and @users.length > 0 %>
 	    <div class="right_panel pre-scrollable" >
       <div class="well">
+        <h2>Search Results</h2>
         <% @users.each do |user| %>
         <div class="well-user-component">
             <a href="/users/<%= user.id %>"class="thumbnail-user-component"><img style="height:75px; width:75px;" src="<%= user.image %>"></a>
