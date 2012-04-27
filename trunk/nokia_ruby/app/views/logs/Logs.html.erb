@@ -53,7 +53,7 @@
 					 	<input class="btn btn-primary" name="commit" type="submit" 
 						         value="Go" />
 									<%=if $datefilter==true
-									link_to "back to default", logs_path, class: "control-absolute btn btn-primary" 
+									link_to "back", logs_path, class: "span1 control-absolute btn btn-primary" 
 									end%>
 					</div>
 						</form>
@@ -114,17 +114,17 @@
 				  <td class="logs-table-row"><%= l.created_at %></td>
 				  <td><%=  l.message %></td>
 					<td><%=  if(l.user_id_1 != nil)
-								link_to User.find(l.user_id_1).name,logs_path,  class: " btn btn-primary btn-danger" 	
+								link_to User.find(l.user_id_1).name,{:controller => 'users', :action => 'show', :id => l.user_id_1 },  class: " btn btn-primary btn-danger" 	
 							end%>
 						<%=	if(l.user_id_2 != nil)
-										link_to User.find(l.user_id_2).name,logs_path , class: "btn btn-primary  btn-danger" 	
+										link_to User.find(l.user_id_2).name,{:controller => 'users', :action => 'show', :id => l.user_id_2 }, class: "btn btn-primary  btn-danger" 	
 									end%>
 							
 												<%=	if(l.story_id != nil)
-																link_to Story.find(l.story_id).title,logs_path ,class: "btn btn-primary  btn-warning" 	
+																link_to Story.find(l.story_id).title,{:controller => 'stories', :action => 'show', :id => l.story_id },class: "btn btn-primary  btn-warning" 	
 															end%>
 															<%=	if(l.interest_id != nil)
-																			link_to Interest.find(l.interest_id).name,logs_path,  class: "btn btn-primary  btn-success" 	
+																			link_to Interest.find(l.interest_id).name,{:controller => 'interests', :action => 'show', :id => l.interest_id },  class: "btn btn-primary  btn-success" 	
 																		end%>
 						 </td>
 				  </tr>
