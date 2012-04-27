@@ -25,18 +25,18 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of testing
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "172.20.10.3";
+    static String SERVER_IP = "192.168.43.10";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
-    int currentStoryID;
+    int currentStoryID=88;
     int countInsertion = 0;
     private boolean midletPaused = false;
     Displayable displayable;
     String json;
     //  int user_id; // The user id of logged in 
     String currentStoryString;
-    int userID = 3;
+    int userID =1;
     String message ;
 //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
@@ -555,7 +555,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-        switchDisplayable(null, getLoginScreen());//GEN-LINE:|3-startMIDlet|1|3-postAction
+        switchDisplayable(null, getRecommend());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
 //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -1600,7 +1600,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             }//GEN-BEGIN:|7-commandAction|157|305-preAction
         } else if (displayable == twitterAuthFailed) {
             if (command == BackToAccounts) {//GEN-END:|7-commandAction|157|305-preAction
-                // write pre-action user code here
+                // write pre-action user code here//GEN-LINE:|7-commandAction|161|
                 switchDisplayable(null, getAuthTwitter());//GEN-LINE:|7-commandAction|156|305-postAction
                 // write post-action user code here
             } else if (command == Resend1) {//GEN-LINE:|7-commandAction|159|302-preAction
@@ -4909,14 +4909,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
   
         if (format) {//GEN-LINE:|454-if|1|455-preAction
             // write pre-action user code here
-            if(checkServerConn())
-                {
+         //   if(checkServerConn())
+           //     {
                 //save what the user enters and send it via send data
-           String ss="friend:"+getChoiceGroup1()+"email:"+getTextField2()+" message:"+getTextField3();
-         sendData("http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?sid="+currentStoryString+"&uid="+userID, ss);
+           String ss="{ \"uid\" :"+userID+ ", \"email\" : \""+getTextField2().getString()+"\" , \"friend\" : \""+message +"\" , \"message\": \""+getTextField3().getString()+"\"}";
+           System.out.println(ss);
+           sendData("http://"+SERVER_IP+":3000/stories"+currentStoryID+"/recommend_story", ss);
             
-            }else{switchDisplayable(getAlert(), getRecommend());
-                 }
+            //}else{switchDisplayable(getAlert(), getRecommend());
+              //   }
 //GEN-LINE:|454-if|2|455-postAction
             // write post-action user code here
         } else {//GEN-LINE:|454-if|3|456-preAction
