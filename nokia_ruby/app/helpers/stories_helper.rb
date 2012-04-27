@@ -184,7 +184,7 @@ if count_of_stories_with_same_title == 0
 #getting the id of the interest 
 sinterest = Feed.where(:link => source).select("interest_id")
 
-storynow = Story.new(:title => stitle, :rank => 0, :media_link => "", :is_blocked => false, :category => scategory, :deleted => false, :hidden => false, :interest_id => sinterest)
+storynow = Story.new(:title => stitle, :rank => 0, :media_link => "", :category => scategory, :deleted => false, :hidden => false, :interest_id => sinterest)
 #storynow = Story.new(:title => stitle)
 
 
