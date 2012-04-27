@@ -119,13 +119,13 @@ end
      format.json{render json:"false"}
     end
    end 
-@username = User.find(:first, :conditions => { :id => @userid},:select => "name")
-    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
-    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
-    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
-  @message = "#{@username}share_story_social_network#{@storytitle}+#{@interesttitle}"
+#@username = User.find(@userid).name
+ #   @storytitle = Story.find(@storyid).title
+  #  @interest_id = Story.find(@storyid).interest_id
+   # @interesttitle = Interest.find(@interest_id).name
+ # @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
 
-Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2:nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
+#Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2:nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
  end
    
 
@@ -145,7 +145,7 @@ def recommend_story()
    @storytit=@story.title
    @storybod=@story.content
 
-  if @friend.blank?
+  if @friend=="null"
 
   if User.find_by_email(@email).nil?
     Emailer.invite_to_app(@user2email, @email, @message).deliver
@@ -156,11 +156,11 @@ def recommend_story()
  else
    Emailer.recommend_story(@user2email, @friend, @message, @storytit, @storybod).deliver
  end
-@username = User.find(:first, :conditions => { :id => @userid},:select => "name")
-    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
-    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
-    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
-  @message = "#{@username}recommend_story#{@storytitle}+#{@interesttitle}"
+@username = User.find(@userid).name
+    @storytitle = Story.find(@storyid).title
+    @interest_id = Story.find(@storyid).interest_id
+   @interesttitle = Interest.find(@interest_id).name
+  @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
 
 Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 end
@@ -188,8 +188,8 @@ def get_friends_email()
       end
 
  end
-  @username = User.find(:first, :conditions => { :id => @userid},:select => "name")
-  @message = "#{@username}get_friends"
+@username = User.find(@userid).name
+  @message = "#{@username}get_friends_email"
 
 Log.create!(loggingtype: 1,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: nil,message: @message )
 end
@@ -211,11 +211,11 @@ def view_friends_like
    respond_to do |format|
      format.json{render json:@flistliked}
      end
- @username = User.find(:first, :conditions => { :id => @userid},:select => "name")
-    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
-    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
-    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
-  @message = "#{@username}view_friends_like#{@storytitle}+#{@interesttitle}"
+@username = User.find(@userid).name
+    @storytitle = Story.find(@storyid).title
+    @interest_id = Story.find(@storyid).interest_id
+    @interesttitle = Interest.find(@interest_id).name
+  @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
 
 Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 end
@@ -235,11 +235,11 @@ def view_friends_dislike
    respond_to do |format|
      format.json{render json:@flistdisliked}
     end
-@username = User.find(:first, :conditions => { :id => @userid},:select => "name")
-    @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
-    @interest_id = Story.find(:first, :conditions => { :id => @storyid},:select => "interest_id")
-    @interesttitle = Interest.find(:first, :conditions => { :id => @interest_id},:select => "name")
-  @message = "#{@username}view_friends_dislike#{@storytitle}+#{@interesttitle}"
+@username = User.find(@userid).name
+    @storytitle = Story.find(@storyid).title
+    @interest_id = Story.find(@storyid).interest_id
+    @interesttitle = Interest.find(@interest_id).name
+  @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
 
 Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 end
