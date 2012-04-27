@@ -8,48 +8,59 @@
 						
 						<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'stories', :id => @story.id}, class: "btn btn-large btn-primary") %>
 
+							<div >
+							<!--<h3 class="story-page-text">Description:</h3>
+							<div class="story-page-well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget eros est, a auctor risus. Praesent id nisl leo. Sed mollis, ipsum et ornare vestibulum, mi tortor feugiat felis, a bibendum purus sapien a massa. Phasellus vel dolor nec justo eleifend porttitor vitae vitae eros. Phasellus a turpis metus. Integer eu est neque. Aenean lobortis, ante at pellentesque ullamcorper,</div>-->
+						<li class="nav-header">Story Info</li>
+							<div class="story-page-well"><% if !(@story.deleted || @story.hidden) %>
+									<ul class="nav nav-list">
+									<li class="nav-header">Status :</li>
+									<span class="greenbadge">Active</span>
+									<% elsif @story.deleted %>
+									<ul class="nav nav-list">
+									<li class="nav-header">Status</li>
+									<li><span class="redbadge">Deleted</span></li>
+									<% elsif @story.hidden %>
+									<li><span class="yellowbadge">Hidden</span></li>
+									<% end %>
+									<li class="nav-header">Date :</li>
+									<li><%= @story.created_at.to_date %></li>
+									<li class="nav-header">Rank :</li>
+									<li><%= @story.rank %></li>
+									<li class="nav-header">Interest Name :</li>
+									<li><%= Interest.find(@story.interest_id).name %></li>
+
+							</div>
+							<ul class="nav nav-list" >
+							<li class="divider"></li>
+							</ul>
+							
+							</div>
+				</div>
+				
 		</ul>	
 
-		</div>
 			<div class="story-show-page-right-panel">
 			<h1><%= @story.title %></h1>
 				<ul class="nav nav-list" >
 				<li class="divider"></li>
 				</ul>
 		<div class="story-media">
-			<a href="#"class="thumbnail-story-show-page story-image-float"><img src="<%= @story.media_link %>"><alt src= "208640_203383299694136_161982183834248_565348_5857145_n"></a>
-					<div class="story-page-description-part story-image-float">
-					<!--<h3 class="story-page-text">Description:</h3>
-					<div class="story-page-well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget eros est, a auctor risus. Praesent id nisl leo. Sed mollis, ipsum et ornare vestibulum, mi tortor feugiat felis, a bibendum purus sapien a massa. Phasellus vel dolor nec justo eleifend porttitor vitae vitae eros. Phasellus a turpis metus. Integer eu est neque. Aenean lobortis, ante at pellentesque ullamcorper,</div>-->
-					<h3 class="story-page-text ">Story Info :</h3>
-					<div class="story-page-well"><% if !(@story.deleted || @story.hidden) %>
-							<ul class="nav nav-list">
-							<li class="nav-header">Status :</li>
-							<span class="greenbadge">Active</span>
-							<% elsif @story.deleted %>
-							<ul class="nav nav-list">
-							<li class="nav-header">Status</li>
-							<li><span class="redbadge">Deleted</span></li>
-							<% elsif @story.hidden %>
-							<li><span class="yellowbadge">Hidden</span></li>
-							<% end %>
-							<li class="nav-header">Date :</li>
-							<li><%= @story.date %></li>
-							<li class="nav-header">Rank :</li>
-							<li><%= @story.rank %></li>
-							<li class="nav-header">Interest Name :</li>
-							<li><%= Interest.find(@story.interest_id).name %></li>
-					
-					</div>
-					<ul class="nav nav-list" >
-					<li class="divider"></li>
-					</ul>
-					</div>
-		</div>
-		<h2 class="story-page-text">Content</h2>
+			
+			<%if @story.media_link== "" || @story.media_link == nil%>
+			<div class="story-body story-page-well">
+				<p style="float:left;"><font size="5"><%=raw @story.content %></p>
+				</div>	
+			<%else%>
+			<a href="#"><img src="<%= @story.media_link %>"><alt src= "208640_203383299694136_161982183834248_565348_5857145_n"></a>
+				<%end%>
+<%if @story.media_link!= "" && @story.media_link != nil%>			
+		<h2 class="story-page-text" style="clear:both;">Content</h2>
 			<ul class="nav nav-list" >
 			<li class="divider"></li>
 			</ul>
+	
+
 					<div class="story-body story-page-well">
 					
 					
@@ -61,12 +72,13 @@
 <p><font size="3">No content</p>
 <%end%>
 					</div>
-					
+				<%end%>	
 					<div class=body>
 					<h2 class="story-identation story-page-text">Comments</h2>
 					<ul class="nav nav-list story-identation" >
 					<li class="divider"></li>
 					</ul>
+
 <% if !(@comments.nil? || @comments.empty?) %>
 					<div class="story-comments pre-scrollable">
 				<% @comments.each do |comment| %>
