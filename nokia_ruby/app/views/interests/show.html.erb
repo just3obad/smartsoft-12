@@ -86,14 +86,14 @@
 RSS Feeds :
 </h3>
 
-<div class="interest-page-well">
+<div class="interest-page-well ">
 <! .. adding the RSS feeds added to this interest unless the table is empty ..>
 <table class="table">
   
 <% @feeds.each do |f| %>
     <tr>
+      <td><%= link_to( (f.link.length > 30 ? ('%{sub}...' % {:sub => f.link[0,30]}) : f.link), f.link)	%></td>
       <td><%= link_to("Delete", {:controller => "feeds", :action=>:destroy, :id => f.id}, class: "btn btn-danger" ) %></td>
-      <td><%= f.link %></td>
 
     </tr>
   <% end %>
