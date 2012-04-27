@@ -850,7 +850,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                             //TODO wrong pass
                             textField7.setString("");
                             textField8.setString("");
-                            switchDisplayable(getPasswordsDontMatch(), displayable);
+                            switchDisplayable(getUserExists(), displayable);
                             return;
                         }
                         else if(respCode == 500){
@@ -897,7 +897,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                     switchDisplayable(getWrongEmailFormat(), displayable);
                     return;
                 }help();
-                 if(json1.length() > 3) {
+                 if(json1 != null &&json1.length() > 3) {
                 //OMAR CODE
                      switchDisplayable(null, getToggle());//GEN-LINE:|7-commandAction|34|153-postAction
                 // write post-action user code here
@@ -5597,7 +5597,7 @@ u = u.substring(s + 1, u.length());
      
     }
         
-        if(json1.length() > 3) {
+if(json1 != null &&json1.length() > 3) {
        interests = allInterests(json1);
        user = userInterests(json1.substring(1, json1.indexOf("{")));
        for(int i = 0; i <user.size(); i++) {
