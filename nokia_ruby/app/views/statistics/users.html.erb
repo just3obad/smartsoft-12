@@ -17,7 +17,7 @@
        x = <%= get_user_start_date(@id).to_i %>;
         if(x != -1) {
         x=x+1;
-      pointStart= <%= get_user_start_date(@id).days.ago.to_i * 1000 %>
+      pointStart= <%= get_user_start_date(@id).days.ago.to_i * 1000 %>;
       //Label for x-axis 
       xl="Day"; 
       //Label for y-axis
