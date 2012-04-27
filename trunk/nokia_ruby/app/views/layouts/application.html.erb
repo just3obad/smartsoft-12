@@ -36,7 +36,7 @@
         </form>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Home",    '#' %></li>
+              <li><%= link_to "Home",   {controller: 'admins' ,action: 'index'} %></li>
               <li><%= link_to "Statistics", {controller: 'statistics' ,action: 'all_users'} %></li>
               <li><%= link_to "Log File", {controller: 'logs' ,action: 'index'} %></li>
 
