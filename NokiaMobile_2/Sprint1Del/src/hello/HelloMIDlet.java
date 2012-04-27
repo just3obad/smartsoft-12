@@ -13,6 +13,8 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Vector;
 import javax.microedition.io.Connector;
 import javax.microedition.io.HttpConnection;
@@ -26,7 +28,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of testing
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "192.168.43.31";
+    static String SERVER_IP = "192.168.284.133";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -1390,8 +1392,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
             } else if (command == ok) {//GEN-LINE:|7-commandAction|121|49-preAction
                 // write pre-action user code here
                 // The data that will be sent from the phone to the server...
-                String s = ""; // String s to carry all the data that will be sent
-                int c = 0; // To check of no data was entered
+                   // The data that will be sent from the phone to the server...
+                String s = " "; // String s to carry all the data that will be sent
+                int c = 0; // To check of no data was entered               
                 boolean first = false; // Boolean flag to to check the first argument that will be sent (to match the json format)
 
 
@@ -1419,7 +1422,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
                         String g = (!first) ? "{" : "";//check if this is the first field that the user use
 
-                        s += g + " \"password\":" + "\"" + this.userName.getString() + "\",";
+                        s += g + " \"password\":" + "\"" + this.pas.getString() + "\",";
 
                         c++;
 
@@ -1433,36 +1436,60 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                         this.getConfPas().setString("");
                         return;
                     }
-                    if (this.firstName.getString().length() != 0) {
 
-                        s += " \"first_Name\":" + "\"" + this.firstName.getString() + "\",";
-                        first = true;
-                        c++;
-                    }
                 }
                 if (this.lastName.getString().length() != 0) {
+
 
                     s += " \"last_name\":" + "\"" + this.lastName.getString() + "\",";
                     first = true;
                     c++;
+
+
+                }
+                if (this.firstName.getString().length() != 0) {
+
+                    //System.out.println("iiih");
+                    s += " \"first_name\":" + "\"" + this.firstName.getString() + "\",";
+                    first = true;
+                    c++;
                 }
                 if (this.dob.getDate().toString().length() != 0) {
-                    s += " \"date_of_birth\":" + "\"" + this.dob.getDate().toString() + "\",";
-                    first = true;
+                    //Date a = new Date();
+                    Calendar x = Calendar.getInstance();
+                    x.getTime();
+                    x.set(Calendar.HOUR_OF_DAY, 0);
+                    x.set(Calendar.MINUTE, 0);
+                    x.set(Calendar.SECOND, 0);
+                    if (!(this.dob.getDate().toString().equals(x.getTime().toString()))) {
+                        System.out.println(x.getTime());
+                        System.out.println(dob.getDate().toString());
+
+
+                        s += " \"date_of_birth\":" + "\"" + this.dob.getDate().toString() + "\",";
+                        first = true;
+                    }
                 }
                 s = s.substring(0, s.length() - 1);// To match the json format
 
                 s += "}";
-                if (c == 0) {// Check if the user entered a value
+                if (c == 0) {// Check if the user entered a value 
                     switchDisplayable(this.getEmptyFields(), this.getProfile());
                     return;
                 }
-                String url = "http://"+SERVER_IP+":"+PORT+"/users/" +this.userID+ "/profile";//url
+                String url = "http://" + this.SERVER_IP + ":" + this.PORT + "/users/" + this.userID + "/profile";//url
                 String rep = this.sendData(url, s);
-                System.out.println(rep);
-                // Still need to confirm that settings are saved MENIS
+                if (rep.equals("Success")) {
+                    switchDisplayable(this.getSavedProfile(), this.getMainFeed());
+                    return;
+                } else {
+                    switchDisplayable(this.getErrorProfile(), displayable);
+                    return;
+                }
 
 
+               
+                
 
 //GEN-LINE:|7-commandAction|122|49-postAction
                 // write post-action user code here
