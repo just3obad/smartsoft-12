@@ -26,7 +26,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of testing
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "192.168.26.156";
+    static String SERVER_IP = "192.168.43.31";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -1026,11 +1026,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == Verification) {
             if (command == Resend) {//GEN-END:|7-commandAction|51|170-preAction
                 // write pre-action user code here
-                if(!checkInternetConn()){
-                    return;
-                }
-
-                if(!checkServerConn()){
+               if(!checkAllConn()){
                     return;
                 }
 
@@ -1112,11 +1108,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 						return;
                     }
 
-			if(!checkInternetConn()){
-                    return;
-                }
 
-			if(!checkServerConn()){
+               if(!checkAllConn()){
                     return;
                 }
 
@@ -1184,12 +1177,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     }
 
 
+          //  if(response1.equalsIgnoreCase("true")){
+                //switchDisplayable(getVerifiedAlert(),getVerification());
+            //    switchDisplayable(getVerifiedAlert(),getMainFeed());
+//GEN-LINE:|7-commandAction|54|168-postAction
+          //  }
+           // else {
+                switchDisplayable(getIncorrectCode(),getVerification());
+         //   }
             if(response1.equalsIgnoreCase("true")){
                 //switchDisplayable(getVerifiedAlert(),getVerification());
                 switchDisplayable(getVerifiedAlert(),getMainFeed());
-//GEN-LINE:|7-commandAction|54|168-postAction
+                                             
             }
-            else {
+            else if(response1.equalsIgnoreCase("verified")){
+                switchDisplayable(getAlreadyVerified(), getMainFeed());
+            }
+               else {
                 switchDisplayable(getIncorrectCode(),getVerification());
             }
             //  }// write post-action user code here
@@ -2933,7 +2937,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Command getVerify() {
         if (Verify == null) {//GEN-END:|167-getter|0|167-preInit
             // write pre-init user code here
-            Verify = new Command("Verify", Command.SCREEN, 2);//GEN-LINE:|167-getter|1|167-postInit
+            Verify = new Command("Verify", Command.OK, 2);//GEN-LINE:|167-getter|1|167-postInit
             // write post-init user code here
         }//GEN-BEGIN:|167-getter|2|
         return Verify;
@@ -3041,7 +3045,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Form getVerification() {
         if (Verification == null) {//GEN-END:|162-getter|0|162-preInit
             // write pre-init user code here
-            Verification = new Form("form2", new Item[]{getVTF(), getVSI()});//GEN-BEGIN:|162-getter|1|162-postInit
+            Verification = new Form("Verify your Account", new Item[]{getVTF(), getVSI()});//GEN-BEGIN:|162-getter|1|162-postInit
             Verification.addCommand(getBackV());
             Verification.addCommand(getVerify());
             Verification.addCommand(getResend());
@@ -4223,7 +4227,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Command getGoToVerification() {
         if (goToVerification == null) {//GEN-END:|369-getter|0|369-preInit
             // write pre-init user code here
-            goToVerification = new Command("Verify", Command.SCREEN, 0);//GEN-LINE:|369-getter|1|369-postInit
+            goToVerification = new Command("Verify", Command.ITEM, 0);//GEN-LINE:|369-getter|1|369-postInit
             // write post-init user code here
         }//GEN-BEGIN:|369-getter|2|
         return goToVerification;
@@ -4377,7 +4381,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Alert getAlreadyVerified() {
         if (AlreadyVerified == null) {//GEN-END:|391-getter|0|391-preInit
             // write pre-init user code here
-            AlreadyVerified = new Alert("Already Verified", "Sorry, you have already verified your account", null, AlertType.ALARM);//GEN-BEGIN:|391-getter|1|391-postInit
+            AlreadyVerified = new Alert("Already Verified", "Your account is already verified", null, AlertType.INFO);//GEN-BEGIN:|391-getter|1|391-postInit
             AlreadyVerified.setTimeout(Alert.FOREVER);//GEN-END:|391-getter|1|391-postInit
             // write post-init user code here
         }//GEN-BEGIN:|391-getter|2|
@@ -6171,6 +6175,60 @@ String[] friendlist = null;
         }
 
     }
+    
+        public void checkConn(){
+        
+                        httpCheckConn1 = null;
+      String urlR = "http://"+SERVER_IP+":"+PORT+"/check.json";  
+
+    try {
+        
+
+      // Open an HTTP Connection object
+      httpCheckConn1 = (HttpConnection)Connector.open(urlR);
+
+      // Setup HTTP Request
+      httpCheckConn1.setRequestMethod(HttpConnection.GET);
+      System.out.println("1");
+      httpCheckConn1.setRequestProperty("User-Agent",
+        "Profile/MIDP-1.0 Confirguration/CLDC-1.0");
+
+      System.out.println("2");
+      //System.out.println(httpCheckConn1.);
+      int respCode = httpCheckConn1.getResponseCode();
+            System.out.println("3");
+      if(respCode == HttpConnection.HTTP_OK){
+          serverConn = true;
+          internetConn = true;
+      }else {
+          internetConn = false;
+          serverConn =false;
+      }
+        }catch (Exception e){
+            
+            serverConn = false;
+            internetConn = false;
+            e.printStackTrace();
+        }finally {
+        
+      if(httpCheckConn1 != null)
+            try {
+                httpCheckConn1.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+     
+    }
+        
+    }
+     
+     public boolean checkAllConn(){
+         checkConn();
+         if(!serverConn){
+             switchDisplayable(getServerError(),displayable);
+             return false;
+         }else return true;
+     }
     
 }
 
