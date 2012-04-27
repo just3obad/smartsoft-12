@@ -8,7 +8,8 @@
   $(document).ready(function() {
        //get The interests array of arrays of data
       data= <%= get_interest_stat(@id) %>;
-      if(data != -1) {
+      date= <%= get_interest_start_date(@id)%>
+      if(date != -1) {
       //the graphs that we want to show
       names=["No Of Users","No Of Stories"];
       //the time interval between one point and another in the graph.
