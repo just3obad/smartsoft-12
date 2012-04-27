@@ -12,7 +12,7 @@ NokiaRuby::Application.routes.draw do
   match "/users/new" => "users#create", :as => :create
   match "users/:id" => "users#show"
   match "stories/share_story_social_network" => "stories#share_story_social_network"
-  match "stories/recommend_story" => "stories#recommend_story"
+  match "stories/:sid/recommend_story" => "stories#recommend_story"
   match "stories/view_friends_like" => "stories#view_friends_like"
   match "stories/get_friends_email" => "stories#get_friends_email"
   match "stories/view_friends_dislike" => "stories#view_friends_dislike"
