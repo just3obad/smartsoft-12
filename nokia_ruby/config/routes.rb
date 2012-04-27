@@ -56,10 +56,15 @@ NokiaRuby::Application.routes.draw do
   match "friends/myreq"=>"friends#myreq"
   match "users/" => "users#index"
   match '/pages/home' => 'pages#home'
+
+  match 'interests/feeds/create' => 'feeds#create'
+  resources :feeds
+
+
   match "check" => "verification_codes#check"
-  match "/feeds/:id" => "feeds#create"
-  match "/feeds/delete_page/:interest_id" => "feeds#delete_page"
-  match "/feeds/delete/:id" => "feeds#delete"
+
+  #match "/feeds/:id" => "feeds#create"
+  #match "/feeds/delete/:id" => "feeds#destroy"
   match "users/:id/toggle" => "users#toggle"   
   match "user_add_interests" => "user_add_interests#addwithduplicates"
   
@@ -76,7 +81,7 @@ NokiaRuby::Application.routes.draw do
   resources :shares 
   resources :comments
 
-  resources :feeds, :only => [:create, :destroy, :index, :new, :delete]
+
 
   resources :gaheem_accounts
   #resources :friends
