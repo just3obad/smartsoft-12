@@ -12,8 +12,7 @@ end
   def create
 
     @feed= Feed.new(params[:feed]) #retrieving the feed from the database using the table feed parameters
-    if StoriesHelper.check_rss(params[:feed][:link])
-    if @feed.save
+    if @feed.save()
       redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
       flash[:success] = "Link added successfully"
       StoriesHelper.fetch_rss(params[:feed][:link])

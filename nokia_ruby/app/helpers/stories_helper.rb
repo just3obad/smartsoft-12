@@ -152,62 +152,62 @@ require 'open-uri'
 
 def fetch_rss(link)
 
-#source = "http://feeds.abcnews.com/abcnews/topstories" # url or local file
-source = link
-content = "" # raw content of rss feed will be loaded here
+  #source = "http://feeds.abcnews.com/abcnews/topstories" # url or local file
+  source = link
+  content = "" # raw content of rss feed will be loaded here
 
-#parsing the url
-open(source) do |s| content = s.read end
-rss = RSS::Parser.parse(content, false)
-
-
-i = 0
-num = rss.items.size
-#creating the array of stories
-listOfStories = Array.new()
-
-scategory = rss.channel.link
-
-#creating the stories and put them in the array
-while i < num do
-
-	stitle = rss.items[i].title
-	sdate = rss.items[i].date
-	sdescription =  rss.items[i].description
-
-	#check if the story already exists in the database
-	count_of_stories_with_same_title = Story.where(:title => stitle).select("title").count
+  #parsing the url
+  open(source) do |s| content = s.read end
+  rss = RSS::Parser.parse(content, false)
 
 
-	#if it is a new story, it will enter automatically
-	if count_of_stories_with_same_title == 0
-		#getting the id of the interest 
-		sinterest = Feed.where(:link => source).select("interest_id")
+  i = 0
+  num = rss.items.size
+  #creating the array of stories
+  listOfStories = Array.new()
 
-		storynow = Story.new(:title => stitle, :rank => 0, :media_link => "", :category => 			scategory, :deleted => false, :hidden => false, :interest_id => sinterest)
+  scategory = rss.channel.link
+
+  #creating the stories and put them in the array
+  while i < num do
+
+    stitle = rss.items[i].title
+    sdate = rss.items[i].date
+    sdescription =  rss.items[i].description
+
+    #check if the story already exists in the database
+    count_of_stories_with_same_title = Story.where(:title => stitle).select("title").count
+
+
+    #if it is a new story, it will enter automatically
+    if count_of_stories_with_same_title == 0
+      #getting the id of the interest 
+      sinterest = Feed.where(:link => source).select("interest_id")
+
+      storynow = Story.new(:title => stitle, :rank => 0, :category => scategory, :deleted => false, :hidden => false, :interest_id => sinterest)
 
 
 
-		storynow.content = sdescription
-		storynow.save
+      storynow.content = sdescription
+      storynow.save
 
-		sid = Story.find_by_title(stitle).id
-		
-		Log.create(loggingtype: 0,story_id: sid,message: "new story")
+      sid = Story.find_by_title(stitle).id
+      
+      Log.create(loggingtype: 0,story_id: sid,message: "new story")
 
-		listOfStories.append(storynow)
-	else
-		#if the story exists in the database it will enter the array without modifications
+      listOfStories.append(storynow)
+    else
+      #if the story exists in the database it will enter the array without modifications
 
-		storynow = Story.find_by_title(stitle)
-		listOfStories.append(storynow)
-	end
-		i+=1
+      storynow = Story.find_by_title(stitle)
+      listOfStories.append(storynow)
+    end
+      i+=1
 
-	if i == num || i ==50
-		#if the array is full, return it
-		return listOfStories
-	end
+    if i == num || i ==50
+      #if the array is full, return it
+      return listOfStories
+    end
 end
 
 #handling the errors of the links are not valid
@@ -230,33 +230,33 @@ end
 
 def check_rss(link)
 
-source = link
-content = "" # raw content of rss feed will be loaded here
+  source = link
+  content = "" # raw content of rss feed will be loaded here
 
-#parsing the url
-open(source) do |s| content = s.read end
-rss = RSS::Parser.parse(content, false)
-scategory = rss.channel.link
-return true
+  #parsing the url
+  open(source) do |s| content = s.read end
+  rss = RSS::Parser.parse(content, false)
+  scategory = rss.channel.link
+  return true
 
-rescue OpenURI::HTTPError
-return false
-rescue SocketError
-return false
-rescue RuntimeError
-return false
-rescue NoMethodError
-p 'enter valid link not a website'
-return false
-rescue Errno::ENOENT
-p 'enter valid link'
- return false
-rescue RSS::NotWellFormedError
-p 'enter valid rss feed link form'
-return false
+  rescue OpenURI::HTTPError
+  return false
+  rescue SocketError
+  return false
+  rescue RuntimeError
+  return false
+  rescue NoMethodError
+  p 'enter valid link not a website'
+  return false
+  rescue Errno::ENOENT
+  p 'enter valid link'
+   return false
+  rescue RSS::NotWellFormedError
+  p 'enter valid rss feed link form'
+  return false
 
 
-return false
+  return false
 end
 
 module_function :fetch_rss
