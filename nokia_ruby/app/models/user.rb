@@ -84,10 +84,10 @@ has_many :friendships, :dependent => :destroy
 
   def disliked()  
   @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
-  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
-  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
-  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @user1=User.new( :name =>"mina", :email => "mina@abc.com")
+  @user2=User.new( :name =>"kareem", :email => "kareem@abc.com")
+  @user3=User.new( :name =>"7mada", :email => "7mada@abc.com")
+  @user4=User.new( :name =>"yahia", :email => "yahia@abc.com")
   @list <<@user1 <<@user2 <<@user3 <<@user4
 
   return @list
