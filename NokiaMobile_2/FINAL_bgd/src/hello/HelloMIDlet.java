@@ -36,7 +36,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     String json;
     //  int user_id; // The user id of logged in 
     String currentStoryString;
-    int userID =1;
+    int userID;
     String message ;
 //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
@@ -892,6 +892,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 } else {
                     //TODO wrong email format register
                     switchDisplayable(getWrongEmailFormat(), displayable);
+                    return;
                 }help();
                  if(json1.length() > 3) {       
                 //OMAR CODE
