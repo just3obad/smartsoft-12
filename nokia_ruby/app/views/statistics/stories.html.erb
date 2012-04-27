@@ -69,8 +69,8 @@
 			<div class="statistics-page-well">
 				<div class="accordion-inner">
 					<h3 class="statistics-component-text">
-Likes/Dislikes :<%= get_total_number_of_likes %> 
-, <%= get_total_number_of_dislikes %></h3> 
+Likes/Dislikes : <%= get_total_number_of_likes %> 
+/ <%= get_total_number_of_dislikes %></h3> 
 	<div class="progresscustom" id="progressbar" style="display: none;">
 	 <div class="barcustom" id="barofprogress" 
 	 	style="width: <%= get_width %>%"></div>
@@ -136,14 +136,18 @@ class: "interest-component-button-absolute btn btn-primary"%>
 		
 	
 	<h3 class="statistics-component-text">
-	Shared by <%= get_distinct_number_of_users_who_shared %> 
-	<% if get_distinct_number_of_users_who_shared == 1 %>
-	<%= "user" %>
+	<% if get_distinct_number_of_users_who_shared == 0 %>
+	 	<%= "This story was not shared by anyone" %>
+	<% elsif get_distinct_number_of_users_who_shared == 1 %>
+		Shared by <%= get_distinct_number_of_users_who_shared %>
+		<%= "user" %>
 	<% else %>
-	<%= "users"  %>
+		Shared by <%= get_distinct_number_of_users_who_shared %>
+		<%= "users"  %>
 	<%  end %></h3>
 	
 	<li class="divider"></li>
+	<% if get_distinct_number_of_users_who_shared != 0 %>
 	<div class="pre-scrollable-statistics">
 <% Share.where(:story_id => @id).select("distinct(user_id)").find_each do |share| %>
 		<div class="well-user-component">
@@ -175,6 +179,7 @@ class: "user-component-button-absolute btn btn-primary"%>
 		</div>
 		<% end %>
 	</div>
+	<% end %>
 			
 					
 </ul>
