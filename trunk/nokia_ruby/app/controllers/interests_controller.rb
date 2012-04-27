@@ -37,7 +37,10 @@ class InterestsController < ApplicationController
    if @interest.save
      flash[:success] = "Your Interest was added Successfully"
  # here we check if flash returned a sucess then we display the success message
+
+ Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
      redirect_to @interest
+
 
    else
   $errors = true
