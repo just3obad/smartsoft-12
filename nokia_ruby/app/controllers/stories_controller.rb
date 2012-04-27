@@ -195,25 +195,11 @@ Log.create!(loggingtype: 1,user_id_1: @userid,user_id_2: nil,admin_id: nil,story
 end
 
 #this method returns friend emails and ids when takes the user id.
-def get_friends_email_and_id()
- @userid=params[:uid] 
-
-  @flist=Array.new
-  @flistemailid=Array.new
-  @flist = User.find_by_id(@userid).get_Friend_List()
-
-    (0..(@flist.length-1)).each do |i|
-    @flistemailid << (@flist[i].id)
-    @flistemailid << (@flist[i].email)
-      end  
-    if @flist.empty?
-     render text: "sorry_you_dont_have_any_friends"
-    else
-        render text: @flistemailid.to_s
-      end
-
- end
-
+def get_friend_id()
+ @useremail=params[:email] 
+ @id = User.find_by_email(@useremail).id
+ render text: @id.to_s
+end
 
 
 #view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
