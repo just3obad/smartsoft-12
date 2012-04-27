@@ -32,7 +32,8 @@ class HAccountsController < ApplicationController
   def forgot_password
     @h_account = Haccount.find_by_email(params[:email])
     @pass = ([*('A'..'Z'),*('0'..'9')]-%w( 0 1 I O)).sample(6).join
-    @h_account.update(:password => @pass)
+    @h_account.password = @pass
+    @h_account.save
     Emailer.password_reset(@h_account, @pass).deliver
     render json: true
   end
