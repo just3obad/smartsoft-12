@@ -223,10 +223,10 @@ div.well-user-component:hover {
    color:#999;
 }
 .user-component-button-absolute{
-	  font-weight: normal;
-	 text-transform: none;
-	float:right;
-	margin-left:25px;
+	      font-weight: normal;
+	     text-transform: none;
+	    float:right;
+	    margin-right:20px;
 }
 
 
@@ -273,10 +273,10 @@ div.well-story-component:hover {
    color:#999;
 }
 .story-component-button-absolute{
-	  font-weight: normal;
-	 text-transform: none;
-	float:right;
-	margin-left:25px;
+	      font-weight: normal;
+	     text-transform: none;
+	    float:right;
+	    margin-right:20px;
 }
 
 .well-interest-component {
@@ -323,10 +323,10 @@ div.well-interest-component:hover {
    color:#999;
 }
 .interest-component-button-absolute{
-	  font-weight: normal;
-	 text-transform: none;
-	float:right;
-	margin-left:25px;
+	      font-weight: normal;
+	     text-transform: none;
+	    float:right;
+	    margin-right:20px;
 }
 
 .thumbnail-interest-page {
@@ -420,7 +420,7 @@ padding-bottom:20px;
   color: #fff;
 }
 
-#error_explanation {
+#error_explanation-new{
   width: 400px;
   border: 2px solid red;
   padding: 7px;
@@ -429,7 +429,7 @@ padding-bottom:20px;
   background-color: #f0f0f0;
 }
 
-#error_explanation h2 {
+#error_explanation-new h2 {
   text-align: left;
   font-weight: bold;
   padding: 5px 5px 5px 15px;
@@ -439,13 +439,13 @@ padding-bottom:20px;
   color: #fff;
 }
 
-#error_explanation p {
+#error_explanation-new p {
   color: #333;
   margin-bottom: 0;
   padding: 5px;
 }
 
-#error_explanation ul li {
+#error_explanation-new ul li {
   font-size: 12px;
   list-style: square;
 }
@@ -681,8 +681,8 @@ div.well-comment-component:hover {
    color:#999;
 }
 .comment-component-button-absolute{
-	  font-weight: normal;
-	 text-transform: none;
-	float:right;
-	margin-left:25px;
+	      font-weight: normal;
+	     text-transform: none;
+	    float:right;
+	    margin-right:20px;
 }
