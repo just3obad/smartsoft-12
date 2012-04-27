@@ -7,13 +7,23 @@ class UsersController < ApplicationController
 
 def feed
  @id=params[:id]
- @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
- @stories_list = get_stories(@interests,@id).map {|story| story.attributes.merge(:interest => Interest.find(story.interest_id).name)}
-respond_to do |format|
-    format.json { render json: @stories_list }
- end
- end
 
+ @interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , @id ] , :select => "interest_id").map {|interest|interest.interest_id}
+ blocked_interests =  BlockInterest.select {|entry| @id==entry.user_id }.map{|entry| entry.interest_id }
+  unblocked_stories = Array.new
+ unblocked_interests = @interests - blocked_interests
+ @stories_list = get_stories(unblocked_interests)
+ stories_ids = @stories_list.map {|story| story.id}
+ blocked_stories_ids = BlockStory.select { |entry| @id==entry.user_id }.map  { |entry| entry.story_id }
+ unblocked_stories_ids = stories_ids - blocked_stories_ids
+ unblocked_stories_ids.each do |unblocked_story_id|
+       unblocked_stories.append(Story.find(unblocked_story_id))
+ end
+   stories =   unblocked_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
+respond_to do |format|
+   format.json { render json: stories }
+ end
+ end
 #this method takes id as param and return user intersts and all interests 
 def toggle
 @id=params[:id]
