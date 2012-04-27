@@ -4,11 +4,9 @@ include StoriesHelper
 include InterestsHelper
 include UsersHelper
 
-#This is the method that should return the data of statistics of an interest
-#with this format first element in the data arrays is ARRAY OF "No Of Users",
-#second one is "No Of Articles"
-#third one is "No of videos"
-#and forth one is "No of images"
+ '''This is the method that should return the data of statistics of an interest
+ with this format first element in the data arrays is ARRAY OF "No Of Users",
+ second one is "No Of stories"'''
  def get_interest_stat(interest_id)
  sto = get_num_stories_in_interest_day(interest_id)
  usr = get_num_users_added_interest_day(interest_id)
