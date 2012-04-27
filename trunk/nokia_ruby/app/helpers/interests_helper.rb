@@ -133,7 +133,7 @@ module InterestsHelper
   elsif deleted && interest_create_date < 30.days.ago.to_date && 
         interest_create_date < 30.days.ago.to_date
   
-          stories_per_day = [0]  
+          stories_per_day = []  
   
 
   elsif interest_create_date < 30.days.ago.to_date
@@ -233,7 +233,7 @@ module InterestsHelper
   elsif deleted && interest_create_date < 30.days.ago.to_date && 
         interest_last_update_date < 30.days.ago.to_date
   
-       users_per_day = [0]  
+       users_per_day = []  
   
 
   elsif interest_create_date < 30.days.ago.to_date
