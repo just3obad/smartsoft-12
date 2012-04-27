@@ -193,7 +193,7 @@ def fetch_rss(link)
 
       sid = Story.find_by_title(stitle).id
       
-      Log.create(loggingtype: 0,story_id: sid,message: "new story")
+      Log.create(loggingtype: 2,story_id: sid,message: "new story")
 
       listOfStories.append(storynow)
     else
