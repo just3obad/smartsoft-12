@@ -24,5 +24,5 @@ validates :name, :presence => true,
 
 
 # the image will be entered using a URL link whci should also be of the form  "http://www. xxxx.jpg"
-  validates :image,  :format   => { :with => LINK_regex }
+  #validates :image,  :format   => { :with => LINK_regex }
 end
