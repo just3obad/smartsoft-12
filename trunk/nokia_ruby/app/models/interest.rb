@@ -7,7 +7,7 @@ class Interest < ActiveRecord::Base
   has_many :feeds, :dependent => :destroy
 
  # RSS feed link has to be of the form "http://www.abc.com"
-LINK_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/ix
+LINK_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix
  
   # name cannot be duplicated and has to be there .
 
@@ -25,5 +25,5 @@ validates :name, :presence => true,
 
 
 # the image will be entered using a URL link whci should also be of the form  "http://www. xxxx.jpg"
-  #validates :image,  :format   => { :with => LINK_regex }
+  validates :image,  :format   => { :with => LINK_regex }
 end
