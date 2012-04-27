@@ -146,11 +146,8 @@ def recommend_story()
    @storybod=@story.content
 
   if @friend.blank?
- user1=Array.new
- user1 << User.where(:email => @email)
 
-  if
-    !user1.include?@email
+  if User.find_by_email(@email).nil?
     Emailer.invite_to_app(@user2email, @email, @message).deliver
    else
     Emailer.recommend_story(@user2email, @email, @message, @storytit, @storybod).deliver
