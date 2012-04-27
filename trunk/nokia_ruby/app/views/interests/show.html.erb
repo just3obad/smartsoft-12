@@ -32,19 +32,21 @@
 
 			<%= form_tag("/logs/filterbydate", :method => "get") %>
 			  <label for="name" class="logs-take-input" >Name :</label>
-			  <input type="text" class="input-medium" placeholder="Name"  name="name"id="name">
+			  <input type="text" class="input-medium" placeholder="Name"  name="name"id="name" disabled="disabled">
 		          <label for="description"class="logs-take-input" >Description :</label>
-			  <textarea type="text" class="input-medium" placeholder="Description" name="description" id="description"></textarea>
+			  <textarea type="text" class="input-medium" placeholder="Description" name="description" id="description" disabled="disabled"></textarea>
 			  <label for="image"class="logs-take-input" >Image :</label>
-			  <input type="text" class="input-medium" placeholder="Image URL" name="image" id="image">
-			  <input class="btn btn-primary" name="commit" type="submit" value="Edit"  />
+			  <input type="text" class="input-medium" placeholder="Image URL" name="image" id="image" disabled="disabled">
+			  <input class="btn btn-primary" name="commit" type="submit" value="Edit" disabled="disabled" />
 							
 			</form>
 
 			<li class="divider"></li>
 <!.. deleting the interest .. no action at the moment .. >
+
 			<li class="nav-header">Delete this Interest </li>
-			<%= link_to 'Delete it !!',class: "control-absolute btn btn-primary btn-danger btn disabled disabled"%>
+			
+  <input class="btn btn-primary btn-danger" name="commit" type="submit" value="Delete Interest" disabled="disabled" />
 
 			</ul>
 </div>
@@ -56,8 +58,8 @@
 			<div class="middle-interest-panel" >
 			<h1><%= @interest.name %></h1>
 <!-- the interest's image .. the alternative is Nokia Logo image -->
-<h3><% if @interest.image.nil? %>
-      <%= image_tag "logo.jpeg" %>
+<h3><% if @interest.image ==  "" || @interest.image.nil? %>
+      <%= image_tag "logo.jpeg" , :size => "320x320"%>
       <% else %>
       <img src= "<%= @interest.image%>" width="320" style="height:320px"/>
       <% end %>
