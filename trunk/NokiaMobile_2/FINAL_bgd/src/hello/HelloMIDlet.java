@@ -115,13 +115,13 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command backCommand15;
     private Command registerCommand;
     private Command okCommand13;
+    private Command backCommand17;
+    private Command okCommand14;
     private Command okCommand12;
     private Command resendPasswordCommand;
     private Command backCommand16;
     private Command connectSocialAccount;
     private Command backToMainFeed;
-    private Command backCommand17;
-    private Command okCommand14;
     private Command find1;
     private Form form;
     private StringItem stringItem;
@@ -207,14 +207,15 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert InternetError;
     private Alert UserExists;
     private Alert PasswordLessThan6Chars;
+    private Form friendlist;
+    private ChoiceGroup choiceGroup1;
     private Alert UserDoesntExist;
     private Form ResendPassword;
     private TextField textField1;
     private Alert CommentFailed;
     private Alert DownedBefore;
     private Alert alert2;
-    private Form friendlist;
-    private ChoiceGroup choiceGroup1;
+    private Alert emailisnotincorrectformat;
     private Image image1;
     //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -1527,15 +1528,9 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 // write post-action user code here
             } else if (command == okCommand) {//GEN-LINE:|7-commandAction|149|113-preAction
                 
-                 if(checkServerConn())
-                {
-                //save what the user enters and send it via send data
-           String ss="friend:"+getChoiceGroup1()+"email:"+getTextField2()+" message:"+getTextField3();
-         sendData("http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?sid="+currentStoryString+"&uid="+userID, ss);
-        
-//GEN-LINE:|7-commandAction|150|113-postAction
-                }else{switchDisplayable(getAlert(), getRecommend());
-                 }// write post-action user code here
+             
+         emailformat();//GEN-LINE:|7-commandAction|150|113-postAction
+              // write post-action user code here
             }//GEN-BEGIN:|7-commandAction|151|35-preAction
         } else if (displayable == textBox) {
             if (command == backCommand1) {//GEN-END:|7-commandAction|151|35-preAction
@@ -4660,6 +4655,53 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return choiceGroup1;
     }
     //</editor-fold>//GEN-END:|443-getter|2|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Method: emailformat ">//GEN-BEGIN:|454-if|0|454-preIf
+    /**
+     * Performs an action assigned to the emailformat if-point.
+     */
+    public void emailformat() {//GEN-END:|454-if|0|454-preIf
+        // enter pre-if user code here
+      RE form = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)"+ "*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+                 
+      boolean format =  form.match(textField2.getString());
+  
+      if (format) {//GEN-LINE:|454-if|1|455-preAction
+            // write pre-action user code here
+            if(checkServerConn())
+                {
+                //save what the user enters and send it via send data
+           String ss="friend:"+getChoiceGroup1()+"email:"+getTextField2()+" message:"+getTextField3();
+         sendData("http://" + SERVER_IP + ":" + PORT+"/stories/recommend_story?sid="+currentStoryString+"&uid="+userID, ss);
+            
+            }else{switchDisplayable(getAlert(), getRecommend());
+                 }
+//GEN-LINE:|454-if|2|455-postAction
+            // write post-action user code here
+      } else {//GEN-LINE:|454-if|3|456-preAction
+            // write pre-action user code here
+          switchDisplayable(null, getEmailisnotincorrectformat());//GEN-LINE:|454-if|4|456-postAction
+            // write post-action user code here
+      }//GEN-LINE:|454-if|5|454-postIf
+        // enter post-if user code here
+    }//GEN-BEGIN:|454-if|6|
+    //</editor-fold>//GEN-END:|454-if|6|
+
+    //<editor-fold defaultstate="collapsed" desc=" Generated Getter: emailisnotincorrectformat ">//GEN-BEGIN:|458-getter|0|458-preInit
+    /**
+     * Returns an initiliazed instance of emailisnotincorrectformat component.
+     * @return the initialized component instance
+     */
+    public Alert getEmailisnotincorrectformat() {
+        if (emailisnotincorrectformat == null) {//GEN-END:|458-getter|0|458-preInit
+            // write pre-init user code here
+            emailisnotincorrectformat = new Alert("alert3", "emailisnotincorrectformat(xxxx@example.com)", null, null);//GEN-BEGIN:|458-getter|1|458-postInit
+            emailisnotincorrectformat.setTimeout(Alert.FOREVER);//GEN-END:|458-getter|1|458-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|458-getter|2|
+        return emailisnotincorrectformat;
+    }
+    //</editor-fold>//GEN-END:|458-getter|2|
 
 
 
