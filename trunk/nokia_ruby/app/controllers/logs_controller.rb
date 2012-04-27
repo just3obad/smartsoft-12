@@ -17,10 +17,14 @@ class LogsController < ApplicationController
           @emptydate = false
         end
         $logs = Log.order("created_at DESC")
+        begin
         respond_to do |format|
            format.html { render :template => 'logs/Logs' }
            format.xls { send_data $logs.to_xls, content_type: 'application/vnd.ms-excel', filename: 'LogFile.xls' }
          end
+       rescue
+         render :template => 'shared/error_page'
+       end
       end
  #used by a post http request to enter new logs into the database
  #from outside of the server
