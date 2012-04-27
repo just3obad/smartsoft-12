@@ -1,7 +1,7 @@
 <script type="text/javascript" charset="utf-8">
   //This is a method that will be called on viewing this page it gets the data that will be added to the graph + what's the start
    //point and also what is the interval between each two points default will be 1 day also it takes the names of the things it
-   //view across time by default for a story we will view no of shares , no of likes, no of dislikes and no of spams
+   //view across time by default for a story we will view no of shares , no of likes, no of dislikes and no of spams and no of comments
    //and then call method kl that will view the graph with the parameters already stated.
    
    //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
@@ -25,22 +25,20 @@
       //Label for graph title
       titleOfGraph="User Stat";
       //call the method that renders the graph with the calculated parameters.
-       document.getElementById("deletedStory").style.display= "none"; 
+       document.getElementById("deactivatedUser").style.display= "none"; 
       Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);
       } else {
-         document.getElementById("deletedStory").style.display = "block";
+         document.getElementById("deactivatedUser").style.display = "block";
       document.getElementById("ccc").style.display = "none";
       }  
    });
 </script>
 <!-- ccc is the id of the div that the graph would render to -->
 <div id="ccc" style="width: 700px; height: 500px;"></div>
-<i class="icon-search"></i>
-<i class="icon-thumbs-up"></i>
 
 
-<div class="alert" id="deletedStory" style="display: none;">
+<div class="alert" id="deactivatedUser" style="display: none;">
   
            <a class="close" data-dismiss="alert">×</a>
-           <h1><strong>Warning!</strong> Story was deleted before the last 30 days.</h1>
+           <h1><strong>Warning!</strong> User was deactivated before the last 30 days.</h1>
      </div>
