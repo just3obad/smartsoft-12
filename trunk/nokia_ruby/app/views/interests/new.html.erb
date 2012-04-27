@@ -28,12 +28,16 @@
   <% for interest in @interests %>
     <tr>
 
-   
-      <td><% if @interest.image == nil %>
-      <img src= "https://encrypted-tbn1.google.com/images?q=tbn:ANd9GcSmafAQWE9jElPl5q5M6N5V-CC0Y2QI4ISmJE4R5e4iWd14PwIE" width="75px" style="height:75px">
+
+<td><% if interest.image ==  "" || interest.image.nil? %>
+      <%= image_tag "logo.jpeg" , :size => "75x75"%>
       <% else %>
-      <img src= "<%= @interest.image%>" width="75px" style="height:75px"/>
-      <% end %></td>
+      <img src= "<%= interest.image%>" width="75" style="height:75px"/>
+      <% end %>
+</td>
+
+   
+
       <td><%= link_to(interest.name, {:controller => "interests", :action => "show", :id => interest.id} ) %></td>
       <td><%= interest.description %></td>
     </tr>
