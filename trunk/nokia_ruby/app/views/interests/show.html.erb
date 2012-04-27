@@ -1,9 +1,16 @@
 <html>
 
+<% if $savedinterest %>
+<%= render 'shared/logs_success_messages' %>
+
+<%end%>
+
+<% if not $saved.nil? %>
 <% if $saved %>
 <%= render 'shared/logs_success_messages' %>
 <%else %>
 <%= render 'shared/logs_error_messages' %>
+<% end %>	
 <%end%>
 
 
@@ -14,7 +21,7 @@
 
     <div class="left_panel">
       <ul class="nav nav-list left_panel ">
-               <%= render 'shared/error_feed' %>
+     
 
 	<li class="nav-header">Add Rss Feed</li>
         <! .. ADDING RSS FEED .. >
