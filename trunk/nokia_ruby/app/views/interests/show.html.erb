@@ -23,7 +23,6 @@
 
 <% end %>
 <!DELETING RSS>
-            <%= link_to("Manage RSS feeds", {:controller => "feeds", :action => "delete_page", :interest_id =>@interest.id}, class: "btn btn-warning" ) %>
 
             
 <! edit interest part .. to be added later >
@@ -89,10 +88,15 @@ RSS Feeds :
 
 <div class="interest-page-well">
 <! .. adding the RSS feeds added to this interest unless the table is empty ..>
-<% unless @interest.feeds.empty? %>
-
-     <%= render @interest.feeds %> 
-<% end %>
+<table class="table">
+  
+<% @feeds.each do |f| %>
+    <tr>
+      <td><%= f.link %></td>
+      <td><%= link_to("Delete", {:controller => "feeds", :action=>:destroy, :id => f.id}, class: "btn btn-danger" ) %></td>
+    </tr>
+  <% end %>
+</table>
 </div>
 	<ul class="nav nav-list" >
 		<li class="divider"></li>
@@ -112,7 +116,7 @@ RSS Feeds :
 			<div class="pre-scrollable">
 <% @stories.each do |story| %>
 			<div class="well-story-component ">
-			<a href="    #"class="thumbnail-story-component"><img src=<%= story.media_link %>></a>
+			<a href="    #"class="thumbnail-story-component"><img src=<%= story.media_link %> style="width:75px; height:75px;"></a>
 			<div class="story-component-info">
 			<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
 			<h6 class ="story-component-text"><%= story.content %></h6>

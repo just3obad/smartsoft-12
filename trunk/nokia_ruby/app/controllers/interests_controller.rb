@@ -8,8 +8,8 @@ class InterestsController < ApplicationController
      
     @interests = Interest.all
     @interest = Interest.find(params[:id])#retrieving the interest from the database using the id
-       @stories = Story.find_all_by_interest_id(params[:id]) # get
-
+    @stories = Story.find_all_by_interest_id(params[:id]) # get
+    @feeds = Feed.find_all_by_interest_id(params[:id])
     @feed = Feed.find_by_interest_id(params[:id])#retrieving the feeds for a certain interest in the database using the id of the interest
 
     if @feed == nil #if the list of RSS feeds if a certain interest is empty we will create a new one

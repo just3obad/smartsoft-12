@@ -255,11 +255,10 @@ rescue RSS::NotWellFormedError
 p 'enter valid rss feed link form'
 return false
 
+
 return false
 end
 
 module_function :fetch_rss
 module_function :check_rss
 end
-
-
