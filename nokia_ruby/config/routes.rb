@@ -62,10 +62,11 @@ NokiaRuby::Application.routes.draw do
   
 
 
-  root :to => 'pages#home'
+  root :to => 'admins#index'
   
 #  resources :users
 #  resources :h_accounts
+
   resources :admins
   resources :stories
   resources :interests
@@ -86,12 +87,6 @@ NokiaRuby::Application.routes.draw do
   match '/logs/users/:id',    to: 'logs#get_specific_user'
   match '/logs/admins/:id',    to: 'logs#get_specific_admin'
 #LogFiles
-
-
-
-
-
-
 
 
   # The priority is based upon order of creation:
