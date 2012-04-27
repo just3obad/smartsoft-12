@@ -95,22 +95,27 @@ Likes/Dislikes :<%= get_total_number_of_likes %>
 	<h3 class="statistics-component-text">Story</h3>
 		<li class="divider"></li>
 		<div class="well-story-component ">
-			<a href="/stories/<%= @id%>"class="thumbnail-story-component">
-				<img src="http://placehold.it/75x75" /></a>
-				<div class="story-component-info">
-					<h2><% if @story.title.nil? %>
-						   <%= "No Title Available" %>
-						   <% else %>
-						   <%= @story.title  %>
-						   <%  end %>
-					</h2>
+		<a href="/stories/<%= @id%>"
+				class="thumbnail-story-component">
+			<%= image_tag "logo.jpeg", :size => "75x75" %></a>
+		  	<div class="story-component-info">
+				<h2><% if @story.title.nil? %>
+					   <%= "No Title Available" %>
+					   <% else %>
+					   <%= @story.title  %>
+					   <%  end %></h2>					
 				</div>
 		</div>
 	<h3 class="statistics-component-text">Interest related</h3>
 		<li class="divider"></li>
 		<div class="well-interest-component">
-			<a href="/interests/<%= @story.interest_id%>"class="thumbnail-interest-component">
-				<img src="http://placehold.it/75x75" /></a>
+			<a href="/interests/<%= @story.interest_id%>"
+				class="thumbnail-interest-component">
+			  <% if @interest.image.nil? || @interest.image == "" %>
+     			  <%= image_tag "logo.jpeg", :size => "75x75" %>
+     			  <% else %>
+            <img src= "<%= @interest.image %>" width="75" style="height:75px"/>
+            		  <% end %> </a>
 				<div class="interest-component-info">
 					<h2><% if @interest.name.nil? %>
 						<%= "No Name Available" %>
@@ -143,20 +148,26 @@ class: "interest-component-button-absolute btn btn-primary"%>
 <% Share.where(:story_id => @id).select("distinct(user_id)").find_each do |share| %>
 		<div class="well-user-component">
 		<a href="/users/<%= share.user_id%>"class="thumbnail-user-component">
-		<img src="http://placehold.it/75x75" /></a>
+		<% if User.find(share.user_id).image.nil? || 
+			User.find(share.user_id).image == "" %>
+     		  <%= image_tag "logo.jpeg", :size => "75x75" %>
+     		  <% else %>
+		  <img src= "<%= User.find(share.user_id).image %>" 
+		  	width="75" style="height:75px"/>
+            	  <% end %> </a>
 			<div class="user-component-info">
-				<h3><%= User.find(share.user_id).email %>
-				<h6>
-				(
-				<%= get_number_of_shares(share.user_id) %>
-				<% if get_number_of_shares(share.user_id) == 1 %>
-				<%= "Share" %>
-				<% else %>
-				<%= "Shares"  %>
-				<%  end %>
-				)
-				</h6>
-				</h3>
+			  <h3><%= User.find(share.user_id).email %>
+			  <h6>
+			  (
+			  <%= get_number_of_shares(share.user_id) %>
+			  <% if get_number_of_shares(share.user_id) == 1 %>
+			  <%= "Share" %>
+			  <% else %>
+			  <%= "Shares"  %>
+			  <%  end %>
+			  )
+			  </h6>
+			  </h3>
 <%= link_to "view Statistics", 
 {:controller => 'statistics', :action => 'users', :id => share.user_id}, 
 class: "user-component-button-absolute btn btn-primary"%>
