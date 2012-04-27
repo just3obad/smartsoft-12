@@ -129,7 +129,7 @@ public class createStories {
             int id = json.getInt("id");
             String title = json.getString("title");
             String content = (json.getString("content"));
-            String category = json.getString("category");
+            String category = json.getString("interest");
             int rank = json.getInt("rank");
             String media = json.getString("media_link");
             storyItem a = new storyItem(id,media,title,content,rank,category,display,this.Hello);
