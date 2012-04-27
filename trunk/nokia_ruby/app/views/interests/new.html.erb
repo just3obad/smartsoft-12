@@ -17,15 +17,20 @@
 });
 </SCRIPT>
 
+  <% if @interests.empty? %>
+  <%= render 'shared/logs_error_messages' %>
+  <% else %>
 
 <table class="table table-striped table-bodered">
+  <% for interest in @interests %>
   <th>
     
    
     <th> Title </th>
     <th> Description </th>
   </tr>
-  <% for interest in @interests %>
+
+
     <tr>
 
 
@@ -43,6 +48,7 @@
     </tr>
   <% end %>
 </table>
+<%end%>
 <div>
 <input type="button" class="btn btn-primary" value="Add new interest" onclick="callmodal()" style= "margin:20px";/>	
 
