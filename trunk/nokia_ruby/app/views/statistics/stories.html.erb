@@ -98,19 +98,12 @@ Likes/Dislikes :<%= get_total_number_of_likes %>
 			<a href="/stories/<%= @id%>"class="thumbnail-story-component">
 				<img src="http://placehold.it/75x75" /></a>
 				<div class="story-component-info">
-					<h3><% if @story.title.nil? %>
+					<h2><% if @story.title.nil? %>
 						   <%= "No Title Available" %>
 						   <% else %>
 						   <%= @story.title  %>
 						   <%  end %>
-					</h3>
-					<h6><% if @story.content.nil? %>
-						<%= "No Content Available " %>
-						<% else %>
-						<%= @story.content  %>
-						<%  end %>
-					</h6>
-
+					</h2>
 				</div>
 		</div>
 	<h3 class="statistics-component-text">Interest related</h3>
@@ -119,18 +112,12 @@ Likes/Dislikes :<%= get_total_number_of_likes %>
 			<a href="/interests/<%= @story.interest_id%>"class="thumbnail-interest-component">
 				<img src="http://placehold.it/75x75" /></a>
 				<div class="interest-component-info">
-					<h3><% if @interest.name.nil? %>
+					<h2><% if @interest.name.nil? %>
 						<%= "No Name Available" %>
 						<% else %>
 						<%= @interest.name  %>
 						<%  end %>
-					</h3>
-					<h6><% if @interest.description.nil? %>
-						<%= "No Description Available" %>
-						<% else %>
-						<%= @interest.description  %>
-						<%  end %>
-					</h6>
+					</h2>
 <%= link_to "view Statistics", 
 {:controller => 'statistics', :action => 'interests',:id => @story.interest_id }, 
 class: "interest-component-button-absolute btn btn-primary"%>
