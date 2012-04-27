@@ -690,8 +690,13 @@
                     <Property name="title" typeID="Pjava.lang.String" value="Vform1"/>
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Component componentID="63" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R472"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R22"/>
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R62"/>
+                        <Component componentID="472" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R63"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R375"/>
+                        </Component>
                     </Component>
                     <Component componentID="233" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R234"/>
@@ -1345,8 +1350,13 @@
                     <Property name="commandListener" typeID="C#CommandListener" value="R7"/>
                     <Property name="items" typeID="1Cjavax.microedition.lcdui.Item" value="A1:4_R205"/>
                     <Component componentID="186" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R471"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R184"/>
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R185"/>
+                        <Component componentID="471" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R186"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R22"/>
+                        </Component>
                     </Component>
                     <Component componentID="190" typeID="C#CommandEventSource">
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R184"/>
@@ -1757,8 +1767,13 @@
                         <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R17"/>
                     </Component>
                     <Component componentID="378" typeID="C#CommandEventSource">
+                        <Property name="eventHandler" typeID="C#EventHandler" value="R473"/>
                         <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R375"/>
                         <Property name="command" typeID="Cjavax.microedition.lcdui.Command" value="R377"/>
+                        <Component componentID="473" typeID="C#SwitchDisplayableEventHandler">
+                            <Property name="eventSource" typeID="C#EventSource" value="R378"/>
+                            <Property name="displayable" typeID="Cjavax.microedition.lcdui.Displayable" value="R22"/>
+                        </Component>
                     </Component>
                 </Component>
                 <Component componentID="381" typeID="Cjavax.microedition.lcdui.Form">
