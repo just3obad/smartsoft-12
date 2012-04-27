@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of testing
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "10.37.129.2";
+    static String SERVER_IP = "172.20.10.3";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -36,7 +36,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     String json;
     //  int user_id; // The user id of logged in 
     String currentStoryString;
-    int userID;
+    int userID = 3;
     String message ;
 //<editor-fold defaultstate="collapsed" desc=" Generated Fields ">//GEN-BEGIN:|fields|0|
     private Command exitCommand;
@@ -1602,7 +1602,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         } else if (displayable == twitterAuthFailed) {
             if (command == BackToAccounts) {//GEN-END:|7-commandAction|157|305-preAction
                 // write pre-action user code here
-                switchDisplayable(null, getConnectAccount());//GEN-LINE:|7-commandAction|158|305-postAction
+                switchDisplayable(null, getAuthTwitter());//GEN-LINE:|7-commandAction|156|305-postAction
                 // write post-action user code here
             } else if (command == Resend1) {//GEN-LINE:|7-commandAction|159|302-preAction
                 // write pre-action user code here
@@ -3835,7 +3835,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public StringItem getStringItem4() {
         if (stringItem4 == null) {//GEN-END:|306-getter|0|306-preInit
             // write pre-init user code here
-            stringItem4 = new StringItem("Authorization Failed", "Please press resend to resend the authorization url ");//GEN-LINE:|306-getter|1|306-postInit
+            stringItem4 = new StringItem("Authorization Failed", "Please press resend to resend the authorization url. Note that twitter times out requests.");//GEN-LINE:|306-getter|1|306-postInit
             // write post-init user code here
         }//GEN-BEGIN:|306-getter|2|
         return stringItem4;
@@ -5203,12 +5203,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         OutputStream os = null;
         HttpConnection httpConn = null;
         
-        if (!checkInternetConn()){
-            switchDisplayable(getInternetError(), getLoginScreen());
-        }
-        if (!checkServerConn()){
-            switchDisplayable(getServerError(), getLoginScreen());
-        }
+//        if (!checkInternetConn()){
+//            switchDisplayable(getInternetError(), getLoginScreen());
+//        }
+//        if (!checkServerConn()){
+//            switchDisplayable(getServerError(), getLoginScreen());
+//        }
 
         try {
             // Open an HTTP Connection object
