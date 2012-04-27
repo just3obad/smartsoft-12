@@ -1,5 +1,12 @@
 <html>
+
+<% if $saved %>
+<%= render 'shared/logs_success_messages' %>
+<%else %>
 <%= render 'shared/logs_error_messages' %>
+<%end%>
+
+
 
 <div class="container-fluid maindiv">
 
