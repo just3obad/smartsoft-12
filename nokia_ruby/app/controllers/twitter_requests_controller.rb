@@ -46,13 +46,6 @@ class TwitterRequestsController < ApplicationController
                              :sign_in => true)
 
     user = User.find(params[:u_id])
-    t_account = TwitterAccount.find_by_user_id(params[:u_id])
-    if (t_account)
-      #return render text: "You already have an twitter account connected"
-      #puts t_account.to_s
-      #puts 't_account is destroyed '
-      t_account.destroy
-    end
 
     @t_request = TwitterRequest.new
     user = User.find(params[:u_id]) 
@@ -121,6 +114,14 @@ class TwitterRequestsController < ApplicationController
 
     #puts t_request.to_s + 'destoryed'
     t_request.destroy #not needed any more
+
+    old_account = TwitterAccount.find_by_user_id(params[:u_id])
+    if (old_account)
+      #return render text: "You already have an twitter account connected"
+      #puts t_account.to_s
+      #puts 't_account is destroyed '
+      old_account.destroy
+    end
 
     @t_account = TwitterAccount.new
     @t_account.auth_token = access.token
