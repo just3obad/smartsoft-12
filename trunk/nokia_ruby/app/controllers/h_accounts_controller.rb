@@ -20,12 +20,12 @@ class HAccountsController < ApplicationController
   def sign_in
     @h_account = Haccount.find_by_email(params[:email])
     if @h_account
-    if @h_account.password ==  params[:password]
-      @uLog = UserLogIn.create(params[@h_account.id])
-      render json: @h_account
-    else
-      render json: @h_account.errors, status: :unprocessable_entity
-    end
+      if @h_account.password ==  params[:password]
+        @uLog = UserLogIn.create(:user_id =>@h_account.id)
+        render json: @h_account
+      else
+        render json: @h_account.errors, status: :unprocessable_entity
+      end
     end
   end
 
