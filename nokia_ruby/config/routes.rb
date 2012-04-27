@@ -73,7 +73,7 @@ NokiaRuby::Application.routes.draw do
   match "user/:id/friendship/pending" => "user_friend#pending_invited_by"
   match "user/:id/friendship/friends" => "user_friend#friends"
   match "user/:id/friendship/checkFriends" => "user_friend#friends_with?"
-  match "user/:id/friendship/rempoeFriend" => "user_friend#remove_friendship"
+  match "user/:id/friendship/removeFriend" => "user_friend#remove_friendship"
   match "user/:id/friendship/block" => "user_friend#block"
   match "user/:id/friendship/unblock" => "user_friend#unblock"
   match "user/:id/friendship/totalfriends" => "user_friend#total_friends"
