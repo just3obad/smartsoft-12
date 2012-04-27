@@ -56,7 +56,7 @@
 			<div class="middle-interest-panel" >
 			<h1><%= @interest.name %></h1>
 <!-- the interest's image .. the alternative is Nokia Logo image -->
-<h3><% if @interest.image == "" %>
+<h3><% if @interest.image.nil? %>
       <%= image_tag "logo.jpeg" %>
       <% else %>
       <img src= "<%= @interest.image%>" width="320" style="height:320px"/>
@@ -92,8 +92,9 @@ RSS Feeds :
   
 <% @feeds.each do |f| %>
     <tr>
-      <td><%= f.link %></td>
       <td><%= link_to("Delete", {:controller => "feeds", :action=>:destroy, :id => f.id}, class: "btn btn-danger" ) %></td>
+      <td><%= f.link %></td>
+
     </tr>
   <% end %>
 </table>
