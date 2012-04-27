@@ -13,14 +13,14 @@
 
   $(document).ready(function() {
       //get The story's array of arrays of data
-      data= <%= get_story_stat %>
+      data= <%= get_story_stat %>;
       //the graphs that we want to show
       names=["No Of Shares","No Of Likes","No of Dislikes","No of Flags"]; 
       //the time interval between one point and another in the graph.
-      pointInterval= <%= 1.day * 1000 %> 
+      pointInterval= <%= 1.day * 1000 %> ;
       // Start point of the graph.
       start_date = 
-      <%= get_story_start_date(@creation_date, @last_update, @hidden).to_i %>
+      <%= get_story_start_date(@creation_date, @last_update, @hidden).to_i %>;
       //check if the story was deleted before the last 30 days
       //if no, then render the graph normally. If yes, 
       //then show the warning described in the HTML part below

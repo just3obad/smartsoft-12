@@ -8,11 +8,11 @@
 
   $(document).ready(function() {
      //get The user's array of arrays of data
-      data= <%= get_user_stat(@id) %>
+      data= <%= get_user_stat(@id) %>;
       //the graphs that we want to show
       names=["No Of Shares","No Of Likes","No of Dislikes","No of Spams","No of Comments"]; 
       //the time interval between one point and another in the graph.
-      pointInterval= <%= 1.day * 1000 %> 
+      pointInterval= <%= 1.day * 1000 %>; 
       // Start point of the graph.
        x = <%= get_user_start_date(@id).to_i %>;
         if(x != -1) {
@@ -35,6 +35,9 @@
 </script>
 <!-- ccc is the id of the div that the graph would render to -->
 <div id="ccc" style="width: 700px; height: 500px;"></div>
+<i class="icon-search"></i>
+<i class="icon-thumbs-up"></i>
+
 
 <div class="alert" id="deletedStory" style="display: none;">
   
