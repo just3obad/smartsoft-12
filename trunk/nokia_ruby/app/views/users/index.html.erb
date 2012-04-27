@@ -1,42 +1,23 @@
-	<div class="container-fluid maindiv">
-	
-	<div class="row-fluid">
+ <table class="table table-striped table-bodered">
+  <tr>
 
-	 <div class="left_panel">
-
-			
-		
-			  
-	    </div>
-
-
-      <% if not @users.nil? and @users.length > 0 %>
-	    <div class="right_panel pre-scrollable" >
-      <div class="well">
-        <% @users.each do |user| %>
-        <div class="well-user-component">
-            <a href="/users/<%= user.id %>"class="thumbnail-user-component"><img style="height:75px; width:75px;" src="<%= user.image %>"></a>
-            <div class="user-component-info">
-                <h4><%= user.first_name.nil? ? '' : user.first_name.downcase.capitalize %> <%= user.last_name.nil? ? '' : user.last_name.downcase.capitalize %></h4>
-                <h6 class ="user-component-text"><%= user.email %></h6>
-                <h6 class ="user-component-text"><%= user.name %><%=	link_to "User Statistics", logs_path, class: "user-component-button-absolute btn btn-primary"%> </h6>
-            
-            </div>
-          </div>
-        <%end%>
-  </div>
-    </div>
-      <% else %>
-      <div class="right_panel">
-        <div class="well">
-            There are no matching results.
-        </div>
-      </div>
-      <% end %>
+    <th>  </th>
+    <th> Username </th>
+    <th> First Name </th>
+    <th> Last Name </th>
+    <th> Email </th>
+  </tr>
+  <% for user in @users %>
+    <tr>
 
 
-		</div>
-
-
+      <td><img style="width:150px; height:150px;" src= <%= user.image %> ></td>
+      <td><%= link_to(user.name, {:controller => "users", :action => "show", :id => user.id} ) %></td>
+      <td><%= user.first_name %></td>
+      <td><%= user.last_name %></td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+</table>
 
 
