@@ -12,8 +12,10 @@ LINK_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6
   # name cannot be duplicated and has to be there .
 
 validates :name, :presence => true,
-                 :uniqueness => true,
+                 :uniqueness => {:case_sensitive => false},
                  :length   => { :maximum => 20 }
+
+                 
 
 
 
