@@ -46,5 +46,12 @@ class VerificationCodesController < ApplicationController
     end
   end
 
+  def check
+  respond_to do |format|
+  @result = true
+  format.json { render json: @result }
+  end
+  end
+
 
 end
