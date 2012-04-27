@@ -31,10 +31,13 @@ class InterestsController < ApplicationController
   #" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations ) then we redirect to the main page of the interest 
  # otherwise , we render once more  the "New" page 
 
-  def create
-  @interests = Interest.all 
+  def create 
+   $saved = nil
+   $savedinterest
+   @interests = Interest.all 
    @interest = Interest.new(params[:interest])
    if @interest.save
+ $savedinterest = true
      flash[:success] = "Your Interest was added Successfully"
  # here we check if flash returned a sucess then we display the success message
 
@@ -43,6 +46,7 @@ class InterestsController < ApplicationController
 
 
    else
+ $savedinterest = false
   $errors = true
      @title = "Add Interest"     
 render 'new'
