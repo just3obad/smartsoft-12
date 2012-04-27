@@ -14,23 +14,24 @@ include UsersHelper
  usr = get_num_users_added_interest_day(interest_id)
  data ="[#{usr} , #{sto}]"
  end
+  ''' 
+  This is the method that should return the data of statistics of an story
+  with this format first element in the data arrays is ARRAY OF "No Of Shares",
+  second one is "No Of Likes"
+  third one is "No of Dislikes"
+  and forth one is "No of Flags"
+  '''
+  def get_story_stat
  
-#This is the method that should return the data of statistics of an story
-#with this format first element in the data arrays is ARRAY OF "No Of Shares",
-#second one is "No Of Likes"
-#third one is "No of Dislikes"
-#and forth one is "No of Flags"
- def get_story_stat
- 
- shares = get_no_of_activity(@shares, @creation_date, @last_update, @hidden)
- likes = get_no_of_activity(@likes, @creation_date, @last_update, @hidden)
- dislikes = get_no_of_activity(@dislikes, @creation_date, @last_update, @hidden)
- flags = get_no_of_activity(@flags, @creation_date, @last_update, @hidden)
- data = "[#{shares},#{likes},#{dislikes},#{flags}]"
- end
+  shares = get_no_of_activity(@shares, @creation_date, @last_update, @hidden)
+  likes = get_no_of_activity(@likes, @creation_date, @last_update, @hidden)
+  dislikes = get_no_of_activity(@dislikes, @creation_date, @last_update, @hidden)
+  flags = get_no_of_activity(@flags, @creation_date, @last_update, @hidden)
+  data = "[#{shares},#{likes},#{dislikes},#{flags}]"
+  end
 
   '''
-  This is the method that should return the data of statistics of an story
+  This is the method that should return the data of statistics of a user
   with this format first element in the data arrays is ARRAY OF "No Of Shares",
   second one is "No Of Likes"
   third one is "No of Dislikes"
