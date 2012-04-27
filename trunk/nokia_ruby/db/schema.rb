@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426065354) do
+ActiveRecord::Schema.define(:version => 20120426095723) do
 
   create_table "Verification_Codes", :force => true do |t|
     t.string   "code"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(:version => 20120426065354) do
   end
 
   create_table "admins", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "block_interests", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "interest_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "block_stories", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -76,7 +90,6 @@ ActiveRecord::Schema.define(:version => 20120426065354) do
     t.integer  "sender"
     t.integer  "receiver"
     t.integer  "status"
-    t.boolean  "is_blocked"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -145,7 +158,6 @@ ActiveRecord::Schema.define(:version => 20120426065354) do
     t.date     "date"
     t.integer  "rank"
     t.string   "media_link"
-    t.boolean  "is_blocked"
     t.string   "category"
     t.text     "content"
     t.boolean  "hidden"
