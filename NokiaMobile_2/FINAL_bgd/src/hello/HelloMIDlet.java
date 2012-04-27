@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of testing
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "192.168.1.13";
+    static String SERVER_IP = "10.37.129.2";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -122,8 +122,8 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Command backCommand16;
     private Command connectSocialAccount;
     private Command backToMainFeed;
-    private Command find1;
     private Command editInfo;
+    private Command find1;
     private Form form;
     private StringItem stringItem;
     private Form Story;
@@ -216,10 +216,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert CommentFailed;
     private Alert DownedBefore;
     private Alert alert2;
-    private Alert emailisnotincorrectformat;
-    private Alert savedProfile;
-    private Alert errorProfile;
     private Alert miniPass;
+    private Alert errorProfile;
+    private Alert savedProfile;
+    private Alert emailisnotincorrectformat;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -554,7 +554,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-        switchDisplayable(null, getConnectAccount());//GEN-LINE:|3-startMIDlet|1|3-postAction
+        switchDisplayable(null, getLoginScreen());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
 //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -803,7 +803,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 RE regex = new RE("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
                 if (regex.match(textField6.getString())) {
                     if(textField7.getString().equals(textField8.getString())){
-                        if(textField7.getString().length() < 6){
+                        if(textField7.getString().length() >= 6){
                     HttpConnection httpConn = null;
                     InputStream is = null;
                     OutputStream os = null;
