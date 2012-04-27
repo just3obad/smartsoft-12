@@ -39,7 +39,10 @@ NokiaRuby::Application.routes.draw do
   match "h_accounts" => "h_accounts#index"
   match "/users/:id" => "users#feed"
   match "/admins/search" => "admins#search"
-  match "/interests/new"  => "interests#new", :as => :new
+
+  match "/interests/list"  => "interests#new", :as => :new
+
+
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
   match "users/:id/friend_requests" => "users#friend_requests"
