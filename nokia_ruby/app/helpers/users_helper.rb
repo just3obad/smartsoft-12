@@ -93,7 +93,7 @@ end
 
  else
 
- first_user_log_date = UserLogIn.first.created_at 
+ first_user_log_date = User.first.created_at 
  
  if first_user_log_date >= 30.days.ago.to_date
 
