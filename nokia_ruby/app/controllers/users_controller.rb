@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 def feed
  @id=params[:id]
  @interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}  
- @stories_list = get_stories(@interests)
+ @stories_list = get_stories(@interests).map {|story| story.attributes.merge(:interest => Interest.find(story.interest_id).name)}
 respond_to do |format|
     format.json { render json: @stories_list }
  end
@@ -171,3 +171,5 @@ end
     Log.create!(loggingtype: 0,user_id_1: @user_id,user_id_2: @friend_id, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
   end
 end
+
+
