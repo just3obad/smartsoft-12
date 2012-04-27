@@ -8,7 +8,10 @@
     <div class="left_panel">
       <ul class="nav nav-list left_panel ">
                <%= render 'shared/error_feed' %>
-
+<li class="nav-header">View Statistics</li>
+<li class="divider"></li>
+<%= link_to("View Statistics", {:controller => 'statistics', :action=> 'interests', :id => @interest.id}, class: "btn btn-primary" ) %></br>
+<li class="divider"></li>
 	<li class="nav-header">Add Rss Feed</li>
         <! .. ADDING RSS FEED .. >
 
@@ -47,6 +50,7 @@
 			<li class="nav-header">Delete this Interest </li>
 			
   <input class="btn btn-primary btn-danger" name="commit" type="submit" value="Delete Interest" disabled="disabled" />
+
 
 			</ul>
 </div>
