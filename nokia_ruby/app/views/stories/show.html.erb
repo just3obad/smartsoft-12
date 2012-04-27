@@ -53,9 +53,13 @@
 					<div class="story-body story-page-well">
 					
 					
+<% if !(@story.content.nil? || @story.content=="") %>
 					<div class="pre-scrollable">
 						<p><font size="5"><%=raw @story.content %></p>
 					</div>		
+<%else%>
+<p><font size="3">No content</p>
+<%end%>
 					</div>
 					
 					<div class=body>
@@ -63,6 +67,7 @@
 					<ul class="nav nav-list story-identation" >
 					<li class="divider"></li>
 					</ul>
+<% if !(@comments.nil? || @comments.empty?) %>
 					<div class="story-comments pre-scrollable">
 				<% @comments.each do |comment| %>
 							
@@ -74,9 +79,13 @@
 <p><font size="2"><%= comment.content %>
 </p>
 </div>
+</div>
+</div>
+<%end%>
+<%else%>
+<p><font size="3">No comments</p>
+		
 
-</div>
-</div>
 <%end%>	
 					</div>
 			</div>
