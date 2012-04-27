@@ -43,10 +43,10 @@ class Admin < ActiveRecord::Base
     end
 
     for email_query in email_match
-      query_result += User.all.select {|user| not user.email.nil? and user.email =~ %r'#{email_query}'}
+      query_result += User.all.select {|user| not user.email.nil? and not user.email.empty? and user.email =~ %r'#{email_query}'}
     end
 
-    query_result += User.all.select {|user| not user.email.nil? and (query =~ %r'#{user.email}' or user.email =~ %r'#{query}')}
+    query_result += User.all.select {|user| not user.email.nil? and not user.email.empty? and (query =~ %r'#{user.email}' or user.email =~ %r'#{query}')}
 
     # Matched $EMAIL
 
@@ -60,8 +60,8 @@ class Admin < ActiveRecord::Base
     end
 
     for name_query in name_match
-      query_result += User.all.select {|user| not user.first_name.nil? and
-                                      (user.first_name.downcase =~ %r'#{name_query}' or name_query.downcase =~ %r'#{user.first_name}')}
+      query_result += User.all.select {|user| not user.first_name.nil? and not user.first_name.empty? and
+                                       (user.first_name.downcase =~ %r'#{name_query}' or name_query.downcase =~ %r'#{user.first_name}')}
     end
     # Matched names
     username_query = query
@@ -74,7 +74,7 @@ class Admin < ActiveRecord::Base
     end
 
     for username_query in username_match
-      query_result += User.all.select {|user| not user.name.nil? and
+      query_result += User.all.select {|user| not user.name.nil? and not user.name.empty? and
                                        (user.name.downcase =~ %r'#{username_query.downcase}' or 
                                         username_query.downcase =~ %r'#{user.name.downcase}')}
     end

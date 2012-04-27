@@ -10,7 +10,7 @@
 	    </div>
 
 
-      <% if not @users.nil? and @users.length > 0 %>
+      <% if not @users.nil? and @users.length > 0 and @users.class != String %>
 	    <div class="right_panel pre-scrollable" >
       <div class="well">
         <h2>Search Results</h2>
@@ -30,7 +30,7 @@
       <% else %>
       <div class="right_panel">
         <div class="well">
-            <h2>There are no matching results.</h2>
+            <h2><%= @users %></h2>
         </div>
       </div>
       <% end %>

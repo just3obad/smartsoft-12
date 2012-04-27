@@ -1,7 +1,14 @@
 class AdminsController < ApplicationController
 
   def search
-    @users = Admin.search(params[:query])
+    if params[:query].length > 0
+      @users = Admin.search(params[:query])
+      if @users.length == 0
+        @users = "There are no matching results."
+      end
+    else
+      @users = "Please enter query into the search bar."
+    end
 
     respond_to do |format|
       format.html #index.html.erb
