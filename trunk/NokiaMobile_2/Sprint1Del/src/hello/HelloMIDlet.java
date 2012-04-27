@@ -3703,7 +3703,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public StringItem getStringItem4() {
         if (stringItem4 == null) {//GEN-END:|306-getter|0|306-preInit
             // write pre-init user code here
-            stringItem4 = new StringItem("Authorization Failed", "Please press resend to resend the authorization url ");//GEN-LINE:|306-getter|1|306-postInit
+            stringItem4 = new StringItem("Authorization Failed", "Please press resend to resend the authorization url. Note that Twitter timesout requests");//GEN-LINE:|306-getter|1|306-postInit
             // write post-init user code here
         }//GEN-BEGIN:|306-getter|2|
         return stringItem4;

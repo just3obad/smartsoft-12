@@ -1666,7 +1666,7 @@
                         <Property name="codeGenerated" typeID="Pboolean" value="Vtrue"/>
                         <Property name="label" typeID="Pjava.lang.String" value="VAuthorization Failed"/>
                         <Property name="itemCommandListener" typeID="C#ItemCommandListener" value="R17"/>
-                        <Property name="text" typeID="Pjava.lang.String" value="VPlease press resend to resend the authorization url "/>
+                        <Property name="text" typeID="Pjava.lang.String" value="VPlease press resend to resend the authorization url. Note that Twitter timesout requests"/>
                     </Component>
                     <Component componentID="302" typeID="C#CommandEventSource">
                         <Property name="eventHandler" typeID="C#EventHandler" value="R468"/>
