@@ -115,17 +115,14 @@ RSS Feeds :
 <!.. these are two dummy user stories .. who is responsible for the stories page should  add them here ..>
 			<div class="pre-scrollable">
 <% @stories.each do |story| %>
-			<div class="well-story-component ">
-			<a href="    #"class="thumbnail-story-component"><img src=<%= story.media_link %> style="width:75px; height:75px;"></a>
-			<div class="story-component-info">
-			<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
-			<h6 class ="story-component-text"><%= story.content %></h6>
-			<h6 class ="story-component-text"><%= story.rank %></h6>
-			<h6 class ="story-component-text"><%= story.date %>
-			<%=	link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> </h6>
+	<div class="story-body story-page-well ">
+		<%=link_to "View Statistics", logs_path, class: "story-component-button-absolute btn btn-primary"%> 
+		<div class="story-component">
+		<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
+		<h6 class ="story-body story-page-well"><%=raw story.content %></h6>
 
-					</div>
 		</div>
+	</div>
 <%end%>
 	
 		
