@@ -50,11 +50,18 @@
 					 <label for="to"class="logs-take-input" >To :</label>
 					  <input type="text" class="input-medium" placeholder="YYYY-MM-DD" <%if( $datefilter==true )%> value=<%=@text2%> <%end%> name="to" id="to">
 				<div>
-					 	<input class="btn btn-primary" name="commit" type="submit" 
-						         value="Go" />
-									<%=if $datefilter==true
-									link_to "back", logs_path, class: "span1 control-absolute btn btn-primary" 
-									end%>
+					<div disabled="disabled">
+					<table>
+					 	<tr>
+						
+						<td><input class="btn btn-primary"  name="commit" type="submit" 
+						         value="Go" /></td>
+									<td><%=if $datefilter==true
+									link_to "Back to default", logs_path, class: "btn btn-primary" 
+									end%></td>
+									</tr>
+									</table>
+									</div>
 					</div>
 						</form>
 					
