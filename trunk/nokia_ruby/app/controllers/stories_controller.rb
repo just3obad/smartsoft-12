@@ -134,30 +134,30 @@ Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2:nil,admin_id: nil,story_
 def recommend_story()
   @storyid=params[:sid]
   @userid=params[:uid]
-    friend=params[:friend]
-    email=params[:email]
-    message=params[:message]
+    @friend=params[:friend]
+    @email=params[:email]
+    @message=params[:message]
 
-   friend1=Array.new
-   friend1 << friend
-  if friend1.empty?
 
+   user2=User.find_by_id(@userid)
+   @user2email=user2.email
+   @story=Story.find_by_id(@storyid)
+   @storytit=@story.title
+   @storybod=@story.content
+
+  if @friend.blank?
  user1=Array.new
- user2=User.find_by_email(email)
- user1 << User.where(:email => email)
+ user1 << User.where(:email => @email)
 
   if
-    user1.empty?
-    Net::SMTP.start( smtp.gmail.com, 25) do |smtp|
-    smtp.send_message "invitation to gaheem application", user.email, [email]
-     end
-
+    !user1.include?@email
+    Emailer.invite_to_app(@user2email, @email, @message).deliver
    else
-    self.show user2, message
+    Emailer.recommend_story(@user2email, @email, @message, @storytit, @storybod).deliver
   end
 
  else
-  self.show friend, message
+   Emailer.recommend_story(@user2email, @friend, @message, @storytit, @storybod).deliver
  end
 @username = User.find(:first, :conditions => { :id => @userid},:select => "name")
     @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
@@ -208,11 +208,11 @@ def view_friends_like
   @flistlike = User.find_by_id(@userid).liked() 
 
    (0..(@flistlike.length-1)).each do |i|
-    @flistliked << (@flistlike[i].email)
+    @flistliked << (@flistlike[i].name)
       end  
 
    respond_to do |format|
-     format.json{render json:@flistlike}
+     format.json{render json:@flistliked}
      end
  @username = User.find(:first, :conditions => { :id => @userid},:select => "name")
     @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
@@ -228,15 +228,15 @@ def view_friends_dislike
     @userid=params[:uid]
 
   @flistdislike=Array.new
-  @flistdisliked
+  @flistdisliked=Array.new
   @flistdislike = User.find_by_id(@userid).disliked()
 
    (0..(@flistdislike.length-1)).each do |i|
-    @flistdisliked << (@flistdislike[i].email)
+    @flistdisliked << (@flistdislike[i].name)
       end  
 
    respond_to do |format|
-     format.json{render json:@flistdislike}
+     format.json{render json:@flistdisliked}
     end
 @username = User.find(:first, :conditions => { :id => @userid},:select => "name")
     @storytitle = Story.find(:first, :conditions => { :id => @storyid},:select => "title")
