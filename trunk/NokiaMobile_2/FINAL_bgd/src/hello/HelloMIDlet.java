@@ -25,7 +25,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
 
     // YAHIA : i added those for sake of testing
     //static String SERVER_IP = "172.20.10.4";
-    static String SERVER_IP = "192.168.43.10";
+    static String SERVER_IP = "192.168.43.31";
     static int PORT = 3000;
     // YAHIA END <-- lol..Menisy! :p
     String url;
@@ -555,7 +555,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
      */
     public void startMIDlet() {//GEN-END:|3-startMIDlet|0|3-preAction
         // write pre-action user code here
-        switchDisplayable(null, getRecommend());//GEN-LINE:|3-startMIDlet|1|3-postAction
+        switchDisplayable(null, getLoginScreen());//GEN-LINE:|3-startMIDlet|1|3-postAction
         // write post-action user code here
     }//GEN-BEGIN:|3-startMIDlet|2|
 //</editor-fold>//GEN-END:|3-startMIDlet|2|
@@ -1188,7 +1188,10 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 switchDisplayable(getVerifiedAlert(),getMainFeed());
 //GEN-LINE:|7-commandAction|54|168-postAction
             }
-            else {
+            else if(response1.equalsIgnoreCase("verified")){
+                switchDisplayable(getAlreadyVerified(), getMainFeed());
+            }
+               else {
                 switchDisplayable(getIncorrectCode(),getVerification());
             }
             //  }// write post-action user code here
@@ -2923,7 +2926,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Command getVerify() {
         if (Verify == null) {//GEN-END:|167-getter|0|167-preInit
             // write pre-init user code here
-            Verify = new Command("Verify", Command.SCREEN, 2);//GEN-LINE:|167-getter|1|167-postInit
+            Verify = new Command("Verify", Command.OK, 2);//GEN-LINE:|167-getter|1|167-postInit
             // write post-init user code here
         }//GEN-BEGIN:|167-getter|2|
         return Verify;
@@ -3031,7 +3034,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Form getVerification() {
         if (Verification == null) {//GEN-END:|162-getter|0|162-preInit
             // write pre-init user code here
-            Verification = new Form("form2", new Item[]{getVTF(), getVSI()});//GEN-BEGIN:|162-getter|1|162-postInit
+            Verification = new Form("Verification", new Item[]{getVTF(), getVSI()});//GEN-BEGIN:|162-getter|1|162-postInit
             Verification.addCommand(getBackV());
             Verification.addCommand(getVerify());
             Verification.addCommand(getResend());
@@ -4366,7 +4369,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     public Alert getAlreadyVerified() {
         if (AlreadyVerified == null) {//GEN-END:|391-getter|0|391-preInit
             // write pre-init user code here
-            AlreadyVerified = new Alert("Already Verified", "Sorry, you have already verified your account", null, AlertType.ALARM);//GEN-BEGIN:|391-getter|1|391-postInit
+            AlreadyVerified = new Alert("Already Verified", "Your Account is already Verified", null, AlertType.INFO);//GEN-BEGIN:|391-getter|1|391-postInit
             AlreadyVerified.setTimeout(Alert.FOREVER);//GEN-END:|391-getter|1|391-postInit
             // write post-init user code here
         }//GEN-BEGIN:|391-getter|2|
