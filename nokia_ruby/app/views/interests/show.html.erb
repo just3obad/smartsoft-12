@@ -1,6 +1,5 @@
 <html>
-<%= render 'shared/logs_success_messages' %>
-
+<%= render 'shared/logs_error_messages' %>
 
 <div class="container-fluid maindiv">
 
@@ -9,23 +8,17 @@
     <div class="left_panel">
       <ul class="nav nav-list left_panel ">
                <%= render 'shared/error_feed' %>
-<li class="nav-header">View Statistics</li>
-<li class="divider"></li>
-<%= link_to("View Statistics", {:controller => 'statistics', :action=> 'interests', :id => @interest.id}, class: "btn btn-primary" ) %></br>
-<li class="divider"></li>
+
 	<li class="nav-header">Add Rss Feed</li>
         <! .. ADDING RSS FEED .. >
 
           <li class="divider"></li>
             
-            <%= form_for (@feed) do |f| %>
- 
-                <%= render 'shared/error_feed' %>
-                <%= f.text_field :link , :value => '' , :placeholder=> 'RSS link' %>
-                <%= f.hidden_field :interest_id, :value =>@interest.id%>
-                <%= f.submit "Submit"  , class:"btn btn-primary"%>
-
-<% end %>
+            <form action="feeds/create" method="post">
+              <input type="text" name="feed[link]" />
+              <input type="hidden" name="feed[interest_id]" value= "<%= @interest.id %>" />
+              <input type="submit" name="commit" value="Submit" class="btn btn-primary"/>
+            </form>
 <!DELETING RSS>
 
             
@@ -51,7 +44,6 @@
 			<li class="nav-header">Delete this Interest </li>
 			
   <input class="btn btn-primary btn-danger" name="commit" type="submit" value="Delete Interest" disabled="disabled" />
-
 
 			</ul>
 </div>
@@ -100,7 +92,7 @@ RSS Feeds :
 <% @feeds.each do |f| %>
     <tr>
       <td><%= link_to( (f.link.length > 30 ? ('%{sub}...' % {:sub => f.link[0,30]}) : f.link), f.link)	%></td>
-      <td><%= link_to("Delete", {:controller => "feeds", :action=>:destroy, :id => f.id}, class: "btn btn-danger" ) %></td>
+      <td><%= link_to("Delete", f, {:controller => "feeds", :method=>:delete, class: "btn btn-danger"} ) %></td>
 
     </tr>
   <% end %>
@@ -123,10 +115,13 @@ RSS Feeds :
 <!.. these are two dummy user stories .. who is responsible for the stories page should  add them here ..>
 			<div class="pre-scrollable">
 <% @stories.each do |story| %>
-	<div class="story-body story-page-well ">
-		<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-large btn-primary") %>
-		<div class="story-component">
-		<h3><%= link_to( story.title, {:controller => 'statistics', :action => 'stories',:id => story.id}) %></h3>
+ 		<div >
+		<h3><%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-large btn-primary") %></h3>
+
+		<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
+		<div class="pre-scrollable">
+
+		
 		<h6 class ="story-body story-page-well"><%=raw story.content %></h6>
 
 		</div>
