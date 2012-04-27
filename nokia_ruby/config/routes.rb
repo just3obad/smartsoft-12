@@ -49,12 +49,12 @@ NokiaRuby::Application.routes.draw do
   match "users/:id/friend_requests" => "users#friend_requests"
   #match "users/" => "users#index"
   match "friends/"=>"friends#index"
-  match "friends/req" => "friends#req"
-  match "friends/accept" => "friends#accept"
-  match "friends/reject" => "friends#reject"
+  match "friends/:id/req" => "friends#req"
+  match "friends/:id/accept" => "friends#accept"
+  match "friends/:id/reject" => "friends#reject"
   match "friends/index"=>"friends#index"
   match "friends/find"=>"friends#find"
-  match "friends/myreq"=>"friends#myreq"
+  match "friends/:id/myreq"=>"friends#myreq"
   match "users/" => "users#index"
   match '/pages/home' => 'pages#home'
 
@@ -68,6 +68,16 @@ NokiaRuby::Application.routes.draw do
   #match "/feeds/delete/:id" => "feeds#destroy"
   match "users/:id/toggle" => "users#toggle"   
   match "user_add_interests" => "user_add_interests#addwithduplicates"
+  match "user/:id/friendship/invite" => "user_friend#invite"
+  match "user/:id/friendship/approve" => "user_friend#approve"
+  match "user/:id/friendship/pending" => "user_friend#pending_invited_by"
+  match "user/:id/friendship/friends" => "user_friend#friends"
+  match "user/:id/friendship/checkFriends" => "user_friend#friends_with?"
+  match "user/:id/friendship/rempoeFriend" => "user_friend#remove_friendship"
+  match "user/:id/friendship/block" => "user_friend#block"
+  match "user/:id/friendship/unblock" => "user_friend#unblock"
+  match "user/:id/friendship/totalfriends" => "user_friend#total_friends"
+  
   
 
 
