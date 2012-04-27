@@ -223,6 +223,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
     private Alert errorProfile;
     private Alert savedProfile;
     private Alert emailisnotincorrectformat;
+    private Alert PleaseTryAgain;
     private Image image1;
 //</editor-fold>//GEN-END:|fields|0|
     private HttpConnection httpConn;
@@ -728,9 +729,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                             return;
                         } else if(respCode == 500){
                             //TODO user doesn't exist
-                            textField4.setString("");
-                            textField5.setString("");
-                            switchDisplayable(this.getUserDoesntExist(),displayable);
+                            switchDisplayable(this.getPleaseTryAgain(),displayable);
                             return;
                         }
                     } catch (Throwable t) {
@@ -896,6 +895,7 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                 } else {
                     //TODO wrong email format register
                     switchDisplayable(getWrongEmailFormat(), displayable);
+                    return;
                 }help();
                  if(json1.length() > 3) {
                 //OMAR CODE
@@ -5054,6 +5054,23 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
         return miniPass;
     }
 //</editor-fold>//GEN-END:|463-getter|2|
+
+//<editor-fold defaultstate="collapsed" desc=" Generated Getter: PleaseTryAgain ">//GEN-BEGIN:|470-getter|0|470-preInit
+    /**
+     * Returns an initialized instance of PleaseTryAgain component.
+     *
+     * @return the initialized component instance
+     */
+    public Alert getPleaseTryAgain() {
+        if (PleaseTryAgain == null) {//GEN-END:|470-getter|0|470-preInit
+            // write pre-init user code here
+            PleaseTryAgain = new Alert("alert3", "Unexpected Error Please Try Again", null, null);//GEN-BEGIN:|470-getter|1|470-postInit
+            PleaseTryAgain.setTimeout(Alert.FOREVER);//GEN-END:|470-getter|1|470-postInit
+            // write post-init user code here
+        }//GEN-BEGIN:|470-getter|2|
+        return PleaseTryAgain;
+    }
+//</editor-fold>//GEN-END:|470-getter|2|
 
 
 
