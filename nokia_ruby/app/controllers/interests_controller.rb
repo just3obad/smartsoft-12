@@ -1,6 +1,7 @@
 class InterestsController < ApplicationController
   
   def index
+    redirect_to "/interests/list"
     @interests = Interest.all #passing a list of all interests to show them all in the view
   end
 
@@ -22,8 +23,11 @@ class InterestsController < ApplicationController
 
 
   def new
-	$errors = false
+  $errors = false
   @interests = Interest.all 
+  if @interests.empty?
+       flash[:error] = "There are currently no interests." 
+  end
   @feed = Feed.new # creaing a new interest and returning it in a variable @interest used in the form in new.html.erb 
   @interest = Interest.new
   @title = "Add interest"

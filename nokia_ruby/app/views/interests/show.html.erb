@@ -120,7 +120,8 @@ RSS Feeds :
 	</div>
 </div>
 	<div class="right-interest-panel interest-page-well" >
-		<h2 class = "logs-take-input" >Stories List<h2>
+		<h2 class = "logs-take-input" >
+<%= @stories.empty? ? 'Stories List : There are currently no stories to be viewed.' : 'Stories list' %></h2>
 			<ul class="nav nav-list" >
 				<li class="divider"></li>
 
@@ -129,14 +130,14 @@ RSS Feeds :
 <!.. these are two dummy user stories .. who is responsible for the stories page should  add them here ..>
 			<div class="pre-scrollable">
 <% @stories.each do |story| %>
- 		<div >
-		<h3><%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-large btn-primary") %></h3>
+	<div >
+		<h3><%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "story-component-button-absolute btn btn-primary") %></h3>
 
 		<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
 		<div class="pre-scrollable">
 
-		
-		<h6 class ="story-body story-page-well"><%=raw story.content %></h6>
+
+			<h6 class ="story-body story-page-well"><%=raw story.content %></h6>
 
 		</div>
 	</div>
