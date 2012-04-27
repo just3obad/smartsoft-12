@@ -16,9 +16,11 @@ def index
    @friend_list = Array.new
    @id_list=Friend.where(:status=>0, :receiver=>@me).select("sender").uniq.map{|x|x.sender}
    0.upto(@id_list.length) do |i|
-     @friend_list.append(User.find(@id_list[i]))
+     #if User.find(@id_list[i]) != nil
+        @friend_list.append(User.find(@id_list[i]))
+     #end
    end
-   @list = @friend_list.map {|user| {:name => user.name}}
+   @list = @friend_list#.map {|user| {:name => user.name}}
  respond_to do |format|
       format.json { render json: @friend_list }
 end
