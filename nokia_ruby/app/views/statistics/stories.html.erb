@@ -116,7 +116,7 @@ Likes/Dislikes :<%= get_total_number_of_likes %>
 	<h3 class="statistics-component-text">Interest related</h3>
 		<li class="divider"></li>
 		<div class="well-interest-component">
-			<a href="/interests/<%= @id%>"class="thumbnail-interest-component">
+			<a href="/interests/<%= @story.interest_id%>"class="thumbnail-interest-component">
 				<img src="http://placehold.it/75x75" /></a>
 				<div class="interest-component-info">
 					<h3><% if @interest.name.nil? %>
@@ -132,7 +132,7 @@ Likes/Dislikes :<%= get_total_number_of_likes %>
 						<%  end %>
 					</h6>
 <%= link_to "view Statistics", 
-{:controller => 'statistics', :action => 'interests',:id => @interest_id }, 
+{:controller => 'statistics', :action => 'interests',:id => @story.interest_id }, 
 class: "interest-component-button-absolute btn btn-primary"%>
 
 				</div>
@@ -155,7 +155,7 @@ class: "interest-component-button-absolute btn btn-primary"%>
 	<div class="pre-scrollable-statistics">
 <% Share.where(:story_id => @id).select("distinct(user_id)").find_each do |share| %>
 		<div class="well-user-component">
-		<a href="/users/<%= @id%>"class="thumbnail-user-component">
+		<a href="/users/<%= share.user_id%>"class="thumbnail-user-component">
 		<img src="http://placehold.it/75x75" /></a>
 			<div class="user-component-info">
 				<h3><%= User.find(share.user_id).email %>

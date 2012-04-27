@@ -5,14 +5,30 @@ class StatisticsController < ApplicationController
  def interests
    @id=params[:id]
  end
+ 
+ '''
+ Here I am setting instanct variables that are needed in the view of the stories
+ statistics page:
+ -The id of the current story
+ -The stoty itself
+ -The interest that is related to this story
+ -The shares that belongs to the story
+ -The likes that belongs to the story
+ -The dislikes that belongs to the story
+ -The flags that belongs to the story
+ -The creation date of the story
+ -The date of the last update that happend to the story which I use to get the
+  date of the hiding of the story if it was hidden
+ -Using @hidden to check if the story was hidden
+ -The total number of shares that belong to this story
+ -The total number of likes that belong to this story
+ -The total number of dislikes that belong to this story
+ -The total number of flags that belong to this story
+ '''
  def stories
    @id=params[:id]
    @story= Story.find(@id)
-   #The following query is done because the associations between the tables 
-   #are missing right now
-   @interest_id= @story.interest_id 
-   @interest = Interest.find(@interest_id)
-   @interest_name = @interest.name
+   @interest = Interest.find(@story.interest_id)
    @shares = Share.where(:story_id => @id)
    @likes = Likedislike.where(:story_id => @id, :action => 1)
    @dislikes = Likedislike.where(:story_id => @id, :action => -1)
@@ -25,6 +41,7 @@ class StatisticsController < ApplicationController
    @total_dislikes = @dislikes.count
    @total_flags = @flags.count
  end
+ 
  def users
    @id=params[:id]
  end
