@@ -1,38 +1,3 @@
-	<SCRIPT language="javascript">
-		var counter = 0
-	function add() {
-		counter++;
-	    //Create an input type dynamically.
-	    var element1 = document.createElement("input");
-		var element2= document.createElement("input");
-
-	    //Assign different attributes to the element.
-	    element1.setAttribute("type", "text");
-	    element1.setAttribute("placeholder", "RSS url");
-	    element1.setAttribute("name","url"+counter);
-		element1.setAttribute("class","input-medium");
-		element1.setAttribute("id",counter);
-		element2.setAttribute("type", "button");
-	    element2.setAttribute("value","-");
-	 element2.setAttribute("name",counter);
-		element2.onclick = removeElement;
-	 	element2.setAttribute("class","control-absolute btn btn-primary btn-warning");
-	    var foo = document.getElementById("fooBar");
-
-	    //Append the element in page (in span).
-	    foo.appendChild(element1);
- 		foo.appendChild(element2);
-	}
-		function removeElement() {
-
-		 var d = document.getElementById("fooBar");
-
-		 var olddiv = document.getElementById(this.name);
-		  d.removeChild(olddiv);
-		 d.removeChild(this)
-
-		}
-	</SCRIPT>
 <div class="container-fluid maindiv">
 
 	<div class="row-fluid">
@@ -52,26 +17,36 @@
 				<li class="divider"></li>
 				</ul>
 		<div class="story-media">
-			<a href="#"class="thumbnail-story-show-page story-image-float"><img src="<%= @story.media_link %>"><alt src= "logo.jpg"></a>
+			<a href="#"class="thumbnail-story-show-page story-image-float"><img src="<%= @story.media_link %>"><alt src= "208640_203383299694136_161982183834248_565348_5857145_n"></a>
 					<div class="story-page-description-part story-image-float">
 					<!--<h3 class="story-page-text">Description:</h3>
 					<div class="story-page-well">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget eros est, a auctor risus. Praesent id nisl leo. Sed mollis, ipsum et ornare vestibulum, mi tortor feugiat felis, a bibendum purus sapien a massa. Phasellus vel dolor nec justo eleifend porttitor vitae vitae eros. Phasellus a turpis metus. Integer eu est neque. Aenean lobortis, ante at pellentesque ullamcorper,</div>-->
-					<h3 class="story-page-text ">Story Status :</h3>
+					<h3 class="story-page-text ">Story Info :</h3>
 					<div class="story-page-well"><% if !(@story.deleted || @story.hidden) %>
+							<ul class="nav nav-list">
+							<li class="nav-header">Status :</li>
 							<span class="greenbadge">Active</span>
 							<% elsif @story.deleted %>
-							<span class="redbadge">Deleted</span>
+							<ul class="nav nav-list">
+							<li class="nav-header">Status</li>
+							<li><span class="redbadge">Deleted</span></li>
 							<% elsif @story.hidden %>
-							<span class="yellowbadge">Hidden</span>
-							<% end %></div>
-					<h3 class="story-page-text ">Date :</h3>
-					<div class="story-page-well"><%= @story.date %></div>
+							<li><span class="yellowbadge">Hidden</span></li>
+							<% end %>
+							<li class="nav-header">Date :</li>
+							<li><%= @story.date %></li>
+							<li class="nav-header">Rank :</li>
+							<li><%= @story.rank %></li>
+							<li class="nav-header">Interest Name :</li>
+							<li><%= Interest.find(@story.interest_id).name %></li>
+					
+					</div>
 					<ul class="nav nav-list" >
 					<li class="divider"></li>
 					</ul>
 					</div>
 		</div>
-		<h2>Content</h2>
+		<h2 class="story-page-text">Content</h2>
 			<ul class="nav nav-list" >
 			<li class="divider"></li>
 			</ul>
@@ -84,8 +59,8 @@
 					</div>
 					
 					<div class=body>
-					<h2>Comments</h2>
-					<ul class="nav nav-list" >
+					<h2 class="story-identation story-page-text">Comments</h2>
+					<ul class="nav nav-list story-identation" >
 					<li class="divider"></li>
 					</ul>
 					<div class="story-comments pre-scrollable">
