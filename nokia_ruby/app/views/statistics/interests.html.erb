@@ -7,14 +7,14 @@
    //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
   $(document).ready(function() {
        //get The interests array of arrays of data
-      data= <%= get_interest_stat(@id) %>
+      data= <%= get_interest_stat(@id) %>;
       if(data != -1) {
       //the graphs that we want to show
       names=["No Of Users","No Of Stories"];
       //the time interval between one point and another in the graph.
-      pointInterval= <%= 1.day * 1000 %> 
+      pointInterval= <%= 1.day * 1000 %>;
       // Start point of the graph.
-      pointStart= <%= get_interest_start_date(@id).days.ago.to_i * 1000 %>
+      pointStart= <%= get_interest_start_date(@id).days.ago.to_i * 1000 %>;
       //Label for x-axis 
       xl="Day"; 
       //Label for y-axis

@@ -1,16 +1,16 @@
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function() {
       //get The users' array of arrays of data
-      data= <%= get_all_users_stat %>
+      data= <%= get_all_users_stat %>;
       if (data.length != 0) {
       //the graphs that we want to show
       names=["Registered Users","Logged in"]; 
       //the time interval between one point and another in the graph.
-      pointInterval= <%= 1.day * 1000 %> 
+      pointInterval= <%= 1.day * 1000 %>; 
       // Start point of the graph.
-      x= <%= get_all_users_start_date %>
+      x= <%= get_all_users_start_date %>;
       if(x != -1) {
-      pointStart= <%= get_all_users_start_date.days.ago.to_i * 1000 %>
+      pointStart= <%= get_all_users_start_date.days.ago.to_i * 1000 %>;
       //Label for x-axis
       xl="Day"; 
       yl="Number";
