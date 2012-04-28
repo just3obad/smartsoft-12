@@ -620,11 +620,12 @@ public class HelloMIDlet extends MIDlet implements CommandListener {
                    // CommentsMany = null;
                     CommentsMany.append(getTextField());
                     parseComments(currentStoryID+"");
-             //       if(s.equals("ok"))
-                    switchDisplayable(getCommentSent(), getCommentsMany());
-                //    else
-                //    switchDisplayable(getCommentFailed(),getCommentsMany());
+	                if(s.equals("ok"))
+	                    switchDisplayable(getCommentSent(), getCommentsMany());
+	                else
+	                    switchDisplayable(getCommentFailed(),getCommentsMany());
                // 
+                }
             } else if (command == backToStory) {//GEN-LINE:|7-commandAction|3|38-preAction
                 // write pre-action user code here
                 switchDisplayable(null, getReadMore());//GEN-LINE:|7-commandAction|4|38-postAction
