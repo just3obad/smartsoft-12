@@ -184,7 +184,7 @@ def fetch_rss(link)
       #getting the id of the interest 
       sinterest = Feed.where(:link => source).select("interest_id")
 
-      storynow = Story.new(:title => stitle, :rank => 0, :category => "RSS", :deleted => false, :hidden => false, :interest_id => sinterest, :media_link => "")
+      storynow = Story.new(:title => stitle, :rank => 0, :category => "RSS", :deleted => false, :interest_id => sinterest, :media_link => "")
 
 
 
