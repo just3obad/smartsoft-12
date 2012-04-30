@@ -1,8 +1,0 @@
-
---This line, and those below, will be ignored--
-
-M    nokia_ruby/app/models/user.rb
-M    nokia_ruby/app/models/verification_code.rb
-M    nokia_ruby/log/development.log
-M    nokia_ruby/db/schema.rb
-M    nokia_ruby/db/development.sqlite3
