@@ -1,0 +1,78 @@
+<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href = "#collapseOne">
+<div class="container-fluid maindiv">
+
+			<div class="story-show-page-left-panel">
+			<button class="btn btn-danger" data-toggle="collapse" data-parent="#selector" data-target="#demo"><h1><%= @story.title %></h1></button>
+			<div id="demo" class="collapse in">
+			
+				<ul class="nav nav-list" >
+				<li class="divider"></li>
+				</ul>
+		<div class="story-media">
+			
+			<%if @story.media_link== "" || @story.media_link == nil%>
+			<div class="story-body story-page-well">
+				<p style="float:left;"><font size="5"><%=raw @story.content %></p>
+				</div>	
+			<%else%>
+			<a href="#"><img src="<%= @story.media_link %>"><alt src= "208640_203383299694136_161982183834248_565348_5857145_n"></a>
+				<%end%>
+<%if @story.media_link!= "" && @story.media_link != nil%>			
+		<h2 class="story-page-text" style="clear:both;">Content</h2>
+			<ul class="nav nav-list" >
+			<li class="divider"></li>
+			</ul>
+	
+
+					<div class="story-body story-page-well">
+					
+					
+<% if !(@story.content.nil? || @story.content=="") %>
+					<div class="pre-scrollable">
+						<p><font size="5"><%=raw @story.content %></p>
+					</div>		
+<%else%>
+<p><font size="3">No content</p>
+<%end%>
+					</div>
+				<%end%>	
+					<div class=body>
+					<h2 class="story-identation story-page-text"  data-toggle="collapse" data-target="#comm">Comments</h2>
+					<ul class="nav nav-list story-identation" >
+					<li class="divider"></li>
+					</ul>
+			</div>
+				<div id="comm" class="collapse in">
+<% if !(@comments.nil? || @comments.empty?) %>
+					
+					
+				<% @comments.each do |comment| %>
+							
+						<div class="well-comment-component">
+<a href=" #"class="thumbnail-comment-component"><img src="http://placehold.it/75x75"></a>
+<div class="comment-component-info">
+<h3><%= User.find(comment.user_id).name %></h3>
+<div class="comment-component-well">
+<p><font size="2"><%= comment.content %>
+</p>
+</div>
+</div>
+</div>
+<%end%>
+<%else%>
+<p><font size="3">No comments yes no comments this is a shit</p>
+		
+
+<%end%>
+					</div>	
+
+									<button class="btn btn-danger" data-toggle="collapse" data-parent="#selector" data-target="#info">More info.</h1></button>
+									<div id="info" class="collapse in">
+									<li class="nav-header">Date : <%= @story.created_at.to_date %></li>
+									<li class="nav-header">Rank : <%= @story.rank %></li>
+									<li class="nav-header">Interest Name : <%= Interest.find(@story.interest_id).name %></li>
+									</div>
+			</div>
+	</div>
+</div>
+</a>
