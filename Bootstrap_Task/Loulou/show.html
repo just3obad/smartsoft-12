@@ -1,0 +1,57 @@
+<header class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "LA2ETLAK",'#', id: "logo" %>
+
+        <form class="navbar-search pull-left" action="/admins/search">
+          <input type="text" class="search-query" placeholder="Search User" name="query">
+        </form>
+        </div>
+      </div>
+</header>
+<h1 class= "statistics-component-text" style= "margin-left: 20px;">Story Title: My Life</h1>
+<br/>
+<div class="accordion" id="accordion1">
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree">
+			<h3 class="statistics-component-text">Story State</h3>
+			</a>
+		</div>
+		<div id="collapseThree" class="accordion-body collapse">
+				<ul class="nav nav-list">
+				<li class="nav-header">Status :</li>
+				<li><span class="greenbadge">Active</span></li>
+				<li class="nav-header">Date :</li>
+				<li>1/5/2012</li>
+				<li class="nav-header">Rank :</li>
+				<li>5</li>
+				<li class="nav-header">Interest Name :</li>
+				<li>Tears</li>
+				</ul>
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne">
+			<h3 class="statistics-component-text">Content</h3>
+			</a>
+		</div>
+		<div id="collapseOne" class="accordion-body collapse in" style= "margin-left: 20px;">
+			<h2>My name is Lydia. I am 21 years old. I am a suffering student in the GUC.
+			This is the story of my life...</h2>
+		</div>
+	</div>
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo">
+			<h3 class="statistics-component-text">Comments</h3>
+			</a>
+		</div>
+		<div id="collapseTwo" class="accordion-body collapse" style= "margin-left: 20px;">
+			<h3>Jolly</h3>
+			<p><font size="2"> This is the story of my life, too...</p>
+		</div>
+	</div>
+	
+</div>
