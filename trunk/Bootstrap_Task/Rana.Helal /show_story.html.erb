@@ -1,0 +1,45 @@
+<div class="container-fluid">
+
+	<div class="row-fluid">   
+                    
+	 	<div style="margin-top:10px; margin-bottom:10px;">
+		<h2 margin-top=40px><%= @story.title%></h2>
+                <% if @story.rank != nil%>
+                <p>Rank: <%= @story.rank%></p>
+                <%end%>
+                </div>
+
+                <span class="label label-info" data-toggle="collapse" data-target="#s" data-parent="#selector">Story Content</span>
+                <div id="s" style="margin-top:10px; margin-bottom:10px;" class = "collapse in">
+                <p><%= raw @story.content%></p>
+                </div>
+
+                <span class="label label-info" data-toggle="collapse" data-target="#i" data-parent="#selector">Media</span>
+                <div id="i" style="margin-top:10px; margin-bottom:10px;" class="collapse in">
+                <% if (@story.media_link!= "" && @story.media_link != nil)%>
+                <a href=""><img src="<%= @story.media_link%>" margin-left=20px margin-top=100px></a>
+                <%else%>
+                       <p>Sorry,there is no media related to this story!</p>
+                <%end%>
+                </div>
+
+                <span class="label label-info" data-toggle="collapse" data-target="#c" data-parent="#selector">Comments</span>
+                <div id="c" style="margin-top:10px; margin-bottom:10px;" class = "collapse in">
+                <% if (@comments !=nil && !@comments.empty?)
+                         @comments.each do |comment|%>
+                            <%if (comment.content !=nil && comment.content !="")%>
+                               <%if(User.find_by_id(comment.user_id).name != nil && User.find_by_id(comment.user_id).name !="")%>
+                                 <p><%= User.find_by_id(comment.user_id).name%> commented: </p>
+                               <%else%>
+                                 <p><%= User.find_by_id(comment.user_id).email%> commented: </p>
+                               <%end%>
+                           <p><%=raw comment.content%></p>
+                            <%end%>
+                         <%end
+                   else%>
+                          <p>Sorry,there are no comments on this story!</p>
+                  <%end%>  
+			
+                </div>
+        </div>
+</div>
