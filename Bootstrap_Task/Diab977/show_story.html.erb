@@ -1,0 +1,37 @@
+<div class="container" >
+	<h3 data-toggle="collapse" data-target="#id1" data-parent="#selector"> story page</h3>
+	<div id = "id1">
+	 <ul>
+	  <li class="nav-header">title : <%=@story.title %> </li>
+	  <li class="nav-header">rank : <%=@story.rank %> </li>
+	  <li class="nav-header">status :  <%if (!(@story.deleted || @story.hidden))%> <span class="greenbadge"> Active</span> <%else%> 
+			<span class="redbadge"> deleted // hidden </span> <%end%> </li>
+	 </ul>
+	</div>
+	<span class="label label-info" data-toggle="collapse" data-target="#id2" data-parent="#selector">Content</span>
+	<div id = "id2">
+	 
+	 <p> <%=@story.content%></p>
+	 <span class="label label-info" data-toggle="collapse" data-target="#id3" data-parent="#selector">Media</span>
+	 </br>
+	 <img id = "id3" src= <%=@story.media_link%> >
+	</div>
+	<span  style = "margin-top:40px;" class="label label-info" data-toggle="collapse" data-target = "#id4" data-parent="#selector">Comments</span>
+	<div id = "id4" style = "margin-top :20px;">
+	 
+	 </br>
+	<%@comments.each do |comment|%>
+	  <div class="well-comment-component">
+	<a href=" #"class="thumbnail-comment-component"><img src="http://placehold.it/75x75"></a>
+	<div class="comment-component-info">
+	<h3><%= User.find(comment.user_id).name %></h3>
+	<div class="comment-component-well">
+	<p><font size="2"><%= comment.content %>
+	</p>
+	</div>
+	</div>
+	</div>
+	<%end%>
+	</div>
+ </div>
+
