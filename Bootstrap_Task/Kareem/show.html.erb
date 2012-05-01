@@ -1,0 +1,42 @@
+<div class="container-fluid">
+
+	<div class="row-fluid">   
+                    
+	 	<div style="margin-top:10px; margin-bottom:10px;">
+		<h2 margin-top=40px><%= @story.title%></h2>
+                </div>
+
+                <span class="btn btn-info" data-toggle="collapse" data-target="#story" data-parent="#selector">Content</span>
+                <div id="story" style="margin-top:10px; margin-bottom:10px;" class = "collapse in">
+                <p><%= raw @story.content%></p>
+                </div>
+
+                <span class="btn btn-info" data-toggle="collapse" data-target="#media" data-parent="#selector">Media</span>
+                <div id="media" style="margin-top:10px; margin-bottom:10px;" class="collapse in">
+                <% if (@story.media_link!= "" && @story.media_link != nil)%>
+                <a href=""><img src="<%= @story.media_link%>" margin-left=20px margin-top=100px></a>
+                <%else%>
+                       <p>No media Available</p>
+                <%end%>
+                </div>
+
+                <span class="btn btn-info" data-toggle="collapse" data-target="#comment" data-parent="#selector">Comments</span>
+                <div id="comment" style="margin-top:10px; margin-bottom:10px;" class = "collapse in">
+                <% if (@comments !=nil && !@comments.empty?)
+                         @comments.each do |comment|%>
+                            <%if (comment.content !=nil && comment.content !="")%>
+                               <%if(User.find_by_id(comment.user_id).name != nil && User.find_by_id(comment.user_id).name !="")%>
+                                 <p><%= User.find_by_id(comment.user_id).name%> : </p>
+                               <%else%>
+                                 <p><%= User.find_by_id(comment.user_id).email%> : </p>
+                               <%end%>
+                           <p><%=raw comment.content%></p>
+                            <%end%>
+                         <%end
+                   else%>
+                          <p>No Comments yet :(</p>
+                  <%end%>  
+			
+                </div>
+        </div>
+</div>
