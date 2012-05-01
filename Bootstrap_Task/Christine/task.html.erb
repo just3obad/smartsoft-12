@@ -1,0 +1,57 @@
+<div style="width: 400px;">
+<div class="accordion" id="accordion2">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                  Content
+                </a>
+              </div>
+              <div id="collapseOne" class="accordion-body collapse in">
+                <div class="accordion-inner">
+                Title :--<%= @story.title %>
+                <br />
+                Content :--<%= @story.content %>
+                <br /> 
+                Interest :--<%= Interest.find(@story.interest_id).name %>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                  Story Stat..
+                </a>
+              </div>
+              <div id="collapseTwo" class="accordion-body collapse">
+                <div class="accordion-inner">
+                No of Shares: <%=Share.where(:story_id => @story.id).count%> <br />
+                No of Likes: <%=Likedislike.where(:story_id  => @story.id , :action => 1).count %> <br />
+                No of Dislikes: <%=Likedislike.where(:story_id  => @story.id , :action => -1).count %> <br /> 
+                No of Spams: <%= Flag.where(:story_id => @story.id).count %> 
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                  Comments
+                </a>
+              </div>
+              <div id="collapseThree" class="accordion-body collapse">
+                <div class="accordion-inner">
+                  <% for comment in @comments %>
+
+                      <i class="icon-chevron-right"></i>
+                      <font size="5"><%= User.find(comment.user_id).email.split("@")[0] %></font> 
+                         <font size="2"><%= comment.content %> </font>
+                         <br />
+                              
+                       
+                  
+             
+                 <%end%>
+                </div>
+          </div>
+          </div>
+          </div>
+          </div>
