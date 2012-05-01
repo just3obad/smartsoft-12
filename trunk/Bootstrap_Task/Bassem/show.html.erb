@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+ 
+    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.ico">
+  </head>
+
+  <body>
+
+
+  <div class="container">
+	<div class="accordion" id="first">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="first" href="#collapseOne">
+					<%= @story.title%> 
+				</a>
+			</div>
+			<div id="collapseOne" class="accordion-body collapse" >
+				<div class="accordion-inner">
+<%= raw @story.content%>
+				</div>
+			</div>
+		</div>
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="first" href="#collapseTwo">
+					Comments 
+				</a>
+			</div>
+			<div id="collapseTwo" class="accordion-body collapse" >
+				<div class="accordion-inner">
+					<table class="table">
+					<thead>
+				    <tr>
+				     
+				    </tr>
+				  </thead>
+
+			<% @comments.each do |comment| %>
+			<tr>
+			<td><%= comment.content %></td>
+			</tr>
+			<%end%>
+			</table>
+				</div>
+			</div>
+		</div>
+	</div>
+   </div>
+
+ 
+
+</body></html>
