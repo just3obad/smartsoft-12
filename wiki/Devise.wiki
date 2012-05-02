@@ -1,16 +1,18 @@
 #labels Phase-Requirements
-#Handling authentication along with verification password reset and all.
+===Handling authentication along with verification password reset and all.===
 
-= Introduction =
+== Introduction ==
 
 These are some links to help you get familiar with the whole authentication business, it also involves password resetting and email activation...etc.
 
 
-= Links =
+== Links ==
 
 * The github Rep
   https://github.com/plataformatec/devise
+
 * Introduction to Devise video
   http://railscasts.com/episodes/209-introducing-devise
+
 * Customizing Devise video
   http://railscasts.com/episodes/210-customizing-devise
