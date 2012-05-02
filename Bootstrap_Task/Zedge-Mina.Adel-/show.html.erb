@@ -1,0 +1,29 @@
+v class="accordion" id="StoryAccordion">
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#StoryAccordion" href="#Story">
+      <%= @story.title %>
+    </a>
+  </div>
+  <div id="Story" class="accordion-body collapse" style="height: 0px; ">
+    <div class="accordion-inner">
+      <%= @story.content %>
+    </div>
+  </div>
+</div>
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-parent="#StoryAccordion" href="#Comments">
+      Comments
+    </a>
+  </div>
+  <div id="Comments" class="accordion-body collapse" style="height: 0px; ">
+    <div class="accordion-inner">
+      <% for comment in @comments %>
+        <li> <%= comment.content %> </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
