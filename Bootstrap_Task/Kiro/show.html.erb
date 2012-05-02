@@ -1,0 +1,97 @@
+<header class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "LA2ETLAK", {controller: 'admins' ,action: 'index'}, id: "logo" %>
+           
+            <ul class="nav pull-right">
+              <li><%= link_to "Settings" %></li>
+              <li><%= link_to "Profile" %></li>
+              <li><%= link_to "Sign out"%></li>
+
+            </ul>
+          
+	</div>
+      </div>
+</header>
+<div class="container">
+  <section id="Story">
+    <div class="row">
+      <div class="span1 columns">
+        <% if (@story == Story.first)%>
+        <%= link_to('<', {:controller => 'stories', :action => 'get', :id => Story.last.id}, class: "btn btn-large btn-inverse", tooltip:"hey") %>
+        <% else %>
+        <%= link_to('<', {:controller => 'stories', :action => 'get', :id => (@story.id-1)}, class: "btn btn-large btn-inverse") %>
+        <%end%>
+      </div>
+      <div class="span10 columns">
+        <h2 align="center"><%= @story.title %></h2>
+      </div>
+      <div class="span1 columns">
+        <% if (@story == Story.last)%>
+        <%= link_to('>', {:controller => 'stories', :action => 'get', :id => 1}, class: "btn btn-large btn-inverse") %>
+        <% else %>
+        <%= link_to('>', {:controller => 'stories', :action => 'get', :id => (@story.id+1)}, class: "btn btn-large btn-inverse") %>
+        <%end%>
+      </div>
+    </div>
+    <div class="span8 offset2" style="margin-top: 40px;" align="center">
+      <div id="accordion" class="accordion">
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="label label-inverse accordion-toggle" href="#collapseOne" data-parent="#accordion" data-toggle="collapse"><h3>Content</h3></a>
+          </div>
+          <div id="collapseOne" class="accordion-body in collapse" style="height: auto;">
+            <div class="accordion-inner">
+              <font size="3"><%= raw @story.content %></font>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="label label-inverse accordion-toggle" href="#collapseTwo" data-parent="#accordion" data-toggle="collapse"><h3>Info</h3></a>
+          </div>
+          <div id="collapseTwo" class="accordion-body collapse">
+            <div class="accordion-inner">
+             <div class="story-page-well"><% if !(@story.deleted || @story.hidden) %>
+									<ul class="nav nav-list">
+									<li class="nav-header">Status :</li>
+									<span class="greenbadge">Active</span>
+									<% elsif @story.deleted %>
+									<ul class="nav nav-list">
+									<li class="nav-header">Status</li>
+									<li><span class="redbadge">Deleted</span></li>
+									<% elsif @story.hidden %>
+									<li><span class="yellowbadge">Hidden</span></li>
+									<% end %>
+									<li class="nav-header">Date :</li>
+									<li><%= @story.created_at.to_date %></li>
+									<li class="nav-header">Rank :</li>
+									<li><%= @story.rank %></li>
+									<li class="nav-header">Interest Name :</li>
+									<li><%= Interest.find(@story.interest_id).name %></li>
+
+							</div>
+            </div>
+          </div>
+        </div>
+<div class="accordion-group">
+          <div class="accordion-heading">
+            <a class="label label-inverse accordion-toggle" href="#collapseThree" data-parent="#accordion" data-toggle="collapse"><h3>Comments</h3></a>
+          </div>
+          <div id="collapseThree" class="accordion-body collapse">
+            <div class="accordion-inner">
+              <% if !(@comments.nil? || @comments.empty?) %>
+				<% @comments.each do |comment| %>
+					<h3><%= User.find(comment.user_id).name %></h3>
+					<p><font size="2"><%= comment.content %></p>
+				<%end%>
+			<%else%>
+			<p><font size="3">No comments</p>
+			<%end%>	
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
