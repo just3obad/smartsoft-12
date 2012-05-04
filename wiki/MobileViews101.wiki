@@ -68,7 +68,7 @@ Here is the static part "nav bar" that will be included in all the pages so past
 </html>
 }}}
 
-Notice that the nav bar includes a logo and 2 images that are all active *clickable* "using the <a> tags" and which can re-direct to other pages by replacing the *#* in href to a meaningful address.
+Notice that the nav bar includes a logo and 2 images that are all active *"clickable"* using the < a > tags and which can re-direct to other pages by replacing the *#* in href to a meaningful address.
 I also left the body with the statement "Your dynamic content here!!" to indicate the place holder that will be available to you to include you content depending on your page, thank God we are using erb so life would be a lot easier when we try to implement a view that changes dynamically along with the data.
 
 I will show you my story page content as an example of the dynamic data handling mechanisms to be used within our templates. After adding the content to the body the layout should will look like this:
