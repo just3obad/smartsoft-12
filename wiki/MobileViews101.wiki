@@ -39,7 +39,7 @@ instead of
 render :layout => "mobile_show"	
 }}}
 
-So please make sure you have it changed too.
+Please make sure you have it changed too.
 
 Now go to *app/views/layouts* and create an empty file and name it "*mobile_template.html.erb*", this will act the same as the application.html.erb which is the place holder for the static parts of the page allowing dynamic content to fit within it. Now open the mobile_template in your editor and paste the following markup code:
 
@@ -193,7 +193,7 @@ Well, this happened due to the fact that in the *comments controller*, the *crea
     @comment = Comment.new(params[:comment])
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'User was successfully created.' }
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -258,11 +258,12 @@ public void startMIDlet() {
 Of course you will need to change *yourIP* to match your own IP that you got from the VM's ifconfig command.
 The " if(true) return; " ensures that the displayable does not get switched in case you're wondering.
 
-Now run your project and watch the result on the simulator's screen, it is exactly the same as the one you get on the real phone. It might not look as pretty as on the desktop browser "no curves..etc" but believe me it is *a lot much better* than the web apps implemented using Nokia's web-app tools.
+Now run your project and watch the result on the simulator's screen, it is exactly the same as the one you get on the real phone. It might not look as pretty as on the desktop browser "no curves..etc" but believe me it is *far much better* than the web apps implemented using Nokia's web-app tools.
 
-You can try all sort of things to check on how the phone re-acts but I would like to point out that most *if not all* java scripts won't work "like the ones used for collapsible and such" but you can still try if you want and let us know if you reach a breakthrough!
+You can try all sort of things to check on how the phone re-acts but I would like to point out that most (*if not all*) java scripts won't work "like the ones used for collapsible and such" but you can still try if you want and let us know if you reach a breakthrough!
 
 Hope this was helpful, if you face any trouble while following this wiki please let me know.
 
 Regards,
+
 Menisy
