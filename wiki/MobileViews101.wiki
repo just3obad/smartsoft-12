@@ -17,7 +17,7 @@ Now let's start implementing the action in the Stories controller. You need to d
     @story = Story.find(params[:id])
     @comment = Comment.new
     @user_id = params[:id2]
-    render :layout => "mobile_show"	
+    render :layout => "mobile_template"	
   end
 }}}
 
@@ -25,19 +25,23 @@ This basically says that we have an action called mobile_show "which needs a vie
 
 Now that our controller's action is ready, we need to start building our view that will be rendered on the phone.
 
-As for the regular views that C3 and C4 have been using all along, it is obvious that our views consist of 2 main components, one that is static for all the pages "like the nav bar for example" and one that changes according to the page "regular content like story's content or comments content", to get rid of repeating code, rails gave us the choice of letting some parts of the page stay as is for all pages "which is done through the *application.html.erb*". In our case though, it is not yet clear how to mimic this for our mobile views so we will need to repeat the code for the nav bar and other static elements for every page that we create! *don't worry it's a simple Ctrl-C + Ctrl-V!*
+As for the regular views that C3 and C4 have been using all along, it is obvious that our views consist of 2 main components, one that is static for all the pages "like the nav bar for example" and one that changes according to the page "regular content like story's content or comments content", to get rid of repeating code, rails gave us the choice of letting some parts of the page stay as is for all pages "which is done through the *application.html.erb*". I stated earlier that this is not the case for us, however after trying something, it worked perfectly so here I am editing the wiki to show you how you can do it.
 
-So we start off by creating 2 views in 2 separate folders both with the name *mobile_show.html.erb* which is the same as our action's name.
+First of all, notice that I've changed the action mobile_show to render mobile_template rather than mobile_show so make sure you change it to:
 
-The first view will be put in *app/views/layouts* and the other one in *app/views/stories*
+{{{
+render :layout => "mobile_template"
+}}}
 
-I'm not sure why we need to put both but if you fail to include either of them you will get a *template missing error* whenever trying to redirect to the mobile view page through your browser.
+instead of
 
-Now that we have our views in place, let's start editing them!
+{{{
+render :layout => "mobile_show"	
+}}}
 
-You can leave the view in the stories folder blank, rails will always render the one in the *layouts* folder "again this was concluded by means of trial and error". So open up your view *app/views/layouts/mobile_show.html.erb* and start editing.
+So please make sure you have it changed too.
 
-Here is the static part "nav bar" that will be included in all the pages so paste it in first.
+Now go to *app/views/layouts* and create an empty file and name it "*mobile_template.html.erb*", this will act the same as the application.html.erb which is the place holder for the static parts of the page allowing dynamic content to fit within it. Now open the mobile_template in your editor and paste the following markup code:
 
 {{{
 <html>
@@ -63,40 +67,18 @@ Here is the static part "nav bar" that will be included in all the pages so past
   </header> 
 
   <body>
-   	Your dynamic content here!!
+   	<%= yield %>
   </body>
 
 </html>
 }}}
 
 Notice that the nav bar includes a logo and 2 images that are all active *"clickable"* using the < a > tags and which can re-direct to other pages by replacing the *#* in href to a meaningful address.
-I also left the body with the statement "Your dynamic content here!!" to indicate the place holder that will be available to you to include you content depending on your page, thank God we are using erb so life would be a lot easier when we try to implement a view that changes dynamically along with the data.
+Notice in the body we have the statement *<%= yield %>* to indicate the place holder that will be available to you to include you content depending on your page, thank God we are using erb so life would be a lot easier when we try to implement a view that changes dynamically along with the data.
 
-I will show you my story page content as an example of the dynamic data handling mechanisms to be used within our templates. After adding the content to the body the layout should will look like this:
+I will show you my story page content as an example of the dynamic data handling mechanisms to be used within our views, and now that we have our static template "mobile_template" ready we only need to have the content of the body within our views since the nav-bar and other static parts of the page will be loaded automatically from the mobile_template that we just added above. You need to make sure though that the view's name is the *same as* the action's name, so you need to navigate to *app/views/stories/* and create a new file with the name "*mobile_show.html.erb*" and paste the following mark up code to it:
 {{{
-<html>
-  <head>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=240, initial-scale=0.5">
-	<title>My Story Page!</title>
-	<%= stylesheet_link_tag    "mobile-style"%>
-  </head>
 
-  <header class="navbar navbar-fixed-top" >
-      <div class="navbar-inner">
-        <div class="container" >
-          <a href="#" id="logo" ><h1 class = "pull-left" style = "float:up;">LA2ETLAK</h1></a>
-          <nav>
-            <ul class="nav">
-              <li><a href="#"><img src="http://c.dryicons.com/images/icon_sets/colorful_stickers_icons_set/png/256x256/home.png" id="il_fi" height="25" width="25"></a></li>
-              <li><a href="#"><img src="http://www.getempower.com/apps/50/icons/icon_50x50.png" id="il_fi" height="25" width="25"></a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-  </header> 
-
-  <body>
       <div style="padding-left:3px;">
         <h3> <%= @story.title %> </h3>
       </div>
@@ -135,15 +117,12 @@ I will show you my story page content as an example of the dynamic data handling
     
         <div class="actions" style="padding:20px; float:right;">
         <%= f.submit "comment" ,:class => "btn btn-large" %>
-      <% end %>
+       <% end %>
 
-    </div>
-  </body>
-
-</html>
+        </div>
 }}}
 
-For those who read the above mark-up well, you can notice that the *style_sheet_link_tag* includes a style sheet called *mobile-style* which tells us that we must have a *.css.scss* file with the same name in our *app/assets/stylesheets* that will specify the styling attributes used through out the view. Since you do not have it yet, browse to *app/assets/stylesheets* and create w new file named *mobile-style.css.scss* and open it into your editor and Copy-Paste the following:
+For those who read the mobile_template's mark-up well, you can notice that the *style_sheet_link_tag* includes a style sheet called *mobile-style* which tells us that we must have a *.css.scss* file with the same name in our *app/assets/stylesheets* that will specify the styling attributes used through out the view. Since you do not have it yet, browse to *app/assets/stylesheets* and create w new file named *mobile-style.css.scss* and open it into your editor and Copy-Paste the following:
 {{{
 @import "bootstrap";
 
@@ -257,6 +236,7 @@ Wonder no more, nothing more needs to be added since bootstrap's *responsive* de
 To get a little more confident that the design works on the mobile and to get a feel of how it would look, we need to access the server through our good ol' Nokia SDK emulator and to be able to do this you need to do the following:
 
 1- Open up your Netbeans and create a new mobile project.
+
 2- In the *HelloMIDlet* class created by default, go to the *startMIDlet* method and copy paste the following in the *pre* part "right before the switchDisplayable":
 {{{
 public void startMIDlet() {   
@@ -278,7 +258,7 @@ public void startMIDlet() {
 Of course you will need to change *yourIP* to match your own IP that you got from the VM's ifconfig command.
 The " if(true) return; " ensures that the displayable does not get switched in case you're wondering.
 
-Now run your project and watch the result on the simulators screen, it is exactly the same as the one you get on the real phone. It might not look as pretty as on the desktop browser "no curves..etc" but believe me it is *a lot much better* than the web apps implemented using Nokia's web-app tools.
+Now run your project and watch the result on the simulator's screen, it is exactly the same as the one you get on the real phone. It might not look as pretty as on the desktop browser "no curves..etc" but believe me it is *a lot much better* than the web apps implemented using Nokia's web-app tools.
 
 You can try all sort of things to check on how the phone re-acts but I would like to point out that most *if not all* java scripts won't work "like the ones used for collapsible and such" but you can still try if you want and let us know if you reach a breakthrough!
 
