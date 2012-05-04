@@ -183,7 +183,7 @@ Now we are all set to test the new mobile view "Yaaay"! So start up your rails s
 http://localhost:3000/stories/1/show_mob/1
 }}}
 
-Needless to say that you have to have at least 1 Story and one user in your data base for this to work, of you do not have users yet, up to this step should work but the rest won't!
+Needless to say that you have to have at least 1 story and 1 user in your data base for this to work, if you do not have users yet, up to this step should work but the rest won't!
 
 As you can see, a pretty styled page appears in front of you showing the story's content along with the comments "you might have none yet". Try entering a new comment and press the button *comment* in order for the comment to get posted.
 Hold on, what happened?! why am I being re-directed to the comment's show page?!! Something must be wrong!
