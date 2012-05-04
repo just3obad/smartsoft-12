@@ -1,0 +1,3093 @@
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-05-03 16:36:08 +0200
+Served asset /rails.png - 200 OK (10ms)
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-05-03 16:36:16 +0200
+Served asset /rails.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-05-03 16:36:27 +0200
+Served asset /rails.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-05-03 16:43:13 +0200
+Served asset /rails.png - 304 Not Modified (4ms)
+
+
+Started GET "/test/index" for 127.0.0.1 at 2012-05-03 16:43:18 +0200
+Processing by TestController#index as HTML
+  Rendered test/index.html.erb within layouts/application (45.0ms)
+Compiled test.css  (59ms)  (pid 4308)
+Compiled application.css  (75ms)  (pid 4308)
+Compiled jquery.js  (15ms)  (pid 4308)
+Compiled jquery_ujs.js  (0ms)  (pid 4308)
+Compiled test.js  (555ms)  (pid 4308)
+Compiled application.js  (875ms)  (pid 4308)
+Completed 200 OK in 1280ms (Views: 1280.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-03 16:43:19 +0200
+Served asset /application.css - 200 OK (10ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-03 16:43:19 +0200
+Served asset /test.css - 200 OK (4ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-03 16:43:19 +0200
+Served asset /jquery.js - 200 OK (5ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-03 16:43:19 +0200
+Served asset /jquery_ujs.js - 200 OK (5ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-03 16:43:19 +0200
+Served asset /test.js - 200 OK (4ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-03 16:43:19 +0200
+Served asset /application.js - 200 OK (4ms)
+  [1m[36m (42.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[36m (28.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (117.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (57.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to DoNothingYet (20120504100938)
+  [1m[35m (1.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504100938')[0m
+  [1m[35m (67.0ms)[0m  commit transaction
+Migrating to CreateTeachers (20120504101220)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "e-email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504101220')[0m
+  [1m[35m (78.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (105.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (57.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504103859)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mCREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120504103859')
+  [1m[36m (67.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (116.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (75.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504103859)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120504103859')
+  [1m[36m (74.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (112.0ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (49.0ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mrollback transaction[0m
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(25), "last_name" varchar(25), "email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504110451')[0m
+  [1m[35m (79.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113510')[0m
+  [1m[35m (76.0ms)[0m  commit transaction
+Migrating to CreateStudents (20120504113531)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113531')[0m
+  [1m[35m (57.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (1.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+Migrating to CreateBlas (20120504125352)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (15.6ms)[0m  CREATE TABLE "blas" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504125352')[0m
+  [1m[35m (483.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (24.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  DROP TABLE "students"
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504113531'[0m
+  [1m[35m (99.0ms)[0m  commit transaction
+Migrating to CreateCourses (20120504113510)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(25), "last_name" varchar(25), "email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113531')[0m
+  [1m[35m (89.0ms)[0m  commit transaction
+  [1m[36m (1.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  DROP TABLE "students"
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504113531'[0m
+  [1m[35m (76.0ms)[0m  commit transaction
+Migrating to CreateCourses (20120504113510)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(25), "last_name" varchar(25), "email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113531')[0m
+  [1m[35m (78.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  DROP TABLE "students"
+  [1m[36m (1.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504113531'[0m
+  [1m[35m (81.0ms)[0m  commit transaction
+Migrating to CreateCourses (20120504113510)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  DROP TABLE "courses"
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504113510'[0m
+  [1m[35m (85.0ms)[0m  commit transaction
+Migrating to CreateTeachers (20120504110451)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  DROP TABLE "teachers"
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504110451'[0m
+  [1m[35m (77.0ms)[0m  commit transaction
+  [1m[36m (1.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(25), "last_name" varchar(25), "email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504110451')[0m
+  [1m[35m (103.0ms)[0m  commit transaction
+Migrating to CreateCourses (20120504113510)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113510')[0m
+  [1m[35m (76.0ms)[0m  commit transaction
+Migrating to CreateStudents (20120504113531)
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(25), "last_name" varchar(25), "email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113531')[0m
+  [1m[35m (75.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  DROP TABLE "students"
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504113531'[0m
+  [1m[35m (109.0ms)[0m  commit transaction
+Migrating to CreateCourses (20120504113510)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateStudents (20120504113531)
+Migrating to CreateCourses (20120504113510)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  DROP TABLE "courses"
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504113510'[0m
+  [1m[35m (87.0ms)[0m  commit transaction
+Migrating to CreateTeachers (20120504110451)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  DROP TABLE "teachers"
+  [1m[36m (0.0ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20120504110451'[0m
+  [1m[35m (77.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "teachers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(25), "last_name" varchar(25), "email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504110451')[0m
+  [1m[35m (87.0ms)[0m  commit transaction
+Migrating to CreateCourses (20120504113510)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "teacher_id" integer, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (1.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113510')[0m
+  [1m[35m (83.0ms)[0m  commit transaction
+Migrating to CreateStudents (20120504113531)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  CREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar(25), "last_name" varchar(25), "email" varchar(255) DEFAULT '' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504113531')[0m
+  [1m[35m (67.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (1.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+Migrating to StudentsCourses (20120504140809)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+  [1m[36m (1.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+Migrating to StudentsCourses (20120504140809)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "students_courses" ("student_id" integer, "course_id" integer) 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students_courses")[0m
+  [1m[35m (0.0ms)[0m  CREATE INDEX "index_students_courses_on_student_id_and_course_id" ON "students_courses" ("student_id", "course_id")
+  [1m[36m (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20120504140809')[0m
+  [1m[35m (77.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (0.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("blas")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students_courses")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_info('index_students_courses_on_student_id_and_course_id')[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("teachers")
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+Migrating to StudentsCourses (20120504140809)
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students_courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_students_courses_on_student_id_and_course_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+Migrating to StudentsCourses (20120504140809)
+  [1m[35m (1.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students_courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_students_courses_on_student_id_and_course_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateTeachers (20120504110451)
+Migrating to CreateCourses (20120504113510)
+Migrating to CreateStudents (20120504113531)
+Migrating to StudentsCourses (20120504140809)
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.0ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("blas")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("students_courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_info('index_students_courses_on_student_id_and_course_id')
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("teachers")[0m
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at 2012-05-04 16:54:36 +0200
+Served asset /rails.png - 200 OK (2ms)
+
+
+Started GET "/courses" for 127.0.0.1 at 2012-05-04 16:54:39 +0200
+
+ActionController::RoutingError (No route matches [GET] "/courses"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (64.0ms)
+
+
+Started GET "/course" for 127.0.0.1 at 2012-05-04 16:54:43 +0200
+
+ActionController::RoutingError (No route matches [GET] "/course"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/courses/index" for 127.0.0.1 at 2012-05-04 16:54:48 +0200
+
+ActionController::RoutingError (No route matches [GET] "/courses/index"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/courses/index" for 127.0.0.1 at 2012-05-04 16:55:36 +0200
+Processing by CoursesController#index as HTML
+  Rendered courses/index.html.erb within layouts/application (74.0ms)
+Completed 500 Internal Server Error in 78ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <h1><%= @courses.name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/courses/index.html.erb:1:in `_app_views_courses_index_html_erb__628828776_31329780'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (20.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (63.0ms)
+
+
+Started GET "/courses/index" for 127.0.0.1 at 2012-05-04 16:56:46 +0200
+Processing by CoursesController#index as HTML
+  Rendered courses/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    1: <h1><%= @courses.name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/courses/index.html.erb:1:in `_app_views_courses_index_html_erb__628828776_31329780'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (29.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 16:56:52 +0200
+
+ActionController::RoutingError (No route matches [GET] "/teachers/index"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 16:57:21 +0200
+Processing by TeachersController#index as HTML
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__679481897_38325600'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (31.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:04:27 +0200
+Processing by TeachersController#index as HTML
+  Rendered teachers/index.html.erb within layouts/application (110.0ms)
+Completed 500 Internal Server Error in 233ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___303218206_35406180'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:04:30 +0200
+Processing by TeachersController#index as HTML
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___303218206_35406180'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index/1" for 127.0.0.1 at 2012-05-04 17:04:34 +0200
+
+ActionController::RoutingError (No route matches [GET] "/teachers/index/1"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:04:38 +0200
+Processing by TeachersController#index as HTML
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___303218206_35406180'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:05:59 +0200
+
+ArgumentError (missing :controller):
+  config/routes.rb:5:in `block in <top (required)>'
+  config/routes.rb:1:in `<top (required)>'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:07:13 +0200
+Processing by TeachersController#index as HTML
+  Rendered teachers/index.html.erb within layouts/application (116.0ms)
+Completed 500 Internal Server Error in 244ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__982885163_36113988'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:12:28 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__982885163_36113988'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:12:29 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  Rendered teachers/index.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__982885163_36113988'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:12:29 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__982885163_36113988'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:17:46 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (144.0ms)
+Completed 500 Internal Server Error in 526ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x4a057b8>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:21:35 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x5c2d340>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:23:01 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x43313a0>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:23:03 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x4507cb0>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:23:06 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x45bdc00>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2012-05-04 17:23:09 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x2ba18a0>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:23:10 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x5c78bb0>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (29.0ms)
+
+
+Started GET "/teachers/4" for 127.0.0.1 at 2012-05-04 17:23:12 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mTeacher Load (1.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x5ce3f68>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (29.0ms)
+
+
+Started GET "/teachers/5" for 127.0.0.1 at 2012-05-04 17:23:14 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x5c83158>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/6" for 127.0.0.1 at 2012-05-04 17:23:16 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"6"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x4a75a18>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/32" for 127.0.0.1 at 2012-05-04 17:23:19 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"32"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (4.0ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x4745aa8>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:23:21 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x3b2cb18>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (22.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (47.0ms)
+
+
+Started GET "/teachers/0" for 127.0.0.1 at 2012-05-04 17:23:23 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"0"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x5cf8f98>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:23:25 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x4b1ca10>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2012-05-04 17:23:32 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x48ab420>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:23:34 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x4498f38>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (22.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (47.0ms)
+
+
+Started GET "/teachers/index" for 127.0.0.1 at 2012-05-04 17:23:37 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"index"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC[0m
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 6ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x5cfc010>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:23:42 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" ORDER BY teachers.id ASC
+  Rendered teachers/index.html.erb within layouts/application (3.0ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionView::Template::Error (undefined method `first_name' for #<ActiveRecord::Relation:0x5b8f168>):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__854621718_38828412'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (29.0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:25:39 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered teachers/index.html.erb within layouts/application (110.0ms)
+Completed 500 Internal Server Error in 515ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___698677810_37076532'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (27.0ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2012-05-04 17:25:44 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___698677810_37076532'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (21.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (45.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:25:46 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+Completed 500 Internal Server Error in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Teacher with id=3):
+  app/controllers/teachers_controller.rb:3:in `index'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.0ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2012-05-04 17:25:51 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered teachers/index.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___698677810_37076532'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:26:02 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 10ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___698677810_37076532'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (27.0ms)
+
+
+Started GET "/teachers/0" for 127.0.0.1 at 2012-05-04 17:26:03 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"0"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "0"]]
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Teacher with id=0):
+  app/controllers/teachers_controller.rb:3:in `index'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (26.0ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2012-05-04 17:26:06 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 7ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___698677810_37076532'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (27.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:30:33 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/index.html.erb within layouts/application (111.0ms)
+Completed 500 Internal Server Error in 518ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___367725874_47669940'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (27.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:31:56 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___367725874_36070752'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:31:57 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___367725874_36070752'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:34:07 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 5ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___367725874_36070752'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:34:15 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  Rendered teachers/index.html.erb within layouts/application (2.0ms)
+Completed 500 Internal Server Error in 8ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb___367725874_36070752'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:36:01 +0200
+Processing by TeachersController#index as HTML
+  Parameters: {"id"=>"3"}
+  Rendered teachers/index.html.erb within layouts/application (111.0ms)
+Completed 500 Internal Server Error in 234ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+    2: <p>Find me in app/views/test/index.html.erb</p>
+  app/views/teachers/index.html.erb:1:in `_app_views_teachers_index_html_erb__82774613_32327196'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (44.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:39:36 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (111.0ms)
+Completed 500 Internal Server Error in 518ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    1: <h1><%= @teachers.first_name %></h1>
+  app/views/teachers/show.html.erb:1:in `_app_views_teachers_show_html_erb__1047797365_38876148'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:44:11 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (38.0ms)
+Compiled courses.css  (86ms)  (pid 4376)
+Compiled students.css  (0ms)  (pid 4376)
+Compiled teachers.css  (0ms)  (pid 4376)
+Compiled application.css  (168ms)  (pid 4376)
+Compiled courses.js  (697ms)  (pid 4376)
+Compiled students.js  (142ms)  (pid 4376)
+Compiled teachers.js  (140ms)  (pid 4376)
+Compiled application.js  (1079ms)  (pid 4376)
+Completed 200 OK in 2102ms (Views: 1834.1ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /courses.css - 200 OK (3ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /test.css - 200 OK (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /jquery.js - 200 OK (4ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /teachers.css - 200 OK (2ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /students.css - 200 OK (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /application.css - 200 OK (8ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /jquery_ujs.js - 200 OK (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /courses.js - 200 OK (2ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /teachers.js - 200 OK (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /students.js - 200 OK (1ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /test.js - 200 OK (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:16 +0200
+Served asset /application.js - 200 OK (7ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:49 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 16ms (Views: 14.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /test.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:50 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 22ms (Views: 20.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:55 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /test.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:44:57 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/0" for 127.0.0.1 at 2012-05-04 17:44:58 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"0"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "0"]]
+Completed 500 Internal Server Error in 2ms
+
+ActiveRecord::RecordNotFound (Couldn't find Teacher with id=0):
+  app/controllers/teachers_controller.rb:3:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /teachers.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:00 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:01 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:01 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:01 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:01 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:56 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (1.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /students.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /teachers.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:45:57 +0200
+Served asset /application.js - 304 Not Modified (1ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:46:39 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (1.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (38.0ms)
+Completed 200 OK in 466ms (Views: 200.0ms | ActiveRecord: 27.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /application.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /teachers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /test.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:42 +0200
+Served asset /courses.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:43 +0200
+Served asset /students.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:43 +0200
+Served asset /teachers.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:43 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:43 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/teachers/2" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mTeacher Load (0.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:45 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered teachers/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /jquery.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 17:46:46 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 17:59:55 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (115.0ms)
+Completed 500 Internal Server Error in 521ms
+
+ActionView::Template::Error (undefined local variable or method `teachers' for #<#<Class:0x5ba3388>:0x5beaae8>):
+    30: 		 <font size="4" face="verdana" color="white" > Name </font>
+    31: 	</div>
+    32: 	<div style="position: absolute; top: 320px; left: 20px; z-index: 1px; visibility: show;">
+    33: 		 <font size="3" face="aerial" color="white" > <%= teachers.first_name teachers.last_name %> </font>
+    34: 	</div>
+    35: 	<div style="position: absolute; top: 350px; left: 20px; z-index: 1px; visibility: show;">
+    36: 		 <font size="4" face="verdana" color="white" > E-Mail </font>
+  app/views/teachers/show.html.erb:33:in `_app_views_teachers_show_html_erb__610570031_46960836'
+  app/controllers/teachers_controller.rb:5:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:00:56 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (113.0ms)
+Completed 500 Internal Server Error in 518ms
+
+ActionView::Template::Error (undefined method `last_name' for nil:NilClass):
+    30: 		 <font size="4" face="verdana" color="white" > Name </font>
+    31: 	</div>
+    32: 	<div style="position: absolute; top: 320px; left: 20px; z-index: 1px; visibility: show;">
+    33: 		 <font size="3" face="aerial" color="white" > <%= @teachers.first_name @teachers.last_name %> </font>
+    34: 	</div>
+    35: 	<div style="position: absolute; top: 350px; left: 20px; z-index: 1px; visibility: show;">
+    36: 		 <font size="4" face="verdana" color="white" > E-Mail </font>
+  app/views/teachers/show.html.erb:33:in `_app_views_teachers_show_html_erb___754754277_38335092'
+  app/controllers/teachers_controller.rb:5:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:01:45 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (112.0ms)
+Completed 500 Internal Server Error in 519ms
+
+ActionView::Template::Error (undefined method `first_name' for nil:NilClass):
+    30: 		 <font size="4" face="verdana" color="white" > Name </font>
+    31: 	</div>
+    32: 	<div style="position: absolute; top: 320px; left: 20px; z-index: 1px; visibility: show;">
+    33: 		 <font size="3" face="aerial" color="white" > <%= @teachers.first_name %> </font>
+    34: 	</div>
+    35: 	<div style="position: absolute; top: 350px; left: 20px; z-index: 1px; visibility: show;">
+    36: 		 <font size="4" face="verdana" color="white" > E-Mail </font>
+  app/views/teachers/show.html.erb:33:in `_app_views_teachers_show_html_erb__802308682_38630004'
+  app/controllers/teachers_controller.rb:5:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:02:52 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (38.0ms)
+Completed 200 OK in 468ms (Views: 183.0ms | ActiveRecord: 43.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /courses.css - 304 Not Modified (20ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /application.css - 304 Not Modified (13ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /teachers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /test.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /jquery.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /students.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /teachers.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /test.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:02:55 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:04:54 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (1.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (110.0ms)
+Completed 500 Internal Server Error in 515ms
+
+ActionView::Template::Error (wrong number of arguments (1 for 0)):
+    30: 		 <font size="4" face="verdana" color="black" > Name </font>
+    31: 	</div>
+    32: 	<div style="position: absolute; top: 320px; left: 20px; z-index: 1px; visibility: show;">
+    33: 		 <font size="3" face="aerial" color="black" > <%= @teachers.first_name  @teachers.first_name %> </font>
+    34: 	</div>
+    35: 	<div style="position: absolute; top: 350px; left: 20px; z-index: 1px; visibility: show;">
+    36: 		 <font size="4" face="verdana" color="black" > E-Mail </font>
+  app/views/teachers/show.html.erb:33:in `_app_views_teachers_show_html_erb__732547740_47084868'
+  app/controllers/teachers_controller.rb:5:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:06:06 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (39.0ms)
+Completed 200 OK in 467ms (Views: 201.0ms | ActiveRecord: 26.0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /students.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /teachers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /application.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /courses.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /jquery.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /test.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /students.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /teachers.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /test.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:06:09 +0200
+Served asset /application.js - 304 Not Modified (9ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:08:05 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (39.0ms)
+Completed 200 OK in 465ms (Views: 199.0ms | ActiveRecord: 25.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:08:08 +0200
+Served asset /courses.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:08:08 +0200
+Served asset /application.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:08:08 +0200
+Served asset /students.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:08:08 +0200
+Served asset /teachers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:08:08 +0200
+Served asset /test.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:08:08 +0200
+Served asset /jquery.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:08:08 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:08:09 +0200
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:08:09 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:08:09 +0200
+Served asset /teachers.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:08:09 +0200
+Served asset /test.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:08:09 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:11:36 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (39.0ms)
+Completed 200 OK in 472ms (Views: 201.0ms | ActiveRecord: 25.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /courses.css - 304 Not Modified (9ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /students.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /teachers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /application.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /test.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /jquery.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (21ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /students.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /teachers.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /test.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:11:39 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:16:21 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (40.0ms)
+Completed 200 OK in 484ms (Views: 216.0ms | ActiveRecord: 25.0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /students.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /teachers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /test.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /jquery.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /courses.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /teachers.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:16:24 +0200
+Served asset /test.js - 304 Not Modified (2ms)
+
+
+Started GET "/students/3" for 127.0.0.1 at 2012-05-04 18:16:30 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mStudent Load (0.0ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1  [["id", "3"]]
+Completed 500 Internal Server Error in 35ms
+
+ActiveRecord::RecordNotFound (Couldn't find Student with id=3):
+  app/controllers/students_controller.rb:3:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.0ms)
+
+
+Started GET "/students/1" for 127.0.0.1 at 2012-05-04 18:16:34 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.0ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1[0m  [["id", "1"]]
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Student with id=1):
+  app/controllers/students_controller.rb:3:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (31.0ms)
+
+
+Started GET "/students/1" for 127.0.0.1 at 2012-05-04 18:21:33 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.0ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered students/show.html.erb within layouts/application (112.0ms)
+Completed 500 Internal Server Error in 525ms
+
+ActionView::Template::Error (undefined method `email' for nil:NilClass):
+    36: 		 <font size="4" face="verdana" color="black" > E-Mail </font>
+    37: 	</div>
+    38: 	<div style="position: absolute; top: 380px; left: 20px; z-index: 1px; visibility: show;">
+    39: 		 <font size="3" face="aerial" color="black" > <%= @student.email %></font>
+    40: 	</div>	
+    41: 	<div style="position: absolute; top: 410px; left: 20px; z-index: 1px; visibility: show;">
+    42: 		 <font size="4" face="verdana" color="black" > Subscriptions </font>
+  app/views/students/show.html.erb:39:in `_app_views_students_show_html_erb__1053463540_38614152'
+  app/controllers/students_controller.rb:5:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (29.0ms)
+
+
+Started GET "/teachers/1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mTeacher Load (1.0ms)[0m  SELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered teachers/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 31ms (Views: 25.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /courses.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /application.css - 304 Not Modified (25ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /teachers.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /test.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /jquery.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /students.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /teachers.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /test.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:21:56 +0200
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started GET "/teachers/3" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Processing by TeachersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mTeacher Load (0.0ms)[0m  [1mSELECT "teachers".* FROM "teachers" WHERE "teachers"."id" = ? LIMIT 1[0m  [["id", "3"]]
+  Rendered teachers/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:22:01 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/3" for 127.0.0.1 at 2012-05-04 18:22:06 +0200
+
+ActionController::RoutingError (No route matches [GET] "/courses/3"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.0ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2012-05-04 18:22:09 +0200
+
+ActionController::RoutingError (No route matches [GET] "/courses/1"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (1.0ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2012-05-04 18:27:20 +0200
+
+ActionController::RoutingError (No route matches [GET] "/courses/1"):
+  actionpack (3.2.3) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.3) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.3) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.3) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.3) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.3) lib/rails/engine.rb:479:in `call'
+  railties (3.2.3) lib/rails/application.rb:220:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.3) lib/rails/rack/log_tailer.rb:14:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+  C:/Ruby192/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (38.0ms)
+
+
+Started GET "/students/1" for 127.0.0.1 at 2012-05-04 18:27:53 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.0ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered students/show.html.erb within layouts/application (91.0ms)
+Completed 500 Internal Server Error in 365ms
+
+ActionView::Template::Error (undefined method `email' for nil:NilClass):
+    36: 		 <font size="4" face="verdana" color="black" > E-Mail </font>
+    37: 	</div>
+    38: 	<div style="position: absolute; top: 380px; left: 20px; z-index: 1px; visibility: show;">
+    39: 		 <font size="3" face="aerial" color="black" > <%= @student.email %></font>
+    40: 	</div>	
+    41: 	<div style="position: absolute; top: 410px; left: 20px; z-index: 1px; visibility: show;">
+    42: 		 <font size="4" face="verdana" color="black" > Subscriptions </font>
+  app/views/students/show.html.erb:39:in `_app_views_students_show_html_erb___970516840_20738220'
+  app/controllers/students_controller.rb:5:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (4.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/template_error.erb within rescues/layout (28.0ms)
+
+
+Started GET "/students/1" for 127.0.0.1 at 2012-05-04 18:28:39 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.0ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered students/show.html.erb within layouts/application (39.0ms)
+Completed 200 OK in 471ms (Views: 184.0ms | ActiveRecord: 25.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:42 +0200
+Served asset /application.css - 304 Not Modified (24ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:42 +0200
+Served asset /courses.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:42 +0200
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:42 +0200
+Served asset /teachers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /test.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /jquery.js - 304 Not Modified (20ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /students.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /teachers.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:43 +0200
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/students/2" for 127.0.0.1 at 2012-05-04 18:28:50 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mStudent Load (1.0ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1  [["id", "2"]]
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Student with id=2):
+  app/controllers/students_controller.rb:3:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (21.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (46.0ms)
+
+
+Started GET "/students/1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.0ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered students/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /students.js - 304 Not Modified (19ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:28:52 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/students/0" for 127.0.0.1 at 2012-05-04 18:29:00 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"0"}
+  [1m[35mStudent Load (0.0ms)[0m  SELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1  [["id", "0"]]
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Student with id=0):
+  app/controllers/students_controller.rb:3:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.0ms)
+
+
+Started GET "/students/1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.0ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered students/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /application.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:01 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (1.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered courses/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 33ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:06 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCourse Load (0.0ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", "2"]]
+  Rendered courses/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 11ms (Views: 10.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /teachers.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:09 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/3" for 127.0.0.1 at 2012-05-04 18:29:10 +0200
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "3"]]
+  Rendered courses/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:10 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:10 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:10 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /test.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:11 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses/4" for 127.0.0.1 at 2012-05-04 18:29:12 +0200
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mCourse Load (1.0ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1[0m  [["id", "4"]]
+Completed 500 Internal Server Error in 1ms
+
+ActiveRecord::RecordNotFound (Couldn't find Course with id=4):
+  app/controllers/courses_controller.rb:3:in `show'
+
+
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_trace.erb (3.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.0ms)
+  Rendered C:/Ruby192/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (27.0ms)
+
+
+Started GET "/courses/3" for 127.0.0.1 at 2012-05-04 18:29:14 +0200
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mCourse Load (1.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."id" = ? LIMIT 1  [["id", "3"]]
+  Rendered courses/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 10ms (Views: 9.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/students.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:14 +0200
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:14 +0200
+Served asset /teachers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:14 +0200
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:14 +0200
+Served asset /test.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:14 +0200
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 127.0.0.1 at 2012-05-04 18:29:15 +0200
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:15 +0200
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:15 +0200
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:15 +0200
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/teachers.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:15 +0200
+Served asset /teachers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:15 +0200
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/test.js?body=1" for 127.0.0.1 at 2012-05-04 18:29:15 +0200
+Served asset /test.js - 304 Not Modified (0ms)
