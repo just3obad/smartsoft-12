@@ -21,8 +21,15 @@ Now let's start implementing the action in the Stories controller. You need to d
   end
 }}}
 
-This basically says that we have an action called mobile_show "which needs a view with the same name" and in this action we initialize some instance variables so that we would be able to use them in our view template. The last line in the method is where the magic happens, instead of rendering the default application.html.erb template, we are asking rails to render another layout that will override the default one.
+This basically says that we have an action called mobile_show "which needs a view with the same name" *^1^* and in this action we initialize some instance variables so that we would be able to use them in our view template. The last line in the method is where the magic happens, instead of rendering the default application.html.erb template, we are asking rails to render another layout that will override the default one.
 
+*1* - You can name your template to whatever name you like but if you do so make sure to render the correct template by hand using:
+{{{
+render :layout => "LAYOUT_NAME", :template => "TEMPLATE_PATH"
+}}}
+
+ Yahia suggested I add this to the wiki in order to be more clear about the rendering issue. In practice though it is better for your templates to have the same name as your action's name and let *Rails* do its *Magic* ;)
+----
 Now that our controller's action is ready, we need to start building our view that will be rendered on the phone.
 
 As for the regular views that C3 and C4 have been using all along, it is obvious that our views consist of 2 main components, one that is static for all the pages "like the nav bar for example" and one that changes according to the page "regular content like story's content or comments content", to get rid of repeating code, rails gave us the choice of letting some parts of the page stay as is for all pages "which is done through the *application.html.erb*". I stated earlier that this is not the case for us, however after trying something, it worked perfectly so here I am editing the wiki to show you how you can do it.
@@ -267,3 +274,5 @@ Hope this was helpful, if you face any trouble while following this wiki please 
 Regards,
 
 Menisy
+
+<g:plusone size="medium"></g:plusone>
