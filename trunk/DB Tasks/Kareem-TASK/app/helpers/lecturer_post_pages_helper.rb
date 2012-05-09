@@ -1,0 +1,2 @@
+module LecturerPostPagesHelper
+end

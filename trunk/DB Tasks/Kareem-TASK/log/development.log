@@ -1,0 +1,1414 @@
+  [1m[36m (0.4ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (17.2ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("schema_migrations")[0m
+  [1m[35m (6.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120509212417)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120509212417')
+  [1m[36m (7.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLecturers (20120509212601)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "lecturers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "faculty" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (12.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120509212601')
+  [1m[36m (7.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePages (20120509212718)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (5.0ms)[0m  [1mCREATE TABLE "pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120509212718')
+  [1m[36m (17.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStudents (20120509212818)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "students" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120509212818')
+  [1m[36m (17.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateLecturerPostPages (20120509213104)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (8.6ms)[0m  [1mCREATE TABLE "lecturer_post_pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120509213104')
+  [1m[36m (12.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStudentPostPages (20120509213203)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "student_post_pages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120509213203')
+  [1m[36m (10.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateStudentSubCourses (20120509213259)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "student_sub_courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (6.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20120509213259')
+  [1m[36m (13.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (2.3ms)[0m  select sqlite_version(*)
+  [1m[36m (2.9ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("lecturer_post_pages")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("lecturers")
+  [1m[36m (0.2ms)[0m  [1mPRAGMA index_list("pages")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("student_post_pages")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("student_sub_courses")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120509212417)
+Migrating to CreateLecturers (20120509212601)
+Migrating to CreatePages (20120509212718)
+Migrating to CreateStudents (20120509212818)
+Migrating to CreateLecturerPostPages (20120509213104)
+Migrating to CreateStudentPostPages (20120509213203)
+Migrating to CreateStudentSubCourses (20120509213259)
+  [1m[35m (0.6ms)[0m  select sqlite_version(*)
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.3ms)[0m  [1mPRAGMA index_list("lecturer_post_pages")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("lecturers")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("pages")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("student_post_pages")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("student_sub_courses")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("students")
+  [1m[36m (0.3ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateCourses (20120509212417)
+Migrating to CreateLecturers (20120509212601)
+Migrating to CreatePages (20120509212718)
+Migrating to CreateStudents (20120509212818)
+Migrating to CreateLecturerPostPages (20120509213104)
+Migrating to CreateStudentPostPages (20120509213203)
+Migrating to CreateStudentSubCourses (20120509213259)
+  [1m[35m (1.5ms)[0m  select sqlite_version(*)
+  [1m[36m (0.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("courses")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("lecturer_post_pages")[0m
+  [1m[35m (0.0ms)[0m  PRAGMA index_list("lecturers")
+  [1m[36m (0.0ms)[0m  [1mPRAGMA index_list("pages")[0m
+  [1m[35m (0.2ms)[0m  PRAGMA index_list("student_post_pages")
+  [1m[36m (0.1ms)[0m  [1mPRAGMA index_list("student_sub_courses")[0m
+  [1m[35m (0.1ms)[0m  PRAGMA index_list("students")
+
+
+Started GET "/students" for 192.168.26.1 at 2012-05-09 14:45:41 -0700
+Processing by StudentsController#index as HTML
+  [1m[36mStudent Load (0.5ms)[0m  [1mSELECT "students".* FROM "students" [0m
+  Rendered students/index.html.erb within layouts/application (56.5ms)
+Compiled courses.css  (27ms)  (pid 5037)
+Compiled lecturer_post_pages.css  (3ms)  (pid 5037)
+Compiled lecturers.css  (2ms)  (pid 5037)
+Compiled pages.css  (2ms)  (pid 5037)
+Compiled scaffolds.css  (31ms)  (pid 5037)
+Compiled student_post_pages.css  (5ms)  (pid 5037)
+Compiled student_sub_courses.css  (2ms)  (pid 5037)
+Compiled students.css  (4ms)  (pid 5037)
+Compiled application.css  (300ms)  (pid 5037)
+Compiled jquery.js  (4ms)  (pid 5037)
+Compiled jquery_ujs.js  (1ms)  (pid 5037)
+Compiled courses.js  (2866ms)  (pid 5037)
+Compiled lecturer_post_pages.js  (300ms)  (pid 5037)
+Compiled lecturers.js  (302ms)  (pid 5037)
+Compiled pages.js  (318ms)  (pid 5037)
+Compiled student_post_pages.js  (271ms)  (pid 5037)
+Compiled student_sub_courses.js  (265ms)  (pid 5037)
+Compiled students.js  (277ms)  (pid 5037)
+Compiled application.js  (5001ms)  (pid 5037)
+Completed 200 OK in 5867ms (Views: 5567.4ms | ActiveRecord: 7.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /courses.css - 200 OK (15ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /scaffolds.css - 200 OK (14ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /pages.css - 200 OK (9ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /lecturers.css - 200 OK (6ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /student_post_pages.css - 200 OK (5ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /jquery.js - 200 OK (14ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /students.css - 200 OK (10ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /jquery_ujs.js - 200 OK (34ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /courses.js - 200 OK (3ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:50 -0700
+Served asset /lecturers.js - 200 OK (3ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:51 -0700
+Served asset /application.css - 200 OK (39ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:51 -0700
+Served asset /lecturer_post_pages.css - 200 OK (13ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:51 -0700
+Served asset /student_sub_courses.js - 200 OK (6ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:52 -0700
+Served asset /students.js - 200 OK (4ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:45:52 -0700
+Served asset /student_sub_courses.css - 200 OK (6ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:52 -0700
+Served asset /application.js - 200 OK (43ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:52 -0700
+Served asset /lecturer_post_pages.js - 200 OK (4ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:53 -0700
+Served asset /pages.js - 200 OK (4ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:45:53 -0700
+Served asset /student_post_pages.js - 200 OK (5ms)
+
+
+Started GET "/students/new" for 192.168.26.1 at 2012-05-09 14:48:49 -0700
+Processing by StudentsController#new as HTML
+  Rendered students/_form.html.erb (77.1ms)
+  Rendered students/new.html.erb within layouts/application (89.7ms)
+Completed 200 OK in 202ms (Views: 115.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:49 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:49 -0700
+Served asset /pages.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:49 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:49 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:50 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:50 -0700
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:48:50 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:48:50 -0700
+Served asset /courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:48:50 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:48:50 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:48:50 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:51 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:48:51 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:48:52 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:48:52 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started POST "/students" for 192.168.26.1 at 2012-05-09 14:48:58 -0700
+Processing by StudentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TZFr70cl1hGhr2MkjWKCjubxpfgPVZDfaexqUN/T/oE=", "student"=>{"name"=>"ahmed"}, "commit"=>"Create Student"}
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36mSQL (127.3ms)[0m  [1mINSERT INTO "students" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 09 May 2012 21:48:59 UTC +00:00], ["name", "ahmed"], ["updated_at", Wed, 09 May 2012 21:48:59 UTC +00:00]]
+  [1m[35m (9.5ms)[0m  commit transaction
+Redirected to http://192.168.26.171:3000/students/1
+Completed 302 Found in 151ms (ActiveRecord: 137.2ms)
+
+
+Started GET "/students/1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (0.6ms)[0m  [1mSELECT "students".* FROM "students" WHERE "students"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered students/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 34ms (Views: 26.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Served asset /courses.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Served asset /scaffolds.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Served asset /pages.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:01 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:02 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:02 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:02 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:02 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:03 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:03 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:06 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:06 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/students" for 192.168.26.1 at 2012-05-09 14:49:09 -0700
+Processing by StudentsController#index as HTML
+  [1m[35mStudent Load (0.7ms)[0m  SELECT "students".* FROM "students" 
+  Rendered students/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 38ms (Views: 33.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:09 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:09 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:09 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:09 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:09 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:09 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /students.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /lecturers.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:10 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/courses" for 192.168.26.1 at 2012-05-09 14:49:17 -0700
+Processing by CoursesController#index as HTML
+  [1m[36mCourse Load (0.4ms)[0m  [1mSELECT "courses".* FROM "courses" [0m
+  Rendered courses/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 37ms (Views: 28.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /lecturers.css - 304 Not Modified (67ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /pages.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /students.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:18 -0700
+Served asset /students.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:49:20 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:49:20 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/student_post_pages" for 192.168.26.1 at 2012-05-09 14:50:42 -0700
+Processing by StudentPostPagesController#index as HTML
+  [1m[35mStudentPostPage Load (0.2ms)[0m  SELECT "student_post_pages".* FROM "student_post_pages" 
+  Rendered student_post_pages/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 30ms (Views: 23.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:42 -0700
+Served asset /courses.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:42 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:42 -0700
+Served asset /scaffolds.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:42 -0700
+Served asset /lecturers.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:42 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:42 -0700
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:43 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:43 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:43 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:43 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:43 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:43 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:43 -0700
+Served asset /application.js - 304 Not Modified (23ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:44 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:44 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:44 -0700
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:45 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/student_post_pages/new" for 192.168.26.1 at 2012-05-09 14:50:51 -0700
+Processing by StudentPostPagesController#new as HTML
+  Rendered student_post_pages/_form.html.erb (5.9ms)
+  Rendered student_post_pages/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 37ms (Views: 29.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:52 -0700
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:52 -0700
+Served asset /lecturers.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:52 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:52 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:52 -0700
+Served asset /student_post_pages.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:52 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:52 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:53 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:53 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /application.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:54 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started POST "/student_post_pages" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Processing by StudentPostPagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TZFr70cl1hGhr2MkjWKCjubxpfgPVZDfaexqUN/T/oE=", "commit"=>"Create Student post page"}
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.7ms)[0m  INSERT INTO "student_post_pages" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Wed, 09 May 2012 21:50:57 UTC +00:00], ["updated_at", Wed, 09 May 2012 21:50:57 UTC +00:00]]
+  [1m[36m (19.4ms)[0m  [1mcommit transaction[0m
+Redirected to http://192.168.26.171:3000/student_post_pages/1
+Completed 302 Found in 37ms (ActiveRecord: 25.4ms)
+
+
+Started GET "/student_post_pages/1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Processing by StudentPostPagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mStudentPostPage Load (0.6ms)[0m  SELECT "student_post_pages".* FROM "student_post_pages" WHERE "student_post_pages"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered student_post_pages/show.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 31ms (Views: 27.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /lecturers.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /pages.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /scaffolds.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /application.css - 304 Not Modified (10ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:57 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /student_post_pages.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /students.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:50:58 -0700
+Served asset /application.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:50:59 -0700
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/student_post_pages/1/edit" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Processing by StudentPostPagesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudentPostPage Load (1.0ms)[0m  [1mSELECT "student_post_pages".* FROM "student_post_pages" WHERE "student_post_pages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered student_post_pages/_form.html.erb (16.5ms)
+  Rendered student_post_pages/edit.html.erb within layouts/application (25.4ms)
+Completed 200 OK in 67ms (Views: 54.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Served asset /courses.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Served asset /lecturers.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:09 -0700
+Served asset /courses.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:10 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:10 -0700
+Served asset /pages.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:10 -0700
+Served asset /lecturers.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:10 -0700
+Served asset /student_post_pages.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:10 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:10 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:10 -0700
+Served asset /application.js - 304 Not Modified (70ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:11 -0700
+Served asset /application.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:11 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:11 -0700
+Served asset /student_post_pages.css - 304 Not Modified (1ms)
+
+
+Started GET "/students" for 192.168.26.1 at 2012-05-09 14:51:27 -0700
+Processing by StudentsController#index as HTML
+  [1m[35mStudent Load (0.7ms)[0m  SELECT "students".* FROM "students" 
+  Rendered students/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 30ms (Views: 27.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /pages.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /scaffolds.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /application.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /students.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:28 -0700
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started GET "/pages" for 192.168.26.1 at 2012-05-09 14:51:34 -0700
+Processing by PagesController#index as HTML
+  [1m[36mPage Load (0.3ms)[0m  [1mSELECT "pages".* FROM "pages" [0m
+  Rendered pages/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 44ms (Views: 30.7ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:34 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:34 -0700
+Served asset /lecturers.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /pages.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /scaffolds.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:35 -0700
+Served asset /application.js - 304 Not Modified (141ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:36 -0700
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:36 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:37 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/pages/new" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Processing by PagesController#new as HTML
+  Rendered pages/_form.html.erb (10.2ms)
+  Rendered pages/new.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 45ms (Views: 34.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /application.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /students.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:39 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:40 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:41 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:42 -0700
+Served asset /application.js - 304 Not Modified (5ms)
+
+
+Started POST "/pages" for 192.168.26.1 at 2012-05-09 14:51:50 -0700
+Processing by PagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TZFr70cl1hGhr2MkjWKCjubxpfgPVZDfaexqUN/T/oE=", "page"=>{"name"=>"MET"}, "commit"=>"Create Page"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.1ms)[0m  [1mINSERT INTO "pages" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", Wed, 09 May 2012 21:51:50 UTC +00:00], ["name", "MET"], ["updated_at", Wed, 09 May 2012 21:51:50 UTC +00:00]]
+  [1m[35m (5.9ms)[0m  commit transaction
+Redirected to http://192.168.26.171:3000/pages/1
+Completed 302 Found in 23ms (ActiveRecord: 7.1ms)
+
+
+Started GET "/pages/1" for 192.168.26.1 at 2012-05-09 14:51:50 -0700
+Processing by PagesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPage Load (1.6ms)[0m  [1mSELECT "pages".* FROM "pages" WHERE "pages"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered pages/show.html.erb within layouts/application (20.8ms)
+Completed 200 OK in 66ms (Views: 54.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:50 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /scaffolds.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /courses.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /students.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:51 -0700
+Served asset /students.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:53 -0700
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:51:53 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:51:53 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/student_post_pages" for 192.168.26.1 at 2012-05-09 14:52:01 -0700
+Processing by StudentPostPagesController#index as HTML
+  [1m[35mStudentPostPage Load (0.4ms)[0m  SELECT "student_post_pages".* FROM "student_post_pages" 
+  Rendered student_post_pages/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 26ms (Views: 23.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /pages.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /scaffolds.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /courses.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /application.css - 304 Not Modified (8ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:02 -0700
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:03 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:03 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:03 -0700
+Served asset /lecturers.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:04 -0700
+Served asset /students.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:05 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:05 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:05 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:07 -0700
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started GET "/student_post_pages/new" for 192.168.26.1 at 2012-05-09 14:52:09 -0700
+Processing by StudentPostPagesController#new as HTML
+  Rendered student_post_pages/_form.html.erb (3.2ms)
+  Rendered student_post_pages/new.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 35ms (Views: 34.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /courses.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (6ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /student_post_pages.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:10 -0700
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:11 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:11 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:11 -0700
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:12 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:14 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started POST "/student_post_pages" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Processing by StudentPostPagesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TZFr70cl1hGhr2MkjWKCjubxpfgPVZDfaexqUN/T/oE=", "commit"=>"Create Student post page"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "student_post_pages" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Wed, 09 May 2012 21:52:16 UTC +00:00], ["updated_at", Wed, 09 May 2012 21:52:16 UTC +00:00]]
+  [1m[36m (17.6ms)[0m  [1mcommit transaction[0m
+Redirected to http://192.168.26.171:3000/student_post_pages/2
+Completed 302 Found in 24ms (ActiveRecord: 18.5ms)
+
+
+Started GET "/student_post_pages/2" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Processing by StudentPostPagesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mStudentPostPage Load (0.4ms)[0m  SELECT "student_post_pages".* FROM "student_post_pages" WHERE "student_post_pages"."id" = ? LIMIT 1  [["id", "2"]]
+  Rendered student_post_pages/show.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 104ms (Views: 101.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:16 -0700
+Served asset /courses.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /student_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /student_post_pages.js - 304 Not Modified (4ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /students.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:52:17 -0700
+Served asset /application.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:19 -0700
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:52:19 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (5ms)
+
+
+Started GET "/student_post_pages" for 192.168.26.1 at 2012-05-09 14:52:23 -0700
+Processing by StudentPostPagesController#index as HTML
+  [1m[36mStudentPostPage Load (0.4ms)[0m  [1mSELECT "student_post_pages".* FROM "student_post_pages" [0m
+  Rendered student_post_pages/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 25ms (Views: 23.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/student_sub_courses" for 192.168.26.1 at 2012-05-09 14:57:13 -0700
+Processing by StudentSubCoursesController#index as HTML
+  [1m[35mStudentSubCourse Load (0.4ms)[0m  SELECT "student_sub_courses".* FROM "student_sub_courses" 
+  Rendered student_sub_courses/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 119ms (Views: 113.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/assets/lecturers.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:15 -0700
+Served asset /lecturers.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:15 -0700
+Served asset /pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:15 -0700
+Served asset /lecturer_post_pages.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/scaffolds.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:15 -0700
+Served asset /scaffolds.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:15 -0700
+Served asset /application.css - 304 Not Modified (7ms)
+
+
+Started GET "/assets/students.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /students.css - 304 Not Modified (1ms)
+
+
+Started GET "/assets/student_post_pages.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /student_post_pages.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /jquery.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/student_sub_courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /student_sub_courses.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturer_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /lecturer_post_pages.js - 304 Not Modified (6ms)
+
+
+Started GET "/assets/courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /courses.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lecturers.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /lecturers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /pages.js - 304 Not Modified (8ms)
+
+
+Started GET "/assets/students.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /students.js - 304 Not Modified (2ms)
+
+
+Started GET "/assets/student_sub_courses.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /student_sub_courses.js - 304 Not Modified (1ms)
+
+
+Started GET "/assets/application.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /application.js - 304 Not Modified (7ms)
+
+
+Started GET "/assets/student_post_pages.js?body=1" for 192.168.26.1 at 2012-05-09 14:57:16 -0700
+Served asset /student_post_pages.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/courses.css?body=1" for 192.168.26.1 at 2012-05-09 14:57:17 -0700
+Served asset /courses.css - 304 Not Modified (0ms)

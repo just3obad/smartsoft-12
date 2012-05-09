@@ -1,0 +1,21 @@
+<h1>Listing lecturer_post_pages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @lecturer_post_pages.each do |lecturer_post_page| %>
+  <tr>
+    <td><%= link_to 'Show', lecturer_post_page %></td>
+    <td><%= link_to 'Edit', edit_lecturer_post_page_path(lecturer_post_page) %></td>
+    <td><%= link_to 'Destroy', lecturer_post_page, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Lecturer post page', new_lecturer_post_page_path %>
