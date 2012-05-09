@@ -16,11 +16,14 @@ class StoriesController < ApplicationController
     # parameters are stored in POST HTTP request body
     # that was sent from the mobile client
     def create_comment
-     @comment = Comment.new({:content=>params[:content],:user_id=>params[:user_id],:story_id=>params[:id]})
+      @comment = Comment.new(:content=>params[:content])
+      user = User.find(params[:user_id])
+      story = Story.find(params[:id])
+      @comment.user = user
+      @comment.story = story
 
-      if @comment.save then
-
-	Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: nil,admin_id: nil,story_id: params[:id],interest_id: nil,message: (User.find(params[:user_id]).name+" commented on \"" + Story.find(params[:id]).title + "\" with \"" + params[:content]+"\"").to_s ) # adding data to log
+      if @comment.save then 
+        @comment.add_to_log # adding data to log
         render json: "ok"
       else
         render json: "no"

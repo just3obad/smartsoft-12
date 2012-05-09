@@ -1,11 +1,6 @@
 class CommentsController < ApplicationController
   respond_to :html,:json
   
-
-
-  
-
-
   def new
     @comment = Comment.new
 
