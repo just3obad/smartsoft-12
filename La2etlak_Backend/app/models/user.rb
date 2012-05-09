@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :pending_friends, :through => :friends, :source => :friend, :conditions => "stat = '0'"
   has_many :friendships, :dependent => :destroy
   has_many :comments
+  has_many :comment_up_downs
   # stat 0 pending
   # stat 1 requested
   # stat 2 accepted
