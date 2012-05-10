@@ -4,14 +4,7 @@ include StoriesHelper
 include InterestsHelper
 include UsersHelper
 
- '''This is the method that should return the data of statistics of an interest
- with this format first element in the data arrays is ARRAY OF "No Of Users",
- second one is "No Of stories"'''
- def get_interest_stat(interest_id)
- sto = get_num_stories_in_interest_day(interest_id)
- usr = get_num_users_added_interest_day(interest_id)
- data ="[#{usr} , #{sto}]"
- end
+ 
 
   '''
   This is the method that should return the data of statistics of a user
@@ -30,26 +23,7 @@ include UsersHelper
  data = "[#{s},#{n},#{m},#{p},#{c}]"
  end
  
- #to get the number of registered users per day to use it in the graph
- def get_registered_stat
- r = get_num_registered_day
- data = "[#{r}]"
- end
-#to get the number of logged in users per day to use it in the graph
- def get_logged_stat
- l = get_num_logged_in_day
- data = "[#{l}]"
- end
- #to get the number of registered and logged in users per day to use it in the graph
- def get_all_users_stat
- reg = get_num_registered_day
- log = get_num_logged_in_day
- if reg.empty?
- data = []
- else 
- data = "[#{reg},#{log}]"
- end
-end
+ 
  
  
 end
