@@ -4,6 +4,7 @@ class StatisticsController < ApplicationController
  end
  def interests
    @id=params[:id]
+   @interest=Interest.find(@id)
  end
  
  def stories
@@ -15,6 +16,7 @@ class StatisticsController < ApplicationController
    @id=params[:id]
  end
  def all_users
+  # @allUsers=User
  end
  def all_stories
  end
