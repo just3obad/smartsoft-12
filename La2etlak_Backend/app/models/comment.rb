@@ -22,47 +22,51 @@ class Comment < ActiveRecord::Base
     !down.nil? # if down is nil then return false if not then return true
   end
   
-  def up_comment?(user)
+  def up_comment(user)
     upped_before = self.upped_by_user?(user)
     downed_before = self.downed_by_user?(user)
     if !upped_before && !downed_before then #if user never upped or downed the comment then up it
-      up = Comment_up_down.create(:action => 1)
-      user.comment_up_downs << up
-      comment.comment_up_downs << up
+      up = CommentUpDown.new(:action => 1)
+      up.comment = self
+      up.user = user
+      up.save
       up.add_to_log(self.user)
-      render json: "yes" and return true
+      return true
    #  self.comment_up_downs << Comment_up_down.create()
     elsif downed_before then
       self.comment_up_downs.find_by_user_id_and_action(user.id,2).destroy #if user disliked it, now make him like it!
-      up = Comment_up_down.create(:action => 1)
-      user.comment_up_downs << up
-      comment.comment_up_downs << up
+      up = CommentUpDown.new(:action => 1)
+      up.comment = self
+      up.user = user
+      up.save
       up.add_to_log(self.user)
-      render json: "yes" and return true
+      return true
     else
-      render json: "no" and return false
+      return false
     end     
   end
   
-  def down_comment?(user)
+  def down_comment(user)
     upped_before = self.upped_by_user?(user)
     downed_before = self.downed_by_user?(user)
     if !upped_before && !downed_before then #if user never upped or downed the comment then up it
-      down = Comment_up_down.create(:action => 2)
-      user.comment_up_downs << down
-      comment.comment_up_downs << down
+      down = CommentUpDown.new(:action => 2)
+      down.comment = self
+      down.user = user
+      down.save
       down.add_to_log(self.user)
-      render json: "yes" and return true
+      return true
    #  self.comment_up_downs << Comment_up_down.create()
     elsif upped_before then
       self.comment_up_downs.find_by_user_id_and_action(user.id,1).destroy #if user disliked it, now make him like it!
-      down = Comment_up_down.create(:action => 1)
-      user.comment_up_downs << down
-      comment.comment_up_downs << down
+      down = CommentUpDown.new(:action => 2)
+      down.comment = self
+      down.user = user
+      down.save
       down.add_to_log(self.user)
-      render json: "yes" and return true
+      return true
     else
-      render json: "no" and return false
+      return false
     end
    end 
   

@@ -34,7 +34,7 @@ class StoriesController < ApplicationController
   def up_comment
     comment = Comment.find(params[:comment_id])
     user = User.find(params[:user_id])
-    upped = comment.up_comment?(user)
+    upped = comment.up_comment(user)
     if upped 
       render json: "ok"
     else
@@ -46,7 +46,7 @@ class StoriesController < ApplicationController
   def down_comment
     comment = Comment.find(params[:comment_id])
     user = User.find(params[:user_id])
-    downed = comment.down_comment?(user)
+    downed = comment.down_comment(user)
     if downed 
       render json: "ok"
     else
