@@ -29,7 +29,11 @@ validates :name, :presence => true,
 # the image will be entered using a URL link whci should also be of the form  "http://www. xxxx.jpg"
   validates :image,  :format   => { :with => LINK_regex }
 
-
+#a method that takes a number and returns this number of stories related to this interest
+  def get_stories(stories_number=10)
+  # querying the related stories to the passed interest and take only the number given in the method
+     self.stories [0..stories_number-1]
+  end
 
 def self.get_all_interests
 Interest.all
