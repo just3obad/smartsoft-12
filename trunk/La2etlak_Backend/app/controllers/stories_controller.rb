@@ -7,6 +7,16 @@ class StoriesController < ApplicationController
    @story = Story.find(params[:id])
 
   end
+  
+  
+  def mobile_show
+    @story = Story.find(params[:id])
+    @comment = Comment.new
+    @user_id = params[:id2]
+    render :layout => "mobile_template" 
+  end
+  
+  
     # show comments of a certain story
     def show_comments
     @comments = Comment.find_all_by_story_id(params[:id]).reverse
