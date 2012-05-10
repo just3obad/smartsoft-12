@@ -15,6 +15,15 @@ class User < ActiveRecord::Base
   has_one :twitter_accountc
   has_one :twitter_request #If he requested another one, the old will be deleted
 
+  has_many :shares
+  has_many :shared_stories, :class_name => "Story", :through => :shares
+  has_many :likedislikes
+  has_many :liked_stories, :class_name => "Story", :through => :likedislikes, :conditions => "action = '1'"
+  has_many :disliked_stories, :class_name => "Story",:through => :likedislikes, :conditions => "action = '-1'"
+  has_many :flags
+  has_many :flaged_stories, :class_name => "Story", :through => :flags
+
+
   email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
   validates :name, :length => { :maximum => 20 }
   validates :email, :presence => true,

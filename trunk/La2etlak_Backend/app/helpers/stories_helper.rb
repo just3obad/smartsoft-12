@@ -67,74 +67,14 @@ module StoriesHelper
       end.inspect
     end
   end
-
-  '''
-  This method when called will return the difference between today and the day 
-  the story was created in in days in all cases as mentioned in the above 
-  methods:
-  '''
-  def get_story_start_date(creation_date, last_update, hidden)
-    
-    if (hidden && creation_date.to_date < 30.days.ago.to_date && 
-          last_update.to_date >= 30.days.ago.to_date) ||
-          (creation_date.to_date < 30.days.ago.to_date)
-            date = Time.zone.now.to_date - 30.days.ago.to_date
-    
-    elsif hidden && creation_date.to_date < 30.days.ago.to_date && 
-          last_update.to_date < 30.days.ago.to_date
-            date = -1
-            
-    else
-            date = Time.zone.now.to_date - creation_date.to_date
-    end
-  end
-
-  #This method gets the number of total shares of a certain story given its id:
-  def get_total_number_of_shares
-    number = @total_shares
-  end
-
-  #This method gets the number of total likes of a certain story given its id:
-  def get_total_number_of_likes
-    number = @total_likes
-  end
-
-  #This method gets the number of total dislikes of a certain story given its id:
-  def get_total_number_of_dislikes
-    number = @total_dislikes
-  end
-
-  #This method gets the number of total flags of a certain story given its id:
-  def get_total_number_of_flags
-    number = @total_flags
-  end
-  
-  def get_number_of_shares(user_id)
-    number = @shares.where(:user_id => user_id).count
-  end
-
-  #This method gets the interest that the story belongs too:
-  def get_interest_of_story(story_id)
-    interestID = Story.find(story_id).interest_id
-    interest = Interest.find(interestID).name
-  end
-
-  '''
-  This method returns the number of distinct users who shared the story. 
-  This means that if a user shares a story two times, this method will count 
-  him once.
-  '''
-  def get_distinct_number_of_users_who_shared
-    number = @shares.select("distinct(user_id)").count
-  end
   
   '''
   This method returns the percentage of the likes to the total number 
   of likes and dislikes
   '''
   def get_width
-    likes = get_total_number_of_likes
-    dislikes =  get_total_number_of_dislikes
+    likes =  @story.likers.count
+    dislikes =  @story.dislikers.count
     total = likes + dislikes
     if total == 0
       width = 0
