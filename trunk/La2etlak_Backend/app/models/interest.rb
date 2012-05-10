@@ -28,6 +28,12 @@ validates :name, :presence => true,
 
 # the image will be entered using a URL link whci should also be of the form  "http://www. xxxx.jpg"
   validates :image,  :format   => { :with => LINK_regex }
+<<<<<<< .mine
+
+
+def self.get_all_interests
+Interest.all
+=======
 
   '''This method when called will return the difference between today and the day
   the interest was created in days.
@@ -308,4 +314,11 @@ validates :name, :presence => true,
  data ="[#{usr} , #{sto}]"
  end
 
+>>>>>>> .r1036
+end
+
+
+def self.get_interest(id)
+Interest.find(id)
+end
 end
