@@ -32,60 +32,30 @@ class StoriesController < ApplicationController
 
   # action for thumbing up a comment with params passed in POST HTTP request
   def up_comment
-    liked = Upped.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
-    disliked = Downed.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
-    if liked.nil? && disliked.nil? then #if user never liked or disliked comment then like it
-      Upped.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id]) 
-
-      # adding data to log
-      commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed UP the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
-	render json: "ok" and return true
-     # return true
-    else if !disliked.nil? then #if user disliked it, now make him like it! 
-      Downed.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id]).destroy
-      Upped.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id])
-
-# adding data to log
-      commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed UP the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
-
-     render json: "ok" and return true
-    # no extra conditions are needed to be checked for
+    comment = Comment.find(params[:comment_id])
+    user = User.find(params[:user_id])
+    upped = comment.up_comment?(user)
+    if upped 
+      render json: "ok"
     else
-       render json: "no" and return false
+      render json: "no"
     end
-  end 
-end
-
-  # action for thumbing down a comment with params passed in POST HTTP request
-  def down_comment
-    liked = Upped.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
-    disliked = Downed.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id])
-    if liked.nil? && disliked.nil? then #if user never liked or disliked comment then like it
-      Downed.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id]) 
-
-# adding data to log
-      commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed DOWN the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
-
-    render json: "ok" and  return true
-    else if !liked.nil?  then #if user liked it, now make him dislike it! 
-      Upped.find_by_user_id_and_comment_id(params[:user_id],params[:comment_id]).destroy
-      Downed.create(:user_id=>params[:user_id],:comment_id=>params[:comment_id])
-
-# adding data to log
-      commenterID = Comment.find(params[:comment_id]).user_id  # ID of the commenter
-      Log.create!(loggingtype: 2,user_id_1: params[:user_id],user_id_2: commenterID,admin_id: nil,story_id: params[:id],interest_id: nil,message: User.find(params[:user_id]).name+" thumbed DOWN the comment \"" + Comment.find(params[:comment_id]).content+"\"" + " by " + User.find(commenterID).name )
-	render json: "ok" and return true
+  end
   
-    # no extra conditions are needed to be checked for
+   # action for thumbing down a comment with params passed in POST HTTP request
+  def down_comment
+    comment = Comment.find(params[:comment_id])
+    user = User.find(params[:user_id])
+    downed = comment.down_comment?(user)
+    if downed 
+      render json: "ok"
     else
-	render json: "no" and return false
-    
+      render json: "no"
     end
-  end 
-end
+  end
+  
+  
+   
 
   def index
     respond_with(@stories = Story.all) # passing a list of all stories to the view .
