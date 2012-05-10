@@ -8,23 +8,15 @@ class LogsController < ApplicationController
  #show all
  
   def index
-        $datefilter = false
-        if @emptydate!=true
-         $admins = "true"
-          $users = "true"
-          $stories = "true"
-          $interests = "true"
-          @emptydate = false
-        end
-        $logs = Log.order("created_at DESC")
+       Log.get_All_Logs
         begin
-        respond_to do |format|
-           format.html { render :template => 'logs/Logs' }
-           format.xls { send_data $logs.to_xls, content_type: 'application/vnd.ms-excel', filename: 'LogFile.xls' }
-         end
-       rescue
-         render :template => 'shared/error_page'
-       end
+         respond_to do |format|
+            format.html { render :template => 'logs/Logs' }
+            format.xls { send_data $logs.to_xls, content_type: 'application/vnd.ms-excel', filename: 'LogFile.xls' }
+          end
+        rescue
+          render :template => 'shared/error_page'
+        end
       end
  #used by a post http request to enter new logs into the database
  #from outside of the server
@@ -32,8 +24,7 @@ class LogsController < ApplicationController
  #insertion
   
   def create
-      @log = Log.new(params[:log])
-      if @log.save
+      if Log.add_New(params[:log])
           render :nothing => true 
           else
           render :nothing => true 
