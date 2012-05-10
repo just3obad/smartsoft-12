@@ -1,10 +1,27 @@
 class Log < ActiveRecord::Base
   attr_accessible :admin_id, :interest_id, :loggingtype, :message, :story_id, :user_id_1, :user_id_2
-end
-#used for rendering xls
-def as_xls(options = {})
-  {
-      "DateTime" => created_at.to_s,
-      "Message" => message
-  }
+  #used for rendering xls
+  def as_xls(options = {})
+    {
+        "DateTime" => created_at.to_s,
+        "Message" => message
+    }
+  end
+
+  def self.get_All_Logs
+     $datefilter = false
+      if @emptydate!=true
+       $admins = "true"
+        $users = "true"
+        $stories = "true"
+        $interests = "true"
+        @emptydate = false
+      end
+      $logs = order("created_at DESC")
+  end
+  
+  def self.add_New(log)
+     @log = Log.new(log)
+     @log.save
+  end
 end
