@@ -13,20 +13,20 @@
 
   $(document).ready(function() {
       //get The story's array of arrays of data
-      data= <%= get_story_stat %>;
+      data= <%= @story.get_story_stat %>;
       //the graphs that we want to show
-      names=["No Of Shares","No Of Likes","No of Dislikes","No of Flags"]; 
+      names=["No Of Shares","No Of Likes","No of Dislikes","No of Flags","No of Comments"]; 
       //the time interval between one point and another in the graph.
       pointInterval= <%= 1.day * 1000 %> ;
       // Start point of the graph.
       start_date = 
-      <%= get_story_start_date(@creation_date, @last_update, @hidden).to_i %>;
+      <%= @story.get_story_start_date.to_i %>;
       //check if the story was deleted before the last 30 days
       //if no, then render the graph normally. If yes, 
       //then show the warning described in the HTML part below
       if(start_date != -1) {
       pointStart= 
-      <%= get_story_start_date(@creation_date, @last_update, @hidden).days.ago.to_i * 1000 %>
+      <%= @story.get_story_start_date.days.ago.to_i * 1000 %>
       //Label for x-axis
       xl="Day"; 
       yl="Number";
@@ -40,8 +40,8 @@
       document.getElementById("graphTitle").style.display = "none";
       document.getElementById("deletedStory").style.display = "block";
       }  
-   likes= <%= get_total_number_of_likes %>;
-   dislikes = <%= get_total_number_of_dislikes %>;
+   likes= <%= @story.likers.count %>;
+   dislikes = <%= @story.dislikers.count %>;
    total = likes + dislikes;
    if(total == 0) {
      	document.getElementById("progressbar").style.display = "none";
@@ -69,25 +69,33 @@
 			<div class="statistics-page-well">
 				<div class="accordion-inner">
 					<h3 class="statistics-component-text">
-Likes/Dislikes : <%= get_total_number_of_likes %> 
-/ <%= get_total_number_of_dislikes %></h3> 
+Likes/Dislikes : <%= @story.likers.count %> 
+/ <%= @story.dislikers.count %></h3> 
 	<div class="progresscustom" id="progressbar" style="display: none;">
 	 <div class="barcustom" id="barofprogress" 
 	 	style="width: <%= get_width %>%"></div>
 				</div>						      					<h3 class="statistics-component-text">
-			Number of Flags : <%= get_total_number_of_flags %>
-			<% if get_total_number_of_flags == 1 %>
+			Number of Flags : <%= @story.flags.count %>
+			<% if @story.flags.count == 1 %>
 			<%= "Flag" %>
 			<% else %>
 			<%= "Flags"  %>
 			<%  end %>
 				</h3>
 				<h3 class="statistics-component-text">
-			Number of Shares : <%= get_total_number_of_shares %>
-			<% if get_total_number_of_shares == 1 %>
+			Number of Shares : <%= @story.shares.count %>
+			<% if @story.shares.count == 1 %>
 			<%= "Share" %>
 			<% else %>
 			<%= "Shares"  %>
+			<%  end %>
+				</h3>
+				<h3 class="statistics-component-text">
+			Number of Comments : <%= @story.comments.count %>
+			<% if @story.comments.count == 1 %>
+			<%= "Comment" %>
+			<% else %>
+			<%= "Comments"  %>
 			<%  end %>
 				</h3>
 					</div>
@@ -111,16 +119,16 @@ Likes/Dislikes : <%= get_total_number_of_likes %>
 		<div class="well-interest-component">
 			<a href="/interests/<%= @story.interest_id%>"
 				class="thumbnail-interest-component">
-			  <% if @interest.image.nil? || @interest.image == "" %>
+			  <% if @story.interest.image.nil? || @story.interest.image == "" %>
      			  <%= image_tag "logo.jpeg", :size => "75x75" %>
      			  <% else %>
-            <img src= "<%= @interest.image %>" width="75" style="height:75px"/>
+            <img src= "<%= @story.interest.image %>" width="75" style="height:75px"/>
             		  <% end %> </a>
 				<div class="interest-component-info">
-					<h2><% if @interest.name.nil? %>
+					<h2><% if @story.interest.name.nil? %>
 						<%= "No Name Available" %>
 						<% else %>
-						<%= @interest.name  %>
+						<%= @story.interest.name  %>
 						<%  end %>
 					</h2>
 <%= link_to "view Statistics", 
@@ -136,20 +144,20 @@ class: "interest-component-button-absolute btn btn-primary"%>
 		
 	
 	<h3 class="statistics-component-text">
-	<% if get_distinct_number_of_users_who_shared == 0 %>
+	<% if @story.sharers.uniq.count == 0 %>
 	 	<%= "This story was not shared by anyone" %>
-	<% elsif get_distinct_number_of_users_who_shared == 1 %>
-		Shared by <%= get_distinct_number_of_users_who_shared %>
+	<% elsif @story.sharers.uniq.count == 1 %>
+		Shared by <%= @story.sharers.uniq.count %>
 		<%= "user" %>
 	<% else %>
-		Shared by <%= get_distinct_number_of_users_who_shared %>
+		Shared by <%= @story.sharers.uniq.count %>
 		<%= "users"  %>
 	<%  end %></h3>
 	
 	<li class="divider"></li>
-	<% if get_distinct_number_of_users_who_shared != 0 %>
+	<% if @story.sharers.uniq.count != 0 %>
 	<div class="pre-scrollable-statistics">
-<% Share.where(:story_id => @id).select("distinct(user_id)").find_each do |share| %>
+<% @story.shares.select("distinct(user_id)").find_each do |share| %>
 		<div class="well-user-component">
 		<a href="/users/<%= share.user_id%>"class="thumbnail-user-component">
 		<% if User.find(share.user_id).image.nil? || 
@@ -163,8 +171,8 @@ class: "interest-component-button-absolute btn btn-primary"%>
 			  <h3><%= User.find(share.user_id).email %>
 			  <h6>
 			  (
-			  <%= get_number_of_shares(share.user_id) %>
-			  <% if get_number_of_shares(share.user_id) == 1 %>
+			  <%= @story.sharers.where(id: share.user_id).count %>
+			  <% if @story.sharers.where(id: share.user_id).count == 1 %>
 			  <%= "Share" %>
 			  <% else %>
 			  <%= "Shares"  %>
