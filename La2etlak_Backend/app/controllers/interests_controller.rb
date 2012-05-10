@@ -7,8 +7,8 @@ class InterestsController < ApplicationController
 
   def show
      
-    @interests = Interest.all
-    @interest = Interest.find(params[:id])#retrieving the interest from the database using the id
+    @interests = Interest.get_all_interests
+    @interest = Interest.get_interest(params[:id])
     @stories = Story.find_all_by_interest_id(params[:id]) # get
     @feeds = Feed.find_all_by_interest_id(params[:id])
     @feed = Feed.find_by_interest_id(params[:id])#retrieving the feeds for a certain interest in the database using the id of the interest
