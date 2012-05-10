@@ -122,10 +122,22 @@ def fetch_rss(link)
     #if it is a new story, it will enter automatically
     if count_of_stories_with_same_title == 0
       #getting the id of the interest 
-      sinterest = Feed.find_by_link(source)
+	f = Feed.find_by_link(source)
+	
+	if f == nil
+		f = Feed.new(:interest_id => 1)
+		f.link = source
+		f.save
+	end
 
-      storynow = Story.new(:title => stitle, :rank => 0, :category => "RSS", :deleted => false, :media_link => "")
-      story.now.interest_id = sinterest
+	#getting the id of the interest
+	sinterest = Feed.find_by_link(source).interest_id
+
+    #if it is a new story, it will enter automatically
+    if count_of_stories_with_same_title == 0
+    
+      storynow = Story.new(:title => stitle, :rank => 0, :category => "RSS", :deleted => false, :hidden => false, :interest_id => 	  sinterest, :media_link => "")
+	end
 
 
       storynow.content = sdescription
