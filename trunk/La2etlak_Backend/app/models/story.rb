@@ -17,6 +17,8 @@ include StoriesHelper
   has_many :dislikers, :class_name => "User",:through => :likedislikes, :conditions => "action = '-1'"
   has_many :flags
   has_many :flagers, :class_name => "User", :through => :flags
+  has_many :block_stories
+  has_many :blockers, :class_name => "User", :through => :block_stories 
   
   #def initialize(title, date, body)
    # @title = title

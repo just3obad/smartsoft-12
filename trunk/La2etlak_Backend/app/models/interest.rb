@@ -5,6 +5,8 @@ class Interest < ActiveRecord::Base
   
   has_many :stories
   has_many :feeds, :dependent => :destroy
+  has_many :block_interests
+  has_many :blockers, :class_name => "User", :through => :block_interests
 
  # RSS feed link has to be of the form "http://www.abc.com"
 LINK_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix

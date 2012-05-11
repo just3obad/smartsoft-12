@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
   has_many :disliked_stories, :class_name => "Story",:through => :likedislikes, :conditions => "action = '-1'"
   has_many :flags
   has_many :flaged_stories, :class_name => "Story", :through => :flags
+  has_many :block_interests
+  has_many :blocked_interests, :class_name => "Interest", :through => :block_interests
+  has_many :block_stories
+  has_many :blocked_stories, :class_name => "Story", :through => :block_stories 
 
 
   email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
