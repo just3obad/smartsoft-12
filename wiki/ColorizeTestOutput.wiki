@@ -1,5 +1,5 @@
-#summary One-sentence summary of this page.
-colorize unit test output
+#colorize unit test output
+
 = Introduction =
 
 A tiny guide to colorize your unit test output when using default rails unit tests 
