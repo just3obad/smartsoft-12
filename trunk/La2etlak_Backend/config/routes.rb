@@ -38,8 +38,8 @@ NokiaRuby::Application.routes.draw do
   match "/interests/list"  => "interests#new", :as => :new
 
   # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
-  match "twitter_requests/get_twitter_url" => "twitter_requests#generate_request_token"
-  match "twitter_requests/new_twitter_account" =>  "twitter_requests#generate_access_token"
+  match "twitter_requests/get_twitter_url" => "users#generate_request_token"
+  match "twitter_requests/new_twitter_account" =>  "users#generate_access_token"
   match "twitter_accounts/:u_id/delete" => "twitter_accounts#remove_twitter_account"
   match "twitter_accounts/:u_id/exists" => "twitter_accounts#exists?"
   match "users/mob/connect_network" => "users#connect_social_accounts"
