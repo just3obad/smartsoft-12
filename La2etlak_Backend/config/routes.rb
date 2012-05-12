@@ -12,11 +12,6 @@ NokiaRuby::Application.routes.draw do
   match "users/index" => "users#index"
   match "/users/new" => "users#create", :as => :create
   match "users/:id" => "users#show"
-  match "stories/share_story_social_network" => "stories#share_story_social_network"
-  match "stories/:sid/recommend_story" => "stories#recommend_story"
-  match "stories/view_friends_like" => "stories#view_friends_like"
-  match "stories/get_friends_email" => "stories#get_friends_email"
-  match "stories/view_friends_dislike" => "stories#view_friends_dislike"
   match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests/interests" => "user_add_interests#getinterests"  
   match "flags/flag" => "flags#flag"
@@ -59,6 +54,13 @@ NokiaRuby::Application.routes.draw do
   match "users/:id/friend_requests" => "users#friend_requests"
   match "/stories/:id/show_mob/:id2" => "stories#mobile_show"
   # $$$$$$$$$$$$ MENISY END $$$$$$$$$$$$$$$$$$$$$$
+
+    # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
+  match "stories/:sid/recommend_story_mobile_show" => "stories#recommend_story_mobile_show"
+  match "/stories/:id/liked_mobile_show/:id2" => "stories#liked_mobile_show", :as => :like
+  match "/stories/:id/disliked_mobile_show/:id2" => "stories#disliked_mobile_show", :as => :dislike
+  match "/users/get_friends_email_mobile_show/:uid" => "users#get_friends_email_mobile_show", :as => :email
+   # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
 
 
   #match "users/" => "users#index"
