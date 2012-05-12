@@ -40,8 +40,8 @@
       document.getElementById("graphTitle").style.display = "none";
       document.getElementById("deletedStory").style.display = "block";
       }  
-   likes= <%= @story.likers.count %>;
-   dislikes = <%= @story.dislikers.count %>;
+   likes= <%= @story.likedislikes.where(action: 1).count %>;
+   dislikes = <%= @story.likedislikes.where(action: -1).count %>;
    total = likes + dislikes;
    if(total == 0) {
      	document.getElementById("progressbar").style.display = "none";
@@ -69,8 +69,8 @@
 			<div class="statistics-page-well">
 				<div class="accordion-inner">
 					<h3 class="statistics-component-text">
-Likes/Dislikes : <%= @story.likers.count %> 
-/ <%= @story.dislikers.count %></h3> 
+Likes/Dislikes : <%= @story.likedislikes.where(action: 1).count %> 
+/ <%= @story.likedislikes.where(action: -1).count %></h3> 
 	<div class="progresscustom" id="progressbar" style="display: none;">
 	 <div class="barcustom" id="barofprogress" 
 	 	style="width: <%= get_width %>%"></div>
