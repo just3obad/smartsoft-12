@@ -174,6 +174,31 @@ class UserTest < ActiveSupport::TestCase
 	end
 
     
+    #Author : Omar 
+    #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    	test "get all interests" do
+			user = User.create(:email => "a@b.com")		
+			int = Interest.create(:name => "interest")
+			all_interests = Interest.all
+			all = user.all_interests
+			assert_equal( all_interests , all , "[not equal]" )
+		  end
+
+
+	test "get user interests" do 
+		user = User.create(:email => "a@b.c")
+		int1 = Interest.create(:name => "interest 1")
+		int2 = Interest.create(:name => "interest 2")
+		int3 = Interest.create(:name => "interest 3")		
+		UserAddInterest.create(:interest_id => int1.id , :user_id => user.id)
+		UserAddInterest.create(:interest_id => int2.id , :user_id => user.id)
+		uinterests = user.user_interests		
+		uint =UserAddInterest.find(:all , :conditions => ["user_id = ?" , user.id ] , :select => "interest_id").map {|interest|interest.interest_id} 
+		assert_equal( uint , uinterests , "[not equal]" )
+	    end
+
+   #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
+    
 
 	
 end
