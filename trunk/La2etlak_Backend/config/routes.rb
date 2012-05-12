@@ -48,7 +48,7 @@ NokiaRuby::Application.routes.draw do
   match "stories/:id/comments/downc" => "stories#down_comment"
   match "users/:id/friend_requests" => "users#friend_requests"
   match "/stories/:id/show_mob/:id2" => "stories#mobile_show"
-  # SSSSSSSSSSSS MENISY END $$$$$$$$$$$$$$$$$$$$$$
+  # $$$$$$$$$$$$ MENISY END $$$$$$$$$$$$$$$$$$$$$$
 
 
   #match "users/" => "users#index"
