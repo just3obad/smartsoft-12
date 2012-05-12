@@ -15,17 +15,13 @@ class CommentsController < ApplicationController
   end  
   def create
     @comment = Comment.new# Comment.new(params[:comment])
-   @comment.story = Story.find(params[:comment][:story_id])
-   @comment.content = params[:comment][:content]
-   @comment.user = User.find(params[:comment][:user_id])
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'comment success' }
-        format.json { render json: @comment, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    @comment.story = Story.find(params[:comment][:story_id])
+    @comment.content = params[:comment][:content]
+    @comment.user = User.find(params[:comment][:user_id])
+    if @comment.save
+      redirect_to :controller => "stories", :action => "mobile_show" , :id => @comment.story.id , :id2 => @comment.user.id
+    else
+      render json: "Temporary error"
     end
   end
 
