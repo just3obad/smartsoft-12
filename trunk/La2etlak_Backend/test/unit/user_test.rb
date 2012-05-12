@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   #Author : Shafei
-  test "user rank RED" do
+  test "user get rank RED" do
 	user = User.new
 	user.save
 	story = Story.new
@@ -14,7 +14,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
     #Author : Shafei
-  test "users ranking Red" do
+  test "users get rank Red" do
 	top_users = Array.new#
 	comments = Array.new#
 	story = Story.new
@@ -35,7 +35,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 	user = User.new
 	users = user.get_users_ranking
-	assert_not_nil(users.first,"There are no users to rank")
+	assert_nil(users.first,"")
 	users.each do |user|
 		assert_equal(user.id, top_users[i].id, "Ranking not correct")
 		i = i - 1
