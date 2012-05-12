@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
   # stat 1 requested
   # stat 2 accepted
   has_one :haccount
-  has_one :twitter_accountc
-  has_one :twitter_request #If he requested another one, the old will be deleted
+  has_one :twitter_account
 
   has_many :shares
   has_many :shared_stories, :class_name => "Story", :through => :shares
