@@ -432,7 +432,7 @@ end
   unblocked_stories_ids.each do |unblocked_story_id|
         unblocked_stories.append(Story. find(unblocked_story_id))
   end
-  done_stories =   unblocked_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
+  done_stories =   unblocked_stories #.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
   if(int_name != "null")
     filtered_stories = Array.new
           filtered_stories_ids = Array.new
@@ -447,7 +447,7 @@ end
           filtered_stories.append(Story.find(filtered_story_id))
     end
            done_stories = filtered_stories
-           done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
+          # done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
     end
   return done_stories
 
@@ -476,6 +476,10 @@ end
 def all_interests
 all_interests =  Interest.all()
 end
- 
+ ###Author : Kareem
+def get_interests
+ 	interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| 		Interest.find(id).name}
+	return interests 
+	end
  
 end
