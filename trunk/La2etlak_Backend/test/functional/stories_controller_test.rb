@@ -4,4 +4,10 @@ class StoriesControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
+  test "should create comment red" do
+    assert_difference('Comment.count') do
+      post :create_comment, :content => "lololo" , :id => Story.first.id , :user_id => User.first.id
+    end
+    assert_redirected_to comment_path(assigns(:comment))
+  end
 end
