@@ -115,6 +115,15 @@ class UserTest < ActiveSupport::TestCase
     assert !user_feed.nil?
   end
 
+  #Author : Essam
+  test "tumblr account RED" do
+    user = User.new
+    user.email = 'essam@hafez.com'
+    user.tumblr_account = tumblr_accounts(:one)
+    assert !user.tumblr_account.nil?
+    tumblr_feed = user.tumblr_account.get_feed()
+    assert !tumblr_feed.nil?
+  end
 
 	#Author : Kareem
 	test "create new flag" do
