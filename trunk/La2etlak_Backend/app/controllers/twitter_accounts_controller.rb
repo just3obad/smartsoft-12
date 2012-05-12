@@ -9,6 +9,7 @@ class TwitterAccountsController < ApplicationController
   # Author: Yahia
   def remove_twitter_account
     User.remove_twitter_account(params[:u_id])
+    render :layout => 'mobile_template', :text => "Removed twitter account"
   end 
 
 =begin
