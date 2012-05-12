@@ -8,6 +8,9 @@ class Interest < ActiveRecord::Base
   has_many :block_interests
   has_many :blockers, :class_name => "User", :through => :block_interests
 
+  has_many :user_add_interests
+  has_many :adding_users, :class_name => "User", :through => :user_add_interests
+
  # RSS feed link has to be of the form "http://www.abc.com"
 LINK_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix
  
@@ -56,7 +59,7 @@ end
   and its last update was before the last 30 days
   case 4 if the interest is not deleted and its created before the last 30 days
   case 5 if the interest is not deleted and its created within the last 30 days'''
-  
+  ##########Author: Diab ############
   def self.get_interest_start_date(interest_id)
 
   interest_create_date = Interest.find(interest_id).created_at.to_date   
@@ -130,6 +133,7 @@ end
   then get the count of the stories added to the interest per day and 0 if 
   no stories were added
   '''
+  ##########Author: Diab ############
   def self.get_num_stories_in_interest_day(interest_id)
 
   interest_create_date = Interest.find(interest_id).created_at
@@ -231,6 +235,7 @@ end
   then get the count of the users added the interest per day and 0 if 
   no user added it
   '''
+  ##########Author: Diab ############
   def self.get_num_users_added_interest_day(interest_id)
 
     interest_create_date = Interest.find(interest_id).created_at 
@@ -298,6 +303,7 @@ end
     the interest from the database , given its id as a parameter
 
  #to get the count of the stories inside the given interest'''
+ ##########Author: Diab ############
  def self.get_interest_num_stories(interestId) 
 
  num_stories_in_interest = Story.where(:interest_id => interestId).count
@@ -305,6 +311,7 @@ end
  end
  
  '''to get the count of the users who added this interest'''
+ ##########Author: Diab ############
  def self.get_total_num_user_added_interest(interestId)
 
  num_users_added_interest = UserAddInterest.where(:interest_id => interestId).count 
@@ -314,15 +321,14 @@ end
 '''This is the method that should return the data of statistics of an interest
  with this format first element in the data arrays is ARRAY OF "No Of Users",
  second one is "No Of stories"'''
+ ##########Author: Diab ############
  def self.get_interest_stat(interest_id)
  sto = get_num_stories_in_interest_day(interest_id)
  usr = get_num_users_added_interest_day(interest_id)
  data ="[#{usr} , #{sto}]"
  end
 
-
-
-
+ 
 
 def self.get_interest(id)
 Interest.find(id)
