@@ -20,6 +20,6 @@ class CommentTest < ActiveSupport::TestCase
   	comment = Comment.new
   	comment.content = "content again"
   	comment.user = User.first
-  	assert !comment.save , "Should not save without a stpry"
+  	assert !comment.save , "Should not save without a story"
   end
 end
