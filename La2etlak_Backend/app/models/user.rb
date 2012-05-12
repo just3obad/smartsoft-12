@@ -1,4 +1,13 @@
 class User < ActiveRecord::Base
+=begin 
+  This is the controller that is repsonsible for everything that happens before
+  a TwitterAccount gets created and connected to our user. 
+  Author: Yahia
+=end 
+
+  CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
+  CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
+
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
   		:twitter_account, :twitter_request, :image
@@ -334,5 +343,29 @@ end
      date = Time.zone.now.to_date - user_reg_date
    end
  end
+
+   # This return the consumer for twitter authentication
+  # Author: Yahia
+  def self.twitter_consumer
+  # The readkey and readsecret below are the values you get during registration
+    OAuth::Consumer.new(CONSUMER_TOKEN, CONSUMER_SECRET,
+                      { :site=>"http://twitter.com" })
+  end
+
+  def create_twitter_account(request_token)
+    access_token = request_token.get_access_token
+    old_account = self.twitter_account(true)
+    if (old_account)
+      old_account.destroy
+    end
+    self.twitter_account(true) #Reload cache     
+    t_account = TwitterAccount.new
+    t_account.auth_token = access_token.token
+    t_account.auth_secret = access_token.secret
+    t_account.user = self
+    t_account.save
+    return t_account
+  end 
+
  
 end
