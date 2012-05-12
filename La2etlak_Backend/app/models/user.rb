@@ -371,5 +371,71 @@ end
     return t_account
   end 
 
- 
+ #Author Kareem
+ 	def thumb_story(story,act)
+	f = "nil"
+	 thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
+        if thumped.empty? 
+        Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
+	 f = "thumbed"
+		
+  	elsif (thumped[0].action == act) 
+      	   f="Already"
+	
+	elsif (thumped[0].action != act) 
+		Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
+		 Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )	
+		f = "Removed _thumbed"
+	end
+return f
+end
+#Author :Kareem
+def flag_story(story)
+	thumped = Flag.where(:story_id => story.id, :user_id => self.id)
+     if thumped.empty?
+        Flag.create!(:user_id =>  self.id, :story_id => story.id)
+	return true
+     end
+	return false
+end
+#Author : Kareem
+	def get_feed(int_name)
+	  user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id}
+ 	  blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
+	  unblocked_stories = Array.new
+ 	  unblocked_interests = user_interests - blocked_interests
+	  stories_list = Array.new
+ 	  unblocked_interests.each do |unblocked_interest|
+	  stories_list +=  Interest.find(unblocked_interest).get_stories(10)
+	 end
+ 	
+ 	stories_list = stories_list.sort_by &:created_at
+ 	stories_ids = stories_list.map {|story| story.id}
+ 	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
+ 	unblocked_stories_ids = stories_ids - blocked_stories_ids
+ 	unblocked_stories_ids.each do |unblocked_story_id|
+       	unblocked_stories.append(Story.find(unblocked_story_id))
+ 	end
+	done_stories =   unblocked_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
+	if(int_name != "null")
+		filtered_stories = Array.new
+        	filtered_stories_ids = Array.new
+		unblocked_stories_ids.each do |unblocked_story_id|
+		interest_name = Interest.find(Story.find(unblocked_story_id).interest_id).name
+		if(interest_name == int_name)
+			filtered_stories_ids.append(unblocked_story_id)
+			end
+		end
+		filtered_stories = Array.new
+		filtered_stories_ids.each do |filtered_story_id|
+       		filtered_stories.append(Story.find(filtered_story_id))
+		end
+           done_stories = filtered_stories
+           done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
+		end
+	return done_stories
+
+	end
+
+ #-------------------------#
 end
