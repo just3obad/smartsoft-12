@@ -42,6 +42,9 @@ class Comment < ActiveRecord::Base
       up.save
       up.add_to_log(self.user)
       return true
+    elsif upped_before
+      self.comment_up_downs.find_by_user_id_and_action(user.id,1).destroy
+      return true
     else
       return false
     end     
@@ -65,6 +68,9 @@ class Comment < ActiveRecord::Base
       down.user = user
       down.save
       down.add_to_log(self.user)
+      return true
+   elsif downed_before
+      self.comment_up_downs.find_by_user_id_and_action(user.id,2).destroy
       return true
     else
       return false
