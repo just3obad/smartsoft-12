@@ -61,7 +61,19 @@ class InterestTest < ActiveSupport::TestCase
      assert_equal top_interests_ranks , [7,5,2]
     end
 
-  
+  ##########Author: Diab ############
+  test "are all users added interest returned RED" do
+     interest = Interest.new(:name=>"whatever")
+     interest.save
+     user1 = User.new(:email=>"email1@mail.com")
+     user1.save
+     user1.added_interests << interest
+     user2 = User.new(:email=>"email2@mail.com")
+     user2.save
+     user2.added_interests << interest
+     allUsers = interest.get_users_added_interest
+     assert_equal allUsers , interest.adding_users
+    end
 
 
 end
