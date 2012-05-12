@@ -6,8 +6,8 @@ class TwitterRequestsController < ApplicationController
   a TwitterAccount gets created and connected to our user. 
 =end 
 
-  CONSUMER_TOKEN  = 'cuE56v2eK79gsxK1baasA'
-  CONSUMER_SECRET = 'vIJmDpiqDNpiau2YaiHH19fW1zj5DRXjI1VUbuM7lk' 
+  CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
+  CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
 
 
 
