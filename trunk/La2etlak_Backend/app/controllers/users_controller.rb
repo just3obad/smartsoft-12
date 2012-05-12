@@ -1,6 +1,22 @@
 class UsersController < ApplicationController
 	respond_to :html,:json
 
+	# This method is used to register a new user and save him,
+	# if the user was saved successfully it returns "true,
+	# otherwise it returns the errors that prevented the saving of the record
+	# Author: Kiro
+	def register
+ 		@user = User.new(params[:user])
+		respond_to do |format|
+			if @user.save
+	   	  format.json { render text: "true" }
+	  	else
+				errors = "errors:" + @user.errors
+	  	  format.json { render text: errors }
+	  	end
+		end
+	end
+
 #new_record=User.new( :name =>"khaled", :email => "khaled@abc.com")
 #new_record.save!
 #this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
