@@ -8,6 +8,16 @@ class StoriesController < ApplicationController
 
   end
   
+  # Author: Omar $$ this method taks params story id and get number of likes dislikes done bu user and renders mobile_template view  likes => method in the model gets the user who thumbed up story  dislikes=> method in model gets user who thumbed down the story
+   def get
+	id = params[:id]
+	@story = Story.find(id)
+	@likes = @story.likes
+	@dislikes = @story.dislikes
+	render :layout => "mobile_template"
+  end
+  
+  
   
   def mobile_show
     @story = Story.find(params[:id])

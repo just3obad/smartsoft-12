@@ -464,4 +464,18 @@ end
 	return array
  end
  
+ 
+ # Author: Omar
+ # select user existing interests in our database
+def user_interests
+user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}
+end
+
+  # Author: Omar
+ #select all interests in the system
+def all_interests
+all_interests =  Interest.all()
+end
+ 
+ 
 end

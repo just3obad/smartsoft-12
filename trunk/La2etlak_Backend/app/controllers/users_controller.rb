@@ -37,18 +37,32 @@ respond_to do |format|
 end
 ########################
 
-#this method takes id as param and return user intersts and all interests 
+#this method return current user interests and all interests on the system and render to mobile_template (toggle view 
 def toggle
-@id=params[:id]
-@user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , @id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| Interest.find(id).name}
-@all_interests =  Interest.all()
+@user = User.first
+@user_interests = @user.user_interests
+@all_interests = @user.all_interests
+render :layout => "mobile_template"
+end
 
-respond_to do |format|
-      # format.html  index.html.erb
-      format.json { render json: (@user_interests + @all_interests)  }
-
+#this method adds selected interests into UserAddInterest table in the database
+def user_add_interests
+@user = User.first
+@interests = params[:interests]
+interestsss = UserAddInterest.find_all_by_user_id(@user.id)
+ interestsss.each do |t|
+ t.destroy
+ end
+ if @interests != nil 
+@interests.each do |element|
+  @intid = element
+  UserAddInterest.create(user_id:@user.id , interest_id:@intid)
 end
 end
+render :layout => "mobile_template"
+end
+
+
 
  def show
     @user = User.find(params[:id])
