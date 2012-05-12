@@ -8,8 +8,11 @@ class TwitterAccountsController < ApplicationController
   # will be triggered by twitter/:u_id/delete
   # Author: Yahia
   def remove_twitter_account
-    User.remove_twitter_account(params[:u_id])
-    render :layout => 'mobile_template', :text => "Removed twitter account"
+    if User.remove_twitter_account(params[:u_id])
+      render :layout => 'mobile_template', :text => "Removed twitter account"
+    else 
+      render :layout => 'mobile_template', :text => "Error while removing the record"
+    end 
   end 
 
 =begin
@@ -19,7 +22,13 @@ class TwitterAccountsController < ApplicationController
   # will be triggered by twitter/:u_id/exists
   # Author: Yahia
   def exists?
-    TwitterAccount.exists?(params[:u_id])
+    if TwitterAccount.exists?(params[:u_id])
+      render (:layout => 'mobile_template',
+              :text => "Twitter account exsits for #{User.find(params[:id])}")
+    else 
+      render :layout => 'mobile_template', :text => "Error while checking the record"
+    end 
+    
   end 
 
 end
