@@ -43,7 +43,7 @@ class FriendshipTest < ActiveSupport::TestCase
     u1 = User.first
     u2 = User.last
     u1.invite u2
-    u1.approve u2
+    u2.approve u1
     assert_equal u1.friends.first.class.name, 'User', "user.friends should return a list of Users"
   end 
 
