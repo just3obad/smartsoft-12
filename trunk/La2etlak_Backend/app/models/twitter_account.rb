@@ -2,6 +2,12 @@ require 'twitter'
 
 class TwitterAccount < ActiveRecord::Base
 
+  # Those are our Consumer Token and Consumer secret that twitter
+  # provided us. This correspons our entity to twitter. The Consumer
+  # Secret should be saved in a safe place. 
+  # Author: Yahia
+  CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
+  CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
 
   # auth_secret and auth_token are the access keys to the twitter 
   # accounts. Twitter provides them to us in phase to in the 
