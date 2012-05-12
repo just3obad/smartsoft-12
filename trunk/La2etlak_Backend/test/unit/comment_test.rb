@@ -44,6 +44,18 @@ class CommentTest < ActiveSupport::TestCase
       down_comment
     end
   end
+  test "should un-up when re-upped red" do
+    up_comment
+    assert_difference('CommentUpDown.find_all_by_action(1).count',-1) do
+      up_comment
+    end
+  end
+  test "should un-down when re-downed red" do
+    down_comment
+    assert_difference('CommentUpDown.find_all_by_action(2).count',-1) do
+      down_comment
+    end
+  end
 
   def up_comment
     comment = Comment.first
