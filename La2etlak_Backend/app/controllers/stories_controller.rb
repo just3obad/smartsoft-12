@@ -12,31 +12,34 @@ class StoriesController < ApplicationController
   def mobile_show
     @story = Story.find(params[:id])
     @comment = Comment.new
-    @user_id = params[:id2]
+    @user = User.find(params[:id2])
     render :layout => "mobile_template" 
   end
   
   
     # show comments of a certain story
-    def show_comments
+  def show_comments
+    @story = Story.find(params[:id])
+    @user = User.find(1)
+    @comment = Comment.new
     @comments = Comment.find_all_by_story_id(params[:id]).reverse
-    end
+  end
 
     # create a new comment for a certain story
     # parameters are stored in POST HTTP request body
     # that was sent from the mobile client
-    def create_comment
-      @comment = Comment.new(:content=>params[:content])
-      user = User.find(params[:user_id])
-      story = Story.find(params[:id])
-      @comment.user = user
-      @comment.story = story
+  def create_comment
+    @comment = Comment.new(:content=>params[:content])
+    user = User.find(params[:user_id])
+    story = Story.find(params[:story_id])
+    @comment.user = user
+    @comment.story = story
 
-      if @comment.save then 
-        @comment.add_to_log # adding data to log
-        redirect_to @comment, notice: 'comment success'
-      else
-        render action: "new"
+    if @comment.save then 
+      @comment.add_to_log # adding data to log
+      redirect_to @comment, notice: 'comment success'
+    else
+      render action: "new"
     end
   end
 
