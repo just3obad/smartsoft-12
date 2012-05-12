@@ -453,6 +453,15 @@ end
 
 	end
 
+#Author : Shafei
+	def get_user_rank()
+	
+	end
 
+#Author : Shafei
+	def get_users_ranking
+		array = Array.new
+	return array
+ end
  
 end

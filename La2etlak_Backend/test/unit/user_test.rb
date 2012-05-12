@@ -1,6 +1,47 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  #Author : Shafei
+  test "user rank RED" do
+	user = User.new
+	user.save
+	story = Story.new
+	story.save
+	comment = Comment.new
+	comment.user = user
+	comment.story = story
+	assert_equal(user.get_user_rank(),2,"Action returns wrong number")
+  end
+  
+    #Author : Shafei
+  test "users ranking Red" do
+	top_users = Array.new#
+	comments = Array.new#
+	story = Story.new
+	story.save
+	i = 1
+	top_users.each do |user|
+		user = User.new
+		user.save
+		top_users >> user
+		for j in 1...i
+			comment = Comment.new
+			comment.user = user
+			comment.story = story
+			comment.save
+			comments >> comment
+		end
+		i = i + 1
+	end
+	user = User.new
+	users = user.get_users_ranking
+	assert_not_nil(users.first,"There are no users to rank")
+	users.each do |user|
+		assert_equal(user.id, top_users[i].id, "Ranking not correct")
+		i = i - 1
+	end
+  end
+
   ##########Author: christinesed@gmail.com ############
   test "get no of users who signed in today one more user signed in today RED" do
     count=User.get_no_of_users_signed_in_today
