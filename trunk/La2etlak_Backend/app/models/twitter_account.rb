@@ -24,6 +24,7 @@ class TwitterAccount < ActiveRecord::Base
   # This method configure twitters Gem paramters. This configuratin 
   # should be done whenever a feed will be request or a tweet will be
   # posted
+  # Author: Yahia
   def config_twitter
     Twitter.configure do |config|
       config.consumer_key         = CONSUMER_TOKEN
@@ -40,6 +41,7 @@ class TwitterAccount < ActiveRecord::Base
   # I have pruned the option to one optional option which is the pages.  a page
   # contains 20 tweets. Adding a new options will be as simple as putting them 
   # into a hash and providing them to the home_timeline method. 
+  # Author: Yahia
   def get_feed(page=1)
     self.config_twitter
     #puts "getting the feed"
@@ -56,6 +58,7 @@ class TwitterAccount < ActiveRecord::Base
   
   # This method converts a Twitter::Status to Story class. This representation
   # was asked by C1 
+  # Author: Yahia
   def self.tweet_to_story(tweet)
     #story = [author: tweet['user']['name'], text: tweet['text']]
     story = Story.new
@@ -67,7 +70,23 @@ class TwitterAccount < ActiveRecord::Base
     return story 
   end
 
+  # Author: Yahia
+  def self.exists?(user_id)
+    user = User.find(user_id)
+    t_account = user.twitter_account
+  end 
 
+  # Author: Yahia
+  def self.remove_twitter_account(user_id)
+    user = User.find(user_id)
+    if (user.twitter_account)
+      user.twitter_account.destroy
+    else 
+      false 
+    end 
+  end 
+
+    
 #  def tweet(tweet)
 #    configure_twitter
 #    client = Twitter::Client.new
