@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :content
+  attr_accessible :content,:story,:user
   belongs_to :user
   belongs_to :story
   has_many :comment_up_downs
