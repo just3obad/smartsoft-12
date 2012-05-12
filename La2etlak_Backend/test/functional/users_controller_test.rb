@@ -59,4 +59,50 @@ class UsersControllerTest < ActionController::TestCase
 
   
   
+    
+    #Author:Rana
+    test "get block story RED" do
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_story= Story.new :title => "Story1", :interest_id => this_interest
+      this_story.interest = this_interest
+      this_story.save
+      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      get :block_story, 'uid' => this_user.id, 'id' => this_story.id
+      assert_response :success 
+    end
+
+    #Author: Rana
+    test "get block interest RED" do
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_story= Story.new :title => "Story1", :interest_id => this_interest
+      this_story.interest = this_interest
+      this_story.save
+      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      get :block_interest, 'uid' => this_user.id, 'id' => this_story.id
+      assert_response :success 
+    end
+
+    #Author: Rana
+    test "get block friend RED" do
+      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com"
+      get :block_friends_feed, 'id' => this_user.id, 'fname' => my_friend.name
+      assert_response :success 
+    end
+
+    #Author: Rana
+    test "get friend feed RED" do
+      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com"
+      get :friends_feed, 'id' => this_user.id, 'fname' => my_friend.name
+      assert_response :success 
+    end
+
+    #Author: Rana
+    test "get friend list RED" do
+      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      get :friends_list, 'id' => this_user.id
+      assert_response :success
+   end
+
 end
