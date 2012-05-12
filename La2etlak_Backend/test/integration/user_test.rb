@@ -55,4 +55,33 @@ class UserTest < ActionDispatch::IntegrationTest
       assert_routing 'users/block_friends_feed/1/rana', {:controller => "users", :action => "block_friends_feed", :id => "1", :fname => "rana" }
     end
 
+    #Author: Rana   
+    test "route to view friends feed RED" do
+      assert_routing 'users/friends_feed/1/rana', {:controller => "users", :action => "friends_feed", :id => "1", :fname => "rana" }
+    end
+
+    #Author: Rana    
+    test "route to view friends list RED" do
+      assert_routing 'users/friends_list/1', {:controller => "users", :action => "friends_list", :id => "1"}
+    end   
+
+    #Author: Rana
+    test "friends list view page RED" do
+      this_user = User.create :name => "mohamed", :email => "m@abc.com"
+      get friends_list_path(this_user)
+      assert_select 'div[id = "heading"]'
+      assert_select 'div[id = "list"]'
+      assert_select 'div[id = "fbutton"]'
+      assert_select 'div[id = "bbutton"]'
+      assert_select "form[action='friends_feed']"
+      assert_select "form[action='block_friends_feed']"
+    end
+
+    #Author: Rana
+    test "form for button friend list in main feed RED" do
+      this_user = User.create :name => "mohamed", :email => "m@abc.com"
+      get main_feed_path(this_user)
+      assert_select "form[action = 'friends_list']"
+      assert_select 'div[id="fbutton"]'
+    end
 end
