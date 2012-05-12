@@ -104,10 +104,13 @@ end
 #Method profile : Responsible for updating the profile information about a certain user (First name , Last name , Date of Birth , Username), It updates the user`s Haccount as well (if the user wished to change his password). 
   def edit_info
    @user = User.find(params[:id])
-   if @user.update_attributes(params[:user])
-    #format.json { render json: "updated" }
-    respond_with("updated")
-   end
+  respond_to do |format|
+      if @user.update_attributes(params[:post])
+        render :layout => "mobile_template", :template => "users/show"      
+      else
+        render :layout => "mobile_template", :template => "users/show"
+      end
+    end
   end
 
   def index
