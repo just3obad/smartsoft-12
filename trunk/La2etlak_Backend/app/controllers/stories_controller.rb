@@ -17,8 +17,10 @@ def show
 	render :layout => "mobile_template"
   end
   
-  
-  
+# renders the mobile view and initialize
+  # the instance variables needed for the 
+  # story page
+  # Author: Menisy
   def mobile_show
     @story = Story.find(params[:id])
     @comment = Comment.new
@@ -27,7 +29,9 @@ def show
   end
   
   
-    # show comments of a certain story
+  # shows comments of a certain story
+  # Should be deprecated
+  # Author: Menisy
   def show_comments
     @story = Story.find(params[:id])
     @user = User.find(1)
@@ -35,50 +39,32 @@ def show
     @comments = Comment.find_all_by_story_id(params[:id]).reverse
   end
 
-    # create a new comment for a certain story
-    # parameters are stored in POST HTTP request body
-    # that was sent from the mobile client
-  def create_comment
-    @comment = Comment.new(:content=>params[:content])
-    user = User.find(params[:user_id])
-    story = Story.find(params[:story_id])
-    @comment.user = user
-    @comment.story = story
-
-    if @comment.save then 
-      @comment.add_to_log # adding data to log
-      redirect_to @comment, notice: 'comment success'
-    else
-      render action: "new"
-    end
-  end
-
   # action for thumbing up a comment with params passed in POST HTTP request
+  # Author: Menisy
   def up_comment
     comment = Comment.find(params[:comment_id])
     user = User.find(params[:user_id])
     upped = comment.up_comment(user)
     if upped 
-      render json: "ok"
+      redirect_to :action => "mobile_show" ,:id2 => params[:user_id],:id => params[:id]
     else
-      render json: "no"
+      render json: "temporary error occured"
     end
   end
   
-   # action for thumbing down a comment with params passed in POST HTTP request
+  # action for thumbing down a comment with params passed in POST HTTP request
+  # Author: Menisy
   def down_comment
     comment = Comment.find(params[:comment_id])
     user = User.find(params[:user_id])
     downed = comment.down_comment(user)
     if downed 
-      render json: "ok"
+      redirect_to :action => "mobile_show" ,:id2 => params[:user_id],:id => params[:id]
     else
-      render json: "no"
+      render json: "temporary error occured"
     end
   end
-  
-  
-   
+
 
   def index
     respond_with(@stories = Story.all) # passing a list of all stories to the view .
