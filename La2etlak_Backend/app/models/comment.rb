@@ -3,7 +3,9 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :story
   has_many :comment_up_downs
-  
+  validates_presence_of :content
+  validates_presence_of :user
+  validates_presence_of :story
   
   # This method adds the details of this comment to the log file.
   # It will be called after a successful creation of the comment
