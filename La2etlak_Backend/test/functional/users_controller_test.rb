@@ -1,9 +1,18 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+   #test "the truth" do
+    # assert true
+   #end
+
+   test "should update" do
+    put :edit_info, id: 1, user: { name:"sdgsf", first_name:"uhsdgsf", last_name:"dshsfghsgd" }
+    #assert_redirected_to post_path(assigns(:post))
+    assert_template(expected = "show", message="we`ve done it")
+  end
+
+
   
   #Author : Essam
   test "filter selected social account view RED" do
