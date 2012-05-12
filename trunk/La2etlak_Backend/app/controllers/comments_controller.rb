@@ -14,8 +14,10 @@ class CommentsController < ApplicationController
     respond_with(@comment = Comment.find(params[:id]))
   end  
   def create
-    @comment = Comment.new(params[:comment])
-
+    @comment = Comment.new# Comment.new(params[:comment])
+   @comment.story = Story.find(params[:comment][:story_id])
+   @comment.content = params[:comment][:content]
+   @comment.user = User.find(params[:comment][:user_id])
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @comment, notice: 'comment success' }
