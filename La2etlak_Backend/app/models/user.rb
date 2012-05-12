@@ -1,14 +1,10 @@
 class User < ActiveRecord::Base
 
-	#This is added to use the authlogic gem
-	#Author : Kiro
-	acts_as_authentic 
-
   # This is added to use the amistad friendship Gem
   # Author: Yahia
-  include Amistad::FriendshipModel
+  include Amistad::FriendModel
 
-# Those are our Consumer Token and Consumer secret that twitter
+  # Those are our Consumer Token and Consumer secret that twitter
   # provided us. This correspons our entity to twitter. The Consumer
   # Secret should be saved in a safe place. 
   # Author: Yahia
@@ -17,7 +13,7 @@ class User < ActiveRecord::Base
 
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
-  		:twitter_account, :twitter_request, :image, :password, :password_confirmation
+  		:twitter_account, :twitter_request, :image
   has_many :friends, :through => :friends, :conditions => "status = '2'"
   has_many :requested_friends, :through => :friends, :source => :friend, :conditions => "stat = '1'"
   has_many :pending_friends, :through => :friends, :source => :friend, :conditions => "stat = '0'"
@@ -80,22 +76,18 @@ class User < ActiveRecord::Base
   
   #dummy data to be returned until it created in sprint 2
 
-def get_Friend_List()   
+  def get_Friend_List()   
+
   @list=Array.new
   @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
   @user2=User.new( :name =>"rana", :email => "rana@abc.com")
   @user3=User.new( :name =>"essam", :email => "essam@abc.com")
   @user4=User.new( :name =>"omar", :email => "omar@abc.com")
   @list <<@user1 <<@user2 <<@user3 <<@user4
+
   return @list
     
-end
- 
- # A method to get the shared stories of a user
- # Author: Menisy
-  def get_shared_stories
-    self.shared_stories  
-  end
+ end
 
 
  #dummy data to be returned until it created in sprint 2
@@ -397,6 +389,7 @@ end
 	end
 return f
 end
+
 #Author :Kareem
 def flag_story(story)
 	thumped = Flag.where(:story_id => story.id, :user_id => self.id)
@@ -406,6 +399,7 @@ def flag_story(story)
      end
 	return false
 end
+
 #Author : Kareem
 	def get_feed(int_name)
 	  user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id}
@@ -422,7 +416,7 @@ end
  	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
  	unblocked_stories_ids = stories_ids - blocked_stories_ids
  	unblocked_stories_ids.each do |unblocked_story_id|
-       	unblocked_stories.append(Story.find(unblocked_story_id))
+       	unblocked_stories.append(Story.	find(unblocked_story_id))
  	end
 	done_stories =   unblocked_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
 	if(int_name != "null")
@@ -445,5 +439,6 @@ end
 
 	end
 
- #-------------------------#
+
+ 
 end
