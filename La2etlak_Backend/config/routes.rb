@@ -36,6 +36,13 @@ NokiaRuby::Application.routes.draw do
 
   match "/interests/list"  => "interests#new", :as => :new
 
+	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
+	match "requestToken" => "user_sessions#requestToken"
+	match "login" => "user_sessions#login_with_token"
+	match "register" => "users#register"
+	resources :user_sessions
+	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
+
   # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
   match "users/twitter/generate_request_token" => "users#generate_request_token"
   match "users/twitter/generate_access_token" => "users#generate_access_token"
