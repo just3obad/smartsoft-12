@@ -4,12 +4,18 @@ class StoriesControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
-  test "should create comment" do
-  	p Story.first.id
-  	p User.first.id
-    assert_difference('Comment.count') do
-      post :create_comment, :content => "lololo" , :id => Story.first.id , :user_id => User.first.id
-    end
-    assert_redirected_to comment_path(assigns(:comment))
+
+   # Author: Menisy
+  test "should up comment" do
+  	assert_difference('CommentUpDown.find_all_by_action(1).count',1) do
+  		get :up_comment, :comment_id => Comment.first.id, :user_id => User.first.id
+  	end
+  end
+  
+   # Author: Menisy
+  test "should down comment" do
+  	assert_difference('CommentUpDown.find_all_by_action(2).count',1) do
+  		get :down_comment, :comment_id => Comment.first.id, :user_id => User.first.id
+  	end
   end
 end
