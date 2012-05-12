@@ -1,9 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  auth_token: MyString
-  auth_secret: MyString
+  auth_token: 214365377-a8ujxTruypcmjs9Li0BczJds79TkezrklbkU8W1U
+  auth_secret: wUhxCWyvLFi1lmia2y6oPtOCUbr9OxiMM2NNAE8
 
-two:
-  auth_token: MyString
-  auth_secret: MyString

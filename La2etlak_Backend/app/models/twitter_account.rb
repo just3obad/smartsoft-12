@@ -6,8 +6,8 @@ class TwitterAccount < ActiveRecord::Base
   # Those are our Consumer Token and Consumer secret that twitter
   # provided us. This correspons our entity to twitter. The Consumer
   # Secret should be saved in a safe place. 
-  CONSUMER_TOKEN  = 'cuE56v2eK79gsxK1baasA'
-  CONSUMER_SECRET = 'vIJmDpiqDNpiau2YaiHH19fW1zj5DRXjI1VUbuM7lk' 
+  CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
+  CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
 
   # auth_secret and auth_token are the access keys to the twitter 
   # accounts. Twitter provides them to us in phase to in the 
@@ -31,7 +31,7 @@ class TwitterAccount < ActiveRecord::Base
       config.oauth_token          = self.auth_token
       config.oauth_token_secret   = self.auth_secret
     end
-    puts 'twitter configured'
+    #puts 'twitter configured'
   end 
   
   # This methods is a simple method to get the feed from a twitter account.
@@ -42,14 +42,15 @@ class TwitterAccount < ActiveRecord::Base
   # into a hash and providing them to the home_timeline method. 
   def get_feed(page=1)
     self.config_twitter
-    puts "getting the feed"
+    #puts "getting the feed"
     feed = Twitter.home_timeline(:page => page)
-    puts feed
+    #puts feed
     stories = Array.new
     feed.each do |tweet|
       temp = TwitterAccount.tweet_to_story(tweet) 
       stories.push(temp) 
     end 
+    #puts stories 
     stories
   end 
   
@@ -60,7 +61,7 @@ class TwitterAccount < ActiveRecord::Base
     story = Story.new
     story.instance_variables
     story.title = tweet['user']['name']
-    story.body = tweet['text']
+    story.content = tweet['text']
     #story.content = tweet['text']
     story.category = 'twitter'
     return story 
