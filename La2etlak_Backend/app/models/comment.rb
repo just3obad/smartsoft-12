@@ -25,6 +25,14 @@ class Comment < ActiveRecord::Base
     down = self.comment_up_downs.find_by_user_id_and_action(user.id,2) # get the down that a user gave to this comment before "if exists"
     !down.nil? # if down is nil then return false if not then return true
   end
+
+  def get_num_ups
+    ups = self.comment_up_downs.find_all_by_action(1).size
+  end
+
+  def get_num_downs
+    downs = self.comment_up_downs.find_all_by_action(2).size
+  end
   
   def up_comment(user)
     upped_before = self.upped_by_user?(user)
@@ -72,12 +80,11 @@ class Comment < ActiveRecord::Base
       down.save
       down.add_to_log(self.user)
       return true
-   elsif downed_before
+    elsif downed_before
       self.comment_up_downs.find_by_user_id_and_action(user.id,2).destroy
       return true
     else
       return false
     end
-   end 
-  end
+  end   
 end
