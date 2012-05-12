@@ -23,8 +23,7 @@ class TwitterAccountsController < ApplicationController
   # Author: Yahia
   def exists?
     if TwitterAccount.exists?(params[:u_id])
-      render (:layout => 'mobile_template',
-              :text => "Twitter account exsits for #{User.find(params[:id])}")
+      render :layout => 'mobile_template', :text => "Twitter account exsits for #{User.find(params[:id])}"
     else 
       render :layout => 'mobile_template', :text => "Error while checking the record"
     end 

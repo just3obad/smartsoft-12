@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
   # This is added to use the amistad friendship Gem
   # Author: Yahia
-  include Amistad::FriendModel
+  include Amistad::FriendshipModel
 
-  # Those are our Consumer Token and Consumer secret that twitter
+# Those are our Consumer Token and Consumer secret that twitter
   # provided us. This correspons our entity to twitter. The Consumer
   # Secret should be saved in a safe place. 
   # Author: Yahia
