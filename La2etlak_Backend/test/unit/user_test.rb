@@ -63,7 +63,8 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(count+1,count2)
   end
   
-  #Author : Essam
+
+ #Author : Essam
   test "filter social networks RED" do
     user = User.new
     user.email = 'essam@hafez.com'
@@ -73,4 +74,56 @@ class UserTest < ActiveSupport::TestCase
     assert !user_feed.nil?
   end
 
+
+	#Author : Kareem
+	test "create new flag" do
+  	i = Interest.create(:name => "Smart")
+	u = User.new
+	u.email = "a@abc.com"
+	u.save
+ 	s = Story.create(:title => "lol" , :interest_id => i.id)
+  	assert_difference('Flag.count') do
+	u.flag_story(s) 	
+	end
+	end
+	
+	#Author : Kareem
+	test "try flagged user" do
+	i = Interest.create(:name => "Smart1")
+	u1 = User.create(:name => "7amada" , :email => "b@abc.com")
+	s = Story.create(:title => "hashas" , :interest_id => i.id)
+ 	Flag.create(:user_id => u1.id , :story_id =>s.id)
+	assert_no_difference('Flag.count') do
+	u1.flag_story(s)
+	end
+     end 
+
+       
+
+ 
+
+	#Author : Kareem 			
+	test "new thumb story" do
+	user = User.create(:name => "Apolo" , :email => "a@a.com")
+	i = Interest.create(:name => "rare")
+	s = Story.create(:title => "ahaaaa" , :interest_id => i.id)
+	assert_difference('Likedislike.count') do
+	user.thumb_story(s,1)
+	end
+	end
+	
+	#Author : Kareem
+	test "thumb story again" do
+	user = User.create(:name => "Apolo" , :email => "b@a.com")
+	i = Interest.create(:name => "rares")
+	s = Story.create(:title => "ahaaaa" , :interest_id => i.id)
+	Likedislike.create(:user_id => user.id , :story_id => s.id ,:action => 1)
+	assert_no_difference('Likedislike.count') do
+	user.thumb_story(s,1)
+	end
+	end
+
+    
+
+	
 end
