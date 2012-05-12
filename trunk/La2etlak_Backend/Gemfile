@@ -12,6 +12,7 @@ gem 'oauth'
 gem "spreadsheet"
 gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls-on-models"
 gem 'amistad'
+gem 'authlogic'
 
 # Gems used only for assets and not required
 # in production environments by default.
