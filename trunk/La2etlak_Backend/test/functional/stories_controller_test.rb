@@ -6,7 +6,7 @@ class StoriesControllerTest < ActionController::TestCase
   # end
 
   # Author: Menisy
-  test "should up comment RED" do
+  test "should up comment" do
   	assert_difference('CommentUpDown.find_all_by_action(1).count',1) do
   		get :up_comment, :comment_id => Comment.first.id, :user_id => User.first.id
   	end
@@ -14,7 +14,7 @@ class StoriesControllerTest < ActionController::TestCase
   end
 
   # Author: Menisy
-  test "should down comment RED" do
+  test "should down comment" do
   	assert_difference('CommentUpDown.find_all_by_action(2).count',1) do
   		get :down_comment, :comment_id => Comment.first.id, :user_id => User.first.id
   	end
