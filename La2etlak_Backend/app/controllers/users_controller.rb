@@ -266,6 +266,12 @@ end
               :text => 'Something wrong, couldn\'t save account')
     end 
   end 
+  #this method to call the get_friends_email method via our user
+#Author: khaled.elbhaey
+  def get_friends_email_mobile_show()
+    @user=User.find_by_id(params[:uid])
+    @flistemail=@user.get_friends_email()
+    flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
+    render :layout => "mobile_template" 
+  end
 end
-
-

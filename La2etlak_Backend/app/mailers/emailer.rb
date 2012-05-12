@@ -19,7 +19,7 @@ class Emailer < ActionMailer::Base
    @storytit=stitle
    @storybod=sbody
 
-  mail(:to => @friend, :subject => "recommend in gaheem app")
+  mail(:to => @friend, :subject => "recommendation in La2etlak app")
 
  end
 
@@ -29,7 +29,7 @@ def invite_to_app(sender, reciever, message)
    @friend=reciever
    @mess=message
   
-  mail(:to => @friend, :subject => "invitation to gaheem app")
+  mail(:to => @friend, :subject => "invitation to La2etlak app")
 
  end
 

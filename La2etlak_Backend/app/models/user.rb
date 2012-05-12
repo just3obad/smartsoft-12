@@ -80,9 +80,29 @@ class User < ActiveRecord::Base
     end
     stories.uniq # remove duplicates, if stories is equal nil this will return []
   end
-  
-  #dummy data to be returned until it created in sprint 2
 
+#i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
+#Author: khaled.elbhaey
+  def get_friends_email()
+
+  @flistemail=Array.new
+  @flist = self.get_Friend_List()
+
+      (0..(@flist.length-1)).each do |i|
+      @flistemail << (@flist[i].email)
+      end  
+
+
+      return @flistemail
+
+ ''' @username = User.find(@userid).name
+  @message = "#{@username}get_friends_email"
+
+   Log.create!(loggingtype: 1,user_id_1: @userid,user_id_2: nil,admin_id:   nil,story_id: nil,interest_id: nil,message: @message )
+  '''
+  end
+    
+#Author: khaled.elbhaey
   def get_Friend_List()   
 
   @list=Array.new
@@ -91,15 +111,14 @@ class User < ActiveRecord::Base
   @user3=User.new( :name =>"essam", :email => "essam@abc.com")
   @user4=User.new( :name =>"omar", :email => "omar@abc.com")
   @list <<@user1 <<@user2 <<@user3 <<@user4
-
+  puts @list
   return @list
     
  end
+  #dummy data to be returned until it created in sprint 2
+#Author: khaled.elbhaey
+  def extract_friends(listlike)
 
-
- #dummy data to be returned until it created in sprint 2
-
- def liked()  
   @list=Array.new
   @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
   @user2=User.new( :name =>"rana", :email => "rana@abc.com")
@@ -109,21 +128,7 @@ class User < ActiveRecord::Base
 
   return @list
 
-    
- end
-
- #dummy data to be returned until it created in sprint 2
-
-  def disliked()  
-  @list=Array.new
-  @user1=User.new( :name =>"mina", :email => "mina@abc.com")
-  @user2=User.new( :name =>"kareem", :email => "kareem@abc.com")
-  @user3=User.new( :name =>"7mada", :email => "7mada@abc.com")
-  @user4=User.new( :name =>"yahia", :email => "yahia@abc.com")
-  @list <<@user1 <<@user2 <<@user3 <<@user4
-
-  return @list
- end
+  end
 
 
 

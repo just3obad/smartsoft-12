@@ -79,5 +79,5 @@ class Comment < ActiveRecord::Base
       return false
     end
    end 
-  
+  end
 end
