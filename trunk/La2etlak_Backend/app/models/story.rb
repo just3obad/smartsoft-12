@@ -111,4 +111,25 @@ include StoriesHelper
     return dislikers
   end
   
+#Author : Shafei
+  def get_story_rank_all_time
+	
+  end
+  
+#Author : Shafei
+  def get_story_rank_last_30_days
+	
+  end
+
+#Author : Shafei
+  def get_stories_ranking_all_time
+	array = Array.new
+	return array
+  end
+  
+#Author : Shafei
+  def get_stories_ranking_last_30_days
+	array = Array.new
+	return array
+  end
 end
