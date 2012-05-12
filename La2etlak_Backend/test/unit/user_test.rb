@@ -182,8 +182,15 @@ class UserTest < ActiveSupport::TestCase
 	assert_equal stories[0].class.name , "Story"
 	end
 
-	
-	
+
+        #Author : Kareem
+	test "should return user interests" do
+	user = User.create(:name => "lol" , :email => "lol@a.com")
+	i = Interest.create(:name => "Ball")
+     	i1 =  user.get_interests
+	i2 = UserAddInterest.find(:all , :conditions => ["user_id = ?" , user.id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| 		   		Interest.find(id).name} 
+ 	assert_equal i1 , i2	
+	end
 
     
     #Author : Omar 
