@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
-  		:twitter_account, :twitter_request, :image
+      :twitter_account, :twitter_request, :image
   has_many :friends, :through => :friends, :conditions => "status = '2'"
   has_many :requested_friends, :through => :friends, :source => :friend, :conditions => "stat = '1'"
   has_many :pending_friends, :through => :friends, :source => :friend, :conditions => "stat = '0'"
@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
   has_many :blocked_interests, :class_name => "Interest", :through => :block_interests
   has_many :block_stories
   has_many :blocked_stories, :class_name => "Story", :through => :block_stories 
+  
+  has_many :user_add_interests
+  has_many :added_interests, :class_name => "Interest", :through => :user_add_interests
 
   has_many :user_add_interests
   has_many :added_interests, :class_name =>"Interest", :through => :user_add_interests 
@@ -127,11 +130,11 @@ class User < ActiveRecord::Base
 # lets a user share a story given its id
   def share?(story_id)
     share = Share.find_by_user_id_and_story_id(self.id,story_id)
-    if share.nil? then	# if he/she didn't share this story before then make him/her share it
+    if share.nil? then  # if he/she didn't share this story before then make him/her share it
       Share.create :user_id=>self.id,:story_id=>story_id
-      return true		# shared successfully, return true
-    else 			# else, dont allow to share it
-      return false		# and return false
+      return true   # shared successfully, return true
+    else      # else, dont allow to share it
+      return false    # and return false
     end
   end 
  
@@ -140,9 +143,9 @@ class User < ActiveRecord::Base
   @verification_code = VerificationCode.find_by_user_id(self.id)
       if @verification_code.nil? then
       VerificationCode.create :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join,:user_id=>self.id, :verified=>false
-      return true		
-    else 			
-      return false		
+      return true   
+    else      
+      return false    
     end
   end 
 
@@ -178,7 +181,7 @@ class User < ActiveRecord::Base
  get all the users who registered within 30 days ago until the current date and 
  group by the date of creation
  then get the count of the users who registered per day and 0 if no user did'''
-
+ ##########Author: Diab ############
  def self.get_num_registered_day
  
  first_user = User.first
@@ -231,6 +234,7 @@ class User < ActiveRecord::Base
  group by the date of creation
  then get the count of the users who registered per day and 0 if no user did
  '''
+##########Author: Diab ############
  def self.get_num_logged_in_day
 
  first_user = UserLogIn.first
@@ -277,6 +281,7 @@ end
  case 2 if the creation date was before 30 days ago:
  set it to 30 days ago
  ''' 
+ ##########Author: Diab ############
  def self.get_all_users_start_date
 
   first_user = User.first
@@ -301,17 +306,22 @@ end
  end
  
  #to get num of users registered in the system
+ ##########Author: Diab ############
  def self.all_user_registered
 
  num = User.all.count
  
  end
+ 
 #to get the number of registered users per day to use it in the graph
+##########Author: Diab ############
  def self.get_registered_stat
  r = get_num_registered_day
  data = "[#{r}]"
  end
+
 #to get the number of logged in users per day to use it in the graph
+##########Author: Diab ############
  def self.get_logged_stat
  l = get_num_logged_in_day_h
  data = "[#{l}]"
@@ -326,6 +336,25 @@ end
  data = "[#{reg},#{log}]"
  end
 end
+
+  '''
+  This is the method that should return the data of statistics of a user
+  with this format first element in the data arrays is ARRAY OF "No Of Shares",
+  second one is "No Of Likes"
+  third one is "No of Dislikes"
+  and forth one is "No of Flags"
+  and fifth one is "No of Comments"
+  '''
+  
+ def get_user_stat(user_id)
+  s = get_no_of_shares_user(user_id)
+  n = get_no_of_likes_user(user_id)
+  m = get_no_of_dislikes_user(user_id)
+  p = get_no_of_flags_user(user_id)
+  c = get_no_of_comments_user(user_id)
+ data = "[#{s},#{n},#{m},#{p},#{c}]"
+ end
+
 
   # This return the consumer for twitter authentication
   # Author: Yahia
@@ -352,72 +381,72 @@ end
   end 
 
  #Author Kareem
- 	def thumb_story(story,act)
-	f = "nil"
-	 thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
+  def thumb_story(story,act)
+  f = "nil"
+   thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
         if thumped.empty? 
         Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
-	 f = "thumbed"
-		
-  	elsif (thumped[0].action == act) 
-      	   f="Already"
-	
-	elsif (thumped[0].action != act) 
-		Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
-		 Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )	
-		f = "Removed _thumbed"
-	end
+   f = "thumbed"
+    
+    elsif (thumped[0].action == act) 
+           f="Already"
+  
+  elsif (thumped[0].action != act) 
+    Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
+     Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )  
+    f = "Removed _thumbed"
+  end
 return f
 end
 
 #Author :Kareem
 def flag_story(story)
-	thumped = Flag.where(:story_id => story.id, :user_id => self.id)
+  thumped = Flag.where(:story_id => story.id, :user_id => self.id)
      if thumped.empty?
         Flag.create!(:user_id =>  self.id, :story_id => story.id)
-	return true
+  return true
      end
-	return false
+  return false
 end
 
 #Author : Kareem
-	def get_feed(int_name)
-	  user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id}
- 	  blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
-	  unblocked_stories = Array.new
- 	  unblocked_interests = user_interests - blocked_interests
-	  stories_list = Array.new
- 	  unblocked_interests.each do |unblocked_interest|
-	  stories_list +=  Interest.find(unblocked_interest).get_stories(10)
-	 end
- 	
- 	stories_list = stories_list.sort_by &:created_at
- 	stories_ids = stories_list.map {|story| story.id}
- 	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
- 	unblocked_stories_ids = stories_ids - blocked_stories_ids
- 	unblocked_stories_ids.each do |unblocked_story_id|
-       	unblocked_stories.append(Story.	find(unblocked_story_id))
- 	end
-	done_stories =   unblocked_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
-	if(int_name != "null")
-		filtered_stories = Array.new
-        	filtered_stories_ids = Array.new
-		unblocked_stories_ids.each do |unblocked_story_id|
-		interest_name = Interest.find(Story.find(unblocked_story_id).interest_id).name
-		if(interest_name == int_name)
-			filtered_stories_ids.append(unblocked_story_id)
-			end
-		end
-		filtered_stories = Array.new
-		filtered_stories_ids.each do |filtered_story_id|
-       		filtered_stories.append(Story.find(filtered_story_id))
-		end
+  def get_feed(int_name)
+    user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id}
+    blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
+    unblocked_stories = Array.new
+    unblocked_interests = user_interests - blocked_interests
+    stories_list = Array.new
+    unblocked_interests.each do |unblocked_interest|
+    stories_list +=  Interest.find(unblocked_interest).get_stories(10)
+   end
+  
+  stories_list = stories_list.sort_by &:created_at
+  stories_ids = stories_list.map {|story| story.id}
+  blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
+  unblocked_stories_ids = stories_ids - blocked_stories_ids
+  unblocked_stories_ids.each do |unblocked_story_id|
+        unblocked_stories.append(Story. find(unblocked_story_id))
+  end
+  done_stories =   unblocked_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
+  if(int_name != "null")
+    filtered_stories = Array.new
+          filtered_stories_ids = Array.new
+    unblocked_stories_ids.each do |unblocked_story_id|
+    interest_name = Interest.find(Story.find(unblocked_story_id).interest_id).name
+    if(interest_name == int_name)
+      filtered_stories_ids.append(unblocked_story_id)
+      end
+    end
+    filtered_stories = Array.new
+    filtered_stories_ids.each do |filtered_story_id|
+          filtered_stories.append(Story.find(filtered_story_id))
+    end
            done_stories = filtered_stories
            done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
-		end
-	return done_stories
+    end
+  return done_stories
 
-	end
+  end
 
 #Author : Shafei
 	def get_user_rank()
