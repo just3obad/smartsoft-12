@@ -142,14 +142,14 @@ end
   end
 
 
-#This method gets the stories of a friend through method get_friends_stories() and converts them to a json file. It takes as input the user_id.
+  #This method gets the stories of a friend through method get_friends_stories() and converts them to a json file. It takes as input the user_id.
 
-def friends_feed
-  @user_id = params[:id]
-  @friend_id = params[:fid]
-  @friend_stories = User.find_by_id(@user_id).get_one_friend_stories(@friend_id)
-  respond_with(@friend_stories)
-end
+  def friends_feed
+    @user_id = params[:id]
+    @friend_id = params[:fid]
+    @friend_stories = User.find_by_id(@user_id).get_one_friend_stories(@friend_id)
+    respond_with(@friend_stories)
+  end
 
 
   #This method blocks feeds from this friend by setting is_blocked attribute to true. The method depends on another method that gets the stories belonging to a friend. It takes as an input the user_id.
@@ -178,6 +178,77 @@ end
     @message = "#{@username}blocks the feed of#{@user2}" 
     Log.create!(loggingtype: 0,user_id_1: @user_id,user_id_2: @friend_id, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
   end
+
+
+ # Author: Yahia
+  def connect_social_accounts
+    # render :layout => "mobile_template"
+    # FIXME  
+    params[:id] = 1
+    @user = User.find(params[:id])
+    render layout: "mobile_template", template: "users/connect_social_accounts"
+    # redirect_to(:action => 'generate_request_token', :id => 5)
+  end 
+  
+
+=begin
+  This is the first phase of the OAuth phase that is required by twitter.
+  In this phase, first a new Consumer gets created which is basically 
+  a client that represents our app talking to twitter. 
+
+  The client asks twitter for a request_token, from which a URL will 
+  be generated. The callback url should be changed to the proper server 
+  URL. 
+
+  The browser will be redirected to the generated authorization URL. After
+  that, twitter will redirect the user back to our app. 
+
+  Author: Yahia
+=end
+  def generate_request_token
+    #FIXME FOR THE SAKE OF TESTING
+    session[:user_id] = 1
+
+    #FIXME change IP 
+    request_token = User.twitter_consumer.get_request_token(:oauth_callback => 
+                "http://127.0.0.1:3000/users/twitter/generate_access_token")
+
+    url = request_token.authorize_url
+    #puts 'URL IS ' + url
+    redirect_to(url)
+  end 
+
+=begin
+  This is the second phase of authentication. In this phase, the user should have 
+  authenticated our app through twitter. Then we use the request token and secret 
+  token from that exact user to get our access tokens from twitter. Through the 
+  access token, we can get the feeds or tweet on behalf of the user. 
+
+  This is done by simply
+  requesting the access token by the oauth_token and oauth_verifier which twitter
+  put in the params array. Through this access token the twitter accoun can be made
+  thorugh which the system fetches tweets.
+
+  Author: Yahia
+=end 
+  def generate_access_token
+    # FIXME FOR THE SAKE OF TESTING
+    session[:user_id] = 1
+    @user = User.find(session[:user_id])
+    request_token = OAuth::RequestToken.new(User.twitter_consumer,
+                    params["oauth_token"], params["oauth_verifier"])
+
+    t_account = @user.create_twitter_account(request_token)
+
+    unless t_account.new_record?
+      render(:layout => 'mobile_template', 
+              :text => "User #{ session[:user_id] }" + 
+                      "created a new twitter account")
+    else 
+      render(:layout => 'mobile_template', 
+              :text => 'Something wrong, couldn\'t save account')
+    end 
+  end 
 end
 
 
