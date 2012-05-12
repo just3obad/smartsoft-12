@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  # This is added to use the amistad friendship Gem
+  # Author: Yahia
+  include Amistad::FriendModel
+
   # Those are our Consumer Token and Consumer secret that twitter
   # provided us. This correspons our entity to twitter. The Consumer
   # Secret should be saved in a safe place. 
@@ -343,7 +347,7 @@ end
    end
  end
 
-   # This return the consumer for twitter authentication
+  # This return the consumer for twitter authentication
   # Author: Yahia
   def self.twitter_consumer
   # The readkey and readsecret below are the values you get during registration
@@ -351,6 +355,7 @@ end
                       { :site=>"http://twitter.com" })
   end
 
+  # Author: Yahia
   def create_twitter_account(request_token)
     access_token = request_token.get_access_token
     old_account = self.twitter_account(true)
