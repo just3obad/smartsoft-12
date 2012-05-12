@@ -3,12 +3,6 @@ require 'twitter'
 class TwitterAccount < ActiveRecord::Base
 
 
-  # Those are our Consumer Token and Consumer secret that twitter
-  # provided us. This correspons our entity to twitter. The Consumer
-  # Secret should be saved in a safe place. 
-  CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
-  CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
-
   # auth_secret and auth_token are the access keys to the twitter 
   # accounts. Twitter provides them to us in phase to in the 
   # authentication. see twitter_requests_controller.rb for more info 
@@ -49,7 +43,7 @@ class TwitterAccount < ActiveRecord::Base
     #puts feed
     stories = Array.new
     feed.each do |tweet|
-      temp = TwitterAccount.tweet_to_story(tweet) 
+      temp = TwitterAccount.convert_tweet_to_story(tweet) 
       stories.push(temp) 
     end 
     #puts stories 
@@ -59,7 +53,7 @@ class TwitterAccount < ActiveRecord::Base
   # This method converts a Twitter::Status to Story class. This representation
   # was asked by C1 
   # Author: Yahia
-  def self.tweet_to_story(tweet)
+  def self.convert_tweet_to_story(tweet)
     #story = [author: tweet['user']['name'], text: tweet['text']]
     story = Story.new
     story.instance_variables

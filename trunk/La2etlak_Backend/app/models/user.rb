@@ -1,10 +1,9 @@
 class User < ActiveRecord::Base
-=begin 
-  This is the controller that is repsonsible for everything that happens before
-  a TwitterAccount gets created and connected to our user. 
-  Author: Yahia
-=end 
 
+  # Those are our Consumer Token and Consumer secret that twitter
+  # provided us. This correspons our entity to twitter. The Consumer
+  # Secret should be saved in a safe place. 
+  # Author: Yahia
   CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
   CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
 
