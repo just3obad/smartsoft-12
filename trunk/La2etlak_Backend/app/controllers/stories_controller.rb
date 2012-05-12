@@ -34,9 +34,9 @@ class StoriesController < ApplicationController
 
       if @comment.save then 
         @comment.add_to_log # adding data to log
-        render json: "ok"
+        redirect_to @comment, notice: 'comment success'
       else
-        render json: "no"
+        render action: "new"
     end
   end
 
