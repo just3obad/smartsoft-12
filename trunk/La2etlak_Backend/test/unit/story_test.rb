@@ -1,6 +1,84 @@
 require 'test_helper'
 
 class StoryTest < ActiveSupport::TestCase
+
+  #test "the truth" do
+  #  assert true
+  #end
+  
+  #Author: Lydia
+  test "no likes should return an empty list RED" do
+    interest = Interest.create!(name: "Test Interest", description: "Description
+    of Test Interest")
+    story = Story.create!(interest_id: 1, title: "Test Story", 
+    content: "Test content")
+    list = story.liked
+    assert_equal(list.count, 0)
+  end
+  
+   test "no dislikes should return an empty list RED" do
+    interest = Interest.create!(name: "Test Interest", description: "Description
+    of Test Interest")
+    story = Story.create!(interest_id: 1, title: "Test Story", 
+    content: "Test content")
+    list = story.disliked
+    assert_equal(list.count, 0)
+  end
+  
+  test "some likes should return 3 RED" do
+    interest = Interest.create!(name: "Test Interest", description: "Description
+    of Test Interest")
+    story = Story.create!(interest_id: 1, title: "Test Story", 
+    content: "Test content")
+    user1 = User.create!(name: "Test user1",email: "test1@user.com")
+    user2 = User.create!(name: "Test user2",email: "test2@user.com")
+    user3 = User.create!(name: "Test user3",email: "test3@user.com")
+    like1 = Likedislike.new
+    like1.likedisliker = user1
+    like1.action = 1
+    like1.likedisliked_story = story
+    like1.save
+    like2 = Likedislike.new
+    like2.likedisliker = user2
+    like2.action = 1
+    like2.likedisliked_story = story
+    like2.save
+    like3 = Likedislike.new
+    like3.likedisliker = user3
+    like3.action = 1
+    like3.likedisliked_story = story
+    like3.save
+    list = story.liked
+    assert_equal(list.count, 3)
+  end
+  
+  test "some dislikes should return 3 RED" do
+    interest = Interest.create!(name: "Test Interest", description: "Description
+    of Test Interest")
+    story = Story.create!(interest_id: 1, title: "Test Story", 
+    content: "Test content")
+    user1 = User.create!(name: "Test user1",email: "test1@user.com")
+    user2 = User.create!(name: "Test user2",email: "test2@user.com")
+    user3 = User.create!(name: "Test user3",email: "test3@user.com")
+    dislike1 = Likedislike.new
+    dislike1.likedisliker = user1
+    dislike1.action = -1
+    dislike1.likedisliked_story = story
+    dislike1.save
+    dislike2 = Likedislike.new
+    dislike2.likedisliker = user2
+    dislike2.action = -1
+    dislike2.likedisliked_story = story
+    dislike2.save
+    dislike3 = Likedislike.new
+    dislike3.likedisliker = user3
+    dislike3.action = -1
+    dislike3.likedisliked_story = story
+    dislike3.save
+    list = story.disliked
+    assert_equal(list.count, 3)
+  end
+
 #Author : Shafei
     test "story get rank all time RED" do
 		user = User.new
