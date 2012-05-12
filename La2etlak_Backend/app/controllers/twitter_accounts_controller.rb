@@ -6,15 +6,9 @@ class TwitterAccountsController < ApplicationController
   with the specific id u_id (pasesed in the params)
 =end 
   # will be triggered by twitter/:u_id/delete
+  # Author: Yahia
   def remove_twitter_account
-    user = User.find(params[:u_id])
-    t_account = TwitterAccount.find_by_user_id(user.id)
-    if (t_account)
-      t_account.destroy
-    else 
-      return render text: 'You have no accounts'
-    end 
-    render text: "You twitter account was deleted"
+    User.remove_twitter_account(params[:u_id])
   end 
 
 =begin
@@ -22,14 +16,9 @@ class TwitterAccountsController < ApplicationController
   the user with the specific id u_id (passed in the params)
 =end
   # will be triggered by twitter/:u_id/exists
+  # Author: Yahia
   def exists?
-    t_accounts = TwitterAccount.find_by_user_id(params[:u_id])
-    #puts '###########' + t_accounts.class.to_s
-    if t_accounts
-      render text: 'true'
-    else
-      render text: 'false'
-    end 
+    TwitterAccount.exists?(params[:u_id])
   end 
 
 end

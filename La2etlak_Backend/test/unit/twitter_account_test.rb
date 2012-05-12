@@ -3,7 +3,7 @@ require 'test_helper'
 class TwitterAccountTest < ActiveSupport::TestCase
 
   # author : Yahia
-  test "should not be able to add a twitter account without oauth token RED" do 
+  test "should not be able to add a twitter account without oauth token" do 
     user = User.new
     user.name = 'user1'
     user.email  = 'user@gmail.com'
@@ -15,7 +15,7 @@ class TwitterAccountTest < ActiveSupport::TestCase
   end 
 
   # author : Yahia
-  test "should not be able to add a twitter account without oauth secret RED" do 
+  test "should not be able to add a twitter account without oauth secret" do 
     user = User.new
     user.name = 'user1'
     user.email  = 'user@gmail.com'
@@ -27,17 +27,17 @@ class TwitterAccountTest < ActiveSupport::TestCase
   end 
 
   # author : Yahia
-  test "should not be able to add a twitter account with a duplicate user id RED" do 
+  test "should not be able to add a twitter account with a duplicate user id" do 
     duplicate_user = TwitterAccount.first.user
     t_account = TwitterAccount.new
     t_account.auth_token = 'asdfadsf'
     t_account.auth_secret = 'asadfasdf'
     t_account.user = duplicate_user
-    assert !t_account.save, 'Should not save a twitter account with duplicate user RED' 
+    assert !t_account.save, 'Should not save a twitter account with duplicate user' 
   end 
 
   # author : Yahia
-  test "twitter feed should be a list of stories RED" do 
+  test "twitter feed should be a list of stories" do 
     # t_account = TwitterAccount.first
     t_account = twitter_accounts(:one)
     puts t_account.auth_token
