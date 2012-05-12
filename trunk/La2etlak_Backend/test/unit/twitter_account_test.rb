@@ -4,13 +4,13 @@ class TwitterAccountTest < ActiveSupport::TestCase
 
   # author : Yahia
   test "should not be able to add a twitter account without oauth token" do 
-    # user = User.new
-    # user.name = 'user1'
-    # user.email  = 'user@gmail.com'
+    user = User.new
+    user.name = 'user1'
+    user.email  = 'user@gmail.com'
     # user.password = 'password'
     # user.password_confirmation = 'password!!!'
-    # user.save
-    user = users(:one)
+    user.save
+    # user = users(:one)
     t_account = TwitterAccount.new
     t_account.auth_secret = 'asdfadsf'
     t_account.user = user 
@@ -19,13 +19,13 @@ class TwitterAccountTest < ActiveSupport::TestCase
 
   # author : Yahia
   test "should not be able to add a twitter account without oauth secret" do 
-    # user = User.new
-    # user.name = 'user1'
-    # user.email  = 'user@gmail.com'
+    user = User.new
+    user.name = 'user1'
+    user.email  = 'user@gmail.com'
     # user.password = 'password'
     # user.password_confirmation = 'password!!!'
-    # user.save
-    user = users(:one)
+    user.save
+    # user = users(:one)
     t_account = TwitterAccount.new
     t_account.auth_token = 'asdfadsf'
     t_account.user = user 
@@ -41,6 +41,22 @@ class TwitterAccountTest < ActiveSupport::TestCase
     t_account.user = duplicate_user
     assert !t_account.save, 'Should not save a twitter account with duplicate user' 
   end 
+
+  test "should be able to add a twitter account" do 
+    user = User.new
+    user.name = 'user1'
+    user.email  = 'user@gmail.com'
+    # user.password = 'password'
+    # user.password_confirmation = 'password!!!'
+    user.save
+    # user = users(:one)
+    t_account = TwitterAccount.new
+    t_account.auth_token = 'asdfadsf'
+    t_account.auth_secret = 'asadfasdf'
+    t_account.user = user 
+    assert t_account.save, 'should save when all users requirement are valid'
+  end 
+
 
   # author : Yahia
   test "twitter feed should be a list of stories" do 
