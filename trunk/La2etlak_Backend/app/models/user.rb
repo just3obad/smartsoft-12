@@ -17,8 +17,7 @@ class User < ActiveRecord::Base
   has_many :shares
   has_many :shared_stories, :class_name => "Story", :through => :shares
   has_many :likedislikes
-  has_many :liked_stories, :class_name => "Story", :through => :likedislikes, :conditions => "action = '1'"
-  has_many :disliked_stories, :class_name => "Story",:through => :likedislikes, :conditions => "action = '-1'"
+  has_many :likedisliked_stories, :class_name => "Story", :through => :likedislikes
   has_many :flags
   has_many :flaged_stories, :class_name => "Story", :through => :flags
   has_many :block_interests

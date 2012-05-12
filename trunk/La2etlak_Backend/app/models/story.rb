@@ -13,8 +13,7 @@ include StoriesHelper
   has_many :shares
   has_many :sharers, :class_name => "User", :through => :shares
   has_many :likedislikes
-  has_many :likers, :class_name => "User", :through => :likedislikes, :conditions => "action = '1'"
-  has_many :dislikers, :class_name => "User",:through => :likedislikes, :conditions => "action = '-1'"
+  has_many :likedislikers, :class_name => "User", :through => :likedislikes
   has_many :flags
   has_many :flagers, :class_name => "User", :through => :flags
   has_many :block_stories
@@ -58,6 +57,18 @@ include StoriesHelper
     data = "[#{share},#{like},#{dislike},#{flag},#{comment}]"
   end
   
+   '''
+   This method returns the difference between today and the day
+  the story was created in in days so that the graph will know the day it should 
+  start with.
+  There are several cases:
+  -case 1: if the story is hidden and it was created before the last 30 days
+  but hidden within the last 30 days OR if the story was not hidden but created
+  before the last 30 days
+  -case 2: if the story was hidden and it was created before the last 30 days
+  and hidden before the last 30 days
+  -case 3: if the story was not hidden and it was created within the last 30 days
+  '''
   def get_story_start_date
     creation_date = created_at.beginning_of_day
     last_update = updated_at.end_of_day  
@@ -74,6 +85,30 @@ include StoriesHelper
     else
             date = Time.zone.now.to_date - creation_date.to_date
     end
+  end
+  
+  '''
+  This method returns a list of users who liked a certain story
+  '''
+  def liked
+    likes = likedislikes.where(action: 1)
+    likers = []
+    likes.find_each do |like|
+      likers << likedislikers.find_by_id(like.user_id)
+    end
+    return likers
+  end
+  
+  '''
+  This method returns a list of users who disliked a certain story
+  '''
+  def disliked
+    dislikes = likedislikes.where(action: -1)
+    dislikers = []
+    dislikes.find_each do |dislike|
+      dislikers << likedislikers.find_by_id(dislike.user_id)
+    end
+    return dislikers
   end
   
 end

@@ -73,8 +73,8 @@ module StoriesHelper
   of likes and dislikes
   '''
   def get_width
-    likes =  @story.likers.count
-    dislikes =  @story.dislikers.count
+    likes =  @story.likedislikes.where(action: 1).count
+    dislikes =  @story.likedislikes.where(action: -1).count
     total = likes + dislikes
     if total == 0
       width = 0
