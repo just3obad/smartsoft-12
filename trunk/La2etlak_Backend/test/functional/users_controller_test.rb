@@ -7,9 +7,15 @@ class UsersControllerTest < ActionController::TestCase
    #end
 
    test "should update" do
-    put :edit_info, id: 1, user: { name:"sdgsf", first_name:"uhsdgsf", last_name:"dshsfghsgd" }
+    put :edit_info, id: 1, user: { name:"sdgssf", first_name:"uhsdgsf", last_name:"dshsfghsgd" }
     #assert_redirected_to post_path(assigns(:post))
-    assert_template(expected = "show", message="we`ve done it")
+    assert_template(expected = "show")
+  end
+
+  test "valid max" do
+    put :edit_info, id: 1, user: { name:"sdgssfaaaaaaaaaaaaaaaaa", first_name:"uhsdgsfaaaaaaaaaaaaaaaaaa", last_name:"dshsfghsgd" }
+    #assert_redirected_to post_path(assigns(:post))
+    assert_template(expected = "show")
   end
 
 
