@@ -128,9 +128,7 @@ class UserTest < ActiveSupport::TestCase
 	#Author : Kareem
 	test "create new flag" do
   	i = Interest.create(:name => "Smart")
-	u = User.new
-	u.email = "a@abc.com"
-	u.save
+	u = User.create(:email=> "7amo2a@guc.com")
  	s = Story.create(:title => "lol" , :interest_id => i.id)
   	assert_difference('Flag.count') do
 	u.flag_story(s) 	
@@ -172,6 +170,20 @@ class UserTest < ActiveSupport::TestCase
 	user.thumb_story(s,1)
 	end
 	end
+
+	#Author : Kareem
+	test "should return stories" do
+	user = User.create(:name => "7amdy" , :email => "7amdy@a.com")
+	i= Interest.create(:name => "Art")
+	s= Story.create(:title => "hahsd" , :interest_id => i.id)
+	UserAddInterest.create(:user_id => user.id , :interest_id => i.id)
+	stories = user.get_feed("null")
+	assert_not_nil stories
+	assert_equal stories[0].class.name , "Story"
+	end
+
+	
+	
 
     
     #Author : Omar 
