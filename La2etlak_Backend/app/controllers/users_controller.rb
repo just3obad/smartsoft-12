@@ -1,9 +1,21 @@
+require 'twitter'
+require 'oauth'
 class UsersController < ApplicationController
 	respond_to :html,:json
 
 #new_record=User.new( :name =>"khaled", :email => "khaled@abc.com")
 #new_record.save!
 #this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
+
+
+=begin 
+  This is the controller that is repsonsible for everything that happens before
+  a TwitterAccount gets created and connected to our user. 
+  Author: Yahia
+=end 
+  CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
+  CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
+
 
 def feed
  @id=params[:id]
@@ -165,6 +177,105 @@ end
     @message = "#{@username}blocks the feed of#{@user2}" 
     Log.create!(loggingtype: 0,user_id_1: @user_id,user_id_2: @friend_id, admin_id: nil, story_id: nil, interest_id: nil, message: @message)
   end
+
+
+  # AUTHOR : YAHIA
+  def connect_social_accounts
+    # render :layout => "mobile_template"
+    # FIXME  
+    params[:id] = 1
+    @user = User.find(params[:id])
+    render layout: "mobile_template", template: "users/connect_social_accounts"
+    # redirect_to(:action => 'generate_request_token', :id => 5)
+  end 
+  
+
+  # This return the consumer for twitter authentication
+  # Author: Yahia
+  def self.twitter_consumer
+  # The readkey and readsecret below are the values you get during registration
+  OAuth::Consumer.new(CONSUMER_TOKEN, CONSUMER_SECRET,
+                      { :site=>"http://twitter.com" })
+  end
+
+=begin
+  This is the first phase of the OAuth phase that is required by twitter.
+  In this phase, first a new Consumer gets created which is basically 
+  a client that represents our app talking to twitter. 
+
+  The client asks twitter for a request_token, from which a URL will 
+  be generated. The callback url should be changed to the proper server 
+  URL. 
+
+  The browser will be redirected to the generated authorization URL. After
+  that, twitter will redirect the user back to our app. 
+
+  Author: Yahia
+=end
+  def generate_request_token
+    #FIXME FOR THE SAKE OF TESTING
+    #session[:user_id] = 7
+
+    #FIXME change IP 
+    @request_token = User.twitter_consumer.get_request_token(:oauth_callback => 
+                "http://127.0.0.1:3000/twitter_requests/new_twitter_account")
+
+    url = @request_token.authorize_url
+    #puts 'URL IS ' + url
+    redirect_to(url)
+  end 
+
+=begin
+  This is the second phase of authentication. In this phase, the user should have 
+  authenticated our app through twitter. Then we use the request token and secret 
+  token from that exact user to get our access tokens from twitter. Through the 
+  access token, we can get the feeds or tweet on behalf of the user. 
+
+  This is done by simply
+  requesting the access token by the oauth_token and oauth_verifier which twitter
+  put in the params array. Through this access token the twitter accoun can be made
+  thorugh which the system fetches tweets.
+
+  Author: Yahia
+=end 
+  def generate_access_token
+    # FIXME FOR THE SAKE OF TESTING
+    session[:user_id] = 7
+    @user = User.find(session[:user_id])
+
+
+    @request_token = OAuth::RequestToken.new(TwitterRequestsController.consumer,
+                    params["oauth_token"], params["oauth_verifier"])
+
+    @access_token = @request_token.get_access_token
+
+    
+
+    @old_account = @user.twitter_account(true)
+    if (@old_account)
+      @old_account.destroy
+    end
+    @user.twitter_account(true) #Reload cache 
+    
+
+    @t_account = TwitterAccount.new
+    @t_account.auth_token = @access_token.token
+    @t_account.auth_secret = @access_token.secret
+    @t_account.user = @user
+    @t_account.save
+
+    #puts "TWITTER ACCOUNT NEW " +  @t_account.new_record?.to_s
+    unless @t_account.new_record?
+      render(:layout => 'mobile_template', 
+              :text => "User #{ session[:user_id] }" + 
+                      "created a new twitter account")
+    else 
+      render(:layout => 'mobile_template', 
+              :text => 'Something wrong, couldn\'t save account')
+    end 
+  end 
+
 end
+
 
 
