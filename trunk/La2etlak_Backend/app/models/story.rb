@@ -145,4 +145,53 @@ include StoriesHelper
 	array = Array.new
 	return array
   end
+
+#view_friends_like is a method to view the friends of the user who liked a certain story, there will be button in the options tab of the story called view liked that will open another page with the names of friends in it
+#Author: khaled.elbhaey
+def view_friends_like(user)
+  @user=user
+  @flistliked=Array.new
+  @listlike = self.liked() 
+  @flistlike=@user.extract_friends(@listlike)
+
+   (0..(@flistlike.length-1)).each do |i|
+    @flistliked << (@flistlike[i].name)
+      end  
+
+   return @flistliked
+
+   ''' @username = User.find(@userid).name
+    @storytitle = Story.find(@storyid).title
+    @interest_id = Story.find(@storyid).interest_id
+    @interesttitle = Interest.find(@interest_id).name
+    @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
+
+    Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
+'''
+end
+
+
+#view_friends_like is a method to view the friends of the user who liked a certain story, there will be button in the options tab of the story called view liked that will open another page with the names of friends in it
+#Author: khaled.elbhaey
+def view_friends_dislike(user)
+  @user=user
+  @flistdisliked=Array.new
+  @listdislike = self.liked() 
+  @flistdislike=@user.extract_friends(@listdislike)
+
+   (0..(@flistdislike.length-1)).each do |i|
+    @flistdisliked << (@flistdislike[i].name)
+      end  
+
+   return @flistdisliked
+
+   ''' @username = User.find(@userid).name
+    @storytitle = Story.find(@storyid).title
+    @interest_id = Story.find(@storyid).interest_id
+    @interesttitle = Interest.find(@interest_id).name
+    @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
+
+    Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
+'''
+end
 end

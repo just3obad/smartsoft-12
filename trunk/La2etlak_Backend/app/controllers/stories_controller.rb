@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   respond_to :html,:json
   require 'net/smtp'
 
-  def show
+def show
    @comments = Comment.find_all_by_story_id(params[:id]) # get comments of this story
    @story = Story.find(params[:id])
 
@@ -125,9 +125,9 @@ class StoriesController < ApplicationController
  end
    
 
-#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page or the user could write an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him3
-
-def recommend_story()
+#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page or the user could write an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
+#Author=> khaled.elbhaey
+def recommend_story_mobile_show()
   @storyid=params[:sid]
   @userid=params[:uid]
     @friend=params[:friend]
@@ -135,8 +135,8 @@ def recommend_story()
     @message=params[:message]
 
 
-   user2=User.find_by_id(@userid)
-   @user2email=user2.email
+   user=User.find_by_id(@userid)
+   @useremail=user.email
    @story=Story.find_by_id(@storyid)
    @storytit=@story.title
    @storybod=@story.content
@@ -144,14 +144,15 @@ def recommend_story()
   if @friend=="null"
 
   if User.find_by_email(@email).nil?
-    Emailer.invite_to_app(@user2email, @email, @message).deliver
+    Emailer.invite_to_app(@useremail, @email, @message).deliver
    else
-    Emailer.recommend_story(@user2email, @email, @message, @storytit, @storybod).deliver
+    Emailer.recommend_story(@useremail, @email, @message, @storytit, @storybod).deliver
   end
 
  else
-   Emailer.recommend_story(@user2email, @friend, @message, @storytit, @storybod).deliver
+   Emailer.recommend_story(@useremail, @friend, @message, @storytit, @storybod).deliver
  end
+'''
 @username = User.find(@userid).name
     @storytitle = Story.find(@storyid).title
     @interest_id = Story.find(@storyid).interest_id
@@ -159,36 +160,10 @@ def recommend_story()
   @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
 
 Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
-end
+  '''
+  end
 
-#i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
-def get_friends_email()
- @userid=params[:uid] 
 
-  @flist=Array.new
-  @flistemail=Array.new
-  @flist = User.find_by_id(@userid).get_Friend_List()
-
-    (0..(@flist.length-1)).each do |i|
-    @flistemail << (@flist[i].email)
-      end  
-
-    if @flist.empty?
-       respond_to do |format|
-     format.json{render json:"sorry_you_dont_have_any_friends" }
-      end
-
-    else
-        respond_to do |format|
-     format.json{render json:@flistemail}
-      end
-
- end
-@username = User.find(@userid).name
-  @message = "#{@username}get_friends_email"
-
-Log.create!(loggingtype: 1,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: nil,message: @message )
-end
 
 #this method returns friend emails and ids when takes the user id.
 def get_friend_id()
@@ -197,56 +172,22 @@ def get_friend_id()
  render text: @id.to_s
 end
 
-
-#view_friends_like_dislike is a method to view the friends of the user who liked or disliked a certain story, there will be button in the options tab of the story called view liks/dislikes that will open another page with the names of friends in it
-
-def view_friends_like
-  @storyid=params[:sid]
-  @userid=params[:uid]
-  
-  @flistlike=Array.new
-  @flistliked=Array.new
-  @flistlike = User.find_by_id(@userid).liked() 
-
-   (0..(@flistlike.length-1)).each do |i|
-    @flistliked << (@flistlike[i].name)
-      end  
-
-   respond_to do |format|
-     format.json{render json:@flistliked}
-     end
-@username = User.find(@userid).name
-    @storytitle = Story.find(@storyid).title
-    @interest_id = Story.find(@storyid).interest_id
-    @interesttitle = Interest.find(@interest_id).name
-  @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
-
-Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
-end
-
-def view_friends_dislike
-    @storyid=params[:sid]
-    @userid=params[:uid]
-
-  @flistdislike=Array.new
-  @flistdisliked=Array.new
-  @flistdislike = User.find_by_id(@userid).disliked()
-
-   (0..(@flistdislike.length-1)).each do |i|
-    @flistdisliked << (@flistdislike[i].name)
-      end  
-
-   respond_to do |format|
-     format.json{render json:@flistdisliked}
-    end
-@username = User.find(@userid).name
-    @storytitle = Story.find(@storyid).title
-    @interest_id = Story.find(@storyid).interest_id
-    @interesttitle = Interest.find(@interest_id).name
-  @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
-
-Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
-end
+#Author=> khaled.elbhaey
+  def liked_mobile_show
+    @story = Story.find(params[:id])
+    @user = User.find(params[:id2])
+    @friends=@story.view_friends_like(@user)
+    flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
+    render :layout => "mobile_template" 
+  end
+#Author=> khaled.elbhaey
+  def disliked_mobile_show
+    @story = Story.find(params[:id])
+    @user = User.find(params[:id2])
+    @friends=@story.view_friends_dislike(@user)
+    flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
+ render :layout => "mobile_template" 
+  end
 
 
 end
