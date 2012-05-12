@@ -18,4 +18,30 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
   
+  
+  #Author: Omar
+  	test "toggle view" do
+		
+		user = User.new
+		user.email = "abc@abc.com"
+		user.save
+		assert get(:toggle , {'user' => user})
+
+	end
+
+# Author: Omar
+		test "add selected interest in database" do
+		   user = User.create(:email => "a@abc.com")	
+		   interest = Array.new
+		   interest1 = Interest.create(:name => "interest 1")
+		   interest2 = Interest.create(:name => "interest 2")
+		   interest = [interest1.id , interest2.id]
+		   assert get(:addwithduplicates , {'interests' => interest} , {'user' => user} )
+		   
+		
+		
+		end
+
+  
+  
 end
