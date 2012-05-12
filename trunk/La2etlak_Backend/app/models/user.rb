@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   has_many :block_stories
   has_many :blocked_stories, :class_name => "Story", :through => :block_stories 
 
+  has_many :user_add_interests
+  has_many :added_interests, :class_name =>"Interest", :through => :user_add_interests 
+
 
   email_regex = /\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i
   validates :name, :length => { :maximum => 20 }
@@ -58,6 +61,7 @@ class User < ActiveRecord::Base
     end
     stories.uniq # remove tuplicates, if stories is equal nil this will return []
   end
+  
  # gets the shared stories of friends of a user
   def get_friends_stories()
     friendsSent = Friend.find_all_by_sender_and_status(self.id,1) #find all friends who approved my request
@@ -150,6 +154,16 @@ class User < ActiveRecord::Base
     else 
       return false
     end
+  end
+  
+   
+  
+  #This method returns the number of users who signed in today.
+  ########## Author : christinesed@gmail.com #########
+  def self.get_no_of_users_signed_in_today
+    no_sing_ins=UserLogIn.where(:created_at=>
+    Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).
+    uniq.pluck(:user_id).count
   end
 
  '''This method to get the number of users who registered per day
