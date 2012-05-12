@@ -2,8 +2,84 @@
 <html>
 <head>
 	<title>Mahmoud Sakr</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8 "/> 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<style type="text/css">
+	body {
+		margin: 0;
+		margin-top: 20px;
+		text-align: center;
+		font-family: Georgia;
+	}
+
+	.side {
+		width: 45%;
+		padding: 2%;
+		margin: 0 auto;
+		display: inline-block;
+		vertical-align:top;
+	}
+
+	#right-side {
+		text-align: left;
+	}
+
+	#left-side {
+		text-align: right;
+	}
+
+	.profile-pic {
+		border: 3px solid #999;
+		width: 100%;
+	}
+	#show-actual-langs, #actual-langs {
+		cursor: pointer;
+	}
+	#actual-langs {
+		display: none;
+	}
+	dt {
+		color: #888888;
+	}
+	dd {
+		margin-bottom: 5px;
+		margin-left: 50px;
+	}
+	p span {
+		color: #ccc;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function() {
+		$('#show-actual-langs, #actual-langs').on('click', function() {
+			$('#actual-langs, #show-actual-langs').slideToggle();
+		})
+	})
+	</script>
 </head>
 <body>
-	Uhm +1 +2
+	<div id="left-side" class="side" >
+		<img src="https://fbcdn-sphotos-a.akamaihd.net/hphotos-ak-ash3/548355_318589714877367_100001790225371_715892_336336316_n.jpg" class="profile-pic">
+	</div>
+	<div id="right-side" class="side">
+		<h1>About</h1>
+		<p>A perfectionist disguised as a computer engineer with ultimate passion to anything code and, on a scale of 0 to Google, medium scale. Infamously known as kamasheto, and once tried to go by msakr but it didn’t work out — so he’s become kamasheto again. He likes to be called Mahboud — since his nephew couldn’t say Mahmoud like the rest of the world, the rest of the world needs to say Mahboud like he does.</p>
+		<h1>Info</h1>
+		<p>
+			<dl>
+				<dt>Name</dt>
+				<dd>Mahmoud Sakr</dd>
+				<dt>Date of Birth</dt>
+				<dd>January 19<sup>th</sup>, 1987</dd>
+				<dt>Education</dt>
+				<dd>زي الفل</dd>
+			</dl>
+		</p>
+		<h1>Role in the company</h1>
+		<p>Scrum master <span>(and sometimes but not always a latecomer)</span></p>
+		<h1>Programming Languages</h1>
+		<p title="You might want to click here" id="show-actual-langs">None that I could think of :(</p>
+		<p title="You might want to click here" id="actual-langs">Nope, still nothing here.</p>
+	</div>
 </body>
 </html>
