@@ -67,9 +67,6 @@ module UsersHelper
    end
  end
  
-
-
- 
 #This method gets the number of Shares by this user in the last 30 days
  def get_no_of_shares_user(user_id)
 
