@@ -80,18 +80,22 @@ class User < ActiveRecord::Base
   
   #dummy data to be returned until it created in sprint 2
 
-  def get_Friend_List()   
-
+def get_Friend_List()   
   @list=Array.new
   @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
   @user2=User.new( :name =>"rana", :email => "rana@abc.com")
   @user3=User.new( :name =>"essam", :email => "essam@abc.com")
   @user4=User.new( :name =>"omar", :email => "omar@abc.com")
   @list <<@user1 <<@user2 <<@user3 <<@user4
-
   return @list
     
- end
+end
+ 
+ # A method to get the shared stories of a user
+ # Author: Menisy
+  def get_shared_stories
+    self.shared_stories  
+  end
 
 
  #dummy data to be returned until it created in sprint 2
