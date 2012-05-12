@@ -59,6 +59,30 @@ class StoryTest < ActionDispatch::IntegrationTest
 
   end
 
+    #Author: Rana
+    test "form for button block interest in read more RED" do
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_story= Story.new :title => "Story1", :interest_id => this_interest
+      this_story.interest = this_interest
+      this_story.save
+      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      get read_more_path(this_story)
+      assert_select "form[action = 'this_user.block_interest']"
+      assert_select 'div[id="bbutton"]'
+    end
+
+    #Author: Rana 
+    test "form for button block story in read more RED" do
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_story= Story.new :title => "Story1", :interest_id => this_interest
+      this_story.interest = this_interest
+      this_story.save
+      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      get read_more_path(this_story)
+      assert_select "form[action = 'this_user.block_story']"
+      assert_select 'div[id="bsbutton"]'
+    end
+
 
 end
 
