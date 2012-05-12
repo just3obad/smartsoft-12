@@ -80,8 +80,13 @@ NokiaRuby::Application.routes.draw do
 
   #match "/feeds/:id" => "feeds#create"
   #match "/feeds/delete/:id" => "feeds#destroy"
+  
+ # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$
+  match "/stories/:id/get" => "stories#get"
   match "users/:id/toggle" => "users#toggle"   
-  match "user_add_interests" => "user_add_interests#addwithduplicates"
+  match "users/:id/user_add_interests" => "users#user_add_interests"
+ # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$ 
+ 
   match "user/:id/friendship/invite" => "user_friend#invite"
   match "user/:id/friendship/approve" => "user_friend#approve"
   match "user/:id/friendship/pending" => "user_friend#pending_invited_by"
