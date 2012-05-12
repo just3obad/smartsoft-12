@@ -7,7 +7,7 @@ class Admin < ActiveRecord::Base
 
 
   def self.search(query)
-    """
+=begin
     Given a query string, the method analyze the type of the field is being searched for, and 
     returns all the users matching the query.
 
@@ -24,7 +24,7 @@ class Admin < ActiveRecord::Base
 
     The users from each query are put in a set, to avoid repeated users, then the result returned
     is then converted to an array.
-    """
+=end
     query_result = [].to_set
     
     if query.instance_of? String
