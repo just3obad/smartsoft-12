@@ -1,0 +1,29 @@
+<div style="padding-left:1%;">
+    <h3> Choose a social network connect to</h3>
+
+      <div class="actions" style="padding-right:5%; clear:both">
+        <%= link_to image_tag('http://www.iconspedia.com/dload.php?up_id=19041', :size => "50x50") + "Twitter", 
+        url_for({:controller => 'users', :action => 'generate_request_token'}),
+         :class => 'quick', 
+         :remote => true%>
+
+      <% if User.find(@user).twitter_account %>
+        <div class="warning-component-box-mobile" style="width:35%; float:right;">
+          You are connected to twitter
+        </div>
+      <% end %>
+      </div>
+
+
+
+      <div class="actions" style="padding-right:5%; clear:both">
+        <%= link_to image_tag('http://www.iconspedia.com/dload.php?up_id=18946', :size => "50x50") + "Facebook", 
+        url_for({:controller => 'users', :action => 'action_name'}),
+         :class => 'quick', 
+         :remote => true%>
+      </div>
+
+
+
+
+</div>    
