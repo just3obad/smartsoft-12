@@ -20,8 +20,7 @@ NokiaRuby::Application.routes.draw do
   match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests/interests" => "user_add_interests#getinterests"  
   match "flags/flag" => "flags#flag"
-  match "likedislikes/like" => "likedislikes#like"
-  match "likedislikes/dislike" => "likedislikes#dislike"
+  match "likedislikes/thumb" => "likedislikes#thumb"
   match "/interests/:id/statistics" => "statistics#interests"
   match "/stories/:id/statistics" => "statistics#stories"
   match "/users/:id/statistics" => "statistics#users"
