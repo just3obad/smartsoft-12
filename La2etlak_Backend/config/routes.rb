@@ -29,10 +29,6 @@ NokiaRuby::Application.routes.draw do
   match "admins/statistics/all_users" => "statistics#all_users"
   match "admins/statistics/all_interests" => "statistics#all_interests"
   match "admins/statistics/all_stories" => "statistics#all_stories"
-  match "authenticate/:u_id/get_twitter_url" => "twitter_requests#generate_request_token"
-  match "authenticate/:u_id/new_twitter_account" =>  "twitter_requests#generate_access_token"
-  match "twitter/:u_id/delete" => "twitter_accounts#remove_twitter_account"
-  match "twitter/:u_id/exists" => "twitter_accounts#exists?"
   match "h_accounts/verify" => "verification_codes#verify"
   match "h_accounts/:id/resend" => "verification_codes#resend"
   match "h_accounts" => "h_accounts#index"
@@ -41,6 +37,14 @@ NokiaRuby::Application.routes.draw do
 
   match "/interests/list"  => "interests#new", :as => :new
 
+  # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
+  match "twitter_requests/get_twitter_url" => "twitter_requests#generate_request_token"
+  match "twitter_requests/new_twitter_account" =>  "twitter_requests#generate_access_token"
+  match "twitter_accounts/:u_id/delete" => "twitter_accounts#remove_twitter_account"
+  match "twitter_accounts/:u_id/exists" => "twitter_accounts#exists?"
+  match "users/mob/connect_network" => "users#connect_social_accounts"
+  # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
+  
   # $$$$$$$$$$$$$$  MENISY $$$$$$$$$$$$$$$$$$$$$$$
   match "stories/:id/comments"  => "stories#show_comments"
   match "stories/:id/comments/new" => "stories#create_comment"
