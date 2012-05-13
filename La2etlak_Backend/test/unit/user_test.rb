@@ -250,5 +250,15 @@ class UserTest < ActiveSupport::TestCase
          this_user.block_story1(this_story)
       end
     end
+
+  #Author : 3OBAD
+  test "flickr account RED" do
+    user = User.new
+    user.email = '3obad@prince.com'
+    user.flickr_account = flickr_account(:one)
+    assert !user.flickr_account.nil?
+    tumblr_feed = user.flickr_account.get_feed()
+    assert !flickr_feed.nil?
+  end
    
 end
