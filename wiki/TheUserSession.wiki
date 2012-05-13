@@ -60,6 +60,36 @@ instead you have to give it an email, password, and password_confirmation
 user = User.create(email: "user@gmail.com",password: "123456", password_confirmation: "123456")
 }}}
 
+===How to test your views?===
+
+This will help you test you methods and views:
+
+First make sure that your svn is updated to the latest version
+
+you will have to start by creating the users that you would like to make your test with:
+rails console
+{{{
+$ User.create(email: "user1@gmail.com", password: "123456", password_confirmation: "123456")
+
+$ User.create(email: "user2@gmail.com", password: "123456", password_confirmation: "123456")
+
+$ User.create(email: "user3@gmail.com", password: "123456", password_confirmation: "123456")
+}}}
+
+You will need to remember the IDs of the users that you created because this is what we will use to login the user.
+
+Now run your rails server
+
+In you browser type http://localhost:3000/dummyLogin
+
+now enter the id of the user you want to login with and press *login* button.
+
+okay, now your user is logged in, you can continue using the application with this user, for example if you want to try the mainfeed you can go to http://localhost:3000/users/feed, if this is handled correctly as stated previously you will get the main feed of the user you logged in.
+
+Thats all,
+if you have any trouble applying anything of this feel free to ask me,
+Kiro
+
 If you have any questions feel free to ask me, thanks
 
 Kerolos Bebawy
