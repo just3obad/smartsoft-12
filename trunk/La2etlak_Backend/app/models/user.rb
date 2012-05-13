@@ -576,4 +576,70 @@ end
        return true
     end
   end
+
+#This method takes a story id as input and blocks the interest belonging to the story by inserting a row in BlockInterest table.
+  #It also removes the row belonging to the interest and user from UserAddInterest table. 
+  #If the interest is already blocked, it responds with a message that the interest is already blocked.
+  #Author : Rana
+   
+  def block_interest1(this_story)
+   this_user = self
+   #this_story = Story.find_by_id(story_id)
+   story_interest = this_story.interest
+   check_interest =  BlockInterest.find_by_user_id_and_interest_id(this_user,story_interest)
+   check_user_add_interest = UserAddInterest.find_by_user_id_and_interest_id(this_user,story_interest)
+   if !check_user_add_interest.nil? #checks if the interest belongs to the user
+      check_user_add_interest.delete
+   end
+   if check_interest.nil?
+      blocked_interest = BlockInterest.new(:user_id => this_user, :interest_id => story_interest)
+      blocked_interest.user = this_user
+      blocked_interest.interest = story_interest 
+      blocked_interest.save
+      @text = "interest blocked successfully"
+   else 
+      @text = "interest already blocked"    
+   end
+   #log file
+   if self.name.nil?
+      @username = self.email
+   else
+      @username = self.name
+   end
+   @interesttitle = story_interest.name
+   @message = "#{@username} blocks interest with name: #{@interesttitle}"
+   Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: story_interest.id, message: @message)
+  
+   return @text #return the message in variable text
+  end
+
+  #This method takes a story id as input and blocks its story by inserting a row in BlockStory table. 
+  #If the story is already blocked, it responds with a message that the story is already blocked.
+  #Author : Rana
+
+  def block_story1(this_story)
+   this_user = self
+   check_story = BlockStory.find_by_user_id_and_story_id(this_user,this_story)
+   if check_story.nil?
+      blocked_story = BlockStory.new(:user_id => this_user, :story_id => this_story)     
+      blocked_story.story = this_story
+      blocked_story.user = this_user
+      blocked_story.save
+      @text = "Story blocked successfully"
+   else 
+      @text = "Story already blocked"
+   end
+   #for log file
+   if self.name.nil?
+      @username = self.email
+   else
+      @username = self.name
+   end
+   @storytitle = this_story.title
+   @message = "#{@username} blocks story with title: #{@storytitle}" 
+   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: this_story.id, message: @message)
+
+   return @text #return the message in variable text
+  end
+
 end
