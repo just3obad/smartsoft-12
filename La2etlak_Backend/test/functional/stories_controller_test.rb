@@ -22,6 +22,20 @@ class StoriesControllerTest < ActionController::TestCase
   end
 
   # Author: Menisy
+  test "should see notification RED" do
+  	requester = User.find(2)
+  	requester.invite User.first
+  	get :mobile_show, :id => Story.first.id , :id2 => User.first.id
+  	assert_select 'div[id=notification]',true
+  end
+
+  # Author: Menisy
+  test "should not see notification RED" do
+  	get :mobile_show, :id => Story.first.id , :id2 => User.find(3)
+  	assert_select 'div[id=notification]',false	
+  end
+
+  # Author: Menisy
   test "mobile show view" do
   	story = Story.first
   	comment = Comment.new
