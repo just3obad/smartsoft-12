@@ -2,6 +2,10 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
 
+	# Author: Kiro ##########
+	setup :activate_authlogic
+	#########################
+
    test "admin should reset user's password RED" do
      user=User.first
      get :force_reset_password, :id => user.id
@@ -199,5 +203,21 @@ class UsersControllerTest < ActionController::TestCase
       assert_select 'div[ id=error_explanation]'
      end
   end
+
+	# Auther: Kiro
+	test "The old password of the user should expire after requesting a new one RED" do
+
+		get :resetPassword
+		post :requestToken, :user_session => { :email => 'ben@gmail.com', :password => 'benrocks'}
+		assert_nil assigns(:user), "the user was able to login using his expired password"
+
+  end 
+
+	# Author: Kiro
+	test "An email should be sent to the user after requesting a new password RED" do
+	   assert_difference 'ActionMailer::Base.deliveries.size', +1, "An email wasn't sent to the user" do
+     get :resetPasswordz
+     end
+	end
 
 end

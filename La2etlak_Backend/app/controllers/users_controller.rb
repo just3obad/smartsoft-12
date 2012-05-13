@@ -17,6 +17,10 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def resetPassword
+	#FIXME
+	end
+
 #new_record=User.new( :name =>"khaled", :email => "khaled@abc.com")
 #new_record.save!
 #this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
