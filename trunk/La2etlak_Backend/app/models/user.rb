@@ -56,6 +56,7 @@ class User < ActiveRecord::Base
  # gets the shared stories of one friend given his/her id
  # to get your own shared stories supply your own ID
  # as the param friend id
+ # Author: Menisy
   def get_one_friend_stories(friend_id) 
     shares = Share.find_all_by_user_id(friend_id) # get all his/her shared stories
     stories = Array.new
@@ -64,8 +65,15 @@ class User < ActiveRecord::Base
     end
     stories.uniq # remove tuplicates, if stories is equal nil this will return []
   end
+
+  # gets the users shared stories
+  # Author: Menisy
+  def get_shared_stories
+    self.shared_stories
+  end
   
  # gets the shared stories of friends of a user
+ # Author: Menisy
   def get_friends_stories()
     friendsSent = Friend.find_all_by_sender_and_status(self.id,1) #find all friends who approved my request
     friendsRec = Friend.find_all_by_receiver_and_status(self.id,1) #find all friends whom I approved
