@@ -15,7 +15,7 @@ class SettingsTest < ActiveSupport::TestCase
     settings = Settings.create!(:key=>"flags_threshold", :value=>20)
     old_value = settings.value
     settings.configure_flags_threshold (10)
-    assert_equals settings.value, 30 
+    assert_equal settings.value, 30 
   end
 
 
@@ -25,7 +25,7 @@ class SettingsTest < ActiveSupport::TestCase
     stories = Story.all
     settings.configure_flags_threshold (10)
     stories.each do |story|
-      assert_boolean !story.hidden 
+      assert !story.hidden 
     end
   end 
   # author : Gasser
@@ -33,5 +33,7 @@ class SettingsTest < ActiveSupport::TestCase
     settings = Settings.create!(:key=>"flags_threshold", :value=>20)
     old_value = settings.value
     settings.disable_auto_hiding
+    settings.configure_flags_threshold (10)
+    assert_equal settings.value, 20
   end   
 end
