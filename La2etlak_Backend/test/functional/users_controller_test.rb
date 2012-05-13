@@ -124,6 +124,16 @@ class UsersControllerTest < ActionController::TestCase
 		assert_no_difference('User.count') do
    		post :register, :user => { :email => 'user_email2@test.com', :password => '12345', :password_confirmation => '123456'}
   	end
+	
+		User.create(email: "AlreadyInUse@test.com", password: "123456", password_confirmation: "123456")
+
+		assert_no_difference('User.count',"xxxxxxxxx") do
+   		post :register, :user => { :email => 'AlreadyInUse@test.com', :password => '123456', :password_confirmation => '123456'}
+  	end
+
+		assert_no_difference('User.count',"yyyyyy") do
+   		post :register, :user => { :email => 'alreadyinuse@test.com', :password => '123456', :password_confirmation => '123456'}
+  	end
 	end
 
 end
