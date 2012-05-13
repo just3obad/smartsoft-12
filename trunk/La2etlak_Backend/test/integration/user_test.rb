@@ -34,13 +34,13 @@ class UserTest < ActionDispatch::IntegrationTest
     end
     
     #Author: Rana
-    test "route to block story RED" do
-      assert_routing 'users/block_story/1/1', {:controller => "users", :action => "block_story", :uid => "1", :id => "1" }
+    test "route to block story" do
+      assert_routing 'users/block_story/1', {:controller => "users", :action => "block_story", :id => "1" }
     end
 
     #Author: Rana   
-    test "route to block interest RED" do
-      assert_routing 'users/block_interest/1/1', {:controller => "users", :action => "block_interest", :uid => "1", :id => "1" }
+    test "route to block interest" do
+      assert_routing 'users/block_interest/1', {:controller => "users", :action => "block_interest", :id => "1" }
     end
 
     #Author: Rana   
