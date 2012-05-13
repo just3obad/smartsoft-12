@@ -1,9 +1,16 @@
 class Emailer < ActionMailer::Base
   default from: "info.2allak@gmail.com"
 
-  def resend_code(account)
-  @code = VerificationCode.find_by_user_id(account.id).code
-  mail(:to => account.email, :subject => "2allak Verification Code")
+	# Author: Kiro
+	def verification_instructions(user)
+		@code = user.verification_code.code
+		mail(:to => user.email, :subject => "La2etlak Verification Instructions")
+	end
+
+	# Author: Kiro
+  def resend_code(user)
+  	@code = user.verification_code.code
+  	mail(:to => account.email, :subject => "La2etlak Verification Code")
   end
 
   def password_reset(h_account, pass)
