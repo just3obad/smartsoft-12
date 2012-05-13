@@ -1,19 +1,20 @@
 
-<SCRIPT language="javascript">
-	$(document).ready(function(){
-	<%if $errors == true %>
-		$('#myModal').modal("show");
+ <SCRIPT language="javascript">
+var $j = jQuery.noConflict();
+ $j(document).ready(function(){
+ <%if $errors == true %>
+  $j('#myModal').modal("show");
 
-		<%  end%>
+  <%  end%>
 });
 
-	function callmodal(){
-		$('#myModal').modal();
+ function callmodal(){
+  $j('#myModal').modal();
 
-	}
-	$(document).unload(function(){
-		$('#myModal').modal("hidden");
-		
+ }
+ $j(document).unload(function(){
+  $j('#myModal').modal("hidden");
+  
 });
 </SCRIPT>
 

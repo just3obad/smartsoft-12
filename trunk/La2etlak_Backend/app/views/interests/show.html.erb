@@ -2,6 +2,8 @@
 
 <% if $savedinterest %>
 <%= render 'shared/logs_success_messages' %>
+<%else %>
+<%= render 'shared/logs_error_messages' %>
 
 <%end%>
 
@@ -35,22 +37,27 @@
             </form>
 <!DELETING RSS>
 
-            
-<! edit interest part .. to be added later >
+           
+<! Author : jailan , edit interest part .. This is the form that updates the interest >
 			<li class="divider"></li>
 			<li class="nav-header">Interest Edit</li>
 			<li class="divider"></li>
 
-			<%= form_tag("/logs/filterbydate", :method => "get") %>
-			  <label for="name" class="logs-take-input" >Name :</label>
-			  <input type="text" class="input-medium" placeholder="Name"  name="name"id="name" disabled="disabled">
-		          <label for="description"class="logs-take-input" >Description :</label>
-			  <textarea type="text" class="input-medium" placeholder="Description" name="description" id="description" disabled="disabled"></textarea>
-			  <label for="image"class="logs-take-input" >Image :</label>
-			  <input type="text" class="input-medium" placeholder="Image URL" name="image" id="image" disabled="disabled">
-			  <input class="btn btn-primary" name="commit" type="submit" value="Edit" disabled="disabled" />
-							
-			</form>
+  <%= form_for @interest, :html => { :multipart => true } do |f|  %>
+ <%= render 'shared/error_messages' , object: f.object  %>
+ 
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :description%>
+      <%= f.text_field :description %>
+
+      
+    
+
+      <%= f.submit "Save Changes", class: "btn btn-primary" %>
+    <% end %>
 
 			<li class="divider"></li>
 <!.. deleting the interest .. no action at the moment .. >
