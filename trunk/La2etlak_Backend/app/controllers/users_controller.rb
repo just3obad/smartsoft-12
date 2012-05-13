@@ -274,4 +274,13 @@ end
     flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
     render :layout => "mobile_template" 
   end
+
+  #author: Gasser
+  def force_reset_password
+  end
+
+  # author: Gasser
+  def send_resetted_password
+  end
+
 end

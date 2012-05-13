@@ -10,6 +10,11 @@ class Emailer < ActionMailer::Base
     @passw = pass
     mail(:to => h_account.email, :subject => "2allak New Password")
   end
+  # author: Gasser
+  def send_forced_password(user, pass)
+    @passw = pass
+    mail(:to => user.mail, :subject => "Your Password was reset by the Admin")
+  end
 
  def recommend_story(sender, reciever, message, stitle, sbody)
 

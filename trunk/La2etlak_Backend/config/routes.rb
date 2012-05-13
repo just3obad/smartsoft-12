@@ -127,7 +127,10 @@ NokiaRuby::Application.routes.draw do
   match '/logs/users/:id',    to: 'logs#get_specific_user'
   match '/logs/admins/:id',    to: 'logs#get_specific_admin'
 #LogFiles
-
+  
+  # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
+  match '/force_reset_password/:id', to: 'users#force_reset_password'
+  # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
