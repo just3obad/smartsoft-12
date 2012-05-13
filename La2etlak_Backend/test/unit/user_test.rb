@@ -277,7 +277,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     #Author: Rana
-   test "user wants to block friend feed RED" do
+   test "user wants to block friend feed" do
       this_user = User.create :name => "amr", :email => "amr@abc.com", :password =>"123456", :password_confirmation => "123456"
       my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com", :password =>"123498", :password_confirmation => "123498"
       this_user.invite my_friend
