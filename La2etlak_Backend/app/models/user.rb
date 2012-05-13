@@ -469,7 +469,11 @@ end
 		array = Array.new
 	return array
  end
- 
+
+  # author = Gasser
+  def reset_password
+  end
+
  
  # Author: Omar
  # select user existing interests in our database
