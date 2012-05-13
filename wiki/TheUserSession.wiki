@@ -41,7 +41,9 @@ This is easily done by calling the helper_method *current_user* inside your meth
 by this way you can access this user from anywhere inside your method of view for example:
 
 {{{
-id = @user.id
+name = @user.first_name
+
+email = @user.email
 }}}
 
 so what we have to do right now is to adjust our routes and controllers to be working with this way.
