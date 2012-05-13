@@ -63,12 +63,10 @@ NokiaRuby::Application.routes.draw do
   # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$  MENISY $$$$$$$$$$$$$$$$$$$$$$$
-  match "stories/:id/comments"  => "stories#show_comments"
   match "stories/:id/comments/new" => "stories#create_comment"
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
-  match "users/:id/friend_requests" => "users#friend_requests"
-  match "/stories/:id/show_mob/:id2" => "stories#mobile_show"
+  match "/stories/:id/show_mob/" => "stories#mobile_show"
   # $$$$$$$$$$$$ MENISY END $$$$$$$$$$$$$$$$$$$$$$
 
     # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
