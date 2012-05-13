@@ -91,4 +91,7 @@ class Admin < ActiveRecord::Base
     return []
   end
   
+  def self.search_interest(query)
+    return []
+  end
 end
