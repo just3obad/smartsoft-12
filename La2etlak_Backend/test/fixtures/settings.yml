@@ -1,11 +1,3 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  key: Flags_threshold
-  value: 20
 
-# 0 for false
-# 1 for true
-two:
-  key: Auto_hiding
-  value: 0
