@@ -667,4 +667,29 @@ end
      return social_stories.shuffle
    end
    
+   
+   
+    # Author : Essam
+    # issue 88
+    # a method called when the user wants to see a specific feed
+    # if the user wants to filter the view of any social account he is connected to 
+    # he calls this method with the id of the social network then a list of stories of this account is returned
+    # twitter => id = 1
+    # facebook => id = 2
+    # flickr => id = 3
+    # tumblr => id = 4
+  def filter_social_network (socialID)
+    user = User.find(self.id)
+    if(socialID == 1)
+      return user.twitter_account.get_feed
+    elsif (socialID == 2)
+      return user.facebook_account.get_feed
+    elsif (socialID == 3)
+      return user.flickr_account.get_feed
+    elsif (socialID == 4)
+      return user.tumblr_account.get_feed
+    else
+      return []
+    end
+  end
 end
