@@ -29,7 +29,7 @@ NokiaRuby::Application.routes.draw do
   match 'users/block_story/:id' => 'users#block_story'
   match 'users/block_interest/:id' => 'users#block_interest'
   match 'users/friends_list/' => 'users#friends_list'
-  match 'users/block_friends_feed/:fname' => 'users#block_friends_feed'
+  match 'users/block_friends_feed/:id' => 'users#block_friends_feed'
   match 'users/friends_feed/:fname' => 'users#friends_feed'
         # $$$$$$$$$$$$$$ RANA $$$$$$$$$$$$$$$$$$$$$$$$$
   match "users/index" => "users#index"
