@@ -332,6 +332,50 @@ end
  data ="[#{usr} , #{sto}]"
  end
 
+  '''This method is to rank an interest according to the scheme we agreed on
+  2 points for each story added to it and 5 points for each user who added 
+  this interest '''
+  ##########Author: Diab ############
+ def get_interest_rank
+ 
+  rank =  (self.stories.count * 2) + (self.adding_users.count * 5)
+
+ end
+ 
+ 
+ '''to get a list of hashes with all the interests and all of their ranks by 
+ calling the method get_interest_rank on 3ach one of the interests in the system'''
+ ##########Author: Diab ############
+ def self.rank_all_interests
+  interests=[]
+  Interest.all.each do |interest|
+  interests<< {:rank => interest.get_interest_rank, :theinterest => interest}
+  end
+  ranked_interests =  interests
+  end
+ 
+ '''this method returns a list of names of the top ranked interests in 
+ a descending order (Higher Rank First)'''
+ ##########Author: Diab ############
+ def self.get_top_interests_names
+    ranked_interests = rank_all_interests
+    interests=[]
+  (ranked_interests.sort_by {|element| element[:rank]}).each do |hsh|
+  interests << hsh[:theinterest].name
+  end
+  top_interests_names =  interests.reverse
+ end
+ '''this method returns a list of ranks of the top ranked interests in 
+ a descending order (Higher Rank First)'''
+ ##########Author: Diab ############
+ def self.get_top_interests_ranks
+    ranked_interests = rank_all_interests
+  interests=[]
+  (ranked_interests.sort_by {|element| element[:rank]}).each do |hsh|
+  interests << hsh[:rank]
+  end
+    top_interests_ranks = interests.reverse
+ end
  
 
 def self.get_interest(id)
