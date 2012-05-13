@@ -24,4 +24,13 @@ class Log < ActiveRecord::Base
      @log = Log.new(log)
      @log.save
   end
+  
+  def self.get_log_for_user(id,time)
+      out1 = Log.find_by_user_id_1(id).where("created_at < ?",time)
+      out2 = Log.find_by_user_id_2(id).where("created_at < ?",time)
+      out = out1 + out2
+      out.sort_by { |obj| obj.created_at }.reverse
+      return out
+  
+  end
 end
