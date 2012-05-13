@@ -33,6 +33,9 @@ def feed
 end
 respond_to do |format|
    format.json { render json: @stories }
+   # Author : Mina Adel
+   format.html { render :layout => "mobile_template"}
+   #
  end
 end
 ########################

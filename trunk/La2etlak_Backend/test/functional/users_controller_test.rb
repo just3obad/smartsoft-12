@@ -42,6 +42,41 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success
   end
   
+  #Author : Mina Adel
+  test "show main feed" do
+    user = User.new(:email => "test@test.com")
+    user.save
+    puts user.id
+    assert get(:feed, {"id" => user.id})
+  end
+  
+  #Author : Mina Adel
+  test "check if main feed has the correct elements RED" do
+    interest = Interest.new(:name => "test Interest")
+    interest.save
+    user = User.new(:email => "test@test.com")
+    user.save
+    useraddinterest = UserAddInterest.new(:user_id => user.id, :interest_id => interest.id)
+    feed = Feed.new(:link => "http://xkcd.com/rss.xml", :interest_id => interest.id)
+    feed.save
+    stories = user.get_feed("null")
+    get(:feed, {'id' => user})
+    stories.each do |s|
+          puts s.title
+          assert_select 'div[id = '+s.title+']'
+    end  
+  end
+  
+  #Author : Mina Adel
+  test "check if main feed is nil RED" do
+    interest = Interest.new(:name => "test Interest")
+    interest.save
+    user = User.new(:email => "test@test.com")
+    user.save
+    useraddinterest = UserAddInterest.new(:user_id => user.id, :interest_id => interest.id)
+    assert get(:feed, {'id' => user.id})
+    assert_select 'div[id = "Emptiness_Alert"]'
+  end
   
   #Author: Omar
 	test "toggle view" do
@@ -65,9 +100,6 @@ class UsersControllerTest < ActionController::TestCase
 
 
   end
-
-  
-  
     
   #Author:Rana
   test "get block story RED" do
