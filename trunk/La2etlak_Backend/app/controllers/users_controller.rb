@@ -61,9 +61,11 @@ respond_to do |format|
 end
 ########################
 
+
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$ Author Omar $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #this method return current user interests and all interests on the system and render to mobile_template (toggle view 
 def toggle
-@user = User.first
+@user = current_user
 @user_interests = @user.user_interests
 @all_interests = @user.all_interests
 render :layout => "mobile_template"
@@ -71,7 +73,7 @@ end
 
 #this method adds selected interests into UserAddInterest table in the database
 def user_add_interests
-@user = User.first
+@user = current_user
 @interests = params[:interests]
 interestsss = UserAddInterest.find_all_by_user_id(@user.id)
  interestsss.each do |t|
@@ -86,7 +88,7 @@ end
 render :layout => "mobile_template"
 end
 
-
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
  def show
     @user = User.find(params[:id])

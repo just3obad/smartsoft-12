@@ -10,6 +10,14 @@ NokiaRuby::Application.routes.draw do
 	resources :user_sessions
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 
+# $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$
+  match "/stories/:id/get" => "stories#get"
+  match "users/toggle" => "users#toggle"   
+  match "users/user_add_interests" => "users#user_add_interests"
+# $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$ 
+
+
+
   match "users/:id/profile" => "users#profile"
   match "h_accounts/:id/profile" => "h_accounts#profile"
   match "users/:id/stories" => "users#feed"
@@ -27,6 +35,8 @@ NokiaRuby::Application.routes.draw do
   match "/users/new" => "users#create", :as => :create
   match "users/:id" => "users#show"
   match "/h_accounts/create" => "h_accounts#create", :as => :create
+ 
+ 
  
   
 
@@ -105,11 +115,7 @@ NokiaRuby::Application.routes.draw do
   match "users/:id/main_feed" => "users#feed"
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
   
- # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$
-  match "/stories/:id/get" => "stories#get"
-  match "users/:id/toggle" => "users#toggle"   
-  match "users/:id/user_add_interests" => "users#user_add_interests"
- # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$ 
+ 
  
   match "user/:id/friendship/invite" => "user_friend#invite"
   match "user/:id/friendship/approve" => "user_friend#approve"
