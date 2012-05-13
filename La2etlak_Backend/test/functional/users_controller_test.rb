@@ -187,6 +187,17 @@ class UsersControllerTest < ActionController::TestCase
     assert_select 'You are connected to twitter'
   end 
 
-  
+   #author: khaled.elbhaey
+  test "the view of friends emails RED" do
+    new_user=User.create(:email=>"khd@abc.com")
+    list=new_user.get_friends_email()
+     if !list.empty?
+      get email_path(new_user)
+      assert_select 'div[ id=emails]'
+     else
+      get email_path(new_user)
+      assert_select 'div[ id=error_explanation]'
+     end
+  end
 
 end

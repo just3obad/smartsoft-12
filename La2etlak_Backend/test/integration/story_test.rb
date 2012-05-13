@@ -18,38 +18,6 @@ class StoryTest < ActionDispatch::IntegrationTest
     assert_routing 'stories/1/recommend_story_mobile_show', { :controller => "stories", :action => "recommend_story_mobile_show", :sid => "1"}
   end
 
-#Author: khaled.elbhaey 
-  test "the view of friends who liked RED" do
-    new_user=User.create(:email=>"kd@abc.com")
-    new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
-    new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
-
-    list=new_story.view_friends_like(new_user)
-     if !list.empty?
-      get like_path(new_story, new_user)
-      assert_select 'div[ id=liked]'
-     else
-      get like_path(new_story, new_user) 
-      assert_select 'div[ id=error_explanation]'
-     end
-  end
-#Author: khaled.elbhaey 
-  test "the view of friends who disliked RED" do
-   new_user=User.create(:email=>"kd@abc.com")
-    new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
-    new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
-    list=new_story.view_friends_dislike(new_user)
-    if !list.empty?
-
-     get dislike_path(new_story, new_user)
-     assert_select 'div[ id=disliked]'
-    else
-
-     get dislike_path(new_story, new_user) 
-     assert_select 'div[ id=error_explanation]'
-    end
-  end
-
 
     #Author: Rana
     test "form for button block interest in read more RED" do
