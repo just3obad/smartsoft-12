@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
     @comment.content = params[:comment][:content]
     @comment.user = User.find(params[:comment][:user_id])
     if @comment.save
-      redirect_to :controller => "stories", :action => "mobile_show" , :id => @comment.story.id , :id2 => @comment.user.id
+      redirect_to :controller => "stories", :action => "mobile_show" , :id => @comment.story.id
     else
       render json: "Temporary error"
     end
