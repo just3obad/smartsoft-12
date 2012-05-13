@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
 				format.json { render json: @user.perishable_token }
 				@user_session.destroy
  	 		else
-  	  	errors = "errors:" + @user_session.errors
+  	  	errors = "errors:" + @user_session.errors.to_s
 				format.json { render text: errors }
  	 		end
 		end
