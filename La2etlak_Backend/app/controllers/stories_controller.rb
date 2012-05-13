@@ -17,6 +17,7 @@ def show
 	@action1 = @story.check_like
 	@action2 = @story.check_dislike
 	render :layout => "mobile_template"
+  render :temple => "show_comments"
   end
   
 # renders the mobile view and initialize
@@ -26,29 +27,18 @@ def show
   def mobile_show
     @story = Story.find(params[:id])
     @comment = Comment.new
-    @user = User.find(params[:id2])
+    @user = current_user
     render :layout => "mobile_template" 
-  end
-  
-  
-  # shows comments of a certain story
-  # Should be deprecated
-  # Author: Menisy
-  def show_comments
-    @story = Story.find(params[:id])
-    @user = User.find(1)
-    @comment = Comment.new
-    @comments = Comment.find_all_by_story_id(params[:id]).reverse
   end
 
   # action for thumbing up a comment with params passed in POST HTTP request
   # Author: Menisy
   def up_comment
     comment = Comment.find(params[:comment_id])
-    user = User.find(params[:user_id])
+    user = current_user
     upped = comment.up_comment(user)
     if upped 
-      redirect_to :action => "mobile_show" ,:id2 => params[:user_id],:id => params[:id]
+      redirect_to :action => "mobile_show" ,:id => params[:id]
     else
       render json: "temporary error occured"
     end
@@ -58,10 +48,10 @@ def show
   # Author: Menisy
   def down_comment
     comment = Comment.find(params[:comment_id])
-    user = User.find(params[:user_id])
+    user = current_user
     downed = comment.down_comment(user)
     if downed 
-      redirect_to :action => "mobile_show" ,:id2 => params[:user_id],:id => params[:id]
+      redirect_to :action => "mobile_show" ,:id => params[:id]
     else
       render json: "temporary error occured"
     end
