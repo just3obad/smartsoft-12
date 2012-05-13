@@ -244,11 +244,21 @@ end
   #method that calls the method in model to block interest and renders the view
   #Author: Rana
   def block_interest
-    @user_id = current_user
+    @user = current_user
     @story_id = params[:id]
     @story = Story.find_by_id(@story_id)
-    @text = current_user.block_interest1(@story)
+    @text = @user.block_interest1(@story)
     render @text
+  end
+
+  #The method that calls the method in the model to block friend feed and renders the view
+  #Author: Rana
+  def block_friends_feed
+      @user = current_user
+      @friend_id = params[:id]
+      @friend = User.find_by_id(@friend_id)
+      @text = @user.block_friends_feed1(@friend) 
+      render @text
   end
 
 end
