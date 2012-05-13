@@ -260,5 +260,98 @@ class UserTest < ActiveSupport::TestCase
     flickr_feed = user.flickr_account.get_feed()
     assert !flickr_feed.nil?
   end
+
+	#Author: Kiro
+	test "should not save a user without any parameters" do
+		user = User.new
+		assert !user.save
+	end
+
+	#Auther: Kiro
+	test "should not save a user without a password" do
+		user = User.new
+		user.email = "email_1@test.com"
+		assert !user.save, "saved a user without a password"
+	end
+	
+	#Auther: Kiro
+	test "shouldn't save a user with mismatching password confirmation" do
+		user = User.new(email: "email_2@test.com",password: "123456",password_confirmation:"abcdet")
+		assert !user.save
+	end
+
+	#Auther: Kiro
+	test "password should be 6 characters or more RED" do
+
+		user = User.new(email: "pass0@test.com",password: "",password_confirmation:"")
+		assert !user.save, "saved a user with passowrd of length 0"
+
+		user = User.new(email: "pass1@test.com",password: "1",password_confirmation:"1")
+		assert !user.save, "saved a user with passowrd of length 1"
+		
+		user = User.new(email: "pass5@test.com",password: "12345",password_confirmation:"12345")
+		assert !user.save, "saved a user with passowrd of length 5"
+
+		user = User.new(email: "pass6@test.com",password: "123456",password_confirmation:"123456")
+		assert user.save, "didn't save a user with password length 6"
+
+		user = User.new(email: "pass7@test.com",password: "1234567",password_confirmation:"1234567")
+		assert user.save, "didn't save a user with password length 7"	
+		
+	end
+
+	#Auther: Kiro
+	test "should not save a user without a password confirmation" do
+		user = User.new
+		user.email = "email_1@test.com"
+		user.password = "123456"
+		assert !user.save, "saved a user without password confirmation"
+	end
+
+	#Author: Kiro
+	test "Should not save a user with an existing email" do
+	
+		user = User.new(email: "only_one@test.com", password:"123456", password_confirmation:"123456")
+		assert user.save, "didn't save the first user"
+	
+		user = User.new(email: "only_one@test.com", password:"123456", password_confirmation:"123456")
+		assert !user.save, "saved a user with an existing email"
+
+	end
+
+	#Author: Kiro
+	test "should not accept an email in a wrong format" do
+	
+		user = User.new(email: "correct_format@test.com", password:"123456", password_confirmation:"123456")
+		assert user.save, "didn't accept an email in a correct format"
+
+		user.email = ""
+		assert !user.save, "saved a user with a wrong email --> empty string "
+
+		user.email = "fail_format1"
+		assert !user.save, "saved a user with a wrong email --> fail_format1"
+
+		user.email = "fail_format2.com"
+		assert !user.save, "saved a user with a wrong email --> fail_format2.com"
+
+		user.email = "fail_format3@com"
+		assert !user.save, "saved a user with a wrong email --> fail_format3@com"
+
+		user.email = "@failformat4"
+		assert !user.save, "saved a user with a wrong email --> @failformat4"
+
+		user.email = "fail/format5@test.com"
+		assert !user.save, "saved a user with a wrong email --> fail/format5@test.com"
+
+		user.email = "+@failformat6.com"
+		assert !user.save, "saved a user with a wrong email --> +@failformat6.com"
+
+		user.email = "fail_format7@fail_format7.com"
+		assert !user.save, "saved a user with a wrong email --> fail_format7@fail_format7.com"
+
+		user.email = "correct_format@correctformat.com"
+		assert user.save, "didn't save an email in the correct format"
+		
+	end
    
 end
