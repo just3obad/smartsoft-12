@@ -87,4 +87,8 @@ class Admin < ActiveRecord::Base
     return query_result.to_a
   end
 
+  def self.search_story(query)
+    return []
+  end
+  
 end
