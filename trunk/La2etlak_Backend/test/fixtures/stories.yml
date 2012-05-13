@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one: 
- name: Story1
+ title: Story1
  content: Content1
  interest_id: 1
  hidden: false
 
 two: 
-  name: Story2
+  title: Story2
   content: Content2
   interest_id: 1
   hidden: false
