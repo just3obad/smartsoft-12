@@ -353,5 +353,11 @@ class UserTest < ActiveSupport::TestCase
 		assert user.save, "didn't save an email in the correct format"
 		
 	end
-   
+   # author : Gasser
+   test "admin should reset user password RED" do
+     user = User.create!(:name=>"user", :email=>"user@user.com",:crypted_password=>"us1pas")
+     pass = user.crypted_password
+     user.force_reset_password
+     assert_not_equal pass , user.crypted_password
+   end 
 end
