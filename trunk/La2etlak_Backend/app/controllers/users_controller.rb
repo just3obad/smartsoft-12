@@ -21,6 +21,21 @@ class UsersController < ApplicationController
 	#FIXME
 	end
 
+	#Author: Kiro (This method is for testing purpose)
+	def dummyLogin
+	end
+
+	def test
+	user = User.find_by_id(params[:id])
+	UserSession.create(user)
+	@user = current_user
+	end
+
+	def test_2
+	@user = current_user
+	end
+	#################################################
+
 #new_record=User.new( :name =>"khaled", :email => "khaled@abc.com")
 #new_record.save!
 #this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
