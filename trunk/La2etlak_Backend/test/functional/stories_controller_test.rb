@@ -22,7 +22,7 @@ class StoriesControllerTest < ActionController::TestCase
   end
 
   # Author: Menisy
-  test "should see notification RED" do
+  test "should see notification" do
   	requester = User.find(2)
   	requester.invite User.first
   	get :mobile_show, :id => Story.first.id , :id2 => User.first.id
@@ -30,10 +30,18 @@ class StoriesControllerTest < ActionController::TestCase
   end
 
   # Author: Menisy
-  test "should not see notification RED" do
+  test "should not see notification" do
   	get :mobile_show, :id => Story.first.id , :id2 => User.find(3)
   	assert_select 'div[id=notification]',false	
   end
+
+  test "should be redirected to pending requests page RED" do
+  	# will still be implemented as soon
+  	# as the pending requests page gets
+  	# implemented by Yahia
+  	assert false, "to be implemented"
+  end
+
 
   # Author: Menisy
   test "mobile show view" do
