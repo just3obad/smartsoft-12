@@ -1,0 +1,98 @@
+<html>
+<!-- adding story title-->
+ <div align="center">
+        <h3> <%= @story.title %> </h3>
+      </div>
+
+<!--checking for media url if found with content extract it from content display and then display content without it -->
+
+    <div align="center">
+    
+    <% if @story.media_link != nil && @story.media_link.length > 3%>
+    <img src=@story.media_link width="220" align="center">
+    
+	<%else%>
+        <% @all = "img src=" %>
+	<% @url_start = "http://" %>
+        <% @url_end = "\" " %>
+    
+    	 <% if @story.content =~ /#{@url_regex}/ %>
+    	    <% @allstart = @story.content.index(@all)%>
+	    <% @start = @story.content.index(@url_start)%>
+    	    <% @end = @story.content.index(@url_end) %>
+ 	    <% @media = @story.content[	@start.to_i , @end.to_i-10] %>
+  	    <% @allmedia = @story.content[@all.to_i , @end.to_i+1]%>
+		<img id="toppic" src="<%=@media%>" width="220" align="center" />
+	    <%end%>
+       <%end%>
+	 </div></br></br>
+	
+ <div class="story-component-box-mobile pre-scrollable" style="padding-left:10px;">
+ <% if @story.content != nil %>
+ <% @story.content.slice!(@allmedia) %>
+ <%= @story.content %>
+ <%end%>
+ </br></br>
+ </div>
+
+<!-- adding thumb up / thumb down / recommend / flag buttons -->
+ <div style="padding-left:10px;">
+ 
+ <% if @action1 == [] && @action2 == [] %>
+ <a href="#"><img src = "http://upload.wikimedia.org/wikipedia/commons/7/7e/Thumbs-up-icon.png" height="25" width="25"></a>
+ <% if @likes.length > 0 %>
+ <%= @likes.length %> people like this.
+ <%else%>
+ <%= "thumb up"%>
+ <%end%></br>
+ <a href="#"><img src = "http://upload.wikimedia.org/wikipedia/en/2/2f/Thumbs-down-icon.png" height="25" width="25"></a>
+  <% if @dislikes.length > 0 %>
+  <%= @dislikes.length %> people dislike this.
+  <%else%>
+  <%= "thumb down"%>
+  <%end%>
+  <%end%>
+    
+  <% if @action1 != [] %>
+  	<% if @likes.length > 1 %>
+  	 <%= "you and "%> <%=@likes.length-1%> <%= " people like this."%>
+  	 <%else%>
+  	 <%= "you like this."%>
+  	 <%end%>
+ 	<a href="#"><img src = "http://upload.wikimedia.org/wikipedia/en/2/2f/Thumbs-down-icon.png" height="25" width="25"></a>
+  <% if @dislikes.length > 0 %>
+  <%= @dislikes.length %> people dislike this.
+  <%else%>
+  <%= "thumb down"%>
+  <%end%>
+  
+  <%end%>
+  
+  <% if @action2 != [] %>
+	<% if @dislikes.length > 1 %>
+  	 <%= "you and "%> <%=@dislikes.length-1%> <%= " people dislike this."%>
+  	 <%else%>
+  	 <%= "you dislike this."%>
+  	 <%end%>
+	<a href="#"><img src = "http://upload.wikimedia.org/wikipedia/commons/7/7e/Thumbs-up-icon.png" height="25" width="25"></a>
+	 <% if @likes.length > 0 %>
+ 	<%= @likes.length %> people like this.
+	 <%else%>
+	 <%= "thumb up"%>
+ <%end%>
+
+  <%end%>
+	</br>
+  
+   &nbsp;<a href="#"><img src = "http://a.dryicons.com/images/icon_sets/classy_icons_set/png/128x128/comment.png" height="25" width="25"></a> Comment
+   <a href="#"><img src = "http://a.dryicons.com/images/icon_sets/handy_part_2_icons/png/128x128/flag.png" height="25" width="25"></a> Flag </br>
+   <a href="#"><img src = "http://www.massmailsoftware.com/blog/wp-content/uploads/2011/10/Black-And-White-Email-Icon.png" height="30" width="30"></a> Recommend 
+      <a href="#"><img src = "http://officialoccupythehood.org/wp-content/themes/twentyeleven/images/facebook-logo-webtreatsetc.png" height="30" width="30"></a>
+      <a href="#"><img src = "http://media.onsugar.com/files/2010/02/06/1/636/6360581/66201c78642dc0f9_twitter-logo-square-webtreatsetc.png" height="30" width="30"></a> &nbsp;
+      <%=link_to('La2etlak' , {})%></br>   
+   <a href="#"><img src = "http://www.iconhot.com/icon/png/dot-pictograms/256/arrow-left-13.png" height="30" width="30"></a> Main feed
+   </br>	
+	Added on <%= @story.created_at %></br></br>
+ </div>
+</html> 	
+
