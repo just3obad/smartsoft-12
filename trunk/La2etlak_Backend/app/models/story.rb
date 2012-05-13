@@ -37,19 +37,6 @@ include StoriesHelper
       return Story.find(story_id)
   end
 
-# Author : omar
-#return a list of users who thumbed up certian story
- 	def likes
-        	likes = Likedislike.find(:all , :conditions => ["story_id = ? AND action = ?", self.id, "1"])
-	end
-
-# Author : omar
-#return a list of users who thumbed down certian story
-	
-	def dislikes 
-	        dislikes = Likedislike.find(:all , :conditions => ["story_id = ? AND action = ?", self.id, "2"])
-	end
-
   ''' 
   This is the method that should return the data of statistics of a story
   with this format first element in the data arrays is ARRAY OF "No Of Shares",
