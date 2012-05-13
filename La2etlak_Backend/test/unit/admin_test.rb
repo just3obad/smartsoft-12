@@ -87,13 +87,13 @@ class AdminTest < ActiveSupport::TestCase
    assert_match(/\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i, email, 'valid mail' ) 
  end
 
-# test "should not save admin with password not confirmed 1 RED" do
-#   admin = Admin.new
-#   admin.crypted_password = "adminp"
-#   admin.password_salt = "adminp"
-#   admin.save
-#   assert_equal( admin.crypted_password, admin.password_salt, 'password confirmed')
-# end
+ test "should not save admin with password not confirmed 1 RED" do
+   admin = Admin.new
+   admin.crypted_password = "adminp"
+   admin.password_salt = "adminp"
+   admin.save
+   assert_equal( admin.crypted_password, admin.password_salt, 'password confirmed')
+ end
 
  test "should not save admin with first and last name should be greater than  3 letters 2 RED" do
    admin = Admin.new
