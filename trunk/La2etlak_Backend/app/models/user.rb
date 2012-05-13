@@ -77,7 +77,16 @@ class User < ActiveRecord::Base
       shared_stories << friend.shared_stories
     end
   end
-
+# gets the users pending notifications
+# only pending friendship requests for now
+# Author: Menisy
+def get_notifications
+  if self.pending_invited_by.empty?
+    nil
+  else
+    self.pending_invited_by
+  end
+end
 #i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
 #Author: khaled.elbhaey
   def get_friends_email()
