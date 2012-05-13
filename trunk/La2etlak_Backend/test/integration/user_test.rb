@@ -44,8 +44,8 @@ class UserTest < ActionDispatch::IntegrationTest
     end
 
     #Author: Rana   
-    test "route to block friend RED" do
-      assert_routing 'users/block_friends_feed/1/rana', {:controller => "users", :action => "block_friends_feed", :id => "1", :fname => "rana" }
+    test "route to block friend" do
+      assert_routing 'users/block_friends_feed/1', {:controller => "users", :action => "block_friends_feed", :id => "1" }
     end
 
     #Author: Rana   
