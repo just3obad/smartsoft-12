@@ -73,6 +73,25 @@ class StoriesControllerTest < ActionController::TestCase
 	st.save	
 	assert get(:get , {'id' => st.id })
   end
+
+  #Author: Bassem
+  test "filter not hidden" do
+   hidden_stories = get ( :filter, { 'hidden' => false} )
+    for (hidden_stories each.do |story|)
+      assert !story.hidden
+    end
+  end
+
+  #Author: Bassem
+  test "filter not flagged" do
+  st = Story.new
+  st1 = Story.new
+  st.hidden=true
+   @hidden_stories get ( :filter ,{ 'flagged' => false} )
+    for (@hidden_stories each.do |story|)
+      assert_equal (story.flags , 0)
+    end
+  end
   
 
   #Author : Mina Adel
