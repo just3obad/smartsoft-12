@@ -29,7 +29,7 @@ class SettingsTest < ActiveSupport::TestCase
     end
   end 
   # author : Gasser
-  test "admin should disable auto hiding" do 
+  test "admin should disable auto hiding RED" do 
     settings = Settings.create!(:key=>"flags_threshold", :value=>20)
     old_value = settings.value
     settings.disable_auto_hiding
