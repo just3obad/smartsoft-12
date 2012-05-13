@@ -35,5 +35,6 @@ class SettingsTest < ActiveSupport::TestCase
     settings.disable_auto_hiding
     settings.configure_flags_threshold (10)
     assert_equal settings.value, 20
-  end   
+  end
+     
 end
