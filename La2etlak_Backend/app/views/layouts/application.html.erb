@@ -2,50 +2,69 @@
 <html>
 <head>
   <title>LA2ETLAK!</title>
-  <!--script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script-->
 
-<%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "jquery.min" %>
-    <%= javascript_include_tag "jquery" %>
-        <%= javascript_include_tag "exporting" %>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+  	<%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "exporting" %>
+	<%= javascript_include_tag "jquery" %>
+	<%= javascript_include_tag "prototype" %>
+	<%= javascript_include_tag "effects" %>
+	<%= javascript_include_tag "controls" %>
     <%= javascript_include_tag "highcharts" %>
-<%= javascript_include_tag "bootstrap-modal" %>
-<%= javascript_include_tag "bootstrap-transition" %>
-<%= javascript_include_tag "bootstrap-collapse" %>
-  <%= javascript_include_tag "chrisss" %>
+	<%= javascript_include_tag "bootstrap-modal" %>
+	<%= javascript_include_tag "bootstrap-transition" %>
+	<%= javascript_include_tag "bootstrap-collapse" %>
+	<%= javascript_include_tag "bootstrap-dropdown" %>
+  	<%= javascript_include_tag "chrisss" %>
+  	<%= csrf_meta_tags %>
+	
 
-  <%= csrf_meta_tags %>
-		
 <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 		
 		</head>
-	<body>
-<!--script src="http://code.highcharts.com/highcharts.js"></script-->
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 <header class="navbar navbar-fixed-top">
+
       <div class="navbar-inner">
         <div class="container">
           <%= link_to "LA2ETLAK", {controller: 'admins' ,action: 'index'}, id: "logo" %>
 
-        <form class="navbar-search pull-left" action="/admins/search">
-          <input type="text" class="search-query" placeholder="Search User" name="query">
+        <form class="offset2 span4 navbar-search pull-left" action="/admins/search">
+         	<%= text_field_with_auto_complete :autocomplete,:query,{ 
+			    :placeholder => 'search',
+				:controller =>'autocomplete',
+				:autofocus => false ,
+			    :class => "search-query"},{:skip_style =>true}%>
+			
         </form>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Home",   {controller: 'admins' ,action: 'index'} %></li>
-              <li><%= link_to "Statistics", {controller: 'statistics' ,action: 'all_users'} %></li>
-              <li><%= link_to "Log File", {controller: 'logs' ,action: 'index'} %></li>
-
-            </ul>
+			  <li class="divider-vertical"></li>
+				<ul class="nav nav-pills">
+				   <li class="dropdown">
+			                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="dropdown();">[Admin Name] <b class="caret"></b></a>
+			                    <ul class="dropdown-menu">
+			                      <li><a href="#"><i class="icon-cog"> </i> Settings</a></li>
+			                      <li class="divider"></li>
+			                      <li><a href="#">Logout</a></li>
+			                    </ul>
+			       </li>
+				</ul>
+			</ul>
           </nav>
         </div>
       </div>
     </header>
+	<SCRIPT language="javascript">
+		function dropdown(){
+		var $j = jQuery.noConflict();
+		$j('.dropdown-toggle').dropdown();
+		};
+	</SCRIPT>
 <body>
+	 
       <%= yield %>
 
 </body>
