@@ -7,6 +7,10 @@ class Admin < ActiveRecord::Base
 
 
   def self.search(query)
+    return search_user(query)
+  end
+
+  def self.search_user(query)
 =begin
     Given a query string, the method analyze the type of the field is being searched for, and 
     returns all the users matching the query.
