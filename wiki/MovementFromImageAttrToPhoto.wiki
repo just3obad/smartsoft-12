@@ -1,3 +1,4 @@
+#labels Phase-Implementation
 #Photo instead of image attribute in user
 
 = Introduction =
@@ -6,8 +7,6 @@ Changes from image to photo.
 
 
 = Details =
-
-Here :
 
 Simply this attached attribute is treated  like "NOT SIMILAR TO "  any attribute of the Interest ( it knows that it belongs to this certain Interest) and can be updated too .
 
