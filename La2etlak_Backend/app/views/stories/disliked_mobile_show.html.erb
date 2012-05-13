@@ -1,16 +1,23 @@
 <div >
 <% if @friends.empty? %>
  <%= render 'shared/logs_error_messages'%>
+<br>
+<div class="btn btn-large", id="back"> 
+<%= link_to("find friend",{:action => 'friends/find'} )%>
+</div>
+<div class="btn btn-large"> 
+<%= link_to("back",{:action => 'get', :id => @story} )%>
 <% else %>
 <div id="disliked">
 <% @friends.each do |f| %>
 <%=f%>
 <br>
  <%end%>
+<div class="btn btn-large"> 
+<%= link_to("back",{:action => 'get', :id => @story} )%>
 </div>
 <% end %>
 </div>
 </div>
-<div class="btn btn-large"> 
-<%= link_to("back",{:action => 'get', :id => @story} )%>
 </div>
+
