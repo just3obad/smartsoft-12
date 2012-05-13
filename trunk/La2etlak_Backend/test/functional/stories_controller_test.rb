@@ -75,5 +75,24 @@ class StoriesControllerTest < ActionController::TestCase
   end
   
 
+  #Author : Mina Adel
+  test "check facebook share button exists" do
+    story = Story.first
+    assert get(:get, {'id' => story.id})
+    assert_select 'div[id = "Facebook_Button"]'
+  end
   
+  #Author : Mina Adel
+  test "check twitter share button exists" do
+    story = Story.first
+    assert get(:get, {'id' => story.id})
+    assert_select 'div[id = "Twitter_Button"]'
+  end
+  
+  #Author : Mina Adel
+  test "check la2etlak share button exists" do
+    story = Story.first
+    assert get(:get, {'id' => story.id})
+    assert_select 'div[id = "La2etlak_Button"]'
+  end
 end
