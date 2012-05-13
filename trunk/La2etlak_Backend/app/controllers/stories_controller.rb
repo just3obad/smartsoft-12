@@ -59,6 +59,7 @@ def show
 
 
   def index
+    @interests = Interest.all   
     respond_with(@stories = Story.all) # passing a list of all stories to the view .
   end
 

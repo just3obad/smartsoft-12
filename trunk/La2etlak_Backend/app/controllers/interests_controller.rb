@@ -32,10 +32,16 @@ class InterestsController < ApplicationController
   @interest = Interest.new
   @title = "Add interest"
   end
+  
+  #" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of 
+  #failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations )
+  # then we redirect to the main page of the interest 
+  # otherwise , we render once more  the "New" page 
 
 #Author : Jailan
 #" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations ) then we redirect to the main page of the interest 
  # otherwise , we render once more  the "New" page 
+
 #this methods retrieves and adjust changes to the adtabase using "my_create" method in the Model
 
   def create 
