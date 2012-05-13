@@ -112,10 +112,14 @@ end
   def get_Friend_List()   
 
   @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
-  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
-  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
-  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  @user1=User.new( :name =>"khaled", :email => "kelbhaey@gmail.com", password: "123456", password_confirmation: "123456")
+  @user1.save
+  @user2=User.new( :name =>"rana", :email => "khaledelbhaey@gmail.com", password: "123456", password_confirmation: "123456")
+  @user2.save
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com", password: "123456", password_confirmation: "123456")
+  @user3.save  
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com", password: "123456", password_confirmation: "123456")
+  @user4.save  
   @list <<@user1 <<@user2 <<@user3 <<@user4
   puts @list
   return @list
@@ -126,7 +130,7 @@ end
   def extract_friends(listlike)
 
   @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "khaled@abc.com")
+  @user1=User.new( :name =>"khaled", :email => "khaledelbhaey@yahoo.com")
   @user2=User.new( :name =>"rana", :email => "rana@abc.com")
   @user3=User.new( :name =>"essam", :email => "essam@abc.com")
   @user4=User.new( :name =>"omar", :email => "omar@abc.com")
