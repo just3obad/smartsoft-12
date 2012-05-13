@@ -696,4 +696,14 @@ end
       return []
     end
   end
+
+	def resetPassword
+	
+		newpass = ((0..9).to_a + ('a'..'z').to_a + ('A'..'Z').to_a ).shuffle[0..5].join
+		self.password = newpass
+		self.reset_password!
+		return newpass
+	
+	end
+
 end

@@ -4,6 +4,7 @@ NokiaRuby::Application.routes.draw do
 	match "requestToken" => "user_sessions#requestToken"
 	match "login" => "user_sessions#login_with_token"
 	match "register" => "users#register"
+	match "resetPassword" => "users#resetPassword"
 	match "dummyLogin" => "users#dummyLogin"
 	match "users/test" => "users#test"
 	match "users/test_2" => "users#test_2"

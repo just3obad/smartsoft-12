@@ -20,7 +20,9 @@ class UsersController < ApplicationController
 	end
 
 	def resetPassword
-	#FIXME
+		@user = current_user
+		newpass = @user.resetPassword
+		Emailer.reset_password(@user,newpass).deliver
 	end
 
 	#Author: Kiro (This method is for testing purpose)
