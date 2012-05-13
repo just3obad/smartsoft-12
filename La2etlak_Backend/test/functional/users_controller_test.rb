@@ -95,7 +95,7 @@ class UsersControllerTest < ActionController::TestCase
      interest1 = Interest.create(:name => "interest 1")
      interest2 = Interest.create(:name => "interest 2")
      interest = [interest1.id , interest2.id]
-     assert get(:addwithduplicates , {'interests' => interest} , {'user' => user} )
+     assert get(:user_add_interests , {'interests' => interest} , {'user' => user} )
      
 
 
