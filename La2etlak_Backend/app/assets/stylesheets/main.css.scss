@@ -803,3 +803,75 @@ div.well-comment-component:hover {
 	width:500px;
 	float:left;
 }
+.autocomplete-user-component {
+  background-color:#e0e0e0;
+  margin-bottom:20px;
+  border:1px solid #999;
+  -webkit-border-radius:7px;
+  -moz-border-radius:7px;
+  border-radius:7px;
+  -webkit-box-shadow:inset 0 4px 4px rgba(0,0,0,0.1);
+  -moz-box-shadow:inset 0 4px 4px rgba(0,0,0,0.1);
+  box-shadow:inset 0 4px 4px rgba(0,0,0,0.1);
+}
+.listitems-autocomplete{
+	padding:10px;
+}
+.listitems-autocomplete:hover{
+	background-color:#00eeff;
+}
+div.auto_complete {
+width:600px;
+}
+div.auto_complete ul {
+	background-color:#e5e5e5;
+	margin-top:5px;
+	  border:1px solid #eeeeee;
+	  border:1px solid rgba(0,0,0,0.05);
+	  -webkit-border-radius:7px;
+	  -moz-border-radius:7px;
+	  border-radius:7px;
+	  -webkit-box-shadow:inset 0 5px 5px rgba(0,0,0,0.05);
+	  -moz-box-shadow:inset 0 5px 5px rgba(0,0,0,0.05);
+	  box-shadow:inset 0 5px 5px rgba(0,0,0,0.05);
+	list-style-type:none;
+
+}
+div.auto_complete ul li {
+	margin:0;
+	text-align:center;
+	color:#000;
+	width:100%;
+}
+div.auto_complete ul li.selected {
+	text-align:center;
+	color: #fff; 
+	 -webkit-border-radius:7px;
+	  -moz-border-radius:7px;
+	  border-radius:7px;
+	  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	  box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+	list-style-type:none;
+	background-color:#0077ff;
+}
+div.auto_complete ul strong.highlight {
+	
+	color: #000; 
+	margin:0;
+	padding:0;
+}
+
+.admin_main_left_panel{
+   width:200px;
+padding-right:20px;
+padding-bottom:20px;
+	float:left;
+}
+.admin_right_panel{
+   width:900px;
+margin-left:10px;
+padding-left:20px;
+padding-bottom:20px;
+	float:left;
+}
