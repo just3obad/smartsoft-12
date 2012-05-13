@@ -19,6 +19,7 @@ NokiaRuby::Application.routes.draw do
   match "/interests/:id/statistics" => "statistics#interests"
   match "/stories/:id/statistics" => "statistics#stories"
   match "/users/:id/statistics" => "statistics#users"
+   post "/autocomplete/auto_complete_for_autocomplete_query" => "autocomplete#auto_complete_for_autocomplete_query"
   match "/admins/index" => "admins#index"
   match "admins/statistics/all_users" => "statistics#all_users"
   match "admins/statistics/all_interests" => "statistics#all_interests"
