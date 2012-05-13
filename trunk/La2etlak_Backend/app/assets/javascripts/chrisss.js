@@ -1,15 +1,21 @@
 
-    function pie() {
+    /*
+      This method takes an array of names and an array of data and a title string and
+      draws a pie-chart using them using the HighCharts Library and renders this pie
+      chart to the container passed to it..
+    */
+    function Pie_chart(names,dataa,title,container) {
       var chart;
-        chart = new Highcharts.Chart({
+      var options=
+        {
             chart: {
-                renderTo: 'container',
+                renderTo: container,
                 plotBackgroundColor: null,
                 plotBorderWidth: null,
                 plotShadow: false
             },
             title: {
-                text: 'Browser market shares at a specific website, 2010'
+                text: title
             },
             tooltip: {
                 formatter: function() {
@@ -29,21 +35,25 @@
             series: [{
                 type: 'pie',
                 name: 'Browser share',
-                data: [
-                    ['Firefox',   45.0],
-                    ['IE',       26.8],
-                    {
-                        name: 'Chrome',
-                        y: 12.8,
+                data: 
+                    [  {
+                        name: names[0],
+                        y: dataa[0],
                         sliced: true,
                         selected: true
-                    },
-                    ['Safari',    8.5],
-                    ['Opera',     6.2],
-                    ['Others',   0.7]
-                ]
+                    }
+                    
+                    ]
             }]
-        });
+        };
+        for(i=1;i<dataa.length;i++) {
+           var mli = new Object();
+           mli.name = names[i];
+           mli.y = dataa[i];
+           options.series[0].data.push(mli);
+           
+        }
+        chart=new Highcharts.Chart(options);
     
     }
     /* This method takes the following parameters 
