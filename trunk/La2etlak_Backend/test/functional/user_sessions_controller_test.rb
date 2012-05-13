@@ -5,7 +5,7 @@ class UserSessionsControllerTest < ActionController::TestCase
 	setup :activate_authlogic
 	
 	# Author: Kiro
-	test "should be able to create the session when requesting token" do
+	test "should be able to create the session when requesting token RED" do
 
    		post :requestToken, :user_session => { :email => 'ben@gmail.com', :password => 'benrocks'}
 			assert_not_nil assigns(:user_session)
@@ -16,7 +16,7 @@ class UserSessionsControllerTest < ActionController::TestCase
 	end
 
 	# Author: Kiro
-	test "session should not be created when requesting token" do
+	test "session should not be created when requesting token RED" do
 
 		post :requestToken, :user_session => { :email => 'nouser@gmail.com', :password => 'ahmedrocks'}
 		assert_nil assigns(:user), "created a session for a user that doesnt exist"
@@ -32,7 +32,7 @@ class UserSessionsControllerTest < ActionController::TestCase
 	end
 	
 	# Author: Kiro
-	test "should login the user with token" do
+	test "should login the user with token RED" do
 
 		assert_nil controller.session["user_credentials"]
    	post :login_with_token, :token => users(:ben).perishable_token
