@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+	# This is added to use the authlogic gem
+	# Author: Kiro
+	acts_as_authentic	
+
   # This is added to use the amistad friendship Gem
   # Author: Yahia
   include Amistad::FriendModel
@@ -13,7 +17,7 @@ class User < ActiveRecord::Base
 
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
-      :twitter_account, :twitter_request, :image
+      :twitter_account, :twitter_request, :image, :password, :password_confirmation
   has_many :comments
   has_many :comment_up_downs
   # stat 0 pending
