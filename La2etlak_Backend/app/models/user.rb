@@ -58,12 +58,8 @@ class User < ActiveRecord::Base
  # as the param friend id
  # Author: Menisy
   def get_one_friend_stories(friend_id) 
-    shares = Share.find_all_by_user_id(friend_id) # get all his/her shared stories
-    stories = Array.new
-    shares.each do |share|
-      stories.append(Story.find(share.story_id)) # get the stories of these shares and append to stories
-    end
-    stories.uniq # remove tuplicates, if stories is equal nil this will return []
+    user = User.find(friend_id)
+    user.shared_stories
   end
 
   # gets the users shared stories
@@ -75,18 +71,11 @@ class User < ActiveRecord::Base
  # gets the shared stories of friends of a user
  # Author: Menisy
   def get_friends_stories()
-    friendsSent = Friend.find_all_by_sender_and_status(self.id,1) #find all friends who approved my request
-    friendsRec = Friend.find_all_by_receiver_and_status(self.id,1) #find all friends whom I approved
-    allFriends = friendsSent + friendsRec  # get all my friends by appending lists
-    shares = Array.new # init shares array
-    allFriends.each do |friend| # for all my friends
-      shares+=Share.find_all_by_user_id(friend.id) # get their shares and append them to shares array
+    friends = self.friends
+    shared_stories = Array.new
+    friends.each do |friend|
+      shared_stories << friend.shared_stories
     end
-    stories = Array.new # init stories array
-    shares.each do |share| # for all my friends' shares
-      stories.append Story.find(share.story_id) # get their stories and append them to stories array 
-    end
-    stories.uniq # remove duplicates, if stories is equal nil this will return []
   end
 
 #i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
