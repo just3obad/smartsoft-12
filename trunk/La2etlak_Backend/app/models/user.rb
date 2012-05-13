@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   # stat 2 accepted
   has_one :haccount
   has_one :twitter_account
+	has_one :verification_code
 
   has_many :shares
   has_many :shared_stories, :class_name => "Story", :through => :shares
@@ -530,6 +531,49 @@ end
   def search_members(string)
   end
 
+# This method generateVerificationCode? generates a verification code for the user
+# and adds an entry to the verification codes table in the database.
+# The verification code is 4 characters from (0-->9) and (a-->z).
+# Returns true if it succeeded to create the entry, otherwise it returns false.
+# Author: Kiro
+  def generateVerificationCode?()
+  		@verification_code = self.verification_code
+      if @verification_code.nil? then
+			entry = VerificationCode.new :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join, :verified=>false
+      self.verification_code = entry
+      return true               
+    else                        
+      return false              
+    end
+  end 
+
+# This method verifyAccount?(verCode) takes the verCode entered by the user to verify his account
+# and it tries to match this code with the account's code.
+# returns true and sets verified to true if the user entered the correct code,
+# otherwise it returns false.
+# Author: Kiro
+  def verifyAccount?(verCode)
+    @verEntry = self.verification_code
+    if @verEntry.code == verCode then
+      @verEntry.update_attributes(verified: true)
+      return true
+    else 
+      return false
+    end
+  end
+
+ 
+# This method resendCode? resets the verification Code of a specific account and updates the
+# entry in the database.
+# This method returns true if the accout wasnt verified yet, otherwise it returns false.
+# Author: Kiro
+  def resendCode?
+    @varEntry = self.verification_code
+    if @varEntry.verified
+       return false
+    else
+    @varEntry.update_attributes(code: ( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join)
+       return true
+    end
+  end
 end
-
-
