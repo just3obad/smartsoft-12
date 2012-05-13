@@ -286,4 +286,14 @@ end
   def send_resetted_password
   end
 
+  # Author: Yahia
+  def search_members
+    # FIXME 
+    # session[:user_id] = 1
+    # string = params[:query]
+    # @user = User.find(session[:user_id])
+  end 
+
+
+
 end
