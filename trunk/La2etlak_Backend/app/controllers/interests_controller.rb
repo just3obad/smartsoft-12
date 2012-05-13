@@ -76,6 +76,7 @@ render 'new'
 #we check on the interest deleted or not because an admin is not allowed to adjust any changes/edit an interest unless it's ACTIVE
     if @interest && (@deleted == false || @deleted.nil?)
  $savedinterest = true
+#global variable $savedinterest used to handle the flash message in "Show.html.erb"
       flash[:success] = "Interest updated successfully "
 
  
@@ -84,9 +85,12 @@ render 'new'
     else
  $savedinterest = false
   $errors = true
+#global variable $errors used to handle the flash message in "Show.html.erb"
 if @deleted == false || @deleted.nil?
+# a flash appears when we enter an invalid info (balnk name )
           flash[:error] = " (Invalid inputs) Interest Update failed  , PLease Try again !"
 else
+#a flash appears banning the admin from updating the interest as long as it's blocked
 flash[:error] = " This interest is now blocked , Please Restore it if you want Update"
 end
 
