@@ -1,3 +1,28 @@
+<script type="text/javascript" charset="utf-8">
+    /*this is to draw the pie chart 2 arrays are passed to it names and ranks of
+     top ranked 5 interests*/
+   var $j = jQuery.noConflict();
+  $j(document).ready(function() {
+       
+      var arrayNames = <%= Interest.get_top_interests_names%>;
+      var arrayRanks = <%= Interest.get_top_interests_ranks%>;
+      var name = [];
+      var data = [];
+      if (arrayNames.length < 5)
+      {
+        name= arrayNames;
+        data= arrayRanks;
+      }
+      else {
+       name= arrayNames[0..4];
+       data= arrayRanks[0..4];
+      }
+      var title="Top Interests";
+      var container="ccc";
+      Pie_chart(name,data,title,container);
+   });
+</script>
+
 
 <div class="row-fluid">
    <div class="span3">
@@ -21,7 +46,9 @@
      </ul>
     </div>
     </div>
+
     <div class="span9">
+       
 <div class="alert" id="noUser" style="display: none;">
   
            <a class="close" data-dismiss="alert">×</a>
@@ -31,8 +58,8 @@
 <div id="ccc"></div>
 <div class="general info">
             
-            <!--Here we'll get the number of users in the system:-->
-            <h4><div class="alert alert-info">
+            <!--Here we'll get the general infor of top interests:-->
+            <h4><div class="alert alert-info"> 
             </div></h4>
             
           
