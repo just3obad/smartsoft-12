@@ -32,8 +32,11 @@ class InterestsController < ApplicationController
   @interest = Interest.new
   @title = "Add interest"
   end
-  #" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations ) then we redirect to the main page of the interest 
+
+#Author : Jailan
+#" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations ) then we redirect to the main page of the interest 
  # otherwise , we render once more  the "New" page 
+#this methods retrieves and adjust changes to the adtabase using "my_create" method in the Model
 
   def create 
    $saved = nil
@@ -42,6 +45,7 @@ class InterestsController < ApplicationController
    @interest = Interest.new(params[:interest])
    if @interest.save
  $savedinterest = true
+#global variable $saved & $savedinterest are used to handle the flash message in "Show.html.erb"
      flash[:success] = "Your Interest was added Successfully"
  # here we check if flash returned a sucess then we display the success message
 
@@ -58,4 +62,39 @@ render 'new'
 #Render 'new' , evaluates the contents in the error_messages partial contents, and insert the results into the view.
     end
  end
+
+#Author : Jailan
+#Update Method uses the form in the view to update the attributes of the interest
+#all databese changes are done in the "my_update" method in the Model
+  def update
+
+ @interests = Interest.get_all_interests
+#here, we call the method in model
+    @interest= Interest.my_update(params[:id],params[:interest])
+
+@deleted = Interest.is_deleted(params[:id])
+#we check on the interest deleted or not because an admin is not allowed to adjust any changes/edit an interest unless it's ACTIVE
+    if @interest && (@deleted == false || @deleted.nil?)
+ $savedinterest = true
+      flash[:success] = "Interest updated successfully "
+
+ 
+    @myinterest= Interest.get_interest(params[:id])
+  redirect_to @myinterest
+    else
+ $savedinterest = false
+  $errors = true
+if @deleted == false || @deleted.nil?
+          flash[:error] = " (Invalid inputs) Interest Update failed  , PLease Try again !"
+else
+flash[:error] = " This interest is now blocked , Please Restore it if you want Update"
+end
+
+    @myinterest= Interest.get_interest(params[:id])
+  redirect_to @myinterest
+end
+
+#after updating we redirect to the interest main page but after editing
+
+  end
 end
