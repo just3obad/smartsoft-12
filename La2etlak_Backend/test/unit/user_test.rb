@@ -239,12 +239,12 @@ class UserTest < ActiveSupport::TestCase
 	
 
     #Author: Rana
-    test "user wants to block interest RED" do
+    test "user wants to block interest" do
       this_interest = Interest.create :name => "Sports", :description => "hey sporty"
       this_story= Story.new :title => "Story1", :interest_id => this_interest
       this_story.interest = this_interest
       this_story.save
-      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
       assert_difference('BlockInterest.count',1) do
          this_user.block_interest1(this_story)
       end
@@ -254,12 +254,12 @@ class UserTest < ActiveSupport::TestCase
     end
 
     #Author: Rana
-   test "user wants to block story RED" do
+   test "user wants to block story" do
       this_interest = Interest.create :name => "Sports", :description => "hey sporty"
       this_story= Story.new :title => "Story1", :interest_id => this_interest
       this_story.interest = this_interest
       this_story.save
-      this_user = User.create :name => "amr", :email => "amr@abc.com"
+      this_user = User.create :name => "amr", :email => "amr@abc.com", :password =>"123456", :password_confirmation => "123456"
       assert_difference('BlockStory.count',1) do
          this_user.block_story1(this_story)
       end
