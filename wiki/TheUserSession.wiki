@@ -1,0 +1,63 @@
+A guide for how to use the currently logged in user instead of passing the user_id as a parameter in the URL.
+
+= Introduction =
+
+Our *authentication system* is now different, thanks to the *authlogic* gem.
+So what this is all about is that we will change the way that we deal with *users* in our application.
+
+
+= Details =
+
+previously whenever we are calling a method in any controller for example the mainfeed we used to pass the id of the user as a parameter in the route like:
+
+{{{
+match "users/:id/main_feed" => "users#feed"
+}}}
+
+*which is totally wrong !*
+===Why?===
+
+Because now we are using a *web app* and by using this route we are making the personal accounts for users visible for each other. For example a with id=1 can access the mainfeed of a user with id=2 by typing http://la2etlak.com/users/2/main_feed in the URL.
+
+===How is this solved?===
+
+Now whenever a user logs in a new *User Session* is created for that user. This user session stores the information of *this currently logged in user*. By this way we don't need to pass the *user_id* in the *url* to make the *controller* know that we need to access this *specific* user.
+
+which means that our routes will look like this instead:
+
+{{{
+match "users/main_feed" => "users#feed"
+}}}
+
+but this is not enough to make the application understand that we need the *feed* of the *currently logged in user*.
+
+what you need to do is that inside your methods you need to specify that the user that you are using is the *currently logged in user*.
+This is easily done by calling the helper_method *current_user* inside your method like this :
+
+{{{
+@user = current_user
+}}}
+
+by this way you can access this user from anywhere inside your method of view for example:
+
+{{{
+id = @user.id
+}}}
+
+so what we have to do right now is to adjust our routes and controllers to be working with this way.
+
+Also now you cannot create a user like this anymore
+{{{
+user = User.create(email: "user@gmail.com")
+or
+user = User.create(email: "user@gmail.com", password:"123456")
+}}}
+
+instead you have to give it an email, password, and password_confirmation
+{{{
+user = User.create(email: "user@gmail.com",password: "123456", password_confirmation: "123456")
+}}}
+
+If you have any questions feel free to ask me, thanks
+
+Kerolos Bebawy
