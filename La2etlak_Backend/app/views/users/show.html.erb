@@ -1,34 +1,82 @@
-<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary") %>
+<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "statistics_button") %>
+<%= link_to('Reset Password', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
+<%= link_to('Deactivate', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "deactivate_button") %>
+<div id="user-personal-info"> 
+	<span id="is-active">
+    <% if @user.deactivated %>
+    <%= "Non-Active" %>
+    <% else %>
+    <%= "Active" %>
+    <% end %>
+  </span>
+	<span id="my-email"><%= @user.email %> </span>
+</div>
+</div>  
+<ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#recentActivity" data-toggle="tab">Recent Activity</a></li>
+            <li><a href="#friends" data-toggle="tab">Friends</a></li>
+            <li><a href="#interests" data-toggle="tab">Interests</a></li>
+          </ul>
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="recentActivity">
+              <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+            </div>
+            <div class="tab-pane fade" id="friends">
+              <% if @friends.length == 0 %>
+                 No Friends Available.
+               <% end %>
+              <% @friends.each do |friend| %>
+                 <div class="well-user-component">
+                   <a href="/users/<%= friend.id%>"class="thumbnail-user-component">
+                   <% if friend.image.nil? || 
+                      friend.image == "" %>
+                     <%= image_tag "logo.jpeg", :size => "75x75" %>
+                  <% else %>
+                    <img src= "<%= friend.image %>" 
+                      width="75" style="height:75px"/>
+                  <% end %> </a>
+                   <div class="user-component-info">
+                     <h3><%= friend.email %>
+                     </h3>
+                     <%= link_to "view Statistics", 
+                      {:controller => 'statistics', :action => 'users', :id => friend.id}, 
+                        class: "user-component-button-absolute btn btn-primary"%>
+                   </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="tab-pane fade" id="interests">
+               <% if @interests.length == 0 %>
+                 No interests Available.
+               <% end %>
+               <% @interests.each do |interest| %>
+                  <div class="well-interest-component">
+                    <a href="/interests/<%= interest.id%>"
+                       class="thumbnail-interest-component">
+                    <% if interest.image.nil? || interest.image == "" %>
+                      <%= image_tag "logo.jpeg", :size => "75x75" %>
+                    <% else %>
+                      <img src= "<%= interest.image %>" width="75" style="height:75px"/>
+                    <% end %>
+                    </a>
+                    <div class="interest-component-info">
+                      <h2><% if interest.name.nil? %>
+                            <%= "No Name Available" %>
+                          <% else %>
+                            <%= interest.name  %>
+                          <%  end %>
+                      </h2>
+                      <%= link_to "view Statistics", 
+                      {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
+                        class: "interest-component-button-absolute btn btn-primary"%>
 
-<html>
-<head>
-<style>
+                    </div>
+                  </div>
+               <% end %>
+                 
+            </div>
+          </div>
 
-h2 {font-size:20px;color:#06276F}
-h3 {font-size:20px;color:#06276F}
-p1 {font-size:18px;}
-p2 {font-size:14px;}
-p3 {font-size:14px;}
-</style>
-</head>
-<body>
-
-				<!-- Showing The User_Name And Email -->
-      <h1>
-          <font size="35" face="arial" color=#06276F>
-        <br/><%= @user.name %><br/><br/>
-		         <%= @user.email %><br /><br />
-           </font>
-         
-      </h1>
-	  
-				<!-- Showing The User Activation Status -->
-	  <h2>
-	  	   Deactivated : <%= @user.deactivated %><br /><br /> 
-	  </h2>
-
-</body>
-</html>
 
 
 
