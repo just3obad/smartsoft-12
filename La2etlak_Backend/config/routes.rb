@@ -45,12 +45,16 @@ NokiaRuby::Application.routes.draw do
   match "/admins/search" => "admins#search"
 
   match "/interests/list"  => "interests#new", :as => :new
+
+ match "interests/:id/toggle" => "interests#toggle"
+
 #--------------------Kareem------------------------
   match "user_add_interests/interests" => "user_add_interests#get_interests" 
   match "likedislikes/thumb" => "likedislikes#thumb"
   match "users/:id/stories" => "users#feed"
   match "flags/flag" => "flags#flag"
 #-------------------END---------------------------- 
+
 
 
 
