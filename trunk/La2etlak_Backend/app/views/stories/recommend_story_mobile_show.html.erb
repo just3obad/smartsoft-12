@@ -1,0 +1,23 @@
+<form action="recommend_story_mobile_show">
+<select name="lemail">
+<% @flistemail.each do |f| %>
+<option><%=f%>
+<br>
+ <%end%>
+</select>
+<p>
+email: 
+</p>  
+<input type="text" name="email"/>
+<br>
+<p>
+message: 
+</p>
+  <input type="text" name="message"/>
+<br>  
+<input type="submit" name="commit" value="send"/>
+</form>	
+</div>
+<div class="btn btn-large"> 
+<%= link_to("back",{:action => 'get', :id => @story} )%>
+</div>

@@ -163,12 +163,12 @@ end
 def view_friends_dislike(user)
   @user=user
   @flistdisliked=Array.new
-  @listdislike = self.liked() 
+ ''' @listdislike = self.liked() 
   @flistdislike=@user.extract_friends(@listdislike)
 
    (0..(@flistdislike.length-1)).each do |i|
     @flistdisliked << (@flistdislike[i].name)
-      end  
+      end  '''
 
    return @flistdisliked
 

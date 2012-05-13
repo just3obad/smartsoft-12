@@ -105,31 +105,35 @@ def show
 
 #recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page or the user could write an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
 #Author=> khaled.elbhaey
-def recommend_story_mobile_show()
-  @storyid=params[:sid]
-  @userid=params[:uid]
-    @friend=params[:friend]
-    @email=params[:email]
+  def recommend_story_mobile_show()
+    @storyid=params[:sid]
+    @user=current_user
+    @listemail=params[:lemail]
+    @friendmail=params[:email]
     @message=params[:message]
+    @useremail=@user.email
+    @story=Story.find_by_id(@storyid)
+    @storytit=@story.title
+    @storybod=@story.content
+    @flistemail=@user.get_friends_email()
 
+puts @listemail
+puts @friendmail
+puts @message
 
-   user=User.find_by_id(@userid)
-   @useremail=user.email
-   @story=Story.find_by_id(@storyid)
-   @storytit=@story.title
-   @storybod=@story.content
+  if @friendmail==""
 
-  if @friend=="null"
+      Emailer.recommend_story(@useremail, @listemail, @message, @storytit, @storybod).deliver
 
-  if User.find_by_email(@email).nil?
-    Emailer.invite_to_app(@useremail, @email, @message).deliver
-   else
-    Emailer.recommend_story(@useremail, @email, @message, @storytit, @storybod).deliver
+  else
+    if User.find_by_email(@friendmail).nil?
+      Emailer.invite_to_app(@useremail, @friendmail, @message).deliver
+    else
+      Emailer.recommend_story(@useremail, @friendmail, @message, @storytit, @storybod).deliver
+    end
+
   end
 
- else
-   Emailer.recommend_story(@useremail, @friend, @message, @storytit, @storybod).deliver
- end
 '''
 @username = User.find(@userid).name
     @storytitle = Story.find(@storyid).title
@@ -153,7 +157,7 @@ end
 #Author=> khaled.elbhaey
   def liked_mobile_show
     @story = Story.find(params[:id])
-    @user = User.find(params[:id2])
+    @user = current_user
     @friends=@story.view_friends_like(@user)
     flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
     render :layout => "mobile_template" 
@@ -161,7 +165,7 @@ end
 #Author=> khaled.elbhaey
   def disliked_mobile_show
     @story = Story.find(params[:id])
-    @user = User.find(params[:id2])
+    @user = current_user
     @friends=@story.view_friends_dislike(@user)
     flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
  render :layout => "mobile_template" 
