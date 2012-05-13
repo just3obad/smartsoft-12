@@ -95,6 +95,40 @@ class StoriesControllerTest < ActionController::TestCase
     assert get(:get, {'id' => story.id})
     assert_select 'div[id = "La2etlak_Button"]'
   end
+
+#Author: khaled.elbhaey 
+  test "the view of friends who liked RED" do
+    new_user=User.create(:email=>"kd@abc.com")
+    new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
+    new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
+
+    list=new_story.view_friends_like(new_user)
+     if !list.empty?
+      get like_path(new_story, new_user)
+      assert_select 'div[ id=liked]'
+     else
+      get like_path(new_story, new_user) 
+      assert_select 'div[ id=error_explanation]'
+     end
+  end
+#Author: khaled.elbhaey 
+  test "the view of friends who disliked RED" do
+   new_user=User.create(:email=>"kd@abc.com")
+    new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
+    new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
+    list=new_story.view_friends_dislike(new_user)
+    if !list.empty?
+
+     get dislike_path(new_story, new_user)
+     assert_select 'div[ id=disliked]'
+    else
+
+     get dislike_path(new_story, new_user) 
+     assert_select 'div[ id=error_explanation]'
+    end
+  end
+
+
 #Author: khaled.elbhaey 
   test "the view of recommendation of story RED" do
    assert_select 'listbox[id=femails]'
