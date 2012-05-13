@@ -185,8 +185,8 @@ class UsersControllerTest < ActionController::TestCase
     get :connect_social_accounts, {}, {:user_id => u1.id}
     assert_select 'div[class=warning-component-box-mobile]',1
     assert_select 'You are connected to twitter'
-
-
   end 
+
+  
 
 end

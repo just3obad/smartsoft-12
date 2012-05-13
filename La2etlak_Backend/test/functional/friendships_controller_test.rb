@@ -18,9 +18,9 @@ class FriendshipsControllerTest < ActionController::TestCase
 
   	get :index, {}, {user_id: 1}
   	assert_response :success, "Get request should be successfull"
-    assert_select '*', "#{u2.first_name}"
-    assert_select '*', "#{u2.last_name}"
-    assert_select '*', "#{u2.email}"
+    assert_select 'p', "#{u2.first_name}"
+    assert_select 'p', "#{u2.last_name}"
+    assert_select 'p', "#{u2.email}"
   		
   end 
 
@@ -33,7 +33,7 @@ class FriendshipsControllerTest < ActionController::TestCase
   		get :create, {user_id: 2}, {user_id: 1}
       #, 'The count of Frienships should be changed'
   	end 
-    assert_select '*', "Your request has been sent to #{u2.email}"
+    assert_select 'p', "Your request has been sent to #{u2.email}"
 
   end 
 
@@ -49,7 +49,7 @@ class FriendshipsControllerTest < ActionController::TestCase
   		get :approve, {user_id: 1}, {user_id: 2}
       # , 'The pending of a Frienships should be changed'
   	end 
-    assert_select '*', "Your request has been sent to #{u2.email}"
+    assert_select 'p', "Your request has been sent to #{u2.email}"
 
   end 
 
@@ -63,7 +63,7 @@ class FriendshipsControllerTest < ActionController::TestCase
   		get :remove, {user_id: 2}, {user_id: 1}
       # , 'The pending of a Frienships should be changed'
   	end 
-    assert_select '*', "You hae deleted sent to #{u2.email}"
+    assert_select 'p', "You hae deleted sent to #{u2.email}"
 
   end 
 
