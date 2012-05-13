@@ -257,7 +257,7 @@ class UserTest < ActiveSupport::TestCase
     user.email = '3obad@prince.com'
     user.flickr_account = flickr_account(:one)
     assert !user.flickr_account.nil?
-    tumblr_feed = user.flickr_account.get_feed()
+    flickr_feed = user.flickr_account.get_feed()
     assert !flickr_feed.nil?
   end
    
