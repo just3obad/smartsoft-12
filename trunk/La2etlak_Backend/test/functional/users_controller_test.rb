@@ -161,7 +161,7 @@ class UsersControllerTest < ActionController::TestCase
 	end
 
 	# Auther: Kiro
-		test "should not create user" do
+	test "should not create user" do
 		assert_no_difference('User.count') do
    		post :register, :user => { :email => 'user_email2@test.com', :password => '12345', :password_confirmation => '123456'}
   	end
@@ -176,5 +176,17 @@ class UsersControllerTest < ActionController::TestCase
    		post :register, :user => { :email => 'alreadyinuse@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 	end
+
+  # Author: Yahia
+  test "A user should see a warning if he is connected to twitter in the connect_social_accounts page" do
+    u1 = user(:one)
+    u1.twitter_account = twitter_accounts(:one)
+    u1.save
+    get :connect_social_accounts, {}, {:user_id => u1.id}
+    assert_select 'div[class=warning-component-box-mobile]',1
+    assert_select 'You are connected to twitter'
+
+
+  end 
 
 end
