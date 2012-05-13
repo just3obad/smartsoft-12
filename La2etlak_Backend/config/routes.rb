@@ -27,9 +27,9 @@ NokiaRuby::Application.routes.draw do
   match "/users/new" => "users#create", :as => :create
   match "users/:id" => "users#show"
   match "/h_accounts/create" => "h_accounts#create", :as => :create
-  match "user_add_interests/interests" => "user_add_interests#getinterests"  
-  match "flags/flag" => "flags#flag"
-  match "likedislikes/thumb" => "likedislikes#thumb"
+ 
+  
+
   match "/interests/:id/statistics" => "statistics#interests"
   match "/stories/:id/statistics" => "statistics#stories"
   match "/users/:id/statistics" => "statistics#users"
@@ -45,6 +45,12 @@ NokiaRuby::Application.routes.draw do
   match "/admins/search" => "admins#search"
 
   match "/interests/list"  => "interests#new", :as => :new
+#--------------------Kareem------------------------
+  match "user_add_interests/interests" => "user_add_interests#get_interests" 
+  match "likedislikes/thumb" => "likedislikes#thumb"
+  match "users/:id/stories" => "users#feed"
+  match "flags/flag" => "flags#flag"
+#-------------------END---------------------------- 
 
 
 
