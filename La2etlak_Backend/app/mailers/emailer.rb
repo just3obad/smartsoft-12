@@ -10,7 +10,13 @@ class Emailer < ActionMailer::Base
 	# Author: Kiro
   def resend_code(user)
   	@code = user.verification_code.code
-  	mail(:to => account.email, :subject => "La2etlak Verification Code")
+  	mail(:to => user.email, :subject => "La2etlak Verification Code")
+  end
+
+	# Author: Kiro
+  def reset_password(user,pass)
+  	@pass = pass
+  	mail(:to => user.email, :subject => "La2etlak New Password")
   end
 
   def password_reset(h_account, pass)
