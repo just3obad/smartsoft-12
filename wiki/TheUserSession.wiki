@@ -86,10 +86,8 @@ now enter the id of the user you want to login with and press *login* button.
 
 okay, now your user is logged in, you can continue using the application with this user, for example if you want to try the mainfeed you can go to http://localhost:3000/users/feed, if this is handled correctly as stated previously you will get the main feed of the user you logged in.
 
-Thats all,
-if you have any trouble applying anything of this feel free to ask me,
+Thats all =)
+
+If you have any questions feel free to ask me !
+
 Kiro
-
-If you have any questions feel free to ask me, thanks
-
-Kerolos Bebawy
