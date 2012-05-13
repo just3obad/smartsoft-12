@@ -333,4 +333,38 @@ end
 def self.get_interest(id)
 Interest.find(id)
 end
+#Author: jailan
+#Create Method after moving it from controller to Model
+#It makes a new interest and saves it
+def self.my_create(interest)
+   @interests = Interest.get_all_interests
+   @interest = Interest.new(interest)
+
+ @interest.save
+if @interest
+ Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
+$foo = true
+end 
+return @interest
+
+end
+#Author: jailan
+#Update Method after moving it from controller to Model
+#It gets the interest using the id and call the method Update_Attribute that takes the input in the form of "Show.html.erb" and adjust changes
+def self.my_update(id,interest)
+
+    @interest= Interest.find(id)
+   @interests = Interest.all 
+
+   return   @interest.update_attributes(interest) 
+
+end
+#Author: jailan
+#is_deleted Method 
+#returns the value of deleted attribute to use it in the controller
+def self.is_deleted(id)
+
+@interest = Interest.find(id)
+return @interest.deleted
+end
 end
