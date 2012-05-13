@@ -75,6 +75,8 @@ class AdminTest < ActiveSupport::TestCase
     assert(search_result.include? @interest1)
   end
 
+#Author : mouaz.alabsawi@gmail.com
+
  test "should not save admin without email 1 RED" do
    admin = Admin.new
    assert !admin.save
