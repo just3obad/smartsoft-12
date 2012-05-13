@@ -18,6 +18,11 @@
         </div>
       </div>
 </header>
+<% if flash[:notice] %>
+<div class="warning-component-box-mobile" id="notification">
+ <%= flash[:notice] %>
+</div>
+<% end %>
 <% if current_user.get_notifications %>
 <% s = "s" if user.get_notifications.length!=1 %>
 <div class="warning-component-box-mobile" id="notification">

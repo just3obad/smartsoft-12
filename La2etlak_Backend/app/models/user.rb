@@ -16,8 +16,7 @@ class User < ActiveRecord::Base
   CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
 
   # attr_accessible :title, :body
-  attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
-      :twitter_account, :twitter_request, :image, :password, :password_confirmation
+  attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, :twitter_account, :twitter_request, :image, :password, :password_confirmation
   has_many :comments
   has_many :comment_up_downs
   # stat 0 pending
