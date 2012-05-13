@@ -599,11 +599,11 @@ end
       blocked_interest.user = this_user
       blocked_interest.interest = story_interest 
       blocked_interest.save
-      @text = "interest blocked successfully"
+      @text = "Interest blocked successfully"
    else 
-      @text = "interest already blocked"    
+      @text = "Interest already blocked"    
    end
-   #log file
+   #for log file
    if self.name.nil?
       @username = self.email
    else
@@ -638,13 +638,41 @@ end
    else
       @username = self.name
    end
+   #for log file
    @storytitle = this_story.title
    @message = "#{@username} blocks story with title: #{@storytitle}" 
    Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: this_story.id, message: @message)
 
    return @text #return the message in variable text
   end
-  
+
+  #This method takes a friend as input and blocks him/her using the block method provided by the gem amistad.
+  #It first checks if the friend is already blocked or not.
+  #Author: Rana
+  def block_friends_feed1(my_friend) 
+    @this_user = self
+    if(!(@this_user.blocked? my_friend))
+        @this_user.block (my_friend)
+        @text = "Friend blocked successfully."
+    else
+        @text = "Friend already blocked."
+    end
+    #for log file
+     if self.name.nil?
+      @username = self.email
+     else
+      @username = self.name
+     end
+     if my_friend.name.nil?
+      @frname = my_friend.email
+     else
+      @frname = my_friend.name
+     end
+   @message = "#{@username} blocks friend named: #{@frname}" 
+   Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id , admin_id: nil, story_id: nil, message: @message)
+
+   return @text #return the message in variable text
+  end
 
   # Author : Essam
    # issue 89
