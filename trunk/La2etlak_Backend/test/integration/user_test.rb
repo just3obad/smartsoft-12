@@ -88,4 +88,37 @@ class UserTest < ActionDispatch::IntegrationTest
       assert_select "form[action = 'friends_list']"
       assert_select 'div[id="fbutton"]'
     end
+    
+    
+    #Author : Omar
+     test "route to toggle interests RED" do
+      assert_routing '/users/1/toggle', {:controller => "users", :action => "toggle", :id => "1" }
+    end
+    
+    
+    
+    
+    
+    #Author : Omar
+    test "all interests checkboxes RED" do
+      	user = User.new
+	user.email = "abc@abc.com"
+	user.save
+	assert get(:toggle , {'user' => user})
+          interests.each do |t|
+             put t.name
+             assert_select 'div[id = '+t.name+']'
+	  end
+
+
+    end
+    
+    
+    #Author : Omar
+     test "route to confirmation of interests RED" do
+      assert_routing '/users/1/user_add_interests', {:controller => "users", :action => "user_add_interests", :id => "1"}
+    end
+    
+    
+    
 end
