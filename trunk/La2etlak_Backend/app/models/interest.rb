@@ -1,15 +1,19 @@
 class Interest < ActiveRecord::Base
-  
+#Author: jailan
 #attributes  that can be modified automatically by outside users
-  attr_accessible :description, :name, :image, :deleted
+  attr_accessible :description, :name, :image, :deleted, :photo
   
   has_many :stories
   has_many :feeds, :dependent => :destroy
-  has_many :block_interests
-  has_many :blockers, :class_name => "User", :through => :block_interests
 
-  has_many :user_add_interests
-  has_many :adding_users, :class_name => "User", :through => :user_add_interests
+#the attached file we migrated with the interest to upload the interest's image from the Admin's computer
+  has_attached_file :photo, :styles => { :small => "150x150>" },
+                  :url  => "/assets/products/:id/:style/:basename.:extension",
+                  :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+#here we validate the an Image should be specified with a certain size & type
+  #validates_attachment_presence :photo
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
  # RSS feed link has to be of the form "http://www.abc.com"
 LINK_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix
@@ -350,6 +354,7 @@ return @interest
 end
 #Author: jailan
 #Update Method after moving it from controller to Model
+#takes as argument the id of the interest and the new values we want to update with and returns the interest after updating the deleted column in it
 #It gets the interest using the id and call the method Update_Attribute that takes the input in the form of "Show.html.erb" and adjust changes
 def self.my_update(id,interest)
 
