@@ -9,6 +9,8 @@ class UsersController < ApplicationController
  		@user = User.new(params[:user])
 		respond_to do |format|
 			if @user.save
+				@user.generateVerificationCode?
+				Emailer.verification_instructions(@user).deliver
 	   	  format.json { render text: "true" }
 	  	else
 				errors = "errors:" + @user.errors.to_s
@@ -26,13 +28,13 @@ class UsersController < ApplicationController
 	end
 
 	def test
-	user = User.find_by_id(params[:id])
-	UserSession.create(user)
-	@user = current_user
+		user = User.find_by_id(params[:id])
+		UserSession.create(user)
+		@user = current_user
 	end
 
 	def test_2
-	@user = current_user
+		@user = current_user
 	end
 	#################################################
 
