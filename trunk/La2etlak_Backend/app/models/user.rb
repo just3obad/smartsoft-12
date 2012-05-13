@@ -1,9 +1,5 @@
 class User < ActiveRecord::Base
 
-	# This is added to use the authlogic gem
-	# Author: Kiro
-	acts_as_authentic
-
   # This is added to use the amistad friendship Gem
   # Author: Yahia
   include Amistad::FriendModel
@@ -17,7 +13,7 @@ class User < ActiveRecord::Base
 
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
-      :twitter_account, :twitter_request, :image, :password, :password_confirmation
+      :twitter_account, :twitter_request, :image
   has_many :friends, :through => :friends, :conditions => "status = '2'"
   has_many :requested_friends, :through => :friends, :source => :friend, :conditions => "stat = '1'"
   has_many :pending_friends, :through => :friends, :source => :friend, :conditions => "stat = '0'"
@@ -370,16 +366,24 @@ end
  data = "[#{s},#{n},#{m},#{p},#{c}]"
  end
 
-
-  # This return the consumer for twitter authentication
-  # Author: Yahia
+=begin
+ This return the consumer for twitter authentication
+ 
+ Author: Yahia  
+=end
   def self.twitter_consumer
   # The readkey and readsecret below are the values you get during registration
     OAuth::Consumer.new(CONSUMER_TOKEN, CONSUMER_SECRET,
                       { :site=>"http://twitter.com" })
   end
 
-  # Author: Yahia
+=begin
+  This method adds a twitter account to the user. The twitter
+  account corresponds to the request_token received from twitter
+  in the authentication phase
+
+  Author: Yahia
+=end
   def create_twitter_account(request_token)
     access_token = request_token.get_access_token
     old_account = self.twitter_account(true)
@@ -394,6 +398,31 @@ end
     t_account.save
     return t_account
   end 
+
+=begin
+  This method removes the twitter account of 
+  returns true if the removal was successfull 
+  Author: Yahia
+=end   
+  def remove_twitter_account
+    if (self.twitter_account)
+      self.twitter_account.destroy
+    else 
+      false 
+    end 
+  end 
+
+=begin 
+  Checks if the user has a twitter account
+=end 
+  def has_twitter_account
+    if self.twitter_account.nil?
+      return false
+    else
+      return true
+    end 
+  end
+
 
  #Author Kareem
   def thumb_story(story,act)
