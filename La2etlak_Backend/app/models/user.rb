@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # This is added to use the amistad friendship Gem
   # Author: Yahia
   include Amistad::FriendModel
-
+  include UsersHelper
   # Those are our Consumer Token and Consumer secret that twitter
   # provided us. This correspons our entity to twitter. The Consumer
   # Secret should be saved in a safe place. 
@@ -497,15 +497,39 @@ end
   end
 
 #Author : Shafei
-	def get_user_rank()
-	
+	def get_user_rank
+		comments_by_user 	= Comment.where(:user_id => self.id)
+		shares_by_user 		= Share.where(:user_id => self.id)
+		dislikes_by_user	= Likedislike.where(:user_id => self.id, :action => -1)
+		likes_by_user 		= Likedislike.where(:user_id => self.id, :action => 1)
+		flags_by_user 		= Flag.where(:user_id => self.id)
+		friends_of_user		= Friendship.where(:user_id => self.id)
+		interests_of_user	= UserAddInterest.where(:user_id => self.id)
+		sign_ins_of_user	= UserLogIn.where(:user_id => self.id)
+		stories_blocked		= BlockStory.where(:user_id => self.id)
+		sum 				= (comments_by_user.length * 2) + (shares_by_user.length * 3) + likes_by_user.length + 
+							dislikes_by_user.length + flags_by_user.length + friends_of_user.length + interests_of_user.length
+							+ (sign_ins_of_user.length * 2) - (stories_blocked.length * 10)
+		return sum
 	end
 
 #Author : Shafei
 	def get_users_ranking
-		array = Array.new
-	return array
- end
+	'''	all_users 		= User.*
+		rank 			= Array.new
+		max = 0
+		id
+		for i in 0...(all_users.length - 1)
+			for j in 0...(all_users.length - 1)
+				if all_users[j].get_user_rank >= max
+					max = all_users[j].get_user_rank
+					id = j+1
+				end
+			end
+			all_users.delete_if{|k| == max}
+			rank << all_users[id]
+		end '''
+	end
 
   # author = Gasser
   def reset_password

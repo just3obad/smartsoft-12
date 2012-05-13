@@ -19,43 +19,28 @@ class UserTest < ActiveSupport::TestCase
   end 
 
 #Author : Shafei
-  test "user get rank RED" do
-	user = User.new
-	user.save
-	story = Story.new
-	story.save
-	comment = Comment.new
+  test "user get rank" do
+	user = users(:one)
+	story = stories(:one)
+	comment = comments(:one)
 	comment.user = user
 	comment.story = story
-	assert_equal(user.get_user_rank(),2,"Action returns wrong number")
+	comment.save
+	assert_equal(user.get_user_rank,22,"Action returns wrong number")
   end
   
     #Author : Shafei
-  test "users get rank Red" do
+  test "users get rank RED" do
 	top_users = Array.new#
-	comments = Array.new#
-	story = Story.new
-	story.save
-	i = 1
-	top_users.each do |user|
-		user = User.new
-		user.save
+	for i in 'one'...'five'
+		user = users(:i)
 		top_users >> user
-		for j in 1...i
-			comment = Comment.new
-			comment.user = user
-			comment.story = story
-			comment.save
-			comments >> comment
-		end
-		i = i + 1
 	end
-	user = User.new
 	users = user.get_users_ranking
-	assert_nil(users.first,"")
-	users.each do |user|
-		assert_equal(user.id, top_users[i].id, "Ranking not correct")
-		i = i - 1
+	for i in 0...3
+		assert_difference(top_users[i].get_user_rank, 1, "Ranking not correct") do
+			top_users[i+1].get_user_rank
+		end
 	end
   end
 
