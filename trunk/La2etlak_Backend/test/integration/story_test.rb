@@ -49,15 +49,7 @@ class StoryTest < ActionDispatch::IntegrationTest
      assert_select 'div[ id=error_explanation]'
     end
   end
-#Author: khaled.elbhaey 
-  test "the view of recommendation of story RED" do
-   assert_select 'listbox[id=femails]'
-   assert_select 'form[ id=recommendation]'
-   assert_select 'text[ id=fmail]'
-   assert_select 'div[ id=submit]'
-   assert_select 'div[ id=back]'
 
-  end
 
     #Author: Rana
     test "form for button block interest in read more RED" do

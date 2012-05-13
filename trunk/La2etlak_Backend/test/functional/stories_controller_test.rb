@@ -95,4 +95,13 @@ class StoriesControllerTest < ActionController::TestCase
     assert get(:get, {'id' => story.id})
     assert_select 'div[id = "La2etlak_Button"]'
   end
+#Author: khaled.elbhaey 
+  test "the view of recommendation of story RED" do
+   assert_select 'listbox[id=femails]'
+   assert_select 'form[ id=recommendation]'
+   assert_select 'text[ id=fmail]'
+   assert_select 'div[ id=submit]'
+   assert_select 'div[ id=back]'
+
+  end
 end
