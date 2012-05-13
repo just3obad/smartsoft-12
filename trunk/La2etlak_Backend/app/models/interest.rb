@@ -372,4 +372,25 @@ def self.is_deleted(id)
 @interest = Interest.find(id)
 return @interest.deleted
 end
+
+
+#Author: jailan
+# my_toggle method used to block/unblock the interest according to its state 
+#takes as argument the id of the interest and returns the interest after updating the deleted column in it
+  def self.my_toggle(id)
+    @interest= Interest.find(id)
+   @interests = Interest.all 
+# if the interest was blocked the we restore it and save
+if @interest.deleted 
+ @interest.deleted = false
+@interest.save
+
+else
+# if the interest wasn't blocked the we block it and save
+@interest.deleted = true
+@interest.save
+
+end
+return @interest
+end
 end
