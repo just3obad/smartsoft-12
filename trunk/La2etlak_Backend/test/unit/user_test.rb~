@@ -354,7 +354,7 @@ class UserTest < ActiveSupport::TestCase
 		
 	end
    # author : Gasser
-   test "admin should reset user password RED" do
+   test "admin should reset user password Red" do
      user = User.create!(:name=>"user", :email=>"user@user.com",:crypted_password=>"us1pas")
      pass = user.crypted_password
      user.force_reset_password
