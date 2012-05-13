@@ -475,21 +475,28 @@ end
   end
 
  
- # Author: Omar
- # select user existing interests in our database
-def user_interests
-user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}
-end
+  # Author: Omar
+  # select user existing interests in our database
+  def user_interests
+    user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}
+  end
 
   # Author: Omar
- #select all interests in the system
-def all_interests
-all_interests =  Interest.all()
-end
- ###Author : Kareem
-def get_interests
- 	interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| 		Interest.find(id).name}
-	return interests 
-	end
+  #select all interests in the system
+  def all_interests
+    all_interests =  Interest.all()
+  end
  
+  #Author : Kareem
+  def get_interests
+ 	  interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| 		Interest.find(id).name}
+	 return interests 
+	end 
+
+  #Author: Yahia
+  def search_members(string)
+  end
+
 end
+
+

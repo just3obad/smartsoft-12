@@ -15,4 +15,7 @@ class FriendshipsController < ApplicationController
   # Author: Yahia 
   def remove
   end
+
+  def search 
+  end 
 end
