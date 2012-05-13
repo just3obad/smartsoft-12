@@ -127,11 +127,11 @@ class UsersControllerTest < ActionController::TestCase
 	
 		User.create(email: "AlreadyInUse@test.com", password: "123456", password_confirmation: "123456")
 
-		assert_no_difference('User.count',"xxxxxxxxx") do
+		assert_no_difference('User.count',"created a user with an existing email --same") do
    		post :register, :user => { :email => 'AlreadyInUse@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 
-		assert_no_difference('User.count',"yyyyyy") do
+		assert_no_difference('User.count',"created a user with an existing --lowercase") do
    		post :register, :user => { :email => 'alreadyinuse@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 	end
