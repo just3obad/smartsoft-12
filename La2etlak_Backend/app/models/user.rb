@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_one :haccount
   has_one :twitter_account
 	has_one :verification_code
-
+  has_one :tumblr_account
   has_many :shares
   has_many :shared_stories, :class_name => "Story", :through => :shares
   has_many :likedislikes
@@ -640,5 +640,31 @@ end
 
    return @text #return the message in variable text
   end
+  
 
+  # Author : Essam
+   # issue 89
+   # A method called to get stories from social accounts conected to the current user
+   # returns a list of stories shuffled 
+   # checks the four social networks we have in our system and sees whether 
+   # the user connected to them or not, then
+   # calls the get_feed method in each network
+   def get_social_feed()
+     user = User.find(self.id)
+     social_stories = Array.new
+     if(!user.twitter_account.nil?)
+       social_stories.append(user.twitter_account.get_feed)
+     end
+     if(!user.tumblr_account.nil?)
+       social_stories.append(user.tumblr_account.get_feed)
+     end
+     if(!user.facebook_account.nil?)
+       social_stories.append(user.facebook_account.get_feed)
+     end
+     if(!user.flickr_account.nil?)
+       social_stories.append(user.flickr_account.get_feed)
+     end
+     return social_stories.shuffle
+   end
+   
 end
