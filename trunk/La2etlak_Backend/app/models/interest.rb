@@ -377,6 +377,11 @@ end
     top_interests_ranks = interests.reverse
  end
  
+ '''to return a list of user who added this interest'''
+ ##########Author: Diab ############
+def get_users_added_interest      
+  users = self.adding_users      
+  end
 
 def self.get_interest(id)
 Interest.find(id)
