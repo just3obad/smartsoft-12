@@ -158,14 +158,14 @@ class UsersControllerTest < ActionController::TestCase
   end 
 
 	# Author: Kiro
-	test "should create user" do
+	test "should create user RED" do
 		assert_difference('User.count') do
    		post :register, :user => { :email => 'user_email1@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 	end
 
 	# Auther: Kiro
-	test "should not create user" do
+	test "should not create user RED" do
 		assert_no_difference('User.count') do
    		post :register, :user => { :email => 'user_email2@test.com', :password => '12345', :password_confirmation => '123456'}
   	end
