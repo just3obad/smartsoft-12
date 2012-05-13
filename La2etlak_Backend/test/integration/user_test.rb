@@ -81,7 +81,12 @@ class UserTest < ActionDispatch::IntegrationTest
     
     #Author : Omar
      test "route to toggle interests RED" do
-      assert_routing '/users/1/toggle', {:controller => "users", :action => "toggle", :id => "1" }
+        user = User.new
+      	user.email = "abc@abc.com"
+	user.password = "123456"
+	user.password_confirmation = "123456"
+	user.save
+        assert_routing '/users/toggle', {:controller => "users", :action => "toggle", :id => user.id }
     end
     
     
@@ -92,6 +97,8 @@ class UserTest < ActionDispatch::IntegrationTest
     test "all interests checkboxes RED" do
       	user = User.new
 	user.email = "abc@abc.com"
+	user.password = "123456"
+	user.password_confirmation = "123456"
 	user.save
 	assert get(:toggle , {'user' => user})
           interests.each do |t|
@@ -105,7 +112,7 @@ class UserTest < ActionDispatch::IntegrationTest
     
     #Author : Omar
      test "route to confirmation of interests RED" do
-      assert_routing '/users/1/user_add_interests', {:controller => "users", :action => "user_add_interests", :id => "1"}
+      assert_routing '/users/user_add_interests', {:controller => "users", :action => "user_add_interests"}
     end
     
   #Author: Yahia

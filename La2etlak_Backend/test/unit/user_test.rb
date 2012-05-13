@@ -213,7 +213,11 @@ class UserTest < ActiveSupport::TestCase
     #Author : Omar 
     #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     	test "get all interests" do
-			user = User.create(:email => "a@b.com")		
+			user = User.new
+			user.email = "abc@abc.com"
+			user.password = "123456"
+			user.password_confirmation = "123456"
+			user.save	
 			int = Interest.create(:name => "interest")
 			all_interests = Interest.all
 			all = user.all_interests
@@ -222,7 +226,11 @@ class UserTest < ActiveSupport::TestCase
 
 
 	test "get user interests" do 
-		user = User.create(:email => "a@b.c")
+		user = User.new
+		user.email = "abc@abc.com"
+		user.password = "123456"
+		user.password_confirmation = "123456"
+		user.save
 		int1 = Interest.create(:name => "interest 1")
 		int2 = Interest.create(:name => "interest 2")
 		int3 = Interest.create(:name => "interest 3")		
