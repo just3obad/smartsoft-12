@@ -3,7 +3,7 @@ require 'test_helper'
 class FeedTest < ActiveSupport::TestCase
 
   # author : Gasser
-  test "admin should enter the same feed for more than one interest RED" do
+  test "admin should enter the same feed for more than one interest RED " do
      feed1 = Feed.new(:link=>"http://www.xkcd.com/rss.xml")
      feed2 = Feed.new(:link=>"http://www.xkcd.com/rss.xml")
      interest1 = Interest.create!(:name=>"interest1")
