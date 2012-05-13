@@ -39,7 +39,11 @@ class UserTest < ActionDispatch::IntegrationTest
       assert_select 'div[ id=error_explanation]'
      end
   end
-
+    #Author : Mina Adel
+    test "route to main feed" do
+      assert_routing 'users/1/main_feed', {:controller => "users", :action => "feed", :id => "1"}
+    end
+    
     #Author: Rana
     test "route to block story RED" do
       assert_routing 'users/block_story/1/1', {:controller => "users", :action => "block_story", :uid => "1", :id => "1" }

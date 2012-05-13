@@ -84,6 +84,10 @@ NokiaRuby::Application.routes.draw do
   #match "/feeds/:id" => "feeds#create"
   #match "/feeds/delete/:id" => "feeds#destroy"
   
+  #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
+  match "users/:id/main_feed" => "users#feed"
+  #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
+  
  # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$
   match "/stories/:id/get" => "stories#get"
   match "users/:id/toggle" => "users#toggle"   

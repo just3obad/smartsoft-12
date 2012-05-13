@@ -1,0 +1,30 @@
+	<% unless @stories_list.nil? %>
+	<% @stories_list.each do |f| %>
+<div class="story-component-box-mobile">
+	<table class="table" width="200">
+		<tr>
+			<td rowspan="2">
+			<% @all = "img src=" %>
+			<% @url_start = "http://" %>
+			<% @url_end = "\" " %>
+
+			<% if f.content =~ /#{@url_regex}/ %>
+				<% @allstart = f.content.index(@all)%>
+				<% @start = f.content.index(@url_start)%>
+				<% @end = f.content.index(@url_end) %>
+				<% @media = f.content[ @start.to_i , @end.to_i-10] %>
+				<% @allmedia = f.content[@all.to_i , @end.to_i+1]%>
+			<%end%>
+			<img id="topic" src="<%=@media%>" width="50"/>
+		</td>
+		<td rowspan="2">
+			<table>
+				<tr><td><%= f.title%></td></tr>
+				<tr><td><%= f.content%></td></tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</div>
+	<%end%>
+	<%end%>
