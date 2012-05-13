@@ -39,6 +39,12 @@ end
 
 
 
+ test "should save interest when toggled RED" do
+    interest = Interest.create!(name: "my Test", description: "blabla")
+    interest.toggle
+
+    assert interest.save
+  end
 
 
 
