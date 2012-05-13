@@ -204,6 +204,14 @@ class UsersControllerTest < ActionController::TestCase
      end
   end
 
+<<<<<<< .mine
+  #Author: Bassem
+  test "deactivating users"
+    new_user=User.create(:user_id=>'1')
+    get ( :deactivate, { 'id' => 1} )
+    assert new_user.deactivated
+  end
+end=======
 	# Auther: Kiro
 	test "The old password of the user should expire after requesting a new one RED" do
 
@@ -221,3 +229,4 @@ class UsersControllerTest < ActionController::TestCase
 	end
 
 end
+>>>>>>> .r1227
