@@ -88,7 +88,7 @@ NokiaRuby::Application.routes.draw do
   match "stories/:sid/recommend_story_mobile_show" => "stories#recommend_story_mobile_show"
   match "/stories/:id/liked_mobile_show/:id2" => "stories#liked_mobile_show", :as => :like
   match "/stories/:id/disliked_mobile_show/:id2" => "stories#disliked_mobile_show", :as => :dislike
-  match "/users/get_friends_email_mobile_show/:uid" => "users#get_friends_email_mobile_show", :as => :email
+  match "/users/get_friends_email_mobile_show" => "users#get_friends_email_mobile_show", :as => :email
    # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
 
 
