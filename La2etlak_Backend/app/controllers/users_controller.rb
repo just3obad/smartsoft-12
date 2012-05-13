@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 			if @user.save
 	   	  format.json { render text: "true" }
 	  	else
-				errors = "errors:" + @user.errors
+				errors = "errors:" + @user.errors.to_s
 	  	  format.json { render text: errors }
 	  	end
 		end
