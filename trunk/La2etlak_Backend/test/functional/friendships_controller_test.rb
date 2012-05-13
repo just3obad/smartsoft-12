@@ -33,6 +33,9 @@ class FriendshipsControllerTest < ActionController::TestCase
     u1 = users(:one)
     u2 = users(:two)
     u1.invite u2
+    assert Friendship.find_by_user_id(1).nil?, 'Friendship shouldn\'t be nil' 
+    
+    puts Friendship.find_by_user_id(1).pending
   	assert_difference('Friendship.find_by_user_id(1).pending') do
   		get :approve, {user_id: 1}, {user_id: 2}
       # , 'The pending of a Frienships should be changed'
