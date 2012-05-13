@@ -12,8 +12,10 @@ def show
    def get
 	id = params[:id]
 	@story = Story.find(id)
-	@likes = @story.likes
-	@dislikes = @story.dislikes
+	@likes = @story.liked
+	@dislikes = @story.disliked
+	@action1 = @story.check_like
+	@action2 = @story.check_dislike
 	render :layout => "mobile_template"
   end
   
