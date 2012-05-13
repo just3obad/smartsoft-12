@@ -42,4 +42,4 @@ class FriendshipsController < ApplicationController
       render layout: 'mobile_template', text: "Friendship removed  #{@friend.email}"
     end
   end
-end
+end 

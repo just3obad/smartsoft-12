@@ -419,7 +419,7 @@ end
 =begin 
   Checks if the user has a twitter account
 =end 
-  def has_twitter_account
+  def has_twitter_account?
     if self.twitter_account.nil?
       return false
     else
