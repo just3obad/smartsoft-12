@@ -21,13 +21,13 @@
 <!-- User will be fetched from the session rather
      than quering using the id from the params but
      this will do the job for now -->
-<% user = User.find(params[:id2]) %>
+<!--<% user = User.find(params[:id2]) %>
 <% if !user.get_notifications.nil? %>
 <% s = "s" if user.get_notifications.length!=1 %>
 <div class="warning-component-box-mobile" id="notification">
  You have <%= user.get_notifications.length %> pending friendship request<%= s %>!
 </div>
-<% end %>
+<% end %> -->
   <body>
     <%= yield %>
   </body>
