@@ -101,4 +101,28 @@ end
 #after updating we redirect to the interest main page but after editing
 
   end
+
+#Author: jailan
+# toggle method used to block/unblock the interest , when we block an interest no feeds appear for the users only the admin can view it 
+# if the interest is deleted then he admin has the right to restore it once more .
+  def toggle
+# first we call the my_toggle method from the model to adjust changes in the database
+    @interest= Interest.my_toggle(params[:id])
+   @interests = Interest.get_all_interests
+   @deleted = Interest.is_deleted(params[:id])
+
+if !@deleted 
+
+ $savedinterest = true
+# if the interest was deleted and the admin restored it successfully a flash appears endicating that
+flash[:success] = " Interest Restored Successfuly "
+else
+
+$savedinterest = true
+# if the interest wasn't deleted and the admin blocked it successfully a flash appears endicating that
+flash[:success] = " Interest Blocked Successfuly "
+end
+# finally , we redirect to the main interest's page after adjusting the changes
+ redirect_to @interest
+end
 end
