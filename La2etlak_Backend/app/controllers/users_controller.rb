@@ -204,8 +204,8 @@ end
   def connect_social_accounts
     # render :layout => "mobile_template"
     # FIXME  
-    params[:id] = 1
-    @user = User.find(params[:id])
+    session[:user_id] = 1
+    @user = User.find(session[:user_id])
     render layout: "mobile_template", template: "users/connect_social_accounts"
     # redirect_to(:action => 'generate_request_token', :id => 5)
   end 
