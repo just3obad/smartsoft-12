@@ -124,11 +124,11 @@ def fetch_rss(link)
       #getting the id of the interest 
 	f = Feed.find_by_link(source)
 	
-	if f == nil
-		f = Feed.new(:interest_id => 1)
-		f.link = source
-		f.save
-	end
+	#if f == nil
+	#	f = Feed.new(:interest_id => 1)
+	#	f.link = source
+	#	f.save
+	#end
 
 	#getting the id of the interest
 	sinterest = Feed.find_by_link(source).interest_id
