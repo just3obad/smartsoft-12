@@ -1,18 +1,87 @@
-<table class="table table-striped table-bodered">
- <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Category</th>
-    </tr>
-  </thead>
-<% @stories.each do |story| %>
-<tr>
-    <td><img width="150";height="100"; src=<%=story.media_link%> ></td>
-    <td><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></td>
-    <td><%=raw story.content %></td>
-    <td><%= story.category %></td>
-</tr>
-<%end%>
-</table>
+<!DOCTYPE html>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Filter by interests</li>
+            </ul>
+
+             <div class="control-group">
+
+		<div class="controls">
+              <% for interest in @interests %>
+		  <label class="checkbox">
+		    <input type="checkbox" value= "interest">
+		      <%= interest.name %>
+		    </input>
+		  </label>
+		<%end%>
+		</div> 
+
+	    </div>
+            <ul class="nav nav-list">
+              <li class="nav-header">Filter by status</li>
+            </ul>
+
+             <div class="control-group">
+		<div class="controls">
+		  <label class="checkbox">
+		    <input type="checkbox" value="Normal">
+		      Normal
+		    </input>
+		  </label>
+		</div>
+		<div class="controls">
+		  <label class="checkbox">
+		    <input type="checkbox" value="Flagged">
+		      Flagged
+		    </input>
+		  </label>
+		</div>
+		<div class="controls">
+		  <label class="checkbox">
+		    <input type="checkbox" value="Hidden">
+		      Hidden
+		    </input>
+		  </label>
+		</div>
+
+
+	     </div>
+	     <hr>
+             <input type="button" value="Apply" class= "btn btn-primary"/>
+          </div><!--/.well -->
+        </div><!--/span-->
+        </div>
+     <div class="right-story-panel interest-page-well" >
+	<h2 class = "logs-take-input" >
+<%= @stories.empty? ? 'Stories List : There are currently no stories to be viewed.' : 'Stories list' %></h2>
+	<ul class="nav nav-list" >
+	  <li class="divider"></li>
+
+	</ul>
+
+	<div class="pre-scrollable">
+	  <% @stories.each do |story| %>
+	  <div >
+            <span class="yellowbadge"><%=Interest.find(story.interest_id).name%></span>
+	    <h3><%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "story-component-button-absolute btn btn-primary") %></h3>
+
+	    <h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
+	    <div class="pre-scrollable">
+		<h6 class ="story-body story-page-well"><%=raw story.content %></h6>
+  	    </div>
+	  </div>
+          <%end%>
+	</div>
+      </div>
+
+
+      <footer style="clear:both;">
+      <hr>
+        <p>© Smartsoft-2012</p>
+      </footer>
+
+    </div>
+</html>

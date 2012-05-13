@@ -230,6 +230,11 @@ end
     # string = params[:query]
     # @user = User.find(session[:user_id])
   end 
+  #Author: Bassem
+  def deactivate
+    User.find_by_id(params[:id]).deactivated = true
+    respond_with true
+  end
 
   #method that calls the method in model to block story and renders the view
   #Author: Rana
