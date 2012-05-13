@@ -14,10 +14,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, 
       :twitter_account, :twitter_request, :image
-  has_many :friends, :through => :friends, :conditions => "status = '2'"
-  has_many :requested_friends, :through => :friends, :source => :friend, :conditions => "stat = '1'"
-  has_many :pending_friends, :through => :friends, :source => :friend, :conditions => "stat = '0'"
-  has_many :friendships, :dependent => :destroy
   has_many :comments
   has_many :comment_up_downs
   # stat 0 pending
