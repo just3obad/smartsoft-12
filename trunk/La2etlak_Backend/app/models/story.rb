@@ -194,4 +194,15 @@ def view_friends_dislike(user)
     Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 '''
 end
+  #Author : Kareem
+ def check_like
+   user = current_user
+   action = Likedislike.find(:all , :conditions => ["story_id = ? AND user_id = ? AND action = ?", self.id, user.id , "1"])
+ end
+ #Author : Kareem
+ def check_dislike
+   user = current_user
+    action = Likedislike.find(:all , :conditions => ["story_id = ? AND user_id = ? AND action = ?", self.id, user.id , "-1"])
+ end
+
 end
