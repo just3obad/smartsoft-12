@@ -87,6 +87,8 @@ class UsersControllerTest < ActionController::TestCase
 		
 		user = User.new
 		user.email = "abc@abc.com"
+		user.password = "123456"
+		user.password_confirmation = "123456"
 		user.save
 		assert get(:toggle , {'user' => user})
 
@@ -94,7 +96,11 @@ class UsersControllerTest < ActionController::TestCase
 
   # Author: Omar
   test "add selected interest in database" do
-     user = User.create(:email => "a@abc.com")	
+     user = User.new
+	user.email = "abc@abc.com"
+	user.password = "123456"
+	user.password_confirmation = "123456"
+	user.save
      interest = Array.new
      interest1 = Interest.create(:name => "interest 1")
      interest2 = Interest.create(:name => "interest 2")
