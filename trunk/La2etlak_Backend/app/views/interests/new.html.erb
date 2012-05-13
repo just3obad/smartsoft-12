@@ -67,7 +67,7 @@ var $j = jQuery.noConflict();
 	            <div class="modal-body">
 				
 	
-<%= form_for(@interest) do |f| %>
+<%= form_for @interest, :html => { :multipart => true } do |f| %>
  
  <%= render 'shared/error_messages' %>
 
@@ -84,12 +84,12 @@ var $j = jQuery.noConflict();
 
 
 
-
-    <%= f.label :image,"Image:",  :class => "logs-take-input "  %><br />
-    <%= f.text_field :image,  :placeholder => "Insert Image URL"%><br/><br/>
+    <! The field of the browse to upload the image from the Admin's Computer >
+           <%= f.label :photo, "Image:",  :class => "logs-take-input " %>
+           <%= f.file_field :photo %><br /><br />
  
 
-
+      
 
 
 <%= f.submit "Submit" , class:"span2 btn-large btn btn-primary"%>
