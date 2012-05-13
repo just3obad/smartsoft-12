@@ -1,4 +1,15 @@
 NokiaRuby::Application.routes.draw do
+
+	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
+	match "requestToken" => "user_sessions#requestToken"
+	match "login" => "user_sessions#login_with_token"
+	match "register" => "users#register"
+	match "dummyLogin" => "users#dummyLogin"
+	match "users/test" => "users#test"
+	match "users/test_2" => "users#test_2"
+	resources :user_sessions
+	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
+
   match "users/:id/profile" => "users#profile"
   match "h_accounts/:id/profile" => "h_accounts#profile"
   match "users/:id/stories" => "users#feed"
@@ -11,7 +22,7 @@ NokiaRuby::Application.routes.draw do
   match 'users/block_interest' => 'users#block_interest'
   match "users/index" => "users#index"
   match "/users/new" => "users#create", :as => :create
-  #match "users/:id" => "users#show"
+  match "users/:id" => "users#show"
   match "/h_accounts/create" => "h_accounts#create", :as => :create
   match "user_add_interests/interests" => "user_add_interests#getinterests"  
   match "flags/flag" => "flags#flag"
@@ -27,20 +38,12 @@ NokiaRuby::Application.routes.draw do
   match "h_accounts/verify" => "verification_codes#verify"
   match "h_accounts/:id/resend" => "verification_codes#resend"
   match "h_accounts" => "h_accounts#index"
-  #match "/users/:id" => "users#feed"
+  match "/users/:id" => "users#feed"
   match "/admins/search" => "admins#search"
 
   match "/interests/list"  => "interests#new", :as => :new
 
-	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
-	match "requestToken" => "user_sessions#requestToken"
-	match "login" => "user_sessions#login_with_token"
-	match "register" => "users#register"
-	match "dummyLogin" => "users#dummyLogin"
-	match "users/test" => "users#test"
-	match "users/test_2" => "users#test_2"
-	resources :user_sessions
-	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
+
 
   # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
   match "users/twitter/generate_request_token" => "users#generate_request_token"
