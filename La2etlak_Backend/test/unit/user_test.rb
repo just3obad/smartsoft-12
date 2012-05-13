@@ -276,6 +276,16 @@ class UserTest < ActiveSupport::TestCase
       end
     end
 
+    #Author: Rana
+   test "user wants to block friend feed RED" do
+      this_user = User.create :name => "amr", :email => "amr@abc.com", :password =>"123456", :password_confirmation => "123456"
+      my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com", :password =>"123498", :password_confirmation => "123498"
+      this_user.invite my_friend
+      my_friend.approve this_user
+      assert_equal('Friend blocked successfully.', this_user.block_friends_feed1(my_friend))
+      assert_equal('Friend already blocked.', this_user.block_friends_feed1(my_friend))
+    end
+
   #Author : 3OBAD
   test "flickr account RED" do
     user = User.new
