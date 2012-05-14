@@ -64,8 +64,8 @@ end
 ########################
 
 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$ Author Omar $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#this method return current user interests and all interests on the system and render to mobile_template (toggle view 
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$ Author Omar  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+#this method return current user interests and all interests on the system and render to mobile_template (toggle view )
 def toggle
 @user = current_user
 @user_interests = @user.user_interests
@@ -73,21 +73,12 @@ def toggle
 render :layout => "mobile_template"
 end
 
-#this method adds selected interests into UserAddInterest table in the database
-def user_add_interests
-@user = current_user
-@interests = params[:interests]
-interestsss = UserAddInterest.find_all_by_user_id(@user.id)
- interestsss.each do |t|
- t.destroy
- end
- if @interests != nil 
-@interests.each do |element|
-  @intid = element
-  UserAddInterest.create(user_id:@user.id , interest_id:@intid)
-end
-end
-render :layout => "mobile_template"
+# updates user interests according what the user selects  na dredirect to the same view toggle to update voew of interests
+def int_toggle
+user = current_user
+id = params[:id]
+user.toggle_interests(id)
+ redirect_to "/users/toggle"
 end
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
