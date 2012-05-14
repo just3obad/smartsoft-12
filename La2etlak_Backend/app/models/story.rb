@@ -100,6 +100,8 @@ include StoriesHelper
     return likers
   end
   
+  
+  #Author: Lydia
   '''
   This method returns a list of users who disliked a certain story
   '''
