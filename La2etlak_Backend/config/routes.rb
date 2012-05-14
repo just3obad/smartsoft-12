@@ -157,7 +157,9 @@ NokiaRuby::Application.routes.draw do
 #LogFiles
   
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
-  match '/force_reset_password/:id', to: 'users#force_reset_password'
+  match '/users/force_reset_password/:id', to: 'users#force_reset_password'
+  get '/admin_settings', to: 'admin_settings#show'
+  post '/admin_settings', to: 'admin_settings#configure_flags_threshold'
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
 
   # The priority is based upon order of creation:

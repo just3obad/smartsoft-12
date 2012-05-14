@@ -135,11 +135,11 @@ def fetch_rss(link)
 
     #if it is a new story, it will enter automatically
     if count_of_stories_with_same_title == 0
-    
+    puts '#######################################################1'
       storynow = Story.new(:title => stitle, :rank => 0, :category => "RSS", :deleted => false, :hidden => false, :interest_id => 	  sinterest, :media_link => "")
 	end
 
-
+    puts '######################################################2'
       storynow.content = sdescription
       storynow.save
 
@@ -149,6 +149,7 @@ def fetch_rss(link)
 
       listOfStories.append(storynow)
     else
+      puts '#######################################################3'
       #if the story exists in the database it will enter the array without modifications
 
       storynow = Story.find_by_title(stitle)

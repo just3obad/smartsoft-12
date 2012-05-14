@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/thoughtbot/paperclip.git
+  revision: d6a3a712dbf13b81be58145f0f69d7c2d3b09be7
+  specs:
+    paperclip (3.0.3)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (>= 0.0.2)
+      mime-types
+
+GIT
   remote: https://github.com/dblock/to_xls.git
   revision: c7ef31174947b7b1459b0bb7bda3dd43f83aaa64
   branch: to-xls-on-models
@@ -46,6 +57,7 @@ GEM
       activerecord (>= 3.0.7)
     bootstrap-sass (2.0.2)
     builder (3.0.0)
+    cocaine (0.2.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -167,6 +179,7 @@ DEPENDENCIES
   jquery-rails
   minitest
   oauth
+  paperclip!
   rails (= 3.2.3)
   random_data
   sass-rails (~> 3.2.3)
