@@ -21,7 +21,7 @@ NokiaRuby::Application.routes.draw do
 # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$
   match "/stories/:id/get" => "stories#get"
   match "users/toggle" => "users#toggle"   
-  match "users/user_add_interests" => "users#user_add_interests"
+  match "users/int_toggle" => "users#int_toggle"
 # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$ 
 
 
