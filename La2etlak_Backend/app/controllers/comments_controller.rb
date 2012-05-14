@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to :controller => "stories", :action => "mobile_show" , :id => @comment.story.id
     else
-      flash[:notice] = "Please enter something"
+      flash[:notice] = "Please enter something red"
       redirect_to :controller => "stories", :action => "mobile_show" , :id => params[:comment][:story_id]
     end
   end
