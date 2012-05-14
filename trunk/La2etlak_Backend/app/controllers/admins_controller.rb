@@ -2,7 +2,7 @@ class AdminsController < ApplicationController
 
   def search
     if params[:autocomplete][:query].length > 0
-      $users = Admin.search(params[:query])
+      $users = Admin.search(params[:autocomplete][:query])
       if $users.length == 0
         $users = "There are no matching results."
       end
