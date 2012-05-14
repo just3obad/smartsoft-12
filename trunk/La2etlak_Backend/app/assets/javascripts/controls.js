@@ -214,8 +214,8 @@ Autocompleter.Base = Class.create({
   },
 
   markPrevious: function() {
-    if(this.index > 0) this.index--;
-      else 	this.hide();this.active = false;    this.hasFocus = false;
+    if(this.index > 0) {this.index--;}
+      else	{this.hide(); this.active = false;    this.hasFocus = false;}
   },
 
   markNext: function() {
