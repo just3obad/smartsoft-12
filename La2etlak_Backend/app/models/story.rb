@@ -121,7 +121,7 @@ include StoriesHelper
 	dislikes_of_user	= Likedislike.where(:story_id => self.id, :action => -1)
 	likes_of_story 		= Likedislike.where(:story_id => self.id, :action => 1)
 	flags_of_story 		= Flag.where(:story_id => self.id)
-	sum 				= (comments_on_story.length * 2) + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
+	sum 				= comments_on_story.length + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
 						(dislikes_of_story.length * 2) - (flags_of_story.length * 5)
 	return sum
   end
@@ -133,7 +133,7 @@ include StoriesHelper
 	dislikes_of_user	= Likedislike.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id, :action => -1)
 	likes_of_story 		= Likedislike.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id, :action => 1)
 	flags_of_story 		= Flag.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id)
-	sum 				= (comments_on_story.length * 2) + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
+	sum 				= comments_on_story.length + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
 						(dislikes_of_story.length * 2) - (flags_of_story.length * 5)
 	return sum
   end
