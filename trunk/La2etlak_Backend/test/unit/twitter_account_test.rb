@@ -4,13 +4,7 @@ class TwitterAccountTest < ActiveSupport::TestCase
 
   # author : Yahia
   test "should not be able to add a twitter account without oauth token" do 
-    user = User.new
-    user.name = 'user1'
-    user.email  = 'user@gmail.com'
-    # user.password = 'password'
-    # user.password_confirmation = 'password!!!'
-    user.save
-    # user = users(:one)
+    user = users(:ben)
     t_account = TwitterAccount.new
     t_account.auth_secret = 'asdfadsf'
     t_account.user = user 
@@ -19,13 +13,7 @@ class TwitterAccountTest < ActiveSupport::TestCase
 
   # author : Yahia
   test "should not be able to add a twitter account without oauth secret" do 
-    user = User.new
-    user.name = 'user1'
-    user.email  = 'user@gmail.com'
-    # user.password = 'password'
-    # user.password_confirmation = 'password!!!'
-    user.save
-    # user = users(:one)
+    user = users(:ben)
     t_account = TwitterAccount.new
     t_account.auth_token = 'asdfadsf'
     t_account.user = user 
@@ -43,13 +31,7 @@ class TwitterAccountTest < ActiveSupport::TestCase
   end 
 
   test "should be able to add a twitter account" do 
-    user = User.new
-    user.name = 'user1'
-    user.email  = 'user@gmail.com'
-    # user.password = 'password'
-    # user.password_confirmation = 'password!!!'
-    user.save
-    # user = users(:one)
+    user = users(:ben)
     t_account = TwitterAccount.new
     t_account.auth_token = 'asdfadsf'
     t_account.auth_secret = 'asadfasdf'
