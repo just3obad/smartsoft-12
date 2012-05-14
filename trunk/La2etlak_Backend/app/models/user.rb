@@ -430,21 +430,20 @@ end
 
  #Author Kareem
   def thumb_story(story,act)
-  f = "nil"
    thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
         if thumped.empty? 
         Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
-   f = "thumbed"
+   puts "Thump"
     
     elsif (thumped[0].action == act) 
-           f="Already"
+           puts "Already"
   
   elsif (thumped[0].action != act) 
     Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
      Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )  
-    f = "Removed _thumbed"
+    puts "Removed _thumbed"
   end
-return f
+
 end
 
 #Author :Kareem

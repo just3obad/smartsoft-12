@@ -4,7 +4,7 @@
      <h2>Select an Interest</h2>
     
        <% @interests.each do |interest| %>
-	<%=button_to(interest,{:controller => "users", :action => "feed", :id => @id , :interest => interest} , {:class => "btn"})%>
+	<%=button_to(interest,{:controller => "users", :action => "feed", :id => @user.id , :interest => interest} , {:class => "btn"})%>
         <%end%>
     
 	<%else%>

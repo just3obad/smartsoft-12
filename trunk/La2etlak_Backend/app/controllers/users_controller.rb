@@ -46,20 +46,19 @@ class UsersController < ApplicationController
 
 #Author Kareem###############
 def feed
- #$$$$$$$$ Mina Adel $$$$$$$$$$$$$
- user = current_user
- #$$$$$$$$ Mina Adel $$$$$$$$$$$$$
- int_name = params[:interest]
-    if(int_name)
-     @stories = user.get_feed(int_name)
-	else
-	@stories =  user.get_feed("null")
-end
-respond_to do |format|
-   format.json { render json: @stories }
-   # Author : Mina Adel
-   format.html { render :layout => "mobile_template"}
-   #
+
+ 	user = current_user
+ 	int_name = params[:interest]
+   	 if(int_name)
+    	 @stories = user.get_feed(int_name)
+	 else
+	 @stories =  user.get_feed("null")
+	end
+	 respond_to do |format|
+    	 format.json { render json: @stories }
+   	 # Author : Mina Adel
+  	 format.html { render :layout => "mobile_template"}
+  	 #
  end
 end
 ########################
