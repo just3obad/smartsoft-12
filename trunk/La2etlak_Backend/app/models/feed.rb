@@ -13,6 +13,4 @@ class Feed < ActiveRecord::Base
 
 #interest _id should be there to create the RSS feed 
   validates :interest_id, :presence => true
-
-
 end
