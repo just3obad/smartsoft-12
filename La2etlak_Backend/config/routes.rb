@@ -32,6 +32,10 @@ NokiaRuby::Application.routes.draw do
   match 'users/block_friends_feed/:id' => 'users#block_friends_feed'
   match 'users/friends_feed/:fname' => 'users#friends_feed'
         # $$$$$$$$$$$$$$ RANA $$$$$$$$$$$$$$$$$$$$$$$$$
+        
+  #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
+  match "users/main_feed" => "users#feed"
+  #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
   match "users/index" => "users#index"
   match "/users/new" => "users#create", :as => :create
   match "users/:id" => "users#show"
@@ -110,12 +114,7 @@ NokiaRuby::Application.routes.draw do
   match "check" => "verification_codes#check"
 
   #match "/feeds/:id" => "feeds#create"
-  #match "/feeds/delete/:id" => "feeds#destroy"
-  
-  #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
-  match "users/:id/main_feed" => "users#feed"
-  #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
-  
+  #match "/feeds/delete/:id" => "feeds#destroy"  
  
  
   match "user/:id/friendship/invite" => "user_friend#invite"

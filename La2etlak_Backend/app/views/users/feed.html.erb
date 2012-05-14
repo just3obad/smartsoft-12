@@ -1,5 +1,5 @@
-	<% unless @stories_list.nil? %>
-	<% @stories_list.each do |f| %>
+	<% unless @stories.nil? %>
+	<% @stories.each do |f| %>
 <div class="story-component-box-mobile">
 	<table class="table" width="200">
 		<tr>
@@ -19,8 +19,17 @@
 		</td>
 		<td rowspan="2">
 			<table>
-				<tr><td><%= f.title%></td></tr>
+				<%if f.title.length > 20 %>
+				<% url = "/stories/"+f.id.to_s+"/get" %>
+				<tr><td><%= link_to(f.title[0..20] , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+				<%else%>
+				<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+				<%end%>
+				<%if f.content.length > 20 %>
+				<tr><td><%= f.content[0..20]+"..."%></td></tr>
+				<%else%>
 				<tr><td><%= f.content%></td></tr>
+				<%end%>
 			</table>
 		</td>
 	</tr>

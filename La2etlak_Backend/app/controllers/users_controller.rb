@@ -46,8 +46,9 @@ class UsersController < ApplicationController
 
 #Author Kareem###############
 def feed
-@id=params[:id]
- user = User.find(@id)
+ #$$$$$$$$ Mina Adel $$$$$$$$$$$$$
+ user = current_user
+ #$$$$$$$$ Mina Adel $$$$$$$$$$$$$
  int_name = params[:interest]
     if(int_name)
      @stories = user.get_feed(int_name)
