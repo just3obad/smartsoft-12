@@ -182,13 +182,11 @@ def view_friends_dislike(user)
 '''
 end
   #Author : Kareem
- def check_like
-   user = current_user
+ def check_like(user)
    action = Likedislike.find(:all , :conditions => ["story_id = ? AND user_id = ? AND action = ?", self.id, user.id , "1"])
  end
  #Author : Kareem
- def check_dislike
-   user = current_user
+ def check_dislike(user)
     action = Likedislike.find(:all , :conditions => ["story_id = ? AND user_id = ? AND action = ?", self.id, user.id , "-1"])
  end
 
