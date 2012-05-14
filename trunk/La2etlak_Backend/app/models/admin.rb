@@ -1,7 +1,10 @@
 class Admin < ActiveRecord::Base
-  # attr_accessible :title, :body
-require "net/http"
+    acts_as_authentic
 
+
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation
+
+require "net/http"
   $NAME = /([a-zA-Z]+)(.*)/
   $USERNAME = /(\w+)(.*)/
   $EMAIL = /((?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+)(.*)/

@@ -15,7 +15,20 @@ class AdminsController < ApplicationController
       format.json { render json: $users }
     end
   end
+  
+  def new
+  @admin = Admin.new
+  end
 
+  def create
+    @admin = Admin.new(params[:admin])
+    if @admin.save
+      flash[:notice] = "Registration successful."
+      redirect_to(admins/login)
+    else
+      render :action => 'new'
+    end
+  end
   def index
   end
 end
