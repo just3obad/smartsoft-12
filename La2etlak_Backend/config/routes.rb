@@ -88,7 +88,17 @@ NokiaRuby::Application.routes.draw do
   match "twitter_accounts/delete" => "twitter_accounts#remove_twitter_account"
   match "twitter_accounts/exists" => "twitter_accounts#exists?"
   match "users/mob/connect_network" => "users#connect_social_accounts"
-  # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
+
+  match "user/:id/friendship/invite" => "user_friend#invite"
+  match "user/:id/friendship/approve" => "user_friend#approve"
+  match "user/:id/friendship/pending" => "user_friend#pending_invited_by"
+  match "user/:id/friendship/friends" => "user_friend#friends"
+  match "user/:id/friendship/checkFriends" => "user_friend#friends_with?"
+  match "user/:id/friendship/removeFriend" => "user_friend#remove_friendship"
+  match "user/:id/friendship/block" => "user_friend#block"
+  match "user/:id/friendship/unblock" => "user_friend#unblock"
+  match "user/:id/friendship/totalfriends" => "user_friend#total_friends"
+  # $$$$$$$$$$$$$$  YAHIA  END $$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$  MENISY $$$$$$$$$$$$$$$$$$$$$$$
   match "stories/:id/comments/new" => "stories#create_comment"
@@ -127,15 +137,6 @@ NokiaRuby::Application.routes.draw do
   #match "/feeds/delete/:id" => "feeds#destroy"  
  
  
-  match "user/:id/friendship/invite" => "user_friend#invite"
-  match "user/:id/friendship/approve" => "user_friend#approve"
-  match "user/:id/friendship/pending" => "user_friend#pending_invited_by"
-  match "user/:id/friendship/friends" => "user_friend#friends"
-  match "user/:id/friendship/checkFriends" => "user_friend#friends_with?"
-  match "user/:id/friendship/removeFriend" => "user_friend#remove_friendship"
-  match "user/:id/friendship/block" => "user_friend#block"
-  match "user/:id/friendship/unblock" => "user_friend#unblock"
-  match "user/:id/friendship/totalfriends" => "user_friend#total_friends"
   
   
 
