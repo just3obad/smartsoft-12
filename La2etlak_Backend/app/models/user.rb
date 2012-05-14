@@ -523,20 +523,21 @@ end
 
 #Author : Shafei
 	def get_users_ranking
-	'''	all_users 		= User.*
+		all_users 		= User.*
 		rank 			= Array.new
-		max = 0
-		id
+		id_array		= Array.new
+		max				= 0
+		id				= 999999
 		for i in 0...(all_users.length - 1)
 			for j in 0...(all_users.length - 1)
-				if all_users[j].get_user_rank >= max
+				if all_users[j].get_user_rank >= max && array_id.exist(id) == false
 					max = all_users[j].get_user_rank
-					id = j+1
+					id = all_users[j].id
 				end
 			end
-			all_users.delete_if{|k| == max}
+			array_id >> id
 			rank << all_users[id]
-		end '''
+		end 
 	end
 
 
