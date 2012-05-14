@@ -90,15 +90,16 @@ require "net/http"
 
     return query_result.to_a
   end
-  
+  #this method is used to get the main feed
   def self.get_feed
    item1 = Interest.order("created_at DESC").where("created_at < ?",30.days.from_now)
    item2 = Story.order("created_at DESC").where("created_at < ?",30.days.from_now)
    item = item1+item2
    $newsfeed = item.sort_by { |obj| obj.created_at }.reverse
+   puts $newsfeed
   end
-  
-  #this methos is used to update the main feed on spot.
+
+  #this method is used to update the main feed on spot.
   def self.push_notifications (channel,data)
     begin
        message = {:channel => channel, :data => data}
