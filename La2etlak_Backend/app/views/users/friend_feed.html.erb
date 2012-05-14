@@ -1,0 +1,63 @@
+<div id = "heading" style="padding-left:5px;color:#0000FF;font-size:5px;">
+<%@friend = User.find_by_id(@friend_id)
+   if !(@friend.name.nil?) & @friend.name != ""
+      @username = @friend.name
+   else
+      @username = @friend.email
+  end%>
+<p>Friend Info</p>
+<p><%= "Name: #{@username}"%></p>
+<p><%= "Email: #{@friend.email}"%></p><br><br>
+<p>Friend Feed</p>
+<% if @my_friend_stories.size == 0 %>
+      <p>"This user did not share any stories yet!"</p><br>
+ <%end%>
+</div>
+<% unless @my_friend_stories.nil? %>
+	<% @my_friend_stories.each do |f| %>
+<div class="story-component-box-mobile">
+	<table class="table" width="200">
+		<tr>
+			<td rowspan="2">
+			<% @all = "img src=" %>
+			<% @url_start = "http://" %>
+			<% @url_end = "\" " %>
+
+			<% if f.content =~ /#{@url_regex}/ %>
+				<% @allstart = f.content.index(@all)%>
+				<% @start = f.content.index(@url_start)%>
+				<% @end = f.content.index(@url_end) %>
+				<% @media = f.content[ @start.to_i , @end.to_i-10] %>
+				<% @allmedia = f.content[@all.to_i , @end.to_i+1]%>
+			<%end%>
+			<img id="topic" src="<%=@media%>" width="50"/>
+		</td>
+		<td rowspan="2">
+			<table>
+				<%if f.title.length > 20 %>
+				<% url = "/stories/"+f.id.to_s+"/get" %>
+				<tr><td><%= link_to(f.title[0..20] , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+				<%else%>
+				<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+				<%end%>
+				<%if !(f.content.nil?) && f.content.length > 20 %>
+				<tr><td><%= f.content[0..20]+"..."%></td></tr>
+				<%else%>
+				<tr><td><%= f.content%></td></tr>
+				<%end%>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</div>
+	<%end%>
+	<%end%>
+<div id = "block">
+<%= link_to "Block this friend", 
+{:controller => 'users', :action => 'block_friends_feed', :id => @friend_id}, 
+class: "user-component-button-absolute btn span2"%><br><br>
+</div>
+<div id = "back">
+<%= link_to "Back", 
+{:controller => 'users', :action => 'friends_list', :id => @user.id}, 
+class: "user-component-button-absolute btn span2"%>
