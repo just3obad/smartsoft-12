@@ -14,6 +14,7 @@ gem "to_xls", :git => "https://github.com/dblock/to_xls.git", :branch => "to-xls
 gem 'amistad'
 gem 'authlogic'
 gem 'faye'
+gem 'thin'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
