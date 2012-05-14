@@ -115,10 +115,10 @@
    &nbsp;
 <!-- I create the facebook sharer url with the media link, then I put it into the url part of the button -->
   <% facebook_url = "https://www.facebook.com/sharer/sharer.php?u="+@story.media_link%>
-    <a href=<%=facebook_url%>><img src = "http://www.simplyzesty.com/wp-content/uploads/2011/12/facebook-logo.png" height="30" width="30"></a>
+    <a href=<%=facebook_url%>><img src = "http://dcbdluf1ahqio.cloudfront.net/facebook/32x32.png" height="30" width="30"></a>
   <!-- I create the twitter sharer url with the media link along with the message "Shared via La2etlak Nokia App", then I put it into the url part of the button -->
 	<% twitter_url = "http://twitter.com/intent/tweet?url="+@story.media_link+"&text=Shared%20via%20La2etlak%20Nokia%20App" %>
-    <a href=<%=twitter_url%>><img src = "http://1.1.1.1/bmi/telebrandstheblog.com/wp-content/uploads/Twitter-Logo1.png" height="30" width="30"></a>
+    <a href=<%=twitter_url%>><img src = "http://dcbdluf1ahqio.cloudfront.net/twitter/32x32.png" height="30" width="30"></a>
   <!-- This is a link to the share controller, which calls the method user_share_story with a the story id as a parameter -->
     <%= link_to("La2etlak" , {:controller => 'shares', :action => 'user_share_story', :id => @story.id} )%></br>
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
