@@ -16,6 +16,8 @@ class FriendshipsController < ApplicationController
     if @friendship_created
       # flash.now[:notice] = "Friendship invitation created  #{@friend.email}"
       render layout: 'mobile_template', text: "Friendship invitation created  #{@friend.email}"
+    else 
+      render layout: 'mobile_template', text: "COUDN'T Friendship invitation created  #{@friend.email}"
     end
   end
 
@@ -42,4 +44,13 @@ class FriendshipsController < ApplicationController
       render layout: 'mobile_template', text: "Friendship removed  #{@friend.email}"
     end
   end
+
+  # Author: Yahia
+  def search
+    @user = current_user
+    @query = params[:query]
+    @resulted_users = Admin.search_user(@query)
+    @resulted_users.delete @user
+    render layout: 'mobile_template'
+  end 
 end 

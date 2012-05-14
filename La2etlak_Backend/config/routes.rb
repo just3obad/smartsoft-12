@@ -94,6 +94,11 @@ NokiaRuby::Application.routes.draw do
   match "twitter_accounts/delete" => "twitter_accounts#remove_twitter_account"
   match "twitter_accounts/exists" => "twitter_accounts#exists?"
   match "users/mob/connect_network" => "users#connect_social_accounts"
+  match "users/friendship/search/:query" => "friendships#search"
+  match "users/friendship/create/:friend_id" => "friendships#create"
+  match "users/friendship/reject/:friend_id" => "friendships#remove"
+  match "users/friendship/block/:friend_id" => "friendships#block"
+  match "users/friendship/pending" => "friendships#pending"
   # $$$$$$$$$$$$$$  YAHIA  END $$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$  MENISY $$$$$$$$$$$$$$$$$$$$$$$
