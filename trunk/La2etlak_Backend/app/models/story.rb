@@ -87,6 +87,7 @@ include StoriesHelper
     end
   end
   
+  #Author: Lydia
   '''
   This method returns a list of users who liked a certain story
   '''
