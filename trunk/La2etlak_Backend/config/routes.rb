@@ -67,7 +67,12 @@ NokiaRuby::Application.routes.draw do
   match "h_accounts/:id/resend" => "verification_codes#resend"
   match "h_accounts" => "h_accounts#index"
   match "/users/:id" => "users#feed"
+  
+  #Author: Lydia############
   match "/admins/search" => "admins#search"
+  match "/admins/all_results" => "admins#all_results"
+  match "/admins/filter" => "admins#filter"
+  ##########################
 
   match "/interests/list"  => "interests#new", :as => :new
 
