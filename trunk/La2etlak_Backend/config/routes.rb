@@ -1,5 +1,12 @@
 NokiaRuby::Application.routes.draw do
 
+ # ~~~~~~~~~~~~~~~~ 3OBAD ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  match "users/edit" => "users#edit"
+  post "users/info/update" => "users#update"
+
+ # ~~~~~~~~~~~~~~~~ 3OBAD ~~~~~~~~~~~~~~~~~~~~~~~~
+
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 	match "requestToken" => "user_sessions#requestToken"
 	match "login" => "user_sessions#login_with_token"
@@ -19,7 +26,8 @@ NokiaRuby::Application.routes.draw do
 
 
 
-  match "users/:id/profile" => "users#profile"
+  #match "users/mobile_show/edit" => "users#edit"
+  #post  "users/mobile_show/update" => "users#update"
   match "h_accounts/:id/profile" => "h_accounts#profile"
   match "users/:id/stories" => "users#feed"
   post  "h_accounts/sign_in"
