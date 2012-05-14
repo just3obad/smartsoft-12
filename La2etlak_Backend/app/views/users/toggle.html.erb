@@ -1,8 +1,11 @@
 <html>
 	<!-- checks if there are no interests on the system -->
-	<% if @all_interests == nil %>
+	<% if @all_interests != nil %>
 	<div align="center">
 		 <font face="Courier New, Courier, monospace" COLOR="FF0000" size="3"><b>No interests on the system yet!!</b></font></br></br> 
+		 
+		 <p><a href="#" onclick="history.back();"><class: "btn btn-danger">Back</a></p>
+		 
 		</div>
   <%else%>
 
