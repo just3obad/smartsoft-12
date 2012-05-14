@@ -1,9 +1,14 @@
+<!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
+<!--This checks whether the list of stories I receive is nil or not -->
 	<% unless @stories.nil? %>
+	<!-- if not nil -->
 	<% @stories.each do |f| %>
+	<!-- I loop over the list of stories -->
 <div class="story-component-box-mobile">
 	<table class="table" width="200">
 		<tr>
 			<td rowspan="2">
+			<!-- This is supposed to be removed when Mouaz implements photo removal from the description -->
 			<% @all = "img src=" %>
 			<% @url_start = "http://" %>
 			<% @url_end = "\" " %>
@@ -15,13 +20,15 @@
 				<% @media = f.content[ @start.to_i , @end.to_i-10] %>
 				<% @allmedia = f.content[@all.to_i , @end.to_i+1]%>
 			<%end%>
+			<!-- Displaying the picture with a width of 50 -->
 			<img id="topic" src="<%=@media%>" width="50"/>
 		</td>
 		<td rowspan="2">
 			<table>
-				<%if f.title.length > 20 %>
+				<!-- Since the screen size is small, I check whether the character count is displayable in one line, or do I need to cut the sentence and put dots -->
+				<%if f.title.length > 17 %>
 				<% url = "/stories/"+f.id.to_s+"/get" %>
-				<tr><td><%= link_to(f.title[0..20] , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+				<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
 				<%else%>
 				<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
 				<%end%>
@@ -36,4 +43,10 @@
 	</table>
 	</div>
 	<%end%>
+	<%else%>
+	<!--if nil, an error message of sorts appears -->
+	<div class="story-component-box-mobile">
+		There are no stories in your feed.
+	</div>
 	<%end%>
+<!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
