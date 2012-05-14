@@ -113,10 +113,10 @@
                   <div class="well-interest-component">
                     <a href="/interests/<%= interest.id%>"
                        class="thumbnail-interest-component">
-                    <% if interest.image.nil? || interest.image == "" %>
-                      <%= image_tag "logo.jpeg", :size => "75x75" %>
+                    <% if interest.photo.file? %>
+                     <img src= "<%= interest.photo.url(:small) %>" width="75" style="height:75px"/>
                     <% else %>
-                      <img src= "<%= interest.image %>" width="75" style="height:75px"/>
+                      <%= image_tag "logo.jpeg", :size => "75x75" %>
                     <% end %>
                     </a>
                     <div class="interest-component-info">
