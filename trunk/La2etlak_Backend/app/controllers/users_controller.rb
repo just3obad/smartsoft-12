@@ -132,18 +132,6 @@ end
     end
   end
 
- 
-#Method profile : Responsible for updating the profile information about a certain user (First name , Last name , Date of Birth , Username), It updates the user`s Haccount as well (if the user wished to change his password). 
-  def edit_info
-   @user = User.find(params[:id])
-  respond_to do |format|
-      if @user.update_attributes(params[:post])
-        render :layout => "mobile_template", :template => "users/show"      
-      else
-        render :layout => "mobile_template", :template => "users/show"
-      end
-    end
-  end
 
   def index
     respond_with(@users = User.all)
@@ -269,5 +257,62 @@ end
       @text = @user.block_friends_feed1(@friend) 
       render @text
   end
+
+
+#~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
+=begin
+ ~ Method Name : edit
+ ~ Function : Responsible for rendering the view in which the user can edit his information
+=end
+
+  def edit
+    @user=current_user 
+    render layout: "mobile_template", template: "users/edit" 
+  end
+=begin
+ ~ Method : 
+ ~ Function : Responsible for updating the information of the user and notiyf him.
+   Case 1 : If the update was successful the user is notified that his information was updated successfully
+   Case 2 : If the nickname is greater than 20 chars, he will be notified of this error
+   Case 3 : If the firstname is greater than 20 chars, he will be notified of this error
+   Case 4 : If the lastname is greater than 20 chars, he will be notified of this error
+   Case 5 : If there is a password missmatch, he will be notified of this error
+   Case 6 : If the pasword is less than 4 chars, he will be notified of this error
+=end
+  def update
+   @user = current_user
+   if @user.update_attributes(params[:user])
+        flash[:notice] = "Your Info was saved successfully"
+        redirect_to action:"edit"
+   else
+    if @user.name.length>20
+         flash[:notice] = "The nickname is too long. Must be less than 20 chars"
+         redirect_to action:"edit"
+    else
+      if @user.first_name.length>20
+           flash[:notice] = "The firstname is too long. Must be less than 20 chars"
+           redirect_to action:"edit"
+      else
+        if @user.last_name.length>20
+             flash[:notice] = "The lastname is too long. Must be less than 20 chars"
+             redirect_to action:"edit"
+        else
+          if @user.password != @user.password_confirmation
+               flash[:notice] = "Password missmatch"
+               redirect_to action:"edit"
+          else
+            if @user.password.length<4
+                 flash[:notice] = "The password must be greater than 4 chars"
+                 redirect_to action:"edit"
+            end
+          end
+        end  
+      end           
+    end
+   end
+  end 
+
+#~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
+  
 
 end
