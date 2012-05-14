@@ -137,7 +137,11 @@ end
     respond_with(@users = User.all)
   end
 
- # Author: Yahia
+=begin
+  This is the method responsible of redirecting  the user to
+  the connect_social_account web page
+  Author: Yahia
+=end
   def connect_social_accounts
     # render :layout => "mobile_template"
     # FIXME  
