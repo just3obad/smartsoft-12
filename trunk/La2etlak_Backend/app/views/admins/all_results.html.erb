@@ -1,0 +1,54 @@
+<div class="container-fluid maindiv">
+	
+	<div class="row-fluid">
+	
+		<div class="right_panel">
+		<div class="well" id="searchResults">
+	
+			<h2>Search Results</h2>
+			<% @results.each do |result| %>
+	<% if result.class == User %>
+        <div class="well-user-component">
+        	<% if !(result.nil?) %>
+            <a href="/users/<%= result.id %>"class="thumbnail-user-component"><%= image_tag "logo.jpeg", :size => "75x75" %></a>
+            <div class="user-component-info">
+                <h4><%= result.first_name.nil? ? '' : result.first_name.downcase.capitalize %> <%= result.last_name.nil? ? '' : result.last_name.downcase.capitalize %></h4>
+                <h6 class ="user-component-text"><%= result.email %></h6>
+                <h6 class ="user-component-text"><%= result.name %><%=	link_to "User Statistics", {:controller=> 'statistics', :action => 'users', :id => result.id}, class: "user-component-button-absolute btn btn-primary"%> </h6>
+            <% end %>
+			</div>
+			</div>
+			<% end %>
+			
+	<% if result.class == Story %>
+	<div class="well-story-component">
+        	<% if !(result.nil?) %>
+            <a href="/stories/<%= result.id%>" class="thumbnail-story-component">
+			<%= image_tag "logo.jpeg", :size => "75x75" %></a>
+            <div class="story-component-info">
+                <h4><%= result.title.nil? ? 'No Title' : result.title.downcase.capitalize %></h4>
+                <%=	link_to "Story Statistics", {:controller=> 'statistics', :action => 'stories', :id => result.id}, class: "story-component-button-absolute btn btn-primary"%> </h6>
+            <% end %>
+            </div>
+          </div>
+	<% end %>
+	
+	<% if result.class == Interest %>
+	<div class="well-interest-component">
+        	<% if !(result.nil?) %>
+        <a href="/interests/<%= result.id%>" class="thumbnail-interest-component">
+     			  <%= image_tag "logo.jpeg", :size => "75x75" %></a>
+            <div class="interest-component-info">
+                <h4><%= result.name.nil? ? 'No Name' : result.name.downcase.capitalize %></h4>
+                <%=	link_to "Interest Statistics", {:controller=> 'statistics', :action => 'interests', :id => result.id}, class: "interest-component-button-absolute btn btn-primary"%> </h6>
+            <% end %>
+            </div>
+          </div>
+	<% end %>
+	
+	
+			<% end %>
+		</div>
+		</div>
+	</div>
+</div>

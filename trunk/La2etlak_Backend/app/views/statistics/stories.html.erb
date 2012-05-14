@@ -10,8 +10,9 @@
    
   //Also this method gets the start date of data flow from get_story_start_date 
   //method in StoriesHelper.
-
-  $(document).ready(function() {
+  var $j=jQuery.noConflict();
+  
+  $j(document).ready(function() {
       //get The story's array of arrays of data
       data= <%= @story.get_story_stat %>;
       //the graphs that we want to show

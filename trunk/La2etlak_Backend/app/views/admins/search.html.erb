@@ -1,44 +1,120 @@
-	<div class="container-fluid maindiv">
+<div class="container-fluid maindiv">
 	
 	<div class="row-fluid">
 
-	 <div class="left_panel">
+	 <div class="left_panel" id="filterPanel">
 
-			
+      <% if (not $users.nil? and $users.length > 0 and $users.class != String) or 
+      (not $stories.nil? and $stories.length > 0 and $stories.class != String) or 
+      (not $interests.nil? and $interests.length > 0 and $interests.class != String) %>
+		<%= form_tag("/admins/filter", :method => "get") %>
+	<% if not $users.nil? and $users.length > 0 and $users.class != String %>	
+			 <label class="checkbox">
+			    <input type="checkbox" value= "true" <%if( $usersSearch=='true')%>  checked <%end%>  name="users" id="users"> Users
+			  </label>
+	<% end %>
+	<% if not $stories.nil? and $stories.length > 0 and $stories.class != String %>
+			 <label class="checkbox">
+			    <input type="checkbox" value= "true"  <%if( $storiesSearch=='true')%>  checked <%end%> name="stories" id="stories"> Stories
+			  </label>
+	<% end %>
+	<% if not $interests.nil? and $interests.length > 0 and $interests.class != String %>
+			 <label class="checkbox">
+			    <input type="checkbox" value= "true" <%if( $interestsSearch=='true')%>  checked <%end%>  name="interests" id="interests"> Interests
+			  </label>
+	<% end %>	  
+			<div>
+			<input class="btn btn-primary" name="filter" type="submit" 
+						         value="Filter" />
+					
+					</div>
+						</form>	
 		
-			  
+			<% end %>  
 	    </div>
-
-
+	  <div class="right_panel" >
+	<% if $usersSearch == "true"  %>
       <% if not $users.nil? and $users.length > 0 and $users.class != String %>
-	    <div class="right_panel pre-scrollable" >
-      <div class="well">
-        <h2>Search Results</h2>
-        <% $users.each do |user| %>
+	  
+      <div class="well" id="usersSearchResults">
+        <h2>Users Search Results</h2>
+        <% $users[0..2].each do |user| %>
         <div class="well-user-component">
-            <a href="/users/<%= user.id %>"class="thumbnail-user-component"><img style="height:75px; width:75px;" src="<%= user.image %>"></a>
+        	<% if !(user.nil?) %>
+            <a href="/users/<%= user.id %>"class="thumbnail-user-component"><%= image_tag "logo.jpeg", :size => "75x75" %></a>
             <div class="user-component-info">
                 <h4><%= user.first_name.nil? ? '' : user.first_name.downcase.capitalize %> <%= user.last_name.nil? ? '' : user.last_name.downcase.capitalize %></h4>
                 <h6 class ="user-component-text"><%= user.email %></h6>
                 <h6 class ="user-component-text"><%= user.name %><%=	link_to "User Statistics", {:controller=> 'statistics', :action => 'users', :id => user.id}, class: "user-component-button-absolute btn btn-primary"%> </h6>
-            
+            <% end %>
             </div>
           </div>
         <%end%>
+        <%= link_to "View All Users Results", 
+{:controller=> 'admins', :action => 'all_results', :type => "1"}, 
+class: "btn btn-primary"%>
   </div>
-    </div>
       <% else %>
       <div class="right_panel">
-        <div class="well">
+        <div class="well" id="noSearchQuery">
             <h2><%= $users %></h2>
         </div>
       </div>
       <% end %>
-
-
+      <% end %>
+      
+      
+      <% if $storiesSearch == "true"  %>
+    <% if not $stories.nil? and $stories.length > 0 and $stories.class != String %>
+    <% if not $users.nil? and $users.length > 0 and $users.class != String %>
+      <div class="well" id="storiesSearchResults">
+        <h2>Stories Search Results</h2>
+       <% $stories[0..2].each do |story| %>
+        <div class="well-story-component">
+        	<% if !(story.nil?) %>
+            <a href="/stories/<%= story.id%>" class="thumbnail-story-component">
+			<%= image_tag "logo.jpeg", :size => "75x75" %></a>
+            <div class="story-component-info">
+                <h4><%= story.title.nil? ? 'No Title' : story.title.downcase.capitalize %></h4>
+                <%=	link_to "Story Statistics", {:controller=> 'statistics', :action => 'stories', :id => story.id}, class: "story-component-button-absolute btn btn-primary"%> </h6>
+            <% end %>
+            </div>
+          </div>
+        <%end%>
+        <%= link_to "View All Stories Results", 
+{:controller=> 'admins', :action => 'all_results', :type => "2"}, 
+class: "btn btn-primary"%>
+  </div>
+      <% end %>
+      <% end %>
+      <% end %>
+      
+      
+      <% if $interestsSearch == "true"  %>
+    <% if not $interests.nil? and $interests.length > 0 and $interests.class != String %>
+    <% if not $users.nil? and $users.length > 0 and $users.class != String %>
+      <div class="well" id="interestsSearchResults">
+        <h2>Interests Search Results</h2>
+        <% $interests[0..2].each do |interest| %>
+        <div class="well-interest-component">
+        	<% if !(interest.nil?) %>
+        <a href="/interests/<%= interest.id%>" class="thumbnail-interest-component">
+     			  <%= image_tag "logo.jpeg", :size => "75x75" %></a>
+            <div class="interest-component-info">
+                <h4><%= interest.name.nil? ? 'No Name' : interest.name.downcase.capitalize %></h4>
+                <%=	link_to "Interest Statistics", {:controller=> 'statistics', :action => 'interests', :id => interest.id}, class: "interest-component-button-absolute btn btn-primary"%> </h6>
+            <% end %>
+            </div>
+          </div>
+        <%end%>
+            
+        <%= link_to "View All Interests Results", 
+{:controller=> 'admins', :action => 'all_results', :type => "3"}, 
+class: "btn btn-primary"%>
+  </div>
+    </div>
+      <% end %>
+      <% end %>
+      <% end %>
 		</div>
-
-
-
-
-
+</div>
