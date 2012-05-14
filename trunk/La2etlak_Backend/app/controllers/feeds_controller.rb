@@ -16,10 +16,15 @@ end
     #@id1 = Feed.find(params[:id]).interest_id
     $saved
     $savedinterest = false
+    # author : Gasser
+    # Here I find the feed by the link given from the form and check if it is present in the 
+    # database or not and if it is present I give him a warning message to notify him that 
+    # this feed already exists in another interest.
     feed = Feed.find_by_link(params[:feed][:link])  
     if !feed.nil? 
       flash[:notify] = "Be Careful, You have entered this RSS Feed in another interest before."   
     end
+    # end of my code
     @feed= Feed.new(params[:feed]) #retrieving the feed from the database using the table feed parameters
     @interestid= params[:feed][:interest_id]
     if params.has_key?(:feed) and StoriesHelper.check_rss(params[:feed][:link])
