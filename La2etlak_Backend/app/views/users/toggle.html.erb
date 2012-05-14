@@ -1,0 +1,38 @@
+<html>
+	<!-- checks if there are no interests on the system -->
+	<% if @all_interests == nil %>
+	<div align="center">
+		 <font face="Courier New, Courier, monospace" COLOR="FF0000" size="3"><b>No interests on the system yet!!</b></font></br></br> 
+		</div>
+  <%else%>
+
+  <div align="center">
+     <font face="Courier New, Courier, monospace" size="3"><b>Interests</b></font></br></br>
+  </div>
+
+<!-- create check box for each interest in the system and if this interest already exists in your interests it makes the checkbox pre checked for the user -->
+   
+   <div align="center" >     
+   	<% @all_interests.each do |interest| %>
+		<%if @user_interests.include? interest.id%> 		 	
+		<%= link_to interest.name, 
+{:controller => 'users', :action => 'int_toggle',:id => interest.id }, 
+class: "btn btn-success" %></br></br>
+			<%else%>  					
+   		  <%= link_to interest.name, 
+{:controller => 'users', :action => 'int_toggle', :id => interest.id }, 
+class: "btn btn-danger"%></br></br>
+			<%end%>
+		  
+   	<%end%> 
+	</br></br>
+	</div>
+	
+	<!-- on click goes to main feed  -->
+		<div align="center" >
+			<%= link_to 'Feed' , {:controller => 'users', :action => 'feed'} , 
+class: "btn btn-success" %></br>
+		</div>
+  </div>
+  <%end%>	
+</html>
