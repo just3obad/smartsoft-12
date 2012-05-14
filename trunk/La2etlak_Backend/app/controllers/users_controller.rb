@@ -235,17 +235,18 @@ end
     @story_id = params[:id]
     @story = Story.find_by_id(@story_id)
     @text = @user.block_story1(@story)
-    render @text
+    flash[:notice] = "#{@text}"
+    redirect_to action: "feed"
   end
 
   #method that calls the method in model to block interest and renders the view
   #Author: Rana
   def block_interest
-    @user = current_user
     @story_id = params[:id]
     @story = Story.find_by_id(@story_id)
     @text = @user.block_interest1(@story)
-    render @text
+    flash[:notice] = "#{@text}"
+    redirect_to action: "feed"
   end
 
   #The method that calls the method in the model to block friend feed and renders the view
@@ -255,7 +256,25 @@ end
       @friend_id = params[:id]
       @friend = User.find_by_id(@friend_id)
       @text = @user.block_friends_feed1(@friend) 
-      render @text
+      flash[:notice] = "#{@text}"
+      redirect_to action: "feed"
+  end
+
+  #The method that calls method in the model to get friend stories and renders the view
+  #Author: Rana
+  def friends_feed
+      @user = current_user
+      @friend_id = params[:id]
+      @my_friend_stories = @user.get_one_friend_stories(@friend_id)
+      render layout:"mobile_template", template: "users/friend_feed"
+  end
+
+  #The method that calls method in the model to get the user's friends' email and renders the view
+  #Author: Rana
+  def friends_list
+      @user = current_user
+      @my_friends = @user.get_friends_email
+      render layout: "mobile_template", template: "users/friends_list"
   end
 
 
@@ -277,7 +296,6 @@ end
    Case 3 : If the firstname is greater than 20 chars, he will be notified of this error
    Case 4 : If the lastname is greater than 20 chars, he will be notified of this error
    Case 5 : If there is a password missmatch, he will be notified of this error
-   Case 6 : If the pasword is less than 4 chars, he will be notified of this error
 =end
   def update
    @user = current_user
