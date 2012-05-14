@@ -30,5 +30,6 @@ class AdminsController < ApplicationController
     end
   end
   def index
+    Admin.get_feed
   end
 end
