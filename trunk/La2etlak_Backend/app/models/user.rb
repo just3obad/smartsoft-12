@@ -541,6 +541,16 @@ end
 	end
 
 
+  
+ #Author : Omar 
+ # check if user toggle new interests the methods adds it to his interests if toggled old interest it deletes it from his interests
+ def toggle_interests(id)
+ if(UserAddInterest.find_by_interest_id(id) == nil)
+ 	UserAddInterest.create(:user_id => self.id , :interest_id => id)
+ 	else 
+ 		UserAddInterest.find_by_interest_id(id).destroy
+ 	end
+ end
  
   # Author: Omar
   # select user existing interests in our database
