@@ -1,0 +1,34 @@
+<div> 
+  <h3> Modify your info </h3>
+</div>
+
+<div style="width:95%" >
+  <table>
+    <%= form_for(:user, :url => {:action => 'update' }) do |f| %>
+    <tr> 
+      <th> Nick Name </th>
+      <td><%= f.text_field :name, :class => "modify_info_text_field" %> </td>
+    </tr>
+    <tr> 
+      <th> First Name </th>
+      <td><%= f.text_field :first_name, :class => "modify_info_text_field" %> </td>
+    </tr>
+    <tr> 
+      <th> Last Name </th>
+      <td><%= f.text_field :last_name, :class => "modify_info_text_field" %> </td>
+    </tr>
+    <tr> 
+      <th> Password </th>
+      <td><%= f.password_field :password, :class => "modify_info_text_field" %> </td>
+    </tr>
+    <tr> 
+      <th> Password Confirmation </th>
+      <td><%= f.password_field :password_confirmation, :class => "modify_info_text_field" %> </td>
+    </tr>
+  </table>
+</div>  
+
+<div class="confirm_button">
+    <%= submit_tag("Update") %>
+    <% end %>
+</div>
