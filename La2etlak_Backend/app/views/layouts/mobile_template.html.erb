@@ -18,16 +18,24 @@
         </div>
       </div>
 </header>
-<% if flash[:notice] %>
-<div class="warning-component-box-mobile" id="notification">
- <%= flash[:notice] %>
-</div>
+<% if fl = flash[:notice] %>
+  <% color = fl["red"] || fl["green"] || fl["yellow"]%>
+  <% if color %>
+    <% fl[color] = "" %>
+  <% else %>
+    <% color = "yellow" %>
+  <% end %>
+  <div class="flash-<%= color %>" id="notification">
+  <%= fl %>
+  </div>
 <% end %>
-<% if current_user.get_notifications %>
-<% s = "s" if user.get_notifications.length!=1 %>
-<div class="warning-component-box-mobile" id="notification">
- You have <%= user.get_notifications.length %> pending friendship request<%= s %>!
-</div>
+<% if current_user %>
+  <% if current_user.get_notifications %>
+    <% s = "s" if user.get_notifications.length!=1 %>
+    <div class="warning-component-box-mobile" id="notification">
+    You have <%= user.get_notifications.length %> pending friendship request<%= s %>!
+    </div>
+  <% end %>
 <% end %>
   <body>
     <%= yield %>
