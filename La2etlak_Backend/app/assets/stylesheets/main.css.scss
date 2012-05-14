@@ -56,6 +56,12 @@ padding-right:20px;
 padding-bottom:20px;
 	float:left;
 }
+.left_panel-user-profile-page{
+   width:300px;
+padding-right:20px;
+padding-bottom:20px;
+  float:left;
+}
 .right_panel{
    width:900px;
 margin-left:10px;
@@ -875,10 +881,40 @@ padding-left:20px;
 padding-bottom:20px;
 	float:left;
 }
-.admin_story_feed{
-	background-color:#e5e5e5;
+.main-user-profile-page{
+  background-color:#e5e5e5;
+  width:750px;
+  margin-left:10px;
+  padding-left:20px;
+  padding-bottom:20px;
+  #padding-top:250px;
+  float:left;
+  border:1px solid #eeeeee;
+  border:1px solid rgba(0,0,0,0.05);
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
+  box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
 }
-.control-panel{
-	margin:4px;
-	background-color:#999;
+.middle-user-profile-page-panel{
+   width:720px;
+margin-left:10px;
+padding-left:20px;
+padding-bottom:20px;
+  float:left;
+}
+.right-user-profile-page-panel{
+  
+   width:200px;
+margin-left:20px;
+#padding-top:250px;
+padding-left:20px;
+padding-bottom:20px;
+  float:left;
+}
+.user-image {
+  padding-bottom:40px;
+  height: 260px;
 }

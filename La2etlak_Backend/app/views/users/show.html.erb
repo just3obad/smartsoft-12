@@ -2,9 +2,23 @@
 
   <div class="row-fluid">
 
-    <div class="left_panel">
-      <ul class="nav nav-list left_panel ">
+    <div class="left_panel-user-profile-page">
+      <ul class="nav nav-list left_panel-user-profile-page ">
+        <div class="user-image">
+           <a href="/users/<%= @user.id%>"class="thumbnail-user-component">
+                   
+                <% if @user.image.nil? || 
+                      @user.image == "" %>
+                     <%= image_tag "logo.jpeg", :size => "250x250" %>
+                  <% else %>
+                    <img src= "<%= friend.image %>" 
+                      width="250" style="height:250px"/>
+                  <% end %> 
+           </a>
+        </div>
          <div id="user-personal-info"> 
+          <li class="nav-header">Status:-</li>
+          <li class="divider"></li>
           <li>
             <span id="is-active">
             <% if @user.deactivated %>
@@ -14,6 +28,8 @@
             <% end %>
               
           </li>
+          <li class="divider"></li>
+          <li class="nav-header">Email:-</li>
           <li class="divider"></li>
           <li>
             <span class="label label-info" id="my-email"><%= @user.email %> </span>
@@ -39,7 +55,7 @@
               <% if @logs != nil %>
               <% @logs.each do |l| %>
               <tr >
-                <td class="logs-table-row"><%= l.created_at %></td>
+                
                 <td><%=  l.message %></td>
                 <td><%=  if(l.user_id_1 != nil and l.user_id_1 != @user.id)
                   link_to User.find(l.user_id_1).name,{:controller => 'users', :action => 'show', :id => l.user_id_1 },  class: " btn btn-primary btn-danger"   
@@ -55,6 +71,7 @@
                          link_to Interest.find(l.interest_id).name,{:controller => 'interests', :action => 'show', :id => l.interest_id },  class: "btn btn-primary  btn-success" 
                     end%>
                 </td>
+                <td class="logs-table-row"><%= time_ago_in_words(l.created_at) + " ago" %></td>
               </tr>
               <% end %>
               <% end %>
@@ -69,7 +86,8 @@
               <% @friends.each do |friend| %>
                  <div class="well-user-component">
                    <a href="/users/<%= friend.id%>"class="thumbnail-user-component">
-                   <% if friend.image.nil? || 
+                   
+                <% if friend.image.nil? || 
                       friend.image == "" %>
                      <%= image_tag "logo.jpeg", :size => "75x75" %>
                   <% else %>
@@ -87,7 +105,7 @@
               <% end %>
             </div>
             <div class="tab-pane fade" id="interests">
-               <% if @interests.length == 0 %>
+                 <% if @interests.length == 0 %>
                  No interests Available.
                <% end %>
                <% @interests.each do |interest| %>
@@ -114,22 +132,26 @@
                     </div>
                   </div>
                <% end %>
-                 
             </div>
           </div>
         </div>
       </div>
       <div class="right-user-profile-page-panel">
         <ul class="nav nav-list ">
-          <%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "statistics_button") %>
+          <li class="nav-header">Go to statistics Page</li>
+          <li class="divider"></li>
+          <%= link_to('Statistics', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "statistics_button") %>
           
           <li class="divider"></li>
-          
+          <li class="nav-header">Reset the password for this user</li>
+          <li class="divider"></li>
            <%= link_to('Reset Password', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
           
           <li class="divider"></li>
+          <li class="nav-header">Ban this user</li>
+          <li class="divider"></li>
           
-           <%= link_to('Deactivate', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "deactivate_button") %>
+           <%= link_to('Ban', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "deactivate_button") %>
           
         </ul>
       </div>
