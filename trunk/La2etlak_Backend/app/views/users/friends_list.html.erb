@@ -1,0 +1,20 @@
+<div id = "heading" style="padding-left:5px;color:#0000FF;font-size:5px;">
+<%if !(@user.name.nil?) & @user.name != ""
+      @username = @user.name
+  else
+      @username = @user.email
+  end%>
+<% if @my_friends.size == 0 %>
+      <p>"You do not have any friends yet!"</p><br>
+ <%else%>
+<p><%= "Hey, #{@username}! These are your friends."%></p>
+<p>Please click one to view his/her feed.</p>
+ <%end%>
+</div>
+<div id = "list" class ="story-component-box-mobile pre-scrollable", style ="padding-left:5px;">
+<% @my_friends.each do |fn|%>
+<%= link_to fn, 
+{:controller => 'users', :action => 'friends_feed', :id => User.find_by_email(fn).id}, 
+class: "user-component-button-absolute btn span3"%><br><br>
+<%end%>
+</div>
