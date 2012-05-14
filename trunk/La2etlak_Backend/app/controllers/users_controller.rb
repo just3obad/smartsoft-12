@@ -93,8 +93,11 @@ end
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
  #Author: Christine
+ # @user is the user that we will show
+ # @logs contain recent activity of the user in the last 30 days
+ # @friends contain the list of users who are friends with our user
+ # @interests is the list of interests that the user is subscribed to
  def show
-    @user = User.find(params[:id])
     @user = User.find(params[:id])
     @logs = @user.get_recent_activity(30.days.ago)
     @friends = @user.friends
