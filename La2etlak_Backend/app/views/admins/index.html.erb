@@ -1,29 +1,94 @@
-<div class="container">
-  <div class="span3">
-    <div class="well">
-        <p>
-          <a class="btn btn-danger btn-large" href="/stories/">
-            Stories
-          </a>
-        </p>
-    </div>
-  </div>
-  <div class="span3">
-    <div class="well">
-        <p>
-          <a class="btn btn-success btn-large" href="/interests/list">
-            Interests
-          </a>
-        </p>
-    </div>
-  </div>
-  <div class="span3">
-    <div class="well">
-          <p>
-            <a class="btn btn-primary btn-large" href="/users/">
-              Users
-            </a>
-          </p>
-    </div>
-  </div>
-</div>
+<script>
+var $j = jQuery.noConflict();
+$j(function() {
+  var faye = new Faye.Client('http://localhost:9292/faye');
+faye.subscribe("/admins/index", function() {
+	$j("#feeds").load(" #feeds");
+  });
+});
+</script>
+	<div class="container-fluid maindiv">
+	
+	<div class="row-fluid">
+
+	 <div class="admin_main_left_panel">
+		 <div class="well sidebar-nav">
+	      	<ul class="nav nav-list">
+			<li class="nav-header"> Go To </li>
+			<li class="divider"></li>		
+			<li><a href="/users"><i class="icon-user"></i><font size="4">Users</font></a>
+			<li><a href="/interests/list"><i class="icon-heart"></i><font size="4">Interest</font></a>
+			<li><a href="/stories"><i class="icon-book"></i><font size="4">Stories</font></a>
+			<li class="divider"></li>
+			<li><a href="/admins/statistics/all_users"><i class="icon-user"></i><font size="4">Statistics</font></a>
+			<li><a href="/logs"><i class="icon-heart"></i><font size="4">Logs</font></a>
+			</ul>
+			</div>			  
+	 </div>
+
+	    <div class="admin_right_panel " >
+		<h2>Main Feeds</h2>
+		<div class="well pre-scrollable">
+				
+			<div id="feeds">
+			
+			  <% $newsfeed.each do |nf| %>
+				<%if (nf.kind_of?(Interest))%>
+					<%@interest = nf%>		
+						<div >
+							<% if @interest.name.nil? %>
+								<% name = "No Name Available" %>
+								<% else %>
+								<% name = @interest.name  %>
+								<%  end %>
+							<h3><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id}) %></h3>
+							<div class="well admin_story_feed">
+								<% if @interest.image.nil? || @interest.image == "" %>
+					     			  <%= image_tag "logo.jpeg" %>
+					     			  <% else %>
+					            <img src= "<%= @interest.image %>"/>
+					            		  <% end %> </a>
+							<div class="well control-panel">
+									<span class="greenbadge">Interest</span>
+									<span class="bluebadge"><%=time_ago_in_words(@interest.created_at)%></span>
+									<%= link_to "view Statistics", 
+									{:controller => 'statistics', :action => 'interests',:id => @interest.id }, 
+									class: "btn btn-primary"%>
+								
+								</div>
+							</div>
+						
+						
+						
+						
+						
+						
+						
+						
+	
+				<%else%>
+				<%story = nf%>
+				<div >
+					<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
+					<div class="well admin_story_feed">
+					<%=raw story.content %>
+					<div class="well control-panel">
+							<span class="yellowbadge">Story</span>
+								<span class="bluebadge"><%=time_ago_in_words(story.created_at)%></span>
+			<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-primary") %>
+			
+						</div>
+					</div>
+				</div>
+				<%end%>
+				<%end%>
+				</div>
+		</div>
+		
+		</div>
+	
+			
+	
+	</div>
+
+  	</div>
