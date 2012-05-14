@@ -1,0 +1,15 @@
+<div align="center">
+<% if @successflag == true %>
+<font color = "green">
+ <%= "recommendation sent successfully" %>
+<%else%>
+<font color = "red">
+ <%= "please check the email format" %>
+<%end%>
+<br>
+<br>
+<br>
+<div class="btn btn-large", id="back" align="center"> 
+<%= link_to("back",{:action => 'recommend_story_mobile_show', :id => @story} )%>
+</div>
+</div>

@@ -1,15 +1,11 @@
-<div "id=submit">
-<form action="recommend_story_mobile_show", id="recommendation">
-<select name="lemail", id="femails">
-<option value>
+<div "id=submit" align="center">
+<form action="recommend_success_mobile_show", id="recommendation">
 choose friend email
-</option>
-
+<br>
 <% @flistemail.each do |f| %>
-<option><%=f%>
-</option>
- <%end%>
-</select>
+<input type="radio" name="lemail" value=<%=f%>><%=f%>
+<br> 
+<%end%>
 <p>
 email: 
 </p>  
@@ -22,10 +18,10 @@ message:
 <br>  
 <input type="submit" name="commit" value="send" style="padding-left=200px"/>
 </form>	
-</div>
-<div class="btn btn-large", id="back"> 
+<div class="btn btn-large", id="back" align="center"> 
 <%= link_to("back",{:action => 'get', :id => @story} )%>
 </div>
-<div class="btn btn-large", id="back"> 
+<div class="btn btn-large", id="findfrind" align="center"> 
 <%= link_to("find friend",{:action => 'friends/find'} )%>
+</div>
 </div>
