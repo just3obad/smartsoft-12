@@ -207,14 +207,7 @@ end
     end 
   end 
 
-  #author: Gasser
-  def force_reset_password
-  end
-
-  # author: Gasser
-  def send_resetted_password
-  end
-
+  
   # Author: Yahia
   def search_members
     # FIXME 
