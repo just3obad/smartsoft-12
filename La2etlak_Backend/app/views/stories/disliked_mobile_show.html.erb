@@ -1,4 +1,4 @@
-<div >
+<div align="center">
 <% if @friends.empty? %>
  <%= render 'shared/logs_error_messages'%>
 <br>
@@ -13,7 +13,7 @@
 <%=f%>
 <br>
  <%end%>
-<div class="btn btn-large"> 
+<div class="btn btn-large" align="center"> 
 <%= link_to("back",{:action => 'get', :id => @story} )%>
 </div>
 <% end %>

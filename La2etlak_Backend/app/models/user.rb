@@ -112,19 +112,28 @@ end
   def get_Friend_List()   
 
   @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "kelbhaey@gmail.com", password: "123456", password_confirmation: "123456")
-  @user1.save
-  @user2=User.new( :name =>"rana", :email => "khaledelbhaey@gmail.com", password: "123456", password_confirmation: "123456")
-  @user2.save
-  @user3=User.new( :name =>"essam", :email => "essam@abc.com", password: "123456", password_confirmation: "123456")
-  @user3.save  
-  @user4=User.new( :name =>"omar", :email => "omar@abc.com", password: "123456", password_confirmation: "123456")
-  @user4.save  
+  @user1=User.new( :name =>"khaled", :email => "khaledelbhaey@yahoo.com")
+  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
   @list <<@user1 <<@user2 <<@user3 <<@user4
-  puts @list
+
   return @list
     
  end
+
+#Author: khaled.elbhaey
+
+  def has_account(mail)
+  
+  @email=mail
+  if User.find_by_email(@email).nil?
+      return false
+  else
+      return true
+  end    
+
+  end
   #dummy data to be returned until it created in sprint 2
 #Author: khaled.elbhaey
   def extract_friends(listlike)

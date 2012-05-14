@@ -109,32 +109,7 @@ def show
   def recommend_story_mobile_show()
     @storyid=params[:sid]
     @user=current_user
-    @listemail=params[:lemail]
-    @friendmail=params[:email]
-    @message=params[:message]
-    @useremail=@user.email
-    @story=Story.find_by_id(@storyid)
-    @storytit=@story.title
-    @storybod=@story.content
     @flistemail=@user.get_friends_email()
-
-puts @listemail
-puts @friendmail
-puts @message
-
-  if @friendmail==""
-
-      Emailer.recommend_story(@useremail, @listemail, @message, @storytit, @storybod).deliver
-
-  else
-    if User.find_by_email(@friendmail).nil?
-      Emailer.invite_to_app(@useremail, @friendmail, @message).deliver
-    else
-      Emailer.recommend_story(@useremail, @friendmail, @message, @storytit, @storybod).deliver
-    end
-
-  end
-
 '''
 @username = User.find(@userid).name
     @storytitle = Story.find(@storyid).title
@@ -144,9 +119,41 @@ puts @message
 
 Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
   '''
+   
+	render :layout => "mobile_template"
   end
 
+#Author=> khaled.elbhaey
+  def recommend_success_mobile_show()
+    @storyid=params[:sid]
+    @user=current_user
+    @listemail=params[:lemail]
+    @friendmail=params[:email]
+    @message=params[:message]
+    @useremail=@user.email
+    @story=Story.find_by_id(@storyid)
+    @storytit=@story.title
+    @storybod=@story.content
+    @successflag=true
+    regex = Regexp.new('^(\s*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}\s*([,]{1}[\s]*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.]+\.[azA-Z]{2,4}\s*)*)$')
+  if @friendmail==""
 
+      Emailer.recommend_story(@useremail, @listemail, @message, @storytit, @storybod).deliver
+
+  else
+    if(!@friendmail.match(regex))
+       @successflag=false
+    else
+  
+      if !@user.has_account(@friendmail)
+        Emailer.invite_to_app(@useremail, @friendmail, @message).deliver
+      else
+        Emailer.recommend_story(@useremail, @friendmail, @message, @storytit, @storybod).deliver
+      end
+       end
+  end
+   render :layout => "mobile_template"
+  end
 
 #this method returns friend emails and ids when takes the user id.
 def get_friend_id()
