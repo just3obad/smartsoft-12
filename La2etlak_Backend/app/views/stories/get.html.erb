@@ -25,21 +25,9 @@
 		<img id="toppic" src="<%=@media%>" width="220" align="center" />
 	    <%end%>
        <%end%>
-	 </div></br></br>
-	
- <div class="story-component-box-mobile pre-scrollable" style="padding-left:10px;">
- <% if @story.content != nil %>
- <% @story.content.slice!(@allmedia) %>
- <%= @story.content %>
- <%end%>
- </br></br>
- </div>
-
-
+	 </div></br>
 	<% if @story.category == "RSS" %>
-
-<!-- adding thumb up / thumb down / recommend / flag buttons -->
- <div style="padding-left:10px;">
+		<div style="padding-left:10px;">
  
  <% if @action1 == [] && @action2 == [] %>
  <a href="#"><img src = "http://img210.imageshack.us/img210/5599/likecopy.png" height="25" width="25"></a>
@@ -89,20 +77,40 @@
 
   <%end%>
 	</br>
+ 
+ <%end%>
+ 	 
+	 
+	
+ <div class="story-component-box-mobile pre-scrollable" style="padding-left:10px;">
+ <% if @story.content != nil %>
+ <% @story.content.slice!(@allmedia) %>
+ <%= @story.content %>
+ <%end%>
+ </br></br>
+ </div>
+
+
+	<% if @story.category == "RSS" %>
+
+<!-- adding thumb up / thumb down / recommend / flag buttons -->
   
-   &nbsp;<a href="#"><img src = "http://1.1.1.5/bmi/a.dryicons.com/images/icon_sets/shine_icon_set/png/256x256/comment_add.png" height="25" width="25"></a> Comment
-   <a href="#"><img src = "http://1.1.1.4/bmi/upload.wikimedia.org/wikipedia/commons/thumb/3/34/Flag_icon_red_2.svg/250px-Flag_icon_red_2.svg.png" height="20" width="25"></a> Flag </br>
-      <a href="#"><img src = "http://www.simplyzesty.com/wp-content/uploads/2011/12/facebook-logo.png" height="30" width="30"></a>
+
+   &nbsp;<a href="#"><img src = "http://www.simplyzesty.com/wp-content/uploads/2011/12/facebook-logo.png" height="30" width="30"></a>
       <a href="#"><img src = "http://1.1.1.1/bmi/telebrandstheblog.com/wp-content/uploads/Twitter-Logo1.png" height="30" width="30"></a>
-      <%=link_to('La2etlak' , {})%></br>   
-      <a href="#"><img src = "http://t1.ftcdn.net/jpg/00/31/12/18/400_F_31121846_hi50PXgc8TyWvPty0xBZ8p4XqnVRalw7.jpg" height="30" width="30"></a> Recommend 
-   <a href="#"><img src = "http://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" height="30" width="30"></a> Back
-   </br>	
-   <a href="#"><img src = "http://cdn1.iconfinder.com/data/icons/musthave/256/Cancel.png" height="25" width="20"></a> Story &nbsp
-   
-   <a href="#"><img src = "http://cdn1.iconfinder.com/data/icons/musthave/256/Cancel.png" height="25" width="20"></a> Interest </br>
-   
+      <%=link_to('La2etlak' , {})%></br>  
+
+   &nbsp;<a href="#"><img src = "http://t1.ftcdn.net/jpg/00/31/12/18/400_F_31121846_hi50PXgc8TyWvPty0xBZ8p4XqnVRalw7.jpg" height="25" width="35"></a> Recommend 
+   <a href="#"><img src = "http://1.1.1.4/bmi/upload.wikimedia.org/wikipedia/commons/thumb/3/34/Flag_icon_red_2.svg/250px-Flag_icon_red_2.svg.png" height="20" width="25"></a> Flag </br>
+ 
+	
+   	<%=link_to('Block story' , { })%> &nbsp;
+   	<%=link_to('Block interest' , { })%></br>
 	Added on <%= @story.created_at %></br></br>
+	
+	<div align="center">
+	   <a href="#"><img src = "http://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" height="30" width="50"></a></br>
+	   </div>
 	
 	<%end%>
  </div>
