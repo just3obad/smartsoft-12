@@ -93,9 +93,13 @@ end
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
+ #Author: Christine
  def show
     @user = User.find(params[:id])
-
+    @user = User.find(params[:id])
+    @logs = @user.get_recent_activity(30.days.ago)
+    @friends = @user.friends
+    @interests = @user.added_interests
     respond_to do |format|
       format.html #show.html.erb
       format.json { render json: @user }
