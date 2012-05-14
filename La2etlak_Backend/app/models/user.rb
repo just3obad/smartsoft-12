@@ -616,7 +616,6 @@ end
    
   def block_interest1(this_story)
    this_user = self
-   #this_story = Story.find_by_id(story_id)
    story_interest = this_story.interest
    check_interest =  BlockInterest.find_by_user_id_and_interest_id(this_user,story_interest)
    check_user_add_interest = UserAddInterest.find_by_user_id_and_interest_id(this_user,story_interest)
@@ -678,7 +677,7 @@ end
   #This method takes a friend as input and blocks him/her using the block method provided by the gem amistad.
   #It first checks if the friend is already blocked or not.
   #Author: Rana
-  def block_friends_feed1(my_friend) 
+  def block_friends_feed1(my_friend)
     @this_user = self
     if(!(@this_user.blocked? my_friend))
         @this_user.block (my_friend)
