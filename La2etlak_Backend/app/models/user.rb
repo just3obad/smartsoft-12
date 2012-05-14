@@ -758,4 +758,10 @@ end
 	
 	end
 
+  #get recent Activity of user from the passed start date
+  #Author: Christine
+  def get_recent_activity(start_date)
+    activities=Log.get_log_for_user(self.id,start_date.beginning_of_day)
+  end
+
 end

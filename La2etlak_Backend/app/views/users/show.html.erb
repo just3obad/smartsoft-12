@@ -1,25 +1,66 @@
-<%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "statistics_button") %>
-<%= link_to('Reset Password', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
-<%= link_to('Deactivate', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "deactivate_button") %>
-<div id="user-personal-info"> 
-	<span id="is-active">
-    <% if @user.deactivated %>
-    <%= "Non-Active" %>
-    <% else %>
-    <%= "Active" %>
-    <% end %>
-  </span>
-	<span id="my-email"><%= @user.email %> </span>
-</div>
-</div>  
-<ul id="myTab" class="nav nav-tabs">
-            <li class="active"><a href="#recentActivity" data-toggle="tab">Recent Activity</a></li>
-            <li><a href="#friends" data-toggle="tab">Friends</a></li>
-            <li><a href="#interests" data-toggle="tab">Interests</a></li>
+<div class="container-fluid maindiv">
+
+  <div class="row-fluid">
+
+    <div class="left_panel">
+      <ul class="nav nav-list left_panel ">
+         <div id="user-personal-info"> 
+          <li>
+            <span id="is-active">
+            <% if @user.deactivated %>
+              <span class="label label-info">Non-Active</span> 
+            <% else %>
+              <span class="label label-info">Active</span> 
+            <% end %>
+              
+          </li>
+          <li class="divider"></li>
+          <li>
+            <span class="label label-info" id="my-email"><%= @user.email %> </span>
+          </li>
+         </div>
+       </ul>
+     </div>
+     <div class="main-user-profile-page">
+      <div class="middle-user-profile-page-panel" >
+          <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#recentActivity" data-toggle="tab">
+              <h3 class="interest-page-text">Recent Activity </h3></a></li>
+            <li><a href="#friends" data-toggle="tab"><h3 class="interest-page-text">Friends</h3></a></li>
+            <li><a href="#interests" data-toggle="tab"><h3 class="interest-page-text">Interests</h3></a></li>
           </ul>
           <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="recentActivity">
-              <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+             <table class="table table-striped table-bordered">
+              <tbody>
+              <% if @logs == nil %>
+              No recent Activity
+              <% end %>
+              <% if @logs != nil %>
+              <% @logs.each do |l| %>
+              <tr >
+                <td class="logs-table-row"><%= l.created_at %></td>
+                <td><%=  l.message %></td>
+                <td><%=  if(l.user_id_1 != nil and l.user_id_1 != @user.id)
+                  link_to User.find(l.user_id_1).name,{:controller => 'users', :action => 'show', :id => l.user_id_1 },  class: " btn btn-primary btn-danger"   
+                   end%>
+                    <%= if(l.user_id_2 != nil and l.user_id_2 != @user.id)
+                    link_to User.find(l.user_id_2).name,{:controller => 'users', :action => 'show', :id => l.user_id_2 }, class: "btn btn-primary  btn-danger"  
+                    end%>
+              
+                    <%= if(l.story_id != nil)
+                        link_to Story.find(l.story_id).title,{:controller => 'stories', :action => 'show', :id => l.story_id },class: "btn btn-primary  btn-warning"  
+                    end%>
+                     <%= if(l.interest_id != nil)
+                         link_to Interest.find(l.interest_id).name,{:controller => 'interests', :action => 'show', :id => l.interest_id },  class: "btn btn-primary  btn-success" 
+                    end%>
+                </td>
+              </tr>
+              <% end %>
+              <% end %>
+              </tbody>
+             </table>
+             
             </div>
             <div class="tab-pane fade" id="friends">
               <% if @friends.length == 0 %>
@@ -76,6 +117,24 @@
                  
             </div>
           </div>
+        </div>
+      </div>
+      <div class="right-user-profile-page-panel">
+        <ul class="nav nav-list ">
+          <%= link_to('Go to statistics page', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "statistics_button") %>
+          
+          <li class="divider"></li>
+          
+           <%= link_to('Reset Password', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
+          
+          <li class="divider"></li>
+          
+           <%= link_to('Deactivate', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "deactivate_button") %>
+          
+        </ul>
+      </div>
+  </div>
+</div>
 
 
 
