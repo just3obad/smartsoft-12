@@ -43,6 +43,7 @@ NokiaRuby::Application.routes.draw do
         
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
   match "users/main_feed" => "users#feed"
+  match "shares/:id" => "shares#user_share_story"
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
   match "users/index" => "users#index"
   match "/users/new" => "users#create", :as => :create
