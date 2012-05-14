@@ -14,7 +14,7 @@
 	<%else%>
         <% @all = "img src=" %>
 	<% @url_start = "http://" %>
-        <% @url_end = "\" " %>
+        <% @url_end = "\"" %>
     
     	 <% if @story.content =~ /#{@url_regex}/ %>
     	    <% @allstart = @story.content.index(@all)%>
@@ -44,45 +44,48 @@
  <% if @action1 == [] && @action2 == [] %>
  <a href="#"><img src = "http://img210.imageshack.us/img210/5599/likecopy.png" height="25" width="25"></a>
  <% if @likes.length > 0 %>
- <%= @likes.length %> people like this.
+ <%= @likes.length %><%=link_to('people like this.' , { })%>
  <%else%>
  <%= "thumb up"%>
  <%end%></br>
  <a href="#"><img src = "http://img717.imageshack.us/img717/856/dislikekh.png" height="25" width="25"></a>
   <% if @dislikes.length > 0 %>
-  <%= @dislikes.length %> people dislike this.
+  <%= @dislikes.length %><%=link_to('people dislike this.' , { })%>
   <%else%>
   <%= "thumb down"%>
   <%end%>
   <%end%>
     
-  <% if @action1 != [] %>
+  <% if @action1 != [] && @action2 == [] %>
   	<% if @likes.length > 1 %>
-  	 <%= "you and "%> <%=@likes.length-1%> <%= " people like this."%>
+  	 <%= "you and "%> <%=@likes.length-1%><%=link_to('people like this.' , { })%>
   	 <%else%>
   	 <%= "you like this."%>
   	 <%end%>
  	<a href="#"><img src = "http://img717.imageshack.us/img717/856/dislikekh.png" height="25" width="25"></a>
   <% if @dislikes.length > 0 %>
-  <%= @dislikes.length %> people dislike this.
+  <%= @dislikes.length %> <%=link_to('people dislike this.' , { })%>
   <%else%>
   <%= "thumb down"%>
   <%end%>
   
   <%end%>
   
-  <% if @action2 != [] %>
-	<% if @dislikes.length > 1 %>
-  	 <%= "you and "%> <%=@dislikes.length-1%> <%= " people dislike this."%>
-  	 <%else%>
-  	 <%= "you dislike this."%>
-  	 <%end%>
+  <% if @action2 != []  && action1 == [] %>
+	
 	<a href="#"><img src = "http://img210.imageshack.us/img210/5599/likecopy.png" height="25" width="25"></a>
 	 <% if @likes.length > 0 %>
- 	<%= @likes.length %> people like this.
+ 		<%= @likes.length %> people like this.
 	 <%else%>
-	 <%= "thumb up"%>
- <%end%>
+		 <%= "thumb up"%>
+ 	<%end%>
+	
+	<% if @dislikes.length > 1 %>
+  		 <%= "you and "%> <%=@dislikes.length-1%> <%=link_to('people like this.' , { })%>
+  	 <%else%>
+  		 <%= "you dislike this."%>
+  	 <%end%>
+	
 
   <%end%>
 	</br>
