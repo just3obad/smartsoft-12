@@ -539,9 +539,6 @@ end
 		end '''
 	end
 
-  # author = Gasser
-  def reset_password
-  end
 
  
   # Author: Omar
