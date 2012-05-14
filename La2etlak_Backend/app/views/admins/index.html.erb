@@ -14,16 +14,24 @@ faye.subscribe("/admins/index", function() {
 	 <div class="admin_main_left_panel">
 		 <div class="well sidebar-nav">
 	      	<ul class="nav nav-list">
-			<li class="nav-header"> Go To </li>
+			<li class="nav-header">Directory</li>
 			<li class="divider"></li>		
 			<li><a href="/users"><i class="icon-user"></i><font size="4">Users</font></a>
 			<li><a href="/interests/list"><i class="icon-heart"></i><font size="4">Interest</font></a>
 			<li><a href="/stories"><i class="icon-book"></i><font size="4">Stories</font></a>
 			<li class="divider"></li>
-			<li><a href="/admins/statistics/all_users"><i class="icon-user"></i><font size="4">Statistics</font></a>
-			<li><a href="/logs"><i class="icon-heart"></i><font size="4">Logs</font></a>
+			<li><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4">Statistics</font></a>
+			<li><a href="/logs"><i class="icon-list"></i><font size="4">Logs</font></a>
 			</ul>
-			</div>			  
+			</div>	
+			
+				 <div class="well sidebar-nav">
+			      	<ul class="nav nav-list">
+					<li class="nav-header"> La2etlak at Glance </li>
+					<li class="divider"></li>		
+					<li>number  of users </li>
+					</ul>
+					</div>		  
 	 </div>
 
 	    <div class="admin_right_panel " >
@@ -31,7 +39,7 @@ faye.subscribe("/admins/index", function() {
 		<div class="well pre-scrollable">
 				
 			<div id="feeds">
-			
+			<%if $newsfeed != nil%>
 			  <% $newsfeed.each do |nf| %>
 				<%if (nf.kind_of?(Interest))%>
 					<%@interest = nf%>		
@@ -41,21 +49,39 @@ faye.subscribe("/admins/index", function() {
 								<% else %>
 								<% name = @interest.name  %>
 								<%  end %>
-							<h3><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id}) %></h3>
-							<div class="well admin_story_feed">
+							<font size="5"><b><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id}) %></b></font>
+								<span class="pull-left greenbadge">Interest</span>
+								<span class="pull-right bluebadge"><%=time_ago_in_words(@interest.created_at)%></span>
+							<div class="well admin_story_feed" style="float: left;">
 								<% if @interest.image.nil? || @interest.image == "" %>
-					     			  <%= image_tag "logo.jpeg" %>
+					     			  <%= image_tag "logo.jpeg"  , style: "float:left; margin-right:20px; margin-bottom:20px;" %>
 					     			  <% else %>
 					            <img src= "<%= @interest.image %>"/>
-					            		  <% end %> </a>
-							<div class="well control-panel">
-									<span class="greenbadge">Interest</span>
-									<span class="bluebadge"><%=time_ago_in_words(@interest.created_at)%></span>
+					            		  <% end %>
+					<div class"control-panel">
+									<% if !(@interest.deleted ) %>
+											<ul class="nav nav-list">
+											<li class="nav-header">Status :</li>
+											<span class="greenbadge">Active</span>
+											<% elsif @interest.deleted %>
+											<ul class="nav nav-list">
+											<li class="nav-header">Status</li>
+											<li><span class="redbadge">Blocked</span></li>
+											<% end %>
+											<li class="nav-header">Date :</li>
+											<li><h3><%= @interest.created_at.to_date %></h3></li>
+											<li class="nav-header">Description :</li>
+											<li><h3><%=if @interest.description !="" then @interest.description  else "No Description" end%></h3></li>
+											<!--	<li class="nav-header">Popularity :</li>
+										<div class="progresscustom" id="progressbar" style="display: block;">
+											 <div class="barcustom" id="barofprogress" 
+											 	style="width: <%User.count%>"></div>
+														</div>-->
+											</div>
 									<%= link_to "view Statistics", 
 									{:controller => 'statistics', :action => 'interests',:id => @interest.id }, 
-									class: "btn btn-primary"%>
+									class: "btn btn-primary btn-large" ,:style =>"float:left; clear:both;" %>
 								
-								</div>
 							</div>
 						
 						
@@ -69,21 +95,53 @@ faye.subscribe("/admins/index", function() {
 				<%else%>
 				<%story = nf%>
 				<div >
-					<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
+				<font size="3"><b><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></b></font>
+				<span class="pull-left yellowbadge">Story</span>
+				<span class="pull-right bluebadge"><%=time_ago_in_words(story.created_at)%></span>
 					<div class="well admin_story_feed">
-					<%=raw story.content %>
+					
 					<div class="well control-panel">
-							<span class="yellowbadge">Story</span>
-								<span class="bluebadge"><%=time_ago_in_words(story.created_at)%></span>
-			<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-primary") %>
-			
+						<%=raw story.content %>
 						</div>
+						
+							<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-primary") %>  			<div class="well">
+							<span class="pull-right greenbadge">Ups(<%=story.liked.length%>)</span>
+							<span class="pull-right redbadge">Downs(<%=story.disliked.length%>) </span>
+							</div>
+											<%@comments = story.comments%>
+
+							<h2 class="story-identation story-page-text">Comments</h2>
+						
+							<% if !(@comments.nil? || @comments.empty?) %>
+									<% @comments.each do |comment| %>
+										<div class="well">
+													<h3><%= User.find(comment.user_id).name %></h3>
+														<div class="comment-component-well">
+															<p><font size="2"><%= comment.content %>
+																</p>
+												</div>
+												<span class="pull-right greenbadge">  Ups  (<%=comment.get_num_ups%>)</span>
+												<span class="pull-right redbadge">Downs(<%=comment.get_num_downs%>)</span>
+										</div>
+							<%end%>
+									<%else%>
+											<p><font size="3">No comments</p>
+							<%end%>	
+						
+						
+						
+						
+						
+						
 					</div>
 				</div>
 				<%end%>
 				<%end%>
 				</div>
 		</div>
+		<%else%>
+		No Feeds to Show !!
+		<%end%>
 		
 		</div>
 	
