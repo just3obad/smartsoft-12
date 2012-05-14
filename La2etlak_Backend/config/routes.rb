@@ -33,12 +33,13 @@ NokiaRuby::Application.routes.draw do
   post  "h_accounts/sign_in"
   post  "h_accounts/password" => "h_accounts#forgot_password"
   match 'stories/get_friend_id' => 'stories#get_friend_id'
+
         # $$$$$$$$$$$$$$ RANA $$$$$$$$$$$$$$$$$$$$$$$$$ 
   match 'users/block_story/:id' => 'users#block_story'
   match 'users/block_interest/:id' => 'users#block_interest'
   match 'users/friends_list/' => 'users#friends_list'
   match 'users/block_friends_feed/:id' => 'users#block_friends_feed'
-  match 'users/friends_feed/:fname' => 'users#friends_feed'
+  match 'users/friends_feed/:id' => 'users#friends_feed'
         # $$$$$$$$$$$$$$ RANA $$$$$$$$$$$$$$$$$$$$$$$$$
         
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
