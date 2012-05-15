@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+for i in 1..10
+	pass = Random.first_name+"12345"
+	User.create(email:Random.email,password:pass,password_confirmation: pass,name:Random.first_name)
+end
