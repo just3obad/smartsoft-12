@@ -71,8 +71,17 @@ class UsersController < ApplicationController
 #new_record.save!
 #this method Passes a list of Interests ids according to the user_id to get_Stories method which should return list of stories according to these Interests and it converts it to a json file.
 
+
+
+
+#this Action generates the User main feed
+#if the User desn't have Interests the Top ranked stories on the System will appear else the Stories will appear to Him according to his Interests and in both cases the Stories shared by his Friends will be Included and Also stories From his Social Accounts
+
 #Author Kareem###############
 def feed
+  #if(user.user_add_interests == [])
+        #       @stories = Story.get_stories_ranking_last_30_days
+        #else
 
  	user = current_user
  	int_name = params[:interest]
@@ -81,11 +90,13 @@ def feed
 	 else
 	 @stories =  user.get_feed("null")
 	end
+ #@stories = @stories + user.get_friends_stories
 	 respond_to do |format|
     	 format.json { render json: @stories }
    	 # Author : Mina Adel
   	 format.html { render :layout => "mobile_template"}
   	 #
+ #end
  end
 end
 ########################
