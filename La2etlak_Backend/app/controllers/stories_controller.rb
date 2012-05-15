@@ -13,11 +13,12 @@ def show
   # dislikes=> method in model gets user who thumbed down the story
    def get
 	id = params[:id]
+	user = current_user
 	@story = Story.find(id)
 	@likes = @story.liked
 	@dislikes = @story.disliked
-	#@action1 = @story.check_like
-	#@action2 = @story.check_dislike
+	@action1 = @story.check_like(user)
+	@action2 = @story.check_dislike(user)
 	render :layout => "mobile_template"
   #render :temple => "show_comments"
   end
