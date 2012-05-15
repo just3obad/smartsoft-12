@@ -2,9 +2,12 @@ class LikedislikesController < ApplicationController
 
 respond_to :html,:json
 
-#this method is called when a user presses thump/up action the mobile App , it adds a new record to Likedislike table with the User_id  and story_id ,, if the user had thumped this story b4 and tried to thump it again the old record is Deleted and a new Record is added.
+#this Action is called when the User Hits the Thumb up/down button in the Story View  and calls the thumb_story action with the Story or the Action user made.
+#user => current logged in user
+#story => the Story which the user View
+
 def thumb
-	action = params[:action]  
+	action = params[:act]  
 	story_id = params[:sid]
 	user = current_user
 	story = Story.find(story_id)
