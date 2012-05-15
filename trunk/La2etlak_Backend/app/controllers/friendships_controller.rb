@@ -1,6 +1,9 @@
 class FriendshipsController < ApplicationController
 
-  # Author: Yahia 
+=begin
+  This is the controller responsible of indexing frineds
+  Author: Yahia 
+=end
   def index
     @user = current_user
     @friends = @user.friends
@@ -9,7 +12,9 @@ class FriendshipsController < ApplicationController
     render layout: 'mobile_template'
   end
 
-  # Author: Yahia 
+=begin
+  Author: Yahia 
+=end
   def create
     @user = current_user
     @friend = User.find(params[:friend_id])
@@ -20,7 +25,6 @@ class FriendshipsController < ApplicationController
     else 
       flash[:notice] = 'Frindship request was not sent red'
     end
-    puts 'QUEREY FORWARD IS ' + params[:query_forward].class.name
     redirect_to action: "search", query: params[:query_forward]
   end
 
@@ -32,7 +36,8 @@ class FriendshipsController < ApplicationController
     @friends = @user.friends
     @pending_invited_by = @user.pending_invited_by
     #flash.now[:notice] = "Friendship approved #{@friend.email} a t approuve"
-    render layout: 'mobile_template', text: "Friendship approved  #{@friend.email}"
+    #render layout: 'mobile_template', text: "Friendship approved  #{@friend.email}"
+    redirect_to action: pending 
   end
 
   # Author: Yahia 
