@@ -3,7 +3,7 @@
 
       <div class="actions" style="margin:5%; clear:both">
         <%= link_to image_tag('http://www.iconspedia.com/dload.php?up_id=18946', :size => "50x50") + "Facebook", 
-          url_for({:controller => 'users', :action => 'action_name'}),
+          url_for({:controller => 'facoebook_accounts', :action => 'action_name'}),
           :class => 'quick', 
           :remote => true%>
       </div>
@@ -14,7 +14,7 @@
           Author: Yahia -->
       <div class="actions" style="margin:5%; clear:both">
         <%= link_to image_tag('http://www.iconspedia.com/dload.php?up_id=19041', :size => "50x50") + "Twitter", 
-          url_for({:controller => 'users', :action => 'generate_request_token'}),
+          url_for({:controller => 'twitter_accounts', :action => 'generate_request_token'}),
           :class => 'quick', 
           :remote => true%>
 
@@ -27,14 +27,14 @@
 
       <div class="actions" style="margin:5%; clear:both">
         <%= link_to image_tag('http://www.iconspedia.com/dload.php?up_id=26321', :size => "50x50") + "Flickr", 
-          url_for({:controller => 'users', :action => 'action_name'}),
+          url_for({:controller => 'flickr_accounts', :action => 'action_name'}),
           :class => 'quick', 
           :remote => true%>
       </div>
 
       <div class="actions" style="margin:5%; clear:both">
         <%= link_to image_tag('http://www.iconspedia.com/dload.php?up_id=75407', :size => "50x50") + "Tumblr", 
-          url_for({:controller => 'users', :action => 'action_name'}),
+          url_for({:controller => 'tumblr_accounts', :action => 'action_name'}),
           :class => 'quick', 
           :remote => true%>
       </div>
