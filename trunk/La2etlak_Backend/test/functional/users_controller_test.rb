@@ -112,48 +112,62 @@ class UsersControllerTest < ActionController::TestCase
   end
     
   #Author:Rana
-  test "get block story RED" do
+  test "get block story" do
     this_interest = Interest.create :name => "Sports", :description => "hey sporty"
     this_story= Story.new :title => "Story1", :interest_id => this_interest
     this_story.interest = this_interest
     this_story.save
-    this_user = User.create :name => "amr", :email => "amr@abc.com"
-    get :block_story, 'uid' => this_user.id, 'id' => this_story.id
-    assert_response :success 
+    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
+    get :block_story, 'id' => this_story.id
+    assert_response :redirect 
   end
 
   #Author: Rana
-  test "get block interest RED" do
+  test "get block interest" do
     this_interest = Interest.create :name => "Sports", :description => "hey sporty"
     this_story= Story.new :title => "Story1", :interest_id => this_interest
     this_story.interest = this_interest
     this_story.save
-    this_user = User.create :name => "amr", :email => "amr@abc.com"
-    get :block_interest, 'uid' => this_user.id, 'id' => this_story.id
-    assert_response :success 
+    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
+    get :block_interest, 'id' => this_story.id
+    assert_response :redirect 
   end
 
   #Author: Rana
-  test "get block friend RED" do
-    this_user = User.create :name => "amr", :email => "amr@abc.com"
-    my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com"
-    get :block_friends_feed, 'id' => this_user.id, 'fname' => my_friend.name
-    assert_response :success 
+  test "get block friend" do
+    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
+    my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com", :password => "123456", :password_confirmation => "123456"
+    this_user.invite my_friend
+    my_friend.approve this_user
+    get :block_friends_feed, 'id' => my_friend.id
+    assert_response :redirect 
   end
 
   #Author: Rana
-  test "get friend feed RED" do
-    this_user = User.create :name => "amr", :email => "amr@abc.com"
-    my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com"
-    get :friends_feed, 'id' => this_user.id, 'fname' => my_friend.name
-    assert_response :success 
+  test "get friend feed" do
+    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
+    my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com", :password => "123456", :password_confirmation => "123456"
+    this_user.invite my_friend
+    my_friend.approve this_user
+    get :friends_feed, 'id' => my_friend.id
+    assert_response :success
+    assert_select 'div[id = "heading"]'
+    if(!(this_user.get_one_friend_stories(my_friend.id).empty?))
+    assert_select 'div[id = "my_stories"]'
+    end
+    assert_select 'div[id = "block"]'
+    assert_select 'div[id = "back"]'
+    
+    
   end
 
   #Author: Rana
-  test "get friend list RED" do
-      this_user = User.create :name => "amr", :email => "amr@abc.com"
+  test "get friend list" do
+      this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
       get :friends_list, 'id' => this_user.id
       assert_response :success
+      assert_select 'div[id = "heading"]'
+      assert_select 'div[id = "list"]'
   end
 
   # Author: Yahia
