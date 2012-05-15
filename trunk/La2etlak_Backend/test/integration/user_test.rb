@@ -57,20 +57,7 @@ class UserTest < ActionDispatch::IntegrationTest
     test "route to view friends list" do
       assert_routing 'mob/friends_list', {:controller => "users", :action => "friends_list"}
     end   
-     #Author: Rana
-    test "friends list view page RED" do
-      assert_select 'div[id = "heading"]'
-      assert_select 'div[id = "list"]'
-    end
-
-    #Author: Rana
-    test "form for friend feed in main feed RED" do
-      assert_select 'div[id="block"]'
-      assert_select 'div[id="back"]'
-      assert_select 'div[id="stories"]'
-      assert_select 'div[id="heading"]'
-    end
-    
+     
     #Author : Omar
      test "route to toggle interests RED" do
         user = User.new
