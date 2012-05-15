@@ -15,7 +15,7 @@
 </div>
 <% unless @my_friend_stories.nil? %>
 	<% @my_friend_stories.each do |f| %>
-<div class="story-component-box-mobile">
+<div id = "my_stories" class="story-component-box-mobile">
 	<table class="table" width="200">
 		<tr>
 			<td rowspan="2">
@@ -61,3 +61,4 @@ class: "user-component-button-absolute btn span2"%><br><br>
 <%= link_to "Back", 
 {:controller => 'users', :action => 'friends_list', :id => @user.id}, 
 class: "user-component-button-absolute btn span2"%>
+</div>
