@@ -2,7 +2,7 @@
 var $j = jQuery.noConflict();
 $j(function() {
   var faye = new Faye.Client('http://localhost:9292/faye');
-faye.subscribe("/admins/index", function() {
+  faye.subscribe("/admins/index", function() {
 	$j("#feeds").load(" #feeds");
   });
 });
@@ -29,7 +29,7 @@ faye.subscribe("/admins/index", function() {
 			      	<ul class="nav nav-list">
 					<li class="nav-header"> La2etlak at Glance </li>
 					<li class="divider"></li>		
-					<li>number  of users </li>
+					<li><%= User.get_no_of_users_signed_in_today %> users</li>
 					</ul>
 					</div>		  
 	 </div>
