@@ -32,14 +32,14 @@
       }
    });
 </script>
-<div class="alert" id="deletedInterest" style="display: none;">
+<div class="alert-error" id="deletedInterest" style="display: none;">
   
-           <a class="close" data-dismiss="alert">×</a>
-           <h1><strong>Warning!</strong> Interest was deleted a long time ago.</h1>
+           <h3><strong>Warning!</strong> Interest was deleted a long time ago.</h3>
      </div> 
 <!-- ccc is the id of the div that the graph would render to -->
-<div id="ccc"></div>
-<div class="general info">
+<div style="float:up;">
+<div id="ccc" style="width: 1230px; margin-left: 30px; float:left"></div>
+<div class="span20">
             
             <!--Here we'll get the number of stories and users in an interest:-->
             <h4><div class="alert alert-info">Number of Stories:
@@ -50,6 +50,39 @@
             <%= Interest.get_total_num_user_added_interest(@id) %>
             </div></h4>
             
-          </div>
 
+          </div>
+</div>
+<div style="padding-top:520px; padding-left:30px;">
+  <%if @interest.get_users_added_interest.empty?%>
+   <div class="alert-error" id="noUsersAdded" >
+  
+           <h3><strong>Warning!</strong> No User Added This Interest.</h3>
+     </div> 
+  <%else%>
+  <h4><div class="alert alert-info"> 
+              Users Who Added This Interest : </br>
+             
+            </div></h4>
+<%@interest.get_users_added_interest.each do |user|%>
+<div class="well-user-component">
+
+        <a href="/users/<%= user.id%>"class="thumbnail-user-component">
+        <% if user.image.nil? ||user.image == "" %>
+               <%= image_tag "logo.jpeg", :size => "75x75" %>
+        <% else %>
+          <img src= "<%= user.image %>"  width="75" style="height:75px"/>
+        <% end %> </a>
+           
+        <div class="user-component-info">
+              <h3><%= user.email %></h3>
+<%= link_to "view Statistics",
+{:controller => 'statistics', :action => 'users', :id => user.id},
+class: "user-component-button-absolute btn btn-primary"%>
+        </div>
+
+</div>
+<%end%>
+<%end%>
+</div>
 
