@@ -61,21 +61,25 @@ NokiaRuby::Application.routes.draw do
 
   match "users/index" => "users#index"
   match "/users/new" => "users#create", :as => :create
-  match "users/:id" => "users#show"
+ 
   match "/h_accounts/create" => "h_accounts#create", :as => :create
  
  
  
   
-
+  # $$$$$$$$$$$$$$ Christine $$$$$$$$$$$$$$$$$$$$$$$$$
   match "/interests/:id/statistics" => "statistics#interests"
   match "/stories/:id/statistics" => "statistics#stories"
   match "/users/:id/statistics" => "statistics#users"
-   post "/autocomplete/auto_complete_for_autocomplete_query" => "autocomplete#auto_complete_for_autocomplete_query"
-  match "/admins/index" => "admins#index"
   match "admins/statistics/all_users" => "statistics#all_users"
   match "admins/statistics/all_interests" => "statistics#all_interests"
   match "admins/statistics/all_stories" => "statistics#all_stories"
+  match "users/:id" => "users#show", :as => :user
+  # $$$$$$$$$$$$$$ Christine $$$$$$$$$$$$$$$$$$$$$$$$$
+
+   post "/autocomplete/auto_complete_for_autocomplete_query" => "autocomplete#auto_complete_for_autocomplete_query"
+  match "/admins/index" => "admins#index"
+  
   match "h_accounts/verify" => "verification_codes#verify"
   match "h_accounts/:id/resend" => "verification_codes#resend"
   match "h_accounts" => "h_accounts#index"
