@@ -4,6 +4,7 @@
 
 	 <div class="left_panel" id="filterPanel">
 
+	<!--Here I check if there are results for users,stories and/or interests at all and show the checkboxes for the filter accordingly...-->
       <% if (not $users.nil? and $users.length > 0 and $users.class != String) or 
       (not $stories.nil? and $stories.length > 0 and $stories.class != String) or 
       (not $interests.nil? and $interests.length > 0 and $interests.class != String) %>
@@ -32,7 +33,10 @@
 		
 			<% end %>  
 	    </div>
+	    
+	    <!--The results of the three parts (users,stories,interests) will appear in this panel-->
 	  <div class="right_panel" >
+	  <!--If the users checkbox is checked, then the results of the users will be shown unless there are no results to show. I also add a button to view the statistics of each user and another button to view the remaining results of the users-->
 	<% if $usersSearch == "true"  %>
       <% if not $users.nil? and $users.length > 0 and $users.class != String %>
 	  
@@ -55,6 +59,7 @@
 class: "btn btn-primary"%>
   </div>
       <% else %>
+      <!--If there are no results found or if there is no query written in the search bar then a warning will appear to the admin informing him about that-->
       <div class="right_panel">
         <div class="well" id="noSearchQuery">
             <h2><%= $users %></h2>
@@ -63,7 +68,7 @@ class: "btn btn-primary"%>
       <% end %>
       <% end %>
       
-      
+      <!--If the stories checkbox is checked, then the results of the stories will be shown unless there are no results to show. I also add a button to view the statistics of each story and another button to view the remaining results of the stories-->
       <% if $storiesSearch == "true"  %>
     <% if not $stories.nil? and $stories.length > 0 and $stories.class != String %>
     <% if not $users.nil? and $users.length > 0 and $users.class != String %>
@@ -89,7 +94,7 @@ class: "btn btn-primary"%>
       <% end %>
       <% end %>
       
-      
+      <!--If the interests checkbox is checked, then the results of the interests will be shown unless there are no results to show. I also add a button to view the statistics of each interest and another button to view the remaining results of the interests-->
       <% if $interestsSearch == "true"  %>
     <% if not $interests.nil? and $interests.length > 0 and $interests.class != String %>
     <% if not $users.nil? and $users.length > 0 and $users.class != String %>
