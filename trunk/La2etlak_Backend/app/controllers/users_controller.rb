@@ -19,6 +19,31 @@ class UsersController < ApplicationController
 		end
 	end
 
+  # Action to be called from the connet_to_social network view
+  # which redirects to the facebook api using koala
+  # Author: Menisy
+  def authenticate_facebook_init
+    path = Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => "http://localhost:3000/fb/done/")  
+    redirect_to path
+  end
+
+  # Action to be called in the call back url after authentication take place
+  # Author: Menisy
+  def authenticate_facebook_done
+    token = Koala::Facebook::OAuth.new("http://localhost:3000/fb/done/").get_access_token(params[:code]) if params[:code]
+    fb_account = FacebookAccount.new(:auth_token => token,:auth_secret => "1")
+    fb_account.user = current_user
+    graph =  Koala::Facebook::API.new(token)
+    user = graph.get_object("me")
+    if fb_account.save
+      flash[:notice] = "Facebook account added successfully green" +user.to_s
+      redirect_to :controller => "stories", :action => "mobile_show", :id => 1
+    else
+      flash[:notice] = "Facebook account was not added red" + user.to_s
+      redirect_to :controller => "stories", :action => "mobile_show", :id => 1
+    end
+  end
+
 	def resetPassword
 		@user = current_user
 		newpass = @user.resetPassword
