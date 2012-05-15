@@ -18,6 +18,9 @@
         </div>
       </div>
 </header>
+<!-- If a flash notice has been set, display it with the proper
+    color
+    Author: Menisy -->
 <% if fl = flash[:notice] %>
   <% color = fl["red"] || fl["green"] || fl["yellow"]%>
   <% if color %>
@@ -32,6 +35,9 @@
 <% if current_user %>
   <% if current_user.get_notifications %>
    <% s = "s" if current_user.get_notifications.length!=1 %>
+   <!-- if user has notification display this active div which
+        redirects to pending requests page
+        Author: Menisy -->
    <a href="<%= url_for(controller: "friendships", action: "pending") %>" >
     <div class="warning-component-box-mobile" id="notification">
     You have <%= current_user.get_notifications.length %> pending friendship request<%= s %>!
