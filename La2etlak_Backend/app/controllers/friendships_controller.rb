@@ -6,6 +6,7 @@ class FriendshipsController < ApplicationController
     @friends = @user.friends
     @pending_invited_by = @user.pending_invited_by
     @pending_invited = @user.pending_invited
+    render layout: 'mobile_template'
   end
 
   # Author: Yahia 
@@ -15,10 +16,11 @@ class FriendshipsController < ApplicationController
     @friendship_created = @user.invite(@friend)
     if @friendship_created
       # flash.now[:notice] = "Friendship invitation created  #{@friend.email}"
-      render layout: 'mobile_template', text: "Friendship invitation created  #{@friend.email}"
+      flash[:notice] = 'Frindship request has succesffully been sent green'
     else 
-      render layout: 'mobile_template', text: "COUDN'T Friendship invitation created  #{@friend.email}"
+      flash[:notice] = 'Frindship request was not sent red'
     end
+    redirect_to action: "search", query: params[:query_forward]
   end
 
   # Author: Yahia 
@@ -40,9 +42,12 @@ class FriendshipsController < ApplicationController
     if @friendship
       @friendship.delete
       @removed = true
-      #flash.now[:notice] = "Friendship removed #{@friend.email}"
-      render layout: 'mobile_template', text: "Friendship removed  #{@friend.email}"
+      flash[:notice] = "Friendship removed #{@friend.email} green"
+    else 
+      flash[:notice] = "Friendship was not #{@friend.email} red"
     end
+    redirect_to action: "search", query: params[:query_forward]
+
   end
 
   def block

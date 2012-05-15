@@ -1,0 +1,23 @@
+<html> 
+
+	<header> Friends are <%= @query %> </header>
+	<ul>
+		<% @friends.each do |friend| %>
+			<li> <%= if friend.name.nil?  then friend.email else friend.name end %> </li>
+			
+			<%=	link_to 'remove',{:controller => 'friendships',
+					:action => 'remove', 
+					:friend_id => friend.id}, 
+					class: "btn btn-danger" 	
+			%>
+
+		<% end %>	
+	</ul>
+
+	<%= form_tag("search", :method => "get") do %>
+	  <%= label_tag(:q, "Search for:") %>
+	  <%= text_field_tag(:query, "", :style => "height:40px;") %>
+	  <%= submit_tag("Search", :style => "height:40px") %>
+	<% end %>
+
+</html>

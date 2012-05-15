@@ -97,12 +97,14 @@ NokiaRuby::Application.routes.draw do
   match "users/twitter/generate_request_token" => "twitter_accounts#generate_request_token"
   match "users/twitter/generate_access_token" => "twitter_accounts#generate_access_token"
   match "users/mob/connect_network" => "users#connect_social_accounts"
-  match "users/friendship/search/:query" => "friendships#search"
-  match "users/friendship/create/:friend_id" => "friendships#create"
-  match "users/friendship/reject/:friend_id" => "friendships#remove"
-  match "users/friendship/block/:friend_id" => "friendships#block"
-  match "users/friendship/pending" => "friendships#pending"
-  match "users/friendship/accept/:friend_id" => "friendships#accept"
+  match "friendship/search/" => "friendships#search"
+  match "friendship/search/:query" => "friendships#search"
+  match "friendship/create/:friend_id" => "friendships#create"
+  match "friendship/reject/:friend_id" => "friendships#remove"
+  match "friendship/block/:friend_id" => "friendships#block"
+  match "friendship/pending" => "friendships#pending"
+  match "friendship/accept/:friend_id" => "friendships#accept"
+  match "friendship/index" => "friendships#index"
   # $$$$$$$$$$$$$$  YAHIA  END $$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$  MENISY $$$$$$$$$$$$$$$$$$$$$$$
