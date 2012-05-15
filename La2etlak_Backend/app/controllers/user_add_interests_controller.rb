@@ -1,7 +1,11 @@
 class UserAddInterestsController < ApplicationController
 
 
-#this method takes as input user_id and it get the Interests of this user
+#this Action calls the method get_interests and gets the interests of the current logged in User
+#@user current Logged in user
+#@interests List of user Interests names
+
+ 
 	def get_interests
 		
 		@user = current_user
