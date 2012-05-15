@@ -17,7 +17,6 @@ class InterestsController < ApplicationController
        @feed = Feed.new
     end
     @title = @interest.name
-    @image = @interest.image
 
   end
 

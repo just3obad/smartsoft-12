@@ -8,7 +8,9 @@ def show
 
   end
   
-  # Author: Omar $$ this method taks params story id and get number of likes dislikes done bu user and renders mobile_template view  likes => method in the model gets the user who thumbed up story  dislikes=> method in model gets user who thumbed down the story
+  # Author: Omar $$ this method taks params story id and get number of likes dislikes done bu user and 
+  #renders mobile_template view  likes => method in the model gets the user who thumbed up story 
+  # dislikes=> method in model gets user who thumbed down the story
    def get
 	id = params[:id]
 	@story = Story.find(id)
@@ -60,7 +62,10 @@ def show
 
   def index
     @interests = Interest.all   
-    respond_with(@stories = Story.all) # passing a list of all stories to the view .
+    @stories = Story.filter_stories($hidden,$flagged,$active) # passing a list of all stories to the view .
+    if @stories.nil?
+      @stories = []
+    end
   end
 
   def new
@@ -104,7 +109,11 @@ def show
  end
    
 
-#recommend_story is a method to recommend specific story to another friend by clicking the button of recommend story in the story it depend on the method get_friend_list which return alist of friends of the user that the user will select one of them to recommend the story to if the user has no friends he could be directed to add friends page or the user could write an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
+#recommend_story is a method to recommend specific story to another friend by clicking the button of 
+#recommend story in the story it depend on the method get_friend_list which return alist of friends of the
+# user that the user will select one of them to recommend the story to if the user has no friends he could be 
+#directed to add friends page or the user could write an email and the recommendation go to that email if the email
+# isnot in the database an invitation shall be sent to him
 #Author=> khaled.elbhaey
   def recommend_story_mobile_show()
     @storyid=params[:sid]
@@ -176,8 +185,15 @@ end
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
     flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
- render :layout => "mobile_template" 
+    render :layout => "mobile_template" 
   end
+  #Author: Bassem !!
+  def filter
+    $hidden = params[:hidden]
+    $flagged = params[:flagged]
+    $active = params[:active]
+    redirect_to "/stories"
+    end
 
 
 end
