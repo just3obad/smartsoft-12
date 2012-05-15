@@ -1,11 +1,16 @@
 NokiaRuby::Application.routes.draw do
 
+
+  get "admin_settings/index"
+
+
  # ~~~~~~~~~~~~~~~~ 3OBAD ~~~~~~~~~~~~~~~~~~~~~~~~
 
   match "users/edit" => "users#edit"
   post "users/info/update" => "users#update"
 
  # ~~~~~~~~~~~~~~~~ 3OBAD ~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 	match "requestToken" => "user_sessions#requestToken"
@@ -114,6 +119,11 @@ NokiaRuby::Application.routes.draw do
   match "/stories/disliked_mobile_show/:id" => "stories#disliked_mobile_show", :as => :dislike
   match "/users/get_friends_email_mobile_show" => "users#get_friends_email_mobile_show", :as => :email
    # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
+
+   #$$$$$$$$$$$$$$$$$$$$$ BASSEM !! $$$$$$$$$$$$$$$$$$
+   match "users/deactivate/:id" => "users#deactivate"
+   match "users/activate/:id" => "users#activate"
+   #$$$$$$$$$$$$$$$$$$$$$ BASSEM !! $$$$$$$$$$$$$$$$$$
 
 
   #match "users/" => "users#index"
