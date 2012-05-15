@@ -118,9 +118,7 @@ id = params[:id]
 user.toggle_interests(id)
  redirect_to "/mob/toggle"
 end
-end
-render :layout => "mobile_template"
-end
+
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
