@@ -43,11 +43,11 @@ NokiaRuby::Application.routes.draw do
   match 'stories/get_friend_id' => 'stories#get_friend_id'
 
         # $$$$$$$$$$$$$$ RANA $$$$$$$$$$$$$$$$$$$$$$$$$ 
-  match 'block_story/:id' => 'users#block_story'
-  match 'block_interest/:id' => 'users#block_interest'
-  match 'friends_list' => 'users#friends_list'
-  match 'block_friends_feed/:id' => 'users#block_friends_feed'
-  match 'friends_feed/:id' => 'users#friends_feed'
+  match 'mob/block_story/:id' => 'users#block_story'
+  match 'mob/block_interest/:id' => 'users#block_interest'
+  match 'mob/friends_list' => 'users#friends_list'
+  match 'mob/block_friends_feed/:id' => 'users#block_friends_feed'
+  match 'mob/friends_feed/:id' => 'users#friends_feed'
         # $$$$$$$$$$$$$$ RANA $$$$$$$$$$$$$$$$$$$$$$$$$
         
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
