@@ -98,8 +98,13 @@ class: "btn btn-primary"%>
         <% $interests[0..2].each do |interest| %>
         <div class="well-interest-component">
         	<% if !(interest.nil?) %>
-        <a href="/interests/<%= interest.id%>" class="thumbnail-interest-component">
-     			  <%= image_tag "logo.jpeg", :size => "75x75" %></a>
+        <a href="/interests/<%= interest.id %>"
+				class="thumbnail-interest-component">
+			  <% if not interest.photo.file? %>
+     			  <%= image_tag "logo.jpeg", :size => "75x75" %>
+     			  <% else %>
+            <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="75" style="height:75px"/>
+            		  <% end %> </a>
             <div class="interest-component-info">
                 <h4><%= interest.name.nil? ? 'No Name' : interest.name.downcase.capitalize %></h4>
                 <%=	link_to "Interest Statistics", {:controller=> 'statistics', :action => 'interests', :id => interest.id}, class: "interest-component-button-absolute btn btn-primary"%> </h6>

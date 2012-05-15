@@ -35,13 +35,13 @@ class AdminsController < ApplicationController
   #Author: Lydia
   def all_results
     if params[:type] == "1"
-      @results = $users
+      @results = $users.paginate(:page=>params[:page], :per_page=> 2)
     end
     if params[:type] == "2"
-      @results = $stories
+      @results = $stories.paginate(:page=>params[:page], :per_page=> 2)
     end
     if params[:type] == "3"
-      @results = $interests
+      @results = $interests.paginate(:page=>params[:page], :per_page=> 2)
     end
   end
   

@@ -36,8 +36,13 @@
 	<% if result.class == Interest %>
 	<div class="well-interest-component">
         	<% if !(result.nil?) %>
-        <a href="/interests/<%= result.id%>" class="thumbnail-interest-component">
-     			  <%= image_tag "logo.jpeg", :size => "75x75" %></a>
+        <a href="/interests/<%= result.id%>"
+				class="thumbnail-interest-component">
+			  <% if not result.photo.file? %>
+     			  <%= image_tag "logo.jpeg", :size => "75x75" %>
+     			  <% else %>
+            <img src= "<%= result.photo.url(:small) if result.photo.file? %>" width="75" style="height:75px"/>
+            		  <% end %> </a>
             <div class="interest-component-info">
                 <h4><%= result.name.nil? ? 'No Name' : result.name.downcase.capitalize %></h4>
                 <%=	link_to "Interest Statistics", {:controller=> 'statistics', :action => 'interests', :id => result.id}, class: "interest-component-button-absolute btn btn-primary"%> </h6>
@@ -48,6 +53,10 @@
 	
 	
 			<% end %>
+			
+			<div class="apple_pagination">
+    <%= will_paginate @results, :container => false %>
+  </div>
 		</div>
 		</div>
 	</div>
