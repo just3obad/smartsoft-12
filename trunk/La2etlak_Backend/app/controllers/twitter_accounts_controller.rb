@@ -17,7 +17,7 @@ class TwitterAccountsController < ApplicationController
 
     #FIXME change IP 
     request_token = TwitterAccount.twitter_consumer.get_request_token(:oauth_callback => 
-                "http://127.0.0.1:3000/users/twitter/generate_access_token")
+                "http://127.0.0.1:3000/mob/twitter/generate_access_token")
 
     url = request_token.authorize_url
     #puts 'URL IS ' + url
@@ -48,13 +48,12 @@ class TwitterAccountsController < ApplicationController
     t_account = @user.create_twitter_account(request_token)
 
     unless t_account.new_record?
-      render(:layout => 'mobile_template', 
-              :text => "User #{ session[:user_id] }" + 
-                      "created a new twitter account")
+      flash[:notice] = 'Twitter account created green'
     else 
-      render(:layout => 'mobile_template', 
-              :text => 'Something wrong, couldn\'t save account')
+      flash[:notice] = 'Twitter account couldn\'t be created red'
     end 
+    redirect_to controller: 'users', action: 'connect_social_accounts'
+
   end 
 
 
