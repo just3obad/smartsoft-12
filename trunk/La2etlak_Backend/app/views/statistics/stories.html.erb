@@ -120,10 +120,10 @@ Likes/Dislikes : <%= @story.likedislikes.where(action: 1).count %>
 		<div class="well-interest-component">
 			<a href="/interests/<%= @story.interest_id%>"
 				class="thumbnail-interest-component">
-			  <% if @story.interest.image.nil? || @story.interest.image == "" %>
+			  <% if not @story.interest.photo.file? %>
      			  <%= image_tag "logo.jpeg", :size => "75x75" %>
      			  <% else %>
-            <img src= "<%= @story.interest.image %>" width="75" style="height:75px"/>
+            <img src= "<%= @story.interest.photo.url(:small) if @story.interest.photo.file? %>" width="75" style="height:75px"/>
             		  <% end %> </a>
 				<div class="interest-component-info">
 					<h2><% if @story.interest.name.nil? %>
