@@ -26,10 +26,10 @@ validates :name, :presence => true,
 
                  
 
-
-
- 
-
+has_many :block_interests
+has_many :blockers, :class_name => "User", :through => :block_interests
+has_many :user_add_interests
+has_many :adding_users, :class_name => "User", :through => :user_add_interests
 
 #description can never exceed 240 characters .
   validates :description,  :length   => { :maximum => 100 }
@@ -149,10 +149,10 @@ end
      interest_last_update_date >= 30.days.ago.to_date
 
       stories_per_day = Story.where(:created_at => interest_create_date.beginning_of_day..
-      interest_last_update.end_of_day , :interest_id => interest_id)
+      interest_last_update_date.end_of_day , :interest_id => interest_id)
       .group("date(created_at)").select("created_at , count(id) as strys_day")
 
-      (interest_create_date.to_date..interest_last_update.to_date).map do |date|
+      (interest_create_date.to_date..interest_last_update_date.to_date).map do |date|
       story = stories_per_day.detect { |story| story.created_at.to_date == date}
       story && story.strys_day.to_i || 0
           end.inspect
@@ -162,10 +162,10 @@ end
         interest_last_update_date >= 30.days.ago.to_date
 
          stories_per_day = Story.where(:created_at => 30.days.ago.beginning_of_day..
-         interest_last_update.end_of_day , :interest_id => interest_id)
+         interest_last_update_date.end_of_day , :interest_id => interest_id)
          .group("date(created_at)").select("created_at , count(id) as strys_day") 
   
-         (30.days.ago.to_date..interest_last_update.to_date).map do |date|
+         (30.days.ago.to_date..interest_last_update_date.to_date).map do |date|
          story = stories_per_day.detect { |story| story.created_at.to_date == date}
          story && story.strys_day.to_i || 0  
            end.inspect
@@ -250,10 +250,10 @@ end
      interest_last_update_date >= 30.days.ago.to_date
   
      users_per_day = UserAddInterest.where(:created_at => interest_create_date
-     .beginning_of_day..interest_last_update.end_of_day , :interest_id => interest_id)
+     .beginning_of_day..interest_last_update_date.end_of_day , :interest_id => interest_id)
      .group("date(created_at)").select("created_at , count(user_id) as usrs_day")
  
-     (interest_create_date.to_date..interest_last_update.to_date).map do |date|
+     (interest_create_date.to_date..interest_last_update_date.to_date).map do |date|
      user = users_per_day.detect { |user| user.created_at.to_date == date}
      user && user.usrs_day.to_i || 0
        end.inspect
@@ -263,10 +263,10 @@ end
         interest_last_update_date >= 30.days.ago.to_date
   
         users_per_day = UserAddInterest.where(:created_at => 30.days.ago.
-        beginning_of_day..interest_last_update.end_of_day , :interest_id => interest_id)
+        beginning_of_day..interest_last_update_date.end_of_day , :interest_id => interest_id)
         .group("date(created_at)").select("created_at , count(user_id) as usrs_day") 
         
-        (30.days.ago.to_date..interest_last_update.to_date).map do |date|
+        (30.days.ago.to_date..interest_last_update_date.to_date).map do |date|
         user = users_per_day.detect { |user| user.created_at.to_date == date}
         user && user.usrs_day.to_i || 0  
           end.inspect
@@ -353,6 +353,8 @@ end
   ranked_interests =  interests
   end
  
+
+
  '''this method returns a list of names of the top ranked interests in 
  a descending order (Higher Rank First)'''
  ##########Author: Diab ############
@@ -360,7 +362,7 @@ end
     ranked_interests = rank_all_interests
     interests=[]
   (ranked_interests.sort_by {|element| element[:rank]}).each do |hsh|
-  interests << hsh[:theinterest].name
+  interests << hsh[:theinterest].name.to_s
   end
   top_interests_names =  interests.reverse
  end
