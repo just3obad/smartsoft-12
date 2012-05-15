@@ -446,6 +446,7 @@ def flag_story(story)
   thumped = Flag.where(:story_id => story.id, :user_id => self.id)
      if thumped.empty?
         Flag.create!(:user_id =>  self.id, :story_id => story.id)
+	#Admin_Settings.update_story_if_flagged
   return true
      end
   return false
