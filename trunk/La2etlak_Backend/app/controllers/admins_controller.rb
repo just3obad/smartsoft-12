@@ -53,7 +53,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(params[:admin])
     if @admin.save
       flash[:notice] = "Registration successful."
-      redirect_to(admins/login)
+      redirect_to('/admins/index')
     else
       render :action => 'new'
     end
@@ -62,9 +62,9 @@ class AdminsController < ApplicationController
     Admin.get_feed
   end
 #Author : Mouaz
-	def resetPassword
-		@user = current_user
-		newpass = @user.resetPassword
-		Emailer.reset_password(@user,newpass).deliver
+	def reset_admin_password
+		@admin = current_admin
+		newpass = @admin.resetPassword
+		Emailer.reset_password(@admin,newpass).deliver
 	end
 end

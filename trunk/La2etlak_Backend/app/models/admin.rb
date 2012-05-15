@@ -2,7 +2,7 @@ class Admin < ActiveRecord::Base
     acts_as_authentic
 
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :first_name, :last_name,:email, :password, :password_confirmation
 
 require "net/http"
   $NAME = /([a-zA-Z]+)(.*)/

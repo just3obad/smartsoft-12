@@ -166,6 +166,7 @@ NokiaRuby::Application.routes.draw do
   resources :interests
   resources :shares 
   resources :comments
+  resources :admin_sessions
 
 
 
@@ -188,9 +189,10 @@ NokiaRuby::Application.routes.draw do
   post '/admin_settings', to: 'admin_settings#configure_flags_threshold'
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
   #Mouaz
-  match 'admins/login', to: 'admin_session#new'
-  match 'admins/logout', to: 'admin_session#destroy'
-  match 'admins/reset_pass', to: 'emailer#reset_admin_password'
+  match '/admin_login', to: 'admin_sessions#new'
+  match '/admin_logout', to: 'admin_sessions#destroy'
+  match '/admins_reset_pass', to: 'emailer#reset_admin_password'
+ 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
