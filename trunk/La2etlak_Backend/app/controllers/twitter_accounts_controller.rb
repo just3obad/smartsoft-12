@@ -14,8 +14,6 @@ class TwitterAccountsController < ApplicationController
   Author: Yahia
 =end
   def generate_request_token
-    #FIXME FOR THE SAKE OF TESTING
-    session[:user_id] = 1
 
     #FIXME change IP 
     request_token = TwitterAccount.twitter_consumer.get_request_token(:oauth_callback => 
@@ -40,9 +38,7 @@ class TwitterAccountsController < ApplicationController
   Author: Yahia
 =end 
   def generate_access_token
-    # FIXME FOR THE SAKE OF TESTING
-    session[:user_id] = 1
-    @user = User.find(session[:user_id])
+    @user = current_user
     request_token = OAuth::RequestToken.new(TwitterAccount.twitter_consumer,
                     params["oauth_token"], params["oauth_verifier"])
 
