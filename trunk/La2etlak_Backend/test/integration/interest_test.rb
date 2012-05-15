@@ -17,7 +17,7 @@ class InterestTest < ActionDispatch::IntegrationTest
     end
 
   ##########Author: Diab ############
-  test "all interests page has div chart RED" do
+  test "all interests page has div chart" do
     get 'admins/statistics/all_interests'
     assert_select 'div[id = ccc]'
    end
@@ -28,7 +28,7 @@ class InterestTest < ActionDispatch::IntegrationTest
    end 
 
   ##########Author: Diab ############
-  test "get interest statistics response RED" do
+  test "get interest statistics response" do
    
    get '/interests/1/statistics'
    assert_response :success
