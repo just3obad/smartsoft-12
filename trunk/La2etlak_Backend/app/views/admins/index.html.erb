@@ -53,10 +53,10 @@ faye.subscribe("/admins/index", function() {
 								<span class="pull-left greenbadge">Interest</span>
 								<span class="pull-right bluebadge"><%=time_ago_in_words(@interest.created_at)%></span>
 							<div class="well admin_story_feed" style="float: left;">
-								<% if @interest.image.nil? || @interest.image == "" %>
+								<% if @interest.photo.file? %>
 					     			  <%= image_tag "logo.jpeg"  , style: "float:left; margin-right:20px; margin-bottom:20px;" %>
 					     			  <% else %>
-					            <img src= "<%= @interest.image %>"/>
+					            <img src= "<%=@interest.photo.url(:small) %>" style=" width=320px; height:320px;"/>
 					            		  <% end %>
 					<div class"control-panel">
 									<% if !(@interest.deleted ) %>
@@ -104,10 +104,10 @@ faye.subscribe("/admins/index", function() {
 						<%=raw story.content %>
 						</div>
 						
-							<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-primary") %>  			<div class="well">
+							<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-primary") %>  			
 							<span class="pull-right greenbadge">Ups(<%=story.liked.length%>)</span>
 							<span class="pull-right redbadge">Downs(<%=story.disliked.length%>) </span>
-							</div>
+						
 											<%@comments = story.comments%>
 
 							<h2 class="story-identation story-page-text">Comments</h2>
