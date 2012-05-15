@@ -3,61 +3,58 @@
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Filter by interests</li>
-            </ul>
+            
 
-             <div class="control-group">
-
-		<div class="controls">
-              <% for interest in @interests %>
-		  <label class="checkbox">
-		    <input type="checkbox" value= "interest">
-		      <%= interest.name %>
-		    </input>
-		  </label>
-		<%end%>
-		</div> 
-
-	    </div>
             <ul class="nav nav-list">
               <li class="nav-header">Filter by status</li>
             </ul>
 
-             <div class="control-group">
-		<div class="controls">
-		  <label class="checkbox">
-		    <input type="checkbox" value="Normal">
-		      Normal
-		    </input>
-		  </label>
-		</div>
-		<div class="controls">
-		  <label class="checkbox">
-		    <input type="checkbox" value="Flagged">
-		      Flagged
-		    </input>
-		  </label>
-		</div>
-		<div class="controls">
-		  <label class="checkbox">
-		    <input type="checkbox" value="Hidden">
-		      Hidden
-		    </input>
-		  </label>
-		</div>
+            <form action="stories/filter" method="post">
+              <label class="checkbox">
+			    <input type="checkbox" value= "true" <%if( $hidden=='true')%>  checked <%end%>  name="hidden" id="hidden"> Hidden
+			  </label>
+              <label class="checkbox">
+			    <input type="checkbox" value= "true" <%if( $flagged=='true')%>  checked <%end%>  name="flagged" id="flagged"> Flagged
+			  </label>
+              <label class="checkbox">
+			    <input type="checkbox" value= "true" <%if( $active=='true')%>  checked <%end%>  name="active" id="active"> Active
+			  </label>
+              <input type="submit" name="commit" value="Submit" class="btn btn-primary"/>
+            </form>
+        <!--div class="control-group">
+			<div class="controls">
+		  		<label class="checkbox">
+		    		<input type="checkbox" value="Normal">
+		      			Normal
+		    		</input>
+			    </label>
+			</div>
+			<div class="controls">
+		  		<label class="checkbox">
+		    		<input type="checkbox" value="Flagged">
+		    		  Flagged
+		   			</input>
+		  		</label>
+			</div>
+			<div class="controls">
+			  <label class="checkbox">
+			    <input type="checkbox" value="Hidden">
+			      Hidden
+			    </input>
+			  </label>
+			</div>
 
 
 	     </div>
 	     <hr>
-             <input type="button" value="Apply" class= "btn btn-primary"/>
+             <input type="button" value="Apply" class= "btn btn-primary"/-->
           </div><!--/.well -->
         </div><!--/span-->
-        </div>
+     
      <div class="right-story-panel interest-page-well" >
-	<h2 class = "logs-take-input" >
-<%= @stories.empty? ? 'Stories List : There are currently no stories to be viewed.' : 'Stories list' %></h2>
-	<ul class="nav nav-list" >
+	 <h2 class = "logs-take-input" >
+ 	 <%= @stories.empty? ? 'Stories List : There are currently no stories to be viewed.' : 'Stories list' %></h2>
+	 <ul class="nav nav-list" >
 	  <li class="divider"></li>
 
 	</ul>
@@ -65,10 +62,21 @@
 	<div class="pre-scrollable">
 	  <% @stories.each do |story| %>
 	  <div >
+	    <h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
             <span class="yellowbadge"><%=Interest.find(story.interest_id).name%></span>
 	    <h3><%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "story-component-button-absolute btn btn-primary") %></h3>
+	    <% if !(story.deleted || story.hidden) %>
+			<ul class="nav nav-list">
+			<li class="nav-header">Status : 
+			<span class="greenbadge">Active</span></li>
+			<% elsif story.deleted %>
+			<ul class="nav nav-list">
+			<li class="nav-header">Status</li>
+			<li><span class="redbadge">Deleted</span></li>
+			<% elsif story.hidden %>
+			<li><span class="yellowbadge">Hidden</span></li>
+		<% end %>
 
-	    <h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
 	    <div class="pre-scrollable">
 		<h6 class ="story-body story-page-well"><%=raw story.content %></h6>
   	    </div>
