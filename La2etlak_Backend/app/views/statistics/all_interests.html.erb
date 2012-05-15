@@ -15,12 +15,14 @@
          document.getElementById("noInterest").style.display= "block";  
          document.getElementById("ccc").style.display= "none"; 
          document.getElementById("genInfo").style.display= "none"; 
+         document.getElementById("tableRanked").style.display= "none";
        }
        else if(arrayRanks[0] == 0)
        {
           document.getElementById("noInterest").style.display= "block";  
          document.getElementById("ccc").style.display= "none"; 
          document.getElementById("genInfo").style.display= "none";
+         document.getElementById("tableRanked").style.display= "none";
        }
       var title="Top Interests";
       var container="ccc";
@@ -60,14 +62,35 @@
            <h2><strong>Warning!</strong> No interests were created or cannot rank them.</h2>
      </div>
 
-<div id="ccc"></div>
+<div id="ccc"></div> </br>
 <div class="general info" id ="genInfo">
-            <% Interest.get_top_interests_names.each do |name|%>
-            <%= name.to_s %>
-            <% end %>
+            
             <!--Here we'll get the general infor of top interests:-->
             <h4><div class="alert alert-info"> 
+              Top Ranked Interests : </br>
+             
             </div></h4>
+ <table class="table table-striped table-bodered" id = "tableRanked">
+  <tr>
+
+    <th>  </th>
+    <th> Title </th>
+    <th> Description </th>
+    <th> Rank </th>
+  </tr>
+  <% Interest.get_top_interests.each do |interest|%>
+    <tr>
+
+
+      <td><img width="150";height="100"; src= <%= interest.photo.url(:small) if interest.photo.file? %> ></td>
+      <td><%= link_to(interest.name, {:controller => "interests", :action => "show", :id => interest.id} ) %></td>
+      <td><%= interest.description %></td>
+      <td><%= interest.get_interest_rank %></td>
+    </tr>
+  <% end %>
+</table>
+             
+            
             
           
           </div>

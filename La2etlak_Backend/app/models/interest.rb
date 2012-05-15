@@ -353,7 +353,17 @@ end
   ranked_interests =  interests
   end
  
-
+'''this method returns a list of the top ranked interests in 
+ a descending order (Higher Rank First)'''
+ ##########Author: Diab ############
+ def self.get_top_interests
+    ranked_interests = rank_all_interests
+    interests=[]
+  (ranked_interests.sort_by {|element| element[:rank]}).each do |hsh|
+  interests << hsh[:theinterest]
+  end
+  top_interests =  interests.reverse
+ end
 
  '''this method returns a list of names of the top ranked interests in 
  a descending order (Higher Rank First)'''
