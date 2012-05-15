@@ -11,12 +11,12 @@ class MainPageTest < ActionDispatch::IntegrationTest
         assert_response :success
      end
   #this test is for testing the existance of feed div
-  test "AutoCompleteResultDiv RED" do
+  test "AutoCompleteResultDiv" do
         get "/admins/index"
        assert_select "div[id=feeds]"
      end
   #test get_feed
-  test "get feeds RED" do
+  test "get feeds" do
         Interest.create!(:name => "Music", :description => "Music washes away from the soul the dust of everyday life", :image => "http://data.whicdn.com/images/15521117/hamster-music_165451585_thumb.jpg")
         @feeds = Admin.get_feed
         assert_equal(@feeds.length,1)
