@@ -207,8 +207,7 @@ class UsersControllerTest < ActionController::TestCase
     u1.twitter_account = twitter_accounts(:one)
     u1.save
     get :connect_social_accounts
-    assert_select 'div[class=warning-component-box-mobile]',1
-    assert_select 'You are connected to twitter'
+    assert_select "div[id=2]", "You are connected to twitter"
   end 
 
    #author: khaled.elbhaey
