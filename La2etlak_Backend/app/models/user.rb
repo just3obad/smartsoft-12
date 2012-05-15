@@ -119,8 +119,8 @@ end
     
  end
 
+#has_account checks if the user with the (mail) is in our database or not
 #Author: khaled.elbhaey
-
   def has_account(mail)
   
   @email=mail
