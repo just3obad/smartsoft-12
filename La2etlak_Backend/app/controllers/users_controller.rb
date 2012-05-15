@@ -1,6 +1,29 @@
 class UsersController < ApplicationController
 	respond_to :html,:json
 
+	
+ 	def new
+    @user = User.new
+    render :layout => "mobile_template"
+  end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      @user.generateVerificationCode?
+      Emailer.verification_instructions(@user).deliver
+      flash[:notice] = "Thank you for joining La2etlak, you just recieved an E-mail containing the verification instructions."
+			session = UserSession.new(@user)
+			if session.save
+     		redirect_to "/toggle"
+			else
+				redirect_to "/dummyLogin"
+			end
+   else
+    render :action => 'new', :layout => "mobile_template"
+   end
+  end
+	
 	# This method is used to register a new user and save him,
 	# if the user was saved successfully it returns "true,
 	# otherwise it returns the errors that prevented the saving of the record
@@ -103,7 +126,7 @@ def int_toggle
 user = current_user
 id = params[:id]
 user.toggle_interests(id)
- redirect_to "/users/toggle"
+ redirect_to "/toggle"
 end
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -125,31 +148,6 @@ end
   end
 
 
-   def new
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
-    end
-
-  def create
-    @user = User.new(params[:user.downcase])
-    respond_to do |format|
-      if @user.save
-        @user.haccount = Haccount.new(:email => @user.email.downcase,
-                                      :password=>params[:password.downcase], :user_id => @user.id)
-        if @user.haccount.generateVerificationCode?
-          Emailer.resend_code(@user.haccount).deliver
-          @uLog = UserLogIn.create(:user_id => @user.id)
-          format.json { render json: @user, status: :created }
-        end
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
 
   def index

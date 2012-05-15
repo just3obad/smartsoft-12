@@ -19,6 +19,25 @@ class UserSessionsController < ApplicationController
 		end
 	end
 
+	def new
+  		@user_session = UserSession.new
+  		render :layout =>"mobile_template"
+	end
+
+	def create
+ 		@user_session = UserSession.new(params[:user_session])
+  		if @user_session.save
+   			flash[:notice] = "Successfully logged in."
+    		redirect_to "/main_feed"
+  		else
+   			render :action => 'new', :layout =>"mobile_template"
+ 	 	end
+	end
+
+
+
+
+
 	# This method is used to logout the currently logged in
 	# user by destroying his UserSession
 	# Author: Kiro
@@ -39,3 +58,4 @@ class UserSessionsController < ApplicationController
 
 
 end
+
