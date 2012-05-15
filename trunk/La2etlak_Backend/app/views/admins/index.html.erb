@@ -53,7 +53,7 @@ faye.subscribe("/admins/index", function() {
 								<span class="pull-left greenbadge">Interest</span>
 								<span class="pull-right bluebadge"><%=time_ago_in_words(@interest.created_at)%></span>
 							<div class="well admin_story_feed" style="float: left;">
-								<% if @interest.photo.file? %>
+								<% if !@interest.photo.file? %>
 					     			  <%= image_tag "logo.jpeg"  , style: "float:left; margin-right:20px; margin-bottom:20px;" %>
 					     			  <% else %>
 					            <img src= "<%=@interest.photo.url(:small) %>" style=" width=320px; height:320px;"/>
