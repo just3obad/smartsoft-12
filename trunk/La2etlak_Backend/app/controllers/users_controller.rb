@@ -136,33 +136,6 @@ end
   end
 
 
-   def new
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
-    end
-    end
-
-  def create
-    @user = User.new(params[:user.downcase])
-    respond_to do |format|
-      if @user.save
-        @user.haccount = Haccount.new(:email => @user.email.downcase,
-                                      :password=>params[:password.downcase], :user_id => @user.id)
-        if @user.haccount.generateVerificationCode?
-          Emailer.resend_code(@user.haccount).deliver
-          @uLog = UserLogIn.create(:user_id => @user.id)
-          format.json { render json: @user, status: :created }
-        end
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-
   def index
     respond_with(@users = User.all)
   end
