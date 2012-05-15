@@ -118,7 +118,7 @@ include StoriesHelper
   def get_story_rank_all_time
 	comments_on_story 	= Comment.where(:story_id => self.id)
 	shares_of_story 	= Share.where(:story_id => self.id)
-	dislikes_of_user	= Likedislike.where(:story_id => self.id, :action => -1)
+	dislikes_of_story	= Likedislike.where(:story_id => self.id, :action => -1)
 	likes_of_story 		= Likedislike.where(:story_id => self.id, :action => 1)
 	flags_of_story 		= Flag.where(:story_id => self.id)
 	sum 				= comments_on_story.length + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
@@ -130,7 +130,7 @@ include StoriesHelper
   def get_story_rank_last_30_days
 	comments_on_story 	= Comment.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id)
 	shares_of_story 	= Share.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id)
-	dislikes_of_user	= Likedislike.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id, :action => -1)
+	dislikes_of_story	= Likedislike.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id, :action => -1)
 	likes_of_story 		= Likedislike.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id, :action => 1)
 	flags_of_story 		= Flag.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id)
 	sum 				= comments_on_story.length + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
@@ -139,41 +139,51 @@ include StoriesHelper
   end
 
 #Author : Shafei
-  def get_stories_ranking_all_time
-	all_stories 	= Story.*
-	rank 			= Array.new
-	id_array		= Array.new
-	max				= 0
-	id				= 999999
-	for i in 0...(all_stories.length - 1)
-		for j in 0...(all_stories.length - 1)
-			if all_users[j].get_story_rank_all_time >= max && array_id.exist(id) == false
-				max = all_stories[j].get_story_rank_all_time
-				id = all_stories[j].id
-			end
+  def self.get_stories_ranking_all_time
+		all_stories 		= Array.try_convert(Story.all)
+		if all_stories.empty? == true
+			return all_stories
 		end
-		array_id >> id
-		rank << all_stories[id]
-	end 
+		rank 			= Array.new
+		id_array		= Array.new
+		max				= 0
+		id				= 999999
+		all_stories.each do |story|
+			all_stories.each do |story|
+				if story.get_story_rank_all_time >= max && (id_array.include?(story.id) == false)
+					max = story.get_story_rank_all_time
+					id = story.id
+				end
+			end
+			max = 0
+			id_array << id
+			rank << all_stories[id-1]
+		end
+		return rank
   end
   
 #Author : Shafei
-  def get_stories_ranking_last_30_days
-	all_stories 	= Story.*
-	rank 			= Array.new
-	id_array		= Array.new
-	max				= 0
-	id				= 999999
-	for i in 0...(all_stories.length - 1)
-		for j in 0...(all_stories.length - 1)
-			if all_users[j].get_story_rank_last_30_days >= max && array_id.exist(id) == false
-				max = all_stories[j].get_story_rank_last_30_days
-				id = all_stories[j].id
-			end
+  def self.get_stories_ranking_last_30_days
+	all_stories 		= Array.try_convert(Story.all)
+		if all_stories.empty? == true
+			return all_stories
 		end
-		array_id >> id
-		rank << all_stories[id]
-	end 
+		rank 			= Array.new
+		id_array		= Array.new
+		max				= 0
+		id				= 999999
+		all_stories.each do |story|
+			all_stories.each do |story|
+				if story.get_story_rank_last_30_days >= max && (id_array.include?(story.id) == false)
+					max = story.get_story_rank_last_30_days
+					id = story.id
+				end
+			end
+			max = 0
+			id_array << id
+			rank << all_stories[id-1]
+		end
+		return rank
   end
 
 #view_friends_like is a method to view the friends of the user who liked a certain story, there will be button in the options tab of the story called view liked that will open another page with the names of friends in it

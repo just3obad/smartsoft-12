@@ -80,97 +80,56 @@ class StoryTest < ActiveSupport::TestCase
   end
 
 #Author : Shafei
-    test "story get rank all time RED" do
-		user = User.new
-		user.save
-		story = Story.new
-		story.save
-		comment = Comment.new
+    test "story get rank all time" do
+		user = users(:one)
+		story = stories(:one)
+		comment = comments(:one)
 		comment.user = user
 		comment.story = story
-		assert_equal(story.get_story_rank_all_time(),1,"Action returns wrong number")
+		comment.save
+		assert_equal(story.get_story_rank_all_time(),31,"Action returns wrong number")
 	end
 	
 #Author : Shafei
-    test "story get rank last 30 days RED" do
-		user = User.new
-		user.save
-		story = Story.new
-		story.save
-		comment = Comment.new
+    test "story get rank last 30 days" do
+		user = users(:one)
+		story = stories(:one)
+		comment = comments(:two)
 		comment.created_at = 40.days.ago
 		comment.user = user
 		comment.story = story
-		comment2 = Comment.new
+		comment.save
+		comment2 = comments(:one)
 		comment2.user = user
 		comment2.story = story
-		assert_equal(story.get_story_rank_all_time(),1,"Action returns wrong number")
+		comment2.save
+		assert_equal(story.get_story_rank_all_time(),32,"Action returns wrong number")
 	end
 	
 #Author : Shafei
-	test "stories get rank all time RED" do
+	test "stories get rank all time" do
 		top_stories = Array.new#
-		comments = Array.new#
-		user = User.new
-		user.save
-		i = 1
-		top_stories.each do |story|
-			story = Story.new
-			story.save
-			top_stories >> story
-			for j in 1...i
-				comment = Comment.new
-				comment.user = user
-				comment.story = story
-				comment.save
-				comments >> comment
-			end
-			i = i + 1
-		end
-		story = Story.new
-		stories = story.get_stories_ranking_all_time
-		assert_nil(stories.first,"")
-		stories.each do |story|
-			assert_equal(story.id, top_stories[i].id, "Ranking not correct")
-			i = i - 1
+		top_stories << stories(:two)
+		top_stories << stories(:one)
+		top_stories << stories(:five)
+		top_stories << stories(:four)
+		top_stories << stories(:three)
+	
+		for i in 0...5
+			assert_equal(top_stories[i].id, Story.get_stories_ranking_all_time[i].id, "Ranking not correct")
 		end
 	end
 	
-test "stories get rank last 30 days RED" do
+#Author : Shafei
+	test "stories get rank last 30 days" do
 		top_stories = Array.new#
-		comments = Array.new#
-		user = User.new
-		user.save
-		i = 1
-		top_stories.each do |story|
-			story = Story.new
-			story.save
-			top_stories >> story
-			for j in 1...i
-				comment = Comment.new
-				comment.user = user
-				comment.story = story
-				comment.save
-				comments >> comment
-				comments >> comment2
-			end
-				for j in (i+5)...1
-				comment = Comment.new
-				comment.created_at = 50.days.ago
-				comment.user = user
-				comment.story = story
-				comment.save
-				comments >> comment
-			end
-			i = i + 1
-		end
-		story = Story.new
-		stories = story.get_stories_ranking_all_time
-		assert_nil(stories.first,"")
-		stories.each do |story|
-			assert_equal(story.id, top_stories[i].id, "Ranking not correct")
-			i = i - 1
+		top_stories << stories(:two)
+		top_stories << stories(:one)
+		top_stories << stories(:five)
+		top_stories << stories(:four)
+		top_stories << stories(:three)
+		for i in 0...5
+			assert_equal(top_stories[i].id, Story.get_stories_ranking_last_30_days[i].id, "Ranking not correct")
 		end
 	end
-	
 end
