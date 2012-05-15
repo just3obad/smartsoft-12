@@ -45,6 +45,15 @@ class FriendshipsController < ApplicationController
     end
   end
 
+  def block
+    @user = current_user
+    @friend = User.find(params[:friend_id])
+    @user.block @friend
+    
+    render layout: 'mobile_template', text: "Member blocked  #{@friend.email}"
+  end
+
+
   # Author: Yahia
   def search
     @user = current_user

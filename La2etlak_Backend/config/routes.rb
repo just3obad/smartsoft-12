@@ -97,6 +97,7 @@ NokiaRuby::Application.routes.draw do
   match "users/friendship/reject/:friend_id" => "friendships#remove"
   match "users/friendship/block/:friend_id" => "friendships#block"
   match "users/friendship/pending" => "friendships#pending"
+  match "users/friendship/accept/:friend_id" => "friendships#accept"
   # $$$$$$$$$$$$$$  YAHIA  END $$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$  MENISY $$$$$$$$$$$$$$$$$$$$$$$
