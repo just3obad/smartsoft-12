@@ -142,13 +142,6 @@ NokiaRuby::Application.routes.draw do
 
 
   #match "users/" => "users#index"
-  match "friends/"=>"friends#index"
-  match "friends/:id/req" => "friends#req"
-  match "friends/:id/accept" => "friends#accept"
-  match "friends/:id/reject" => "friends#reject"
-  match "friends/index"=>"friends#index"
-  match "friends/find"=>"friends#find"
-  match "friends/:id/myreq"=>"friends#myreq"
   match "users/" => "users#index"
   match '/pages/home' => 'pages#home'
 
