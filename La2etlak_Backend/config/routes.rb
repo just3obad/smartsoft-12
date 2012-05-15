@@ -120,12 +120,12 @@ NokiaRuby::Application.routes.draw do
   # $$$$$$$$$$$$$$  YAHIA  END $$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$  MENISY $$$$$$$$$$$$$$$$$$$$$$$
-  match "stories/:id/comments/new" => "stories#create_comment"
-  match "stories/:id/comments/upc" => "stories#up_comment"
-  match "stories/:id/comments/downc" => "stories#down_comment"
-  match "/stories/:id/show_mob/" => "stories#mobile_show"
+  match "mob/stories/:id/comments/new" => "stories#create_comment"
+  match "mob/stories/:id/comments/upc" => "stories#up_comment"
+  match "mob/stories/:id/comments/downc" => "stories#down_comment"
+  match "mob/stories/:id/show_mob/" => "stories#mobile_show"
   match "/fb/done" => "users#authenticate_facebook_done"
-  match "users/facebook/auth_init" => "users#authenticate_facebook_init"
+  match "mob/users/facebook/auth_init" => "users#authenticate_facebook_init"
   # $$$$$$$$$$$$ MENISY END $$$$$$$$$$$$$$$$$$$$$$
 
     # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
@@ -164,8 +164,8 @@ NokiaRuby::Application.routes.draw do
 
   root :to => 'admins#index'
   
-#  resources :users
-#  resources :h_accounts
+ # resources :users
+ # resources :h_accounts
 
   resources :admins
   resources :stories
