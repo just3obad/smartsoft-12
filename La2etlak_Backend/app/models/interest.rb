@@ -1,7 +1,7 @@
 class Interest < ActiveRecord::Base
 #Author: jailan
 #attributes  that can be modified automatically by outside users
-  attr_accessible :description, :name, :image, :deleted, :photo
+  attr_accessible :description, :name, :deleted, :photo
   
   has_many :stories
   has_many :feeds, :dependent => :destroy
@@ -35,8 +35,7 @@ validates :name, :presence => true,
   validates :description,  :length   => { :maximum => 100 }
 
 
-# the image will be entered using a URL link whci should also be of the form  "http://www. xxxx.jpg"
-  validates :image,  :format   => { :with => LINK_regex }
+
 
 #a method that takes a number and returns this number of stories related to this interest
   def get_stories(stories_number=10)
