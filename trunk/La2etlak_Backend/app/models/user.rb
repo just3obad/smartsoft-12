@@ -4,16 +4,13 @@ class User < ActiveRecord::Base
 	# Author: Kiro
 	acts_as_authentic	
 
-  # This is added to use the amistad friendship Gem
-  # Author: Yahia
+=begin
+
+   This is added to use the amistad friendship Gem
+   Author: Yahia
+=end
   include Amistad::FriendModel
   include UsersHelper
-  # Those are our Consumer Token and Consumer secret that twitter
-  # provided us. This correspons our entity to twitter. The Consumer
-  # Secret should be saved in a safe place. 
-  # Author: Yahia
-  CONSUMER_TOKEN  = 'A8Fh0r4H5DJl3dCYLGbXyQ'
-  CONSUMER_SECRET = '614KLHBIR3jyAyULABnxeJ7jUWz5jDG2rs7K1zY20Q' 
 
   # attr_accessible :title, :body
   attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, :twitter_account, :twitter_request, :image, :password, :password_confirmation
@@ -378,17 +375,6 @@ end
   c = get_no_of_comments_user(user_id)
  data = "[#{s},#{n},#{m},#{p},#{c}]"
  end
-
-=begin
- This return the consumer for twitter authentication
- 
- Author: Yahia  
-=end
-  def self.twitter_consumer
-  # The readkey and readsecret below are the values you get during registration
-    OAuth::Consumer.new(CONSUMER_TOKEN, CONSUMER_SECRET,
-                      { :site=>"http://twitter.com" })
-  end
 
 =begin
   This method adds a twitter account to the user. The twitter

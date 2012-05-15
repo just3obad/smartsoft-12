@@ -18,7 +18,7 @@ class TwitterAccountsController < ApplicationController
     session[:user_id] = 1
 
     #FIXME change IP 
-    request_token = User.twitter_consumer.get_request_token(:oauth_callback => 
+    request_token = TwitterAccount.twitter_consumer.get_request_token(:oauth_callback => 
                 "http://127.0.0.1:3000/users/twitter/generate_access_token")
 
     url = request_token.authorize_url
@@ -43,9 +43,12 @@ class TwitterAccountsController < ApplicationController
     # FIXME FOR THE SAKE OF TESTING
     session[:user_id] = 1
     @user = User.find(session[:user_id])
-    request_token = OAuth::RequestToken.new(User.twitter_consumer,
+    request_token = OAuth::RequestToken.new(TwitterAccount.twitter_consumer,
                     params["oauth_token"], params["oauth_verifier"])
 
+    if @user.twitter_account
+      @user.twitter_account.delete
+    end
     t_account = @user.create_twitter_account(request_token)
 
     unless t_account.new_record?
