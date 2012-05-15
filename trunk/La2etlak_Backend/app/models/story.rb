@@ -186,7 +186,7 @@ include StoriesHelper
 		return rank
   end
 
-#view_friends_like is a method to view the friends of the user who liked a certain story, there will be button in the options tab of the story called view liked that will open another page with the names of friends in it
+#view_friends_like is a method that return a list of friends emails that liked the story
 #Author: khaled.elbhaey
 def view_friends_like(user)
   @user=user
@@ -211,7 +211,7 @@ def view_friends_like(user)
 end
 
 
-#view_friends_like is a method to view the friends of the user who liked a certain story, there will be button in the options tab of the story called view liked that will open another page with the names of friends in it
+#view_friends_dislike is a method that return a list of friends emails that disliked the story
 #Author: khaled.elbhaey
 def view_friends_dislike(user)
   @user=user

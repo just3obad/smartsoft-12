@@ -110,11 +110,7 @@ def show
  end
    
 
-#recommend_story is a method to recommend specific story to another friend by clicking the button of 
-#recommend story in the story it depend on the method get_friend_list which return alist of friends of the
-# user that the user will select one of them to recommend the story to if the user has no friends he could be 
-#directed to add friends page or the user could write an email and the recommendation go to that email if the email
-# isnot in the database an invitation shall be sent to him
+#recommend_story_mobile_show is a method that calls the view of the recommendation page with a list of friends email for the user to select one of them or to write down an email on his own and then click the button send which will call the recommend_success_mobile_show method to send the recommendation
 #Author=> khaled.elbhaey
   def recommend_story_mobile_show()
     @storyid=params[:sid]
@@ -133,6 +129,7 @@ Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story
 	render :layout => "mobile_template"
   end
 
+#recommend_success_mobile_show is a method to recommend specific story to another friend via email so an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
 #Author=> khaled.elbhaey
   def recommend_success_mobile_show()
     @storyid=params[:sid]
@@ -171,21 +168,23 @@ def get_friend_id()
  @id = User.find_by_email(@useremail).id
  render text: @id.to_s
 end
-
+#liked_mobile_show is a method to view to the user a list of friends who liked specific story (calls the view of the list)
 #Author=> khaled.elbhaey
   def liked_mobile_show
     @story = Story.find(params[:id])
     @user = current_user
     @friends=@story.view_friends_like(@user)
-    flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
+    flash[:error] = "sorry, you have no friends you can go to find friend page to add more"
     render :layout => "mobile_template" 
   end
+
+#disliked_mobile_show is a method to view to the user a list of friends who disliked specific story (calls the view of the list)
 #Author=> khaled.elbhaey
   def disliked_mobile_show
     @story = Story.find(params[:id])
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
-    flash[:error] = "sorry, you have no friends you can go to find friend pade to add more"
+    flash[:error] = "sorry, you have no friends you can go to find friend page to add more"
     render :layout => "mobile_template" 
   end
   #Author: Bassem !!

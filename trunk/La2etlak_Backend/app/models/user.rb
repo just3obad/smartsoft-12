@@ -84,7 +84,7 @@ def get_notifications
     self.pending_invited_by
   end
 end
-#i seperated get_friends method from the recommend_story method so that no conflict happen when recieving and sending the json file and it return list of friends of the user
+#the get_friends is a method that return list of all friends email of the user
 #Author: khaled.elbhaey
   def get_friends_email()
 
