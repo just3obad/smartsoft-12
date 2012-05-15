@@ -99,18 +99,27 @@ class UsersController < ApplicationController
 def feed
 
  	user = current_user
- 	int_name = params[:interest]
+	int_name = params[:interest]
+	#if(user.user_add_interests == [])
+	#	@stories = Story.get_stories_ranking_last_30_days
+	#else
+
+ 	
    	 if(int_name)
     	 @stories = user.get_feed(int_name)
 	 else
 	 @stories =  user.get_feed("null")
 	end
+	#@stories = @stories + user.get_friends_stories
+
 	 respond_to do |format|
     	 format.json { render json: @stories }
    	 # Author : Mina Adel
   	 format.html { render :layout => "mobile_template"}
   	 #
+	#end
  end
+   
 end
 ########################
 
