@@ -9,7 +9,7 @@
     <tr>
 
 
-      <td><img width="150";height="100"; src= <%= interest.image %> ></td>
+      <td><img width="150";height="100"; src= <%= @interest.photo.url(:small)  %> ></td>
       <td><%= link_to(interest.name, {:controller => "interests", :action => "show", :id => interest.id} ) %></td>
       <td><%= interest.description %></td>
     </tr>
