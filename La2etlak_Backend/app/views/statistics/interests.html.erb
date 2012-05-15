@@ -5,7 +5,8 @@
    //no of images and then call method kl that will view the graph with the parameters already stated.
    
    //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
-  $(document).ready(function() {
+  var $j = jQuery.noConflict();
+  $j(document).ready(function() {
        //get The interests array of arrays of data
       data= <%= Interest.get_interest_stat(@id) %>;
       date= <%= Interest.get_interest_start_date(@id)%>

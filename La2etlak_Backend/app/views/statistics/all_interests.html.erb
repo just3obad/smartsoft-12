@@ -1,25 +1,30 @@
 <script type="text/javascript" charset="utf-8">
-    /*this is to draw the pie chart 2 arrays are passed to it names and ranks of
-     top ranked 5 interests*/
-   var $j = jQuery.noConflict();
+    
+  var $j = jQuery.noConflict();
   $j(document).ready(function() {
+      
+       var arrayNames = [] ;
+       var arrayRanks = <%= Interest.get_top_interests_ranks[0..4]%>;
+        <% Interest.get_top_interests_names[0..4].each do |name|%>
+          arrayNames.push("<%= name %>");
+          
+        <% end %>
        
-      var arrayNames = <%= Interest.get_top_interests_names%>;
-      var arrayRanks = <%= Interest.get_top_interests_ranks%>;
-      var name = [];
-      var data = [];
-      if (arrayNames.length < 5)
-      {
-        name= arrayNames;
-        data= arrayRanks;
-      }
-      else {
-       name= arrayNames[0..4];
-       data= arrayRanks[0..4];
-      }
+       if (arrayNames.length == 0)
+       {
+         document.getElementById("noInterest").style.display= "block";  
+         document.getElementById("ccc").style.display= "none"; 
+         document.getElementById("genInfo").style.display= "none"; 
+       }
+       else if(arrayRanks[0] == 0)
+       {
+          document.getElementById("noInterest").style.display= "block";  
+         document.getElementById("ccc").style.display= "none"; 
+         document.getElementById("genInfo").style.display= "none";
+       }
       var title="Top Interests";
       var container="ccc";
-      Pie_chart(name,data,title,container);
+      Pie_chart(arrayNames,arrayRanks,title,container);
    });
 </script>
 
@@ -47,17 +52,19 @@
     </div>
     </div>
 
-    <div class="span9">
+    <div class="span6">
        
-<div class="alert" id="noUser" style="display: none;">
-  
-           <a class="close" data-dismiss="alert">×</a>
-           <h1><strong>Warning!</strong> No Interests.</h1>
+<div class="alert-error" id="noInterest" style="display: none;">
+
+           
+           <h2><strong>Warning!</strong> No interests were created or cannot rank them.</h2>
      </div>
 
 <div id="ccc"></div>
-<div class="general info">
-            
+<div class="general info" id ="genInfo">
+            <% Interest.get_top_interests_names.each do |name|%>
+            <%= name.to_s %>
+            <% end %>
             <!--Here we'll get the general infor of top interests:-->
             <h4><div class="alert alert-info"> 
             </div></h4>

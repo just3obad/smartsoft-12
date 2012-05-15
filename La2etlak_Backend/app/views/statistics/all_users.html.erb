@@ -1,5 +1,6 @@
 <script type="text/javascript" charset="utf-8">
-$(document).ready(function() {
+var $j = jQuery.noConflict();
+  $j(document).ready(function() {
       //get The users' array of arrays of data
       data= <%= User.get_all_users_stat %>;
       if (data.length != 0) {
