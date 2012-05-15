@@ -22,7 +22,6 @@ NokiaRuby::Application.routes.draw do
 	match "dummyLogin" => "users#dummyLogin"
 	match "mob/test" => "users#test"
 	match "mob/test_2" => "users#test_2"
-	resources :users
 	resources :user_sessions
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 
@@ -55,7 +54,7 @@ NokiaRuby::Application.routes.draw do
   match "mob/shares/:id" => "shares#user_share_story"
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
 	
-	resources :users
+	resources :users  # Kiro
 
 
 
