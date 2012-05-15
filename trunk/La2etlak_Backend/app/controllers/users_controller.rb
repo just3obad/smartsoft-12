@@ -213,6 +213,7 @@ end
   #method that calls the method in model to block interest and renders the view
   #Author: Rana
   def block_interest
+    @user = current_user
     @story_id = params[:id]
     @story = Story.find_by_id(@story_id)
     @text = @user.block_interest1(@story)
