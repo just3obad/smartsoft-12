@@ -175,7 +175,7 @@ NokiaRuby::Application.routes.draw do
   #Mouaz
   match 'admins/login', to: 'admin_session#new'
   match 'admins/logout', to: 'admin_session#destroy'
-
+  match 'admins/reset_pass', to: 'emailer#reset_admin_password'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

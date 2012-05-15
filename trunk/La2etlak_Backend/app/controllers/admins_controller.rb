@@ -61,4 +61,10 @@ class AdminsController < ApplicationController
   def index
     Admin.get_feed
   end
+#Author : Mouaz
+	def resetPassword
+		@user = current_user
+		newpass = @user.resetPassword
+		Emailer.reset_password(@user,newpass).deliver
+	end
 end
