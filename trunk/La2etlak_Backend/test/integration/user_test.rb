@@ -35,49 +35,41 @@ class UserTest < ActionDispatch::IntegrationTest
     
     #Author: Rana
     test "route to block story" do
-      assert_routing 'users/block_story/1', {:controller => "users", :action => "block_story", :id => "1" }
+      assert_routing 'mob/block_story/1', {:controller => "users", :action => "block_story", :id => "1" }
     end
 
     #Author: Rana   
     test "route to block interest" do
-      assert_routing 'users/block_interest/1', {:controller => "users", :action => "block_interest", :id => "1" }
+      assert_routing 'mob/block_interest/1', {:controller => "users", :action => "block_interest", :id => "1" }
     end
 
     #Author: Rana   
     test "route to block friend" do
-      assert_routing 'users/block_friends_feed/1', {:controller => "users", :action => "block_friends_feed", :id => "1" }
+      assert_routing 'mob/block_friends_feed/1', {:controller => "users", :action => "block_friends_feed", :id => "1" }
     end
 
     #Author: Rana   
-    test "route to view friends feed RED" do
-      assert_routing 'users/friends_feed/1/rana', {:controller => "users", :action => "friends_feed", :id => "1", :fname => "rana" }
+    test "route to view friends feed" do
+      assert_routing 'mob/friends_feed/1', {:controller => "users", :action => "friends_feed", :id => "1"}
     end
 
     #Author: Rana    
-    test "route to view friends list RED" do
-      assert_routing 'users/friends_list/1', {:controller => "users", :action => "friends_list", :id => "1"}
+    test "route to view friends list" do
+      assert_routing 'mob/friends_list', {:controller => "users", :action => "friends_list"}
     end   
-
-    #Author: Rana
+     #Author: Rana
     test "friends list view page RED" do
-      this_user = User.create :name => "mohamed", :email => "m@abc.com"
-      get friends_list_path(this_user)
       assert_select 'div[id = "heading"]'
       assert_select 'div[id = "list"]'
-      assert_select 'div[id = "fbutton"]'
-      assert_select 'div[id = "bbutton"]'
-      assert_select "form[action='friends_feed']"
-      assert_select "form[action='block_friends_feed']"
     end
 
     #Author: Rana
-    test "form for button friend list in main feed RED" do
-      this_user = User.create :name => "mohamed", :email => "m@abc.com"
-      get main_feed_path(this_user)
-      assert_select "form[action = 'friends_list']"
-      assert_select 'div[id="fbutton"]'
+    test "form for friend feed in main feed RED" do
+      assert_select 'div[id="block"]'
+      assert_select 'div[id="back"]'
+      assert_select 'div[id="stories"]'
+      assert_select 'div[id="heading"]'
     end
-    
     
     #Author : Omar
      test "route to toggle interests RED" do
