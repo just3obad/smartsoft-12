@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Thank you for joining La2etlak, you just recieved an E-mail containing the verification instructions."
 			session = UserSession.new(@user)
 			if session.save
-     		redirect_to "/toggle"
+     		redirect_to "/mob/toggle"
 			else
 				redirect_to "/dummyLogin"
 			end
@@ -78,6 +78,7 @@ class UsersController < ApplicationController
 
 	#Author: Kiro (This method is for testing purpose)
 	def dummyLogin
+		render :layout => "mobile_template"
 	end
 
 	def test
@@ -138,7 +139,7 @@ def int_toggle
 user = current_user
 id = params[:id]
 user.toggle_interests(id)
- redirect_to "/users/toggle"
+ redirect_to "/mob/toggle"
 end
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
