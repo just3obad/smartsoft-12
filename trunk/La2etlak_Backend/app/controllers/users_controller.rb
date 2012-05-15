@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
 	respond_to :html,:json
 
-	
+	# Author: Kiro
+  # Renders the registration remplate
  	def new
     @user = User.new
     render :layout => "mobile_template"
   end
 
+  # Author: Kiro
+  # Creates a new user and redirects him to the toggle if saved
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -126,7 +129,7 @@ def int_toggle
 user = current_user
 id = params[:id]
 user.toggle_interests(id)
- redirect_to "/toggle"
+ redirect_to "/users/toggle"
 end
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
