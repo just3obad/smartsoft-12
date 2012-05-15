@@ -83,7 +83,7 @@
 
 
       <td><img width="150";height="100"; src= <%= interest.photo.url(:small) if interest.photo.file? %> ></td>
-      <td><%= link_to(interest.name, {:controller => "interests", :action => "show", :id => interest.id} ) %></td>
+      <td><%= link_to(interest.name, {:controller => "statistics", :action => "interests", :id => interest.id} ) %></td>
       <td><%= interest.description %></td>
       <td><%= interest.get_interest_rank %></td>
     </tr>
