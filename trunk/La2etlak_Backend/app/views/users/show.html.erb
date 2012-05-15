@@ -153,6 +153,12 @@
           <li class="nav-header">Ban this user</li>
           <li class="divider"></li>
           
+          <% if @user.deactivated %>
+              <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success", id: "deactivate_button") %>
+            <% else %>
+              <%= link_to('Deactivate', {:controller => 'users', :action => 'deactivate', :id => @user.id}, class: "btn btn-large btn-danger", id: "deactivate_button") %>
+            <% end %>
+           
            <%= link_to('Ban', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "deactivate_button") %>
           
         </ul>
