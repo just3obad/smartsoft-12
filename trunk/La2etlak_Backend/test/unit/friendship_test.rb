@@ -6,14 +6,14 @@ class FriendshipTest < ActiveSupport::TestCase
   # end
   
   # Author: Yahia
-  test "A user should be able to request a friendship of another user RED" do 
+  test "A user should be able to request a friendship of another user" do 
     u1 = User.first
     u2 = User.last
     assert u1.invite(u2), 'A user should be able to invite another user for friendship'
   end 
 
   # Author: Yahia
-  test "A user should not be able to request the same friendhsip twice RED" do 
+  test "A user should not be able to request the same friendhsip twice" do 
     u1 = User.first
     u2 = User.last
     u1.invite u2
@@ -21,7 +21,7 @@ class FriendshipTest < ActiveSupport::TestCase
   end 
 
   # Author: Yahia
-  test "A user should be able to accept friendship requests RED" do 
+  test "A user should be able to accept friendship requests" do 
     u1 = User.first
     u2 = User.last
     u1.invite u2
@@ -29,7 +29,7 @@ class FriendshipTest < ActiveSupport::TestCase
   end 
 
   # Author: Yahia
-  test "A user should be able to remove frienship of another user RED" do 
+  test "A user should be able to remove frienship of another user" do 
     u1 = User.first
     u2 = User.last
     u1.invite u2
@@ -39,7 +39,7 @@ class FriendshipTest < ActiveSupport::TestCase
   end 
 
   # Author: Yahia
-  test "A user should be able to see a list of his friends RED" do 
+  test "A user should be able to see a list of his friends" do 
     u1 = User.first
     u2 = User.last
     u1.invite u2
