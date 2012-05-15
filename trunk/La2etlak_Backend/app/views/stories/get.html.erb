@@ -35,7 +35,7 @@
 	 </div></br>
 	
 <!-- checking for story category if RSS allow story functionalties if not remove from view -->
-	<% if @story.category != "RSS" %>
+	<% if @story.category == "RSS" %>
 		<div style="padding-left:10px;">
  <!-- adding like and dislike button if user didnt like or dislike before and number of likes dislikes for this stort  -->
  <% if @action1 == [] && @action2 == [] %>
@@ -115,7 +115,7 @@
  </div>
 
 
-	<% if @story.category != "RSS" %>
+	<% if @story.category == "RSS" %>
 
 <!-- recommend buttons  1) facebook button 2)twitter button 3)La2etlak button -->
   
