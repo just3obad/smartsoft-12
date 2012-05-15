@@ -148,9 +148,20 @@ end
 
   
   #Author: Bassem
+  #The method takes the user Id as a parameter, passes it to the model where the user is found
+  #and his deactivated attribute is set to true
   def deactivate
-    User.find_by_id(params[:id]).deactivated = true
-    respond_with true
+    @user = User.find(params[:id])
+    @user.deactivate_user(params[:id])
+    redirect_to(:action => 'show', :id => @user.id)
+  end
+  #Author: Bassem
+  #The method takes the user Id as a parameter, passes it to the model where the user is found
+  #and his deactivated attribute is set to false
+  def activate
+    @user = User.find(params[:id])
+    @user.activate_user(params[:id])
+    redirect_to(:action => 'show', :id => @user.id)
   end
 
   #method that calls the method in model to block story and renders the view

@@ -765,4 +765,15 @@ end
     activities=Log.get_log_for_user(self.id,start_date.beginning_of_day)
   end
 
+  def deactivate_user(id)
+    @user =User.find(id)
+    @user.deactivated = true
+    @user.save
+  end
+  def activate_user(id)
+    @user =User.find(id)
+    @user.deactivated = false
+    @user.save
+  end
+
 end
