@@ -1,3 +1,4 @@
+<%= render 'shared/logs_error_messages' %>
 <div class="main-settings-page">
 
 <div class="middle-settings-panel" >
@@ -12,7 +13,31 @@
               
             </div>
             <div class="tab-pane fade active in" id="story_settings">
-              
+              <div class="well">
+              <form  action="admin_settings" method="post">
+                <label>Configure flags threshold</label>
+                <input type="text" class="span3" placeholder="Please enter the flags threshold" name="value">
+                <span class="help-block">Minimum threshold is 30</span>
+                <label class="checkbox">
+                <input type="checkbox" name="auto"> Disable Auto-Hiding
+                </label>
+                <button type="submit" class="btn">Submit</button>
+              </form>
+
+              <div style="width:300px;"
+                <% total = (Story.find_all_by_hidden(false).count + Story.find_all_by_hidden(true).count) %>
+                <div class="progresscustom" id="progressbar" style="display: block;">
+                  <div class="barcustom" id="barofprogress" style="width: <%= 
+                        if total == 0
+                          width = 0
+                        else 
+                          width = ((Story.find_all_by_hidden(false).count)*300)/total
+                        end %>px;">
+                  </div>
+                </div>
+                <span class="help-block">Un-Hidden VS Hidden</span>
+              </div>    
+              </div>
             </div>
             <div class="tab-pane fade" id="general_settings">
               
