@@ -89,7 +89,7 @@ end
   def get_friends_email()
 
   @flistemail=Array.new
-  @flist = self.get_Friend_List()
+  @flist = self.friends
 
       (0..(@flist.length-1)).each do |i|
       @flistemail << (@flist[i].email)
@@ -104,20 +104,7 @@ end
    Log.create!(loggingtype: 1,user_id_1: @userid,user_id_2: nil,admin_id:   nil,story_id: nil,interest_id: nil,message: @message )
   '''
   end
-    
-#Author: khaled.elbhaey
-  def get_Friend_List()   
-
-  @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "khaledelbhaey@yahoo.com")
-  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
-  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
-  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
-  @list <<@user1 <<@user2 <<@user3 <<@user4
-
-  return @list
-    
- end
+   
 
 #has_account checks if the user with the (mail) is in our database or not
 #Author: khaled.elbhaey
