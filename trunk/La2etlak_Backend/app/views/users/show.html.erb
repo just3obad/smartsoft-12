@@ -147,7 +147,7 @@
           <li class="divider"></li>
           <li class="nav-header">Reset the password for this user</li>
           <li class="divider"></li>
-           <%= link_to('Reset Password', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
+           <%= link_to('Reset Password', {:controller => 'force_reset_password', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
           
           <li class="divider"></li>
           <li class="nav-header">Ban this user</li>

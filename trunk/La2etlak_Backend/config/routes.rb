@@ -189,7 +189,7 @@ NokiaRuby::Application.routes.draw do
   
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
   match '/users/force_reset_password/:id', to: 'users#force_reset_password'
-  get '/admin_settings', to: 'admin_settings#show'
+  get '/admin_settings', to: 'admin_settings#index'
   post '/admin_settings', to: 'admin_settings#configure_flags_threshold'
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
   #Mouaz

@@ -1,9 +1,9 @@
 class AdminSettingsController < ApplicationController
 
 	#author: Bassem
-  def index
+  	def index
 
-  end
+  	end
 
 	def show
 	end
@@ -21,7 +21,7 @@ class AdminSettingsController < ApplicationController
 		if $flash_error ==  "true"
 			#flash[:error] = "You can not enter values less than 30, It is now changed to the default value 30."
 		end
-		render :template=>'admin_settings/show'		
+		render :template=>'admin_settings/index'		
 	end
 	
 	def create
