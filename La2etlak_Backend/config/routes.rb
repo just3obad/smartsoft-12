@@ -89,10 +89,8 @@ NokiaRuby::Application.routes.draw do
 
 
   # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
-  match "users/twitter/generate_request_token" => "users#generate_request_token"
-  match "users/twitter/generate_access_token" => "users#generate_access_token"
-  match "twitter_accounts/delete" => "twitter_accounts#remove_twitter_account"
-  match "twitter_accounts/exists" => "twitter_accounts#exists?"
+  match "users/twitter/generate_request_token" => "twitter_accounts#generate_request_token"
+  match "users/twitter/generate_access_token" => "twitter_accounts#generate_access_token"
   match "users/mob/connect_network" => "users#connect_social_accounts"
   match "users/friendship/search/:query" => "friendships#search"
   match "users/friendship/create/:friend_id" => "friendships#create"
