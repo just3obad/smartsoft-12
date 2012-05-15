@@ -105,7 +105,7 @@ NokiaRuby::Application.routes.draw do
   # $$$$$$$$$$$$$$  YAHIA $$$$$$$$$$$$$$$$$$$$$$$
   match "mob/twitter/generate_request_token" => "twitter_accounts#generate_request_token"
   match "mob/twitter/generate_access_token" => "twitter_accounts#generate_access_token"
-  match "users/mob/connect_network" => "users#connect_social_accounts"
+  match "mob/connect_network" => "users#connect_social_accounts"
   match "friendship/search/" => "friendships#search"
   match "friendship/search/:query" => "friendships#search"
   match "friendship/create/:friend_id" => "friendships#create"
