@@ -60,24 +60,24 @@
       <%= f.submit "Save Changes", class: "btn btn-primary" %>
     <% end %>
 
-                                                  <! this is the div holdeing the state of the interest (blocked/active) also the date it was created >
-						<li class="nav-header">Interest Info</li>
-							<div class="story-page-well"><% if !(@interest.deleted ) %>
-									<ul class="nav nav-list">
-									<li class="nav-header">Status :</li>
-									<span class="greenbadge">Active</span>
-									<% elsif @interest.deleted %>
-									<ul class="nav nav-list">
-									<li class="nav-header">Status</li>
-									<li><span class="redbadge">Blocked</span></li>
-							
-									<% end %>
-									<li class="nav-header">Date :</li>
-									<li><%= @interest.created_at.to_date %></li>
-								
-									
+ 	 <! this is the div holdeing the state of the interest (blocked/active) also the date it was created >
+	 <li class="nav-header">Interest Info</li>
+	    	<div class="story-page-well"><% if !(@interest.deleted ) %>
+				<ul class="nav nav-list">
+				<li class="nav-header">Status :</li>
+				<span class="greenbadge">Active</span>
+				<% elsif @interest.deleted %>
+				<ul class="nav nav-list">
+				<li class="nav-header">Status</li>
+				<li><span class="redbadge">Blocked</span></li>
+		
+				<% end %>
+				<li class="nav-header">Date :</li>
+				<li><%= @interest.created_at.to_date %></li>
+			
+				
 
-							</div>
+		</div>
 
 
 <% if !@interest.deleted  %>
@@ -85,7 +85,7 @@
 			<li class="divider"></li>
 
 
-			<li class="nav-header">Restore this Interest </li>
+			<li class="nav-header">Block this Interest </li>
 <! the switching bUtton for the Block/unblock interest purpose >
 			
       <%= link_to  "Block",{:controller => "interests", :action => "toggle",:id => @interest.id} ,:class => "btn btn-danger" %>

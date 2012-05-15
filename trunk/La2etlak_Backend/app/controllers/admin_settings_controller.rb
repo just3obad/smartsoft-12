@@ -1,5 +1,10 @@
 class AdminSettingsController < ApplicationController
-	
+
+	#author: Bassem
+  def index
+
+  end
+
 	def show
 	end
 	

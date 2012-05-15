@@ -242,5 +242,34 @@ end
  def check_dislike(user)
     action = Likedislike.find(:all , :conditions => ["story_id = ? AND user_id = ? AND action = ?", self.id, user.id , "-1"])
  end
+ 
+ #Author: BASSEM
+ #This method checks the three booleans (hidden, flagged, checked) and queries the corresponding stories form the database
+ #The hidden boolean gets all the hidden stories form the database
+ #The active boolean gets all the stories that are not hidden nor deleted from the database
+ #The Flagged boolean loops in the table "Flag" and adds whatever stories it finds by taking its id and fetching it from
+ #table "Story"
+ #All of these conditions append a sublist of stories to the array "stories" and then returns an array of unique stories.
+ def self.filter_stories(hidden,flagged,active)
+  stories = []
+  stories3=[]
+   if hidden
+    stories1 =  Story.where("hidden = ? ", true)
+    stories= stories + stories1
+  end
+    if active
+    stories2 = Story.where("hidden = ? AND deleted = ?", false, false)
+    stories= stories + stories2
+
+  end
+  if flagged
+    Flag.find_each do |flag|
+      stories3 << Story.where(:id => flag.story_id)
+    end
+    stories= stories + stories3
+
+  end 
+  return stories.uniq
+ end
 
 end
