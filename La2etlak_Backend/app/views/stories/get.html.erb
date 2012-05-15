@@ -3,7 +3,7 @@
 <% if @story == nil %>
  <div align="center">
  <%= " the selected story was removed ! "%> </br></br>
- 			   <%= link_to image_tag("http://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" , :style =>"width:50px;height:30px;"), :contoller => 'users' , :action => 'feed' %>
+ 			   <%= link_to image_tag("http://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" , :style =>"width:50px;height:30px;"), {:contoller => 'users' , :action => 'feed'} %>
 	   </div></br> 
 	   <%else%>
 
