@@ -20,6 +20,7 @@ class FriendshipsController < ApplicationController
     else 
       flash[:notice] = 'Frindship request was not sent red'
     end
+    puts 'QUEREY FORWARD IS ' + params[:query_forward].class.name
     redirect_to action: "search", query: params[:query_forward]
   end
 
@@ -63,6 +64,7 @@ class FriendshipsController < ApplicationController
   def search
     @user = current_user
     @query = params[:query]
+    puts "################################## #{@query}" 
     @resulted_users = Admin.search_user(@query)
     @resulted_users.delete @user
     render layout: 'mobile_template'
