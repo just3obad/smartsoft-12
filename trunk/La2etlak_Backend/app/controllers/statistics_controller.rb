@@ -15,6 +15,7 @@ class StatisticsController < ApplicationController
  
  def users
    @id=params[:id]
+   @user=User.find(@id)
  end
  def all_users
   # @allUsers=User
