@@ -196,6 +196,11 @@ NokiaRuby::Application.routes.draw do
   match '/admin_logout', to: 'admin_sessions#destroy'
   match '/admins_reset_pass', to: 'emailer#reset_admin_password'
  
+  # $$$$$$$$$$$$$$ Shafei $$$$$$$$$$$$$$$$$$$$$$$$$
+   match 'statistics/top_users', to: 'statistics#top_users'
+   get 'statistics/top_users', to: 'statistics#top_users'
+   
+   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

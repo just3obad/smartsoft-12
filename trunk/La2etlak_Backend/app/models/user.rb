@@ -492,26 +492,33 @@ end
 		sum 				= (comments_by_user.length * 2) + (shares_by_user.length * 3) + likes_by_user.length + 
 							dislikes_by_user.length + flags_by_user.length + friends_of_user.length + interests_of_user.length
 							+ (sign_ins_of_user.length * 2) - (stories_blocked.length * 10)
+		
 		return sum
 	end
 
 #Author : Shafei
-	def get_users_ranking
-		all_users 		= User.*
+	def self.get_users_ranking
+		all_users 		= Array.try_convert(User.all)
+		if all_users.empty? == true
+			return all_users
+		end
 		rank 			= Array.new
 		id_array		= Array.new
 		max				= 0
 		id				= 999999
-		for i in 0...(all_users.length - 1)
-			for j in 0...(all_users.length - 1)
-				if all_users[j].get_user_rank >= max && array_id.exist(id) == false
-					max = all_users[j].get_user_rank
-					id = all_users[j].id
+		all_users.each do |user|
+			all_users.each do |user|
+				if user.get_user_rank >= max && (id_array.include?(user.id) == false)
+					max = user.get_user_rank
+					id = user.id
 				end
 			end
-			array_id >> id
-			rank << all_users[id]
-		end 
+			#puts "#{id}"
+			max = 0
+			id_array << id
+			rank << all_users[id-1]
+		end
+		return rank
 	end
 
 
