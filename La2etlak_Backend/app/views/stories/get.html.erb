@@ -40,14 +40,14 @@
  
  <% if @action1 == [] && @action2 == [] %>
 
-<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"), :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1%> 
+<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1 }%> 
  <% if @likes.length > 0 %>
  <%= @likes.length %> <%=link_to('people like this.' , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
  <%else%>
  <%= "thumb up"%>
  <%end%></br>
  
-<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1%>
+<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1}%>
   <% if @dislikes.length > 0 %>
   <%= @dislikes.length %><%=link_to('people dislike this.' , {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
   <%else%>
@@ -55,7 +55,7 @@
   <%end%>
   <%end%>
   <%end%>
-  </br>
+  
     
   <% if @action1 != [] && @action2 == [] %>
   	<% if @likes.length > 1 %>
@@ -64,7 +64,7 @@
   	 <%= "you like this."%>
   	 <%end%>
   	 </br>
- 	<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1%>
+ 	<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1}%>
   <% if @dislikes.length > 0 %>
   <%= @dislikes.length %><%=link_to('people dislike this.' , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   <%else%>
@@ -76,7 +76,7 @@
   <% if @action2 != []  && @action1 == [] %>
 	
 	
-<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"), :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1%>
+<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1}%>
 	 <% if @likes.length > 0 %>
  		<%= @likes.length %> <%=link_to('people like this.' , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
 	 <%else%>
@@ -123,9 +123,9 @@
     <%= link_to("La2etlak" , {:controller => 'shares', :action => 'user_share_story', :id => @story.id} )%></br>
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
 
-   &nbsp;<%= link_to image_tag("http://t1.ftcdn.net/jpg/00/31/12/18/400_F_31121846_hi50PXgc8TyWvPty0xBZ8p4XqnVRalw7.jpg" , :style =>"width:35px;height:25px;"), :controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id %>Recommend
+   &nbsp;<%= link_to image_tag("http://t1.ftcdn.net/jpg/00/31/12/18/400_F_31121846_hi50PXgc8TyWvPty0xBZ8p4XqnVRalw7.jpg" , :style =>"width:35px;height:25px;"), {:controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id }%>Recommend
    
-   <%= link_to image_tag("http://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/flag.png" , :style =>"width:25px;height:20px;"), :controller => 'flags' , :action => 'flag' , :sid => @story.id %>Flag</br>
+   <%= link_to image_tag("http://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/flag.png" , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%>Flag</br>
    
  
 	
