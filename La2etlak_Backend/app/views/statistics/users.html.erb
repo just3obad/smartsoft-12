@@ -6,7 +6,8 @@
    
    //also this method gets the start date of data flow from get_interest_start_date method in interestshelper
 
-  $(document).ready(function() {
+  var $j = jQuery.noConflict();
+  $j(document).ready(function() {
      //get The user's array of arrays of data
       data= <%= get_user_stat(@id) %>;
       //the graphs that we want to show
@@ -34,7 +35,7 @@
    });
 </script>
 <!-- ccc is the id of the div that the graph would render to -->
-<div id="ccc" style="width: 700px; height: 500px;"></div>
+<div id="ccc" style="width: 1230px; margin-left: 30px;"></div>
 
 
 <div class="alert" id="deactivatedUser" style="display: none;">
@@ -42,3 +43,35 @@
            <a class="close" data-dismiss="alert">×</a>
            <h1><strong>Warning!</strong> User was deactivated before the last 30 days.</h1>
      </div>
+
+ <div style="padding-top:30px; padding-left:30px;">
+  <%if @user.get_shared_stories.empty?%>
+   <div class="alert-error" id="noStoriesShared" >
+  
+           <h3><strong>Warning!</strong> No Stories Shared By This User.</h3>
+     </div> 
+  <%else%>
+<h4><div class="alert alert-info"> 
+              Stories Shared By This User : </br>
+             
+            </div></h4>
+    <!-- to list all the stories -->
+ <%@user.get_shared_stories.each do |story|%>
+<div class="well-story-component">
+
+        <a href="/stories/<%= story.id%>"class="thumbnail-story-component">
+               <%= image_tag "logo.jpeg", :size => "75x75" %>
+
+          </a>
+           
+        <div class="story-component-info">
+              <h3><%= story.title %></h3>
+<%= link_to "view Statistics",
+{:controller => 'statistics', :action => 'stories', :id => story.id},
+class: "story-component-button-absolute btn btn-primary"%>
+        </div>
+
+</div>
+<%end%>
+<%end%>
+ </div>    
