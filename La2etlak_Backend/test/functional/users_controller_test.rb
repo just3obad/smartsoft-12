@@ -207,7 +207,7 @@ class UsersControllerTest < ActionController::TestCase
     u1.twitter_account = twitter_accounts(:one)
     u1.save
     get :connect_social_accounts
-    assert_select "div[id=2]", "You are connected to twitter"
+    assert_select 'div[id=2]'
   end 
 
    #author: khaled.elbhaey
