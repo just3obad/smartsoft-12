@@ -112,6 +112,8 @@ NokiaRuby::Application.routes.draw do
   match "stories/:id/comments/upc" => "stories#up_comment"
   match "stories/:id/comments/downc" => "stories#down_comment"
   match "/stories/:id/show_mob/" => "stories#mobile_show"
+  match "/fb/done" => "users#authenticate_facebook_done"
+  match "users/facebook/auth_init" => "users#authenticate_facebook_init"
   # $$$$$$$$$$$$ MENISY END $$$$$$$$$$$$$$$$$$$$$$
 
     # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
