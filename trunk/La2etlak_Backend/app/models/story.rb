@@ -37,6 +37,7 @@ include StoriesHelper
       return Story.find(story_id)
   end
 
+  #Author: Lydia
   ''' 
   This is the method that should return the data of statistics of a story
   with this format first element in the data arrays is ARRAY OF "No Of Shares",
@@ -57,6 +58,7 @@ include StoriesHelper
     data = "[#{share},#{like},#{dislike},#{flag},#{comment}]"
   end
   
+  #Author: Lydia
    '''
    This method returns the difference between today and the day
   the story was created in in days so that the graph will know the day it should 

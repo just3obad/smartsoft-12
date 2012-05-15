@@ -14,7 +14,7 @@ class AdminsController < ApplicationController
     end
     
     #these attributes are added this way temporarilly until Mostafa comitts his
-    #work so that I can work on the view of the search
+    #work so that I can work on the view of the search(LYDIA)
     $interests = Interest.all
     $stories = Story.all
 
@@ -25,6 +25,14 @@ class AdminsController < ApplicationController
   end
   
   #Author: Lydia
+  '''
+  This method checks if the Users/Stories/Interests checkboxes are 
+  checked or not and returns the values in the global variables:
+  $usersSearch
+  $storiesSearch
+  $interestsSearch 
+  Then it renders the search view again after the filteration.
+  '''
   def filter
     $usersSearch = params[:users]
     $storiesSearch = params[:stories]
@@ -33,6 +41,12 @@ class AdminsController < ApplicationController
   end
   
   #Author: Lydia
+  '''
+  This method checks the params of type passed from the search page so that
+  it sets the @results variable to be either all results of the users or all 
+  results of the stories or all results of the interests and it also applies
+  the pagination method to @results.
+  '''
   def all_results
     if params[:type] == "1"
       @results = $users.paginate(:page=>params[:page], :per_page=> 2)
