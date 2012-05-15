@@ -1,9 +1,16 @@
 class Admin < ActiveRecord::Base
+        #this is added for authlogic gem
     acts_as_authentic
 
 
   attr_accessible :first_name, :last_name,:email, :password, :password_confirmation
-
+ 
+ def send_forgot_password!
+  deactivate!
+  reset_perishable_token!
+  Notifier.forgot_password(self).deliver
+ end
+  
 require "net/http"
   $NAME = /([a-zA-Z]+)(.*)/
   $USERNAME = /(\w+)(.*)/

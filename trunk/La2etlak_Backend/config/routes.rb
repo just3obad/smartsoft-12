@@ -195,6 +195,11 @@ NokiaRuby::Application.routes.draw do
   match '/admin_login', to: 'admin_sessions#new'
   match '/admin_logout', to: 'admin_sessions#destroy'
   match '/admins_reset_pass', to: 'emailer#reset_admin_password'
+#  match 'forgot_password' => 'admin_sessions#forgot_password', :as => :forgot_password, :via => :get
+ # match 'forgot_password' => 'admin_sessions#forgot_password_lookup_email', :as => :forgot_password, :via => :post
+
+ # put 'reset_password/:reset_password_code' => 'admins#reset_password_submit', :as => :reset_password, :via => :put
+  #get 'reset_password/:reset_password_code' => 'admins#reset_password', :as => :reset_password, :via => :get 
  
   # $$$$$$$$$$$$$$ Shafei $$$$$$$$$$$$$$$$$$$$$$$$$
    match 'statistics/top_users', to: 'statistics#top_users'

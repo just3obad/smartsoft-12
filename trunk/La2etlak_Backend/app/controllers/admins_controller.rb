@@ -58,11 +58,13 @@ class AdminsController < ApplicationController
       @results = $interests.paginate(:page=>params[:page], :per_page=> 2)
     end
   end
-  
+ #Author : Mouaz
+ 
   def new
   @admin = Admin.new
   end
-
+ #this method for create new admin 
+ #if there is an attribute invalid user will be notified
   def create
     @admin = Admin.new(params[:admin])
     if @admin.save
@@ -75,7 +77,7 @@ class AdminsController < ApplicationController
   def index
     Admin.get_feed
   end
-#Author : Mouaz
+ #this method for reseting password
 	def reset_admin_password
 		@admin = current_admin
 		newpass = @admin.resetPassword
