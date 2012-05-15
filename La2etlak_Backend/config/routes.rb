@@ -20,15 +20,16 @@ NokiaRuby::Application.routes.draw do
 	match "register" => "users#register"
 	match "resetPassword" => "users#resetPassword"
 	match "dummyLogin" => "users#dummyLogin"
-	match "users/test" => "users#test"
-	match "users/test_2" => "users#test_2"
+	match "mob/test" => "users#test"
+	match "mob/test_2" => "users#test_2"
+	resources :users
 	resources :user_sessions
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 
 # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$
   match "/stories/:id/get" => "stories#get"
-  match "users/toggle" => "users#toggle"   
-  match "users/int_toggle" => "users#int_toggle"
+  match "mob/toggle" => "users#toggle"   
+  match "mob/int_toggle" => "users#int_toggle"
 # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$ 
 
 
