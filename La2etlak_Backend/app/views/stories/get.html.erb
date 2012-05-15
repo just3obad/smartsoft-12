@@ -22,7 +22,8 @@
         <% @all = "img src=" %>
 	<% @url_start = "http://" %>
         <% @url_end = "\" " %>
-    
+        <%  @url_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix %> 
+     <%= @story.content%></br>
     	 <% if @story.content =~ /#{@url_regex}/ %>
     	    <% @allstart = @story.content.index(@all)%>
 	    <% @start = @story.content.index(@url_start)%>
@@ -99,7 +100,9 @@
 	
  <div class="story-component-box-mobile pre-scrollable" style="padding-left:10px;">
  <% if @story.content != nil %>
+ <%if @allmedia != nil && @allmedia.length > 4 %>
  <% @story.content.slice!(@allmedia) %>
+ <%end%>
  <%= @story.content %>
  <%end%>
  </br></br>
