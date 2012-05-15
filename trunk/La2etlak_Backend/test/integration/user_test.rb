@@ -11,7 +11,7 @@ class UserTest < ActionDispatch::IntegrationTest
    end 
   
   ##########Author: Diab ############
-  test "get user statistics response RED" do
+  test "get user statistics response" do
    get '/users/1/statistics'
    assert_response :success
    end 
