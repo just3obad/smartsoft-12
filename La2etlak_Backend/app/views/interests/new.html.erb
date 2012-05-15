@@ -35,10 +35,13 @@ var $j = jQuery.noConflict();
     <tr>
 
 
-<td><% if   interest.photo.file? %>
-      <%= image_tag "logo.jpeg" , :size => "75x75"%>
+<td>
+  <% if @interest.photo.file? %>
+    
+      <img src= "<%= @interest.photo.url(:small) if @interest.photo.file? %>" width="100" style="height:100px"/>
       <% else %>
-      <img src= "<%= @interest.photo.url(:small) %>" width="75" style="height:75px"/>
+     <%= image_tag "logo.jpeg" , :size => "100x100"%>
+
       <% end %>
 </td>
 
