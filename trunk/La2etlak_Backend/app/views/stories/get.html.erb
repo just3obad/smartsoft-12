@@ -16,14 +16,13 @@
     <div align="center">
     
     <% if @story.media_link != nil && @story.media_link.length > 3%>
-    <img src=@story.media_link width="220" align="center">
+    <img src="<%=@story.media_link%>" width="220" align="center">
     
 	<%else%>
         <% @all = "img src=" %>
 	<% @url_start = "http://" %>
         <% @url_end = "\" " %>
-        <%  @url_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix %> 
-     <%= @story.content%></br>
+        
     	 <% if @story.content =~ /#{@url_regex}/ %>
     	    <% @allstart = @story.content.index(@all)%>
 	    <% @start = @story.content.index(@url_start)%>
@@ -35,57 +34,65 @@
        <%end%>
 	 </div></br>
 	
-	
-	<% if @story.category == "RSS" %>
+<!-- checking for story category if RSS allow story functionalties if not remove from view -->
+	<% if @story.category != "RSS" %>
 		<div style="padding-left:10px;">
- 
+ <!-- adding like and dislike button if user didnt like or dislike before and number of likes dislikes for this stort  -->
  <% if @action1 == [] && @action2 == [] %>
 
 <%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1 }%> 
  <% if @likes.length > 0 %>
- <%= @likes.length %> <%=link_to('people like this.' , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
- <%else%>
+<% @a = "#{@likes.length} people like this." %>
+ <%=link_to(@a , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+ <%else%>  
  <%= "thumb up"%>
  <%end%></br>
  
 <%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1}%>
   <% if @dislikes.length > 0 %>
-  <%= @dislikes.length %><%=link_to('people dislike this.' , {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
+  <% @a = "#{@dislikes.length} people dislike this." %>
+  <%=link_to(@a, {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
   <%else%>
   <%= "thumb down"%>
   <%end%>
   <%end%>
   <%end%>
   
-    
+<!-- if user liked this story before remove like button and only adds dislike button -->
   <% if @action1 != [] && @action2 == [] %>
+  	<% @a = "you and #{@likes.length-1} people like this." %>
   	<% if @likes.length > 1 %>
-  	 <%= "you and "%> <%=@likes.length-1%><%=link_to('people like this.' , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+  	 <%=link_to(@a , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
   	 <%else%>
   	 <%= "you like this."%>
   	 <%end%>
   	 </br>
  	<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1}%>
   <% if @dislikes.length > 0 %>
-  <%= @dislikes.length %><%=link_to('people dislike this.' , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
+  <% @a = "#{@dislikes.length} people dislike this." %>
+  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   <%else%>
   <%= "thumb down"%>
   <%end%>
   
   <%end%>
   </br>
+  
+  <!-- if user disliked this story before remove dislike button and only adds like button -->
   <% if @action2 != []  && @action1 == [] %>
 	
 	
 <%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1}%>
 	 <% if @likes.length > 0 %>
- 		<%= @likes.length %> <%=link_to('people like this.' , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
+ 		<% @a = "#{@likes.length} people like this." %>
+ 		<%=link_to(@a , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
 	 <%else%>
 		 <%= "thumb up"%>
  	<%end%>
 	</br>
 	<% if @dislikes.length > 1 %>
-  		 <%= "you and "%> <%=@dislikes.length-1%> <%=link_to('people dislike this.' , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
+	<% @a = "you and #{@likes.length-1} people like this." %>
+  	  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   	 <%else%>
   		 <%= "you dislike this."%>
   	 <%end%>
@@ -96,8 +103,7 @@
  
  <%end%>
  	 
-	 
-	
+<!-- adds content of story  -->
  <div class="story-component-box-mobile pre-scrollable" style="padding-left:10px;">
  <% if @story.content != nil %>
  <%if @allmedia != nil && @allmedia.length > 4 %>
@@ -109,9 +115,9 @@
  </div>
 
 
-	<% if @story.category == "RSS" %>
+	<% if @story.category != "RSS" %>
 
-<!-- recommend , flag , share buttons -->
+<!-- recommend buttons  1) facebook button 2)twitter button 3)La2etlak button -->
   
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
 
@@ -126,21 +132,29 @@
     <%= link_to("La2etlak" , {:controller => 'shares', :action => 'user_share_story', :id => @story.id} )%></br>
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
 
+<!-- recommend button -->
    &nbsp;<%= link_to image_tag("http://t1.ftcdn.net/jpg/00/31/12/18/400_F_31121846_hi50PXgc8TyWvPty0xBZ8p4XqnVRalw7.jpg" , :style =>"width:35px;height:25px;"), {:controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id }%>Recommend
-   
-   <%= link_to image_tag("http://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/flag.png" , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%>Flag</br>
+<!-- flag button -->
+   &nbsp;<%= link_to image_tag("http://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/flag.png" , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%>Flag</br>
    
  
-	
+<!-- block story story -->
    	<%=link_to('Block story' , {:controller => 'users', :action => 'block_story', :id => (@story.id)})%> &nbsp;
+   	
+<!-- block interest link -->
    	<%=link_to('Block interest' , { :controller => 'users', :action => 'block_interest', :id => (@story.id)})%></br>
+   	
+<!-- when was the story added to our system -->
 	Added on <%= @story.created_at %></br></br>
 	
+
+	
+	<%end%>
+	
+	<!-- back to main feed button -->
 	<div align="center">
 			   <%= link_to image_tag("http://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'users', :action => 'feed'} %>
 	   </div></br> 
-	
-	<%end%>
  </div>
    
 </html> 	
