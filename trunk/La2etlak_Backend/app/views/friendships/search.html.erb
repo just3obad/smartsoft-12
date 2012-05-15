@@ -1,0 +1,27 @@
+<html> 
+	<header> Search result for <%= @query %> </header>
+	<ul>
+		<% @resulted_users.each do |member| %>
+			<li> <%= if member.name.nil?  then member.email else member.name end %> </li>
+			
+			<%=	if member.friends.include? @user
+				link_to 'remove',{:controller => 'friendships',
+					:action => 'remove', 
+					:friend_id => member.id}, 
+					class: "btn btn-danger" 	
+
+			elsif @user.invited_by? member  
+				'Requested Friendship'
+
+			elsif @user.invited? member
+				'Friendship Pending'
+			else 
+				link_to 'request',{:controller => 'friendships',
+						:action => 'create',
+						:friend_id => member.id},
+					class: "btn btn-success btn-small", style: "margin:" 
+			end %>
+
+		<% end %>	
+	</ul>
+</html>

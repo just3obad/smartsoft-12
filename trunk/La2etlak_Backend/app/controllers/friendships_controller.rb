@@ -22,7 +22,7 @@ class FriendshipsController < ApplicationController
   end
 
   # Author: Yahia 
-  def approve
+  def accept
     @user = current_user
     @friend = User.find(params[:friend_id])
     @friendship_approved = @user.approve(@friend)
@@ -51,6 +51,15 @@ class FriendshipsController < ApplicationController
     @query = params[:query]
     @resulted_users = Admin.search_user(@query)
     @resulted_users.delete @user
+    render layout: 'mobile_template'
+  end 
+
+  def pending 
+    @user = current_user
+    @inviters = @user.pending_invited_by
+    if @inviters.empty?
+      flash[:notice] = "You have no pending requests red"   
+    end 
     render layout: 'mobile_template'
   end 
 end 
