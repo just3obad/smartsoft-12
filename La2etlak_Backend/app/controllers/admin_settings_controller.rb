@@ -8,8 +8,14 @@ class AdminSettingsController < ApplicationController
 	# this function just calls the static method in the model and passes the value entered in the 
 	# form then it renders the show page again.
 	def configure_flags_threshold
-		
-		Admin_Settings.configure_flags_threshold (params[:value])
+		if params[:auto] == "on"
+			Admin_Settings.configure_flags_threshold params[:value] , "true"
+		else 
+			Admin_Settings.configure_flags_threshold params[:value] , "false"
+		end 
+		if $flash_error ==  "true"
+			#flash[:error] = "You can not enter values less than 30, It is now changed to the default value 30."
+		end
 		render :template=>'admin_settings/show'		
 	end
 	
