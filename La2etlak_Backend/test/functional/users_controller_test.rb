@@ -157,8 +157,8 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   # Author: Yahia
-  test "connect social accounts RED" do
-    get :connect_social_accounts, {}, {:user_id => 1}
+  test "connect social accounts" do
+    get :connect_social_accounts
     assert_response :success, "Get request should be successfull"
 
   end 
@@ -189,10 +189,10 @@ class UsersControllerTest < ActionController::TestCase
 
   # Author: Yahia
   test "A user should see a warning if he is connected to twitter in the connect_social_accounts page" do
-    u1 = user(:one)
+    u1 = users(:ben)
     u1.twitter_account = twitter_accounts(:one)
     u1.save
-    get :connect_social_accounts, {}, {:user_id => u1.id}
+    get :connect_social_accounts
     assert_select 'div[class=warning-component-box-mobile]',1
     assert_select 'You are connected to twitter'
   end 

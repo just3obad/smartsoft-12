@@ -79,7 +79,17 @@ class TwitterAccount < ActiveRecord::Base
     return story 
   end
 
-    
+=begin
+ This return the consumer for twitter authentication
+ 
+ Author: Yahia  
+=end
+  def self.twitter_consumer
+  # The readkey and readsecret below are the values you get during registration
+    OAuth::Consumer.new(CONSUMER_TOKEN, CONSUMER_SECRET,
+                      { :site=>"http://twitter.com" })
+  end
+
 #  def tweet(tweet)
 #    configure_twitter
 #    client = Twitter::Client.new
