@@ -13,6 +13,11 @@ class FriendshipsController < ApplicationController
   end
 
 =begin
+  This is the controller resposnsible of cerating a new friendship
+  (requesting)
+  The query_forward  variable is got from the search from and will
+  help us not to have our search done again each time we request
+  a friendship
   Author: Yahia 
 =end
   def create
@@ -28,7 +33,10 @@ class FriendshipsController < ApplicationController
     redirect_to action: "search", query: params[:query_forward]
   end
 
-  # Author: Yahia 
+=begin
+  This is the controller responsible of accepting frinedship
+  Author: Yahia 
+=end
   def accept
     @user = current_user
     @friend = User.find(params[:friend_id])
@@ -40,7 +48,10 @@ class FriendshipsController < ApplicationController
     redirect_to action: pending 
   end
 
-  # Author: Yahia 
+=begin
+  This is the controller responsible of ignoring frinedship
+  Author: Yahia 
+=end
   def remove
     @user = current_user
     @friend = User.find(params[:friend_id])
@@ -56,6 +67,11 @@ class FriendshipsController < ApplicationController
 
   end
 
+=begin
+  This is the controller responsible of blocking a user (not receiving
+  frineship requests from him in the first place)
+  Author: Yahia 
+=end
   def block
     @user = current_user
     @friend = User.find(params[:friend_id])
@@ -65,7 +81,11 @@ class FriendshipsController < ApplicationController
   end
 
 
-  # Author: Yahia
+=begin
+  This is the controller responsible for the search of users 
+  (to find friends)
+  Author: Yahia 
+=end
   def search
     @user = current_user
     @query = params[:query]
@@ -75,6 +95,10 @@ class FriendshipsController < ApplicationController
     render layout: 'mobile_template'
   end 
 
+=begin
+  This is the controller responsible of accepting frinedship
+  Author: Yahia 
+=end
   def pending 
     @user = current_user
     @inviters = @user.pending_invited_by
