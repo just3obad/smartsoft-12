@@ -171,6 +171,9 @@ NokiaRuby::Application.routes.draw do
   get '/admin_settings', to: 'admin_settings#show'
   post '/admin_settings', to: 'admin_settings#configure_flags_threshold'
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
+  #Mouaz
+  match 'admins/login', to: 'admin_session#new'
+  match 'admins/logout', to: 'admin_session#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
