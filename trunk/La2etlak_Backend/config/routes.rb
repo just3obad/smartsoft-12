@@ -127,6 +127,7 @@ NokiaRuby::Application.routes.draw do
    #$$$$$$$$$$$$$$$$$$$$$ BASSEM !! $$$$$$$$$$$$$$$$$$
    match "users/deactivate/:id" => "users#deactivate"
    match "users/activate/:id" => "users#activate"
+   match "stories/filter" => "stories#filter"
    #$$$$$$$$$$$$$$$$$$$$$ BASSEM !! $$$$$$$$$$$$$$$$$$
 
 
