@@ -24,9 +24,14 @@
     <div class="left_panel">
       <ul class="nav nav-list left_panel ">
      
+	<li class="nav-header">View Statistics</li>
+        <!-- View interest's Statistics.. -->
+
+          <li class="divider"></li>
+<%= link_to("View Statistics", {:controller => 'statistics', :action => 'interests', :id => @interest.id}, class: "btn btn-primary") %></br></br>
 
 	<li class="nav-header">Add Rss Feed</li>
-        <! .. ADDING RSS FEED .. >
+        <!-- ADDING RSS FEED .. -->
 
           <li class="divider"></li>
             
@@ -35,10 +40,10 @@
               <input type="hidden" name="feed[interest_id]" value= "<%= @interest.id %>" />
               <input type="submit" name="commit" value="Submit" class="btn btn-primary"/>
             </form>
-<!DELETING RSS>
+
 
            
-<! Author : jailan , edit interest part .. This is the form that updates the interest >
+<!-- Author : jailan , edit interest part .. This is the form that updates the interest -->
 			<li class="divider"></li>
 			<li class="nav-header">Interest Edit</li>
 			<li class="divider"></li>
@@ -53,14 +58,14 @@
       <%= f.label :description%>
       <%= f.text_field :description %>
 
-     <! The field of the browse to upload the image from the Admin's Computer >
+     <!-- The field of the browse to upload the image from the Admin's Computer -->
            <%= f.label :photo, "Image "%>
            <%= f.file_field :photo%>
 
       <%= f.submit "Save Changes", class: "btn btn-primary" %>
     <% end %>
 
- 	 <! this is the div holdeing the state of the interest (blocked/active) also the date it was created >
+ 	 <!-- this is the div holdeing the state of the interest (blocked/active) also the date it was created -->
 	 <li class="nav-header">Interest Info</li>
 	    	<div class="story-page-well"><% if !(@interest.deleted ) %>
 				<ul class="nav nav-list">
@@ -86,7 +91,7 @@
 
 
 			<li class="nav-header">Block this Interest </li>
-<! the switching bUtton for the Block/unblock interest purpose >
+<!-- the switching button for the Block/unblock interest purpose -->
 			
       <%= link_to  "Block",{:controller => "interests", :action => "toggle",:id => @interest.id} ,:class => "btn btn-danger" %>
 <%else%>
