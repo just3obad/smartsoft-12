@@ -157,8 +157,9 @@ Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story
       else
         Emailer.recommend_story(@useremail, @friendmail, @message, @storytit, @storybod).deliver
       end
-       end
+    end
   end
+
    render :layout => "mobile_template"
   end
 
@@ -174,7 +175,7 @@ end
     @story = Story.find(params[:id])
     @user = current_user
     @friends=@story.view_friends_like(@user)
-    flash[:error] = "sorry, you have no friends you can go to find friend page to add more"
+    flash[:error] = "sorry, you have no friends that liked this story"
     render :layout => "mobile_template" 
   end
 
@@ -184,7 +185,7 @@ end
     @story = Story.find(params[:id])
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
-    flash[:error] = "sorry, you have no friends you can go to find friend page to add more"
+    flash[:error] = "sorry, you have no friends that disliked this story"
     render :layout => "mobile_template" 
   end
   #Author: Bassem !!

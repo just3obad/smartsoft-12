@@ -22,6 +22,6 @@ message:
 <%= link_to("back",{:action => 'get', :id => @story} )%>
 </div>
 <div class="btn btn-large", id="findfrind" align="center"> 
-<%= link_to("find friend",{:action => 'friends/find'} )%>
+<%= link_to("find friend",{:controller => 'friendships', :action => 'search'} )%>
 </div>
 </div>
