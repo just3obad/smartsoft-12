@@ -1,3 +1,4 @@
+<%= render 'shared/logs_success_messages' %>
 <div class="container-fluid maindiv">
 
   <div class="row-fluid">
@@ -96,7 +97,7 @@
              
             </div>
             <div class="tab-pane fade" id="friends">
-              <% if @friends.length == 0 %>
+              <% if (@friends.length) == 0 %>
                  No Friends Available.
                <% end %>
               <% @friends.each do |friend| %>
