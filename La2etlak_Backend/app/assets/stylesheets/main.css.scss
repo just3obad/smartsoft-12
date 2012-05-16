@@ -51,23 +51,26 @@ textarea {
    color:#999;
 }
 .left_panel{
-   width:200px;
+   width:15%;
 padding-right:20px;
 padding-bottom:20px;
 	float:left;
+	position:fixed;
 }
 .left_panel-user-profile-page{
-   width:90%;
+   width:300px;
 padding-right:20px;
 padding-bottom:20px;
   float:left;
 }
 .right_panel{
-   width:900px;
+   width:80%;
 margin-left:10px;
 padding-left:20px;
 padding-bottom:20px;
+left:18%;
 	float:left;
+	position:relative;
 }
 .redbadge{
   padding: 1px 4px 2px;
@@ -875,23 +878,27 @@ div.auto_complete ul strong.highlight {
 	margin:0;
 	padding:0;
 }
-
 .admin_main_left_panel{
-   width:200px;
-padding-right:20px;
-padding-bottom:20px;
+   	width:15%;
+	padding-right:20px;
+	padding-bottom:20px;
 	float:left;
+	position:fixed;
 }
 .admin_right_panel{
-   width:900px;
-margin-left:10px;
-padding-left:20px;
-padding-bottom:20px;
-	float:left;
+   	width:80%;
+	left:18%;
+	position:relative;
+}
+.admin_feed_padding{
+	padding:1%;
+}
+.admin_feeds_container{
+	background-color:#fff;
 }
 .admin_story_feed{
 	background-color:#e5e5e5;
-	width:800px;
+	width:100%;
 }
 .control-panel{
 	background-color:#999;
