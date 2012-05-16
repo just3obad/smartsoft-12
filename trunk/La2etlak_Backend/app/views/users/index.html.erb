@@ -18,6 +18,10 @@
       <td><%= user.email %></td>
     </tr>
   <% end %>
+
 </table>
+<div class="apple_pagination">
+    <%= will_paginate @users, :container => false %>
+  </div>
 
 
