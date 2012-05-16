@@ -23,10 +23,6 @@ class UserTest < ActionDispatch::IntegrationTest
     assert_select "li"
   end
  end
-     #Author: khaled.elbhaey 
-  test "should route to get_friends_email_mobile_show RED" do
-    assert_routing 'users/get_friends_email_mobile_show/1', { :controller => "users", :action => "get_friends_email_mobile_show", :uid => "1" }
-  end
 
     #Author : Mina Adel
     test "route to main feed" do

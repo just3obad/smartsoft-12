@@ -6,17 +6,23 @@ class StoryTest < ActionDispatch::IntegrationTest
   # end
 
 #Author: khaled.elbhaey 
-  test "should route to disliked_mobile_show RED" do
-    assert_routing 'stories/1/disliked_mobile_show/1', { :controller => "stories", :action => "disliked_mobile_show", :id => "1", :id2 => "1" }
+  test "should route to disliked_mobile_show " do
+    assert_routing 'mob/stories/disliked_mobile_show/1', { :controller => "stories", :action => "disliked_mobile_show", :id => "1"}
   end
 #Author: khaled.elbhaey 
-  test "should route to liked_mobile_show RED" do
-    assert_routing 'stories/1/liked_mobile_show/1', { :controller => "stories", :action => "liked_mobile_show", :id => "1", :id2 => "1" }
+  test "should route to liked_mobile_show " do
+    assert_routing 'mob/stories/liked_mobile_show/1', { :controller => "stories", :action => "liked_mobile_show", :id => "1"}
   end
 #Author: khaled.elbhaey 
-  test "should route to recommend_story_mobile_show RED" do
-    assert_routing 'stories/1/recommend_story_mobile_show', { :controller => "stories", :action => "recommend_story_mobile_show", :sid => "1"}
+  test "should route to recommend_story_mobile_show " do
+    assert_routing 'mob/stories/recommend_story_mobile_show/1', { :controller => "stories", :action => "recommend_story_mobile_show", :sid => "1"}
   end
+
+#Author: khaled.elbhaey 
+  test "should route to recommend_success_mobile_show " do
+    assert_routing 'mob/stories/recommend_success_mobile_show/1', { :controller => "stories", :action => "recommend_success_mobile_show", :sid => "1"}
+  end
+
 
 
     #Author: Rana
