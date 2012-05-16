@@ -2,21 +2,39 @@
 
   <div class="row-fluid">
     <!--This is the left panel of the user profile page that contains main info of user as his image and if his image is nil then will display the default image for our application along with his status whether active or non-active along with his email-->
-    <div class="left_panel-user-profile-page">
+    <div class="sidebar-nav-fixed">
       <ul class="nav nav-list left_panel-user-profile-page ">
         <div class="user-image">
-           <a href="/users/<%= @user.id%>"class="thumbnail-user-component">
+           <a href="/users/<%= @user.id%>">
                    
                 <% if @user.image.nil? || 
                       @user.image == "" %>
-                     <%= image_tag "logo.jpeg", :size => "250x250" %>
+                     <%= image_tag "logo.jpeg",:class => "img-user-img"%>
                   <% else %>
                     <img src= "<%= @user.image %>" 
-                      width="250" style="height:250px"/>
+                      width="15%" style="height:15%"/>
                   <% end %> 
            </a>
         </div>
          <div id="user-personal-info"> 
+           <li class="nav-header">Email:-</li>
+          <li class="divider"></li>
+          <li>
+            <span class="label label-info" id="my-email"><%= @user.email %> </span>
+          </li>
+          <li class="divider"></li>
+          <li class="nav-header">Name:-</li>
+          <li class="divider"></li>
+          <li>
+            <span class="label label-info" id="my-email">
+              <% if @user.name.nil? %>
+                     <%= @user.email.split("@")[0]%>
+                  <% else %>
+                   <%= @user.name %>
+                  <% end %> 
+             </span>
+          </li>
+          <li class="divider"></li>
           <li class="nav-header">Status:-</li>
           <li class="divider"></li>
           <li>
@@ -29,18 +47,15 @@
               
           </li>
           <li class="divider"></li>
-          <li class="nav-header">Email:-</li>
-          <li class="divider"></li>
-          <li>
-            <span class="label label-info" id="my-email"><%= @user.email %> </span>
-          </li>
+         
+
          </div>
        </ul>
      </div>
       <!--This is the main panel of the user profile page that contains three tabs the first one contains the recent activity of that user in the form of log message and all related variables in that log in the form of links to these variables show page whether these variables are stories, other users or interests and when this log occured with respect to the current time, The second one contains a list of user components of this user's friends, The third one contains a list of interests that the user is subscribed to as a list of interests' components-->
      <div class="main-user-profile-page">
       <div class="middle-user-profile-page-panel" >
-          <ul id="myTab" class="nav nav-tabs">
+          <ul id="myTab" class="nav nav-tabs ">
             <li class="active"><a href="#recentActivity" data-toggle="tab">
               <h3 class="interest-page-text">Recent Activity </h3></a></li>
             <li><a href="#friends" data-toggle="tab"><h3 class="interest-page-text">Friends</h3></a></li>
@@ -138,7 +153,7 @@
         </div>
       </div>
        <!--This is the right panel of the user profile page that contains three buttons button used to deactivate the user, one to go to his statistics page and the third one to reset his password-->
-      <div class="right-user-profile-page-panel">
+      <div class="sidebar-nav-fixed-right">
         <ul class="nav nav-list ">
           <li class="nav-header">Go to statistics Page</li>
           <li class="divider"></li>
@@ -158,14 +173,10 @@
             <% else %>
               <%= link_to('Deactivate', {:controller => 'users', :action => 'deactivate', :id => @user.id}, class: "btn btn-large btn-danger", id: "deactivate_button") %>
             <% end %>
-           
-           <%= link_to('Ban', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "deactivate_button") %>
-          
         </ul>
       </div>
   </div>
 </div>
-
 
 
 

@@ -57,7 +57,7 @@ padding-bottom:20px;
 	float:left;
 }
 .left_panel-user-profile-page{
-   width:300px;
+   width:90%;
 padding-right:20px;
 padding-bottom:20px;
   float:left;
@@ -898,11 +898,11 @@ padding-bottom:20px;
 }
 .main-user-profile-page{
   background-color:#e5e5e5;
-  width:750px;
-  margin-left:10px;
-  padding-left:20px;
+  width:60%;
+  margin-left:20%;
+  padding-left:2%;
   padding-bottom:20px;
-  #padding-top:250px;
+  overflow-x: hidden;
   float:left;
   border:1px solid #eeeeee;
   border:1px solid rgba(0,0,0,0.05);
@@ -912,27 +912,24 @@ padding-bottom:20px;
   -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
   -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
   box-shadow:inset 0 1px 1px rgba(0,0,0,0.05);
-	width:800px;
 }
 .middle-user-profile-page-panel{
-   width:720px;
+   width:95%;
 margin-left:10px;
-padding-left:20px;
 padding-bottom:20px;
-  float:left;
 }
 .right-user-profile-page-panel{
   
    width:200px;
 margin-left:20px;
-#padding-top:250px;
+padding-top:250px;
 padding-left:20px;
 padding-bottom:20px;
   float:left;
 }
 .user-image {
   padding-bottom:40px;
-  height: 260px;
+  width: 80%;
 }
 
 .main-settings-page{
@@ -987,3 +984,24 @@ padding-bottom:20px;
     color: black; }
     .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline; }
+
+  .sidebar-nav-fixed {
+    padding: 9px 0;
+    position:fixed;
+    left:2%;
+    top:60px;
+    width:20%;
+
+}
+.sidebar-nav-fixed-right {
+    padding: 9px 0;
+    position:fixed;
+    left:83%;
+    width:15%px;
+}
+.img-user-img {
+    width: 90%; 
+}
+
+
+
