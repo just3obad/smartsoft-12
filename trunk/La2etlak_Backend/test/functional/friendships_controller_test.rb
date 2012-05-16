@@ -18,8 +18,6 @@ class FriendshipsControllerTest < ActionController::TestCase
 
   	get :index, {}, {user_id: 1}
   	assert_response :success, "Get request should be successfull"
-    assert_select 'p', "#{u2.first_name}"
-    assert_select 'p', "#{u2.last_name}"
     assert_select 'p', "#{u2.email}"
   		
   end 
@@ -33,7 +31,7 @@ class FriendshipsControllerTest < ActionController::TestCase
   		get :create, {user_id: 2}, {user_id: 1}
       #, 'The count of Frienships should be changed'
   	end 
-    assert_select 'p', "Your request has been sent to #{u2.email}"
+    assert_select 'p', "succesfull"
 
   end 
 

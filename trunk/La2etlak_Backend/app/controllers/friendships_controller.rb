@@ -45,7 +45,7 @@ class FriendshipsController < ApplicationController
     @pending_invited_by = @user.pending_invited_by
     #flash.now[:notice] = "Friendship approved #{@friend.email} a t approuve"
     #render layout: 'mobile_template', text: "Friendship approved  #{@friend.email}"
-    redirect_to action: pending 
+    redirect_to action: 'pending'
   end
 
 =begin
@@ -63,7 +63,7 @@ class FriendshipsController < ApplicationController
     else 
       flash[:notice] = "Friendship was not #{@friend.email} red"
     end
-    redirect_to action: "search", query: params[:query_forward]
+  redirect_to action: "search", query: params[:query_forward] 
 
   end
 
@@ -89,7 +89,6 @@ class FriendshipsController < ApplicationController
   def search
     @user = current_user
     @query = params[:query]
-    puts "################################## #{@query}" 
     @resulted_users = Admin.search_user(@query)
     @resulted_users.delete @user
     render layout: 'mobile_template'
