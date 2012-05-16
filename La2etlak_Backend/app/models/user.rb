@@ -119,20 +119,30 @@ end
   end    
 
   end
+
+=begin 
+  This method takes a list of users and return a list users that are friends
+  with the 'self' 
+  Author: Yahia
+=end
+  def extract_friends(users)
+    return self.freinds & users
+  end
+  
   #dummy data to be returned until it created in sprint 2
 #Author: khaled.elbhaey
-  def extract_friends(listlike)
+  # def extract_friends(listlike)
 
-  @list=Array.new
-  @user1=User.new( :name =>"khaled", :email => "khaledelbhaey@yahoo.com")
-  @user2=User.new( :name =>"rana", :email => "rana@abc.com")
-  @user3=User.new( :name =>"essam", :email => "essam@abc.com")
-  @user4=User.new( :name =>"omar", :email => "omar@abc.com")
-  @list <<@user1 <<@user2 <<@user3 <<@user4
+  # @list=Array.new
+  # @user1=User.new( :name =>"khaled", :email => "khaledelbhaey@yahoo.com")
+  # @user2=User.new( :name =>"rana", :email => "rana@abc.com")
+  # @user3=User.new( :name =>"essam", :email => "essam@abc.com")
+  # @user4=User.new( :name =>"omar", :email => "omar@abc.com")
+  # @list <<@user1 <<@user2 <<@user3 <<@user4
 
-  return @list
+  # return @list
 
-  end
+  # end
 
 
 
