@@ -75,7 +75,6 @@ class UsersController < ApplicationController
     current_user.save!
     if fb_account.save!
       $sts = current_user.facebook_account.get_feed
-      $t = current_user.facebook_account.get_token
       flash[:notice] = "Facebook account added successfully green" +user.to_s
       redirect_to :controller => "users", :action => "main_feed", :id => 1
     else
