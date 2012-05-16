@@ -170,7 +170,7 @@ end
  # @interests is the list of interests that the user is subscribed to
  def show
     @user = User.find(params[:id])
-    @logs = @user.get_recent_activity(30.days.ago)
+    @logs = @user.get_recent_activity(Time.zone.now)
     @friends = @user.friends
     @interests = @user.added_interests
     respond_to do |format|
