@@ -184,6 +184,19 @@ end
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
+# author: Gasser
+# 
+def force_reset_password     
+  @user = User.find(params[:id])
+  @logs = @user.get_recent_activity(Time.zone.now)
+  @friends = @user.friends
+  @interests = @user.added_interests
+  pass = @user.resetPassword
+  Emailer.send_forced_password(@user,pass).deliver
+  flash[:success] = "The new password is sent to the user by e-mail"
+  redirect_to '/users/'+ (params[:id])
+end
+
  #Author: Christine
  # @user is the user that we will show
  # @logs contain recent activity of the user in the last 30 days
