@@ -67,28 +67,36 @@
             
             <!--Here we'll get the general infor of top interests:-->
             <h4><div class="alert alert-info"> 
-              Top Ranked Interests : </br>
+              Top Ranked 5 Interests : </br>
              
             </div></h4>
- <table class="table table-striped table-bodered" id = "tableRanked">
-  <tr>
+            <% Interest.get_top_interests[0..4].each do |interest|%>
+    
+    <div class="well-interest-component">
+      <a href="/interests/<%= interest.id%>"
+        class="thumbnail-interest-component">
+        <% if not interest.photo.file? %>
+            <%= image_tag "logo.jpeg", :size => "75x75" %>
+            <% else %>
+            <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="75" style="height:75px"/>
+                  <% end %> </a>
+        <div class="interest-component-info">
+          <h2><% if interest.name.nil? %>
+            <%= "No Name Available" %>
+            <% else %>
+            <%= interest.name  %>
+            , Rank : <%=interest.get_interest_rank%>
+            <%  end %>
+          </h2>
+          
+<%= link_to "view Statistics", 
+{:controller => 'statistics', :action => 'interests',:id => interest.id }, 
+class: "interest-component-button-absolute btn btn-primary"%>
 
-    <th>  </th>
-    <th> Title </th>
-    <th> Description </th>
-    <th> Rank </th>
-  </tr>
-  <% Interest.get_top_interests.each do |interest|%>
-    <tr>
-
-
-      <td><img width="150";height="100"; src= <%= interest.photo.url(:small) if interest.photo.file? %> ></td>
-      <td><%= link_to(interest.name, {:controller => "statistics", :action => "interests", :id => interest.id} ) %></td>
-      <td><%= interest.description %></td>
-      <td><%= interest.get_interest_rank %></td>
-    </tr>
+        </div>
+    </div>
   <% end %>
-</table>
+ 
              
             
             
