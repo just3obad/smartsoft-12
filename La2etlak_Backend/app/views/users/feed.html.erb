@@ -7,6 +7,7 @@
 <div class="story-component-box-mobile">
 	<table class="table" width="200">
 		<tr>
+			<%unless f.content == nil%>
 			<td rowspan="2">
 			<!-- This is supposed to be removed when Mouaz implements photo removal from the description -->
 			<% @all = "img src=" %>
@@ -24,6 +25,7 @@
 			<img id="topic" src="<%=@media%>" width="50"/>
 		</td>
 		<td rowspan="2">
+		<%end%>
 			<table>
 				<!-- Since the screen size is small, I check whether the character count is displayable in one line, or do I need to cut the sentence and put dots -->
 				<%if f.title.length > 17 %>
@@ -32,10 +34,12 @@
 				<%else%>
 				<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
 				<%end%>
+				<%unless f.content == nil%>
 				<%if f.content.length > 20 %>
 				<tr><td><%= f.content[0..20]+"..."%></td></tr>
 				<%else%>
 				<tr><td><%= f.content%></td></tr>
+				<%end%>
 				<%end%>
 			</table>
 		</td>
