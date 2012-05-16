@@ -206,8 +206,9 @@ NokiaRuby::Application.routes.draw do
   #get 'reset_password/:reset_password_code' => 'admins#reset_password', :as => :reset_password, :via => :get 
  
   # $$$$$$$$$$$$$$ Shafei $$$$$$$$$$$$$$$$$$$$$$$$$
-   match 'statistics/top_users', to: 'statistics#top_users'
-   get 'statistics/top_users', to: 'statistics#top_users'
+   match 'admin/statistics/all_users', to: 'statistics#all_users'
+   get 'admin/statistics/all_users', to: 'statistics#all_users'
+  # $$$$$$$$$$$$$$ Shafei $$$$$$$$$$$$$$$$$$$$$$$$$ 
    
    
   # The priority is based upon order of creation:
