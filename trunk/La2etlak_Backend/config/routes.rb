@@ -78,7 +78,7 @@ NokiaRuby::Application.routes.draw do
   match "users/:id" => "users#show", :as => :user
   # $$$$$$$$$$$$$$ Christine $$$$$$$$$$$$$$$$$$$$$$$$$
 
-   post "/autocomplete/auto_complete_for_autocomplete_query" => "autocomplete#auto_complete_for_autocomplete_query"
+  
   match "/admins/index" => "admins#index"
   
   match "h_accounts/verify" => "verification_codes#verify"
@@ -179,7 +179,8 @@ NokiaRuby::Application.routes.draw do
 
   resources :gaheem_accounts
   #resources :friends
-#LogFiles
+# $$$$$$$$$$$$$$$$$$ MESAI $$$$$$$$$$$$$$$$$$$$$$$
+  post "/autocomplete/auto_complete_for_autocomplete_query" => "autocomplete#auto_complete_for_autocomplete_query"
   resources :logs, :except => [:delete,:show]  
   match '/logs/filter/',    to: 'logs#filter'
   match '/logs/search/',    to: 'logs#search'
@@ -188,7 +189,7 @@ NokiaRuby::Application.routes.draw do
   match '/logs/stories/:id',    to: 'logs#get_specific_story'
   match '/logs/users/:id',    to: 'logs#get_specific_user'
   match '/logs/admins/:id',    to: 'logs#get_specific_admin'
-#LogFiles
+#L $$$$$$$$$$$$$$$$ MESAI $$$$$$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
   match '/users/force_reset_password/:id', to: 'users#force_reset_password'
