@@ -162,7 +162,7 @@
           <li class="divider"></li>
           <li class="nav-header">Reset the password for this user</li>
           <li class="divider"></li>
-           <%= link_to('Reset Password', {:controller => 'force_reset_password', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
+           <%= link_to('Reset Password', {:controller => 'users', :action => 'force_reset_password', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
           
           <li class="divider"></li>
           <li class="nav-header">Ban this user</li>
@@ -173,6 +173,9 @@
             <% else %>
               <%= link_to('Deactivate', {:controller => 'users', :action => 'deactivate', :id => @user.id}, class: "btn btn-large btn-danger", id: "deactivate_button") %>
             <% end %>
+          <li class="divider"></li>
+           <li class="nav-header">Back to all users</li>
+            <%= link_to('Back', {:controller => 'users', :action => 'index'}, class: "btn btn-large btn-success", id: "back_button") %>
         </ul>
       </div>
   </div>

@@ -202,7 +202,7 @@ end
 
 
   def index
-    respond_with(@users = User.all)
+    @users = User.paginate(:per_page=>5,:page=>params[:page])
   end
 
 =begin
