@@ -17,18 +17,16 @@ class StatisticsController < ApplicationController
    @id=params[:id]
    @user=User.find(@id)
  end
+ 
+ #Author : Shafei
  def all_users
-  # @allUsers=User
+  respond_with(@users = User.get_users_ranking)
  end
  def all_stories
  end
  def all_interests
  end
  
-#Author : Shafei
- def top_users
-	respond_with(@users = User.get_users_ranking)
- end
  
  #Author : Shafei
  def top_stories_30_days
@@ -36,7 +34,7 @@ class StatisticsController < ApplicationController
  end
  
  #Author : Shafei
- def top_users_all_time
-	respond_with(@stories = User.get_stories_ranking_all_time)
+ def top_stories_all_time
+	respond_with(@stories = Story.get_stories_ranking_all_time)
  end
 end
