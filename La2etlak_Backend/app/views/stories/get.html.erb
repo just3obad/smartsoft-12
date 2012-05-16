@@ -40,7 +40,7 @@
  <!-- adding like and dislike button if user didnt like or dislike before and number of likes dislikes for this stort  -->
  <% if @action1 == [] && @action2 == [] %>
 
-<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1 }%> 
+<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
  <% if @likes.length > 0 %>
 <% @a = "#{@likes.length} people like this." %>
  <%=link_to(@a , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
@@ -48,7 +48,7 @@
  <%= "thumb up"%>
  <%end%></br>
  
-<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1}%>
+<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
   <% if @dislikes.length > 0 %>
   <% @a = "#{@dislikes.length} people dislike this." %>
   <%=link_to(@a, {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
@@ -67,7 +67,7 @@
   	 <%= "you like this."%>
   	 <%end%>
   	 </br>
- 	<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => -1}%>
+ 	<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
   <% if @dislikes.length > 0 %>
   <% @a = "#{@dislikes.length} people dislike this." %>
   <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
@@ -82,7 +82,7 @@
   <% if @action2 != []  && @action1 == [] %>
 	
 	
-<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :action => 1}%>
+<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1}%>
 	 <% if @likes.length > 0 %>
  		<% @a = "#{@likes.length} people like this." %>
  		<%=link_to(@a , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
@@ -104,7 +104,7 @@
  <%end%>
  	 
 <!-- adds content of story  -->
- <div class="story-component-box-mobile pre-scrollable" style="padding-left:10px;">
+ <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
  <% if @story.content != nil %>
  <%if @allmedia != nil && @allmedia.length > 4 %>
  <% @story.content.slice!(@allmedia) %>
