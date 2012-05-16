@@ -49,24 +49,38 @@ class UsersController < ApplicationController
   # which redirects to the facebook api using koala
   # Author: Menisy
   def authenticate_facebook_init
-    path = Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => "http://localhost:3000/fb/done/")  
+    path = Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => "http://localhost:3000/fb/done/",:permissions => "read_stream")  
     redirect_to path
   end
 
   # Action to be called in the call back url after authentication take place
   # Author: Menisy
   def authenticate_facebook_done
+    had_before = false
+   # if current_user.facebook_account
+    #  had_before = true
+     # current_user.facebook_account.destroy
+   # end
+    if !params[:code]
+      flash[:notice] = "Facebook account was not added red"
+      redirect_to :controller => "stories", :action => "mobile_show", :id => 1
+      return
+    end
     token = Koala::Facebook::OAuth.new("http://localhost:3000/fb/done/").get_access_token(params[:code]) if params[:code]
-    fb_account = FacebookAccount.new(:auth_token => token,:auth_secret => "1")
-    fb_account.user = current_user
+    fb_account = FacebookAccount.find_or_create_by_user_id(current_user.id)
+    fb_account.auth_token = token
+    fb_account.auth_secret = 1
     graph =  Koala::Facebook::API.new(token)
     user = graph.get_object("me")
-    if fb_account.save
+    current_user.save!
+    if fb_account.save!
+      $sts = current_user.facebook_account.get_feed
+      $t = current_user.facebook_account.get_token
       flash[:notice] = "Facebook account added successfully green" +user.to_s
-      redirect_to :controller => "stories", :action => "mobile_show", :id => 1
+      redirect_to :controller => "users", :action => "main_feed", :id => 1
     else
       flash[:notice] = "Facebook account was not added red" + user.to_s
-      redirect_to :controller => "stories", :action => "mobile_show", :id => 1
+      redirect_to :controller => "users", :action => "main_feed", :id => 1
     end
   end
 
@@ -304,7 +318,7 @@ end
       end           
     end
    end
-  end 
+  end   
 
 #~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
   
