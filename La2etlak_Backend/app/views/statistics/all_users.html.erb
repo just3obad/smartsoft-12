@@ -72,41 +72,41 @@ var $j = jQuery.noConflict();
           </div>
           </div>
 		  
- <table class="table table-striped table-bodered">
-    <tr>
+<div id="ccc"></div> </br>
+<div class="general info" id ="genInfo">
+            
+            <h4><div class="alert alert-info"> 
+              Top 5 Users : </br>
+             
+            </div></h4>
+			<% i = 1%>
+            <% User.get_users_ranking[0..4].each do |user|%>
+    
+    <div class="well-user-component">
+      <a href="/users/<%= user.id%>"
+        class="thumbnail-user-component">
+        <% if not user.image? %>
+            <%= image_tag "logo.jpeg", :size => "75x75" %>
+            <% else %>
+            <img src= "<%= user.image %>" width="75" style="height:75px"/>
+                  <% end %> </a>
+        <div class="user-component-info">
+          <h5><% if user.name.nil? %>
+					<%= "No Name Available" %>
+            <% else %>
+				<%= user.name  %>
+			<% end %>
+            <h5>Rank : <%= user.get_user_rank %></h5>
+			<h5>Email : <%=user.email%></h5>
+			<% i = i+1 %>
+          </h5>
+          
+		<%= link_to "view Statistics", 
+		{:controller => 'statistics', :action => 'users',:id => user.id }, 
+		class: "interest-component-button-absolute btn btn-primary"%>
 
-    <th>  </th>
-	<th> Rank </th>
-    <th> Username </th>
-    <th> First Name </th>
-    <th> Last Name </th>
-    <th> Email </th>
-	<th> Points </th>
-  </tr>
-  <tr>
-  <% if @users.nil? == true %>
-  <div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
-		 <font size="7" face="verdana" color="red" > No Users Registered Yet </font>
-		 <a/>
-	</div>  
-  <% else %>
-	<% i = 1 %>
-	<% for user in @users %>
-		<tr>
-			<td><img style="width:150px; height:150px;" src= <%= user.image %> ></td>
-			<td><%= link_to(i, {:controller => "users", :action => "show", :id => user.id} ) %></td>
-			<td><%= link_to(user.name, {:controller => "users", :action => "show", :id => user.id} ) %></td>
-			<td><%= user.first_name %></td>
-			<td><%= user.last_name %></td>
-			<td><%= user.email %></td>
-			<td><%= user.get_user_rank %></td>
-		</tr>
-		<% i = i+1 %>
-		<% if i == 6 %>
-			<% break %>
-		<% end %>
+        </div>
+    </div>
   <% end %>
- <% end %>
-</table>
 
 
