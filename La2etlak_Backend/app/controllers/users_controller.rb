@@ -63,7 +63,7 @@ class UsersController < ApplicationController
    # end
     if !params[:code]
       flash[:notice] = "Facebook account was not added red"
-      redirect_to :controller => "stories", :action => "mobile_show", :id => 1
+      redirect_to :controller => "users", :action => "main_feed", :id => 1
       return
     end
     token = Koala::Facebook::OAuth.new("http://localhost:3000/fb/done/").get_access_token(params[:code]) if params[:code]
