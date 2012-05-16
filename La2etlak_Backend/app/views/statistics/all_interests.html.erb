@@ -81,13 +81,13 @@
             <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="75" style="height:75px"/>
                   <% end %> </a>
         <div class="interest-component-info">
-          <h2><% if interest.name.nil? %>
+          <h3><% if interest.name.nil? %>
             <%= "No Name Available" %>
             <% else %>
             <%= interest.name  %>
             <h6>Rank : <%=interest.get_interest_rank%></h6>
             <%  end %>
-          </h2>
+          </h3>
           
 <%= link_to "view Statistics", 
 {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
