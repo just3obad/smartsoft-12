@@ -266,7 +266,7 @@ end
   end
   if flagged
     Flag.find_each do |flag|
-      stories3 << Story.where(:id => flag.story_id)
+      stories3 << Story.find(flag.story_id)
     end
     stories= stories + stories3
 
