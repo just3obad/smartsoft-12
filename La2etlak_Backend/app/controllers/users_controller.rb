@@ -167,6 +167,9 @@ def toggle
 @user = current_user
 @user_interests = @user.user_interests
 @all_interests = @user.all_interests
+ if @user.user_interests == []
+  flash[:notice] = " You didn't select any interest ! "
+ end
 render :layout => "mobile_template"
 end
 
