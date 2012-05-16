@@ -112,40 +112,39 @@ class StoriesControllerTest < ActionController::TestCase
 
 #Author: khaled.elbhaey 
   test "the view of friends who liked RED" do
-    new_user=User.create(:email=>"kd@abc.com")
+   new_user=User.create(email: "kled@abc.com", password: "123456", password_confirmation: "123456")
     new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
     new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
 
     list=new_story.view_friends_like(new_user)
      if !list.empty?
-      get like_path(new_story, new_user)
+      assert get(:liked_mobile_show, {'id' => new_story.id})
       assert_select 'div[ id=liked]'
      else
-      get like_path(new_story, new_user) 
+      assert get(:liked_mobile_show, {'id' => new_story.id}) 
       assert_select 'div[ id=error_explanation]'
      end
   end
 #Author: khaled.elbhaey 
   test "the view of friends who disliked RED" do
-   new_user=User.create(:email=>"kd@abc.com")
+   new_user=User.create(email: "kled@abc.com", password: "123456", password_confirmation: "123456")
     new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
     new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
     list=new_story.view_friends_dislike(new_user)
     if !list.empty?
-
-     get dislike_path(new_story, new_user)
-     assert_select 'div[ id=disliked]'
+      assert get(:disliked_mobile_show, {'id' => new_story.id})
+      assert_select 'div[ id=disliked]'
     else
-
-     get dislike_path(new_story, new_user) 
-     assert_select 'div[ id=error_explanation]'
+      assert get(:disliked_mobile_show, {'id' => new_story.id})
+      assert_select 'div[ id=error_explanation]'
     end
   end
 
 
 #Author: khaled.elbhaey 
   test "the view of recommendation of story RED" do
-   assert_select 'listbox[id=femails]'
+    story = Story.first
+    assert get(:recommend_story_mobile_show, {'sid' => story.id})
    assert_select 'form[ id=recommendation]'
    assert_select 'text[ id=fmail]'
    assert_select 'div[ id=submit]'
