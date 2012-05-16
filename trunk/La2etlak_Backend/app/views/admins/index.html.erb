@@ -36,7 +36,7 @@ $j(function() {
 
 	    <div class="admin_right_panel " >
 		<h2>Main Feeds</h2>
-		<div class="well pre-scrollable">
+		<div class="admin_feed_padding">
 				
 			<div id="feeds">
 			<%if $newsfeed != nil%>
@@ -49,9 +49,9 @@ $j(function() {
 								<% else %>
 								<% name = @interest.name  %>
 								<%  end %>
-							<font size="5"><b><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id}) %></b></font>
-								<span class="pull-left greenbadge">Interest</span>
-								<span class="pull-right bluebadge"><%=time_ago_in_words(@interest.created_at)%></span>
+							<font size="5"><b><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id} ,:style =>"clear:both;") %></b></font>
+								<span class="pull-left greenbadge admin_clear_both">Interest</span>
+								<span class="pull-right bluebadge "><%=time_ago_in_words(@interest.created_at)%></span>
 							<div class="well admin_story_feed" style="float: left;">
 								<% if !@interest.photo.file? %>
 					     			  <%= image_tag "logo.jpeg"  , style: "float:left; margin-right:20px; margin-bottom:20px;" %>
