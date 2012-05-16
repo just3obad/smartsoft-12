@@ -12,7 +12,14 @@ respond_to :html,:json
 	story_id = params[:sid]
   	story = Story.find(story_id)
   	user = current_user
-  	user.flag_story(story)
+  	result = user.flag_story(story)
+  	if(result == true)
+	  flash[:notice] = "Story Flagged Succesfully"
+	  redirect_to :controller => "stories", :action => "get" , :id => story_id
+	   else
+	  flash[:notice] = "You Already Flagged this Story"
+	  redirect_to :controller => "stories", :action => "get" , :id => story_id 
+	end
 
    end
 

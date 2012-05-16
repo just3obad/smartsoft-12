@@ -12,6 +12,7 @@ def thumb
 	user = current_user
 	story = Story.find(story_id)
 	user.thumb_story(story,action)
+        redirect_to :controller => "stories", :action => "get" , :id => story_id 
 
   end
 end 
