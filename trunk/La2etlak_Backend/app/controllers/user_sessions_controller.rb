@@ -19,16 +19,21 @@ class UserSessionsController < ApplicationController
 		end
 	end
 
+	# Author: Kiro
+	# renders the login screen
 	def new
   		@user_session = UserSession.new
   		render :layout =>"mobile_template"
 	end
 
+	# Author: Kiro
+	# creates a user session for the user
+	# redirects the user to his main feed
 	def create
  		@user_session = UserSession.new(params[:user_session])
   		if @user_session.save
-   			flash[:notice] = "Successfully logged in."
-    		redirect_to "/main_feed"
+   			flash[:notice] = "Successfully logged in green"
+    		redirect_to "/mob/main_feed"
   		else
    			render :action => 'new', :layout =>"mobile_template"
  	 	end

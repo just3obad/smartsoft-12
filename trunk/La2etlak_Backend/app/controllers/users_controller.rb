@@ -29,10 +29,10 @@ class UsersController < ApplicationController
    end
   end
 	
+  # Author: Kiro
 	# This method is used to register a new user and save him,
 	# if the user was saved successfully it returns "true,
 	# otherwise it returns the errors that prevented the saving of the record
-	# Author: Kiro
   # MOBILE SIDE
 	def register
  		@user = User.new(params[:user])
@@ -86,7 +86,8 @@ class UsersController < ApplicationController
     end
   end
 
-  #Author: Kiro
+  # Author: Kiro
+  # resets the password of the user and sends it by email
 	def resetPassword
 		@user = User.find_by_email(params[:email])
     if @user.nil?
@@ -100,13 +101,14 @@ class UsersController < ApplicationController
     end
 	end
 
-  #Author: Kiro
+  # Author: Kiro
+  # renders the forgot_password screen
   def forgot_password
     @email
     render :layout => 'mobile_template'
   end
 
-	#Author: Kiro (This method is for testing purpose)
+	#Author: Kiro (Those methods are for testing purpose)
 	def dummyLogin
 		render :layout => "mobile_template"
 	end
