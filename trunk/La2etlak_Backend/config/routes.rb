@@ -69,9 +69,9 @@ NokiaRuby::Application.routes.draw do
  
   
   # $$$$$$$$$$$$$$ Christine $$$$$$$$$$$$$$$$$$$$$$$$$
-  match "/interests/:id/statistics" => "statistics#interests"
-  match "/stories/:id/statistics" => "statistics#stories"
-  match "/users/:id/statistics" => "statistics#users"
+  match "/interests/statistics/:id" => "statistics#interests"
+  match "/stories/statistics/:id" => "statistics#stories"
+  match "/users/statistics/:id" => "statistics#users"
   match "admins/statistics/all_users" => "statistics#all_users"
   match "admins/statistics/all_interests" => "statistics#all_interests"
   match "admins/statistics/all_stories" => "statistics#all_stories"
