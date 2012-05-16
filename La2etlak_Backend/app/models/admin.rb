@@ -97,6 +97,7 @@ require "net/http"
 
     return query_result.to_a
   end
+  #Author MESAI
   #this method is used to get the main feed
   def self.get_feed
    item1 = Interest.order("created_at DESC").where("created_at < ?",30.days.from_now)
@@ -105,7 +106,8 @@ require "net/http"
    $newsfeed = item.sort_by { |obj| obj.created_at }.reverse
    puts $newsfeed
   end
-
+  
+  #Author MESAI
   #this method is used to update the main feed on spot.
   def self.push_notifications (channel,data)
     begin
