@@ -749,8 +749,8 @@ end
 	def resetPassword
 	
 		newpass = ((0..9).to_a + ('a'..'z').to_a + ('A'..'Z').to_a ).shuffle[0..5].join
-		self.password = newpass
-		self.reset_password!
+		self.update_attributes(password: newpass, password_confirmation: newpass)
+		self.save
 		return newpass
 	
 	end
