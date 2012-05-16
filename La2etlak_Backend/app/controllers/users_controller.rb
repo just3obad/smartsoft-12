@@ -9,13 +9,15 @@ class UsersController < ApplicationController
   end
 
   # Author: Kiro
-  # Creates a new user and redirects him to the toggle if saved
+  # Creates a new user
+  # generates a verifcation code for the user and sends it by email
+  # redirects the user to the toggle screen
   def create
     @user = User.new(params[:user])
     if @user.save
       @user.generateVerificationCode?
       Emailer.verification_instructions(@user).deliver
-      flash[:notice] = "Thank you for joining La2etlak, you just recieved an E-mail containing the verification instructions."
+      flash[:notice] = "Thank you for joining La2etlak, you just recieved an E-mail containing the verification instructions green"
 			session = UserSession.new(@user)
 			if session.save
      		redirect_to "/mob/toggle"
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
 	# if the user was saved successfully it returns "true,
 	# otherwise it returns the errors that prevented the saving of the record
 	# Author: Kiro
+  # MOBILE SIDE
 	def register
  		@user = User.new(params[:user])
 		respond_to do |format|
@@ -83,11 +86,25 @@ class UsersController < ApplicationController
     end
   end
 
+  #Author: Kiro
 	def resetPassword
-		@user = current_user
-		newpass = @user.resetPassword
-		Emailer.reset_password(@user,newpass).deliver
+		@user = User.find_by_email(params[:email])
+    if @user.nil?
+      flash[:notice] ="This email doesn't exist red"
+      redirect_to :controller => 'users', :action => 'forgot_password'
+    else
+		  newpass = @user.resetPassword
+		  Emailer.reset_password(@user,newpass).deliver
+      flash[:notice] = "Your new password has been sent to your email green"
+      redirect_to :controller => 'user_sessions' , :action => 'new'
+    end
 	end
+
+  #Author: Kiro
+  def forgot_password
+    @email
+    render :layout => 'mobile_template'
+  end
 
 	#Author: Kiro (This method is for testing purpose)
 	def dummyLogin

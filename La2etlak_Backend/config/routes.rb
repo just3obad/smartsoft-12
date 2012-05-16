@@ -18,10 +18,11 @@ NokiaRuby::Application.routes.draw do
 	match "requestToken" => "user_sessions#requestToken"
 	match "login" => "user_sessions#login_with_token"
 	match "register" => "users#register"
-	match "resetPassword" => "users#resetPassword"
+	match "mob/resetPassword" => "users#resetPassword"
 	match "dummyLogin" => "users#dummyLogin"
 	match "mob/test" => "users#test"
 	match "mob/test_2" => "users#test_2"
+  match "mob/forgot_password" => "users#forgot_password"
 	resources :user_sessions
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 
