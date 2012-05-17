@@ -30,10 +30,12 @@ include StoriesHelper
   validates :interest_id, :presence=>true
 # checking that the media_link is a valid URL according to the regex defined above.
   validates :media_link, :format=> {:with => URL_regex}
-			 
-# get_story is a method that takes a specific story_id as an input  and searches the database for the stroy with this id and returns #this story to the caller
 
-  def get_story(story_id)
+# author : Gasser			 
+# get_story is a method that takes a specific story_id as an input  and searches the database 
+# for the stroy with this id and returns #this story to the caller
+
+  def self.get_story(story_id)
       return Story.find(story_id)
   end
 
