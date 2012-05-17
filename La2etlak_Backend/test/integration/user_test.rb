@@ -7,21 +7,19 @@ class UserTest < ActionDispatch::IntegrationTest
 
   ##########Author: Diab ############
   test "should route to user statistics page" do
-    assert_routing '/users/1/statistics', { :controller => "statistics", :action => "users" , :id => "1"}
+    assert_routing '/users/statistics/1', { :controller => "statistics", :action => "users" , :id => "1"}
    end 
   
   ##########Author: Diab ############
   test "get user statistics response" do
-   get '/users/1/statistics'
+   get '/users/statistics/1'
    assert_response :success
    end 
   
   ##########Author: Diab ############
-  test "user statistics page has a list of users who added it RED" do
-   get '/users/1/statistics'
-   assert_select "ul[id = shared_stories]" do
-    assert_select "li"
-  end
+  test "user statistics page has a list of users who added it" do
+   get '/users/statistics/1'
+   assert_select 'div[id = shared_stories]'
  end
 
     #Author : Mina Adel
