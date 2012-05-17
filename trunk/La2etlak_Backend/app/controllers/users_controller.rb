@@ -145,11 +145,12 @@ def feed
  	
  	
    	 if(int_name)
-    	 @stories = user.get_feed(int_name)
+    	 stories = user.get_feed(int_name)
 	 else
-	 @stories =  user.get_feed("null")
+	 stories =  user.get_feed("null")
 	end
         @stories = @stories + user.get_friends_stories
+ @stories=stories.paginate(:per_page => 10, :page=> params[:page])
 	 respond_to do |format|
     	 format.json { render json: @stories }
    	 # Author : Mina Adel
