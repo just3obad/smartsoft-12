@@ -1,19 +1,6 @@
 <html>
-<%= render 'shared/warning_messages' %>
-<% if $savedinterest %>
-<%= render 'shared/logs_success_messages' %>
-<%else %>
-<%= render 'shared/logs_error_messages' %>
+<%= render 'shared/all_flash' %>
 
-<%end%>
-
-<% if not $saved.nil? %>
-<% if $saved %>
-<%= render 'shared/logs_success_messages' %>
-<%else %>
-<%= render 'shared/logs_error_messages' %>
-<% end %>	
-<%end%>
 
 
 
