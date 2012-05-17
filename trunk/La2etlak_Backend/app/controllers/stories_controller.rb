@@ -45,8 +45,7 @@ def show
   # Author: Menisy
   def up_comment
     comment = Comment.find(params[:comment_id])
-    user = current_user
-    upped = comment.up_comment(user)
+    upped = comment.up_comment(current_user)
     if upped 
       redirect_to :action => "get" ,:id => params[:id]
     else
@@ -59,8 +58,7 @@ def show
   # Author: Menisy
   def down_comment
     comment = Comment.find(params[:comment_id])
-    user = current_user
-    downed = comment.down_comment(user)
+    downed = comment.down_comment(current_user)
     if downed 
       redirect_to :action => "get" ,:id => params[:id]
     else
