@@ -79,11 +79,17 @@ var $j = jQuery.noConflict();
               Top 5 Users : </br>
              
             </div></h4>
+			<% if @users.nil? == true %>
+		<div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
+		 <font size="7" face="verdana" color="red" > No Users Registered Yet </font>
+		 <a/>
+		</div>  
+		<% else %>
 			<% i = 1%>
             <% User.get_users_ranking[0..4].each do |user|%>
     
-    <div class="well-user-component">
-      <a href="/users/<%= user.id%>"
+		<div class="well-user-component">
+		<a href="/users/<%= user.id%>"
         class="thumbnail-user-component">
         <% if not user.image? %>
             <%= image_tag "logo.jpeg", :size => "75x75" %>
@@ -107,6 +113,7 @@ var $j = jQuery.noConflict();
 
         </div>
     </div>
+	<% end %>
   <% end %>
 
 

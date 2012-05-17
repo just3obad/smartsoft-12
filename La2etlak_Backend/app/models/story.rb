@@ -147,7 +147,11 @@ include StoriesHelper
 		  final_stories << hsh[:thestory]
 	  end
 	  top_stories =  final_stories.reverse
+	  if (top_stories.empty? == true)
+		return []
+	else
 	  return top_stories
+	 end
   end
   
 #Author : Shafei
@@ -162,7 +166,11 @@ include StoriesHelper
       final_stories << hsh[:thestory]
     end
     top_stories =  final_stories.reverse
-    return top_stories
+    if (top_stories.empty? == true)
+		return []
+	else
+	  return top_stories
+	 end
   end
 
 #view_friends_like is a method that return a list of friends emails that liked the story
