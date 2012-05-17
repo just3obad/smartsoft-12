@@ -4912,8 +4912,9 @@ body {
   border: 1px solid; 
 }
 .story-textarea-mobile{
-  width:90%;
+  width:95%;
   height:20%;
+  margin:1%;
 }
 
 
@@ -4937,22 +4938,25 @@ background-color:#e5e5e5;
   border: 1px solid #e31010;
 }
 .flash-green{
-  background-color: #68EC39;
+  background-color: #dff0d8;
   margin:3px;
   padding:2px;
-  border: 1px solid #3EC40E;
+  border: 1px solid #d6e9c6;
+  color: #468847;
 }
 .flash-red{
-  background-color: #ffc3c3;
+  background-color: #f2dede;
   margin:3px;
   padding:2px;
-  border: 1px solid #e31010;
+  border: 1px solid #eed3d7;
+  color: #b94a48;
 }
 .flash-yellow{
-  background-color: #FFDE2B;
+  background-color: #d9edf7;
   margin:3px;
   padding:2px;
-  border: 1px solid #E0C00E;
+  border: 1px solid #bce8f1;
+  color: #3a87ad; 
 }
 
 .apple_pagination {
