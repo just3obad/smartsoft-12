@@ -35,6 +35,9 @@ class TwitterAccountsController < ApplicationController
   put in the params array. Through this access token the twitter accoun can be made
   thorugh which the system fetches tweets.
 
+  Note that, this token does not expire unless the user has explicitly removed
+  it from twitter app setting. 
+
   Author: Yahia
 =end 
   def generate_access_token

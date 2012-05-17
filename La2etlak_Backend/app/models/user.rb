@@ -583,10 +583,6 @@ end
 	 return interests 
 	end 
 
-  #Author: Yahia
-  def search_members(string)
-  end
-
 # This method generateVerificationCode? generates a verification code for the user
 # and adds an entry to the verification codes table in the database.
 # The verification code is 4 characters from (0-->9) and (a-->z).
