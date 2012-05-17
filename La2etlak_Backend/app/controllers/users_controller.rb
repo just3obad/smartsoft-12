@@ -110,6 +110,9 @@ class UsersController < ApplicationController
 
 	#Author: Kiro (Those methods are for testing purpose)
 	def dummyLogin
+    if nokia_user?
+      redirect_to :controller => 'user_sessions' , :action => 'new'
+    end
 		#render :layout => "mobile_template"
 	end
 

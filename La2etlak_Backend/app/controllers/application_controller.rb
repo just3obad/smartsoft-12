@@ -3,6 +3,17 @@ class ApplicationController < ActionController::Base
 
 	helper_method :current_user
         helper_method :current_admin
+    helper_method :nokia_user?
+
+    def nokia_user?
+
+    	agent = request.env["HTTP_USER_AGENT"].downcase
+    	if agent.index('nokia'.downcase)
+    		return true
+    	else
+    		return false
+    	end
+    end
 
 	# This is a helper method that returns the User record
 	# for the currently logged in user, this method is
