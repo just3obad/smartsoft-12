@@ -48,9 +48,10 @@ def show
     user = current_user
     upped = comment.up_comment(user)
     if upped 
-      redirect_to :action => "mobile_show" ,:id => params[:id]
+      redirect_to :action => "get" ,:id => params[:id]
     else
-      render json: "temporary error occured"
+      flash[:notice] = "Temporary error has occured red"
+      redirect_to :action => "get" ,:id => params[:id]
     end
   end
   
@@ -61,9 +62,10 @@ def show
     user = current_user
     downed = comment.down_comment(user)
     if downed 
-      redirect_to :action => "mobile_show" ,:id => params[:id]
+      redirect_to :action => "get" ,:id => params[:id]
     else
-      render json: "temporary error occured"
+      flash[:notice] = "Temporary error has occured red"
+      redirect_to :action => "get" ,:id => params[:id]
     end
   end
 
