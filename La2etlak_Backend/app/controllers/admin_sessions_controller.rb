@@ -27,7 +27,7 @@ class AdminSessionsController < ApplicationController
     flash[:notice] = "Successfully logged out."  
     redirect_to('/admin/login')
   end  
- end  
+ end 
  
 
 end

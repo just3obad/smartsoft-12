@@ -87,12 +87,16 @@ class AdminsController < ApplicationController
     @admin = Admin.find_by_email(params[:email])
     if @admin.nil?
       flash[:notice] ="This email doesn't exist red"
-      redirect_to('/admin/login')
+      redirect_to('/admin/forgot_password')
     else
 		  newpass = @admin.resetPassword
 		  Emailer.reset_admin_password(@admin,newpass).deliver
       flash[:notice] = "Your new password has been sent to your email green"
-      redirect_to('/emailer/reset_admin_password')
+      redirect_to('/admin/reset_pass')
     end
+  end
+  def forgot_password
+  @email
+  redirect_to('admins/forgot_password.html.erb'
   end
 end
