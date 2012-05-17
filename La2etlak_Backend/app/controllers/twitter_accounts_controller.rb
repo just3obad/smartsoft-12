@@ -41,7 +41,6 @@ class TwitterAccountsController < ApplicationController
     @user = current_user
     request_token = OAuth::RequestToken.new(TwitterAccount.twitter_consumer,
                     params["oauth_token"], params["oauth_verifier"])
-
     if @user.twitter_account
       @user.twitter_account.delete
     end
