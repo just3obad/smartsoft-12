@@ -47,6 +47,9 @@
 	</table>
 	</div>
 	<%end%>
+	<div class="apple_pagination">
+	<%= will_paginate @stories, :container => false %>
+	</div>
 	<%else%>
 	<!--if nil, an error message of sorts appears -->
 	<div class="story-component-box-mobile">
