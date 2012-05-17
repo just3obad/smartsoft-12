@@ -9,7 +9,7 @@
 		<% @inviters.each do |inviter| %>
 			<li>
 				<div style="margin:1%;" >
-					<%= inviter.email %>
+					<%= inviter.email.split('@').first %>
 				</div>	
 					<%= link_to 'Approve',{:controller => 'friendships',
 					 	:action => 'accept',
