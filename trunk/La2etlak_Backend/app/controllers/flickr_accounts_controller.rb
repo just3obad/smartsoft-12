@@ -12,6 +12,28 @@ class FlickrAccountsController < ApplicationController
   FlickRaw.shared_secret=SHARED_SECRET
   
 
+=begin
+
+  This is the first phase of the OAuth phase that is required by flickr.
+  In this phase, first a new Consumer gets created which is basically 
+  a client that represents our app talking to flickr. 
+
+  The client asks flickr for a request_token, from which a URL will 
+  be generated. The callback url should be changed to the proper server 
+  URL. 
+
+  The browser will be redirected to the generated authorization URL. After
+  that, flickr will redirect the user back to our app. 
+
+
+  Note that, the oauth_token_secret is saved in rails default Rails cache to be used
+  in the second phase of the authentication process, when the user is redirected back
+  from flickr to the call back method
+
+  Author: 3OBAD
+=end
+
+
   def auth
 
     @user = current_user
@@ -30,6 +52,29 @@ class FlickrAccountsController < ApplicationController
     redirect_to(auth_url)
 
   end
+
+
+
+
+=begin
+  This is the second phase of authentication. In this phase, the user should have 
+  authenticated our app through flickr. Then we use the request token and secret 
+  token from that exact user to get our access tokens from flickr. Through the 
+  access token, we can get the recent photos on  behalf of the user. 
+
+  This is done by simply
+  requesting the access token by the oauth_token , oauth_token_secret and oauth_verifier which
+  flickr put in the params array. Through this access token the flickr accoun can be made
+  thorugh which the system fetches tweets.
+
+  Note that, the oauth_token_secret was stored in Rails default cache at the first phase 
+  to be used here during this phase of the authentication process
+
+  Note that, the token expires every 24 houres, so the user will have to renew the token 
+  every time he asks for the main feed comming from flickr.
+
+  Author: 3OBAD
+=end 
 
   def callback 
 
