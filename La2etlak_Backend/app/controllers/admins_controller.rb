@@ -97,6 +97,6 @@ class AdminsController < ApplicationController
   end
   def forgot_password
   @email
-  redirect_to('admins/forgot_password.html.erb'
+  redirect_to('admins/forgot_password.html.erb')
   end
 end
