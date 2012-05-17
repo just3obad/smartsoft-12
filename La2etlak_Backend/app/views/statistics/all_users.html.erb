@@ -54,11 +54,11 @@ var $j = jQuery.noConflict();
     </div>
     <div class="span9">
 <div class="alert" id="noUser" style="display: none;">
-  
+		<% if(@users.empty? == true) %>
            <a class="close" data-dismiss="alert">×</a>
            <h1><strong>Warning!</strong> No Users in our database Yet.</h1>
      </div>
-
+		  <% else %>
 <div id="ccc"></div>
 <div class="general info">
             
@@ -71,20 +71,13 @@ var $j = jQuery.noConflict();
           </div>
           </div>
           </div>
-		  
 <div id="ccc"></div> </br>
 <div class="general info" id ="genInfo">
             
             <h4><div class="alert alert-info"> 
               Top 5 Users : </br>
              
-            </div></h4>
-			<% if @users.nil? == true %>
-		<div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
-		 <font size="7" face="verdana" color="red" > No Users Registered Yet </font>
-		 <a/>
-		</div>  
-		<% else %>
+            
 			<% i = 1%>
             <% User.get_users_ranking[0..4].each do |user|%>
     
