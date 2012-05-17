@@ -33,12 +33,15 @@ class: "btn btn-danger"%></br></br>
 			<%end%>
 		<!-- Kareem -->
 		  </td>
+			<% if @user_interests.include?(interest.id) %>
 		<td>
+	
 	<%= link_to "Filter by "+interest.name, 
 	{:controller => "users", :action => "feed", :interest => interest.name}, 
 	class: "btn btn-primary" %></br></br>
 		</td>
 		<!-- Kareem -->
+		<%end%>
    	<%end%> 
 		<!-- Kareem -->
 	</table>
