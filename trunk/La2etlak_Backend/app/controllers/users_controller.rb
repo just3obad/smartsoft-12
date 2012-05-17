@@ -309,7 +309,8 @@ end
   def friends_feed
       @user = current_user
       @friend_id = params[:id]
-      @my_friend_stories = @user.get_one_friend_stories(@friend_id)
+      my_friend_stories = @user.get_one_friend_stories(@friend_id)
+      @my_friend_stories = my_friend_stories.paginate(:per_page => 10, :page=> params[:page]) 
       render layout:"mobile_template", template: "users/friend_feed"
   end
 
