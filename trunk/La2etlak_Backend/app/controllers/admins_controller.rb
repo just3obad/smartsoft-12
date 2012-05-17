@@ -5,19 +5,20 @@ class AdminsController < ApplicationController
     $storiesSearch = "true"
     $interestsSearch = "true"
     if params[:autocomplete][:query].length > 0
-      $users = Admin.search(params[:autocomplete][:query])
-      if $users.length == 0
+      $users = Admin.search_user(params[:autocomplete][:query])
+      
+    #these attributes are added this way temporarilly until Mostafa comitts his
+    #work so that I can work on the view of the search(LYDIA)
+      $interests = Admin.search_interest(params[:autocomplete][:query])
+      $stories = Admin.search_story(params[:autocomplete][:query])
+      
+      if $users.length == 0 and $stories.length == 0 and $interests.length == 0
         $users = "There are no matching results."
       end
     else
-      $users = "Please enter query into the search bar."
+        $users = "Please enter query into the search bar."
     end
     
-    #these attributes are added this way temporarilly until Mostafa comitts his
-    #work so that I can work on the view of the search(LYDIA)
-    $interests = Interest.all
-    $stories = Story.all
-
     respond_to do |format|
       format.html #index.html.erb
       format.json { render json: $users }
