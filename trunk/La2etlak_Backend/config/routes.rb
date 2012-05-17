@@ -2,7 +2,9 @@ NokiaRuby::Application.routes.draw do
 
 
   get "admin_settings/index"
-
+  #$$$$$$$$$$$$$khaled$$$$$$$$$$$$$$$$$$$$$$  
+  match "mob/stories/recommend_success_mobile_show/:sid" => "stories#recommend_success_mobile_show"
+  #$$$$$$$$$$$$$$$$$$$khaled$$$$$$$$$$$$$$
 
  # ~~~~~~~~~~~~~~~~ 3OBAD ~~~~~~~~~~~~~~~~~~~~~~~~
 
