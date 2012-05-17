@@ -546,10 +546,22 @@ end
  #Author : Omar 
  # check if user toggle new interests the methods adds it to his interests if toggled old interest it deletes it from his interests
  def toggle_interests(id)
- if(UserAddInterest.find_by_interest_id(id) == nil)
+
+	 if self.name.nil?
+	      username = self.email.split('@')[0]
+          else
+      		username = self.name
+         end
+   		interest_name = Interest.find(id).name
+  
+   if(UserAddInterest.find_by_interest_id(id) == nil)
  	UserAddInterest.create(:user_id => self.id , :interest_id => id)
+ 		message = "#{username} added interest : #{interest_name}"
+   		Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			interest_id: id, message: message)
  	else 
  		UserAddInterest.find_by_interest_id(id).destroy
+ 		message = "#{username} deleted interest : #{interest_name}"
+   		Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			interest_id: id, message: message)
  	end
  end
  
