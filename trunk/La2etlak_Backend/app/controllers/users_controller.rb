@@ -324,28 +324,31 @@ end
   def update
    @user = current_user
    if @user.update_attributes(params[:user])
-        flash[:notice] = "Your Info was saved successfully"
+        flash[:notice] = "Your Info was saved successfully green"
         redirect_to action:"edit"
    else
     if @user.name.length>20
-         flash[:notice] = "The nickname is too long. Must be less than 20 chars"
+         flash[:notice] = "The nickname is too long. Must be less than 20 chars red"
          redirect_to action:"edit"
     else
       if @user.first_name.length>20
-           flash[:notice] = "The firstname is too long. Must be less than 20 chars"
+           flash[:notice] = "The firstname is too long. Must be less than 20 chars red"
            redirect_to action:"edit"
       else
         if @user.last_name.length>20
-             flash[:notice] = "The lastname is too long. Must be less than 20 chars"
+             flash[:notice] = "The lastname is too long. Must be less than 20 chars red"
              redirect_to action:"edit"
         else
           if @user.password != @user.password_confirmation
-               flash[:notice] = "Password missmatch"
+               flash[:notice] = "Password missmatch red"
                redirect_to action:"edit"
           else
             if @user.password.length<4
-                 flash[:notice] = "The password must be greater than 4 chars"
+                 flash[:notice] = "The password must be greater than 4 chars red"
                  redirect_to action:"edit"
+            else
+                 flash[:notice] = "Error please try again red"
+                 redirect_to action:"edit" 
             end
           end
         end  
