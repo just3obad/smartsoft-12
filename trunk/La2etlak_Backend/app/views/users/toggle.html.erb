@@ -18,17 +18,31 @@
    
    <div align="center" >     
    	<% @all_interests.each do |interest| %>
+		<!-- Kareem -->
+		<table>
+			<td>
+		<!-- Kareem -->
 		<%if @user_interests.include? interest.id%> 		 	
 		<%= link_to interest.name, 
-{:controller => 'users', :action => 'int_toggle',:id => interest.id }, 
+{:controller => 'users', :action => 'int_toggle',:id => interest.name }, 
 class: "btn btn-success" %></br></br>
 			<%else%>  					
    		  <%= link_to interest.name, 
-{:controller => 'users', :action => 'int_toggle', :id => interest.id }, 
+{:controller => 'users', :action => 'int_toggle', :id => interest.name }, 
 class: "btn btn-danger"%></br></br>
 			<%end%>
-		  
+		<!-- Kareem -->
+		  </td>
+		<td>
+	<%= link_to "Filter by "+interest.name, 
+	{:controller => "users", :action => "feed", :interest => interest.name}, 
+	class: "btn btn-primary" %></br></br>
+		</td>
+		<!-- Kareem -->
    	<%end%> 
+		<!-- Kareem -->
+	</table>
+		<!-- Kareem -->
 	</br></br>
 	</div>
 	
