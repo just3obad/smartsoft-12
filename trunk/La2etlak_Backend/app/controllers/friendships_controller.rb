@@ -27,9 +27,17 @@ class FriendshipsController < ApplicationController
     if @friendship_created
       # flash.now[:notice] = "Friendship invitation created  #{@friend.email}"
       flash[:notice] = 'Frindship request has succesffully been sent green'
+      # for the log file 
+      l = Log.new
+      l.user_id_1 = @user.id
+      l.user_id_2 = @friend.id
+      name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+      name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+      l.message = "#{name_1} requested friendship of #{name_2}"
+      l.save
     else 
       flash[:notice] = 'Frindship request was not sent red'
-    end
+    end    
     redirect_to action: "search", query: params[:query_forward]
   end
 
@@ -45,6 +53,14 @@ class FriendshipsController < ApplicationController
     @pending_invited_by = @user.pending_invited_by
     #flash.now[:notice] = "Friendship approved #{@friend.email} a t approuve"
     #render layout: 'mobile_template', text: "Friendship approved  #{@friend.email}"
+    l = Log.new
+    l.user_id_1 = @user.id
+    l.user_id_2 = @friend.id
+    name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+    name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+    l.message = "#{name_1} accepted friendship of #{name_2}"
+    l.save
+
     redirect_to action: 'pending'
   end
 
@@ -63,6 +79,14 @@ class FriendshipsController < ApplicationController
     else 
       flash[:notice] = "Friendship was not #{@friend.email} red"
     end
+      l = Log.new
+      l.user_id_1 = @user.id
+      l.user_id_2 = @friend.id
+      name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+      name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+      l.message = "#{name_1} removed friendship of #{name_2}"
+      l.save
+
   redirect_to action: "search", query: params[:query_forward] 
 
   end
@@ -76,6 +100,14 @@ class FriendshipsController < ApplicationController
     @user = current_user
     @friend = User.find(params[:friend_id])
     @user.block @friend
+      l = Log.new
+      l.user_id_1 = @user.id
+      l.user_id_2 = @friend.id
+      name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+      name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+      l.message = "#{name_1} blocked #{name_2}"
+      l.save
+
     
     render layout: 'mobile_template', text: "Member blocked  #{@friend.email}"
   end
