@@ -10,28 +10,46 @@ class FlickrAccountsController < ApplicationController
 
   FlickRaw.api_key=API_KEY
   FlickRaw.shared_secret=SHARED_SECRET
+  
 
   def auth
+
+@user = User.find(1)
   flickr = FlickRaw::Flickr.new
-  token = flickr.get_request_token(:oauth_callback => ('http://127.0.0.1:3000/users/flickr/callback'))
+  token = flickr.get_request_token(:oauth_callback => (
+    'http://127.0.0.1:3000/users/flickr/callback'))
+  @user.name = token['oauth_token_secret']
+  @user.save
+
+
   # You'll need to store the token somewhere for when the user is returned to the callback method
   # I stick mine in memcache with their session key as the cache key
 
-  @auth_url = flickr.get_authorize_url(token['oauth_token'], :perms => 'read')
-  # Stick @auth_url in your template for users to click
-  redirect_to(@auth_url)
-  puts "End of auth"
+
+auth_url = flickr.get_authorize_url(token['oauth_token'], :perms => 'read')
+  redirect_to(auth_url)
+
+
+
+  
+
   end
 
    def callback
-   	
+
+    
   flickr = FlickRaw::Flickr.new
 
-  token = # Retrieve from cache or session etc - see above
+
+ # request_token = User.find(1).name# Retrieve from cache or session etc - see above
+  
   oauth_token = params[:oauth_token]
   oauth_verifier = params[:oauth_verifier]
+  
 
-  raw_token = flickr.get_oauth_token(request_token['oauth_token'], request_token['oauth_token_secret'], oauth_verifier)
+  raw_token = flickr.get_access_token(params[:oauth_token], User.find(1).name, params[:oauth_verifier])
+
+
   # raw_token is a hash like this {"user_nsid"=>"92023420%40N00", "oauth_token_secret"=>"XXXXXX", "username"=>"boncey", "fullname"=>"Darren%20Greaves", "oauth_token"=>"XXXXXX"}
   # Use URI.unescape on the nsid and name parameters
 
@@ -45,6 +63,8 @@ class FlickrAccountsController < ApplicationController
   flickr.access_token = oauth_token
   flickr.access_secret =[oauth_token_secret]
 
-   end
+ render :text => "LOLOLOLOLOLO"
+
+    end
 
 end
