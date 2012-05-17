@@ -1,11 +1,35 @@
 require 'flickraw'
 
 class FlickrAccount < ActiveRecord::Base
+
+
+
+=begin  
+  consumer_key and secret_key are the access keys to the flickr 
+  accounts. Flickr provides them to us in phase to in the 
+  authentication. see flickr_accounts_controller.rb for more info 
+=end
+
   attr_accessible :consumer_key, :secret_key, :user_id
   belongs_to :user, class_name: "User" 
 
+  validates :consumer_key, presence: true
+  validates :secret_key, presence: true
 
-def get_feed
+
+
+
+
+=begin
+  This is the method responsible for getting the recent photos of the user`s 
+  friends. login = flickr.test.login is used to chech the if the token has expired 
+  or not by making a test login. photo_list is a list of the recent friends` photos
+  then we change them into stories to be used in the main feed.
+  Author: 3OBAD
+=end
+
+
+  def get_feed
 
 	begin
      login = flickr.test.login
@@ -29,9 +53,17 @@ def get_feed
     #puts stories 
     return stories
 
-end
+  end
 
-def self.convert_image_to_story(image)
+
+=begin
+  This is the method that change the photo onto a story by getting 
+  the story url and its title
+  Author: 3OBAD
+
+=end 
+
+  def self.convert_image_to_story(image)
     #story = [author: tweet['user']['name'], text: tweet['text']]
     info = flickr.photos.getInfo :photo_id => image.id, :secret => image.secret
     original_url = FlickRaw.url(info)
