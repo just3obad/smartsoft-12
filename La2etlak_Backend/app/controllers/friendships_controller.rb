@@ -9,6 +9,7 @@ class FriendshipsController < ApplicationController
     @friends = @user.friends
     @pending_invited_by = @user.pending_invited_by
     @pending_invited = @user.pending_invited
+    
     render layout: 'mobile_template'
   end
 
@@ -37,7 +38,8 @@ class FriendshipsController < ApplicationController
       l.save
     else 
       flash[:notice] = 'Frindship request was not sent red'
-    end    
+    end  
+
     redirect_to action: "search", query: params[:query_forward]
   end
 
@@ -79,16 +81,15 @@ class FriendshipsController < ApplicationController
     else 
       flash[:notice] = "Friendship was not #{@friend.email} red"
     end
-      l = Log.new
-      l.user_id_1 = @user.id
-      l.user_id_2 = @friend.id
-      name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
-      name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
-      l.message = "#{name_1} removed friendship of #{name_2}"
-      l.save
+    l = Log.new
+    l.user_id_1 = @user.id
+    l.user_id_2 = @friend.id
+    name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+    name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+    l.message = "#{name_1} removed friendship of #{name_2}"
+    l.save
 
-  redirect_to action: "search", query: params[:query_forward] 
-
+    redirect_to action: "search", query: params[:query_forward] 
   end
 
 =begin
@@ -100,15 +101,14 @@ class FriendshipsController < ApplicationController
     @user = current_user
     @friend = User.find(params[:friend_id])
     @user.block @friend
-      l = Log.new
-      l.user_id_1 = @user.id
-      l.user_id_2 = @friend.id
-      name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
-      name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
-      l.message = "#{name_1} blocked #{name_2}"
-      l.save
+    l = Log.new
+    l.user_id_1 = @user.id
+    l.user_id_2 = @friend.id
+    name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+    name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+    l.message = "#{name_1} blocked #{name_2}"
+    l.save
 
-    
     render layout: 'mobile_template', text: "Member blocked  #{@friend.email}"
   end
 
