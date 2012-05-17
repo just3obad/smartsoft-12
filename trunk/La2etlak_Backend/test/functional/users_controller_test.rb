@@ -255,7 +255,7 @@ class UsersControllerTest < ActionController::TestCase
   # Author : Christine
   #Test that the user profile page responds with http:succes
   test "UserProfilePage should return success response" do
-      @usr=User.create!(:email=>"exampleuserpage@gmail.com")
+      @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
       get :show, :id=> @usr.id
   
      assert_response :success
@@ -264,7 +264,7 @@ class UsersControllerTest < ActionController::TestCase
   # Author : Christine
   #Check that the profile page contain all the buttons needed.
   test "UserProfilePage should contain all needed buttons" do
-      @usr=User.create!(:email=>"exampleuserpage@gmail.com")
+     @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
   
      assert_select "a[id=statistics_button]"
@@ -275,15 +275,15 @@ class UsersControllerTest < ActionController::TestCase
   # Author : Christine
   #Check that the profile page contains all the Main divs needed.
   test "UserProfilePage should contain all the right main divs" do
-    @usr=User.create!(:email=>"exampleuserpage@gmail.com")
-     get :show, :id=> @usr.id
+    @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    get :show, :id=> @usr.id
     assert_select "div[id=friends]"
     assert_select "div[id=interests]"
     assert_select "div[id=recentActivity]"
   end
   # Author : Christine
   test "UserProfilePage contains usr info" do
-    @usr=User.create!(:email=>"exampleuserpage@gmail.com")
+     @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
     assert_select "div[id=user-personal-info]" do
       assert_select "span[id=my-email]", @usr.email
@@ -292,9 +292,9 @@ class UsersControllerTest < ActionController::TestCase
   end
   # Author : Christine
   test "UserProfilePage get right no of friends" do
-    @usr=User.create!(:email=>"exampleuserpage@gmail.com")
+     @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
-     @usr2= User.create!(:email=> "exampleuser2@gmail.com")
+      @usr2=User.create!(:email=>"example1userpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      @usr.invite @usr2
      @usr2.approve @usr
      get :show, :id=> @usr.id
@@ -305,7 +305,7 @@ class UsersControllerTest < ActionController::TestCase
 
   # Author : Christine
   test "UserProfilePage get right no of interests of a user with no interests" do
-    @usr=User.create!(:email=>"exampleuserpage@gmail.com")
+     @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
 
     assert_select "div[id=interests]" do
@@ -314,7 +314,7 @@ class UsersControllerTest < ActionController::TestCase
   end 
   # Author : Christine
   test "UserProfilePage get right no of interests of a user who added two interests" do
-    @usr=User.create!(:email=>"exampleuserpage@gmail.com")
+     @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
     int1=Interest.new(:name=> "InterestDummy1")
     assert int1.save
@@ -330,9 +330,9 @@ class UsersControllerTest < ActionController::TestCase
   end   
   # Author : Christine
   test "UserProfilePage get right no of activities in the last 30 days" do
-    @usr=User.create!(:email=>"exampleuserpage@gmail.com")
+     @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
-    count1=@usr.get_recent_activity(30.days.ago).count
+    count1=@usr.get_recent_activity(Time.zone.now).count
     story=Story.new(:title=>"storyexample")
     int1=Interest.new(:name=> "InterestDummy1")
     assert int1.save
@@ -340,7 +340,7 @@ class UsersControllerTest < ActionController::TestCase
     assert story.save
     Log.create!(:user_id_1 => @usr.id, :story_id => story.id, :message => "Shared a story")
     get :show, :id=> @usr.id
-    count2=@usr.get_recent_activity(30.days.ago).count
+    count2=@usr.get_recent_activity(Time.zone.now).count
     assert_equal(count2,count1+1)
     assert_select "div[id=recentActivity]" do
       assert_select "td[class=logs-table-row]", count2
