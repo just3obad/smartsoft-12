@@ -203,7 +203,8 @@ NokiaRuby::Application.routes.draw do
   match '/admin/login', to: 'admin_sessions#new'
   match '/admin/logout', to: 'admin_sessions#destroy'
   #match '/admins_reset_pass', to: 'emailer#reset_admin_password'
-  match '/admin_reset_pass' => 'admins#resetPassword'
+  match '/password_resets/new', to: 'password_resets#new'
+  match '/password_resets/edit', to: 'password_resets#edit'
  # match 'forgot_password' => 'admin_sessions#forgot_password_lookup_email', :as => :forgot_password, :via => :post
 
  # put 'reset_password/:reset_password_code' => 'admins#reset_password_submit', :as => :reset_password, :via => :put
