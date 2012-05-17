@@ -110,7 +110,7 @@ class UsersController < ApplicationController
 
 	#Author: Kiro (Those methods are for testing purpose)
 	def dummyLogin
-		render :layout => "mobile_template"
+		#render :layout => "mobile_template"
 	end
 
 	def test
@@ -139,7 +139,8 @@ def feed
   user = current_user
   int_name = params[:interest]
   if(user.user_add_interests == [])
-               @stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)
+               stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)
+               @stories=stories.paginate(:per_page => 10, :page=> params[:page])
      else
    	 if(int_name)
     	 stories = user.get_feed(int_name)
