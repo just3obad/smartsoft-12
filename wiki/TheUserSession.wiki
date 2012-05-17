@@ -88,7 +88,63 @@ okay, now your user is logged in, you can continue using the application with th
 
 ===How to apply this to your functional and unit tests?====
 
-This will be added later !
+Now it's time to include this in our functional tests, ofc everyone wants to hold his test while the user is logged in !
+
+This will briefly explain how to login a user while holding your tests.
+
+First you have to include this line in the *top* of the *test file* and remember the *test file* not the test itself !
+
+{{{
+setup :activate_authlogic
+}}}
+
+your test file should look like this:
+
+{{{
+class UserSessionsControllerTest < ActionController::TestCase
+
+  setup :activate_authlogic
+
+  test1
+  test2
+  test3
+    .
+    .
+    .
+
+end
+}}}
+
+Now after your test has the authlogic authentication enviroment ready, you may want to login a user in your *test*, but you must make sure that you have users ready in the fixtures (test/fixture/users.yml) and I've already added two users Ben and Ahmed :D
+
+If you need to add your own user you should add him in this form in the user.yml file:
+
+{{{
+ben:
+  id: 11
+  email: ben@gmail.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("benrocks" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+}}}
+
+where his password is benrocks, in line 5 of this code.
+
+
+now after our testing environment is all ready you can login a user during your test and this is simply by adding these lines of code to *your test*.
+
+{{{
+user1 = users(:ben)
+UserSession.create(user1)
+}}}
+
+first we created the user *user1* which has the attributes of ben (the user we creatd in our users.yml file)
+
+then we logged user1 in.
+
+
 
 Thats all =)
 
