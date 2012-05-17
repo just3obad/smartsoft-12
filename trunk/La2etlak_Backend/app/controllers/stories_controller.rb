@@ -142,11 +142,14 @@ Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story
     @storytit=@story.title
     @storybod=@story.content
     @successflag=true
+
     regex = Regexp.new('^(\s*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}\s*([,]{1}[\s]*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.]+\.[azA-Z]{2,4}\s*)*)$')
   if @friendmail==""
-
+    if @listemail.nil?
+       @successflag=false
+    else
       Emailer.recommend_story(@useremail, @listemail, @message, @storytit, @storybod).deliver
-
+    end
   else
     if(!@friendmail.match(regex))
        @successflag=false

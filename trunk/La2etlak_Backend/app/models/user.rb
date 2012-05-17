@@ -127,7 +127,7 @@ end
   Author: Yahia
 =end
   def extract_friends(users)
-    return self.freinds & users
+    return self.friends & users
   end
 
 

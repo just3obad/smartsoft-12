@@ -1,10 +1,16 @@
 <div "id=submit" align="center">
-<form action="recommend_success_mobile_show", id="recommendation">
+<form action="/mob/stories/recommend_success_mobile_show/<%= @storyid%>", id="recommendation">
+<%if @flistemail.empty?%>
+ <p style="color:darkblue">
+sorry, you don't have any friends you can find more friend through find friend button 
+</p>
+<%else%>
 choose friend email
 <br>
 <% @flistemail.each do |f| %>
 <input type="radio" name="lemail" value=<%=f%>><%=f%>
 <br> 
+<%end%>
 <%end%>
 <p>
 email: 
@@ -19,7 +25,7 @@ message:
 <input type="submit" name="commit" value="send" style="padding-left=200px"/>
 </form>	
 <div class="btn btn-large", id="back" align="center"> 
-<%= link_to("back",{:action => 'get', :id => @story} )%>
+<%= link_to("back",{:controller => 'stories', :action => 'get', :id => @storyid} )%>
 </div>
 <div class="btn btn-large", id="findfrind" align="center"> 
 <%= link_to("find friend",{:controller => 'friendships', :action => 'search'} )%>

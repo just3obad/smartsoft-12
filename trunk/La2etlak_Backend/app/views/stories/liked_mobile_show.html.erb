@@ -2,8 +2,8 @@
 <% if @friends.empty? %>
  <%= render 'shared/logs_error_messages'%>
 <br>
-<div class="btn btn-large", id="back"> 
-<%= link_to("find friend",{:action => 'friends/find'} )%>
+<div class="btn btn-large", id="findfrind" align="center"> 
+<%= link_to("find friend",{:controller => 'friendships', :action => 'search'} )%>
 </div>
 <div class="btn btn-large"> 
 <%= link_to("back",{:action => 'get', :id => @story} )%>
