@@ -21,35 +21,54 @@
     </div>
     </div>
     <div class="span9">
-	<li class="nav-header">
-        All Time / 30 Days
-      </li>
-       <li class = "active">
-       <%= link_to "All Time", {controller: 'statistics' ,action: 'all_stories'} %>
-	   <% flag = 0 %>
-       </li>
-        <li>
-       <%= link_to "30 Days", {controller: 'statistics' ,action: 'all_stories'} %>
-	   <% flag = 1 %>
-       </li>
- 
-     </ul>
-    </div>
-    </div>
-    <div class="span9">
-		  
+				<% if @stories.empty? == true %>
+		  </div></h4>
+		<div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
+		 <font size="7" face="verdana" color="red" > No Stories Yet </font>
+		 <a/>
+		</div>  
+     </div>
  <div id="ccc"></div> </br>
 <div class="general info" id ="genInfo">
-            
-			<% if @stories.nil? == true %>
-				<div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
-				<font size="7" face="verdana" color="red" > No Stories Yet </font>
-				<a/>
-				</div>  
+              
 			<% else %>
 			
             <h4><div class="alert alert-info">
-              Top 5 Stories Since "<%= Story.all.first.created_at.to_date %>": </br>
+              Top 5 Stories All Time : </br>
+             
+            </div></h4>
+            <% Story.get_stories_ranking_all_time[0..4].each do |story|%>
+    
+    <div class="well-story-component">
+      <a href="/stories/<%= story.id%>"
+        class="thumbnail-story-component">
+            <%= image_tag "logo.jpeg", :size => "75x75" %> </a>
+        <div class="story-component-info">
+          <h5>
+			<%= story.title %>
+			</h5>
+			<h7> Rank : <%= story.get_story_rank_all_time %> </h7>
+			<h7> Shares : <%= Share.where(:story_id => story.id).count %> </h7>
+			<h7> Comments : <%= Comment.where(:story_id => story.id).count %> </h7>
+			<h7> Likes : <%= Likedislike.where(:story_id => story.id, :action => 1).count %> </h7>
+			<h7> Dislikes : <%= Likedislike.where(:story_id => story.id, :action => -1).count %> </h7>
+			<h6> Interests : <%= Interest.where(:id => story.interest_id).first.name %> </h6>
+          
+		<%= link_to "view Statistics", 
+		{:controller => 'statistics', :action => 'stories',:id => story.id }, 
+		class: "story-component-button-absolute btn btn-primary"%>
+
+        </div>
+    </div>
+  <% end %>
+  
+     <div class="span9">
+ <div id="ccc"></div> </br>
+<div class="general info" id ="genInfo">
+             
+			
+            <h4><div class="alert alert-info">
+              Top 5 Stories Last 30 Days": </br>
              
             </div></h4>
             <% Story.get_stories_ranking_all_time[0..4].each do |story|%>

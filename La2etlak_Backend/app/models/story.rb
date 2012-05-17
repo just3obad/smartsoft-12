@@ -128,7 +128,7 @@ include StoriesHelper
 #Author : Shafei
   def get_story_rank_last_30_days
 	rank = (self.shares.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5) 
-	+ self.comments.count.where(created_at: 30.days.ago..Time.zone.now.end_of_day) 
+	+ self.comments.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count 
 	+ (self.likedislikes.where(action: 1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2)
 	- (self.flags.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5) 
 	- (self.likedislikes.where(action: -1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2)
@@ -151,12 +151,12 @@ include StoriesHelper
 		return []
 	else
 	  return top_stories
-	 end
+	end
   end
   
 #Author : Shafei
   def self.get_stories_ranking_last_30_days
-	  all_stories = Array.new
+	all_stories = Array.new
     top_stories = Array.new
     final_stories = Array.new
     Story.all.each do |story|
@@ -170,7 +170,7 @@ include StoriesHelper
 		return []
 	else
 	  return top_stories
-	 end
+	end
   end
 
 #view_friends_like is a method that return a list of friends emails that liked the story
