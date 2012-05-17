@@ -24,21 +24,19 @@ class InterestTest < ActionDispatch::IntegrationTest
 
   ##########Author: Diab ############
   test "should route to interest statistics page" do
-    assert_routing '/interests/1/statistics', { :controller => "statistics", :action => "interests" , :id => "1"}
+    assert_routing '/interests/statistics/1', { :controller => "statistics", :action => "interests" , :id => "1"}
    end 
 
   ##########Author: Diab ############
   test "get interest statistics response" do
    
-   get '/interests/1/statistics'
+   get '/interests/statistics/1'
    assert_response :success
    end 
 
   ##########Author: Diab ############
-  test "interest statistics page has a list of users who added it RED" do
-   get '/interests/1/statistics'
-   assert_select "ul[id = adders]" do
-    assert_select "li"
-  end
+  test "interest statistics page has a list of users who added it" do
+   get '/interests/statistics/1'
+   assert_select 'div[id = adders]'
  end
 end
