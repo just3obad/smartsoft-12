@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 		end
 	end
 
-  # Action to be called from the connet_to_social network view
+ # Action to be called from the connet_to_social network view
   # which redirects to the facebook api using koala
   # Author: Menisy
   def authenticate_facebook_init
@@ -59,14 +59,9 @@ class UsersController < ApplicationController
   # Action to be called in the call back url after authentication take place
   # Author: Menisy
   def authenticate_facebook_done
-    had_before = false
-   # if current_user.facebook_account
-    #  had_before = true
-     # current_user.facebook_account.destroy
-   # end
     if !params[:code]
       flash[:notice] = "Facebook account was not added red"
-      redirect_to :controller => "users", :action => "main_feed", :id => 1
+      redirect_to :controller => "users", :action => "feed"
       return
     end
     token = Koala::Facebook::OAuth.new("http://localhost:3000/fb/done/").get_access_token(params[:code]) if params[:code]
@@ -75,14 +70,14 @@ class UsersController < ApplicationController
     fb_account.auth_secret = 1
     graph =  Koala::Facebook::API.new(token)
     user = graph.get_object("me")
-    current_user.save!
+    fb_id = user["id"]
+    fb_account.facebook_id = fb_id
     if fb_account.save!
-      $sts = current_user.facebook_account.get_feed
-      flash[:notice] = "Facebook account added successfully green" +user.to_s
-      redirect_to :controller => "users", :action => "main_feed", :id => 1
+      flash[:notice] = "Facebook account was added successfully green"
+      redirect_to :controller => "users", :action => "feed"
     else
       flash[:notice] = "Facebook account was not added red" + user.to_s
-      redirect_to :controller => "users", :action => "main_feed", :id => 1
+      redirect_to :controller => "users", :action => "feed"
     end
   end
 
