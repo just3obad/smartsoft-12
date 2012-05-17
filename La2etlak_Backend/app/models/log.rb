@@ -25,23 +25,11 @@ class Log < ActiveRecord::Base
      @log.save
   end
   
-  def self.get_log_for_user(id,time)
-       out1 = Log.find_by_user_id_1(id)
-       out2 = Log.find_by_user_id_2(id)
-       if(out1 == nil or out2 == nil)
-         if(out1 == nil)
-           out = out2
-         end
-         if(out2 == nil)
-           out = out1
-         end
-       else
-         out = out1 + out2
-       end
-       if(out !=nil) 
-         out.where("created_at > ?",time)
-         out.sort_by { |obj| obj.created_at }.reverse
-       end
-       return out
-    end
+   def self.get_log_for_user(id,time)
+     out1 = Log.where("user_id_1=? AND created_at < ?",id,time)
+	   out2 = Log.where("user_id_2=? AND created_at < ?",id,time)
+     out = out1 + out2
+  	 result = out.sort_by { |obj| obj.created_at }.reverse
+     return result	
+     end
 end
