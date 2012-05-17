@@ -21,7 +21,7 @@
 
   <div class="row-fluid">
 
-    <div class="left_panel">
+    <div class="left_panel-interest">
       <ul class="nav nav-list left_panel ">
      
 	<li class="nav-header">View Statistics</li>
@@ -34,7 +34,6 @@
         <!-- ADDING RSS FEED .. -->
 
           <li class="divider"></li>
-            
             <form action="feeds/create" method="post">
               <input type="text" name="feed[link]" />
               <input type="hidden" name="feed[interest_id]" value= "<%= @interest.id %>" />
@@ -47,7 +46,7 @@
 			<li class="divider"></li>
 			<li class="nav-header">Interest Edit</li>
 			<li class="divider"></li>
-
+<div id="update">
   <%= form_for @interest, :html => { :multipart => true } do |f|  %>
  <%= render 'shared/error_messages' , object: f.object  %>
  
@@ -64,8 +63,10 @@
 
       <%= f.submit "Save Changes", class: "btn btn-primary" %>
     <% end %>
+</div>
 
  	 <!-- this is the div holdeing the state of the interest (blocked/active) also the date it was created -->
+<div id="status">
 	 <li class="nav-header">Interest Info</li>
 	    	<div class="story-page-well"><% if !(@interest.deleted ) %>
 				<ul class="nav nav-list">
@@ -84,7 +85,7 @@
 
 		</div>
 
-
+</div>
 <% if !@interest.deleted  %>
 
 			<li class="divider"></li>
@@ -92,17 +93,19 @@
 
 			<li class="nav-header">Block this Interest </li>
 <!-- the switching button for the Block/unblock interest purpose -->
-			
+<div id="block">			
       <%= link_to  "Block",{:controller => "interests", :action => "toggle",:id => @interest.id} ,:class => "btn btn-danger" %>
+
+</div>
 <%else%>
 	<li class="divider"></li>
 
-
+<div id="restore">
 			<li class="nav-header">Restore this Interest </li>
 <%= link_to  "Restore",{:controller => "interests" ,:action => "toggle" ,:id => @interest.id} ,:class => "btn btn-success" %>
 <%end%>
 
-
+</div>
 
 
 			</ul>
@@ -113,10 +116,11 @@
 
 
 
-			<div class="main-right-interse">
+			<div class="main-right-interest">
 			<div class="middle-interest-panel" >
 			<h1><%= @interest.name %></h1>
 <!-- if the interest's image isn't there  .. the alternative is Nokia Logo image -->
+<div id="image">
 <h3><% if @interest.photo.file? %>
     
       <img src= "<%= @interest.photo.url(:small) if @interest.photo.file? %>" width="320" style="height:320px"/>
@@ -125,6 +129,7 @@
 
       <% end %>
 </h3>
+</div>
 
 
 
