@@ -1,9 +1,11 @@
 
 <html> 
+	<% if @inviters.count != 0 %>
 	<header> Pending requests </header>
-	<div class = "story-comment-box-mobile">
 
 	<ul>
+		<div class = "story-comment-box-mobile">
+
 		<% @inviters.each do |inviter| %>
 			<li>
 				<div style="margin:1%;" >
@@ -28,6 +30,7 @@
 		</div>
 
 	</ul>
+	<% end %>
 	<div style="margin:2%;">
 	<%= link_to 'Friendlist',{:controller => 'friendships',
 		:action => 'index'}, 
