@@ -283,7 +283,26 @@ end
       @friend = User.find_by_id(@friend_id)
       @text = @user.block_friends_feed1(@friend) 
       flash[:notice] = "#{@text}"
-      redirect_to action: "feed"
+      redirect_to controller: 'friendships', action: "index"
+  end
+
+  #The method that calls method in the model to get the user's friends' email and renders the view
+  #Author: Rana
+  def manage_blocked_friends
+      @user = current_user
+      @my_friends = @user.blocked
+      render layout: "mobile_template"
+  end
+
+  #The method that calls the method in the model to unblock friend feed and renders the view
+  #Author: Rana
+  def unblock_friends_feed
+      @user = current_user
+      @friend_id = params[:id]
+      @friend = User.find_by_id(@friend_id)
+      @text = @user.unblock_friends_feed1(@friend) 
+      flash[:notice] = "#{@text}"
+      redirect_to action: "friends_feed", id: @friend_id
   end
 
   #The method that calls method in the model to get friend stories and renders the view
@@ -293,14 +312,6 @@ end
       @friend_id = params[:id]
       @my_friend_stories = @user.get_one_friend_stories(@friend_id)
       render layout:"mobile_template", template: "users/friend_feed"
-  end
-
-  #The method that calls method in the model to get the user's friends' email and renders the view
-  #Author: Rana
-  def friends_list
-      @user = current_user
-      @my_friends = @user.get_friends_email
-      render layout: "mobile_template", template: "users/friends_list"
   end
 
 

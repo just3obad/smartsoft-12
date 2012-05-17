@@ -691,6 +691,29 @@ end
    return @text #return the message in variable text
   end
 
+  # This method takes a friend as input and unblocks him/her using the unblock method provided by the gem amistad.
+  # Author: Rana
+  def unblock_friends_feed1(my_friend)
+    @this_user = self
+    self.unblock my_friend
+    @text = "#{my_friend.email} was unblocked succesfully."
+    #for log file
+     if self.name.nil?
+      @username = self.email
+     else
+      @username = self.name
+     end
+     if my_friend.name.nil?
+      @frname = my_friend.email
+     else
+      @frname = my_friend.name
+     end
+   @message = "#{@username} unblocks friend named: #{@frname}" 
+   Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id , admin_id: nil, story_id: nil, message: @message)
+
+   return @text #return the message in variable text
+  end
+
   # Author : Essam
    # issue 89
    # A method called to get stories from social accounts conected to the current user
