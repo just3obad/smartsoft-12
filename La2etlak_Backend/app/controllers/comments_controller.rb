@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
       redirect_to :controller => "stories", :action => "mobile_show" , :id => @comment.story.id
     else
       flash[:notice] = "Please enter something to comment red"
-      redirect_to :controller => "stories", :action => "mobile_show" , :id => params[:comment][:story_id]
+      redirect_to :controller => "stories", :action => "get" , :id => params[:comment][:story_id]
     end
   end
 
