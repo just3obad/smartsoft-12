@@ -7,7 +7,7 @@
 <div class="story-component-box-mobile">
 	<table class="table" width="200">
 		<tr>
-			<%unless f.content == nil%>
+			<%unless f.content.nil?%>
 			<td rowspan="2">
 			<!-- This is supposed to be removed when Mouaz implements photo removal from the description -->
 			<% @all = "img src=" %>
