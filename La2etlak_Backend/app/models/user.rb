@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
     friends.each do |friend|
       shared_stories << friend.shared_stories
     end
+    return shared_stories.flatten
   end
 # gets the users pending notifications
 # only pending friendship requests for now
