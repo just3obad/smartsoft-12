@@ -1,6 +1,6 @@
 <div id = "heading" style="padding-left:5px;color:#0000FF;font-size:5px;">
 <%@friend = User.find_by_id(@friend_id)
-   if !(@friend.name.nil?) & @friend.name != ""
+   if (!(@friend.name.nil?) && @friend.name != "")
       @username = @friend.name
    else
       @username = @friend.email
@@ -51,9 +51,12 @@
 	</table>
 	</div>
 	<%end%>
+        <div class="apple_pagination">
+	<%= will_paginate @my_friend_stories, :container => false %>
+	</div>
 	<%end%>
 <div id = "block">
-<%= link_to "Block this friend", 
+<br><%= link_to "Block this friend", 
 {:controller => 'users', :action => 'block_friends_feed', :id => @friend_id}, 
 class: "user-component-button-absolute btn span2"%><br><br>
 </div>
