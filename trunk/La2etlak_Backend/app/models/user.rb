@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_one :twitter_account
 	has_one :verification_code
   has_one :tumblr_account
+  has_one :flickr_account
   has_many :shares
   has_many :shared_stories, :class_name => "Story", :through => :shares
   has_many :likedislikes
