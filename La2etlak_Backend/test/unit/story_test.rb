@@ -6,33 +6,44 @@ class StoryTest < ActiveSupport::TestCase
   #  assert true
   #end
   
-  #Author: Lydia
-  test "no likes should return an empty list RED" do
-    interest = Interest.create!(name: "Test Interest", description: "Description
+   #Author: Lydia
+  test "no likes should return an empty list" do
+    int = Interest.create!(name: "Test Interest", description: "Description
     of Test Interest")
-    story = Story.create!(interest_id: 1, title: "Test Story", 
-    content: "Test content")
+    story = Story.new
+    story.title = "Test Story"
+    story.interest = int
+    story.content = "Test content"
+    story.save
     list = story.liked
     assert_equal(list.count, 0)
   end
   
-   test "no dislikes should return an empty list RED" do
-    interest = Interest.create!(name: "Test Interest", description: "Description
+  #Author: Lydia
+  test "no dislikes should return an empty list" do
+    int = Interest.create!(name: "Test Interest", description: "Description
     of Test Interest")
-    story = Story.create!(interest_id: 1, title: "Test Story", 
-    content: "Test content")
+    story = Story.new
+    story.title = "Test Story"
+    story.interest = int
+    story.content = "Test content"
+    story.save
     list = story.disliked
     assert_equal(list.count, 0)
   end
   
-  test "some likes should return 3 RED" do
-    interest = Interest.create!(name: "Test Interest", description: "Description
+  #Author: Lydia
+  test "some likes should return 3" do
+    int = Interest.create!(name: "Test Interest", description: "Description
     of Test Interest")
-    story = Story.create!(interest_id: 1, title: "Test Story", 
-    content: "Test content")
-    user1 = User.create!(name: "Test user1",email: "test1@user.com")
-    user2 = User.create!(name: "Test user2",email: "test2@user.com")
-    user3 = User.create!(name: "Test user3",email: "test3@user.com")
+    story = Story.new
+    story.title = "Test Story"
+    story.interest = int
+    story.content = "Test content"
+    story.save
+    user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "1234",password_confirmation: "1234")
+    user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "1234",password_confirmation: "1234")
+    user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "1234",password_confirmation: "1234")
     like1 = Likedislike.new
     like1.likedisliker = user1
     like1.action = 1
@@ -52,14 +63,18 @@ class StoryTest < ActiveSupport::TestCase
     assert_equal(list.count, 3)
   end
   
-  test "some dislikes should return 3 RED" do
-    interest = Interest.create!(name: "Test Interest", description: "Description
+  #Author: Lydia
+  test "some dislikes should return 3" do
+    int = Interest.create!(name: "Test Interest", description: "Description
     of Test Interest")
-    story = Story.create!(interest_id: 1, title: "Test Story", 
-    content: "Test content")
-    user1 = User.create!(name: "Test user1",email: "test1@user.com")
-    user2 = User.create!(name: "Test user2",email: "test2@user.com")
-    user3 = User.create!(name: "Test user3",email: "test3@user.com")
+    story = Story.new
+    story.title = "Test Story"
+    story.interest = int
+    story.content = "Test content"
+    story.save
+    user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "1234",password_confirmation: "1234")
+    user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "1234",password_confirmation: "1234")
+    user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "1234",password_confirmation: "1234")
     dislike1 = Likedislike.new
     dislike1.likedisliker = user1
     dislike1.action = -1
