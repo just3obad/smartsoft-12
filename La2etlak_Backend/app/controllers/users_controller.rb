@@ -147,14 +147,11 @@ def feed
 	 stories = stories + user.get_friends_stories
 	 stories = stories + user.get_social_feed
 	 end
-         @stories=stories.paginate(:per_page => 10, :page=> params[:page])
-	 respond_to do |format|
-    	 format.json { render json: @stories }
-   	 # Author : Mina Adel
-  	 format.html { render :layout => "mobile_template"}
-  	 #
-         end
-    end
+  end
+  # Author : Mina Adel
+  @stories=stories.paginate(:per_page => 10, :page=> params[:page])
+  render :layout => "mobile_template"
+ 	#
 end
 ########################
 
