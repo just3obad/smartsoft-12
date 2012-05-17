@@ -406,7 +406,10 @@ end
     end 
   end
 
-
+ #this Action takes as parametars a story and action and checks if the user had thumbed this story or not.
+ # if the user didn't thumb a new record will be added in the Likedislike table with story_id , user_id and action
+ # if thumbed before and tries to make the same action again .. nothing will happen
+ # if thumbed before and tries to make a diffrent action .. the old record will be destroyed and a new record with the new action will be added
  #Author Kareem
   def thumb_story(story,act)
    thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
@@ -425,6 +428,7 @@ end
 
 end
 
+#this Action takes as a parametar a story and it checks if the current User flagged it before or not .. if not a new Record will be added in the Flags table with current user_id , current_story id else if he already flagged it nothing will happen.
 #Author :Kareem
 def flag_story(story)
   thumped = Flag.where(:story_id => story.id, :user_id => self.id)
@@ -436,6 +440,9 @@ def flag_story(story)
   return false
 end
 
+
+#this Action returns a list of stories accordind to the current user interests .. and it also checks if theses stories are blocked According to an Interest or its a Blocked story or not before it returns the List of stories.
+#the method also takes as input Interest name if it's not "null" the method will return the stories of this interest only.
 #Author : Kareem
   def get_feed(int_name)
     user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id}
@@ -474,6 +481,21 @@ end
   return done_stories
 
   end
+
+#Author : Kareem
+#this Method Takes a list of stories and returns the List filtered from the Blocked one's
+  def  get_unblocked_stories(stories)
+	unblocked_stories = Array.new
+  	stories = stories.sort_by &:created_at
+  	stories_ids = stories.map {|story| story.id}
+  	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
+  	unblocked_stories_ids = stories_ids - blocked_stories_ids
+  	unblocked_stories_ids.each do |unblocked_story_id|
+        unblocked_stories.append(Story. find(unblocked_story_id))
+  end
+ return unblocked_stories
+end
+	
 
 #Author : Shafei
 	def get_user_rank
