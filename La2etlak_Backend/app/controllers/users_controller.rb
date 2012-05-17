@@ -140,22 +140,21 @@ def feed
   int_name = params[:interest]
   if(user.user_add_interests == [])
                @stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)
-        else
-
+     else
    	 if(int_name)
     	 stories = user.get_feed(int_name)
 	 else
 	 stories =  user.get_feed("null")
-	end
-        stories = stories + user.get_friends_stories
- @stories=stories.paginate(:per_page => 10, :page=> params[:page])
+	 stories = stories + user.get_friends_stories
+	 end
+         @stories=stories.paginate(:per_page => 10, :page=> params[:page])
 	 respond_to do |format|
     	 format.json { render json: @stories }
    	 # Author : Mina Adel
   	 format.html { render :layout => "mobile_template"}
   	 #
- end
- end
+         end
+    end
 end
 ########################
 
