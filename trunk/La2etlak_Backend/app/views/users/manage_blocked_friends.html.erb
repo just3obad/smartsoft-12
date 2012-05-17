@@ -1,23 +1,23 @@
 <div id = "heading" style="padding-left:5px;color:#0000FF;font-size:5px;">
-
+	  <%if (!(@user.name.nil?) && @user.name != "")
+	      @username = @user.name
+	   else
+	      @username = @user.email
+	  end%>
 	<% if @my_friends.size == 0 %>
-	      <p>"You do not have any blocked friends yet!"</p><br>
-	 <%else%>
-		<p><%= "Hey, #{@username}! These are your blocked friends."%></p>
-	 <%end%>
-	</div>
+              <p>"You do not have any blocked friends yet!"</p><br>
+        <%else%>
+	      <p><%= "Hey, #{@username}! These are your blocked friends. Click one to unblock him/her."%></p>
+        <%end%>
+</div>
 
-	<div id = "list" class ="story-component-box-mobile pre-scrollable", style ="padding-left:5px;">
-		<% @my_friends.each do |fn|%>
-			<%= link_to fn.email, 
-			{:controller => 'users', :action => 'unblock_friends_feed', :id => User.find_by_email(fn.email).id}, 
-			class: "user-component-button-absolute btn span3"%><br><br>
-
-		<%end%>
+<div id = "list" class ="story-component-box-mobile pre-scrollable", style ="padding-left:5px;">
+	<% @my_friends.each do |fn|%>
+		<%= link_to fn.email, {:controller => 'users', :action => 'unblock_friends_feed', :id => User.find_by_email(fn.email).id}, class: "user-component-button-absolute btn span2"%><br><br>
+	<%end%>
 	</div>
-	<div id = "back">
-		<%= link_to "Back", 
-		{:controller => 'friendships', :action => 'index'}, 
-		class: "user-component-button-absolute btn span2"%>
-	</div>
+<div id = "back">
+	<%= link_to "Back", 
+	{:controller => 'friendships', :action => 'index'}, class: "user-component-button-absolute btn span2"%>
+</div>
 
