@@ -19,13 +19,20 @@ def show
 	@dislikes = @story.disliked
 	@action1 = @story.check_like(user)
 	@action2 = @story.check_dislike(user)
+  # instance variables for comments
+  # Author: Menisy
+  @story = Story.find(params[:id])
+  @comment = Comment.new
+  @user = current_user
+  ### end of comment variables ###
 	render :layout => "mobile_template"
   #render :temple => "show_comments"
   end
   
 # renders the mobile view and initialize
   # the instance variables needed for the 
-  # story page
+  # story page, this was used for seperate
+  # testing.
   # Author: Menisy
   def mobile_show
     @story = Story.find(params[:id])
