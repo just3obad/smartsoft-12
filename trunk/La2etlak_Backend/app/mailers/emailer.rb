@@ -57,6 +57,6 @@ def invite_to_app(sender, reciever, message)
 	# Author: Mouaz
   def reset_admin_password(admin,pass)
   	@pass = pass
-  	mail(:to => user.email, :subject => "La2etlak New Password")
+  	mail(:to => admin.email, :subject => "La2etlak New Password")
   end
 end

@@ -75,12 +75,24 @@ class AdminsController < ApplicationController
     end
   end
   def index
-    Admin.get_feed
+    @admin_session = AdminSession.find
+    if @admin_session == nil
+     redirect_to('/admin/login')
+    else
+      Admin.get_feed
+    end
   end
  #this method for reseting password
-	def reset_admin_password
-		@admin = current_admin
-		newpass = @admin.resetPassword
-		Emailer.reset_password(@admin,newpass).deliver
-	end
+  def resetPassword
+    @admin = Admin.find_by_email(params[:email])
+    if @admin.nil?
+      flash[:notice] ="This email doesn't exist red"
+      redirect_to('/admin/login')
+    else
+		  newpass = @admin.resetPassword
+		  Emailer.reset_admin_password(@admin,newpass).deliver
+      flash[:notice] = "Your new password has been sent to your email green"
+      redirect_to('/emailer/reset_admin_password')
+    end
+  end
 end
