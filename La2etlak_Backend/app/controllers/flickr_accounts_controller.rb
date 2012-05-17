@@ -13,38 +13,35 @@ class FlickrAccountsController < ApplicationController
   
 
   def auth
-@user = current_user
-    puts @user.name
 
-    puts "~~~~~~~~~~~"
+    @user = current_user
 
-    #@user = User.find(1)
+    puts @user.email
+    Rails.cache.write("user_id", @user.id)
+
     flickr = FlickRaw::Flickr.new
     token = flickr.get_request_token(:oauth_callback => (
     'http://127.0.0.1:3000/users/flickr/callback'))
-    @user.name = token['oauth_token_secret']
-    @user.save
 
+    Rails.cache.write("oauth_token_secret",token['oauth_token_secret'])
 
+    
     auth_url = flickr.get_authorize_url(token['oauth_token'], :perms => 'read')
     redirect_to(auth_url)
 
   end
 
   def callback 
-    #@user = User.find(1)
-@user = current_user
-     puts @user.name
 
-    puts "~~~~~~~~~~~"
+    user_id = Rails.cache.read("user_id")
+    oauth_token_secret = Rails.cache.read("oauth_token_secret")
+
 
     flickr = FlickRaw::Flickr.new
     oauth_token = params[:oauth_token]
     oauth_verifier = params[:oauth_verifier]
-    raw_token = flickr.get_access_token(params[:oauth_token], User.find(1).name, params[:oauth_verifier])
+    raw_token = flickr.get_access_token(params[:oauth_token], oauth_token_secret, params[:oauth_verifier])
 
-  # raw_token is a hash like this {"user_nsid"=>"92023420%40N00", "oauth_token_secret"=>"XXXXXX", "username"=>"boncey", "fullname"=>"Darren%20Greaves", "oauth_token"=>"XXXXXX"}
-  # Use URI.unescape on the nsid and name parameters
 
     oauth_token = raw_token["oauth_token"]
     oauth_token_secret = raw_token["oauth_token_secret"]
@@ -53,20 +50,12 @@ class FlickrAccountsController < ApplicationController
     flickr.access_token = oauth_token
     flickr.access_secret =oauth_token_secret
 
-  # Store the oauth_token and oauth_token_secret in session or database
-  #   and attach to a Flickraw instance before calling any methods requiring authentication
-
-  # Attach the tokens to your flickr instance - you can now make authenticated calls with the flickr object
-    
-
-    if @user.flickr_account
-      @user.flickr_account.delete
+    if User.find(user_id).flickr_account
+       User.find(user_id).flickr_account.delete
     end
 
-  
-
     flickr_account = FlickrAccount.create(consumer_key: oauth_token , secret_key: oauth_token_secret)
-    @user.flickr_account = flickr_account
+    User.find(user_id).flickr_account = flickr_account
 
     unless flickr_account.new_record?
       flash[:notice] = 'Flickr account created green'
@@ -75,8 +64,6 @@ class FlickrAccountsController < ApplicationController
     end 
 
     redirect_to controller: 'users', action: 'connect_social_accounts'
-
- 
 
     end
 
