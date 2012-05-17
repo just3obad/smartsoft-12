@@ -25,6 +25,13 @@
  <div id="ccc"></div> </br>
 <div class="general info" id ="genInfo">
             
+			<% if @users.nil? == true %>
+				<div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
+				<font size="7" face="verdana" color="red" > No Stories Yet </font>
+				<a/>
+				</div>  
+			<% else %>
+			
             <h4><div class="alert alert-info">
               Top 5 Stories Since "<%= Story.all.first.created_at.to_date %>": </br>
              
@@ -54,6 +61,7 @@
     </div>
 	<div style="position: absolute; top: 290px; left: 240px; z-index: 1px; visibility: show;" class: " btn btn-primary"%>
 	</div>
+  <% end %>
   <% end %>
 
 

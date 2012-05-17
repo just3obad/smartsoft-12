@@ -120,50 +120,33 @@ include StoriesHelper
   
 #Author : Shafei
   def get_story_rank_all_time
-	comments_on_story 	= Comment.where(:story_id => self.id)
-	shares_of_story 	= Share.where(:story_id => self.id)
-	dislikes_of_story	= Likedislike.where(:story_id => self.id, :action => -1)
-	likes_of_story 		= Likedislike.where(:story_id => self.id, :action => 1)
-	flags_of_story 		= Flag.where(:story_id => self.id)
-	sum 				= comments_on_story.length + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
-						(dislikes_of_story.length * 2) - (flags_of_story.length * 5)
-	return sum
+	rank = (self.shares.count * 5) + self.comments.count + (self.likedislikes.where(action: 1).count * 2)
+	- (self.flags.count * 5) - (self.likedislikes.where(action: -1).count * 2)
+	return rank
   end
   
 #Author : Shafei
   def get_story_rank_last_30_days
-	comments_on_story 	= Comment.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id)
-	shares_of_story 	= Share.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id)
-	dislikes_of_story	= Likedislike.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id, :action => -1)
-	likes_of_story 		= Likedislike.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id, :action => 1)
-	flags_of_story 		= Flag.where(:created_at => 30.days.ago..Time.zone.now.end_of_day, :story_id => self.id)
-	sum 				= comments_on_story.length + (shares_of_story.length * 5) + (likes_of_story.length * 2) - 
-						(dislikes_of_story.length * 2) - (flags_of_story.length * 5)
-	return sum
+	rank = (self.shares.where(created_at:30.days.ago..Time.zone.now.end_of_day).count * 5) 
+	+ self.comments.count.where(created_at:30.days.ago..Time.zone.now.end_of_day) 
+	+ (self.likedislikes.where(action: 1, created_at:30.days.ago..Time.zone.now.end_of_day).count * 2)
+	- (self.flags.where(created_at:30.days.ago..Time.zone.now.end_of_day).count * 5) 
+	- (self.likedislikes.where(action: -1, created_at:30.days.ago..Time.zone.now.end_of_day).count * 2)
+	return rank
   end
 
 #Author : Shafei
   def self.get_stories_ranking_all_time
-		all_stories 		= Array.try_convert(Story.all)
-		if all_stories.empty? == true
-			return all_stories
-		end
-		rank 			= Array.new
-		id_array		= Array.new
-		max				= 0
-		id				= 999999
-		all_stories.each do |story|
-			all_stories.each do |story|
-				if story.get_story_rank_all_time >= max && (id_array.include?(story.id) == false)
-					max = story.get_story_rank_all_time
-					id = story.id
-				end
-			end
-			max = 0
-			id_array << id
-			rank << all_stories[id-1]
-		end
-		return rank
+	all_stories = Array.new
+	top_stories = Array.new
+	Story.all.each do |story|
+		all_stories << {:rank => story.get_story_rank_all_time}
+	end
+	(all_stories.sort_by {|element| element[:rank]}).each do |story|
+		all_stories << story[:rank]
+	end
+	top_stories =  all_stories.reverse
+	return top_stories
   end
   
 #Author : Shafei
