@@ -17,12 +17,16 @@ class AdminSessionsController < ApplicationController
   end  
  end  
  # This method is used to logout the currently logged in
- # admin by destroying his UserSession
+ # admin by destroying his AdminSession
  def destroy  
-  @admin_session = AdminSession.find  
-  @admin_session.destroy  
-  flash[:notice] = "Successfully logged out."  
-  redirect_to('/admin_login')  
+    @admin_session = AdminSession.find
+  if @admin_session == nil
+    redirect_to('/admin/login')
+  else  
+    @admin_session.destroy  
+    flash[:notice] = "Successfully logged out."  
+    redirect_to('/admin/login')
+  end  
  end  
  
 
