@@ -37,7 +37,7 @@
     </div>
     </div>
     <div class="span9">
-		  <% if flag == 0 %>
+		  
  <div id="ccc"></div> </br>
 <div class="general info" id ="genInfo">
             
@@ -75,51 +75,7 @@
 
         </div>
     </div>
-	<div style="position: absolute; top: 290px; left: 240px; z-index: 1px; visibility: show;" class: " btn btn-primary"%>
-	</div>
   <% end %>
   <% end %>
-  <% else %>
-	<div id="ccc"></div> </br>
-<div class="general info" id ="genInfo">
-            
-			<% if @stories2.nil? == true %>
-				<div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
-				<font size="7" face="verdana" color="red" > No Stories Yet </font>
-				<a/>
-				</div>  
-			<% else %>
-			
-            <h4><div class="alert alert-info">
-              Top 5 Stories Since "<%= 30.days.ago %>": </br>
-             
-            </div></h4>
-            <% Story.get_stories_ranking_last_30_days[0..4].each do |story|%>
-    
-    <div class="well-story-component">
-      <a href="/stories/<%= story.id%>"
-        class="thumbnail-story-component">
-            <%= image_tag "logo.jpeg", :size => "75x75" %> </a>
-        <div class="story-component-info">
-          <h5>
-			<%= story.title %>
-			</h5>
-			<h7> Rank : <%= story.get_story_rank_last_30_days %> </h7>
-			<h7> Shares : <%= Share.where(:story_id => story.id).count %> </h7>
-			<h7> Comments : <%= Comment.where(:story_id => story.id).count %> </h7>
-			<h7> Likes : <%= Likedislike.where(:story_id => story.id, :action => 1).count %> </h7>
-			<h7> Dislikes : <%= Likedislike.where(:story_id => story.id, :action => -1).count %> </h7>
-			<h6> Interests : <%= Interest.where(:id => story.interest_id).first.name %> </h6>
-          
-		<%= link_to "view Statistics", 
-		{:controller => 'statistics', :action => 'stories',:id => story.id }, 
-		class: "story-component-button-absolute btn btn-primary"%>
 
-        </div>
-    </div>
-	<div style="position: absolute; top: 290px; left: 240px; z-index: 1px; visibility: show;" class: " btn btn-primary"%>
-	</div>
-  <% end %>
-  <% end %>
-  <% end %>
 
