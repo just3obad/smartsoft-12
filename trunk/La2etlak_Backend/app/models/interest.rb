@@ -420,9 +420,12 @@ def self.my_update(id,interest)
 
     @interest= Interest.find(id)
    @interests = Interest.all 
-
+@deleted = Interest.is_deleted(id)
+ if (@deleted == false || @deleted.nil?)
    return   @interest.update_attributes(interest) 
-
+else 
+return @interest
+end
 end
 #Author: jailan
 #is_deleted Method 
