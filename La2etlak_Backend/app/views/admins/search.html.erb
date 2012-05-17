@@ -2,7 +2,7 @@
 	
 	<div class="row-fluid">
 
-	 <div class="left_panel" id="filterPanel">
+	 <div class="sidebar-nav-fixed" id="filterPanel">
 
 	<!--Here I check if there are results for users,stories and/or interests at all and show the checkboxes for the filter accordingly...-->
       <% if (not $users.nil? and $users.length > 0 and $users.class != String) or 
@@ -35,12 +35,21 @@
 	    </div>
 	    
 	    <!--The results of the three parts (users,stories,interests) will appear in this panel-->
-	  <div class="right_panel" >
+	  <div class="main-user-profile-page" >
+	  
+	<% if ($users.nil? or $users.length == 0 or $users.class == String) and 
+      ($stories.nil? or $stories.length == 0 or $stories.class == String) and 
+      ($interests.nil? or $interests.length == 0 or $interests.class == String) %>
+      <!--If there are no results found or if there is no query written in the search bar then a warning will appear to the admin informing him about that-->
+        <div class="middle-user-profile-page-panel" id="noSearchQuery">
+            <h2><%= $users %></h2>
+        </div>
+      <% else %>
 	  <!--If the users checkbox is checked, then the results of the users will be shown unless there are no results to show. I also add a button to view the statistics of each user and another button to view the remaining results of the users-->
 	<% if $usersSearch == "true"  %>
       <% if not $users.nil? and $users.length > 0 and $users.class != String %>
 	  
-      <div class="well" id="usersSearchResults">
+      <div class="middle-user-profile-page-panel" id="usersSearchResults">
         <h2>Users Search Results</h2>
         <% $users[0..2].each do |user| %>
         <div class="well-user-component">
@@ -58,21 +67,13 @@
 {:controller=> 'admins', :action => 'all_results', :type => "1"}, 
 class: "btn btn-primary"%>
   </div>
-      <% else %>
-      <!--If there are no results found or if there is no query written in the search bar then a warning will appear to the admin informing him about that-->
-      <div class="right_panel">
-        <div class="well" id="noSearchQuery">
-            <h2><%= $users %></h2>
-        </div>
-      </div>
       <% end %>
       <% end %>
       
       <!--If the stories checkbox is checked, then the results of the stories will be shown unless there are no results to show. I also add a button to view the statistics of each story and another button to view the remaining results of the stories-->
       <% if $storiesSearch == "true"  %>
     <% if not $stories.nil? and $stories.length > 0 and $stories.class != String %>
-    <% if not $users.nil? and $users.length > 0 and $users.class != String %>
-      <div class="well" id="storiesSearchResults">
+      <div class="middle-user-profile-page-panel" id="storiesSearchResults">
         <h2>Stories Search Results</h2>
        <% $stories[0..2].each do |story| %>
         <div class="well-story-component">
@@ -90,15 +91,14 @@ class: "btn btn-primary"%>
 {:controller=> 'admins', :action => 'all_results', :type => "2"}, 
 class: "btn btn-primary"%>
   </div>
-      <% end %>
+      
       <% end %>
       <% end %>
       
       <!--If the interests checkbox is checked, then the results of the interests will be shown unless there are no results to show. I also add a button to view the statistics of each interest and another button to view the remaining results of the interests-->
       <% if $interestsSearch == "true"  %>
     <% if not $interests.nil? and $interests.length > 0 and $interests.class != String %>
-    <% if not $users.nil? and $users.length > 0 and $users.class != String %>
-      <div class="well" id="interestsSearchResults">
+      <div class="middle-user-profile-page-panel" id="interestsSearchResults">
         <h2>Interests Search Results</h2>
         <% $interests[0..2].each do |interest| %>
         <div class="well-interest-component">
@@ -123,8 +123,9 @@ class: "btn btn-primary"%>
 class: "btn btn-primary"%>
   </div>
     </div>
+      
       <% end %>
       <% end %>
-      <% end %>
+  <% end %>    
 		</div>
 </div>
