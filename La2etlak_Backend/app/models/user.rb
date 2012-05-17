@@ -631,7 +631,7 @@ end
    story_interest = this_story.interest
    check_interest =  BlockInterest.find_by_user_id_and_interest_id(this_user,story_interest)
    check_user_add_interest = UserAddInterest.find_by_user_id_and_interest_id(this_user,story_interest)
-   if !check_user_add_interest.nil? #checks if the interest belongs to the user
+   if (!(check_user_add_interest.nil?)) #checks if the interest belongs to the user
       check_user_add_interest.delete
    end
    if check_interest.nil?
@@ -677,7 +677,7 @@ end
    end
    @storytitle = this_story.title
    @message = "#{@username} blocks story with title: #{@storytitle}" 
-   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: this_story.id, message: @message)
+   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: this_story.id, interest_id: nil, message: @message)
 
    else 
       @text = "Story already blocked"
@@ -693,7 +693,7 @@ end
     @this_user = self
     if(!(@this_user.blocked? my_friend))
         @this_user.block (my_friend)
-        @text = "Friend blocked successfully."
+        @text = "#{my_friend.email} blocked successfully."
     #for log file in case of success of block
      if self.name.nil?
       @username = self.email.split('@')[0]
@@ -706,7 +706,7 @@ end
       @frname = my_friend.name
      end
    @message = "#{@username} blocks friend named: #{@frname}" 
-   Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id , admin_id: nil, story_id: nil, message: @message)
+   Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id , admin_id: nil, story_id: nil, interest_id: nil, message: @message)
     else
         @text = "Friend already blocked."
     end
@@ -717,22 +717,21 @@ end
   # This method takes a friend as input and unblocks him/her using the unblock method provided by the gem amistad.
   # Author: Rana
   def unblock_friends_feed1(my_friend)
-    @this_user = self
     self.unblock my_friend
     @text = "#{my_friend.email} was unblocked succesfully."
     #for log file
      if self.name.nil?
-      @username = self.email
+      @username = self.email.split('@')[0]
      else
       @username = self.name
      end
      if my_friend.name.nil?
-      @frname = my_friend.email
+      @frname = my_friend.email.split('@')[0]
      else
       @frname = my_friend.name
      end
    @message = "#{@username} unblocks friend named: #{@frname}" 
-   Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id , admin_id: nil, story_id: nil, message: @message)
+   Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id , admin_id: nil, story_id: nil, interest_id: nil, message: @message)
 
    return @text #return the message in variable text
   end
