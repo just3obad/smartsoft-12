@@ -2,7 +2,7 @@ class AdminSettingsController < ApplicationController
 
 	#author: Bassem
   	def index
-
+  		@admin = Admin.new
   	end
 
 	def show
@@ -24,6 +24,18 @@ class AdminSettingsController < ApplicationController
 		render :template=>'admin_settings/index'		
 	end
 	
-	def create
+ 	def new
+	  @admin = Admin.new
 	end
+	 #this method for create new admin 
+	 #if there is an attribute invalid user will be notified
+	  def create
+	    @admin = Admin.new(params[:admin])
+	    if @admin.save
+	      flash[:notice] = "Registration successful."
+	      redirect_to('/admins/index')
+	    else
+	      render :action => 'index'
+	    end
+	  end
 end
