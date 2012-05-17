@@ -30,6 +30,13 @@
           url_for({:controller => 'flickr_accounts', :action => 'auth'}),
           :class => 'quick', 
           :remote => true%>
+
+        <% if @user.flickr_account %>
+          <div id="twitter_warning" class="warning-component-box-mobile" style="width:35%; float:right;">
+            You are connected to flickr
+          </div>
+        <% end %>
+
       </div>
 
       <div class="actions" style="margin:5%; clear:both">
