@@ -202,11 +202,13 @@ class UsersControllerTest < ActionController::TestCase
 	end
 
   # Author: Yahia
-  test "A user should see a warning if he is connected to twitter in the connect_social_accounts page" do
+  test "A user should see a warning if he is connected to twitter in the connect_social_accounts page RED" do
+    # needs to create a session with that user
     u1 = users(:ben)
     u1.twitter_account = twitter_accounts(:one)
     u1.save
     get :connect_social_accounts
+    assert_response :success, 'Get should be successful'
     assert_select "div[id=twitter_warning]"
 
   end 
