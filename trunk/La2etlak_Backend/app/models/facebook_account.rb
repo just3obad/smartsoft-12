@@ -14,7 +14,7 @@ class FacebookAccount < ActiveRecord::Base
   # according to the story type
 	# Author: Menisy
   def get_feed
-  #	begin
+  	begin
   	new_token = Koala::Facebook::OAuth.new("http://localhost:3000/fb/done/").exchange_access_token(self.auth_token)
   	puts(">>>>>>>>>>>>>>>>>>>>>>>>>>\n\n\n"+new_token+"\n\n\n\n")
   	self.auth_token = new_token.to_s
@@ -44,8 +44,9 @@ class FacebookAccount < ActiveRecord::Base
  			end
   		return feed
 		end	
-	#  rescue Exception
-	#  	p("!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n!\n")
-  #	end
+	  rescue
+	  	self.destroy
+      return []
+  	end
   end
 end
