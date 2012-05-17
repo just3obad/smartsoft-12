@@ -10,6 +10,9 @@
 					:friend_id => friend.id}, 
 					class: "btn btn-danger" 	
 			%>
+			<%= link_to 'view feed', {:controller => 'users', :action => 'friends_feed', :id => User.find_by_email(friend.email).id}, 
+				class: "btn"%>
+
 
 		<% end %>	
 	</ul>
@@ -19,5 +22,10 @@
 	  <%= text_field_tag(:query, "", :style => "height:40px;") %>
 	  <%= submit_tag("Search", :style => "height:40px") %>
 	<% end %>
+
+	<%= link_to 'Manage blocked friends', {:controller => 'users', :action => 'manage_blocked_friends'}, 
+	class: "btn"%>
+
+
 
 </html>
