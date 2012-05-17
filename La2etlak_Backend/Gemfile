@@ -18,10 +18,7 @@ gem 'thin'
 gem 'will_paginate'
 gem 'koala'
 gem 'flickraw'
-gem 'matenia-tumblr-api'
-gem 'crack'
-gem 'activesupport'
-gem 'httparty'
+gem 'tumblr-rb'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
