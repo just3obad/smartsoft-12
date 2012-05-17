@@ -8,18 +8,18 @@
             <li class=""><a href="#general_settings" data-toggle="tab">General settings</a></li>
             <li class=""><a href="#new_admin" data-toggle="tab">Add a new admin</a></li>
           </ul>
-<div id="myTabContent" class="tab-content">
-           <div class="tab-pane fade" id="profile_settings">
-              
+          <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="profile_settings">
+             aaaaaaaaaaa
             </div>
-            <div class="tab-pane fade active in" id="story_settings">
+            <div class="tab-pane fade" id="story_settings">
               <div class="well">
               <form  action="admin_settings" method="post">
                 <label>Configure flags threshold</label>
                 <input type="text" class="span3" placeholder="Please enter the flags threshold" name="value">
-                <span class="help-block">Minimum threshold is 30</span>
+                <span class="help-block"><%= $current_flags_threshold %></span>
                 <label class="checkbox">
-                <input type="checkbox" name="auto"> Disable Auto-Hiding
+                <input type="checkbox" name="auto" <% if $current_auto_hiding == 1 %> checked <% end %> > Disable Auto-Hiding
                 </label>
                 <button type="submit" class="btn">Submit</button>
               </form>
@@ -37,20 +37,44 @@
                 </div>
                 <span class="help-block">Un-Hidden VS Hidden</span>
               </div>    
-              </div>
+              
             </div>
             <div class="tab-pane fade" id="general_settings">
-              
+              c
             </div>
-            <div class="tab-pane fade" id="profile_settings">
-              
-            </div>
-            
             <div class="tab-pane fade" id="new_admin">
-              
+              <%= form_for @admin do |f| %>
+              <% @admin.errors.full_messages.each do |msg| %>
+                  <p><%= msg %></p>
+               <% end %>
+              <p>
+                <%= f.label :first_name %><br />
+                <%= f.text_field :first_name %>
+              </p>
+              <p>
+                <%= f.label :last_name %><br />
+                <%= f.text_field :last_name %>
+              </p>
+              <p>
+                <%= f.label :email %><br />
+                <%= f.text_field :email %>
+              </p>
+              <p>
+                <%= f.label :password %><br />
+                <%= f.password_field :password %>
+              </p>
+              <p>
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation %>
+              </p>
+            <div>
+
+              <p><%= f.submit "Add" %></p>
             </div>
-            
+            <% end %>
+
+            </div>
           </div>
         </div>
-        
+        </div>        
        </div>
