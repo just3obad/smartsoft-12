@@ -46,9 +46,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   ##########Author: christinesed@gmail.com ############
-  test "get no of users who signed in today one more user signed in today RED" do
+  test "get no of users who signed in today one more user signed in today" do
     count=User.get_no_of_users_signed_in_today
-    usr=User.new(:email=>"example@gmail.com")
+    usr=User.new(:email=>"example@gmail.com", :password => "1234567", :password_confirmation => "1234567")
     assert usr.save
     log=UserLogIn.new
     log.user=usr
@@ -58,9 +58,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
    ##########Author: christinesed@gmail.com ############
-  test "get no of users who signed in today shouldn't add RED" do
+  test "get no of users who signed in today shouldn't add" do
     count=User.get_no_of_users_signed_in_today
-    usr=User.new(:email=>"example@gmail.com")
+     usr=User.new(:email=>"example@gmail.com", :password => "1234567", :password_confirmation => "1234567")
     assert usr.save
     log=UserLogIn.new
     log.user=usr
@@ -71,12 +71,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
    ##########Author: christinesed@gmail.com ############
-  test "get no of users who signed in today three more users signed in today RED" do
+  test "get no of users who signed in today three more users signed in today" do
     count=User.get_no_of_users_signed_in_today
-    usr=User.new(:email=>"example@gmail.com")
-    usr1=User.new(:email=>"example1@gmail.com")
-    usr2=User.new(:email=>"example2@gmail.com")
-    assert usr.save
+    usr=User.new(:email=>"example@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    usr1=User.new(:email=>"example1@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    usr2=User.new(:email=>"example2@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    assert usr.save, "User can not be saved"
     assert usr1.save
     assert usr2.save
     log=UserLogIn.new
@@ -93,9 +93,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
    ##########Author: christinesed@gmail.com ############
-   test "get no of users who signed in today a user signed in more than once RED" do
-    count=User.get_no_of_users_signed_in_today
-    usr=User.new(:email=>"example@gmail.com")
+   test "get no of users who signed in today a user signed in more than once" do
+    usr=User.new(:email=>"example@gmail.com", :password => "1234567", :password_confirmation => "1234567")
     assert usr.save
     log=UserLogIn.new
     log.user=usr
