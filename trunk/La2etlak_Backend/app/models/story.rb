@@ -127,50 +127,42 @@ include StoriesHelper
   
 #Author : Shafei
   def get_story_rank_last_30_days
-	rank = (self.shares.where(created_at:30.days.ago..Time.zone.now.end_of_day).count * 5) 
-	+ self.comments.count.where(created_at:30.days.ago..Time.zone.now.end_of_day) 
-	+ (self.likedislikes.where(action: 1, created_at:30.days.ago..Time.zone.now.end_of_day).count * 2)
-	- (self.flags.where(created_at:30.days.ago..Time.zone.now.end_of_day).count * 5) 
-	- (self.likedislikes.where(action: -1, created_at:30.days.ago..Time.zone.now.end_of_day).count * 2)
+	rank = (self.shares.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5) 
+	+ self.comments.count.where(created_at: 30.days.ago..Time.zone.now.end_of_day) 
+	+ (self.likedislikes.where(action: 1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2)
+	- (self.flags.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5) 
+	- (self.likedislikes.where(action: -1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2)
 	return rank
   end
 
 #Author : Shafei
   def self.get_stories_ranking_all_time
-	all_stories = Array.new
-	top_stories = Array.new
-	Story.all.each do |story|
-		all_stories << {:rank => story.get_story_rank_all_time}
-	end
-	(all_stories.sort_by {|element| element[:rank]}).each do |story|
-		all_stories << story[:rank]
-	end
-	top_stories =  all_stories.reverse
-	return top_stories
+	  all_stories = Array.new
+	  top_stories = Array.new
+    final_stories = Array.new
+	  Story.all.each do |story|
+	  	all_stories << {:rank => story.get_story_rank_all_time, :thestory => story}
+	  end
+	  (all_stories.sort_by {|element| element[:rank]}).each do |hsh|
+		  final_stories << hsh[:thestory]
+	  end
+	  top_stories =  final_stories.reverse
+	  return top_stories
   end
   
 #Author : Shafei
   def self.get_stories_ranking_last_30_days
-	all_stories 		= Array.try_convert(Story.all)
-		if all_stories.empty? == true
-			return all_stories
-		end
-		rank 			= Array.new
-		id_array		= Array.new
-		max				= 0
-		id				= 999999
-		all_stories.each do |story|
-			all_stories.each do |story|
-				if story.get_story_rank_last_30_days >= max && (id_array.include?(story.id) == false)
-					max = story.get_story_rank_last_30_days
-					id = story.id
-				end
-			end
-			max = 0
-			id_array << id
-			rank << all_stories[id-1]
-		end
-		return rank
+	  all_stories = Array.new
+    top_stories = Array.new
+    final_stories = Array.new
+    Story.all.each do |story|
+      all_stories << {:rank => story.get_story_rank_last_30_days, :thestory => story}
+    end
+    (all_stories.sort_by {|element| element[:rank]}).each do |hsh|
+      final_stories << hsh[:thestory]
+    end
+    top_stories =  final_stories.reverse
+    return top_stories
   end
 
 #view_friends_like is a method that return a list of friends emails that liked the story
