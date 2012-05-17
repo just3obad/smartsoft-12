@@ -3,7 +3,7 @@
 	<header> Friends are <%= @query %> </header>
 	<ul>
 		<% @friends.each do |friend| %>
-			<li> <%= if friend.name.nil?  then friend.email else friend.name end %> </li>
+			<li> <%= if friend.name.nil?  then friend.email.split('@').first else friend.name end %> </li>
 			
 			<%=	link_to 'remove',{:controller => 'friendships',
 					:action => 'remove', 

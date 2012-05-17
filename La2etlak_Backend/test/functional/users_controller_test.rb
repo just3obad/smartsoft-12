@@ -207,7 +207,8 @@ class UsersControllerTest < ActionController::TestCase
     u1.twitter_account = twitter_accounts(:one)
     u1.save
     get :connect_social_accounts
-    assert_select 'div[id=2]'
+    assert_select "div[id=twitter_warning]"
+
   end 
 
    #author: khaled.elbhaey
