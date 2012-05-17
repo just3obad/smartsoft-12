@@ -640,19 +640,19 @@ end
       blocked_interest.interest = story_interest 
       blocked_interest.save
       @text = "Interest blocked successfully"
-   else 
-      @text = "Interest already blocked"    
-   end
-   #for log file
+   #for log file in case of success of block
    if self.name.nil?
-      @username = self.email
+      @username = self.email.split('@')[0]
    else
       @username = self.name
    end
    @interesttitle = story_interest.name
    @message = "#{@username} blocks interest with name: #{@interesttitle}"
    Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: story_interest.id, message: @message)
-  
+   else 
+      @text = "Interest already blocked"    
+   end
+   
    return @text #return the message in variable text
   end
 
@@ -669,19 +669,19 @@ end
       blocked_story.user = this_user
       blocked_story.save
       @text = "Story blocked successfully"
-   else 
-      @text = "Story already blocked"
-   end
-   #for log file
+   #for log file in case of success of block
    if self.name.nil?
-      @username = self.email
+      @username = self.email.split('@')[0]
    else
       @username = self.name
    end
-   #for log file
    @storytitle = this_story.title
    @message = "#{@username} blocks story with title: #{@storytitle}" 
    Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: this_story.id, message: @message)
+
+   else 
+      @text = "Story already blocked"
+   end
 
    return @text #return the message in variable text
   end
@@ -694,22 +694,22 @@ end
     if(!(@this_user.blocked? my_friend))
         @this_user.block (my_friend)
         @text = "Friend blocked successfully."
-    else
-        @text = "Friend already blocked."
-    end
-    #for log file
+    #for log file in case of success of block
      if self.name.nil?
-      @username = self.email
+      @username = self.email.split('@')[0]
      else
       @username = self.name
      end
      if my_friend.name.nil?
-      @frname = my_friend.email
+      @frname = my_friend.email.split('@')[0]
      else
       @frname = my_friend.name
      end
    @message = "#{@username} blocks friend named: #{@frname}" 
    Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id , admin_id: nil, story_id: nil, message: @message)
+    else
+        @text = "Friend already blocked."
+    end
 
    return @text #return the message in variable text
   end
