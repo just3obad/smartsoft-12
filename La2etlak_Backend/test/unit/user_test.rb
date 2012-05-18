@@ -293,6 +293,31 @@ class UserTest < ActiveSupport::TestCase
       assert_equal("#{my_friend.email} unblocked successfully.", this_user.unblock_friends_feed1(my_friend))
     end
 
+   #Author: Rana
+   test "user wants to unblock story" do
+      this_user = users(:ben)
+      UserSession.create(this_user)
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_story= Story.new :title => "Story1", :interest_id => this_interest
+      this_story.interest = this_interest
+      this_story.save
+      this_user.block_story1(this_story)
+      assert_equal("Story unblocked successfully.", this_user.unblock_story1(this_story))
+    end
+
+   #Author: Rana
+   test "user wants to get blocked stories list" do
+      this_user = users(:ben)
+      UserSession.create(this_user)
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_story= Story.new :title => "Story1", :interest_id => this_interest
+      this_story.interest = this_interest
+      this_story.save
+      BlockStory.create!(:user_id => this_user, :story_id => this_story)
+      blocked_stories = this_user.block_stories 
+      assert_equal(blocked_stories, this_user.get_blocked_stories)
+    end
+
   #Author : 3OBAD
   test "flickr account RED" do
     user = User.new
