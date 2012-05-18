@@ -1,26 +1,26 @@
- <script type="text/javascript" charset="utf-8">
-var $j = jQuery.noConflict();
-  $j(document).ready(function() {
-      //get The users' array of arrays of data
-      data= <%= User.get_all_users_stat %>;
-      if (data.length != 0) {
-      //the graphs that we want to show
-      names=["Registered Users","Logged in"]; 
-      //the time interval between one point and another in the graph.
-      pointInterval= <%= 1.day * 1000 %>; 
-      // Start point of the graph.
-      x= <%= User.get_all_users_start_date %>;
-      if(x != -1) {
-      pointStart= <%= User.get_all_users_start_date.days.ago.to_i * 1000 %>;
-      //Label for x-axis
-      xl="Day"; 
-      yl="Number";
-      titleOfGraph="All Users Statistics"; 
-      //call the method that renders the graph with the calculated parameters.
-     document.getElementById("noUser").style.display= "none"; 
-      Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
-      } else {
-       document.getElementById("noUser").style.display= "block";  
+<script type="text/javascript" charset="utf-8">
+	var $j = jQuery.noConflict();
+	$j(document).ready(function() {
+    //get The users' array of arrays of data
+    data= <%= User.get_all_users_stat %>;
+    if (data.length != 0) {
+    //the graphs that we want to show
+    names=["Registered Users","Logged in"]; 
+    //the time interval between one point and another in the graph.
+    pointInterval= <%= 1.day * 1000 %>; 
+    // Start point of the graph.
+    x= <%= User.get_all_users_start_date %>;
+    if(x != -1) {
+    pointStart= <%= User.get_all_users_start_date.days.ago.to_i * 1000 %>;
+    //Label for x-axis
+    xl="Day"; 
+    yl="Number";
+    titleOfGraph="All Users Statistics"; 
+    //call the method that renders the graph with the calculated parameters.
+    document.getElementById("noUser").style.display= "none"; 
+    Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph); 
+    } else {
+    document.getElementById("noUser").style.display= "block";  
         document.getElementById("ccc").style.display= "none"; 
       }
       } else {
@@ -34,92 +34,87 @@ var $j = jQuery.noConflict();
    <div class="span3">
       <!--Sidebar content-->
       <div class="well sidebar-nav">
-    <ul class="nav nav-list">
-    
-      <li class="nav-header">
-        Statistics
-      </li>
-      <li class="active">
-       <%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
-      </li>
-       <li>
-       <%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
-       </li>
-        <li>
-       <%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
-       </li>
+		<ul class="nav nav-list">
+			<li class="nav-header">
+				Statistics
+			</li>
+			<li class="active">
+				<%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
+			</li>
+			<li>
+				<%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
+			</li>
+			<li>
+				<%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
+			</li>
  
-     </ul>
-    </div>
-    </div>
-    <div class="span9">
-<div class="alert" id="noUser" style="display: none;">
-  
-           <a class="close" data-dismiss="alert">Ã—</a>
+		</ul>
+	</div>
+</div>
+<div class="span9">
+	<div class="alert" id="noUser" style="display: none;">  
+        <a class="close" data-dismiss="alert">Ã—</a>
            <h1><strong>Warning!</strong> No Users in our database Yet.</h1>
-     </div>
+	</div>
 
-<!-- Check Whether There Is Any User In The Database Or Not -->
+	<!-- Check Whether There Is Any User In The Database Or Not -->
 
-<% if(@users.empty? == true) %>
+	<% if(@users.empty? == true) %>
 
 </div>
 <% else %>
 <div id="ccc"></div>
-<div class="general info">
+	<div class="general info">
 
-<!--Get The Number Of Users In The System-->
+	<!--Get The Number Of Users In The System-->
 
-<h4><div class="alert alert-info">Number of registered users :
-<%= User.all_user_registered %>
-</h4>
+	<h4><div class="alert alert-info">Number of registered users :
+		<%= User.all_user_registered %>
+	</h4>
+	</div>
+
+	<!--A Button To Return To Admin's Home Page-->
+
+	<div align="left">
+		<%= link_to image_tag("back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'admins', :action => 'index'} %>
+	</div></br>
 </div>
 
-<!--A Button To Return To Admin's Home Page-->
+<div id="eee"></div> </br>
+	<div class="general info" id ="genInfo">
+		<h4>
+			<div class="alert alert-info">
+				Top 5 Users : </br>
 
-<div align="left">
-<%= link_to image_tag("back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'admins', :action => 'index'} %>
-</div></br>
-</div>
-</div>
+				<!--Make A User Component For Each Of The Top Ranked Five Users Contiaing Email, Name, Rank
+				And A Link To His Profile Page And Statistics Page -->
 
-<div id="ccc"></div> </br>
-
-<div class="general info" id ="genInfo">
-<h4>
-<div class="alert alert-info">
-Top 5 Users : </br>
-<% i = 1%>
-
-<!--Make A User Component For Each Of The Top Ranked Five Users Contiaing Email, Name, Rank
-And A Link To His Profile Page And Statistics Page -->
-
-<% User.get_users_ranking[0..4].each do |user|%>
-</div>
-<div class="well-user-component">
-<a href="/users/<%= user.id%>"
-class="thumbnail-user-component">
-<% if not user.image? %>
-<%= image_tag "logo.jpeg", :size => "75x75" %>
-<% else %>
-<img src= "<%= user.image %>" width="75" style="height:75px"/>
-<% end %> </a>
-<div class="user-component-info">
-<h5>
-<% if user.name.nil? %>
-<%= "No Name Available" %>
-</h5>
-<% else %>
-<%= user.name %>
-<% end %>
-<h5>Rank : <%= user.get_user_rank %></h5>
-<h5>Email : <%=user.email%></h5>
-<% i = i+1 %>
-<%= link_to "view Statistics",
-{:controller => 'statistics', :action => 'users',:id => user.id },
-class: "interest-component-button-absolute btn btn-primary"%>
-</div>
-</h4>
+				<% User.get_users_ranking[0..4].each do |user|%>
+			</div>
+			<div class="well-user-component">
+				<a href="/users/<%= user.id%>"
+				class="thumbnail-user-component">
+				<% if not user.image? %>
+				<%= image_tag "logo.jpeg", :size => "75x75" %>
+				<% else %>
+				<img src= "<%= user.image %>" width="75" style="height:75px"/>
+				<% end %> </a>
+				<div class="user-component-info">
+				<h5>
+					<% if user.name.nil? %>
+					<%= "No Name Available" %>
+				</h5>
+				<% else %>
+					<%= user.name %>
+				<% end %>
+				<h5>Rank : <%= user.get_user_rank %></h5>
+				<h5>Email : <%=user.email%></h5>
+				<%= link_to "view Statistics",
+				{:controller => 'statistics', :action => 'users',:id => user.id },
+				class: "interest-component-button-absolute btn btn-primary"%>
+			</div>
+		</h4>
+	</div>
 </div>
 <% end %>
 <% end %>
