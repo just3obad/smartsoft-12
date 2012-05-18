@@ -39,7 +39,7 @@
 <div >
 <font size="3"><b><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></b></font>
 <span class="pull-left badge"><%=Interest.find(story.interest_id).name%></span>
-
+<span class="pull-right bluebadge"><%=time_ago_in_words(story.created_at)%></span>
 <% if !(story.deleted || story.hidden) %>
 			<span class="pull-right yellowbadge">Active</span>
 			<% elsif story.deleted %>

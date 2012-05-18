@@ -256,6 +256,7 @@ end
     stories= stories + stories3
 
   end 
+  stories = stories.sort_by { |obj| obj.created_at }.reverse
   return stories.uniq
  end
 
