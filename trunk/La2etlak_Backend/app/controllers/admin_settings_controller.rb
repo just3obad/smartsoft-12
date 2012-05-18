@@ -14,14 +14,17 @@ class AdminSettingsController < ApplicationController
 	# form then it renders the show page again.
 	def configure_flags_threshold
 		if params[:auto] == "on"
-			Admin_Settings.configure_flags_threshold params[:value] , "true"
+			Admin_Settings.configure_flags_threshold params[:valuee] , false
 		else 
-			Admin_Settings.configure_flags_threshold params[:value] , "false"
+			Admin_Settings.configure_flags_threshold params[:valuee] , true
 		end 
+		#if $flash_success = "true" 
+		#	flash[:success] = "The settings are changed successfully"
+		#end
 		if $flash_error ==  "true"
-			#flash[:error] = "You can not enter values less than 30, It is now changed to the default value 30."
+			flash[:error] = "Please enter a valid string"
 		end
-		render :template=>'admin_settings/index'		
+		redirect_to '/admin_settings'		
 	end
 	
  	def new

@@ -1,4 +1,4 @@
-<%= render 'shared/logs_error_messages' %>
+<%= render 'shared/all_flash' %>
 <div class="main-settings-page">
 
 <div class="middle-settings-panel" >
@@ -14,16 +14,16 @@
             </div>
             <div class="tab-pane fade" id="story_settings">
               <div class="well">
-              <form  action="admin_settings" method="post">
-                <label>Configure flags threshold</label>
-                <input type="text" class="span3" placeholder="Please enter the flags threshold" name="value">
-                <span class="help-block"><%= $current_flags_threshold %></span>
+                   <%= form_tag("/admin_settings/configure_flags_threshold", :method => "post") %>
+                   <label>Configure flags threshold</label>
+                <input type="text" class="span3" placeholder="Please enter the flags threshold" name="valuee">
+                <span class="help-block"><b> Current Threshold is: <%= Admin_Settings.find_by_key("flags_threshold").value %><br />
+                  Minimum Threshold is: 30</b></span>
                 <label class="checkbox">
-                <input type="checkbox" name="auto" <% if $current_auto_hiding == 1 %> checked <% end %> > Disable Auto-Hiding
+                <input type="checkbox" name="auto" <% if Admin_Settings.find_by_key("auto_hiding").value == 0 %> checked <% end %> > Disable Auto-Hiding
                 </label>
                 <button type="submit" class="btn">Submit</button>
-              </form>
-
+              </form> 
               <div style="width:300px;"
                 <% total = (Story.find_all_by_hidden(false).count + Story.find_all_by_hidden(true).count) %>
                 <div class="progresscustom" id="progressbar" style="display: block;">
