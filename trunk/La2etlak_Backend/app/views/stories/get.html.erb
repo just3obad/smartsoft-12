@@ -144,9 +144,9 @@
         <ul class="nav">
             <% pic = nil %>
             <% if comment.downed_by_user?(current_user) then%>
-                <% pic = "http://img825.imageshack.us/img825/7254/undislike.png" %>
+                <% pic = "un-dislike.png" %>
             <% else %>
-                <% pic = "http://img717.imageshack.us/img717/856/dislikekh.png" %>
+                <% pic = "dislikekh.png" %>
             <% end %>
             <li><%= link_to (image_tag (pic)) ,{:action=> :down_comment, :user_id => params[:id2], :comment_id => comment.id}, {:style =>'float:right;margin-right:4%;width:30px;height:30px;'} %>
             </li>
@@ -156,9 +156,9 @@
             </li>
             <% pic2 = nil %>
             <% if comment.upped_by_user?(current_user) then%>
-                <% pic2 = "http://img585.imageshack.us/img585/9320/unlikec.png" %>
+                <% pic2 = "un-like.png" %>
             <% else %>
-                <% pic2 = "http://img210.imageshack.us/img210/5599/likecopy.png" %>
+                <% pic2 = "likecopy.png" %>
             <% end %>
             <li><%= link_to (image_tag (pic2)) ,{:action=> :up_comment, :user_id => params[:id2], :comment_id => comment.id}, {:style =>'float:right;margin-right:1%;width:30px;height:30px;padding-bottom:5px;'} %>
             </li>
