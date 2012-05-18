@@ -9,20 +9,8 @@
 		<tr>
 			<%unless f.content.nil?%>
 			<td rowspan="2">
-			<!-- This is supposed to be removed when Mouaz implements photo removal from the description -->
-			<% @all = "img src=" %>
-			<% @url_start = "http://" %>
-			<% @url_end = "\" " %>
-
-			<% if f.content =~ /#{@url_regex}/ %>
-				<% @allstart = f.content.index(@all)%>
-				<% @start = f.content.index(@url_start)%>
-				<% @end = f.content.index(@url_end) %>
-				<% @media = f.content[ @start.to_i , @end.to_i-10] %>
-				<% @allmedia = f.content[@all.to_i , @end.to_i+1]%>
-			<%end%>
 			<!-- Displaying the picture with a width of 50 -->
-			<img id="topic" src="<%=@media%>" width="50"/>
+			<img id="topic" src="<%=f.media_link%>" width="50"/>
 		</td>
 		<td rowspan="2">
 		<%end%>
