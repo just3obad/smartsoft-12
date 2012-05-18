@@ -98,22 +98,26 @@ class UserTest < ActiveSupport::TestCase
 
  #Author : Essam
   test "filter social networks RED" do
-    user = User.new
-    user.email = 'essam@hafez.com'
+    user = User.new(:email=>"essamahmedhafez@gmail.com", :password => "12345678", :password_confirmation => "12345678")
+    user.save
     user.twitter_account = twitter_accounts(:one)
     assert !user.twitter_account.nil?
     user_feed = user.twitter_account.get_feed()
     assert !user_feed.nil?
+    user.facebook_account = facebook_accounts(:one)
+    assert !user.facebook_account.nil?
+    facebook_feed = user.facebook_account.get_feed
+    assert !facebook_feed.nil?
   end
 
   #Author : Essam
   test "tumblr account RED" do
-    user = User.new
-    user.email = 'essam@hafez.com'
-    user.tumblr_account = tumblr_accounts(:one)
-    assert !user.tumblr_account.nil?
-    tumblr_feed = user.tumblr_account.get_feed()
-    assert !tumblr_feed.nil?
+    new_tumblr = Tumblr::User.new(essamahmedhafez@gmail.com, 12345678) #Authentication
+    blog = new_tumblr.tumblr["tumblelog"]["name"]
+    tumblr = TumblrAccount.new
+    Tumblr.blog = blog
+    posts = Tumblr::Post.all #Get user posts
+    assert !posts.nil?
   end
 
 	#Author : Kareem
