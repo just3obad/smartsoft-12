@@ -70,4 +70,10 @@ class FacebookAccount < ActiveRecord::Base
       return []
     end
   end
+  # Adds the log message whenever a user
+  # connects his/her facebook account
+  # Author: Menisy
+  def add_to_log
+    Log.create!(loggingtype: 2,user_id_1: self.user.id ,user_id_2: nil,admin_id: nil,story_id: nil ,interest_id: nil,message: (self.user.name+" added a Facebook account").to_s)
+  end
 end
