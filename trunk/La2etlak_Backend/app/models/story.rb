@@ -129,16 +129,12 @@ include StoriesHelper
 #Author : Shafei
 # This action returns the rank of one story in the last 30 days
   def get_story_rank_last_30_days
-	rank = (self.shares.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5) 
-	+ self.comments.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count 
-	+ (self.likedislikes.where(action: 1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2)
-	- (self.flags.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5) 
-	- (self.likedislikes.where(action: -1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2)
+	rank = (self.shares.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5) + self.comments.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count  + (self.likedislikes.where(action: 1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2) - (self.flags.where(created_at: 30.days.ago..Time.zone.now.end_of_day).count * 5)  - (self.likedislikes.where(action: -1, created_at: 30.days.ago..Time.zone.now.end_of_day).count * 2)
 	return rank
   end
 
 #Author : Shafei
-# This action returns a list of all stories sortd according to their rank since they were created
+# This action returns a list of all stories sorted according to their rank since they were created
   def self.get_stories_ranking_all_time
 	  all_stories = Array.new
 	  top_stories = Array.new
