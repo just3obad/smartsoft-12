@@ -252,6 +252,7 @@ end
     @user.activate_user(params[:id])
     redirect_to(:action => 'show', :id => @user.id)
   end
+
   #method that calls the method in model to block story and renders the view
   #Author: Rana
   def block_story
@@ -285,12 +286,31 @@ end
       redirect_to controller: 'friendships', action: "index"
   end
 
-  #The method that calls method in the model to get the user's friends' email and renders the view
+  #The method that gets the user's blocked friends and renders the view
   #Author: Rana
   def manage_blocked_friends
       @user = current_user
       @my_friends = @user.blocked
       render layout: "mobile_template"
+  end
+
+  #The method that calls method in the model to get the user's blocked stories and renders the view
+  #Author: Rana
+  def manage_blocked_stories
+      @user = current_user
+      @blocked_stories = @user.get_blocked_stories
+      render layout: "mobile_template"
+  end
+
+  #The method that calls the method in the model to unblock a story and renders the view
+  #Author: Rana
+  def unblock_story
+      @user = current_user
+      @story_id = params[:id]
+      @story = Story.find_by_id(@story_id)
+      @text = @user.unblock_story1(@story) 
+      flash[:notice] = "#{@text}"
+      redirect_to action: "feed"
   end
 
   #The method that calls the method in the model to unblock friend feed and renders the view
