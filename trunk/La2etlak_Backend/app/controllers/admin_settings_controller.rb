@@ -44,8 +44,12 @@ class AdminSettingsController < ApplicationController
 
 	  #Author : BASSEM
 	  def statistics_time_span
-	  	Admin_Settings.set_statistics_span params[:days]
-	  	flash[:success] = "Time span set successfully."
+	  	@response = Admin_Settings.set_statistics_span params[:days]
+	  	if ( @response == 1)
+	  		flash[:success] = "Time span set successfully."
+	 	 else
+	 	 	flash[:error] = "Please enter a valid number of 30 days or more."
+	 	 end
 	  	redirect_to :action => "index"
 	  end
 end
