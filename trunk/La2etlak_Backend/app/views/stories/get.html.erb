@@ -13,26 +13,12 @@
 
 <!--checking for media url if found with content extract it from content display and then display content without it -->
 
+  <% if @story.media_link != nil && @story.media_link.length > 3%>
     <div align="center">
-    
-    <% if @story.media_link != nil && @story.media_link.length > 3%>
-    <img src="<%=@story.media_link%>" width="220" align="center">
-    
-	<%else%>
-        <% @all = "img src=" %>
-	<% @url_start = "http://" %>
-        <% @url_end = "\" " %>
-        
-    	 <% if @story.content =~ /#{@url_regex}/ %>
-    	    <% @allstart = @story.content.index(@all)%>
-	    <% @start = @story.content.index(@url_start)%>
-    	    <% @end = @story.content.index(@url_end) %>
- 	    <% @media = @story.content[	@start.to_i , @end.to_i-10] %>
-  	    <% @allmedia = @story.content[@all.to_i , @end.to_i+1]%>
-		<img id="toppic" src="<%=@media%>" width="220" align="center" />
-	    <%end%>
-       <%end%>
-	 </div></br>
+       <img src="<%=@story.media_link%>" width="220" align="center">
+       </div></br>
+  <%end%>
+	 
 	
 <!-- checking for story category if RSS allow story functionalties if not remove from view -->
 	<% if @story.category == "RSS" %>
@@ -104,16 +90,14 @@
  <%end%>
  	 
 <!-- adds content of story  -->
- <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
  <% if @story.content != nil %>
- <%if @allmedia != nil && @allmedia.length > 4 %>
- <% @story.content.slice!(@allmedia) %>
- <%end%>
+ <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
+ 
  <%= @story.content %>
- <%end%>
+ 
  </br></br>
  </div>
-
+ <%end%>
 
 	<% if @story.category == "RSS" %>
 
