@@ -97,7 +97,8 @@ class UsersControllerTest < ActionController::TestCase
     this_story= Story.new :title => "Story1", :interest_id => this_interest
     this_story.interest = this_interest
     this_story.save
-    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
+    this_user = users(:ben)
+    UserSession.create(this_user)
     get :block_story, 'id' => this_story.id
     assert_response :redirect 
   end
@@ -108,15 +109,17 @@ class UsersControllerTest < ActionController::TestCase
     this_story= Story.new :title => "Story1", :interest_id => this_interest
     this_story.interest = this_interest
     this_story.save
-    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
+    this_user = users(:ben)
+    UserSession.create(this_user)
     get :block_interest, 'id' => this_story.id
     assert_response :redirect 
   end
 
   #Author: Rana
   test "get block friend" do
-    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
-    my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com", :password => "123456", :password_confirmation => "123456"
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    my_friend = users(:ahmed)
     this_user.invite my_friend
     my_friend.approve this_user
     get :block_friends_feed, 'id' => my_friend.id
@@ -124,9 +127,21 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   #Author: Rana
+  test "get unblock friend" do
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    my_friend = users(:ahmed)
+    this_user.invite my_friend
+    my_friend.approve this_user
+    get :unblock_friends_feed, 'id' => my_friend.id
+    assert_response :redirect 
+  end
+
+  #Author: Rana
   test "get friend feed" do
-    this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
-    my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com", :password => "123456", :password_confirmation => "123456"
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    my_friend = users(:ahmed)
     this_user.invite my_friend
     my_friend.approve this_user
     get :friends_feed, 'id' => my_friend.id
@@ -142,12 +157,14 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   #Author: Rana
-  test "get friend list" do
-      this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
-      get :friends_list, 'id' => this_user.id
+  test "get manage blocked friends list" do
+      this_user = users(:ben)
+      UserSession.create(this_user)
+      get :manage_blocked_friends
       assert_response :success
       assert_select 'div[id = "heading"]'
       assert_select 'div[id = "list"]'
+      assert_select 'div[id = "back"]'
   end
 
   # Author: Yahia
