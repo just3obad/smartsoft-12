@@ -78,27 +78,35 @@ render 'new'
     @interest= Interest.my_update(params[:id],params[:interest])
 
 @deleted = Interest.is_deleted(params[:id])
+
 #we check on the interest deleted or not because an admin is not allowed to adjust any changes/edit an interest unless it's ACTIVE
     if @interest && (@deleted == false || @deleted.nil?)
- $savedinterest = true
-#global variable $savedinterest used to handle the flash message in "Show.html.erb"
+
       flash[:success] = "Interest updated successfully "
 
  
     @myinterest= Interest.get_interest(params[:id])
   redirect_to @myinterest
     else
- $savedinterest = false
+
+
   $errors = true
 #global variable $errors used to handle the flash message in "Show.html.erb"
-if @deleted == false || @deleted.nil?
-# a flash appears when we enter an invalid info (balnk name )
-          flash[:error] = " (Invalid inputs) Interest Update failed  , PLease Try again !"
+if (@deleted == false || @deleted.nil?)  && (params[:interest][:name].blank?)
+# a flash appears when we enter an invalid info (balnk name)
+               
+          flash[:error] = "  Interest Update failed , Name can't be blank , PLease Try again !"
+else
+
+if (@deleted == false || @deleted.nil?)
+# a flash appears when we enter an invalid info (balnk name)
+               
+          flash[:error] = " Interest Update failed , Photo content type is invalid , PLease Try again !"
 else
 #a flash appears banning the admin from updating the interest as long as it's blocked
-flash[:error] = " This interest is now blocked , Please Restore it if you want Update"
+flash[:error] = " This interest is now blocked , Please Restore it if you want to Update"
 end
-
+end
     @myinterest= Interest.get_interest(params[:id])
   redirect_to @myinterest
 end
@@ -123,7 +131,7 @@ if !@deleted
 flash[:success] = " Interest Restored Successfuly "
 else
 
-$savedinterest = true
+
 # if the interest wasn't deleted and the admin blocked it successfully a flash appears endicating that
 flash[:success] = " Interest Blocked Successfuly "
 end
