@@ -233,6 +233,19 @@ class UsersControllerTest < ActionController::TestCase
 
   end 
 
+  # Author: Menisy
+  test "facebook_warning_box" do
+    # needs to create a session with that user
+    u1 = users(:ben)
+    u1.facebook_account = facebook_accounts(:one)
+    u1.save
+    UserSession.create u1
+    get :connect_social_accounts
+    assert_response :success, 'Get should be successful'
+    assert_select "div[id=facebook_warning]"
+  end 
+
+
    #author: khaled.elbhaey
   test "the view of friends emails RED" do
     new_user=User.create(:email=>"khd@abc.com")
