@@ -14,30 +14,41 @@ class Admin_Settings < ActiveRecord::Base
   # each story.All of that after checking the global variable auto_hiding which
   # the admin changes from the checkbox.
   def self.configure_flags_threshold (flags_number, disable)
-      #$flash_error = "false"
-      $auto_hiding = disable
-  		if !$auto_hiding
-        flags_threshold = Admin_Settings.first
-  		  if !flags_number.nil?
-	  		 	flags=Integer(flags_number)
-  			if flags < 30
-  				flags_threshold.value = 30
-          #$flash_error = "true"
-  			else
-  				flags_threshold.value=flags
-	  		end
-  			flags_threshold.save
-  			stories=Story.all
-  			stories.each do |story|
-  				if story.flags.count >= flags
-  					story.hidden = true
-  				elsif story.flags.count < flags
-  					story.hidden = false
+      #$flash_success = "false"
+      $flash_error = "false"
+      flags_threshold = Admin_Settings.find_by_key("flags_threshold")
+      auto_hiding = Admin_Settings.find_by_key("auto_hiding")
+      current_flags = flags_threshold.value
+      flags = flags_number.to_i
+  		if disable == true
+        auto_hiding.value = 1
+  		  if !(flags == 0)
+  			  if flags < 30
+  				  flags_threshold.value = current_flags
+            #$flash_success = "false"
+  			  else
+            #$flash_success = "true"
+  				  flags_threshold.value=flags
+	  		  end
+  			  flags_threshold.save
+  			  stories=Story.all
+  			  stories.each do |story|
+  				  if story.flags.count >= flags
+  					 story.hidden = true
+  				  elsif story.flags.count < flags
+  					 story.hidden = false
+            end
           end
-  				eeeeeeend
-  			end
-  		end
-    end
+        else 
+          #$flash_success = "false"
+          $flash_error = "true" 
+        end
+      else
+        auto_hiding.value = 0
+      end
+      auto_hiding.save
+      $current_auto_hiding = Admin_Settings.find_by_key("flags_threshold").value
+      $current_flags_threshold = Admin_Settings.find_by_key("auto_hiding").value
   end
 
   # author : Gasser
@@ -46,12 +57,13 @@ class Admin_Settings < ActiveRecord::Base
   # or not to hide this story or not.All of that after checking the global variable
   # auto_hiding which the admin changes from the checkbox.
   def self.update_story_if_flagged (story)
-  	if !$auto_hiding
+  	if Admin_Settings.last.value == 1
       if(story.flags.count >= Admin_Settings.first.value)
   		  story.hidden = true
   	  else
   		  story.hidden = false
   	  end
+      story.save
     end
   end
 end
