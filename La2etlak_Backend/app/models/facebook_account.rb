@@ -30,7 +30,11 @@ class FacebookAccount < ActiveRecord::Base
       media = ""
       p g.nil?
       if g
+        i = 0
         g.each do |s| 
+          i = i+1
+          p i.to_s
+          p s["type"]
           title = s["from"]["name"]+" shared:"
           if s["type"] == "photo"
             title = title+"\n"+s["message"] if s["message"]
@@ -40,7 +44,7 @@ class FacebookAccount < ActiveRecord::Base
             end
           elsif s["type"] == "video"
             title = title+"\n"+s["name"] if s["name"]
-            media_link = s["link"]
+            media = s["link"]
             content = s["message"] if s["message"]
             content = content + s["description"] if s["description"]
           else
@@ -52,7 +56,10 @@ class FacebookAccount < ActiveRecord::Base
           story.content = content
           story.deleted = false
           story.hidden = false
-          feed << story
+          feed.append story
+          pic = ""
+          content = ""
+          media = ""
         end
         p "returning feed"
         p feed.to_s
