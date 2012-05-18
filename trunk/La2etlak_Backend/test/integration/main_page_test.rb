@@ -13,7 +13,7 @@ class MainPageTest < ActionDispatch::IntegrationTest
   #this test is for testing the existance of feed div
   test "AutoCompleteResultDiv" do
         get "/admins/index"
-       assert_select "div[id=feeds]"
+        assert_select "div[id=feeds]"
      end
   #test get_feed
   test "get feeds" do
