@@ -1,12 +1,13 @@
 <!DOCTYPE html>
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
+		<div class="admin_main_left_panel">
           <div class="well sidebar-nav">
             
 
             <ul class="nav nav-list">
               <li class="nav-header">Filter by status</li>
+              <li class="divider"></li>	
             </ul>
 
             <form action="stories/filter" method="post">
@@ -21,37 +22,10 @@
 			  </label>
               <input type="submit" name="commit" value="Submit" class="btn btn-primary"/>
             </form>
-        <!--div class="control-group">
-			<div class="controls">
-		  		<label class="checkbox">
-		    		<input type="checkbox" value="Normal">
-		      			Normal
-		    		</input>
-			    </label>
-			</div>
-			<div class="controls">
-		  		<label class="checkbox">
-		    		<input type="checkbox" value="Flagged">
-		    		  Flagged
-		   			</input>
-		  		</label>
-			</div>
-			<div class="controls">
-			  <label class="checkbox">
-			    <input type="checkbox" value="Hidden">
-			      Hidden
-			    </input>
-			  </label>
-			</div>
-
-
-	     </div>
-	     <hr>
-             <input type="button" value="Apply" class= "btn btn-primary"/-->
           </div><!--/.well -->
         </div><!--/span-->
-     
-     <div class="right-story-panel interest-page-well" >
+
+     <div class="admin_right_panel " >
 	 <h2 class = "logs-take-input" >
  	 <%= @stories.empty? ? 'Stories List : There are currently no stories to be viewed.' : 'Stories list' %></h2>
 	 <ul class="nav nav-list" >
@@ -59,28 +33,58 @@
 
 	</ul>
 
-	<div class="pre-scrollable">
+	<div class="admin_feed_padding">
 	  <% @stories.each do |story| %>
-	  <div >
-	    <h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
-            <span class="yellowbadge"><%=Interest.find(story.interest_id).name%></span>
-	    <h3><%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "story-component-button-absolute btn btn-primary") %></h3>
-	    <% if !(story.deleted || story.hidden) %>
-			<ul class="nav nav-list">
-			<li class="nav-header">Status : 
-			<span class="greenbadge">Active</span></li>
-			<% elsif story.deleted %>
-			<ul class="nav nav-list">
-			<li class="nav-header">Status</li>
-			<li><span class="redbadge">Deleted</span></li>
-			<% elsif story.hidden %>
-			<li><span class="yellowbadge">Hidden</span></li>
-		<% end %>
+	  
+<div >
+<font size="3"><b><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></b></font>
+<span class="pull-left badge"><%=Interest.find(story.interest_id).name%></span>
 
-	    <div class="pre-scrollable">
-		<h6 class ="story-body story-page-well"><%=raw story.content %></h6>
-  	    </div>
-	  </div>
+<% if !(story.deleted || story.hidden) %>
+			<span class="pull-right yellowbadge">Active</span>
+			<% elsif story.deleted %>
+			<li><span class="pull-right redbadge">Deleted</span>
+			<% elsif story.hidden %>
+			<li><span class="pull-right bluebadge">Hidden</span>
+		<% end %>
+	<div class="well admin_story_feed">
+	
+	<div class="well control-panel">
+		<%=raw story.content %>
+		</div>
+		
+			<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-primary") %>  			
+			
+			<span class="pull-right greenbadge">Ups(<%=story.liked.length%>)</span>
+			<span class="pull-right redbadge">Downs(<%=story.disliked.length%>) </span>
+		
+							<%@comments = story.comments%>
+
+			<h2 class="story-identation story-page-text">Comments</h2>
+		
+			<% if !(@comments.nil? || @comments.empty?) %>
+					<% @comments.each do |comment| %>
+						<div class="well">
+									<h3><%= User.find(comment.user_id).name %></h3>
+										<div class="comment-component-well">
+											<p><font size="2"><%= comment.content %>
+												</p>
+								</div>
+								<span class="pull-right greenbadge">  Ups  (<%=comment.get_num_ups%>)</span>
+								<span class="pull-right redbadge">Downs(<%=comment.get_num_downs%>)</span>
+						</div>
+			<%end%>
+					<%else%>
+							<p><font size="3">No comments</p>
+			<%end%>	
+		
+		
+		
+		
+		
+		
+	</div>
+</div>
           <%end%>
 	</div>
       </div>
