@@ -230,10 +230,7 @@ end
   Author: Yahia
 =end
   def connect_social_accounts
-    # render :layout => "mobile_template"
-    # FIXME  
-    session[:user_id] = 1
-    @user = User.find(session[:user_id])
+    @user = current_user
     render layout: "mobile_template", template: "users/connect_social_accounts"
     # redirect_to(:action => 'generate_request_token', :id => 5)
   end 
