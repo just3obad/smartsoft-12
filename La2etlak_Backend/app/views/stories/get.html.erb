@@ -90,13 +90,11 @@
  <%end%>
  	 
 <!-- adds content of story  -->
- <% if @story.content != nil %>
+ <% if @story.mobile_content != nil %>
  <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
  
- <%= @story.content %>
- 
- </br></br>
- </div>
+ <%= @story.mobile_content %>
+ </div></br>
  <%end%>
 
 	<% if @story.category == "RSS" %>
@@ -119,7 +117,7 @@
 <!-- recommend button -->
    &nbsp;<%= link_to image_tag('reco.jpg' , :style =>"width:35px;height:25px;"), {:controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id }%>Recommend
 <!-- flag button -->
-   &nbsp;<%= link_to image_tag('flag.png' , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%>Flag</br>
+   &nbsp;<%= link_to image_tag('flag.png' , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%></br>
    
 <!-- Comments area, to comments and up or 
      any comments

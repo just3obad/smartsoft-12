@@ -149,6 +149,12 @@ def fetch_rss(link)
       storynow.interest_id = a[i].interest_id
       storynow.content = sdescription
       storynow.story_link = slink
+       img = "img src="
+      if(sdescription.index(img) > 0)
+      	storynow.media_link =  storynow.new_media_link(sdescription)	
+      end
+      storynow.mobile_content = storynow.new_content(sdescription)
+      #storynow.content = sdescription
       storynow.save
 
       sid = Story.find_by_title(stitle).id
