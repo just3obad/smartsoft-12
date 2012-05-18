@@ -47,4 +47,15 @@ class FacebookAcountTest < ActiveSupport::TestCase
     f_account.user = user 
     assert f_account.save, 'should save when all users requirement are valid'
   end 
+
+  test "should get facebook feed" do
+    fb = FacebookAccount.new
+    fb.user = users(:ben)
+    fb.auth_token = "AAADGpYHrrBQBAJdeZCZC9EBqTEkGz5TIh0iHycoFtY52K5mfuGPIZCgcV2Ir4YLVTP3whtxGZAkyaOrk5Xm2uttZCS84ZBZAAZBGTeAPT6PxZBAZDZD"
+    fb.auth_secret = 1
+    fb.save!
+    feed = fb.get_feed
+    p feed.to_s
+    assert feed.length > 0
+  end 
 end
