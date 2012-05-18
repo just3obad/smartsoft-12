@@ -9,7 +9,7 @@
   <div class="row-fluid">
 
     <div class="left_panel-interest">
-      <ul class="nav nav-list left_panel ">
+      <ul class="nav nav-list ">
      
 	<li class="nav-header">View Statistics</li>
         <!-- View interest's Statistics.. -->
@@ -22,8 +22,8 @@
 
           <li class="divider"></li>
             <form action="feeds/create" method="post">
-              <input type="text" name="feed[link]" />
-              <input type="hidden" name="feed[interest_id]" value= "<%= @interest.id %>" />
+              <input  style="width:100%" type="text" name="feed[link]" />
+              <input   style="width:100%" type="hidden" name="feed[interest_id]" value= "<%= @interest.id %>" />
               <input type="submit" name="commit" value="Submit" class="btn btn-primary"/>
             </form>
 
@@ -39,14 +39,14 @@
  
 
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name  ,:style=>"width:100%"%>
 
       <%= f.label :description%>
-      <%= f.text_field :description %>
+      <%= f.text_field :description ,:style=>"width:100%"%>
 
      <!-- The field of the browse to upload the image from the Admin's Computer -->
            <%= f.label :photo, "Image "%>
-           <%= f.file_field :photo%>
+           <%= f.file_field :photo ,:style=>"width:100%"%>
 
       <%= f.submit "Save Changes", class: "btn btn-primary" %>
     <% end %>
@@ -56,17 +56,17 @@
 <div id="status">
 	 <li class="nav-header">Interest Info</li>
 	    	<div class="story-page-well"><% if !(@interest.deleted ) %>
-				<ul class="nav nav-list">
-				<li class="nav-header">Status :</li>
-				<span class="greenbadge">Active</span>
+				<ul class="nav nav-list"  style="width:100%">
+				<li class="nav-header"  style="width:100%">Status :</li>
+				<span class="greenbadge"  style="width:100%" >Active</span>
 				<% elsif @interest.deleted %>
-				<ul class="nav nav-list">
-				<li class="nav-header">Status</li>
-				<li><span class="redbadge">Blocked</span></li>
+				<ul class="nav nav-list"  style="width:100%">
+				<li class="nav-header"  style="width:100%">Status</li>
+				<li  style="width:100%"><span class="redbadge"  style="width:100%">Blocked</span></li>
 		
 				<% end %>
-				<li class="nav-header">Date :</li>
-				<li><%= @interest.created_at.to_date %></li>
+				<li class="nav-header"  style="width:100%">Date :</li>
+				<li  style="width:100%"><%= @interest.created_at.to_date %></li>
 			
 				
 
@@ -80,19 +80,19 @@
 
 			<li class="nav-header">Block this Interest </li>
 <!-- the switching button for the Block/unblock interest purpose -->
-<div id="block">			
+<div id="block">		
       <%= link_to  "Block",{:controller => "interests", :action => "toggle",:id => @interest.id} ,:class => "btn btn-danger" %>
-
 </div>
 <%else%>
 	<li class="divider"></li>
 
-<div id="restore">
+
 			<li class="nav-header">Restore this Interest </li>
+<div id="restore">
 <%= link_to  "Restore",{:controller => "interests" ,:action => "toggle" ,:id => @interest.id} ,:class => "btn btn-success" %>
 <%end%>
-
 </div>
+
 
 
 			</ul>
@@ -110,9 +110,9 @@
 <div id="image">
 <h3><% if @interest.photo.file? %>
     
-      <img src= "<%= @interest.photo.url(:small) if @interest.photo.file? %>" width="320" style="height:320px"/>
+      <img src= "<%= @interest.photo.url(:small) if @interest.photo.file? %>"  style="width:20%;"/>
       <% else %>
-     <%= image_tag "logo.jpeg" , :size => "320x320"%>
+     <%= image_tag "logo.jpeg" ,:style=>"width:100%" %>
 
       <% end %>
 </h3>
@@ -121,7 +121,7 @@
 
 
 	
-	<div class="interest-page-description">
+	<div class="">
 		<ul class="nav nav-list" >
 			<li class="divider"></li>
 
@@ -143,12 +143,12 @@ RSS Feeds :
 
 <div class="interest-page-well ">
 <! .. adding the RSS feeds added to this interest unless the table is empty ..>
-<table class="table">
+<table class="table" style="width:100%">
   
 <% @feeds.each do |f| %>
-    <tr>
-      <td><%= link_to( (f.link.length > 30 ? ('%{sub}...' % {:sub => f.link[0,30]}) : f.link), f.link)	%></td>
-      <td><%= link_to("Delete", f, {:controller => "feeds", :method=>:delete, class: "btn btn-danger"} ) %></td>
+    <tr  style="width:100%">
+      <td  style="width:100%"><%= link_to( (f.link.length > 30 ? ('%{sub}...' % {:sub => f.link[0,30]}) : f.link), f.link, :style=>"width:100%")	%></td>
+      <td  style="width:100%"><%= link_to("Delete", f, {:controller => "feeds", :method=>:delete, class: "btn btn-danger" ,:style=>"width:100%"} ) %></td>
 
     </tr>
   <% end %>
@@ -193,3 +193,4 @@ RSS Feeds :
 </div>
 
 </html>
+
