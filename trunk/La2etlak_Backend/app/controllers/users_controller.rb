@@ -188,10 +188,10 @@ end
 
 # author: Gasser
 # This method is responsible for calling the resetPassword method in the users model 
-# that generates a random password then it is passed to the emailer to send this mail
-# with the format I made in send_forced_password in the views.Then a success flash
-# appears to inform the admin that the password is sent successfully then it redirects 
-# again to the show page.
+# that generates a random password and updates his password then it is passed to the 
+#emailer to send this mail with the format I made in send_forced_password in the views.
+#Then a success flash appears to inform the admin that the password is sent successfully
+# then it redirects again to the show page.
 def force_reset_password     
   @user = User.find(params[:id])
   @logs = @user.get_recent_activity(Time.zone.now)
