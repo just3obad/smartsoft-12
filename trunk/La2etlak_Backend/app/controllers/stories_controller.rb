@@ -14,9 +14,10 @@ def show
 Authot : Omar
 this method takes a story object as a parameter form social feed and renders its view 
 =end
-  
-  def get_story_feed(story)
-   @story = story
+
+  def get_story_feed
+   @ser = params[:serStor]
+   @story = Marshal::load(@ser)
    render :layout => "mobile_template"   
   end
   

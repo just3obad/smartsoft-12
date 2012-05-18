@@ -29,10 +29,21 @@
 			<table>
 				<!-- Since the screen size is small, I check whether the character count is displayable in one line, or do I need to cut the sentence and put dots -->
 				<%if f.title.length > 17 %>
-				<% url = "/stories/"+f.id.to_s+"/get" %>
-				<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+					<% if f.id.nil? %>
+					<% puts "bateekh"%>
+					<% serStory = Marshal::dump(f)%>
+					<% puts serStory%>
+						<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
+					<% else %>
+						<% url = "/stories/"+f.id.to_s+"/get" %>
+						<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+					<% end %>
 				<%else%>
-				<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+					<% if f.id.nil? %>
+						<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get_story_feed', :story => f} )%></td></tr>
+					<% else %>
+						<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+					<% end %>
 				<%end%>
 				<%unless f.content == nil%>
 				<%if f.content.length > 20 %>
