@@ -175,6 +175,7 @@ RSS Feeds :
 <% @stories.each do |story| %>
 	<div >
 		<h3><%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "story-component-button-absolute btn btn-primary") %></h3>
+		<span class="pull-right bluebadge"><%=time_ago_in_words(story.created_at)%></span>
 
 		<h3><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></h3>
 		<div class="pre-scrollable">
