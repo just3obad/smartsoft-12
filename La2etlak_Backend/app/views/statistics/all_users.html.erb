@@ -81,7 +81,7 @@
 
 </div>
 
-<div id="eee"></div> </br>
+<div id="ccc"></div> </br>
 	<div class="general info" id ="genInfo">
 		<h4>
 			<div class="alert alert-info">
@@ -90,6 +90,7 @@
 				<!--Make A User Component For Each Of The Top Ranked Five Users Contiaing Email, Name, Rank
 				And A Link To His Profile Page And Statistics Page -->
 			</div>
+		</h4>
 				<% User.get_users_ranking[0..4].each do |user|%>
 			<div class="well-user-component">
 				<a href="/users/<%= user.id%>"
@@ -100,22 +101,23 @@
 				<img src= "<%= user.image %>" width="75" style="height:75px"/>
 				<% end %> </a>
 				<div class="user-component-info">
-				<h5>
-					<% if user.name.nil? %>
-					<%= "No Name Available" %>
-				</h5>
-				<% else %>
+					<h5>
+						<% if user.name.nil? %>
+						<%= "No Name Available" %>
+					</h5>
+					<% else %>
 					<%= user.name %>
-				<% end %>
-				<h5>Rank : <%= user.get_user_rank %></h5>
-				<h5>Email : <%=user.email%></h5>
-				<%= link_to "view Statistics",
-				{:controller => 'statistics', :action => 'users',:id => user.id },
-				class: "interest-component-button-absolute btn btn-primary"%>
+					<% end %>
+					<h5>Rank : <%= user.get_user_rank %></h5>
+					<h5>Email : <%=user.email%></h5>
+					<%= link_to "view Statistics",
+					{:controller => 'statistics', :action => 'users',:id => user.id },
+					class: "interest-component-button-absolute btn btn-primary"%>
+				</div>
 			</div>
-		</h4>
+		<% end %>
+	<% end %>
 	</div>
 </div>
-<% end %>
-<% end %>
+</div>
 
