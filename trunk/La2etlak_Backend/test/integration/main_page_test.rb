@@ -17,8 +17,8 @@ class MainPageTest < ActionDispatch::IntegrationTest
      end
   #test get_feed
   test "get feeds" do
-        Interest.create!(:name => "Music", :description => "Music washes away from the soul the dust of everyday life", :image => "http://data.whicdn.com/images/15521117/hamster-music_165451585_thumb.jpg")
+        Interest.create!(:name => "Music", :description => "Music washes away from the soul the dust of everyday life")
         @feeds = Admin.get_feed
-        assert_equal(@feeds.length,1)
+        assert(@feeds.length >= 1)
       end
 end
