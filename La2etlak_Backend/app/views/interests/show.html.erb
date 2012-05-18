@@ -112,9 +112,9 @@
 <div id="image">
 <h3><% if @interest.photo.file? %>
     
-      <img src= "<%= @interest.photo.url(:small) if @interest.photo.file? %>"  style="width:20%;"/>
+      <img src= "<%= @interest.photo.url(:small) if @interest.photo.file? %>" width="320" style="height:320px"/>
       <% else %>
-     <%= image_tag "logo.jpeg" ,:style=>"width:100%" %>
+     <%= image_tag "logo.jpeg" , :size => "320x320"%>
 
       <% end %>
 </h3>
