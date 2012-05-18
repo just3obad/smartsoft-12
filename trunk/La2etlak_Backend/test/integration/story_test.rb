@@ -50,7 +50,7 @@ class StoryTest < ActionDispatch::IntegrationTest
     end
 
 # Author : Omar
-	test "should route to readmore view RED" do
+	test "should route to readmore view" do
             assert_routing 'stories/1/get', { :controller => "stories", :action =>    		                   "get", :id => "1"}
   	end
 
