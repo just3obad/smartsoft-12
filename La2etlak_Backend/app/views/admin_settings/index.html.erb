@@ -42,7 +42,7 @@
             <div class="tab-pane fade" id="general_settings">
               <%= form_tag("/admin_settings/statistics_time_span", :method => "post") %>
                    <label>Configure statistics time span</label>
-                <input type="number" class="span3" placeholder="Please enter the statistics time span" name="days">
+                <input type="number" class="span3" placeholder="Number in days." name="days">
                 <span class="help-block">Current time span is: <%= Admin_Settings.find_by_key("statistics_time_span").value %></span>
                 <button type="submit" class="btn">Submit</button>
               </form> 

@@ -79,12 +79,14 @@ end
 # $ Admin_Settings.create!(key:"statistics_time_span", value:30)
 
   def self.set_statistics_span (days)
-    value= Admin_Settings.find_by_key("statistics_time_span")
-    if value == 0
+    span= Admin_Settings.find_by_key("statistics_time_span")
+    span.value = days
+    span.save
+    if (span.value <= 29)
+      span.value = 30
+      span.save
       return 0
     else
-      value.value = days
-      value.save
       return 1
     end
   end
