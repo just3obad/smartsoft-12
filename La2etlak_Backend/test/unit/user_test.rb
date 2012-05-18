@@ -112,7 +112,7 @@ class UserTest < ActiveSupport::TestCase
 
   #Author : Essam
   test "tumblr account RED" do
-    new_tumblr = Tumblr::User.new(essamahmedhafez@gmail.com, 12345678) #Authentication
+    new_tumblr = Tumblr::User.new('essamahmedhafez@gmail.com', '12345678') #Authentication
     blog = new_tumblr.tumblr["tumblelog"]["name"]
     tumblr = TumblrAccount.new
     Tumblr.blog = blog
