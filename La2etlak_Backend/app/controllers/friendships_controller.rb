@@ -77,7 +77,7 @@ class FriendshipsController < ApplicationController
     if @friendship
       @friendship.delete
       @removed = true
-      flash[:notice] = "Friendship removed #{@friend.email} green"
+      flash[:notice] = "Friendship ignored #{@friend.email} green"
     else 
       flash[:notice] = "Friendship was not #{@friend.email} red"
     end
