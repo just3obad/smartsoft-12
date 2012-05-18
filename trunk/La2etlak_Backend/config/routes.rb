@@ -177,6 +177,7 @@ NokiaRuby::Application.routes.draw do
   resources :shares 
   resources :comments
   resources :admin_sessions
+  resources :password_resets
 
 
 
