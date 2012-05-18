@@ -490,9 +490,13 @@ end
   	stories = stories.sort_by &:created_at
   	stories_ids = stories.map {|story| story.id}
   	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
+	blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
   	unblocked_stories_ids = stories_ids - blocked_stories_ids
   	unblocked_stories_ids.each do |unblocked_story_id|
-        unblocked_stories.append(Story. find(unblocked_story_id))
+	story = Story.find(unblocked_story_id)
+	if !(blocked_interests.include?(story.interest_id))
+        unblocked_stories.append(story)
+	end
   end
  return unblocked_stories
 end
