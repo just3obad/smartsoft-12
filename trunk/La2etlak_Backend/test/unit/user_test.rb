@@ -246,7 +246,8 @@ class UserTest < ActiveSupport::TestCase
       this_story= Story.new :title => "Story1", :interest_id => this_interest
       this_story.interest = this_interest
       this_story.save
-      this_user = User.create :name => "amr", :email => "amr@abc.com", :password => "123456", :password_confirmation => "123456"
+      this_user = users(:ben)
+      UserSession.create(this_user)
       assert_difference('BlockInterest.count',1) do
          this_user.block_interest1(this_story)
       end
@@ -261,7 +262,8 @@ class UserTest < ActiveSupport::TestCase
       this_story= Story.new :title => "Story1", :interest_id => this_interest
       this_story.interest = this_interest
       this_story.save
-      this_user = User.create :name => "amr", :email => "amr@abc.com", :password =>"123456", :password_confirmation => "123456"
+      this_user = users(:ben)
+      UserSession.create(this_user)
       assert_difference('BlockStory.count',1) do
          this_user.block_story1(this_story)
       end
@@ -272,12 +274,23 @@ class UserTest < ActiveSupport::TestCase
 
     #Author: Rana
    test "user wants to block friend feed" do
-      this_user = User.create :name => "amr", :email => "amr@abc.com", :password =>"123456", :password_confirmation => "123456"
-      my_friend = User.create :name => "ahmed", :email => "ahmed@abc.com", :password =>"123498", :password_confirmation => "123498"
+      this_user = users(:ben)
+      UserSession.create(this_user)
+      my_friend = users(:ahmed)
       this_user.invite my_friend
       my_friend.approve this_user
-      assert_equal('Friend blocked successfully.', this_user.block_friends_feed1(my_friend))
+      assert_equal("#{my_friend.email} blocked successfully.", this_user.block_friends_feed1(my_friend))
       assert_equal('Friend already blocked.', this_user.block_friends_feed1(my_friend))
+    end
+
+    #Author: Rana
+   test "user wants to unblock friend feed" do
+      this_user = users(:ben)
+      UserSession.create(this_user)
+      my_friend = users(:ahmed)
+      this_user.invite my_friend
+      my_friend.approve this_user
+      assert_equal("#{my_friend.email} unblocked successfully.", this_user.unblock_friends_feed1(my_friend))
     end
 
   #Author : 3OBAD
