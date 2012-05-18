@@ -148,6 +148,7 @@ NokiaRuby::Application.routes.draw do
    match "users/activate/:id" => "users#activate"
    match "stories/filter" => "stories#filter"
    match "/admin_settings" => "admin_settings#index"
+   match 'admin_settings/statistics_time_span' => 'admin_settings#statistics_time_span'
    #$$$$$$$$$$$$$$$$$$$$$ BASSEM !! $$$$$$$$$$$$$$$$$$
 
 

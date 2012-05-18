@@ -41,4 +41,11 @@ class AdminSettingsController < ApplicationController
 	      render :action => 'index'
 	    end
 	  end
+
+	  #Author : BASSEM
+	  def statistics_time_span
+	  	Admin_Settings.set_statistics_span params[:days]
+	  	flash[:success] = "Time span set successfully."
+	  	redirect_to :action => "index"
+	  end
 end
