@@ -152,9 +152,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_select 'div[id = "my_stories"]'
     end
     assert_select 'div[id = "block"]'
-    assert_select 'div[id = "back"]'
-    
-    
+    assert_select 'div[id = "back"]' 
   end
 
   #Author: Rana
@@ -166,6 +164,29 @@ class UsersControllerTest < ActionController::TestCase
       assert_select 'div[id = "heading"]'
       assert_select 'div[id = "list"]'
       assert_select 'div[id = "back"]'
+  end
+
+  #Author: Rana
+  test "get manage blocked stories list" do
+      this_user = users(:ben)
+      UserSession.create(this_user)
+      get :manage_blocked_stories
+      assert_response :success
+      assert_select 'div[id = "heading"]'
+      assert_select 'div[id = "list"]'
+      assert_select 'div[id = "back"]'
+  end
+
+  #Author: Rana
+  test "get unblock story" do
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+    this_story= Story.new :title => "Story1", :interest_id => this_interest
+    this_story.interest = this_interest
+    this_story.save
+    get :unblock_story, 'id' => this_story.id
+    assert_response :redirect 
   end
 
   # Author: Yahia
