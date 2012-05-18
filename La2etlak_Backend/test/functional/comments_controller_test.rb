@@ -6,6 +6,6 @@ class CommentsControllerTest < ActionController::TestCase
     assert_difference('Comment.count') do
       post :create, :comment => {:content => "lololo" , :story_id => Story.first.id , :user_id => User.first.id}
     end
-    assert_redirected_to :controller => "stories" , :action => "mobile_show", :id2 => User.first.id, :id => Story.first.id
+    assert_redirected_to :controller => "stories" , :action => "get", :id => Story.first.id
   end
 end
