@@ -40,5 +40,22 @@ class ApplicationController < ActionController::Base
 	def current_admin
  	 @current_admin = current_admin_session && current_admin_session.record
 	end
+           def require_admin 
+     unless current_admin 
+       store_location 
+       flash[:notice] = "You must be logged in to access this page" 
+       redirect_to('admin/login') 
+       return false 
+     end 
+   end 
+   def require_no_admin 
+     if current_admin 
+       store_location 
+       flash[:notice] = "You must be logged out to access this page" 
+       redirect_to('admin/login') 
+       return false 
+     end 
+   end  
+           
 
 end
