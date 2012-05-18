@@ -15,8 +15,8 @@ Authot : Omar
 this method takes a story object as a parameter form social feed and renders its view 
 =end
   
-  def get_story_feed
-   @story = params[:story]
+  def get_story_feed(story)
+   @story = story
    render :layout => "mobile_template"   
   end
   
