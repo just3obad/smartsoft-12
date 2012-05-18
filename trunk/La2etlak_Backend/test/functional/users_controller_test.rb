@@ -5,7 +5,8 @@ class UsersControllerTest < ActionController::TestCase
 	# Author: Kiro ##########
 	setup :activate_authlogic
 	#########################
-   
+
+
    test "admin should reset user's password RED" do
      user=User.first
      get :force_reset_password, :id => user.id
@@ -199,11 +200,12 @@ class UsersControllerTest < ActionController::TestCase
 	end
 
   # Author: Yahia
-  test "A user should see a warning if he is connected to twitter in the connect_social_accounts page RED" do
+  test "A user should see a warning if he is connected to twitter in the connect_social_accounts page" do
     # needs to create a session with that user
     u1 = users(:ben)
     u1.twitter_account = twitter_accounts(:one)
     u1.save
+    UserSession.create u1
     get :connect_social_accounts
     assert_response :success, 'Get should be successful'
     assert_select "div[id=twitter_warning]"
