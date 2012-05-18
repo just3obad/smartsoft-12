@@ -555,6 +555,17 @@ end
     user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}
   end
 
+# Author: Omar
+#check if user has this interest as blocked or not if blocked return 1 else return 0
+ def is_blocked(interest)
+ 	if(BlockInterest.find(:all , :conditions => ["user_id = ? AND interest_id = ? ", self.id, interest]).length > 0)
+ 	return 1
+ 	  else 
+ 	    return 2
+ 	 end
+ end
+ 	    
+
   # Author: Omar
   #select all interests in the system
   def all_interests
