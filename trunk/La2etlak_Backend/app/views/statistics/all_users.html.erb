@@ -52,9 +52,12 @@
 	</div>
 </div>
 <div class="span9">
+	<div align="left">
+		<%= link_to image_tag("back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'admins', :action => 'index'} %>
+	</div></br>
 	<div class="alert" id="noUser" style="display: none;">  
         <a class="close" data-dismiss="alert">Ã—</a>
-           <h1><strong>Warning!</strong> No Users in our database Yet.</h1>
+        <h1><strong>Warning!</strong> No Users in our database Yet.</h1>
 	</div>
 
 	<!-- Check Whether There Is Any User In The Database Or Not -->
@@ -68,16 +71,14 @@
 
 	<!--Get The Number Of Users In The System-->
 
-	<h4><div class="alert alert-info">Number of registered users :
-		<%= User.all_user_registered %>
+	<h4>
+		<div class="alert alert-info">Number of registered users :
+			<%= User.all_user_registered %>
+		</div>
 	</h4>
-	</div>
 
 	<!--A Button To Return To Admin's Home Page-->
 
-	<div align="left">
-		<%= link_to image_tag("back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'admins', :action => 'index'} %>
-	</div></br>
 </div>
 
 <div id="eee"></div> </br>
@@ -88,9 +89,8 @@
 
 				<!--Make A User Component For Each Of The Top Ranked Five Users Contiaing Email, Name, Rank
 				And A Link To His Profile Page And Statistics Page -->
-
-				<% User.get_users_ranking[0..4].each do |user|%>
 			</div>
+				<% User.get_users_ranking[0..4].each do |user|%>
 			<div class="well-user-component">
 				<a href="/users/<%= user.id%>"
 				class="thumbnail-user-component">
