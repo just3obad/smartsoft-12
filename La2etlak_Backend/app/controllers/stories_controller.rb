@@ -8,9 +8,23 @@ def show
 
   end
   
+  
+  
+=begin 
+Authot : Omar
+this method takes a story object as a parameter form social feed and renders its view 
+=end
+  
+  def get_story_feed(story)
+   @story = story
+   render :layout => "mobile_template"   
+  end
+  
   # Author: Omar $$ this method taks params story id and get number of likes dislikes done bu user and 
   #renders mobile_template view  likes => method in the model gets the user who thumbed up story 
   # dislikes=> method in model gets user who thumbed down the story
+  
+  
    def get
 	id = params[:id]
 	@user = current_user
