@@ -234,7 +234,7 @@ class UsersControllerTest < ActionController::TestCase
   end 
 
   # Author: Menisy
-  test "facebook_warning_box" do
+  test "facebook warning box" do
     # needs to create a session with that user
     u1 = users(:ben)
     u1.facebook_account = facebook_accounts(:one)
