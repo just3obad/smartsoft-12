@@ -121,8 +121,7 @@ include StoriesHelper
 #Author : Shafei
 # This action returns the rank of one story since the day it was created
   def get_story_rank_all_time
-	rank = (self.shares.count * 5) + self.comments.count + (self.likedislikes.where(action: 1).count * 2)
-	- (self.flags.count * 5) - (self.likedislikes.where(action: -1).count * 2)
+	rank = (self.shares.count * 5) + self.comments.count + (self.likedislikes.where(action: 1).count * 2) - (self.flags.count * 5) - (self.likedislikes.where(action: -1).count * 2)
 	return rank
   end
   
