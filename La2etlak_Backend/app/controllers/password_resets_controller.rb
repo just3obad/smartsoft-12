@@ -13,7 +13,7 @@ def create
   "Please check your email."  
   redirect_to('/admin/login')  
  else  
-  flash[:notice] = "No user was found with that email address"  
+  flash[:notice] = "No admin was found with that email address"  
   render :action => :new  
  end  
 end
@@ -25,8 +25,8 @@ def edit
 end  
   
 def update  
- @admin.password = params[:user][:password]  
- @admin.password_confirmation = params[:user][:password_confirmation]  
+ @admin.password = params[:admin][:password]  
+ @admin.password_confirmation = params[:admin][:password_confirmation]  
  if @admin.save  
   flash[:notice] = "Password successfully updated"  
   redirect_to('/admin/index')  
