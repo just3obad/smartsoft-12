@@ -40,7 +40,8 @@ class FriendshipsController < ApplicationController
       flash[:notice] = 'Frindship request was not sent red'
     end  
 
-    redirect_to action: "search", query: params[:query_forward]
+    # redirect_to action: "index", query: params[:query_forward]
+    redirect_to action: "index"
   end
 
 =begin
@@ -77,7 +78,7 @@ class FriendshipsController < ApplicationController
     if @friendship
       @friendship.delete
       @removed = true
-      flash[:notice] = "Friendship ignored #{@friend.email} green"
+      flash[:notice] = "Friendship removed #{@friend.email} green"
     else 
       flash[:notice] = "Friendship was not #{@friend.email} red"
     end
@@ -89,7 +90,8 @@ class FriendshipsController < ApplicationController
     l.message = "#{name_1} removed friendship of #{name_2}"
     l.save
 
-    redirect_to action: "search", query: params[:query_forward] 
+    # redirect_to action: "index", query: params[:query_forward]
+    redirect_to action: "index"
   end
 
 =begin
@@ -101,6 +103,11 @@ class FriendshipsController < ApplicationController
     @user = current_user
     @friend = User.find(params[:friend_id])
     @user.block @friend
+    @friendship = @user.send(:find_any_friendship_with, @friend)
+    if @friendship
+      @friendship.delete
+    end 
+
     l = Log.new
     l.user_id_1 = @user.id
     l.user_id_2 = @friend.id
@@ -108,8 +115,8 @@ class FriendshipsController < ApplicationController
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1} blocked #{name_2}"
     l.save
-
-    render layout: 'mobile_template', text: "Member blocked  #{@friend.email}"
+    flash[:notice] = "#{name_2} was blocked successfully green"
+    redirect_to action: 'index'
   end
 
 

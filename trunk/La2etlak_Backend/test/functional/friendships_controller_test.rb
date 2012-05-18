@@ -5,63 +5,59 @@ class FriendshipsControllerTest < ActionController::TestCase
   #   assert true
   # end
 
-  # Notice on (13th May), I haven't settled on how the 
-  # views will be desigined, therefore, I selected text wit
-  # any division. Will enhance the tests after setteling on the design
-
   #Author: Yahia
   test 'should be able to index friendships request RED' do
     u1 = users(:one)
     u2 = users(:two)
     u1.invite u2
     u2.approve u1    
-
-  	get :index, {}, {user_id: 1}
+    UserSession.create u1
+  	get :index
   	assert_response :success, "Get request should be successfull"
-    assert_select 'p', "#{u2.email}"
+    assert_select "div[id=#{u2.id}]"
   		
   end 
 
   #Author: Yahia
   test 'should be able to create friendship RED' do  	
-    u1 = users(:one)
-    u2 = users(:two)
+    u1 = users(:ben)
+    u2 = users(:ahmed)
     u1.invite u2
   	assert_difference('Friendship.count') do
-  		get :create, {user_id: 2}, {user_id: 1}
+  		get :create, {user_id: 2}
       #, 'The count of Frienships should be changed'
   	end 
-    assert_select 'p', "succesfull"
+    assert_select "div["
 
   end 
 
   #Author: Yahia
   test 'should be able to approve friendship RED' do  	
-    u1 = users(:one)
-    u2 = users(:two)
+    u1 = users(:ben)
+    u2 = users(:ahmed)
     u1.invite u2
     assert Friendship.find_by_user_id(1).nil?, 'Friendship shouldn\'t be nil' 
-    
-    puts Friendship.find_by_user_id(1).pending
+    UserSession.create u2
+    # puts Friendship.find_by_user_id(1).pending
   	assert_difference('Friendship.find_by_user_id(1).pending') do
-  		get :approve, {user_id: 1}, {user_id: 2}
-      # , 'The pending of a Frienships should be changed'
+  		get :approve, {user_id: 1}
   	end 
-    assert_select 'p', "Your request has been sent to #{u2.email}"
+    assert_select 'div[id=notification][class=flash-red well]'
 
   end 
 
   #Author: Yahia
   test 'should be able to delete friendship RED' do  	
-    u1 = users(:one)
-    u2 = users(:two)
+    u1 = users(:ben)
+    u2 = users(:ahmed)
     u1.invite u2
     u2.approve u1    
+    UserSession.create u2
   	assert_difference('Friendship.count') do
-  		get :remove, {user_id: 2}, {user_id: 1}
+  		get :remove, {user_id: 2}
       # , 'The pending of a Frienships should be changed'
   	end 
-    assert_select 'p', "You hae deleted sent to #{u2.email}"
+    assert_select 'div[id=notification][class=flash-green well]'
 
   end 
 
