@@ -556,6 +556,9 @@ end
   
    if(UserAddInterest.find_by_interest_id(id) == nil)
  	UserAddInterest.create(:user_id => self.id , :interest_id => id)
+ 		if(BlockInterest.find_by_interest_id(id) != nil)
+ 			BlockInterest.find_by_interest_id(id).destroy
+ 		end
  		message = "#{username} added interest : #{interest_name}"
    		Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			interest_id: id, message: message)
  	else 
