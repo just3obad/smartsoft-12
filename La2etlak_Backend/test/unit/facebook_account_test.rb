@@ -56,6 +56,6 @@ class FacebookAcountTest < ActiveSupport::TestCase
     fb.save!
     feed = fb.get_feed
     p feed.to_s
-    assert feed.length > 0
+    assert feed.length > 0 , "Length of feed array should be greater than zero"
   end 
 end
