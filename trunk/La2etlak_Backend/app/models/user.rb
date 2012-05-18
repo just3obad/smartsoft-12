@@ -504,7 +504,7 @@ end
 #Author : Shafei
 # This action returns the rank of one user
 	def get_user_rank
-		rank = (self.shares.count * 3) + self.comments.count + self.likedislikes.where(action: 1).count + self.flags.count + self.likedislikes.where(action: -1).count + self.added_interests.count + self.friends.count + self.user_log_ins.count
+		rank = (self.shares.count * 3) + (self.comments.count * 2) + self.likedislikes.where(action: 1).count + self.flags.count + self.likedislikes.where(action: -1).count + (self.added_interests.count * 5) + self.friends.count + (self.user_log_ins.count * 2)
 		return rank
 	end
 
