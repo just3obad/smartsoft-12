@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   has_many :block_stories
   has_many :blocked_stories, :class_name => "Story", :through => :block_stories 
   has_many :user_log_ins
-  has_many :user_add_interests
+  has_and_belongs_to_many :user_add_interests
   has_many :added_interests, :class_name => "Interest", :through => :user_add_interests
 
   has_many :user_add_interests
@@ -504,9 +504,7 @@ end
 #Author : Shafei
 # This action returns the rank of one user
 	def get_user_rank
-		rank = (self.shares.count * 3) + self.comments.count + self.likedislikes.where(action: 1).count
-		+ self.flags.count + self.likedislikes.where(action: -1).count + self.added_interests.count
-		+ self.friends.count + self.user_log_ins.count
+		rank = (self.shares.count * 3) + self.comments.count + self.likedislikes.where(action: 1).count + self.flags.count + self.likedislikes.where(action: -1).count + self.added_interests.count + self.friends.count + self.user_log_ins.count
 		return rank
 	end
 
@@ -523,7 +521,11 @@ end
 		  final_users << hsh[:theuser]
 		end
 		top_users =  final_users.reverse
+		if(top_users.empty? == true)
+			return []
+		else
 		return top_users
+		end
 	end
 
 
