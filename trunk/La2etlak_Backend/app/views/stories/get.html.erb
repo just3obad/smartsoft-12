@@ -206,7 +206,7 @@
  
  
  
- <% if @user.user_interests != [] %> 
+ 
  
  
 <!-- block story story -->
@@ -215,7 +215,7 @@
 <!-- block interest link -->
    	<%=link_to('Block interest' , { :controller => 'users', :action => 'block_interest', :id => (@story.id)})%></br>
    	
-   	<%end%>
+  
    	
 <!-- when was the story added to our system -->
 	Added on <%= @story.created_at %></br></br>
