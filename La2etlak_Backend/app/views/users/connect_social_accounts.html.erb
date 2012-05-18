@@ -18,7 +18,7 @@
           :class => 'quick', 
           :remote => true%>
 
-        <% if @user.twitter_account %>
+        <% unless @user.twitter_account.nil? %>
           <div id="twitter_warning" class="warning-component-box-mobile" style="width:35%; float:right;">
             You are connected to twitter
           </div>
@@ -40,7 +40,7 @@
       </div>
 
       <div class="actions" style="margin:5%; clear:both">
-        <%= link_to image_tag('tumblr.padding-left', :size => "50x50") + "Tumblr", 
+        <%= link_to image_tag('tumblr.png', :size => "50x50") + "Tumblr", 
           url_for({:controller => 'tumblr_accounts', :action => 'action_name'}),
           :class => 'quick', 
           :remote => true%>
