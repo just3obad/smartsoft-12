@@ -1,0 +1,15 @@
+<!-- Mina Adel -->
+<html>
+<body>
+	<div align="center">
+<%= link_to "logout", {:controller => 'user_sessions', :action => 'destroy'}, class: "btn btn-primary"%></br></br>
+<%= link_to "friends", {:controller => 'friendships', :action => 'index'}, class: "btn btn-primary"%></br></br>
+<%= link_to "Modify Info", {:controller => 'users', :action => 'edit'}, class: "btn btn-primary"%></br></br>
+<%= link_to "toggle interests", {:controller => 'users', :action => 'toggle'}, class: "btn btn-primary"%></br></br>
+<%= link_to "connect social accounts", {:controller => 'users', :action => 'connect_social_accounts'}, class: "btn btn-primary"%></br></br>
+<%= link_to "back to main feed", {:controller => 'users', :action => 'feed'}, class: "btn btn-primary"%></br></br>
+
+	</div>
+<body>
+</html>
+<!-- Mina Adel -->

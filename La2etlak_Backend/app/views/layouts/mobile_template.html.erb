@@ -11,7 +11,8 @@
           <a href="#" id="logo" ><h1 class = "pull-left" style = "float:up;">LA2ETLAK</h1></a>
           <nav>
             <ul class="nav">
-              <li><a href="#" ><img src="http://img851.imageshack.us/img851/6572/gearlx.png" id="il_fi" height="25" width="25" ></a></li>
+			  <li><%= link_to (image_tag("http://img851.imageshack.us/img851/6572/gearlx.png")) , {:controller => "users" , :action =>
+				"settings"}, {:style => 'width:25px;height:25px'}%>
               <li><%= link_to (image_tag ("http://img268.imageshack.us/img268/2857/1336213338reload04.png")) ,{:controller => params[:controller],:action  =>  params[:action]}, {:style => 'margin-right:2%;width:25px;height:25px;'} %></li>
             </ul>
           </nav>
