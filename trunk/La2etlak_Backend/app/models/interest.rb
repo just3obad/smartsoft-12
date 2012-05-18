@@ -407,7 +407,7 @@ def self.my_create(interest)
  @interest.save
 if @interest
  Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
-$foo = true
+
 end 
 return @interest
 
@@ -421,9 +421,15 @@ def self.my_update(id,interest)
     @interest= Interest.find(id)
    @interests = Interest.all 
 @deleted = Interest.is_deleted(id)
- if (@deleted == false || @deleted.nil?)
-   return   @interest.update_attributes(interest) 
-else 
+ if (@deleted == false || @deleted.nil?) 
+   @interest.save 
+if @interest
+ Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Updated an interest")
+
+end
+   return   @interest.update_attributes(interest)
+             
+else
 return @interest
 end
 end
@@ -447,11 +453,19 @@ end
 if @interest.deleted 
  @interest.deleted = false
 @interest.save
+if @interest
+ Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Restored an interest")
+
+end
 
 else
 # if the interest wasn't blocked the we block it and save
 @interest.deleted = true
 @interest.save
+if @interest
+ Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Blocked an interest")
+
+end
 
 end
 return @interest
