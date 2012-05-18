@@ -135,6 +135,7 @@ class UsersController < ApplicationController
 #Author Kareem###############
 def feed
   user = current_user
+	@lol = current_user
   int_name = params[:interest]
   if(user.user_add_interests == [] && !int_name)
                stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)
@@ -158,6 +159,7 @@ end
 
 #$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
 def settings
+	@user = current_user
   render :layout => "mobile_template"
 end
 #$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
@@ -393,6 +395,35 @@ end
   end   
 
 #~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
-  
 
+	# Author: Kiro
+	def verifySettings
+    render :layout => 'mobile_template'
+  end
+
+	# Author: Kiro
+	def verifyAccount
+		@code = params[:code]
+		@user = current_user
+		if @user.verifyAccount?(@code)
+			flash[:notice] = "Your account has been successfully verified green"
+			redirect_to :controller => 'users', :action => 'feed'
+		else
+			flash[:notice] = "Incorrect Verification Code red"
+			redirect_to :controller => 'users', :action => 'verifySettings'
+		end
+	end
+  
+	# Author: Kiro
+	def resendCode
+		@user = current_user
+		if @user.resendCode?
+			Emailer.verification_instructions(@user).deliver
+			flash[:notice] = "The verification E-mail has been sent to your email green"
+			redirect_to :controller => 'users', :action => 'verifySettings'
+		else
+			flash[:notice] = "You have already verified your account"
+			redirect_to :controller => 'users', :action => 'feed'
+		end
+	end
 end
