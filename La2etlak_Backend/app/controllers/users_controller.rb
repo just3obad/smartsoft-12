@@ -164,6 +164,20 @@ def settings
 	@user = current_user
   render :layout => "mobile_template"
 end
+
+def facebook_feed
+  @user = current_user
+  stories = @user.filter_social_network(2)
+  @stories=stories.paginate(:per_page => 10, :page=> params[:page])
+  render :layout => "mobile_template", :template => "users/feed"
+end
+
+def twitter_feed
+  @user = current_user
+  stories = @user.filter_social_network(1)
+  @stories=stories.paginate(:per_page => 10, :page=> params[:page])
+  render :layout => "mobile_template", :template => "users/feed"
+end
 #$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
 
 
