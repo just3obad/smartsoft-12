@@ -3,7 +3,7 @@
 <% if @story == nil %>
  <div align="center">
  <%= " the selected story was removed ! "%> </br></br>
- 			   <%= link_to image_tag("http://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" , :style =>"width:50px;height:30px;"), {:contoller => 'users' , :action => 'feed'} %>
+ 			   <%= link_to image_tag('back-icon.png' , :style =>"width:50px;height:30px;"), {:contoller => 'users' , :action => 'feed'} %>
 	   </div></br> 
 	   <%else%>
 
@@ -40,7 +40,7 @@
  <!-- adding like and dislike button if user didnt like or dislike before and number of likes dislikes for this stort  -->
  <% if @action1 == [] && @action2 == [] %>
 
-<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
+<%= link_to image_tag('likecopy.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
  <% if @likes.length > 0 %>
 <% @a = "#{@likes.length} people like this." %>
  <%=link_to(@a , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
@@ -48,7 +48,7 @@
  <%= "thumb up"%>
  <%end%></br>
  
-<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
+<%= link_to image_tag('dislikekh.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
   <% if @dislikes.length > 0 %>
   <% @a = "#{@dislikes.length} people dislike this." %>
   <%=link_to(@a, {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
@@ -67,7 +67,7 @@
   	 <%= "you like this."%>
   	 <%end%>
   	 </br>
- 	<%= link_to image_tag("http://img717.imageshack.us/img717/856/dislikekh.png" , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
+ 	<%= link_to image_tag('dislikekh.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
   <% if @dislikes.length > 0 %>
   <% @a = "#{@dislikes.length} people dislike this." %>
   <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
@@ -82,7 +82,7 @@
   <% if @action2 != []  && @action1 == [] %>
 	
 	
-<%= link_to image_tag("http://img210.imageshack.us/img210/5599/likecopy.png" , :style =>"width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1}%>
+<%= link_to image_tag('likecopy.png' , :style =>"width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1}%>
 	 <% if @likes.length > 0 %>
  		<% @a = "#{@likes.length} people like this." %>
  		<%=link_to(@a , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
@@ -133,9 +133,9 @@
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
 
 <!-- recommend button -->
-   &nbsp;<%= link_to image_tag("http://t1.ftcdn.net/jpg/00/31/12/18/400_F_31121846_hi50PXgc8TyWvPty0xBZ8p4XqnVRalw7.jpg" , :style =>"width:35px;height:25px;"), {:controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id }%>Recommend
+   &nbsp;<%= link_to image_tag('reco.jpg' , :style =>"width:35px;height:25px;"), {:controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id }%>Recommend
 <!-- flag button -->
-   &nbsp;<%= link_to image_tag("http://cdn1.iconfinder.com/data/icons/CrystalClear/128x128/actions/flag.png" , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%>Flag</br>
+   &nbsp;<%= link_to image_tag('flag.png' , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%>Flag</br>
    
 <!-- Comments area, to comments and up or 
      any comments
@@ -226,7 +226,7 @@
 	
 	<!-- back to main feed button -->
 	<div align="center">
-			   <%= link_to image_tag("http://icons.iconarchive.com/icons/dryicons/simplistica/128/back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'users', :action => 'feed'} %>
+			   <%= link_to image_tag('back-icon.png' , :style =>"width:50px;height:30px;"), {:controller => 'users', :action => 'feed'} %>
 	   </div></br> 
  </div>
    
