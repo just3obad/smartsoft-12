@@ -5,6 +5,8 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
 
+  setup :activate_authlogic
+
 #Author : Shafei
   test "user get rank" do
 	user = users(:one)
@@ -184,12 +186,35 @@ class UserTest < ActiveSupport::TestCase
     
     #Author : Omar 
     #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+	test "add delete interest" do
+	
+		user = users(:ben)
+		UserSession.create(user)
+		int1 = Interest.create(:name => "interest 1")
+		user.toggle_interests(int1.id)
+		assert_equal( user.user_interests , [int1.id]  , "interest is not added")
+		user.toggle_interests(int1.id)
+		assert_equal( user.user_interests , []  , "interest is not deleted")
+	
+	end
+	
+	
+	test "check if blocked" do
+		user = users(:ben)
+		UserSession.create(user)
+		int1 = Interest.create(:name => "interest 1")
+		int2 = Interest.create(:name => "interest 2")
+		BlockInterest.create(:user_id => user.id , :interest_id => int1.id)
+		assert_equal( user.is_blocked(int1.id) , 1 , "not returning 1 when interest is block")
+		assert_equal( user.is_blocked(int2.id) , 2 , "not returning 2 when interest is not blocked")
+	end
+
+
+
     	test "get all interests" do
-			user = User.new
-			user.email = "abc@abc.com"
-			user.password = "123456"
-			user.password_confirmation = "123456"
-			user.save	
+			user = users(:ben)
+			UserSession.create(user)
 			int = Interest.create(:name => "interest")
 			all_interests = Interest.all
 			all = user.all_interests
@@ -198,11 +223,8 @@ class UserTest < ActiveSupport::TestCase
 
 
 	test "get user interests" do 
-		user = User.new
-		user.email = "abc@abc.com"
-		user.password = "123456"
-		user.password_confirmation = "123456"
-		user.save
+		user = users(:ben)
+		UserSession.create(user)
 		int1 = Interest.create(:name => "interest 1")
 		int2 = Interest.create(:name => "interest 2")
 		int3 = Interest.create(:name => "interest 3")		
