@@ -500,45 +500,25 @@ end
 
 #Author : Shafei
 	def get_user_rank
-		comments_by_user 	= Comment.where(:user_id => self.id)
-		shares_by_user 		= Share.where(:user_id => self.id)
-		dislikes_by_user	= Likedislike.where(:user_id => self.id, :action => -1)
-		likes_by_user 		= Likedislike.where(:user_id => self.id, :action => 1)
-		flags_by_user 		= Flag.where(:user_id => self.id)
-		friends_of_user		= Friendship.where(:user_id => self.id)
-		interests_of_user	= UserAddInterest.where(:user_id => self.id)
-		sign_ins_of_user	= UserLogIn.where(:user_id => self.id)
-		stories_blocked		= BlockStory.where(:user_id => self.id)
-		sum 				= (comments_by_user.length * 2) + (shares_by_user.length * 3) + likes_by_user.length + 
-							dislikes_by_user.length + flags_by_user.length + friends_of_user.length + interests_of_user.length
-							+ (sign_ins_of_user.length * 2) - (stories_blocked.length * 10)
-		
-		return sum
+		rank = (self.shares.count * 3) + self.comments.count + self.likedislikes.where(action: 1).count
+		+ self.flags.count + self.likedislikes.where(action: -1).count + self.added_interests.count
+		+ self.friends.count
+	return rank
 	end
 
 #Author : Shafei
 	def self.get_users_ranking
-		all_users 		= Array.try_convert(User.all)
-		if all_users.empty? == true
-			return all_users
+		all_users = Array.new
+		top_users = Array.new
+		final_users = Array.new
+		User.all.each do |user|
+	  	all_users << {:rank => user.get_user_rank, :theuser => user}
 		end
-		rank 			= Array.new
-		id_array		= Array.new
-		max				= 0
-		id				= 999999
-		all_users.each do |user|
-			all_users.each do |user|
-				if user.get_user_rank >= max && (id_array.include?(user.id) == false)
-					max = user.get_user_rank
-					id = user.id
-				end
-			end
-			#puts "#{id}"
-			max = 0
-			id_array << id
-			rank << all_users[id-1]
+		(all_users.sort_by {|element| element[:rank]}).each do |hsh|
+		  final_users << hsh[:theuser]
 		end
-		return rank
+		top_users =  final_users.reverse
+		return top_users
 	end
 
 
