@@ -27,8 +27,7 @@ class AutoCompleteTest < ActionDispatch::IntegrationTest
   #this test is to make sure that the auto completion really works
   test "AutoCompleteTest" do
      get "/admins/index"
-     User.create!(name: "dummy0", email: "dummy0@gmail.com")
-     User.create!(name: "dummy1", email: "dummy1@gmail.com")
+     User.create!(name: "dummy0", email: "dummy0@gmail.com", password:"123456" , password_confirmation: "123456")
      post 'autocomplete/auto_complete_for_autocomplete_query', {:controller =>"autocomplete" , :action => "auto_complete_for_autocomplete_query",:autocomplete=>{:query =>"d"}}
      @response.content_type = 'text/html'
      assert_tag :tag =>"ul" , :child => {:tag => "li", :content =>"dummy0"}
