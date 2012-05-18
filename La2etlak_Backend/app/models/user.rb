@@ -693,6 +693,41 @@ end
    return @text #return the message in variable text
   end
 
+  #This method takes a story id as input and unblocks its story by deleting its row in BlockStory table. 
+  #Author : Rana
+
+  def unblock_story1(this_story)
+   this_user = self
+   check_story = BlockStory.find_by_user_id_and_story_id(this_user,this_story)
+   if !(check_story.nil?)
+      check_story.delete
+      @text = "Story unblocked successfully."
+   #for log file in case of success of unblock
+   if self.name.nil?
+      @username = self.email.split('@')[0]
+   else
+      @username = self.name
+   end
+   @storytitle = this_story.title
+   @message = "#{@username} unblocks story with title: #{@storytitle}" 
+   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: check_story.id, interest_id: nil, message: @message)
+   end
+   return @text #return the message in variable text
+  end
+
+  #This method gets the unblocked stories of the user from the BlockStory table. 
+  #Author : Rana
+
+  def get_blocked_stories
+   this_user = self
+   blocked_stories = Array.new
+   blocked_stories_id = this_user.block_stories
+   blocked_stories_id.each do |blocked_story|
+      blocked_stories << Story.find_by_id(blocked_story.story_id)
+    end
+   return blocked_stories
+  end
+
   #This method takes a friend as input and blocks him/her using the block method provided by the gem amistad.
   #It first checks if the friend is already blocked or not.
   #Author: Rana
@@ -725,7 +760,7 @@ end
   # Author: Rana
   def unblock_friends_feed1(my_friend)
     self.unblock my_friend
-    @text = "#{my_friend.email} was unblocked succesfully."
+    @text = "#{my_friend.email} unblocked successfully."
     #for log file
      if self.name.nil?
       @username = self.email.split('@')[0]
@@ -753,7 +788,7 @@ end
    def get_social_feed()
      user = User.find(self.id)
      social_stories = Array.new
-     if(!user.twitter_account.nil?)
+    if(!user.twitter_account.nil?)
        social_stories = social_stories + (user.twitter_account.get_feed)
      end
      if(!user.tumblr_account.nil?)
