@@ -15,6 +15,7 @@ class FacebookAccount < ActiveRecord::Base
 	# Author: Menisy
   def get_feed
   	begin
+      self.auth_secret = self.auth_secret.to_i+1
       p("\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>> \n\n\ngetting feed\n\n")
       new_token = Koala::Facebook::OAuth.new("http://localhost/fb/done/").exchange_access_token(self.auth_token)
       puts(">>>>>>>>>>>>>>>>>>>>>>>>>>\n\n\n"+new_token+"\n\n\n\n")
@@ -27,6 +28,7 @@ class FacebookAccount < ActiveRecord::Base
       pic = ""
       content = ""
       media = ""
+      p g.nil?
       if g
         g.each do |s| 
           title = s["from"]["name"]+" shared:"
@@ -52,7 +54,8 @@ class FacebookAccount < ActiveRecord::Base
           story.hidden = false
           feed << story
         end
-        p("\n\n\n\n\n\n\n\n!!!!!!!!!"+feed+"\n\n\n\n")
+        p "returning feed"
+        p feed.to_s
         return feed
       end	
     rescue
