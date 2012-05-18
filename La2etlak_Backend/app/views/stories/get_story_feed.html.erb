@@ -22,7 +22,7 @@
  
  <!-- back to main feed button -->
 	<div align="center">
-			   <%= link_to image_tag('back-icon.png' , :style =>"width:50px;height:30px;"), {:controller => 'users', :action => 'feed'} %>
+			   <%= link_to_function image_tag('back-icon.png' , :style =>"width:50px;height:30px;"), "history.back()" %>
 	   </div></br> 
  </div>
    
