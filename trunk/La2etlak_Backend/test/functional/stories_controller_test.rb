@@ -151,4 +151,21 @@ class StoriesControllerTest < ActionController::TestCase
    assert_select 'div[ id=back]'
 
   end
+  
+  #Author : Shafei
+  test "route to all stories" do
+		assert_routing 'admins/statistics/all_stories', { :controller => "statistics", :action => "all_stories"}
+    end
+	
+  #Author : Shafei
+  test "get all stories response" do
+	get 'admins/statistics/all_stories'
+	assert_response :success
+    end
+
+  #Author : Shafei
+  test "all stories has div" do
+    get 'admins/statistics/all_stories'
+    assert_select 'div[id = ccc]'
+   end
 end
