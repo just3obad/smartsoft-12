@@ -13,12 +13,12 @@ def show
   # dislikes=> method in model gets user who thumbed down the story
    def get
 	id = params[:id]
-	user = current_user
+	@user = current_user
 	@story = Story.find(id)
 	@likes = @story.liked
 	@dislikes = @story.disliked
-	@action1 = @story.check_like(user)
-	@action2 = @story.check_dislike(user)
+	@action1 = @story.check_like(@user)
+	@action2 = @story.check_dislike(@user)
   # instance variables for comments
   # Author: Menisy
   @story = Story.find(params[:id])
