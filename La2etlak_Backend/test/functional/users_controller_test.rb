@@ -85,32 +85,12 @@ class UsersControllerTest < ActionController::TestCase
   #Author: Omar
 	test "toggle view" do
 		
-		user = User.new
-		user.email = "abc@abc.com"
-		user.password = "123456"
-		user.password_confirmation = "123456"
-		user.save
+		user = users(:ben)
+		UserSession.create(user)
 		assert get(:toggle , {'user' => user})
 
 	end
-
-  # Author: Omar
-  test "add selected interest in database" do
-     user = User.new
-	user.email = "abc@abc.com"
-	user.password = "123456"
-	user.password_confirmation = "123456"
-	user.save
-     interest = Array.new
-     interest1 = Interest.create(:name => "interest 1")
-     interest2 = Interest.create(:name => "interest 2")
-     interest = [interest1.id , interest2.id]
-     assert get(:user_add_interests , {'interests' => interest} , {'user' => user} )
-     
-
-
-  end
-    
+	
   #Author:Rana
   test "get block story" do
     this_interest = Interest.create :name => "Sports", :description => "hey sporty"
