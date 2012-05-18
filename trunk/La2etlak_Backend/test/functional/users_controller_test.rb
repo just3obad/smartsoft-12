@@ -365,4 +365,17 @@ class UsersControllerTest < ActionController::TestCase
     get 'admins/statistics/all_users'
     assert_select 'div[id = ccc]'
    end
+
+	# Author: Kiro
+	test "test login" do
+
+		UserSession.create(users(:ben))
+		get :feed
+		user = assigns(:lol)
+		puts user.email
+		assert_not_nil user, "user is nil"
+		assert_equal user.email, "ben@gmail.com", "user is not ben"
+
+	end
+
 end
