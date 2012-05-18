@@ -156,6 +156,12 @@ def feed
 end
 ########################
 
+#$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
+def settings
+  render :layout => "mobile_template"
+end
+#$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
+
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$ Author Omar $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 #this method return current user interests and all interests on the system and render to mobile_template (toggle view 
