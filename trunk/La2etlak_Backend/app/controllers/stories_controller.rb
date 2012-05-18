@@ -1,3 +1,4 @@
+# encoding: utf-8
 class StoriesController < ApplicationController
   respond_to :html,:json
   require 'net/smtp'
