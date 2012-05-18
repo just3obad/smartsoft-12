@@ -2,6 +2,9 @@
     <h3> Choose a social network connect to</h3>
 
       <div class="actions" style="margin:5%; clear:both">
+	<table>
+		<tr>
+			<td>
         <%= link_to image_tag('facebook.png', :size => "50x50") + "Facebook", 
        url_for({:controller => 'users', :action => 'authenticate_facebook_init'}),
          :class => 'quick', 
@@ -12,6 +15,14 @@
             You are connected to Facebook
           </div>
         <% end %>
+			</td>
+			<td>
+				<% unless @user.facebook_account.nil? %>
+				<%= link_to "View Facebook Feed", {:controller => 'users', :action => 'facebook_feed'}, class: "btn btn-primary"%></br></br>				
+				<% end %>
+			</td>
+		</tr>
+	 </table>
       </div>
 
       <!-- This is the twitter division, please mock it 
@@ -19,6 +30,9 @@
           
           Author: Yahia -->
       <div class="actions" style="margin:5%; clear:both">
+		<table>
+			<tr>
+				<td>
         <%= link_to image_tag('twitter.png', :size => "50x50") + "Twitter", 
           url_for({:controller => 'twitter_accounts', :action => 'generate_request_token'}),
           :class => 'quick', 
@@ -29,9 +43,21 @@
             You are connected to twitter
           </div>
         <% end %>
+			</td>
+			<td>
+				<% unless @user.twitter_account.nil? %>
+				<%= link_to "View Facebook Feed", {:controller => 'users', :action => 'twitter_feed'}, class: "btn btn-primary"%></br></br>				
+				<% end %>
+			</td>
+		</tr>
+	 </table>
+
       </div>
 
       <div class="actions" style="margin:5%; clear:both">
+			<table>
+				<tr>
+					<td>
         <%= link_to image_tag('flickr.png', :size => "50x50") + "Flickr", 
           url_for({:controller => 'flickr_accounts', :action => 'auth'}),
           :class => 'quick', 
@@ -42,6 +68,14 @@
             You are connected to flickr
           </div>
         <% end %>
+			</td>
+			<td>
+				<% if @user.flickr_account %>
+				<%= link_to "View Facebook Feed", {:controller => 'users', :action => 'twitter_feed'}, class: "btn btn-primary"%></br></br>				
+				<% end %>
+			</td>
+		</tr>
+	 </table>
 
       </div>
 
