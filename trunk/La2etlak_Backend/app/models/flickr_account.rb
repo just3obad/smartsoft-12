@@ -2,7 +2,9 @@ require 'flickraw'
 
 class FlickrAccount < ActiveRecord::Base
 
-
+API_KEY='443b0e6f88e26df854bdf0d7f7a8c1d5'
+SHARED_SECRET='ff3e3ebe8f31e039'
+  
 
 =begin  
   consumer_key and secret_key are the access keys to the flickr 
@@ -17,7 +19,12 @@ class FlickrAccount < ActiveRecord::Base
   validates :secret_key, presence: true
 
 
-
+def config_flickr
+  FlickRaw.api_key=API_KEY
+  FlickRaw.shared_secret=SHARED_SECRET
+  flickr.access_token=self.consumer_key
+  flickr.access_secret=self.secret_key
+end
 
 
 =begin
@@ -31,26 +38,28 @@ class FlickrAccount < ActiveRecord::Base
 
   def get_feed
 
-	begin
+begin
+     self.config_flickr
      login = flickr.test.login
-    rescue
-     redirect_to controller: 'flickr_accounts', action: 'auth'
-    end
-
-    begin
+     puts "#{login} + login thats good"
      user = flickr.people.findByUsername( :username => login.username )
-     photo_list = flickr.photos.getContactsPublicPhotos( :user_id => user.nsid, :count => 10 ,:just_friends => 1)
+     photo_list = flickr.photos.getContactsPhotos( :count=>"20",:just_friends => "1")
     rescue Exception => ex
-     puts ex
+      puts ex
+      puts "False"
       return []
     end
  
      stories = Array.new
-     photo_list.each do |image|
-     temp = TwitterAccount.convert_tweet_to_story(image) 
-     stories.push(temp) 
+     puts "Created the array"
+     photo_list.each do |photo|
+      puts "will convert"
+     phtot = FlickrAccount.convert_photo_to_story(photo) 
+     puts "pushing"
+     stories.push(photo) 
     end 
     #puts stories 
+    puts "True"
     return stories
 
   end
@@ -63,15 +72,21 @@ class FlickrAccount < ActiveRecord::Base
 
 =end 
 
-  def self.convert_image_to_story(image)
+  def self.convert_photo_to_story(photo)
     #story = [author: tweet['user']['name'], text: tweet['text']]
-    info = flickr.photos.getInfo :photo_id => image.id, :secret => image.secret
+    puts "getting info" 
+    info = flickr.photos.getInfo :photo_id => photo.id, :secret => photo.secret
+    puts "getting url"
     original_url = FlickRaw.url(info)
+    puts "new story"
     story = Story.new
     story.instance_variables
-    story.title = image.title
+    story.title = "Photo of #{photo.username}"
+    puts story.title
     story.category = 'flickr'
+    puts story.category
     story.media_link = original_url
+    puts story.media_link
     return story 
   end
 
