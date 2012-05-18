@@ -170,9 +170,39 @@
           <li class="divider"></li>
           
           <% if @user.deactivated %>
+          <div id="myModal" class="modal hide fade in" style="display: none; ">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">×</button>
+              <h3>Confirmation message</h3>
+            </div>
+            <div class="modal-body">
+              <h4>Are you sure you want to activate this user ?</h4>
+              
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
               <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success", id: "deactivate_button") %>
+            </div>
+          </div>
+            <a data-toggle="modal" href="#myModal" class="btn btn-success btn-large">Activate</a>
+              
             <% else %>
+            <div id="myModal" class="modal hide fade in" style="display: none; ">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">×</button>
+              <h3>Confirmation message</h3>
+            </div>
+            <div class="modal-body">
+              <h4>Are you sure you want to deactivate this user ?</h4>
+              
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
               <%= link_to('Deactivate', {:controller => 'users', :action => 'deactivate', :id => @user.id}, class: "btn btn-large btn-danger", id: "deactivate_button") %>
+            </div>
+          </div>
+            <a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large">Deactivate</a>
+              
             <% end %>
           <li class="divider"></li>
            <li class="nav-header">Back to all users</li>
