@@ -32,6 +32,7 @@ NokiaRuby::Application.routes.draw do
   match "/stories/:id/get" => "stories#get"
   match "mob/toggle" => "users#toggle"   
   match "mob/int_toggle" => "users#int_toggle"
+  match "mob/story_feed" => "stories#get_story_feed"
 # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$ 
 
 
