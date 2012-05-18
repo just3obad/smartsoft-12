@@ -51,6 +51,9 @@ NokiaRuby::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
+config.action_controller.consider_all_requests_local = false
+config.action_controller.perform_caching             = true
+
   # Enable threaded mode
   # config.threadsafe!
 
