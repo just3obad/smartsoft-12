@@ -51,9 +51,9 @@
       <%= f.submit "Save Changes", class: "btn btn-primary" %>
     <% end %>
 </div>
+<!-- this is the div holdeing the state of the interest (blocked/active) also the date it was created -->
 
- 	 <!-- this is the div holdeing the state of the interest (blocked/active) also the date it was created -->
-<div id="status">
+ <div id="status">	 
 	 <li class="nav-header">Interest Info</li>
 	    	<div class="story-page-well"><% if !(@interest.deleted ) %>
 				<ul class="nav nav-list"  style="width:100%">
@@ -80,23 +80,25 @@
 
 			<li class="nav-header">Block this Interest </li>
 <!-- the switching button for the Block/unblock interest purpose -->
-<div id="block">		
+<div id="block">			
       <%= link_to  "Block",{:controller => "interests", :action => "toggle",:id => @interest.id} ,:class => "btn btn-danger" %>
 </div>
 <%else%>
 	<li class="divider"></li>
 
-
-			<li class="nav-header">Restore this Interest </li>
 <div id="restore">
+			<li class="nav-header">Restore this Interest </li>
+
 <%= link_to  "Restore",{:controller => "interests" ,:action => "toggle" ,:id => @interest.id} ,:class => "btn btn-success" %>
 <%end%>
-</div>
+
+
 
 
 
 			</ul>
 </div>
+
 
 
 
@@ -116,9 +118,8 @@
 
       <% end %>
 </h3>
+
 </div>
-
-
 
 	
 	<div class="">
