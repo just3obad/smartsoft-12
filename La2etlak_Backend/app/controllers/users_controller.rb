@@ -73,6 +73,7 @@ class UsersController < ApplicationController
     fb_id = user["id"]
     fb_account.facebook_id = fb_id
     if fb_account.save
+      fb_account.add_to_log
       flash[:notice] = "Facebook account was added successfully green"
       redirect_to :controller => "users", :action => "connect_social_accounts"
     else
