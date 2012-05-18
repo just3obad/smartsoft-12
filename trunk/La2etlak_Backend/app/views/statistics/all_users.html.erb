@@ -48,13 +48,13 @@ var $j = jQuery.noConflict();
         <li>
        <%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
        </li>
- 
      </ul>
     </div>
     </div>
     <div class="span9">
+			<% if(@users.empty? == true) %>
 <div class="alert" id="noUser" style="display: none;">
-		<% if(@users.empty? == true) %>
+		
            <a class="close" data-dismiss="alert">×</a>
            <h1><strong>Warning!</strong> No Users in our database Yet.</h1>
      </div>
@@ -66,7 +66,9 @@ var $j = jQuery.noConflict();
             <h4><div class="alert alert-info">Number of registered users : 
             <%= User.all_user_registered %>
             </div></h4>
-            
+            <div align="left">
+  <%= link_to image_tag("back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'admins', :action => 'index'} %>
+  </div></br>
           
           </div>
           </div>
@@ -80,7 +82,7 @@ var $j = jQuery.noConflict();
             
 			<% i = 1%>
             <% User.get_users_ranking[0..4].each do |user|%>
-    
+    </div>
 		<div class="well-user-component">
 		<a href="/users/<%= user.id%>"
         class="thumbnail-user-component">
@@ -92,14 +94,13 @@ var $j = jQuery.noConflict();
         <div class="user-component-info">
           <h5><% if user.name.nil? %>
 					<%= "No Name Available" %>
+					</h5>
             <% else %>
 				<%= user.name  %>
 			<% end %>
             <h5>Rank : <%= user.get_user_rank %></h5>
 			<h5>Email : <%=user.email%></h5>
 			<% i = i+1 %>
-          </h5>
-          
 		<%= link_to "view Statistics", 
 		{:controller => 'statistics', :action => 'users',:id => user.id }, 
 		class: "interest-component-button-absolute btn btn-primary"%>
