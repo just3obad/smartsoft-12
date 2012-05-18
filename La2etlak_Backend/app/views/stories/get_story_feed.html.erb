@@ -5,22 +5,20 @@
       </div>
 
 <!--checking for media url if found with content extract it from content display and then display content without it -->
-
-    <div align="center">
-    
     <% if @story.media_link != nil && @story.media_link.length > 3%>
+    <div align="center">
     <img src="<%=@story.media_link%>" width="220" align="center">
-	 <%end%>
 	 </div></br>
+	<%end%>
 	
  	 
 <!-- adds content of story  -->
- <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
  <% if @story.content != nil %>
+ <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
  <%= @story.content %>
- <%end%>
  </br></br>
  </div>
+ <%end%>
  
  <!-- back to main feed button -->
 	<div align="center">
