@@ -10,6 +10,7 @@ class InterestsController < ApplicationController
     @interests = Interest.get_all_interests
     @interest = Interest.get_interest(params[:id])
     @stories = Story.find_all_by_interest_id(params[:id]) # get
+    @stories = @stories.sort_by { |obj| obj.created_at }.reverse
     @feeds = Feed.find_all_by_interest_id(params[:id])
     @feed = Feed.find_by_interest_id(params[:id])#retrieving the feeds for a certain interest in the database using the id of the interest
 
