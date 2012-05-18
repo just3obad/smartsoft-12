@@ -11,7 +11,7 @@
 	<% else %>
 	<ul>
 		<% @resulted_users.each do |member| %>
-			<li> <%= if member.name.nil?  then member.email.split('@').first else member.name end %> </li>
+			<li> <%= if member.name.nil?  then member.email.split('@').first else "#{member.name}  (#{member.email})"  end %> </li>
 			
 			<%=	if member.friends.include? @user
 				link_to 'remove friendship',{:controller => 'friendships',
