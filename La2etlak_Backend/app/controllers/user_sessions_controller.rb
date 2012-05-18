@@ -50,6 +50,7 @@ class UserSessionsController < ApplicationController
   	@user_session = UserSession.find
   	@user_session.destroy
   	flash[:notice] = "Successfully logged out."
+		redirect_to new_user_session_path
 	end
 
 	# This method is used to login the user by creating

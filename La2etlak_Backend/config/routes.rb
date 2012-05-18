@@ -25,6 +25,7 @@ NokiaRuby::Application.routes.draw do
 	match "mob/test" => "users#test"
 	match "mob/test_2" => "users#test_2"
   match "mob/forgot_password" => "users#forgot_password"
+	match 'logout', :controller => 'user_sessions', :action => 'destroy'
 	resources :user_sessions
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 
