@@ -263,4 +263,32 @@ end
   return stories.uniq
  end
 
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OMAR $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+require 'nokogiri'
+require 'rubygems'
+require 'open-uri'
+ def new_content(sdescription)
+
+	doc = Nokogiri::HTML(sdescription)
+	doc = doc.xpath("//text()").to_s
+	return doc
+
+ end
+ 
+ 
+require 'nokogiri'
+require 'rubygems'
+require 'open-uri'
+ def  new_media_link(sdescription)
+ 
+	frag = Nokogiri::HTML.fragment(sdescription)
+	first_img_src = frag.at_css('img')['src']
+	#first_p_text  = frag.at_css('p').text
+	 return first_img_src
+	
+ end
+ 
+#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OMAR $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 end
