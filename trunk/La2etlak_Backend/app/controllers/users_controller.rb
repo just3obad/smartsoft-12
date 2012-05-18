@@ -72,12 +72,12 @@ class UsersController < ApplicationController
     user = graph.get_object("me")
     fb_id = user["id"]
     fb_account.facebook_id = fb_id
-    if fb_account.save!
+    if fb_account.save
       flash[:notice] = "Facebook account was added successfully green"
-      redirect_to :controller => "users", :action => "feed"
+      redirect_to :controller => "users", :action => "connect_social_accounts"
     else
       flash[:notice] = "Facebook account was not added red" + user.to_s
-      redirect_to :controller => "users", :action => "feed"
+      redirect_to :controller => "users", :action => "connect_social_accounts"
     end
   end
 
