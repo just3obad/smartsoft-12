@@ -22,17 +22,16 @@
 	
 <div class="span9">
 		
+		<div align="left">
+			<%= link_to image_tag("back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'admins', :action => 'index'} %>
+		</div></br>
 	<!--Check If The Database Is Empty Or Not-->
-		
 	<% if @stories.empty? == true %>
 	<div style="position: absolute; top: 400px; left: 300px; z-index: 1px; visibility: show;">
 		<font size="7" face="verdana" color="red" > No Stories Yet </font>
 	</div>
-	<div class="general info" id ="genInfo">	
+	<div class="general info" id ="genInfo">
 		<% else %>
-		<div align="left">
-			<%= link_to image_tag("back-icon.png" , :style =>"width:50px;height:30px;"), {:controller => 'admins', :action => 'index'} %>
-		</div></br>
 		<h4>
 			<div class="alert alert-info">
 				Top 5 Stories All Time : </br>
@@ -63,9 +62,9 @@
 				class: "story-component-button-absolute btn btn-primary"%>
 			</div>
 		</div>
+	<% end %>
 	</div>
 </div>
-		<% end %>
 		
 <div class="span9">
 	
@@ -87,22 +86,24 @@
 			<%= image_tag "logo.jpeg", :size => "75x75" %> 
 			</a>
 			<div class="story-component-info">
-			<h5>
-				<%= story.title %>
-			</h5>
-			<h7> Rank : <%= story.get_story_rank_all_time %> </h7>
-			<h7> Shares : <%= Share.where(:story_id => story.id).count %> </h7>
-			<h7> Comments : <%= Comment.where(:story_id => story.id).count %> </h7>
-			<h7> Likes : <%= Likedislike.where(:story_id => story.id, :action => 1).count %> </h7>
-			<h7> Dislikes : <%= Likedislike.where(:story_id => story.id, :action => -1).count %> </h7>
-			<h6> Interests : <%= Interest.where(:id => story.interest_id).first.name %> </h6>
-			<%= link_to "view Statistics", 
-			{:controller => 'statistics', :action => 'stories',:id => story.id }, 
-			class: "story-component-button-absolute btn btn-primary"%>
+				<h5>
+					<%= story.title %>
+				</h5>
+				<h7> Rank : <%= story.get_story_rank_all_time %> </h7>
+				<h7> Shares : <%= Share.where(:story_id => story.id).count %> </h7>
+				<h7> Comments : <%= Comment.where(:story_id => story.id).count %> </h7>
+				<h7> Likes : <%= Likedislike.where(:story_id => story.id, :action => 1).count %> </h7>
+				<h7> Dislikes : <%= Likedislike.where(:story_id => story.id, :action => -1).count %> </h7>
+				<h6> Interests : <%= Interest.where(:id => story.interest_id).first.name %> </h6>
+				<%= link_to "view Statistics", 
+				{:controller => 'statistics', :action => 'stories',:id => story.id }, 
+				class: "story-component-button-absolute btn btn-primary"%>
+			</div>
 		</div>
+		<% end %>
+		<% end %>		
+		<% end %>
 	</div>
 </div>
-		<% end %>
-	<% end %>
-<% end %>
+		
 
