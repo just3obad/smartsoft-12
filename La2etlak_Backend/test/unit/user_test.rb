@@ -83,6 +83,7 @@ class UserTest < ActiveSupport::TestCase
 
    ##########Author: christinesed@gmail.com ############
    test "get no of users who signed in today a user signed in more than once" do
+   	count = User.get_no_of_users_signed_in_today
     usr=User.new(:email=>"example@gmail.com", :password => "1234567", :password_confirmation => "1234567")
     assert usr.save
     log=UserLogIn.new
