@@ -16,11 +16,7 @@ class UserTest < ActionDispatch::IntegrationTest
    assert_response :success
    end 
   
-  ##########Author: Diab ############
-  test "user statistics page has a list of users who added it" do
-   get '/users/statistics/1'
-   assert_select 'div[id = shared_stories]'
- end
+ 
 
     #Author : Mina Adel
     test "route to main feed" do
