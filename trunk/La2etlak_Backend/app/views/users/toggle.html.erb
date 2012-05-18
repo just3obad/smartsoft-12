@@ -26,10 +26,18 @@
 		<%= link_to interest.name, 
 {:controller => 'users', :action => 'int_toggle',:id => interest.id }, 
 class: "btn btn-success" %></br></br>
-			<%else%>  					
+			<%else%>
+			 <% if @user.is_blocked(interest.id) == 1 %>
+				<%= link_to "#{interest.name} (blocked)" , 
+{:controller => 'users', :action => 'int_toggle', :id => interest.id }, 
+class: "btn btn-danger"%></br></br>				
+		<%else%>
    		  <%= link_to interest.name, 
 {:controller => 'users', :action => 'int_toggle', :id => interest.id }, 
 class: "btn btn-danger"%></br></br>
+			
+			<%end%>
+			
 			<%end%>
 		<!-- Kareem -->
 		  </td>
