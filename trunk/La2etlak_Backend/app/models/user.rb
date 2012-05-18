@@ -750,16 +750,16 @@ end
      user = User.find(self.id)
      social_stories = Array.new
      if(!user.twitter_account.nil?)
-       social_stories + (user.twitter_account.get_feed)
+       social_stories = social_stories + (user.twitter_account.get_feed)
      end
      if(!user.tumblr_account.nil?)
-       social_stories + (user.tumblr_account.get_feed)
+       social_stories = social_stories + (user.tumblr_account.get_feed)
      end
      if(!user.facebook_account.nil?)
-       social_stories + (user.facebook_account.get_feed)
+       social_stories = social_stories + (user.facebook_account.get_feed)
      end
      if(!user.flickr_account.nil?)
-       social_stories + (user.flickr_account.get_feed)
+       social_stories = social_stories + (user.flickr_account.get_feed)
      end
      return social_stories.shuffle
    end
