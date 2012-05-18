@@ -16,12 +16,12 @@ $j(function() {
 	      	<ul class="nav nav-list">
 			<li class="nav-header">Directory</li>
 			<li class="divider"></li>		
-			<li><a href="/users"><i class="icon-user"></i><font size="4">Users</font></a>
-			<li><a href="/interests/list"><i class="icon-heart"></i><font size="4">Interest</font></a>
-			<li><a href="/stories"><i class="icon-book"></i><font size="4">Stories</font></a>
+			<li><a href="/users"><i class="icon-user"></i><font size="4%">Users</font></a>
+			<li><a href="/interests/list"><i class="icon-heart"></i><font size="4%">Interest</font></a>
+			<li><a href="/stories"><i class="icon-book"></i><font size="4%">Stories</font></a>
 			<li class="divider"></li>
-			<li><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4">Statistics</font></a>
-			<li><a href="/logs"><i class="icon-list"></i><font size="4">Logs</font></a>
+			<li><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a>
+			<li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a>
 			</ul>
 			</div>	
 			
@@ -36,29 +36,36 @@ $j(function() {
 
 	    <div class="admin_right_panel " >
 		<h2>Main Feeds</h2>
-		<div class="admin_feed_padding">
+		<%if $newsfeed != nil%>
+		<div class="well admin_feed_padding">
 				
 			<div id="feeds">
-			<%if $newsfeed != nil%>
 			  <% $newsfeed.each do |nf| %>
 				<%if (nf.kind_of?(Interest))%>
-					<%@interest = nf%>		
-						<div >
+					<%@interest = nf%>	
+					<span class="pull-left greenbadge " style=" -webkit-transform: rotate(-45deg);	
+							-moz-transform: rotate(-45deg);
+							-ms-transform: rotate(-45deg);
+							-o-transform: rotate(-45deg);
+							transform: rotate(-45deg); 
+							margin-top:40px;">Interest</span>
+						<div style:"float:left;">
 							<% if @interest.name.nil? %>
 								<% name = "No Name Available" %>
 								<% else %>
 								<% name = @interest.name  %>
 								<%  end %>
-							<font size="5"><b><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id} ,:style =>"clear:both;") %></b></font>
-								<span class="pull-left greenbadge admin_clear_both">Interest</span>
-								<span class="pull-right bluebadge "><%=time_ago_in_words(@interest.created_at)%></span>
-							<div class="well admin_story_feed" style="float: left;">
+							<font size="3"><b><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id}) %></b></font>
+								
+							<span class="pull-right bluebadge "><%=time_ago_in_words(@interest.created_at)%></span>
+							<div class="well admin_story_feed "  style=" border-right:5px solid #468847; ">
+								
 								<% if !@interest.photo.file? %>
-					     			  <%= image_tag "logo.jpeg"  , style: "float:left; margin-right:20px; margin-bottom:20px;" %>
+					     			  <%= image_tag "logo.jpeg"  , style: "float:left; margin-right:20px; width=150x; height:150px;" %>
 					     			  <% else %>
-					            <img src= "<%=@interest.photo.url(:small) %>" style=" width=320px; height:320px;"/>
+					            <img src= "<%=@interest.photo.url(:small) %>" style=" width=150px; height:150px;"/>
 					            		  <% end %>
-					<div class"control-panel">
+					<div class"control-panel" style="width:50%;">
 									<% if !(@interest.deleted ) %>
 											<ul class="nav nav-list">
 											<li class="nav-header">Status :</li>
@@ -77,15 +84,22 @@ $j(function() {
 											 <div class="barcustom" id="barofprogress" 
 											 	style="width: <%User.count%>"></div>
 														</div>-->
+														
+														<%= link_to "view Statistics", 
+														{:controller => 'statistics', :action => 'interests',:id => @interest.id }, 
+														class: "btn btn-primary"  %>
 											</div>
-									<%= link_to "view Statistics", 
-									{:controller => 'statistics', :action => 'interests',:id => @interest.id }, 
-									class: "btn btn-primary btn-large" ,:style =>"float:left; clear:both;" %>
+									
+										
+
+										</div>
 								
 							</div>
+							
 						
 						
 						
+						</div>
 						
 						
 						
@@ -94,20 +108,29 @@ $j(function() {
 	
 				<%else%>
 				<%story = nf%>
+				<span class="pull-left yellowbadge" style=" -webkit-transform: rotate(-45deg);	
+				-moz-transform: rotate(-45deg);
+				-ms-transform: rotate(-45deg);
+				-o-transform: rotate(-45deg);
+				transform: rotate(-45deg); 
+				margin-top:35px;
+				position:relative;">Story</span>
 				<div >
 				<font size="3"><b><%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></b></font>
-				<span class="pull-left yellowbadge">Story</span>
+				
 				<span class="pull-right bluebadge"><%=time_ago_in_words(story.created_at)%></span>
-					<div class="well admin_story_feed">
+					<div class="well admin_story_feed" style=" border-right:5px solid #f89406; ">
 					
 					<div class="well control-panel">
 						<%=raw story.content %>
 						</div>
 						
 							<%= link_to("View Statistics", {:controller => 'statistics', :action => 'stories', :id => story.id}, class: "btn btn-primary") %>  			
-							<span class="pull-right greenbadge">Ups(<%=story.liked.length%>)</span>
-							<span class="pull-right redbadge">Downs(<%=story.disliked.length%>) </span>
-						
+							<table style="float:right">
+								<tr><td>
+							<span class="pull-right greenbadge">Ups(<%=story.liked.length%>)</span></td>
+							<td><span class="pull-right redbadge">Downs(<%=story.disliked.length%>) </span></td>
+								</tr></table>
 											<%@comments = story.comments%>
 
 							<h2 class="story-identation story-page-text">Comments</h2>
