@@ -53,6 +53,8 @@ NokiaRuby::Application.routes.draw do
   match 'mob/friends_feed/:id' => 'users#friends_feed'
   match 'mob/manage_blocked_friends' => 'users#manage_blocked_friends'
   match 'mob/unblock_friends_feed/:id' => 'users#unblock_friends_feed'
+  match 'mob/manage_blocked_stories' => 'users#manage_blocked_stories'
+  match 'mob/unblock_story/:id' => 'users#unblock_story'
         # $$$$$$$$$$$$$$ RANA $$$$$$$$$$$$$$$$$$$$$$$$$
         
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
