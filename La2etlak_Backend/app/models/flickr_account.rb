@@ -41,27 +41,18 @@ end
 begin
      self.config_flickr
      login = flickr.test.login
-     puts "#{login} + login thats good"
      user = flickr.people.findByUsername( :username => login.username )
      photo_list = flickr.photos.getContactsPhotos( :count=>"20",:just_friends => "1")
+     stories = Array.new
+     photo_list.each do |photo|
+       temp = FlickrAccount.convert_photo_to_story(photo) 
+     stories.push(temp) 
+     end 
     rescue Exception => ex
       puts ex
-      puts "False"
       return []
     end
- 
-     stories = Array.new
-     puts "Created the array"
-     photo_list.each do |photo|
-      puts "will convert"
-     phtot = FlickrAccount.convert_photo_to_story(photo) 
-     puts "pushing"
-     stories.push(photo) 
-    end 
-    #puts stories 
-    puts "True"
-    return stories
-
+     stories
   end
 
 
@@ -73,99 +64,14 @@ begin
 =end 
 
   def self.convert_photo_to_story(photo)
-    #story = [author: tweet['user']['name'], text: tweet['text']]
-    puts "getting info" 
-    info = flickr.photos.getInfo :photo_id => photo.id, :secret => photo.secret
-    puts "getting url"
-    original_url = FlickRaw.url(info)
-    puts "new story"
     story = Story.new
+    info = flickr.photos.getInfo :photo_id => photo.id, :secret => photo.secret
+    original_url = FlickRaw.url(info)
     story.instance_variables
     story.title = "Photo of #{photo.username}"
-    puts story.title
     story.category = 'flickr'
-    puts story.category
     story.media_link = original_url
-    puts story.media_link
     return story 
   end
 
-
-# def get_photos( username, count = 9 )
-#   begin
-#     user = flickr.people.findByUsername( :username => username )
-#     photo_list = flickr.photos.getContactsPublicPhotos( :user_id => user.nsid, :count => 9 )
-#   rescue Exception => ex
-#     puts ex
-#     return []
-#   end
- 
-#   return photo_list.slice(0, 9)
-# end
-
-
-
-
-
 end
-
-
-
-
-
-#  puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-#   login = flickr.test.login
-#   puts "You are now authenticated as #{login.username}" 
-#   flickr_name = login.username
-
-
-#   puts"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-
-#     puts "tttttttttttttttttttttttttttttttttttttttttt"
-
-    
-
-#     #redirect_to("http://farm#{farm}.static.flickr.com/#{server}/#{id}_#{secret}.jpg")
-
-
-# puts "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
-
-#      # info = flickr.photos.getInfo :photo_id => id, :secret => secret
-#      # puts info 
-#      # puts info.title           # => "PICT986"
-#      # puts info.dates.taken     # => "2006-07-06 15:16:18"
-    
-
-#     find_user = flickr.people.findByUsername( :username => flickr_name)
-#     #find_user = getContactsPhotos(:count => '10',:just_friends => '1',:single_photo => 'single_photo',:include_self => '1',:extras => 'extras')
-#     photo_list = flickr.photos.getContactsPublicPhotos( :user_id => find_user.nsid, :count => 10 , :just_friends => 1)
-#     puts photo_list[0].id
-#     info = flickr.photos.getInfo :photo_id => photo_list[0].id, :secret => photo_list[0].secret
-
-#     puts "!!!!!!"
-#      puts info.title 
-
-
-#      puts "ggggggggggggggggg"
-    
-
-#   #square_url = FlickRaw.url_s(info)
-#   original_url = FlickRaw.url(info)
-
-
-#     #redirect_to("http://farm#{photo_list[0].farm}.static.flickr.com/#{photo_list[0].server}/#{photo_list[0].id}_#{photo_list[0].secret}.jpg")
-#     redirect_to (original_url)
-
-#      puts"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"
-
-
-
-
-
-
-
-
-   
-#      #render :text => "HAAHAHAHAH"
-
-#  
