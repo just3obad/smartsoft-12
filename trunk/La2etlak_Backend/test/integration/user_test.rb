@@ -42,13 +42,18 @@ class UserTest < ActionDispatch::IntegrationTest
     end
 
     #Author: Rana   
+    test "route to unblock friend" do
+      assert_routing 'mob/unblock_friends_feed/1', {:controller => "users", :action => "unblock_friends_feed", :id => "1" }
+    end
+
+    #Author: Rana   
     test "route to view friends feed" do
       assert_routing 'mob/friends_feed/1', {:controller => "users", :action => "friends_feed", :id => "1"}
     end
 
     #Author: Rana    
-    test "route to view friends list" do
-      assert_routing 'mob/friends_list', {:controller => "users", :action => "friends_list"}
+    test "route to manage blocked friends" do
+      assert_routing 'mob/manage_blocked_friends', {:controller => "users", :action => "manage_blocked_friends"}
     end   
      
     #Author : Omar
