@@ -57,6 +57,9 @@ class Admin_Settings < ActiveRecord::Base
   # or not to hide this story or not.All of that after checking the global variable
   # auto_hiding which the admin changes from the checkbox.
   def self.update_story_if_flagged (story)
+
+  	if Admin_Settings.find(2).value == 1
+
   	if Admin_Settings.find_by_key("auto_hiding").value == 1
       if(story.flags.count >= Admin_Settings.first.value)
   		  story.hidden = true
@@ -64,6 +67,25 @@ class Admin_Settings < ActiveRecord::Base
   		  story.hidden = false
   	  end
       story.save
+    end
+  end
+end
+
+#Author: Bassem
+#This method takes the number of days as an input, checks if its not equal to zero and sets the value of the time span
+#to this number which is to be checked lately whenever statistics are shown.
+#NB: "statistics_time_span" key is to be put initially = 30. But now for the sake of testing, please type this command
+#in your terminal:
+# $ Admin_Settings.create!(key:"statistics_time_span", value:30)
+
+  def self.set_statistics_span (days)
+    value= Admin_Settings.find_by_key("statistics_time_span")
+    if value == 0
+      return 0
+    else
+      value.value = days
+      value.save
+      return 1
     end
   end
 end
