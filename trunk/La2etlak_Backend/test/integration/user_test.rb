@@ -4,6 +4,9 @@ class UserTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
+  
+  setup :activate_authlogic
+
 
   ##########Author: Diab ############
   test "should route to user statistics page" do
@@ -49,41 +52,12 @@ class UserTest < ActionDispatch::IntegrationTest
     end   
      
     #Author : Omar
-     test "route to toggle interests RED" do
-        user = User.new
-      	user.email = "abc@abc.com"
-	user.password = "123456"
-	user.password_confirmation = "123456"
-	user.save
-        assert_routing '/users/toggle', {:controller => "users", :action => "toggle", :id => user.id }
+     test "route to toggle interests" do
+  	user = users(:ben)
+	UserSession.create(user)      
+        assert_routing '/mob/toggle', {:controller => "users", :action => "toggle"}
     end
-    
-    
-    
-    
-    
-    #Author : Omar
-    test "all interests checkboxes RED" do
-      	user = User.new
-	user.email = "abc@abc.com"
-	user.password = "123456"
-	user.password_confirmation = "123456"
-	user.save
-	assert get(:toggle , {'user' => user})
-          interests.each do |t|
-             put t.name
-             assert_select 'div[id = '+t.name+']'
-	  end
-
-
-    end
-    
-    
-    #Author : Omar
-     test "route to confirmation of interests RED" do
-      assert_routing '/users/user_add_interests', {:controller => "users", :action => "user_add_interests"}
-    end
-    
+       
   #Author: Yahia
     test "route to connect social account RED" do
       assert_routing 'users/mob/connect_network', {:controller => "users", :action => "connect_social_accounts"}
