@@ -123,17 +123,7 @@ def show
     @storyid=params[:sid]
     @user=current_user
     @flistemail=@user.get_friends_email()
-'''
-@username = User.find(@userid).name
-    @storytitle = Story.find(@storyid).title
-    @interest_id = Story.find(@storyid).interest_id
-   @interesttitle = Interest.find(@interest_id).name
-  @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
-
-Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
-  '''
-   
-	render :layout => "mobile_template"
+    render :layout => "mobile_template"
   end
 
 #recommend_success_mobile_show is a method to recommend specific story to another friend via email so an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
@@ -145,17 +135,24 @@ Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story
     @friendmail=params[:email]
     @message=params[:message]
     @useremail=@user.email
-    @story=Story.find_by_id(@storyid)
+    @story=Story.get_story(@storyid)
     @storytit=@story.title
     @storybod=@story.content
     @successflag=true
-
+    @username=@user.email.split("@").first
+    @interest_id = @story.interest_id
+    @interesttit = Interest.get_interest(@interest_id).name
+    @message = "the user: " + @username.to_s + " has recommended a story with atitle: " + @storytit.to_s + " in the interest: "+ @interesttit.to_s
     regex = Regexp.new('^(\s*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}\s*([,]{1}[\s]*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.]+\.[azA-Z]{2,4}\s*)*)$')
+
+
   if @friendmail==""
     if @listemail.nil?
        @successflag=false
     else
       Emailer.recommend_story(@useremail, @listemail, @message, @storytit, @storybod).deliver
+    Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
+
     end
   else
     if(!@friendmail.match(regex))
@@ -167,10 +164,12 @@ Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story
       else
         Emailer.recommend_story(@useremail, @friendmail, @message, @storytit, @storybod).deliver
       end
+    Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
+
     end
   end
 
-   render :layout => "mobile_template"
+    render :layout => "mobile_template"
   end
 
 #this method returns friend emails and ids when takes the user id.
@@ -182,7 +181,8 @@ end
 #liked_mobile_show is a method to view to the user a list of friends who liked specific story (calls the view of the list)
 #Author=> khaled.elbhaey
   def liked_mobile_show
-    @story = Story.find(params[:id])
+    @storyid = params[:id]
+    @story=Story.get_story(@storyid)
     @user = current_user
     @friends=@story.view_friends_like(@user)
     flash[:error] = "sorry, you have no friends that liked this story"
@@ -192,7 +192,8 @@ end
 #disliked_mobile_show is a method to view to the user a list of friends who disliked specific story (calls the view of the list)
 #Author=> khaled.elbhaey
   def disliked_mobile_show
-    @story = Story.find(params[:id])
+    @storyid = params[:id]
+    @story=Story.get_story(@storyid)
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
     flash[:error] = "sorry, you have no friends that disliked this story"
