@@ -54,7 +54,17 @@ class UserTest < ActionDispatch::IntegrationTest
     #Author: Rana    
     test "route to manage blocked friends" do
       assert_routing 'mob/manage_blocked_friends', {:controller => "users", :action => "manage_blocked_friends"}
-    end   
+    end
+
+    #Author: Rana   
+    test "route to unblock story" do
+      assert_routing 'mob/unblock_story/1', {:controller => "users", :action => "unblock_story", :id => "1" }
+    end  
+
+    #Author: Rana    
+    test "route to manage blocked stories" do
+      assert_routing 'mob/manage_blocked_stories', {:controller => "users", :action => "manage_blocked_stories"}
+    end 
      
     #Author : Omar
      test "route to toggle interests" do
