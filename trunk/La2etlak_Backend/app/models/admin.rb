@@ -104,7 +104,6 @@ require "net/http"
    item2 = Story.order("created_at DESC").where("created_at < ?",30.days.from_now)
    item = item1+item2
    $newsfeed = item.sort_by { |obj| obj.created_at }.reverse
-   puts $newsfeed
   end
   
   #Author MESAI
