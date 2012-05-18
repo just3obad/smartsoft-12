@@ -91,7 +91,7 @@
  	<%end%>
 	</br>
 	<% if @dislikes.length > 1 %>
-	<% @a = "you and #{@likes.length-1} people like this." %>
+	<% @a = "you and #{@dislikes.length-1} people dislike this." %>
   	  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   	 <%else%>
   		 <%= "you dislike this."%>
