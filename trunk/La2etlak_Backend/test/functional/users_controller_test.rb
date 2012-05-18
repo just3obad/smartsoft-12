@@ -350,5 +350,20 @@ class UsersControllerTest < ActionController::TestCase
     end
   end
 
+  #Author : Shafei
+  test "route to all users" do
+		assert_routing 'admins/statistics/all_users', { :controller => "statistics", :action => "all_users"}
+    end
+	
+  #Author : Shafei
+  test "get all users response" do
+	get 'admins/statistics/all_users'
+	assert_response :success
+    end
 
+  #Author : Shafei
+  test "all users has div" do
+    get 'admins/statistics/all_users'
+    assert_select 'div[id = ccc]'
+   end
 end

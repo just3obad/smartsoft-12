@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   has_many :blocked_interests, :class_name => "Interest", :through => :block_interests
   has_many :block_stories
   has_many :blocked_stories, :class_name => "Story", :through => :block_stories 
-  
+  has_many :user_log_ins
   has_many :user_add_interests
   has_many :added_interests, :class_name => "Interest", :through => :user_add_interests
 
@@ -497,16 +497,17 @@ end
  return unblocked_stories
 end
 	
-
 #Author : Shafei
+# This action returns the rank of one user
 	def get_user_rank
 		rank = (self.shares.count * 3) + self.comments.count + self.likedislikes.where(action: 1).count
 		+ self.flags.count + self.likedislikes.where(action: -1).count + self.added_interests.count
-		+ self.friends.count
-	return rank
+		+ self.friends.count + self.user_log_ins.count
+		return rank
 	end
 
 #Author : Shafei
+# This action returns a list of all users in the database sorted according to their rank
 	def self.get_users_ranking
 		all_users = Array.new
 		top_users = Array.new
