@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   # redirects the user to the toggle screen
   def create
     @user = User.new(params[:user])
+		@user.email = params[:user][:email].downcase
     if @user.save
       @user.generateVerificationCode?
       Emailer.verification_instructions(@user).deliver
@@ -85,7 +86,7 @@ class UsersController < ApplicationController
   # Author: Kiro
   # resets the password of the user and sends it by email
 	def resetPassword
-		@user = User.find_by_email(params[:email])
+		@user = User.find_by_email(params[:email].downcase)
     if @user.nil?
       flash[:notice] ="This email doesn't exist red"
       redirect_to :controller => 'users', :action => 'forgot_password'
@@ -404,7 +405,7 @@ end
 
 	# Author: Kiro
 	def verifyAccount
-		@code = params[:code]
+		@code = params[:code].downcase
 		@user = current_user
 		if @user.verifyAccount?(@code)
 			flash[:notice] = "Your account has been successfully verified green"
