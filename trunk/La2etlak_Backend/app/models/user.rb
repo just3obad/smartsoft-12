@@ -857,7 +857,6 @@ Author: Bassem
     @user.save
   end
   def activate_user(id)
-    puts "xxxxxxxxxxxxxxxxxxxxxx"
     @user =User.find(id)
     @user.deactivated = false
     Emailer.notify_activation(@user).deliver
