@@ -32,51 +32,62 @@ class InterestsController < ApplicationController
   @interest = Interest.new
   @title = "Add interest"
   end
-  
-  #" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of 
-  #failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations )
-  # then we redirect to the main page of the interest 
-  # otherwise , we render once more  the "New" page 
+=begin  
+
 
 #Author : Jailan
-#" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations ) then we redirect to the main page of the interest 
- # otherwise , we render once more  the "New" page 
 
-#this methods retrieves and adjust changes to the adtabase using "my_create" method in the Model
+" CREATE " is a method to create a new interest using if-else statements, which allows us to handle the cases of failure and success separately based on the value of @interest.save, if saving succeeds ( according to validations ) then we redirect to the main page of the interest 
+ otherwise , we render once more  the "New" page 
+
+this methods retrieves and adjust changes to the adtabase using "model_create" method in the Model
+
+it class "my_create" method in the Model that takes Interest Parameters (name, description , Image)
+and saves it , if it's saved then a success message appears .. otherwise an error message appears .
+
+=end
 
   def create 
    $saved = nil
    $savedinterest
-   @interests = Interest.all 
-   @interest = Interest.new(params[:interest])
+   @interests = Interest.get_all_interests
+   @interest = Interest.model_create(params[:interest])
    if @interest.save
- $savedinterest = true
-#global variable $saved & $savedinterest are used to handle the flash message in "Show.html.erb"
+
+
      flash[:success] = "Your Interest was added Successfully"
- # here we check if flash returned a sucess then we display the success message
+ 
 
  Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
      redirect_to @interest
 
 
-   else
- $savedinterest = false
-  $errors = true
-     @title = "Add Interest"     
+else
+
+$errors = true
+@title = "Add Interest"     
 render 'new'
 
 #Render 'new' , evaluates the contents in the error_messages partial contents, and insert the results into the view.
     end
  end
 
+#Author: Jailan
+#This part is to push Notifications to the admin
+Admin.push_notifications "/admins/index" ,""
+
+
+=begin
 #Author : Jailan
-#Update Method uses the form in the view to update the attributes of the interest
-#all databese changes are done in the "my_update" method in the Model
-  def update
+Update Method uses the form in the view to update the attributes of the interest
+all databese changes are done in the "model_update" method in the Model that takes as parameters the Interest's id as well as the Interests parameters to be changed (name , Image & Description)
+=end
+
+ def update
 
  @interests = Interest.get_all_interests
 #here, we call the method in model
-    @interest= Interest.my_update(params[:id],params[:interest])
+    @interest= Interest.model_update(params[:id],params[:interest])
 
 @deleted = Interest.is_deleted(params[:id])
 
@@ -100,7 +111,7 @@ if (@deleted == false || @deleted.nil?)  && (params[:interest][:name].blank?)
 else
 
 if (@deleted == false || @deleted.nil?)
-# a flash appears when we enter an invalid info (balnk name)
+# a flash appears when we enter an invalid info (invalid content type of image)
                
           flash[:error] = " Interest Update failed , Photo content type is invalid , PLease Try again !"
 else
@@ -116,12 +127,18 @@ end
 
   end
 
+
+=begin
 #Author: jailan
-# toggle method used to block/unblock the interest , when we block an interest no feeds appear for the users only the admin can view it 
-# if the interest is deleted then he admin has the right to restore it once more .
+
+Toggle method used to block/unblock the interest , when we block an interest no feeds appear for the users only the admin can view it 
+if the interest is deleted then he admin has the right to restore it once more .
+
+this method calls the "model_toggle" method that takes as parameters the Interest's id .
+=end
   def toggle
-# first we call the my_toggle method from the model to adjust changes in the database
-    @interest= Interest.my_toggle(params[:id])
+
+    @interest= Interest.model_toggle(params[:id])
    @interests = Interest.get_all_interests
    @deleted = Interest.is_deleted(params[:id])
 
