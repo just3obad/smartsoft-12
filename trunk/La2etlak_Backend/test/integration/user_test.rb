@@ -72,11 +72,5 @@ class UserTest < ActionDispatch::IntegrationTest
 	UserSession.create(user)      
         assert_routing '/mob/toggle', {:controller => "users", :action => "toggle"}
     end
-       
-  #Author: Yahia
-    test "route to connect social account RED" do
-      assert_routing 'users/mob/connect_network', {:controller => "users", :action => "connect_social_accounts"}
-    end
-    
     
 end
