@@ -28,8 +28,12 @@ $j(function() {
 				 <div class="well sidebar-nav">
 			      	<ul class="nav nav-list">
 					<li class="nav-header"> La2etlak at Glance </li>
-					<li class="divider"></li>		
-					<li><%= User.get_no_of_users_signed_in_today %> users</li>
+					<li class="divider"></li>	
+					<% if User.get_no_of_users_signed_in_today == 0 %>
+					<li class="label-warning" id="no_users_signed_in">	<%= User.get_no_of_users_signed_in_today %> sign ins </li>
+					<% else %>
+					<li class="label-info" id="users_signed_in"><%= User.get_no_of_users_signed_in_today %> sign ins</li>
+					<% end %>
 					</ul>
 					</div>		  
 	 </div>
