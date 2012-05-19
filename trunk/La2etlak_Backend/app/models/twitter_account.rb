@@ -76,6 +76,7 @@ class TwitterAccount < ActiveRecord::Base
     story.title = tweet['user']['name']
     story.content = tweet['text']
     story.category = 'twitter'
+    story.media_link = tweet.attrs["user"]["profile_image_url"]
     return story 
   end
 
