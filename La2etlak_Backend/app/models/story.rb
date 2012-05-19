@@ -220,11 +220,18 @@ def view_friends_dislike(user)
     Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
 '''
 end
-  #Author : Kareem
+=begin
+Description: this method takes as input a user and returns "action" which should be a Likedislike table record .. if the User Liked this Story
+Input:takes a User as input
+Output:Nothing
+Author:Kareem
+=end
  def check_like(user)
    action = Likedislike.find(:all , :conditions => ["story_id = ? AND user_id = ? AND action = ?", self.id, user.id , "1"])
  end
- #Author : Kareem
+
+#the same Description as the check_like(user)
+
  def check_dislike(user)
     action = Likedislike.find(:all , :conditions => ["story_id = ? AND user_id = ? AND action = ?", self.id, user.id , "-1"])
  end

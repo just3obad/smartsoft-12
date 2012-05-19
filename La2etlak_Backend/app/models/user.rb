@@ -406,12 +406,12 @@ end
       return true
     end 
   end
-
- #this Action takes as parametars a story and action and checks if the user had thumbed this story or not.
- # if the user didn't thumb a new record will be added in the Likedislike table with story_id , user_id and action
- # if thumbed before and tries to make the same action again .. nothing will happen
- # if thumbed before and tries to make a diffrent action .. the old record will be destroyed and a new record with the new action will be added
- #Author Kareem
+=begin
+Description:his Action takes as parametars a story and action and checks if the user had thumbed this story or not,if the user didn't thumb a new record will be added in the Likedislike table with story_id , user_id and action , if thumbed before and tries to make the same action again .. nothing will happen if thumbed before and tries to make a diffrent action .. the old record will be destroyed and a new record with the new action will be added
+Input: Story , Action [1 or -1]
+Output: Nothing
+Author: Kareem
+=end
   def thumb_story(story,act)
    thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
         if thumped.empty? 
@@ -429,8 +429,12 @@ end
 
 end
 
-#this Action takes as a parametar a story and it checks if the current User flagged it before or not .. if not a new Record will be added in the Flags table with current user_id , current_story id else if he already flagged it nothing will happen.
-#Author :Kareem
+=begin
+Description:this Action takes as a parametar a story and it checks if the current User flagged it before or not .. if not a new Record will be added in the Flags table with current user_id , current_story id else if he already flagged it nothing will happen.
+Input: Story
+Output: true or False
+Author: Kareem
+=end
 def flag_story(story)
   thumped = Flag.where(:story_id => story.id, :user_id => self.id)
      if thumped.empty?
@@ -440,17 +444,20 @@ def flag_story(story)
      end
   return false
 end
-
-
-#this Action returns a list of stories accordind to the current user interests .. and it also checks if theses stories are blocked According to an Interest or its a Blocked story or not before it returns the List of stories.
-#the method also takes as input Interest name if it's not "null" the method will return the stories of this interest only.
-#Author : Kareem
+=begin
+Description: this Action returns a list of stories according to the current user interests .. and it also checks if theses stories are blocked According to an Interest or its a Blocked story or not before it returns the List of stories,the method also takes as input Interest name if it's not "null" the method will return the stories filtered according to this interest only.
+Input: Interest.name 
+Output: returns List of stories according to the Description
+Author: Kareem
+=end
   def get_feed(int_name)
-    user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id}
+	
+    user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id} 
     blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
     unblocked_stories = Array.new
     unblocked_interests = user_interests - blocked_interests
     stories_list = Array.new
+ 	#loop on the unblocked_interests Array and for each Interest call the get_stories method and returns it's corresponding stories
     unblocked_interests.each do |unblocked_interest|
     stories_list +=  Interest.find(unblocked_interest).get_stories(10)
    end
@@ -459,6 +466,7 @@ end
   stories_ids = stories_list.map {|story| story.id}
   blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
   unblocked_stories_ids = stories_ids - blocked_stories_ids
+	#loop on the unblocked_stories_ids [Array] and get the story for each story_id and append it to the Array of unblocked_stories
   unblocked_stories_ids.each do |unblocked_story_id|
         unblocked_stories.append(Story. find(unblocked_story_id))
   end
@@ -466,6 +474,7 @@ end
   if(int_name != "null")
     filtered_stories = Array.new
           filtered_stories_ids = Array.new
+	#loop on the unblocked_stories_ids [Array] and get Interest[name] of each story and if this Interest[name] equals the Parametar[int_name] append this story_id to the filtered_stories_ids
     unblocked_stories_ids.each do |unblocked_story_id|
     interest_name = Interest.find(Story.find(unblocked_story_id).interest_id).name
     if(interest_name == int_name)
@@ -473,6 +482,7 @@ end
       end
     end
     filtered_stories = Array.new
+	#loop on filtered_stories_ids and get each story according to it's id and append it to filtered_stories
     filtered_stories_ids.each do |filtered_story_id|
           filtered_stories.append(Story.find(filtered_story_id))
     end
@@ -483,8 +493,12 @@ end
 
   end
 
-#Author : Kareem
-#this Method Takes a list of stories and returns the List filtered from the Blocked one's
+=begin
+Description:this method takes as input Array of stories and filter these Stories from the Blocked stories or Stories that belongs to an Interest that is Blocked.
+Input:stories - Array of stories
+Output:array of unblocked stories
+Author:Kareem
+=end
   def  get_unblocked_stories(stories)
 	unblocked_stories = Array.new
   	stories = stories.sort_by &:created_at
@@ -492,6 +506,7 @@ end
   	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
 	blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
   	unblocked_stories_ids = stories_ids - blocked_stories_ids
+	#loop on unblocked stories and for each unblocked_story_id we get the Story accrding to this Id and if this story doesn't belong 	an unblocked interest append it to unblocked_stories
   	unblocked_stories_ids.each do |unblocked_story_id|
 	story = Story.find(unblocked_story_id)
 	if !(blocked_interests.include?(story.interest_id))
@@ -577,8 +592,13 @@ end
   def all_interests
     all_interests =  Interest.all()
   end
- 
-  #Author : Kareem
+=begin
+Description: this method returns the Interests names of the User's Interests
+Input:
+Output:Array of Interest names
+Author:Kareem
+=end
+
   def get_interests
  	  interests = UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| 		Interest.find(id).name}
 	 return interests 
