@@ -1,6 +1,6 @@
 class Emailer < ActionMailer::Base
   default from: "info.2allak@gmail.com"
-
+  default_url_options[:host] = "localhost:3000"
 	# Author: Kiro
 	def verification_instructions(user)
 		@code = user.verification_code.code
@@ -59,4 +59,13 @@ def invite_to_app(sender, reciever, message)
   	@pass = pass
   	mail(:to => admin.email, :subject => "La2etlak New Password")
   end
+  def password_reset_instructions(admin)
+    #subject       "Password Reset Instructions"
+    #from          "Binary Logic Notifier <noreply@binarylogic.com>"
+    #recipients    admin.email
+    #sent_on       Time.now
+    #body  = :edit_password_reset_url => edit_password_reset_url(admin.perishable_token)
+    @edit_password_reset_url = edit_password_reset_url(admin.perishable_token)
+mail(:to => admin.email, :subject => "Password Reset Instructions")
+  end 
 end
