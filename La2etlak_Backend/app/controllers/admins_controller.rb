@@ -70,7 +70,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(params[:admin])
     if @admin.save
       flash[:notice] = "Registration successful."
-      redirect_to('/admins/index')
+      redirect_to('/admins/admin_settings')
     else
       render :action => 'new'
     end
@@ -99,5 +99,19 @@ class AdminsController < ApplicationController
   def forgot_password
   @email
   redirect_to('admins/forgot_password.html.erb')
+  end
+
+  def edit
+    @admin = current_admin
+  end
+  
+  def update
+    @admin = current_admin
+    if @admin.update_attributes(params[:admin])
+      flash[:notice] = "Successfully updated profile."
+      redirect_to('/admins/index')
+    else
+      render :action => 'edit'
+    end
   end
 end
