@@ -425,6 +425,17 @@ class UserTest < ActiveSupport::TestCase
 		assert user.save, "didn't save an email in the correct format"
 		
 	end
+
+	test "extract friends" do 
+		u1 = users(:one)
+		u2 = users(:two)
+		u1.invite u2
+		u2.approve u1
+		users = [users(:one), users(:two), users(:three), users(:four)]
+		result = u1.extract_friends(users)
+		assert result.include?(u2), 'User 2 should be in the result'
+		assert !result.include?( users(:three)), 'User three should not be in the result'
+	end 
    
 
 end
