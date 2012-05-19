@@ -130,11 +130,14 @@ class UsersController < ApplicationController
 
 
 
+=begin
+Description:this Action generates the User main feed if the User doesn't have Interests the Top ranked Stories on the System will appear
+and The Registered Social Networks Stories else the Stories will appear to Him according to his Interests and in both cases the Stories shared by his Friends will be Included and Also stories From his Social Accounts.
+Input: Interest.name
+Output: Array of Stories according to the Description Stored in variable @stories
+Author: Kareem
+=end
 
-#this Action generates the User main feed
-#if the User desn't have Interests the Top ranked stories on the System will appear else the Stories will appear to Him according to his Interests and in both cases the Stories shared by his Friends will be Included and Also stories From his Social Accounts
-
-#Author Kareem###############
 def feed
   user = current_user
 	@lol = current_user

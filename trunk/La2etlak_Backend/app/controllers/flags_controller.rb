@@ -1,11 +1,12 @@
 class FlagsController < ApplicationController
 
 respond_to :html,:json
-
-#this Action is called when a User Hits the Flag button in the Story view it calls the flag_story with the current story as parametar.
-#story => currently viewed story
-
-#Author : Kareem
+=begin
+Description:this Action is called when a User Hits the Flag button in the Story view it calls the flag_story with the currently viewed story as parametar.
+Input: sid - story id 
+Output: nothing
+Author:Kareem
+=end
 
    def flag
 
