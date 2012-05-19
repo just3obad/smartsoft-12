@@ -38,6 +38,7 @@ class Admin_Settings < ActiveRecord::Base
   				  elsif story.flags.count < flags
   					 story.hidden = false
             end
+            story.save
           end
         else 
           #$flash_success = "false"
@@ -57,9 +58,6 @@ class Admin_Settings < ActiveRecord::Base
   # or not to hide this story or not.All of that after checking the global variable
   # auto_hiding which the admin changes from the checkbox.
   def self.update_story_if_flagged (story)
-
-  	if Admin_Settings.find(2).value == 1
-
   	if Admin_Settings.find_by_key("auto_hiding").value == 1
       if(story.flags.count >= Admin_Settings.first.value)
   		  story.hidden = true
@@ -68,7 +66,6 @@ class Admin_Settings < ActiveRecord::Base
   	  end
       story.save
     end
-  end
 end
 
 #Author: Bassem
