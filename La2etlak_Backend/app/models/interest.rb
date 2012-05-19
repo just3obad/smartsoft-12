@@ -397,10 +397,12 @@ def get_users_added_interest
 def self.get_interest(id)
 Interest.find(id)
 end
+=begin
 #Author: jailan
-#Create Method after moving it from controller to Model
-#It makes a new interest and saves it
-def self.my_create(interest)
+Create Method after moving it from controller to Model descriptlion)
+It makes a new interest and saves it
+=end
+def self.model_create(interest)
    @interests = Interest.get_all_interests
    @interest = Interest.new(interest)
 
@@ -412,11 +414,13 @@ end
 return @interest
 
 end
+=begin
 #Author: jailan
-#Update Method after moving it from controller to Model
-#takes as argument the id of the interest and the new values we want to update with and returns the interest after updating the deleted column in it
-#It gets the interest using the id and call the method Update_Attribute that takes the input in the form of "Show.html.erb" and adjust changes
-def self.my_update(id,interest)
+Update Method after moving it from controller to Model
+takes as argument the id of the interest and the new values we want to update with and returns the interest after updating the deleted column in it
+It gets the interest using the id and call the method Update_Attribute that takes the input in the form of "Show.html.erb" and adjust changes
+=end
+def self.model_update(id,interest)
 
     @interest= Interest.find(id)
    @interests = Interest.all 
@@ -433,20 +437,23 @@ else
 return @interest
 end
 end
+=begin
 #Author: jailan
-#is_deleted Method 
-#returns the value of deleted attribute to use it in the controller
+is_deleted Method 
+takes the id of the interest and returns the value of deleted attribute to use it in the controller
+=end
 def self.is_deleted(id)
 
 @interest = Interest.find(id)
 return @interest.deleted
 end
 
-
+=begin
 #Author: jailan
-# my_toggle method used to block/unblock the interest according to its state 
-#takes as argument the id of the interest and returns the interest after updating the deleted column in it
-  def self.my_toggle(id)
+model_toggle method used to block/unblock the interest according to its state 
+takes as argument the id of the interest and returns the interest after updating the deleted column in it
+=end
+  def self.model_toggle(id)
     @interest= Interest.find(id)
    @interests = Interest.all 
 # if the interest was blocked the we restore it and save
