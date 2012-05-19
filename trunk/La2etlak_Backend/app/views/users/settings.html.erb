@@ -1,19 +1,19 @@
 <!-- Mina Adel -->
 <html>
-<body>
-	<div align="center">
-<%= link_to "logout", logout_path, class: "btn btn-primary"%></br></br>
-<%= link_to "friends", {:controller => 'friendships', :action => 'index'}, class: "btn btn-primary"%></br></br>
-<%= link_to "Modify Info", {:controller => 'users', :action => 'edit'}, class: "btn btn-primary"%></br></br>
-<%= link_to "toggle interests", {:controller => 'users', :action => 'toggle'}, class: "btn btn-primary"%></br></br>
+	<body>
+		<div align="center">
+			<%= link_to "Connect social accounts", {:controller => 'users', :action => 'connect_social_accounts'}, class: "btn span", style: "margin:2%"%>
+			<%= link_to "Friends", {:controller => 'friendships', :action => 'index'}, class: "btn span", style: "margin:2%" %>
 
-<%= link_to "connect social accounts", {:controller => 'users', :action => 'connect_social_accounts'}, class: "btn btn-primary"%></br></br>
-<% if !@user.verification_code.verified %>
-<%= link_to "Verify Account", {:controller => 'users', :action => 'verifySettings'}, class: "btn btn-primary"%></br></br>
-<% end %>
-<%= link_to "back to main feed", {:controller => 'users', :action => 'feed'}, class: "btn btn-primary"%></br></br>
-<%= link_to "manage blocked stories", {:controller => "users", :action => "unblock_story"}, class: "btn btn-primary"%></br></br>
-	</div>
-<body>
+			<%= link_to "Main feed", {:controller => 'users', :action => 'feed'}, class: "btn span", style: "margin:2%"%>
+			<%= link_to "Manage blocked stories", {:controller => "users", :action => "unblock_story"}, class: "btn span", style: "margin:2%"%>
+			<%= link_to "Modify Info", {:controller => 'users', :action => 'edit'}, class: "btn span", style: "margin:2%" %>
+			<%= link_to "Toggle interests", {:controller => 'users', :action => 'toggle'}, class: "btn span", style: "margin:2%"%>
+			<% if !@user.verification_code.verified %>
+			<%= link_to "Verify Account", {:controller => 'users', :action => 'verifySettings'}, class: "btn span", style: "margin:2%"%>
+			<%= link_to "Logout", logout_path, class: "btn btn-danger span", style: "margin:2%"%>
+			<% end %>
+		</div>
+	<body>
 </html>
 <!-- Mina Adel -->
