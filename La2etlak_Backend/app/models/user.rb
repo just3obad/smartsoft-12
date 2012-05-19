@@ -92,7 +92,6 @@ end
 #the get_friends is a method that return list of all friends email of the user
 #Author: khaled.elbhaey
   def get_friends_email()
-
   @flistemail=Array.new
   @flist = self.friends
 
@@ -520,32 +519,47 @@ Author:Kareem
  return unblocked_stories
 end
 	
-#Author : Shafei
-# This action returns the rank of one user
-	def get_user_rank
-		rank = (self.shares.count * 3) + (self.comments.count * 2) + self.likedislikes.where(action: 1).count + self.flags.count + self.likedislikes.where(action: -1).count + (self.added_interests.count * 5) + self.friends.count + (self.user_log_ins.count * 2)
-		return rank
+=begin
+  This action returns the rank of one user
+  Returns the rank of a user
+  Author: Shafei
+=end
+  def get_user_rank
+	i = 0
+	User.all.each do |user|
+		if (user.blocked? self) == true
+			i = i + 10
+		end
 	end
+	rank = ((self.comments.count * 2) + (self.user_log_ins.count * 2)
+	+ self.likedislikes.where(action: 1).count + self.flags.count
+	+ self.likedislikes.where(action: -1).count + (self.added_interests.count * 5)
+	+ self.friends.count + (self.shares.count * 3) - i)
+	return rank
+  end
 
-#Author : Shafei
-# This action returns a list of all users in the database sorted according to their rank
-	def self.get_users_ranking
-		all_users = Array.new
-		top_users = Array.new
-		final_users = Array.new
-		User.all.each do |user|
-	  	all_users << {:rank => user.get_user_rank, :theuser => user}
-		end
-		(all_users.sort_by {|element| element[:rank]}).each do |hsh|
-		  final_users << hsh[:theuser]
-		end
-		top_users =  final_users.reverse
-		if(top_users.empty? == true)
-			return []
-		else
-		return top_users
-		end
+=begin
+  This action returns a list of all users in the database sorted according to their rank
+  Returns a list of all users
+  Author: Shafei
+=end
+  def self.get_users_ranking
+	all_users = Array.new
+	top_users = Array.new
+	final_users = Array.new
+	User.all.each do |user|
+		all_users << {:rank => user.get_user_rank, :theuser => user}
 	end
+	(all_users.sort_by {|element| element[:rank]}).each do |hsh|
+		final_users << hsh[:theuser]
+	end
+	top_users =  final_users.reverse
+	if (top_users.empty? == true)
+		return []
+	else
+		return top_users
+	end
+  end
 
 
   
