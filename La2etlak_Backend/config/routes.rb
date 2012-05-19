@@ -228,6 +228,11 @@ NokiaRuby::Application.routes.draw do
   # $$$$$$$$$$$$$$ Shafei $$$$$$$$$$$$$$$$$$$$$$$$$ 
    
    
+   # $$$$$$$$$$$$$$ Essam $$$$$$$$$$$$$$$$$$$$$$$
+     match "mob/tumblr/login" => "tumblr_accounts#login"
+     match 'mob/tumblr/connect_tumblr' => 'tumblr_accounts#connect_tumblr'
+   # $$$$$$$$$$$$$$ Essam $$$$$$$$$$$$$$$$$$$$$$$
+   
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
