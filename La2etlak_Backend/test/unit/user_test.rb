@@ -334,13 +334,13 @@ class UserTest < ActiveSupport::TestCase
   end
 
 	#Author: Kiro
-	test "should not save a user without any parameters RED" do
+	test "should not save a user without any parameters" do
 		user = User.new
 		assert !user.save
 	end
 
 	#Auther: Kiro
-	test "should not save a user without a password RED" do
+	test "should not save a user without a password" do
 		user = User.new
 		user.email = "email_1@test.com"
 		assert !user.save, "saved a user without a password"
@@ -353,7 +353,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	#Auther: Kiro
-	test "password should be 6 characters or more RED" do
+	test "password should be 6 characters or more" do
 
 		user = User.new(email: "pass0@test.com",password: "",password_confirmation:"")
 		assert !user.save, "saved a user with passowrd of length 0"
@@ -373,7 +373,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	#Auther: Kiro
-	test "should not save a user without a password confirmation RED" do
+	test "should not save a user without a password confirmation" do
 		user = User.new
 		user.email = "email_1@test.com"
 		user.password = "123456"
@@ -381,7 +381,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	#Author: Kiro
-	test "Should not save a user with an existing email RED" do
+	test "Should not save a user with an existing email" do
 	
 		user = User.new(email: "only_one@test.com", password:"123456", password_confirmation:"123456")
 		assert user.save, "didn't save the first user"
@@ -392,7 +392,7 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	#Author: Kiro
-	test "should not accept an email in a wrong format RED" do
+	test "should not accept an email in a wrong format" do
 	
 		user = User.new(email: "correct_format@test.com", password:"123456", password_confirmation:"123456")
 		assert user.save, "didn't accept an email in a correct format"
