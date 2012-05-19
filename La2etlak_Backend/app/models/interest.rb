@@ -451,7 +451,7 @@ end
    @interests = Interest.all 
 # if the interest was blocked the we restore it and save
 if @interest.deleted 
- @interest.deleted = false
+ @interest.deleted = nil
 @interest.save
 if @interest
  Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Restored an interest")
