@@ -863,9 +863,12 @@ Author:Kareem
 		return newpass
 	
 	end
-
-  #get recent Activity of user from the passed start date
-  #Author: Christine
+=begin  
+  get recent Activity of user from the passed start date
+  Parameters : start_date (date that the recent Activity will be calculated from)
+  Author: Christine
+=end
+  
   def get_recent_activity(start_date)
     activities=Log.get_log_for_user(self.id,start_date)
   end
