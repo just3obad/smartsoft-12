@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
 
 	# This is added to use the authlogic gem
 	# Author: Kiro
-	acts_as_authentic	
+	acts_as_authentic	do |c|
+		c.validates_length_of_password_field_options :minimum => 6
+	end
 
 =begin
 
