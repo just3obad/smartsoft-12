@@ -189,12 +189,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :redirect 
   end
 
-  # Author: Yahia
-  test "connect social accounts" do
-    get :connect_social_accounts
-    assert_response :success, "Get request should be successfull"
-
-  end 
 
 	# Author: Kiro
 	test "should create user RED" do
@@ -221,12 +215,13 @@ class UsersControllerTest < ActionController::TestCase
 	end
 
   # Author: Yahia
-  test "A user should see a warning if he is connected to twitter in the connect_social_accounts page" do
+  test "connect social network" do
     # needs to create a session with that user
     u1 = users(:ben)
     u1.twitter_account = twitter_accounts(:one)
     u1.save
     UserSession.create u1
+    assert_routing 'mob/connect_network', {:controller => "users", :action => "connect_social_accounts"}
     get :connect_social_accounts
     assert_response :success, 'Get should be successful'
     assert_select "div[id=twitter_warning]"
@@ -411,5 +406,6 @@ class UsersControllerTest < ActionController::TestCase
 		assert_equal user.email, "ben@gmail.com", "user is not ben"
 
 	end
+
 
 end
