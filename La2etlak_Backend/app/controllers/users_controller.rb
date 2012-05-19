@@ -266,8 +266,10 @@ end
   end
 
 =begin
-  This is the method responsible of redirecting  the user to
-  the connect_social_account web page
+  Description:  This is the method responsible of redirecting  the user to
+                the connect_social_account web page
+  Input : Nothing
+  Output: Nothing
   Author: Yahia
 =end
   def connect_social_accounts
