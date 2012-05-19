@@ -845,15 +845,22 @@ end
   def get_recent_activity(start_date)
     activities=Log.get_log_for_user(self.id,start_date)
   end
-
+=begin
+These methods simply take the user id as an input , fetch him from the database and change his deactivated attribute
+to the right value
+Author: Bassem
+=end
   def deactivate_user(id)
     @user =User.find(id)
     @user.deactivated = true
+    Emailer.notify_deactivation(@user).deliver
     @user.save
   end
   def activate_user(id)
+    puts "xxxxxxxxxxxxxxxxxxxxxx"
     @user =User.find(id)
     @user.deactivated = false
+    Emailer.notify_activation(@user).deliver
     @user.save
   end
 
