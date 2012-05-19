@@ -2,6 +2,8 @@ class FriendshipsController < ApplicationController
 
 =begin
   This is the controller responsible of indexing frineds
+  Input: Nothing
+  Output: Nothing  
   Author: Yahia 
 =end
   def index
@@ -19,6 +21,8 @@ class FriendshipsController < ApplicationController
   The query_forward  variable is got from the search from and will
   help us not to have our search done again each time we request
   a friendship
+  Input: params[:friend_id]
+  Output: Nothing
   Author: Yahia 
 =end
   def create
@@ -26,7 +30,6 @@ class FriendshipsController < ApplicationController
     @friend = User.find(params[:friend_id])
     @friendship_created = @user.invite(@friend)
     if @friendship_created
-      # flash.now[:notice] = "Friendship invitation created  #{@friend.email}"
       flash[:notice] = 'Frindship request has succesffully been sent green'
       # for the log file 
       l = Log.new
@@ -40,12 +43,13 @@ class FriendshipsController < ApplicationController
       flash[:notice] = 'Frindship request was not sent red'
     end  
 
-    # redirect_to action: "index", query: params[:query_forward]
     redirect_to action: "index"
   end
 
 =begin
   This is the controller responsible of accepting frinedship
+  Input: params[:friend_id]
+  Output: Nothing
   Author: Yahia 
 =end
   def accept
@@ -69,6 +73,8 @@ class FriendshipsController < ApplicationController
 
 =begin
   This is the controller responsible of ignoring frinedship
+  Input: parmas[:friend_id]
+  Output: Nothing
   Author: Yahia 
 =end
   def remove
@@ -97,6 +103,8 @@ class FriendshipsController < ApplicationController
 =begin
   This is the controller responsible of blocking a user (not receiving
   frineship requests from him in the first place)
+  Input: params[:friend_id]
+  Output: Nothing  
   Author: Yahia 
 =end
   def block
@@ -123,6 +131,8 @@ class FriendshipsController < ApplicationController
 =begin
   This is the controller responsible for the search of users 
   (to find friends)
+  Input: params[:query]
+  Output: Nothing  
   Author: Yahia 
 =end
   def search
@@ -135,6 +145,8 @@ class FriendshipsController < ApplicationController
 
 =begin
   This is the controller responsible of accepting frinedship
+  Input: Nothing
+  Output: Nothing  
   Author: Yahia 
 =end
   def pending 
