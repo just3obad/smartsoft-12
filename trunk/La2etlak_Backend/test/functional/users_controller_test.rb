@@ -377,6 +377,33 @@ class UsersControllerTest < ActionController::TestCase
       assert_select "td[class=logs-table-row]", count2
     end
   end
+  # Author : Christine
+  test "UserProfilePage should contain a profile image" do
+    @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    get :show, :id=> @usr.id 
+    assert_select "div[class=user-image]" do
+      assert_select "img", 1
+    end
+  end
+
+  # Author : Christine
+  test "UserProfilePage test no logs no friends no interests" do
+    @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    get :show, :id=> @usr.id 
+    assert_select "div[id=recentActivity]" do
+      assert_select "table[class=table table-striped table-bordered]" do
+        assert_select "tbody", "No recent Activity"
+      end
+    end
+    assert_select "div[id=friends]" do
+      assert_select "div[class=well-user-component]", 0 
+    end
+    assert_select "div[id=interests]" do
+      assert_select "div[class=well-interest-component]", 0 
+    end
+  end
+
+
 
   #Author : Shafei
   test "route to all users" do
