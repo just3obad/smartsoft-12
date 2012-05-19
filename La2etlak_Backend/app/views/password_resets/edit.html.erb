@@ -1,7 +1,9 @@
 <h1>Change My Password</h1>
 
 <%= form_for @admin, :url => password_reset_path, :method => :put do |f| %>
-  <%= f.error_messages %>
+    <% @admin.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+   <% end %>
   <%= f.label :password %><br />
   <%= f.password_field :password %><br />
   <br />

@@ -1,17 +1,16 @@
 class PasswordResetsController < ApplicationController
 before_filter :load_admin_using_perishable_token, :only => [:edit, :update]  
-  before_filter :require_no_admin
+  #before_filter :require_no_admin
 
 def new  
- @admin_session = Admin.new
    render  
 end  
   
 def create  
  @admin = Admin.find_by_email(params[:email])  
  if @admin  
-  @admin.deliver_password_reset_instructions!
-  @admin_session = AdminSession.new  
+#  @admin.deliver_password_reset_instructions!
+  Emailer.password_reset_instructions(@admin).deliver
   flash[:notice] = "Instructions to reset your password have been emailed to you. " +  
   "Please check your email."  
   redirect_to('/admin/login')  
@@ -32,7 +31,7 @@ def update
  @admin.password_confirmation = params[:admin][:password_confirmation]  
  if @admin.save  
   flash[:notice] = "Password successfully updated"  
-  redirect_to('/admin/index')  
+  redirect_to('/admin/logout')  
  else  
   render :action => :edit  
  end  
