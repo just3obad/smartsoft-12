@@ -17,10 +17,10 @@
                    <%= form_tag("/admin_settings/configure_flags_threshold", :method => "post") %>
                    <label>Configure flags threshold</label>
                 <input type="text" class="span3" placeholder="Please enter the flags threshold" name="valuee">
-                <span class="help-block"><b> Current Threshold is: <%= Admin_Settings.find_by_key("flags_thershold").value %><br />
+                <span class="help-block"><b> Current Threshold is: <%= Admin_Settings.find_by_key("flags_threshold").value %><br />
                   Minimum Threshold is: 30</b></span>
                 <label class="checkbox">
-                <input type="checkbox" name="auto" <% if Admin_Settings.find_by_key("auto_hiding_stories").value == 0 %> checked <% end %> > Disable Auto-Hiding
+                <input type="checkbox" name="auto" <% if Admin_Settings.find_by_key("auto_hiding").value == 0 %> checked <% end %> > Disable Auto-Hiding
                 </label>
                 <button type="submit" class="btn">Submit</button>
               </form> 
