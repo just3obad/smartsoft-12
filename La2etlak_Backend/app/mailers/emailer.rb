@@ -59,6 +59,19 @@ def invite_to_app(sender, reciever, message)
   	@pass = pass
   	mail(:to => admin.email, :subject => "La2etlak New Password")
   end
+
+
+
+# Author : Bassem
+  def notify_deactivation(user)
+    mail(:to => user.email, :subject => "Your La2etlak account has been deactivated")
+  end
+
+# Author : Bassem
+  def notify_activation(user)
+    mail(:to => user.email, :subject => "Your La2etlak account has been re-activated")
+  end
+
   def password_reset_instructions(admin)
     #subject       "Password Reset Instructions"
     #from          "Binary Logic Notifier <noreply@binarylogic.com>"
