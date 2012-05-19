@@ -126,7 +126,9 @@ end
 
 =begin 
   This method takes a list of users and return a list users that are friends
-  with the 'self' 
+  with the 'self'
+  Input: List of users
+  Output: Users who are both in the list and are friends with "self" 
   Author: Yahia
 =end
   def extract_friends(users)
