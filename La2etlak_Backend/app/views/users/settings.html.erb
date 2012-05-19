@@ -7,10 +7,10 @@
 
 			<%= link_to "Main feed", {:controller => 'users', :action => 'feed'}, class: "btn span", style: "margin:2%"%>
 			<%= link_to "Manage blocked stories", {:controller => "users", :action => "unblock_story"}, class: "btn span", style: "margin:2%"%>
-			<%= link_to "Modify Info", {:controller => 'users', :action => 'edit'}, class: "btn span", style: "margin:2%" %>
+			<%= link_to "Modify info", {:controller => 'users', :action => 'edit'}, class: "btn span", style: "margin:2%" %>
 			<%= link_to "Toggle interests", {:controller => 'users', :action => 'toggle'}, class: "btn span", style: "margin:2%"%>
 			<% if !@user.verification_code.verified %>
-			<%= link_to "Verify Account", {:controller => 'users', :action => 'verifySettings'}, class: "btn span", style: "margin:2%"%>
+			<%= link_to "Verify account", {:controller => 'users', :action => 'verifySettings'}, class: "btn span", style: "margin:2%"%>
 			<%= link_to "Logout", logout_path, class: "btn btn-danger span", style: "margin:2%"%>
 			<% end %>
 		</div>
