@@ -25,15 +25,15 @@ class AdminsController < ApplicationController
     end
   end
   
-  #Author: Lydia
-  '''
+=begin
   This method checks if the Users/Stories/Interests checkboxes are 
   checked or not and returns the values in the global variables:
   $usersSearch
   $storiesSearch
   $interestsSearch 
   Then it renders the search view again after the filteration.
-  '''
+  Author: Lydia
+=end
   def filter
     $usersSearch = params[:users]
     $storiesSearch = params[:stories]
@@ -41,13 +41,13 @@ class AdminsController < ApplicationController
      render :template => 'admins/search'
   end
   
-  #Author: Lydia
-  '''
+=begin
   This method checks the params of type passed from the search page so that
   it sets the @results variable to be either all results of the users or all 
   results of the stories or all results of the interests and it also applies
   the pagination method to @results.
-  '''
+  Author: Lydia
+=end
   def all_results
     if params[:type] == "1"
       @results = $users.paginate(:page=>params[:page], :per_page=> 2)
