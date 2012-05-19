@@ -1,5 +1,12 @@
 <!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
 <!--This checks whether the list of stories I receive is nil or not -->
+
+<!-- Author: Omar 
+	added warning for user that he didnt select any interest -->
+<% if (@lol.user_interests == []) %>
+  	<%flash[:notice] = " You didn't select any interest ! "%>
+ <%end%>
+
 <% # encoding: utf-8%>
 	<% unless @stories.nil? %>
 	<!-- if not nil -->
