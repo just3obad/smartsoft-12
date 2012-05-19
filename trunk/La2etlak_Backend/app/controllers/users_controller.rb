@@ -2,16 +2,25 @@ class UsersController < ApplicationController
 	respond_to :html,:json
 
 	# Author: Kiro
-  # Renders the registration remplate
+=begin
+	Description: This method creates an empty user record and renders
+	the registration template
+	Author: Kiro
+=end
  	def new
     @user = User.new
     render :layout => "mobile_template"
   end
 
-  # Author: Kiro
-  # Creates a new user
-  # generates a verifcation code for the user and sends it by email
-  # redirects the user to the toggle screen
+=begin
+	Description: This method saves the information of the new user to the database.
+	If the user had no contraints for being saved, a Verification
+	Code is generated for this user, and an email containing the
+	verification instructions is sent to his email.
+	Then it logs in the registered user and redirects him to the
+	toggle page.
+	Author: Kiro
+=end
   def create
     @user = User.new(params[:user])
 		@user.email = params[:user][:email].downcase
@@ -29,12 +38,14 @@ class UsersController < ApplicationController
     render :action => 'new', :layout => "mobile_template"
    end
   end
-	
-  # Author: Kiro
-	# This method is used to register a new user and save him,
-	# if the user was saved successfully it returns "true,
-	# otherwise it returns the errors that prevented the saving of the record
-  # MOBILE SIDE
+
+=begin
+	Description: This method is used to register a new user and save him,
+	if the user was saved successfully it returns "true,
+	otherwise it returns the errors that prevented the saving of the record
+  <MOBILE SIDE> This is left in case we change our mind again.
+  Author: Kiro
+=end
 	def register
  		@user = User.new(params[:user])
 		respond_to do |format|
@@ -83,8 +94,15 @@ class UsersController < ApplicationController
     end
   end
 
-  # Author: Kiro
-  # resets the password of the user and sends it by email
+=begin
+	Description: This method takes the email that the user entered and tries
+	to find it in the database, if this email doesn't exist
+	it shows a flash "This email doesn't exists" but
+	if it exists it resets the password of the user that
+	this email belongs to and sends it to his email, then
+	it informs the user that his password was reset.
+	Author: Kiro
+=end
 	def resetPassword
 		@user = User.find_by_email(params[:email].downcase)
     if @user.nil?
@@ -98,8 +116,10 @@ class UsersController < ApplicationController
     end
 	end
 
-  # Author: Kiro
-  # renders the forgot_password screen
+=begin
+  Description: This method renders the forgot_password screen
+	Author: Kiro
+=end
   def forgot_password
     @email
     render :layout => 'mobile_template'
@@ -415,12 +435,24 @@ end
 
 #~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
 
-	# Author: Kiro
+=begin
+	Description: This method renders the verifySettings screen where
+	the user can verify his account or resend his
+	verification email.
+	Author: Kiro
+=end
 	def verifySettings
     render :layout => 'mobile_template'
   end
 
-	# Author: Kiro
+=begin
+	Description: This method takes the code entered by the user
+	and check if it matches the verification code of the user.
+	If it matches the user will be notified then he will be
+	redirected to the main feed, if it didn't match the user
+	will be notified that he entered a wrong code.
+	Author: Kiro
+=end
 	def verifyAccount
 		@code = params[:code].downcase
 		@user = current_user
@@ -433,7 +465,14 @@ end
 		end
 	end
   
-	# Author: Kiro
+=begin
+	Description: This method resends the verification instructions
+	email to the user if the method user.resendCode? returned true,
+	then it notifies his the the email was resent.
+	Otherwise the user will be notified that he already verified his account
+	and he will be redirected to the main feed.
+	Author: Kiro
+=end
 	def resendCode
 		@user = current_user
 		if @user.resendCode?
