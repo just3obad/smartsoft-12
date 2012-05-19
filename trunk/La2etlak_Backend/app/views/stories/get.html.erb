@@ -1,9 +1,13 @@
 <html>
+<!-- back to main feed button -->
+<div align="center">
+<%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
+</div></br>
 <!-- adding story title-->
 <% if @story == nil %>
- <div align="center">
+ <div align="center" style="padding-down:10px;">
  <%= " the selected story was removed ! "%> </br></br>
- 			   <%= link_to_function image_tag('back-icon.png' , :style =>"width:50px;height:30px;"), "history.back()" %>
+ 			   <%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
 	   </div></br> 
 	   <%else%>
 
@@ -85,16 +89,15 @@
 	
 
   <%end%>
-	</br>
+	
  
  <%end%>
  	 
 <!-- adds content of story  -->
- <% if @story.mobile_content != nil %>
- <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
- 
+ <% if @story.mobile_content != nil  && @story.mobile_content.length > 0 %>
+ <div class="story-comment-box-mobile well" style="padding-left:10px;">
  <%= @story.mobile_content %>
- </div></br>
+ </div>
  <%end%>
 
 	<% if @story.category == "RSS" %>
@@ -115,9 +118,9 @@
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
 
 <!-- recommend button -->
-   &nbsp;<%= link_to image_tag('reco.jpg' , :style =>"width:35px;height:25px;"), {:controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id }%>Recommend
+   &nbsp;<%= link_to image_tag('reco.jpg' , :style =>"width:35px;height:25px;")  + "Recommend" , {:controller => 'stories' , :action => 'recommend_story_mobile_show' , :sid => @story.id }%>
 <!-- flag button -->
-   &nbsp;<%= link_to image_tag('flag.png' , :style =>"width:25px;height:20px;"), {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%></br>
+   &nbsp;<%= link_to image_tag('flag.png' , :style =>"width:25px;height:20px;")+  "Flag" , {:controller => 'flags' , :action => 'flag' , :sid => @story.id }%></br>
    
 <!-- Comments area, to comments and up or 
      any comments
@@ -201,15 +204,8 @@
    	
 <!-- when was the story added to our system -->
 	Added on <%= @story.created_at %></br></br>
-	
 
-	
 	<%end%>
-	
-	<!-- back to main feed button -->
-	<div align="center">
-			   <%= link_to_function image_tag('back-icon.png' , :style =>"width:50px;height:30px;"), "history.back()" %>
-	   </div></br> 
  </div>
    
 </html> 	
