@@ -135,16 +135,24 @@ end
   end
 
 
-
-# lets a user share a story given its id
+=begin
+  lets a user share a story given its id
+  Input: story_id
+  Output: true
+  The method before did not allow the user to
+  share the same story twice, however this is 
+  now allowed so no checks are neccessary.
+  Author: Menisy
+=end
   def share?(story_id)
-    share = Share.find_by_user_id_and_story_id(self.id,story_id)
-    if share.nil? then  # if he/she didn't share this story before then make him/her share it
-      Share.create :user_id=>self.id,:story_id=>story_id
-      return true   # shared successfully, return true
-    else      # else, dont allow to share it
-      return false    # and return false
-    end
+    Share.create :user_id=>self.id,:story_id=>story_id
+    user_name = self.name  ||  self.email.split('@')[0]
+    story = Story.find(story_id)
+    story_title = story.title || story.content[0,20]+"..."
+    p story_title.nil?
+    p user_name.nil?
+    Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil,admin_id: nil,story_id: story_id,interest_id: nil,message: user_name + " shared the story \"" +  story_title +  "\"" )
+    return true
   end 
  
  # this methods generates a verification code for the user and adds an entry to Verification_Code
