@@ -119,6 +119,16 @@
 
                     <%  end %>
 
+                     <% if !(interest.deleted ) %>
+          
+                      <span class="greenbadge"  style="width:100%" >Active</span>
+
+                     <% elsif interest.deleted %>
+
+                      <span class="redbadge"  style="width:100%">Blocked</span>
+
+                     <% end %>
+
                   </h3>
           
                   <%= link_to "view Statistics", 
