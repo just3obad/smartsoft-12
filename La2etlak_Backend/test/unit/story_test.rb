@@ -41,9 +41,9 @@ class StoryTest < ActiveSupport::TestCase
     story.interest = int
     story.content = "Test content"
     story.save
-    user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "1234",password_confirmation: "1234")
-    user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "1234",password_confirmation: "1234")
-    user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "1234",password_confirmation: "1234")
+    user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "123456",password_confirmation: "123456")
+    user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "123456",password_confirmation: "123456")
+    user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "123456",password_confirmation: "123456")
     like1 = Likedislike.new
     like1.likedisliker = user1
     like1.action = 1
@@ -72,9 +72,9 @@ class StoryTest < ActiveSupport::TestCase
     story.interest = int
     story.content = "Test content"
     story.save
-    user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "1234",password_confirmation: "1234")
-    user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "1234",password_confirmation: "1234")
-    user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "1234",password_confirmation: "1234")
+    user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "123456",password_confirmation: "123456")
+    user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "123456",password_confirmation: "123456")
+    user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "123456",password_confirmation: "123456")
     dislike1 = Likedislike.new
     dislike1.likedisliker = user1
     dislike1.action = -1
