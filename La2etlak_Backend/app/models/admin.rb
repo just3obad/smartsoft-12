@@ -135,7 +135,7 @@ require "net/http"
     end
 
     for title_query in title_match
-      query_result += Story.all.select {|story| not story.title.nil? and not story.title.empty? and story.title =~ %r'#{title_query}'}
+      query_result += Story.all.select {|story| not story.title.nil? and not story.title.empty? and story.title.downcase =~ %r'#{title_query}'}
     end
 
     content_query = query
@@ -148,7 +148,7 @@ require "net/http"
     end
 
     for content_query in content_match
-      query_result += Story.all.select {|story| not story.content.nil? and not story.title.empty? and story.content =~ %r'#{content_query}'}
+      query_result += Story.all.select {|story| not story.content.nil? and not story.title.empty? and story.content.downcase =~ %r'#{content_query}'}
     end
 
     return query_result.to_a
