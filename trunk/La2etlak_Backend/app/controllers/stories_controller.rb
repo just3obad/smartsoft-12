@@ -4,6 +4,9 @@ class StoriesController < ApplicationController
   before_filter :user_authenticated?, :except => [:show, :index, :new, :create, :destroy]
   respond_to :html,:json
   require 'net/smtp'
+  $hidden = true
+  $flagged = true
+  $active = true
 
 def show
    @comments = Comment.find_all_by_story_id(params[:id]) # get comments of this story

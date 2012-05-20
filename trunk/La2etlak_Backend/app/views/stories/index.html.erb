@@ -26,13 +26,13 @@
 
             <form action="stories/filter" method="post">
               <label class="checkbox">
-			    <input type="checkbox" value= "true" <%if( $hidden=='true')%>  checked <%end%>  name="hidden" id="hidden"> Hidden
+			    <input type="checkbox" value= "true" <%if( $hidden )%>  checked <%end%>  name="hidden" id="hidden"> Hidden
 			  </label>
               <label class="checkbox">
-			    <input type="checkbox" value= "true" <%if( $flagged=='true')%>  checked <%end%>  name="flagged" id="flagged"> Flagged
+			    <input type="checkbox" value= "true" <%if( $flagged )%>  checked <%end%>  name="flagged" id="flagged"> Flagged
 			  </label>
               <label class="checkbox">
-			    <input type="checkbox" value= "true" <%if( $active=='true')%>  checked <%end%>  name="active" id="active"> Active
+			    <input type="checkbox" value= "true" <%if( $active)%>  checked <%end%>  name="active" id="active"> Active
 			  </label>
               <input type="submit" name="commit" value="Submit" class="btn btn-primary"/>
             </form>
