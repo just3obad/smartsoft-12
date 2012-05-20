@@ -13,7 +13,7 @@
             <ul class="nav">
 			  <li><%= link_to (image_tag("gear.png")) , {:controller => "users" , :action =>
 				"settings"}, {:style => 'width:25px;height:25px'}%>
-              <li><%= link_to (image_tag ("reload.png")) ,{:controller => params[:controller],:action  =>  params[:action]}, {:style => 'margin-right:2%;width:25px;height:25px;'} %></li>
+              <li><%= link_to (image_tag ("reload.png")) ,{:controller => params[:controller],:action  =>  params[:action], :params => params}, {:style => 'margin-right:2%;width:25px;height:25px;'} %></li>
             </ul>
           </nav>
         </div>
