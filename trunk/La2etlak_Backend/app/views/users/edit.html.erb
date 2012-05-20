@@ -1,34 +1,49 @@
+
+
 <div> 
   <h3> Modify your info </h3>
+</br>
 </div>
 
-<div style="width:95%" >
-  <table>
-    <%= form_for(:user, :url => {:action => 'update' }) do |f| %>
-    <tr> 
-      <th> Nick Name </th>
-      <td><%= f.text_field :name, :class => "modify_info_text_field" %> </td>
-    </tr>
-    <tr> 
-      <th> First Name </th>
-      <td><%= f.text_field :first_name, :class => "modify_info_text_field" %> </td>
-    </tr>
-    <tr> 
-      <th> Last Name </th>
-      <td><%= f.text_field :last_name, :class => "modify_info_text_field" %> </td>
-    </tr>
-    <tr> 
-      <th> Password </th>
-      <td><%= f.password_field :password, :class => "modify_info_text_field" %> </td>
-    </tr>
-    <tr> 
-      <th> Password Confirmation </th>
-      <td><%= f.password_field :password_confirmation, :class => "modify_info_text_field" %> </td>
-    </tr>
-  </table>
-</div>  
 
-<div class="confirm_button">
-    <%= submit_tag("Update") %>
+ <%= form_for(:user, :url => {:action => 'update' }) do |f| %>
+ 
+ <div><h4>Personal Info</h4></div>
+</br>
+
+  <div class="field">
+    <%= f.label :Nick_Name %>
+    <%= f.text_field :name,:style => "height:40px; width:95%" %>
+  </div>
+
+    <div class="field">
+    <%= f.label :First_Name %>
+    <%= f.text_field :first_name,:style => "height:40px; width:95%" %>
+  </div>
+
+    <div class="field">
+    <%= f.label :Last_Name %>
+    <%= f.text_field :last_name,:style => "height:40px; width:95%" %>
+  </div>
+<div><h4>Change Password<h4></div>
+</br>
+  <div class="field">
+    <%= f.label :Password %>
+    <%= f.password_field :password,:style => "height:40px; width:95%"%>
+  </div>
+
+  <div class="field">
+    <%= f.label :Password_confirmation %>
+    <%= f.password_field :password_confirmation,:style => "height:40px; width:95%"%>
+  </div>
+
+  <div class="confirm_button" style="float:left;">
+    <%= submit_tag("Update" ) %>
+  </div>
+
     <% end %>
-</div>
+
+
+
+
+
