@@ -74,9 +74,10 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(params[:admin])
     if @admin.save
-      flash[:notice] = "Registration successful."
+      flash[:notice] = "Addition successful."
       redirect_to('/admin_settings')
     else
+      flash[:notice] = "Enter Valid arguments successful."
       redirect_to('/admin_settings')
     end
   end
