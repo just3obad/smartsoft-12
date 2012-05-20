@@ -82,25 +82,25 @@ class InterestTest < ActiveSupport::TestCase
 
 
 #Author:Jailan
- test "should save interest when updated GREEN" do
+ test "should save interest when updated " do
     interest = Interest.create!(name: "my Test", description: "blabla")
      @inty = Interest.my_update( interest.id ,{ :name => "fff" } )
 
-    assert interest.save
+    assert interest.save , "Interest wasn't saved when updated"
  
 end
 
-  test "no interest without name  GREEN"do
+  test "no interest without name "do
     interest = Interest.new
     assert !interest.save, "Should not save without name"
   end
 
 #Author:Jailan
- test "shouldn't update interest when name is blank RED" do
-    interest = Interest.create!(name: "my Test", description: "blabla")
-interest.name=""
+ test "shouldn't update interest when name is blank" do
+ interest = Interest.create!(name: "my Test", description: "blabla")
+ interest.name=""
 
-    assert !interest.save ," Cannot save an Interest with a blank Name"
+ assert !interest.save ," Cannot save an Interest with a blank Name"
 
   end
 
@@ -108,11 +108,11 @@ interest.name=""
 
 
 #Author:Jailan
- test "should save interest when toggled RED" do
+ test "should save interest when toggled " do
     interest = Interest.create!(name: "my Test", description: "blabla")
     @inty = Interest.my_toggle(interest.id)
 
-    assert interest.save
+    assert interest.save , "Interest wasn't saved when toggled"
   end
 
 
