@@ -1,33 +1,18 @@
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email,:style => "height:40px; width:95%" %>
+ <div class="field" align="center">
+    <%= f.email_field :email,:style => "height:40px;" %>
   </div>
-  <div class="field">
     <%= f.label :password %>
-    <%= f.password_field :password,:style => "height:40px; width:95%"%>
+ <div class="field" align="center">
+    <%= f.password_field :password,:style => "height:40px;"%>
   </div>
-  <div class="field">
+ 
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation,:style => "height:40px; width:95%"%>
+ <div class="field" align="center">
+    <%= f.password_field :password_confirmation,:style => "height:40px;"%>
   </div>
-  <div class="actions">
+  <div class="actions" align="center">
     <%= f.submit "Register", :style => "width:100px" %>
   </div>
 <% end %>
-
-<div align="center">
-  <p><font size="3"><a href="#" onclick="history.back();"><class: "btn btn-danger">Already have an account?</a></font></p>
-</div>
