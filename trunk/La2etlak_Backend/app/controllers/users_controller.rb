@@ -231,8 +231,11 @@ end
 #$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
 
 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$ Author Omar $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-#this method return current user interests and all interests on the system and render to mobile_template (toggle view 
+=begin
+this method return current user interests and all interests on the system and render to mobile_template (toggle view )
+ Author Omar 
+=end
+
 def toggle
 @user = current_user
 @user_interests = @user.user_interests
@@ -243,13 +246,19 @@ def toggle
 render :layout => "mobile_template"
 end
 
-# updates user interests according what the user selects  na dredirect to the same view toggle to update voew of interests
+=begin 
+updates user interests according what the user selects  and redirect to the same view toggle to update view of interests
+Author Omar
+=end
+
 def int_toggle
   user = current_user
   id = params[:id]
   user.toggle_interests(id)
   redirect_to "/mob/toggle"
 end
+
+
 
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

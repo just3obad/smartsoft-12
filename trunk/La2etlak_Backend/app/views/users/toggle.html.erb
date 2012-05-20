@@ -1,5 +1,5 @@
 <html>
-	<!-- checks if there are no interests on the system -->
+	<!-- checks if there are no interests on the system yet-->
 	<% if @all_interests == nil || @all_interests == [] %>
 	<div align="center">
 		 <font face="Courier New, Courier, monospace" COLOR="FF0000" size="3"><b>No interests on the system yet!!</b></font></br></br> 
@@ -14,7 +14,9 @@
      <font face="Courier New, Courier, monospace" size="3"><b>Interests</b></font></br></br>
   </div>
 
-<!-- create button each interest in the system and if this interest already exists in your interests it makes the button green else it make it red -->
+<!-- create button each interest in the system and if this interest already exists in user interests it makes the button green else it make it red and if interest is blocked by user before the word "(blocked)" is displayed next to the interest -->
+<!-- on adding new/blocked interest the page is refreshed and buttin color is changed into green
+on deleting an exsiting interest the page is refreshed and button color is changed into red -->
    
    <div align="center" >     
    	<% @all_interests.each do |interest| %>
@@ -60,7 +62,7 @@ class: "btn btn-danger"%></br></br>
 	</br></br>
 	</div>
 	
-	<!-- on click goes to main feed  -->
+	<!-- added main feed button on click goes to main feed  -->
 		<div align="center" >
 			<%= link_to ' Main feed' , {:controller => 'users', :action => 'feed'} , 
 class: "btn" %></br>

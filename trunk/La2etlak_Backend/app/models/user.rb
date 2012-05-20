@@ -581,8 +581,11 @@ Author:Kareem
 
 
   
- #Author : Omar 
- # check if user toggle new interests the methods adds it to his interests if toggled old interest it deletes it from his interests
+=begin 
+ check if user toggle new interests the methods adds it to his interests if toggled old interest it deletes it from his interests
+ Author : Omar 
+=end
+ 
  def toggle_interests(id)
 
 	 if self.name.nil?
@@ -606,14 +609,20 @@ Author:Kareem
  	end
  end
  
-  # Author: Omar
-  # select user existing interests in our database
+=begin  
+  select user existing interests in our database
+ Author: Omar
+=end
+   
   def user_interests
     user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}
   end
 
-# Author: Omar
-#check if user has this interest as blocked or not if blocked return 1 else return 0
+=begin
+ check if user has this interest as blocked or not if blocked return 1 else return 0
+ Author: Omar
+=end
+ 
  def is_blocked(interest)
  	if(BlockInterest.find(:all , :conditions => ["user_id = ? AND interest_id = ? ", self.id, interest]).length > 0)
  	return 1
@@ -623,8 +632,10 @@ Author:Kareem
  end
  	    
 
-  # Author: Omar
-  #select all interests in the system
+=begin
+  select all interests in the system
+  Author: Omar
+=end 
   def all_interests
     all_interests =  Interest.all()
   end
