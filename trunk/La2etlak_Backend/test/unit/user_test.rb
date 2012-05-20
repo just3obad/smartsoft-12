@@ -124,7 +124,7 @@ class UserTest < ActiveSupport::TestCase
 	#Author : Kareem
 	test "create new flag" do
   	i = Interest.create(:name => "Smart")
-	u = User.create(:email=> "7amo2a@guc.com")
+	u = User.create(:email => "bwqer@a.com" , :password => "123456" , :password_confirmation => "123456")
  	s = Story.create(:title => "lol" , :interest_id => i.id)
   	assert_difference('Flag.count') do
 	u.flag_story(s) 	
@@ -134,7 +134,7 @@ class UserTest < ActiveSupport::TestCase
 	#Author : Kareem
 	test "try flagged user" do
 	i = Interest.create(:name => "Smart1")
-	u1 = User.create(:name => "7amada" , :email => "b@abc.com")
+	u1 = User.create(:email => "bwqwer@a.com" , :password => "123456" , :password_confirmation => "123456")
 	s = Story.create(:title => "hashas" , :interest_id => i.id)
  	Flag.create(:user_id => u1.id , :story_id =>s.id)
 	assert_no_difference('Flag.count') do
@@ -148,7 +148,7 @@ class UserTest < ActiveSupport::TestCase
 
 	#Author : Kareem 			
 	test "new thumb story" do
-	user = User.create(:name => "Apolo" , :email => "a@a.com")
+	user = User.create(:email => "a@a.com" , :password => "123456" , :password_confirmation => "123456")
 	i = Interest.create(:name => "rare")
 	s = Story.create(:title => "ahaaaa" , :interest_id => i.id)
 	assert_difference('Likedislike.count') do
@@ -158,7 +158,7 @@ class UserTest < ActiveSupport::TestCase
 	
 	#Author : Kareem
 	test "thumb story again" do
-	user = User.create(:name => "Apolo" , :email => "b@a.com")
+	user = User.create(:email => "b@a.com" , :password => "123456" , :password_confirmation => "123456")
 	i = Interest.create(:name => "rares")
 	s = Story.create(:title => "ahaaaa" , :interest_id => i.id)
 	Likedislike.create(:user_id => user.id , :story_id => s.id ,:action => 1)
@@ -169,23 +169,23 @@ class UserTest < ActiveSupport::TestCase
 
 	#Author : Kareem
 	test "should return stories" do
-	user = User.create(:name => "7amdy" , :email => "7amdy@a.com")
+	user = User.create(:email => "baa@a.com" , :password => "123456" , :password_confirmation => "123456")
 	i= Interest.create(:name => "Art")
 	s= Story.create(:title => "hahsd" , :interest_id => i.id)
 	UserAddInterest.create(:user_id => user.id , :interest_id => i.id)
 	stories = user.get_feed("null")
 	assert_not_nil stories
-	assert_equal stories[0].class.name , "Story"
+	assert_equal stories[0].class.name , "Story" , "Return must be of class story"
 	end
 
 
         #Author : Kareem
 	test "should return user interests" do
-	user = User.create(:name => "lol" , :email => "lol@a.com")
+	user = User.create(:email => "basa@a.com" , :password => "123456" , :password_confirmation => "123456")
 	i = Interest.create(:name => "Ball")
      	i1 =  user.get_interests
 	i2 = UserAddInterest.find(:all , :conditions => ["user_id = ?" , user.id ] , :select => "interest_id").map {|interest| interest.interest_id}.map {|id| 		   		Interest.find(id).name} 
- 	assert_equal i1 , i2	
+ 	assert_equal i1 , i2	, "User Interests must be returned"
 	end
 
     
