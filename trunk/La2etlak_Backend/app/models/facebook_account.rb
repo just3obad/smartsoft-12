@@ -46,8 +46,9 @@ class FacebookAccount < ActiveRecord::Base
           elsif s["type"] == "video"
             title = title+"\n"+s["name"] if s["name"]
             story_link = s["link"]
-            doc = Nokogiri::HTML(open(story_link));nil
-            media = doc.xpath('//meta[@property="og:image"]/@content').map(&:value)[0]
+            img = s["picture"]
+            img_link = URI.unescape(img[img.index("url=")+4,img.length])
+            media = img_link
             content = s["message"] if s["message"]
             content = content + s["description"] if s["description"]
           else
