@@ -31,28 +31,29 @@ class Emailer < ActionMailer::Base
     @passw = pass
     mail(:to => user.email, :subject => "Your Password was reset by the Admin")
   end
+#Author: khaled
+	def recommend_story(sender, reciever, message, stitle)
 
- def recommend_story(sender, reciever, message, stitle, sbody)
+	 @user=sender
+	 @friend=reciever
+	 @mess=message
+	 @storytit=stitle
 
-   @user=sender
-   @friend=reciever
-   @mess=message
-   @storytit=stitle
-   @storybod=sbody
+	mail(:to => @friend, :subject => "recommendation in La2etlak app")
 
-  mail(:to => @friend, :subject => "recommendation in La2etlak app")
+	end
 
- end
+#Author: khaled
+	def invite_to_app(sender, reciever, message, stitle)
 
-def invite_to_app(sender, reciever, message)
+		 @user=sender
+		 @friend=reciever
+		 @mess=message
+	   @storytit=stitle
+		
+		mail(:to => @friend, :subject => "invitation to La2etlak app")
 
-   @user=sender
-   @friend=reciever
-   @mess=message
-  
-  mail(:to => @friend, :subject => "invitation to La2etlak app")
-
- end
+	 end
 
 	# Author: Mouaz
   def reset_admin_password(admin,pass)
