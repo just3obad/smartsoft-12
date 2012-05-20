@@ -1,4 +1,5 @@
 class SharesController < ApplicationController
+  before_filter {user_authenticated?}
   #$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$
   #Here I create a new entry in the Share table, create a flash the states that the share was successful (or not) and pass the flash on to
   #the stories/:id page (which makes the flash show up in that page)

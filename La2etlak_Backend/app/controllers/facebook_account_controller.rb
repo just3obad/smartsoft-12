@@ -1,4 +1,6 @@
 class FacebookAccountController < ApplicationController
+
+  before_filter {user_authenticated?}
 	 # Action to be called from the connet_to_social network view
   # which redirects to the facebook api using koala
   # Author: Menisy

@@ -30,6 +30,7 @@ NokiaRuby::Application.routes.draw do
 	match "mob/resendCode" => "users#resendCode"
 	match 'logout', :controller => 'user_sessions', :action => 'destroy'
 	resources :user_sessions
+	resources :users
 	# $$$$$$$$$$$$$$ KIRO $$$$$$$$$$$$$$$$$$$$$$$$$
 
 # $$$$$$$$$$$$$$  OMAR $$$$$$$$$$$$$$$$$$$$$$$
@@ -68,7 +69,7 @@ NokiaRuby::Application.routes.draw do
   match "mob/twitter" => "users#twitter_feed"
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
 	
-	resources :users  # Kiro
+
 
 
 

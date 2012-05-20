@@ -1,13 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :admin_authenticated?
+  helper_method :user_authenticated?
 	helper_method :current_user
   helper_method :current_admin
   helper_method :nokia_user?
   
 
     def nokia_user?
-
     	agent = request.env["HTTP_USER_AGENT"].downcase
     	if agent.index('nokia'.downcase)
     		return true
@@ -19,6 +19,15 @@ class ApplicationController < ActionController::Base
   def admin_authenticated?
     if(current_admin.nil?)
       redirect_to('/admin/login')
+    return false
+      else 
+    return true
+    end
+  end
+
+  def user_authenticated?
+    if(current_user.nil?)
+      redirect_to new_user_session_path
     return false
       else 
     return true

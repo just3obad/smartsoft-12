@@ -1,4 +1,7 @@
 class TwitterAccountsController < ApplicationController
+
+  before_filter {user_authenticated?}
+
 =begin
   This is the first phase of the OAuth phase that is required by twitter.
   In this phase, first a new Consumer gets created which is basically 

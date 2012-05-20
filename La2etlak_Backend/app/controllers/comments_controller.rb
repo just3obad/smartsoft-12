@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+
+  before_filter {user_authenticated?}
   respond_to :html,:json
   
   def new

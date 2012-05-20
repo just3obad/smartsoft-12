@@ -13,13 +13,13 @@
     </div>
   <% end %>
 
-  <div class="field" align="center">
-    
-    <%= f.text_field :email,:style => "height:40px; width:200px",  :placeholder => 'E-mail' %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email,:style => "height:40px; width:95%" %>
   </div>
-  <div class="field" align="center">
-    
-    <%= f.password_field :password,:style => "height:40px; width:200px",  :placeholder => 'Password'%>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password,:style => "height:40px; width:95%"%>
   </div>
   <div class="actions" align="center">
     <%= f.submit "Login", :style => "width:100px" %>

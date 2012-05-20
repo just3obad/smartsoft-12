@@ -1,16 +1,14 @@
 class UsersController < ApplicationController
 	before_filter :admin_authenticated?, :only => [:force_reset_password, :index, :show, :activate, :deactivate ]
+	before_filter :user_authenticated?, :except => [:force_reset_password, :index, :show, :activate, :deactivate, :new, :create, :forgot_password, :resetPassword, :dummyLogin, :test, :test_2 ]
   respond_to :html,:json
 
-	# Author: Kiro
+
 =begin
 	Description: This method creates an empty user record and renders
 	the registration template
 	Author: Kiro
 =end
-  
-
-
  	def new
     @user = User.new
     render :layout => "mobile_template"
