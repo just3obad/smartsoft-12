@@ -6,6 +6,24 @@ class UsersControllerTest < ActionController::TestCase
 	setup :activate_authlogic
 	#########################
 
+  # Author: Gasser
+  test "admin should reset user's password" do
+    admin = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+    AdminSession.create admin
+    user=User.first
+    password = user.password
+    get :force_reset_password, :id => user.id
+    assert_routing 'users/force_reset_password/'+user.id.to_s, {:controller =>"users", :action => "force_reset_password", :id=> "1"}
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      get :force_reset_password, :id =>user.id
+    end
+    reset_password = ActionMailer::Base.deliveries.last
+    assert_equal "Your Password was reset by the Admin", reset_password.subject, "The subject sent in the mail is wrong"
+    assert_equal 'menis@abc.com', reset_password.to[0], "The email was not delivered to the user"
+    assert_equal "The new password is sent to the user by e-mail", flash[:success] , "No success flash appears."
+    assert_equal user.password, password , "The password was not changed successfully."
+    assert_redirected_to user_path, "The admin was not redirected to the user profile page"
+  end
 
    test "admin should reset users password RED" do
      user=User.first
