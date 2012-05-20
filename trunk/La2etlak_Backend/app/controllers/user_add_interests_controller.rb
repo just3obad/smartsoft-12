@@ -1,5 +1,6 @@
 class UserAddInterestsController < ApplicationController
 
+  before_filter {user_authenticated?}
 
 #this Action calls the method get_interests and gets the interests of the current logged in User
 #@user current Logged in user

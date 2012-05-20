@@ -1,5 +1,7 @@
 class AdminsController < ApplicationController
 
+    before_filter {admin_authenticated?}
+
   def search
     $usersSearch = "true"
     $storiesSearch = "true"

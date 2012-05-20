@@ -1,5 +1,7 @@
 class UserSessionsController < ApplicationController
 
+	before_filter :user_authenticated?, :only => [:destroy]
+
 	# This method is used to check if the user entered a valid
 	# email and password, if the UserSession was successfully
 	# created it replies with the user's perishable_token,

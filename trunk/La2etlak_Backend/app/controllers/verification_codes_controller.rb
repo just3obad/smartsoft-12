@@ -1,5 +1,6 @@
 class VerificationCodesController < ApplicationController
-                       respond_to :html,:json
+  before_filter {user_authenticated?}
+  respond_to :html,:json
 
 # This method 'verify' takes the Haccount ID of the user and the code he entered to verify his
 # account as parameters and tries to verify the Haccout of the user using the code he entered

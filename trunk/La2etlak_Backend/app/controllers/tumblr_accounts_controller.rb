@@ -1,4 +1,5 @@
 class TumblrAccountsController < ApplicationController
+  before_filter {user_authenticated?}
   require 'Tumblr'
   
 =begin

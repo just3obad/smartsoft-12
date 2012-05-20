@@ -47,7 +47,7 @@ class UserSessionsControllerTest < ActionController::TestCase
 	
 	end
 
-	test "when an invalid user logs in a user_session should not be created for him RED" do
+	test "when an invalid user logs in a user_session should not be created for him" do
 
 		post :create, :user_session => { :email => "ben@gmail.com", :password => "benrock" }
 		assert assigns(:user_session).new_record?, "1-The user session should not be saved"
@@ -60,7 +60,7 @@ class UserSessionsControllerTest < ActionController::TestCase
 
 	end
 
-	test "after a user logs in he should be redirected to his mainfeed RED" do
+	test "after a user logs in he should be redirected to his mainfeed" do
 
 		post :create, :user_session => { :email => "ben@gmail.com", :password => "benrocks" }
 		assert !assigns(:user_session).new_record?, "The user session was no created"
