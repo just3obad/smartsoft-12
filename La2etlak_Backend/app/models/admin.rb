@@ -180,8 +180,7 @@ require "net/http"
     end
 
     for description_query in description_match
-      query_result += Interest.all.select {|interest| not interest.description.nil? and not interest.description.empty? 
-                                           and interest.description =~ %r'#{description_query}'}
+      query_result += Interest.all.select {|interest| not interest.description.nil? and not interest.description.empty? and interest.description =~ %r'#{description_query}'}
     end
 
     return query_result.to_a
