@@ -419,7 +419,7 @@ class UsersControllerTest < ActionController::TestCase
   #Author : Shafei
   test "all users has div" do
     get 'admins/statistics/all_users'
-    assert_select 'div[id = ccc]'
+    assert_select 'div[id = genInfo]'
    end
 
 	# Author: Kiro
