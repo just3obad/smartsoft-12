@@ -17,65 +17,87 @@
       // Start point of the graph.
        x = <%= get_user_start_date(@id).to_i %>;
         if(x != -1) {
-        x=x+1;
-      pointStart= <%= get_user_start_date(@id).days.ago.to_i * 1000 %>;
-      //Label for x-axis 
-      xl="Day"; 
-      //Label for y-axis
-      yl="Number";
-      //Label for graph title
-      titleOfGraph="User Stat";
-      //call the method that renders the graph with the calculated parameters.
-       document.getElementById("deactivatedUser").style.display= "none"; 
-      Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);
-      } else {
+          x=x+1;
+          pointStart= <%= get_user_start_date(@id).days.ago.to_i * 1000 %>;
+         //Label for x-axis 
+         xl="Day"; 
+        //Label for y-axis
+        yl="Number";
+        //Label for graph title
+        titleOfGraph="User Stat";
+        //call the method that renders the graph with the calculated parameters.
+         document.getElementById("deactivatedUser").style.display= "none"; 
+        Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);
+       } 
+       else {
          document.getElementById("deactivatedUser").style.display = "block";
-      document.getElementById("ccc").style.display = "none";
+         document.getElementById("ccc").style.display = "none";
       }  
    });
 </script>
-<!-- ccc is the id of the div that the graph would render to -->
+
 <div class="main-user-profile-page">
-      <div class="middle-user-profile-page-panel" >
-<div id="ccc" ></div>
 
+    <div class="middle-user-profile-page-panel" >
 
-<div class="alert" id="deactivatedUser" style="display: none;">
+        <!-- ccc is the id of the div that the graph would render to -->
+        <div id="ccc" ></div>
+
+          <div class="alert" id="deactivatedUser" style="display: none;">
   
-           <a class="close" data-dismiss="alert">×</a>
            <h1><strong>Warning!</strong> User was deactivated before the last 30 days.</h1>
-     </div>
 
- <div id="shared_stories" style="padding-top:30px; padding-left:30px;">
-  <%if @user.get_shared_stories.empty?%>
-   <div class="alert-error" id="noStoriesShared" >
+         </div>
+
+         <div id="shared_stories" style="padding-top:30px; padding-left:30px;">
+
+           <%if @user.get_shared_stories.empty?%>
+
+             <div class="alert" id="noStoriesShared" >
   
-           <h3><strong>Warning!</strong> No Stories Shared By This User.</h3>
-     </div> 
-  <%else%>
-<h4><div class="alert alert-info"> 
+               <h3><strong>Warning!</strong> No Stories Shared By This User.</h3>
+
+             </div> 
+
+         <%else%>
+
+             <h4>
+              <div class="alert alert-info"> 
+              
               Stories Shared By This User : </br>
              
-            </div></h4>
-    <!-- to list all the stories -->
- <%@user.get_shared_stories.each do |story|%>
-<div class="well-story-component">
+              </div>
+            </h4>
 
-        <a href="/stories/<%= story.id%>"class="thumbnail-story-component">
-               <%= image_tag "logo.jpeg", :size => "75x75" %>
+            <!-- to list all the stories -->
+            <%@user.get_shared_stories.each do |story|%>
 
-          </a>
+              <div class="well-story-component">
+
+                <a href="/stories/<%= story.id%>"class="thumbnail-story-component">
+
+                  <%= image_tag "logo.jpeg", :size => "75x75" %>
+
+                </a>
            
-        <div class="story-component-info">
-              <h3><%= story.title %></h3>
-<%= link_to "view Statistics",
-{:controller => 'statistics', :action => 'stories', :id => story.id},
-class: "story-component-button-absolute btn btn-primary"%>
-        </div>
+               <div class="story-component-info">
 
-</div>
-<%end%>
-<%end%>
- </div>  
- </div>
+                 <h3><%= story.title %></h3>
+
+                   <%= link_to "view Statistics",
+                   {:controller => 'statistics', :action => 'stories', :id => story.id},
+                   class: "story-component-button-absolute btn btn-primary"%>
+
+               </div>
+
+              </div>
+
+            <%end%>
+
+        <%end%>
+
+     </div>  
+
+   </div>
+
 </div>  
