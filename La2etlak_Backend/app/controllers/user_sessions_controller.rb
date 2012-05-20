@@ -31,13 +31,16 @@ class UserSessionsController < ApplicationController
 	# redirects the user to his main feed
 	def create
  		@user_session = UserSession.new(params[:user_session])
-		@user = User.find_by_email(params[:user_session][:email])
-			if @user.deactivated
-				flash[:notice] = "Sorry, your account has been deactivated red"
-				render :action => 'new', :layout =>"mobile_template"
-  		elsif @user_session.save
-   			flash[:notice] = "Successfully logged in green"
-    		redirect_to "/mob/main_feed"
+  		if @user_session.save
+				@user = current_user
+				if @user.deactivated
+					@user_session.destroy
+					flash[:notice] = "Sorry, your account has been deactivated red"
+   				redirect_to :action => 'new', :layout =>"mobile_template"
+				else
+   				flash[:notice] = "Successfully logged in green"
+    			redirect_to "/mob/main_feed"
+				end
   		else
    			render :action => 'new', :layout =>"mobile_template"
  	 	end
