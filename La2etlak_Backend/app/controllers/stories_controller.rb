@@ -1,5 +1,6 @@
 # encoding: utf-8
 class StoriesController < ApplicationController
+  before_filter :admin_authenticated?, :only => [:show, :index, :new, :create, :destroy]
   respond_to :html,:json
   require 'net/smtp'
 

@@ -1,4 +1,5 @@
 class StatisticsController < ApplicationController
+ before_filter {admin_authenticated?}
  respond_to :js, :html
  def index
    @interests= Interest.all

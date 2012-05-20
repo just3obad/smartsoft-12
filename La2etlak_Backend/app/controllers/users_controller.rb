@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	respond_to :html,:json
+	before_filter :admin_authenticated?, :only => [:force_reset_password, :index, :show, :activate, :deactivate ]
+  respond_to :html,:json
 
 	# Author: Kiro
 =begin
@@ -7,10 +8,15 @@ class UsersController < ApplicationController
 	the registration template
 	Author: Kiro
 =end
+  
+
+
  	def new
     @user = User.new
     render :layout => "mobile_template"
   end
+
+  
 
 =begin
 	Description: This method saves the information of the new user to the database.

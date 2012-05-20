@@ -1,5 +1,5 @@
 class LogsController < ApplicationController
-
+ before_filter {admin_authenticated?}
  
  #index called when when we want to see all logs
  #or refreshing the view from any filtering 
