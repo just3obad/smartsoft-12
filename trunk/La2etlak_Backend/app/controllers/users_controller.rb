@@ -412,13 +412,19 @@ end
       redirect_to action: "friends_feed", id: @friend_id
   end
 
-  #The method that calls method in the model to get friend stories and renders the view
-  #Author: Rana
+=begin
+  The method that calls method in the model to get friend stories and renders the
+  view.
+  Input: id of friend to view his/her feed
+  Output: rendering the friend's feed
+  Author: Rana
+=end
   def friends_feed
       @user = current_user
       @friend_id = params[:id]
       my_friend_stories = @user.get_one_friend_stories(@friend_id)
-      @my_friend_stories = my_friend_stories.paginate(:per_page => 10, :page=> params[:page]) 
+      @my_friend_stories = my_friend_stories.paginate(:per_page => 10, :page=>
+      params[:page]) 
       render layout:"mobile_template", template: "users/friend_feed"
   end
 
