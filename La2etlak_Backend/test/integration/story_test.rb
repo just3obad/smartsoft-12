@@ -49,11 +49,12 @@ class StoryTest < ActionDispatch::IntegrationTest
       assert_select 'div[id="bsbutton"]'
     end
 
-# Author : Omar
+=begin
+ Author : Omar
+=end
 	test "should route to readmore view" do
-            assert_routing 'stories/1/get', { :controller => "stories", :action =>    		                   "get", :id => "1"}
+            assert_routing 'stories/1/get', { :controller => "stories", :action =>    		            "get", :id => "1"}
   	end
-
 
 end
 
