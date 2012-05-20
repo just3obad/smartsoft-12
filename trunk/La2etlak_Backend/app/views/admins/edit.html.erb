@@ -1,4 +1,7 @@
 <%= form_for @admin do |f| %>
+  <% @admin.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+   <% end %>
   <p>
     <%= f.label :first_name %><br />
     <%= f.text_field :first_name %>
@@ -21,6 +24,6 @@
   </p>
 <div>
 
-  <p><%= f.submit "Add" %></p>
+  <p><%= f.submit "submit" %></p>
 </div>
 <% end %>

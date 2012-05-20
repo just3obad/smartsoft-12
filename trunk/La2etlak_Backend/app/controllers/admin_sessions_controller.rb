@@ -3,10 +3,14 @@ class AdminSessionsController < ApplicationController
  def new  
    @admin_session = AdminSession.new  
  end
- 	# This method is used to check if the user entered a valid
-	# email and password, if the AdminSession was successfully
-	# created it replies with the user's perishable_token,
-	# otherwise it replies with the errors that occured.
+=begin
+  This method is used to check if the user entered a valid
+ email and password, if the AdminSession was successfully
+ created it replies with the user's perishable_token,
+ otherwise it replies with the errors that occured.
+ Author : mouaz
+ params(admin_session parameters)
+=end
  def create  
   @admin_session = AdminSession.new(params[:admin_session])  
   if @admin_session.save  
@@ -16,8 +20,14 @@ class AdminSessionsController < ApplicationController
     render :action => 'new'  
   end  
  end  
- # This method is used to logout the currently logged in
- # admin by destroying his AdminSession
+=begin
+ This method is used to logout the currently logged in
+ admin by destroying his AdminSession
+ otherwise it replies with the errors that occured.
+ Author : mouaz
+ params(admin_session parameters)
+=end
+
  def destroy  
     @admin_session = AdminSession.find
   if @admin_session == nil

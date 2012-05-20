@@ -5,7 +5,11 @@ before_filter :load_admin_using_perishable_token, :only => [:edit, :update]
 def new  
    render  
 end  
-  
+=begin
+this method take the email and send the link to reset password
+Author: Mouaz
+Arguments : Admin.email
+=end 
 def create  
  @admin = Admin.find_by_email(params[:email])  
  if @admin  
@@ -25,7 +29,11 @@ end
 def edit  
  render  
 end  
-  
+=begin
+this method resets password
+Author: Mouaz
+Arguments : Admin.password and Admin.password_confirmation
+=end 
 def update  
  @admin.password = params[:admin][:password]  
  @admin.password_confirmation = params[:admin][:password_confirmation]  
@@ -36,7 +44,12 @@ def update
   render :action => :edit  
  end  
 end  
-  
+
+=begin
+ this private method is generating new perishable_token for the admin
+ Author : Mouaz
+ Arguments : Admin.id
+=end
 private  
 def load_admin_using_perishable_token  
  @admin = Admin.find_using_perishable_token(params[:id])  

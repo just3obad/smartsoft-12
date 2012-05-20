@@ -65,15 +65,19 @@ class AdminsController < ApplicationController
   def new
   @admin = Admin.new
   end
- #this method for create new admin 
- #if there is an attribute invalid user will be notified
+=begin
+ this method for create new admin 
+ if there is an attribute invalid user will be notified
+ Author Mouaz
+ param(admin parameters)
+=end
   def create
     @admin = Admin.new(params[:admin])
     if @admin.save
       flash[:notice] = "Registration successful."
       redirect_to('/admin_settings')
     else
-      render :action => 'new'
+      return
     end
   end
 =begin
@@ -109,7 +113,12 @@ class AdminsController < ApplicationController
   def edit
     @admin = current_admin
   end
-  
+=begin
+ this method for edit current admin 
+ if there is an attribute invalid user will be notified
+ Author Mouaz
+ param(admin parameters)
+=end 
   def update
     @admin = current_admin
     if @admin.update_attributes(params[:admin])
