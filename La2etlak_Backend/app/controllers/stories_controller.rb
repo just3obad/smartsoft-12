@@ -136,11 +136,8 @@ this method takes a story object as a parameter form social feed and renders its
     @storybod=@story.content
     @successflag=true
     @username=@user.email.split("@").first
-    @interest_id = @story.interest_id
-    @interesttit = Interest.get_interest(@interest_id).name
-    @logmessage = "the user: " 
-    + @username.to_s + " has recommended a story with atitle: " + @storytit.to_s 
-    + " in the interest: "+ @interesttit.to_s
+    @logmessage = @username.to_s+" has recommended a story '"+ 
+    @storytit.to_s + "'"
     regex = Regexp.new('^(\s*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}\s*([,]{1}[\s]*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.]+\.[azA-Z]{2,4}\s*)*)$')
 
 
