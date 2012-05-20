@@ -60,6 +60,7 @@ class FacebookAccount < ActiveRecord::Base
           story.content = content
           story.deleted = false
           story.hidden = false
+          story.category = "Facebook"
           feed.append story
           pic = ""
           story_link = ""
