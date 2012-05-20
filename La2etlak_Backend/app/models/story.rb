@@ -265,7 +265,10 @@ Author:Kareem
   return stories.uniq
  end
 
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OMAR $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+=begin
+ this method takes as a parameter the html file and extract the content from it 
+ Author: Omar
+=end
 
 require 'nokogiri'
 require 'rubygems'
@@ -278,6 +281,10 @@ require 'open-uri'
 
  end
  
+=begin
+ this method takes as a parameter the html file and extract the img src (url) from it 
+ Author: Omar
+=end
  
 require 'nokogiri'
 require 'rubygems'
@@ -291,6 +298,6 @@ require 'open-uri'
 	
  end
  
-#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ OMAR $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
 
 end
