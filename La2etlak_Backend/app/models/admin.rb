@@ -21,6 +21,7 @@ require "net/http"
   def self.search(query)
     if query.empty?
       return nil
+    end
     
     if query.instance_of? String
       query = query.downcase
@@ -135,6 +136,7 @@ require "net/http"
 
     for title_query in title_match
       query_result += Story.all.select {|story| not story.title.nil? and not story.title.empty? and story.title =~ %r'#{title_query}'}
+    end
 
     content_query = query
 
@@ -147,6 +149,7 @@ require "net/http"
 
     for content_query in content_match
       query_result += Story.all.select {|story| not story.content.nil? and not story.title.empty? and story.content =~ %r'#{content_query}'}
+    end
 
     return query_result.to_a
   end
@@ -165,6 +168,7 @@ require "net/http"
 
     for name_query in name_match
       query_result += Interest.all.select {|interest| not interest.name.nil? and not interest.name.empty? and interest.name =~ %r'#{name_query}'}
+    end
 
     description_query = query
 
@@ -178,6 +182,7 @@ require "net/http"
     for description_query in description_match
       query_result += Interest.all.select {|interest| not interest.description.nil? and not interest.description.empty? 
                                            and interest.description =~ %r'#{description_query}'}
+    end
 
     return query_result.to_a
   end
@@ -191,10 +196,8 @@ require "net/http"
 	
 	end
 
-def deliver_password_reset_instructions!  
- reset_perishable_token!  
- Emailer.password_reset_instructions(self)  
-end  
-end
-end
+  def deliver_password_reset_instructions!  
+   reset_perishable_token!  
+   Emailer.password_reset_instructions(self)  
+  end  
 end
