@@ -4986,3 +4986,73 @@ background-color:#e5e5e5;
     color: black; }
     .apple_pagination a:hover, .apple_pagination a:focus {
       text-decoration: underline; }
+
+	.redbadge{
+	  padding: 1px 4px 2px;
+	  font-size: 14.998px;
+	  font-weight: bold;
+	  line-height: 13px;
+	  color: #ffffff;
+	  vertical-align: middle;
+	  white-space: nowrap;
+	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	  background-color: #b94a48;
+	  -webkit-border-radius: 3px;
+	  -moz-border-radius: 3px;
+	  border-radius: 3px;
+
+	}
+	.redbadge:hover {
+	  background-color: #953b39;
+	}
+	.bluebadge {
+	  padding: 1px 4px 2px;
+	  font-size: 14.998px;
+	  font-weight: bold;
+	  line-height: 13px;
+	  color: #ffffff;
+	  vertical-align: middle;
+	  white-space: nowrap;
+	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	  background-color:   #3a87ad;
+	  -webkit-border-radius: 3px;
+	  -moz-border-radius: 3px;
+	  border-radius: 3px;
+	}
+	.bluebadge:hover {
+	  background-color: #2d6987;
+	}
+	.yellowbadge {
+	  padding: 1px 4px 2px;
+	  font-size: 14.998px;
+	  font-weight: bold;
+	  line-height: 13px;
+	  color: #ffffff;
+	  vertical-align: middle;
+	  white-space: nowrap;
+	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	  background-color:   #f89406;
+	  -webkit-border-radius: 3px;
+	  -moz-border-radius: 3px;
+	  border-radius: 3px;
+	}
+	.yellowbadge:hover {
+	  background-color: #c67605;;
+	}
+	.greenbadge {
+	  padding: 1px 4px 2px;
+	  font-size: 14.998px;
+	  font-weight: bold;
+	  line-height: 13px;
+	  color: #ffffff;
+	  vertical-align: middle;
+	  white-space: nowrap;
+	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	  background-color:   #468847;
+	  -webkit-border-radius: 3px;
+	  -moz-border-radius: 3px;
+	  border-radius: 3px;
+	}
+	.greenbadge:hover {
+	  background-color: #356635;
+	}
