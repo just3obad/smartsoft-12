@@ -76,6 +76,10 @@ class AdminsController < ApplicationController
       render :action => 'new'
     end
   end
+=begin
+  Get the admin mainpage with feed or redirect to login in case of there is no current admin
+  Author: MESAI
+=end
   def index
     @admin_session = AdminSession.find
     if @admin_session == nil
