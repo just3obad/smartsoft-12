@@ -1,4 +1,13 @@
 class Comment < ActiveRecord::Base
+  
+=begin
+    
+Author: Menisy
+
+
+=end
+
+
   attr_accessible :content
   belongs_to :user
   belongs_to :story
@@ -10,7 +19,8 @@ class Comment < ActiveRecord::Base
   # This method adds the details of this comment to the log file.
   # It will be called after a successful creation of the comment
   def add_to_log
-    Log.create!(loggingtype: 2,user_id_1: self.user.id ,user_id_2: nil,admin_id: nil,story_id: self.story.id ,interest_id: nil,message: (self.user.name+" commented on \"" + self.story.title + "\" with \"" + self.content + "\"").to_s )
+    user_name = self.user.name  ||  self.user.email.split('@')[0]
+    Log.create!(loggingtype: 2,user_id_1: self.user.id ,user_id_2: nil,admin_id: nil,story_id: self.story.id ,interest_id: nil,message: (user_name+" commented on \"" + self.story.title + "\" with \"" + self.content + "\"").to_s )
   end
   
   # This method checks if a user thumbed up this comment before
@@ -43,7 +53,6 @@ class Comment < ActiveRecord::Base
       up.save
       up.add_to_log(self.user)
       return true
-   #  self.comment_up_downs << Comment_up_down.create()
     elsif downed_before then
       self.comment_up_downs.find_by_user_id_and_action(user.id,2).destroy #if user disliked it, now make him like it!
       up = CommentUpDown.new(:action => 1)
@@ -53,7 +62,9 @@ class Comment < ActiveRecord::Base
       up.add_to_log(self.user)
       return true
     elsif upped_before
-      self.comment_up_downs.find_by_user_id_and_action(user.id,1).destroy
+      old_up = self.comment_up_downs.find_by_user_id_and_action(user.id,1)
+      old_up.add_to_log(self.user,2)
+      old_up.destroy
       return true
     else
       return false
@@ -70,7 +81,6 @@ class Comment < ActiveRecord::Base
       down.save
       down.add_to_log(self.user)
       return true
-   #  self.comment_up_downs << Comment_up_down.create()
     elsif upped_before then
       self.comment_up_downs.find_by_user_id_and_action(user.id,1).destroy #if user disliked it, now make him like it!
       down = CommentUpDown.new(:action => 2)
@@ -80,7 +90,9 @@ class Comment < ActiveRecord::Base
       down.add_to_log(self.user)
       return true
     elsif downed_before
-      self.comment_up_downs.find_by_user_id_and_action(user.id,2).destroy
+      old_down = self.comment_up_downs.find_by_user_id_and_action(user.id,2)
+      old_down.add_to_log(self.user,2)
+      old_down.destroy
       return true
     else
       return false
