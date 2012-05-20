@@ -298,6 +298,7 @@ end
   def deactivate
     @user = User.find(params[:id])
     @user.deactivate_user()
+    flash[:error] = "User successfully deactivated. An e-mail was sent to notify him/her about this action"
     redirect_to(:action => 'show', :id => @user.id)
   end
 
@@ -307,6 +308,8 @@ end
   def activate
     @user = User.find(params[:id])
     @user.activate_user()
+    flash[:success] = "User successfully activated. An e-mail was sent to notify him/her about this action"
+
     redirect_to(:action => 'show', :id => @user.id)
   end
 
