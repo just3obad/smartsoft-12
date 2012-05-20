@@ -15,92 +15,124 @@
          document.getElementById("noInterest").style.display= "block";  
          document.getElementById("ccc").style.display= "none"; 
          document.getElementById("genInfo").style.display= "none"; 
-         document.getElementById("tableRanked").style.display= "none";
+         
        }
        else if(arrayRanks[0] == 0)
        {
-          document.getElementById("noInterest").style.display= "block";  
+         document.getElementById("noInterest").style.display= "block";  
          document.getElementById("ccc").style.display= "none"; 
          document.getElementById("genInfo").style.display= "none";
-         document.getElementById("tableRanked").style.display= "none";
+         
        }
+      else
+      { 
       var title="Top Interests";
       var container="ccc";
       Pie_chart(arrayNames,arrayRanks,title,container);
+      }
    });
 </script>
 
 
 <div class="row-fluid">
+
    <div class="span3">
+
       <!--Sidebar content-->
       <div class="well sidebar-nav">
-    <ul class="nav nav-list">
+       <ul class="nav nav-list">
     
-      <li class="nav-header">
-        Statistics
-      </li>
-      <li>
-       <%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
-      </li>
-       <li class="active">
-       <%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
-       </li>
+        <li class="nav-header">
+         Statistics
+        </li>
+
         <li>
-       <%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
-       </li>
+         <%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
+        </li>
+
+        <li class="active">
+         <%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
+        </li>
+
+        <li>
+         <%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
+        </li>
  
-     </ul>
-    </div>
-    </div>
+       </ul>
 
-    <div class="span6">
+      </div>
+
+  </div>
+
+  <div class="span6">
        
-<div class="alert-error" id="noInterest" style="display: none;">
+   <div class="alert-error" id="noInterest" style="display: none;">
+ 
+      <h2><strong>Warning!</strong> No interests were created or cannot rank them.</h2>
+    
+   </div>
 
-           
-           <h2><strong>Warning!</strong> No interests were created or cannot rank them.</h2>
-     </div>
+   <div id="ccc"></div> </br>
 
-<div id="ccc"></div> </br>
-<div class="general info" id ="genInfo">
+    <div class="general info" id ="genInfo">
             
             <!--Here we'll get the general infor of top interests:-->
             <h4><div class="alert alert-info"> 
+
               Top Ranked 5 Interests : </br>
              
-            </div></h4>
+               </div>
+            </h4>
+
             <% Interest.get_top_interests[0..4].each do |interest|%>
     
-    <div class="well-interest-component">
-      <a href="/interests/<%= interest.id%>"
-        class="thumbnail-interest-component">
-        <% if not interest.photo.file? %>
-            <%= image_tag "logo.jpeg", :size => "75x75" %>
-            <% else %>
-            <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="75" style="height:75px"/>
-                  <% end %> </a>
-        <div class="interest-component-info">
-          <h3><% if interest.name.nil? %>
-            <%= "No Name Available" %>
-            <% else %>
-            <%= interest.name  %>
-            <h6>Rank : <%=interest.get_interest_rank%></h6>
-            <%  end %>
-          </h3>
-          
-<%= link_to "view Statistics", 
-{:controller => 'statistics', :action => 'interests',:id => interest.id }, 
-class: "interest-component-button-absolute btn btn-primary"%>
+               <div class="well-interest-component">
 
-        </div>
-    </div>
-  <% end %>
- 
-             
-            
-            
+                 <a href="/interests/<%= interest.id%>"
+                    class="thumbnail-interest-component">
+
+                 <% if not interest.photo.file? %>
+
+                   <%= image_tag "logo.jpeg", :size => "75x75" %>
+
+                 <% else %>
+
+                   <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="75" style="height:75px"/>
+                  
+                  <% end %> 
+
+                 </a>
+
+                 <div class="interest-component-info">
+
+                  <h3>
+
+                    <% if interest.name.nil? %>
+
+                      <%= "No Name Available" %>
+
+                    <% else %>
+
+                      <%= interest.name  %>
+
+                      <h6>Rank : <%=interest.get_interest_rank%></h6>
+
+                    <%  end %>
+
+                  </h3>
           
-          </div>
-          </div>
-          </div>
+                  <%= link_to "view Statistics", 
+                  {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
+                  class: "interest-component-button-absolute btn btn-primary"%>
+
+                </div>
+
+              </div>
+
+            <% end %>
+ 
+      </div>
+
+    </div>
+
+  </div>
