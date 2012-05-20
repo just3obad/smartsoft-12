@@ -481,6 +481,15 @@ end
         name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
         l.message = "#{name_1} has modified his info"
         l.save
+    elsif @user.name.nil?
+      flash[:notice] = "Please try again"
+      redirect_to action:"edit"
+    elsif @user.first_name.nil?
+      flash[:notice] = "Please try again"
+      redirect_to action:"edit"
+    elsif @user.last_name.nil?
+      flash[:notice] = "Please try again"
+      redirect_to action:"edit"
     elsif @user.name.length>20
       flash[:notice] = "The nickname is too long. Must be less than 20 chars red"
       redirect_to action:"edit"
