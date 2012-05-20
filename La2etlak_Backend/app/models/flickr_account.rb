@@ -36,14 +36,14 @@ end
 =end
 
 
-  def get_feed
+  def get_feed(count=10)
 
 begin
      self.config_flickr
      login = flickr.test.login
      user = flickr.people.findByUsername( :username => login.username )
      #photo_list = flickr.photos.getContactsPhotos(:cdfount=>'50')
-     photo_list=getContactsPhotos(:count => '50',:just_friends => '1')
+     photo_list=flickr.photos.getContactsPhotos(:count=>count.to_s)
      stories = Array.new
      photo_list.each do |photo|
        temp = FlickrAccount.convert_photo_to_story(photo) 
