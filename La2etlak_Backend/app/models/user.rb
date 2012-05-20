@@ -694,7 +694,7 @@ Author:Kareem
          @username = self.name
       end
       @interesttitle = story_interest.name
-      @message = "#{@username} blocks interest with name: #{@interesttitle}"
+      @message = "#{@username} blocked interest with name: #{@interesttitle}"
       Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil,
       story_id: nil, interest_id: story_interest.id, message: @message)
    else 
@@ -726,7 +726,7 @@ Author:Kareem
          @username = self.name
       end
       @storytitle = this_story.title
-      @message = "#{@username} blocks story with title: #{@storytitle}" 
+      @message = "#{@username} blocked story with title: #{@storytitle}" 
       Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil,
       story_id: this_story.id, interest_id: nil, message: @message)
    else 
@@ -755,7 +755,7 @@ Author:Kareem
         @username = self.name
       end
       @storytitle = this_story.title
-      @message = "#{@username} unblocks story with title: #{@storytitle}" 
+      @message = "#{@username} unblocked story with title: #{@storytitle}" 
       Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil,
       story_id: this_story.id, interest_id: nil, message: @message)
    end
@@ -797,7 +797,7 @@ Author:Kareem
        else
           @frname = my_friend.name
        end
-       @message = "#{@username} blocks friend named: #{@frname}" 
+       @message = "#{@username} blocked friend named: #{@frname}" 
        Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id ,
        admin_id: nil, story_id: nil, interest_id: nil, message: @message)
     else
@@ -828,7 +828,7 @@ Author:Kareem
      else
       @frname = my_friend.name
      end
-     @message = "#{@username} unblocks friend named: #{@frname}" 
+     @message = "#{@username} unblocked friend named: #{@frname}" 
      Log.create!(loggingtype: 0,user_id_1: self.id,user_id_2: my_friend.id ,
      admin_id: nil, story_id: nil, interest_id: nil, message: @message)
 
