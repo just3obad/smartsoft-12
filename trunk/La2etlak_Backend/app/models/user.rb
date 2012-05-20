@@ -546,10 +546,10 @@ Author:Kareem
                         i = i + 10
                 end
         end
-        rank = ((self.comments.count * 2) + (self.user_log_ins.count * 2)
-        + self.likedislikes.where(action: 1).count + self.flags.count
-        + self.likedislikes.where(action: -1).count + (self.added_interests.count * 5)
-        + self.friends.count + (self.shares.count * 3) - i)
+        rank = (self.comments.count * 2) + (self.user_log_ins.count * 2)
+        rank = rank + self.likedislikes.where(action: 1).count + self.flags.count
+        rank = rank + self.likedislikes.where(action: -1).count+(self.user_add_interests.count * 5)
+        rank = rank + self.friends.count + (self.shares.count * 3) - i
         return rank
   end
 
