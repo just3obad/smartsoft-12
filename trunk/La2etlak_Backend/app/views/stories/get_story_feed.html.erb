@@ -12,7 +12,7 @@
         <h3> <%= @story.title %> </h3>
       </div>
 
-<!--checking for media url if found with content extract it from content display and then display content without it -->
+<!--checking for media url if exsist adds the image-->
     <% if @story.media_link != nil && @story.media_link.length > 3%>
     <div align="center">
     <img src="<%=@story.media_link%>" width="220" align="center">

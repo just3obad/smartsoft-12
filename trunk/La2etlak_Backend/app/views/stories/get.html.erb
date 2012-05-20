@@ -10,21 +10,21 @@
 <div align="center">
 <%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
 </div></br>
-<!-- adding story title-->
-<% if @story == nil %>
+<!-- checking if selected story was not removes from database -->
+<% if @story.nil? %>
  <div align="center" style="padding-down:10px;">
  <%= " the selected story was removed ! "%> </br></br>
  			   <%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
 	   </div></br> 
 	   <%else%>
-
+<!-- adding story title -->
  <div align="center">
         <h3> <%= @story.title %> </h3>
       </div>
 
-<!--checking for media url if found with content extract it from content display and then display content without it -->
+<!--checking for media url if exsist adds the image-->
 
-  <% if @story.media_link != nil && @story.media_link.length > 3%>
+  <% if !@story.media_link.nil? && @story.media_link.length > 3%>
     <div align="center">
        <img src="<%=@story.media_link%>" width="220" align="center">
        </div></br>
@@ -34,10 +34,17 @@
 <!-- checking for story category if RSS allow story functionalties if not remove from view -->
 	<% if @story.category == "RSS" %>
 		<div style="padding-left:10px;">
- <!-- adding like and dislike button if user didnt like or dislike before and number of likes dislikes for this stort  -->
+		
+<!-- 3 cases for the like dislike buttons :
+(1)either user didnt like or dislike before therefore display both buttons  
+(2)the user liked this story before therefore remove the like button and only display the dislike button
+(3)the user disliked this story before therefore remove the dislike button and display the like button only -->
+		
+ <!-- adding like and dislike button if user didnt like or dislike before and number of likes dislikes for this story  -->
  <% if @action1 == [] && @action2 == [] %>
 
 <%= link_to image_tag('likecopy.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
+<!-- checks for number of likes and dislikes per story -->
  <% if @likes.length > 0 %>
 <% @a = "#{@likes.length} people like this." %>
  <%=link_to(@a , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
@@ -56,6 +63,7 @@
   <%end%>
   
 <!-- if user liked this story before remove like button and only adds dislike button -->
+<!-- checks for number of likes and dislikes per story -->
   <% if @action1 != [] && @action2 == [] %>
   	<% @a = "you and #{@likes.length-1} people like this." %>
   	<% if @likes.length > 1 %>
@@ -76,6 +84,7 @@
   </br>
   
   <!-- if user disliked this story before remove dislike button and only adds like button -->
+  <!-- checks for number of likes and dislikes per story -->
   <% if @action2 != []  && @action1 == [] %>
 	
 	
@@ -101,7 +110,7 @@
  <%end%>
  	 
 <!-- adds content of story  -->
- <% if @story.mobile_content != nil  && @story.mobile_content.length > 0 %>
+ <% if !@story.mobile_content.nil?  && @story.mobile_content.length > 0 %>
  <div class="story-comment-box-mobile well" style="padding-left:10px;">
  <%= @story.mobile_content %>
  </div>
@@ -202,7 +211,7 @@
  
  
  
-<!-- block story story -->
+<!-- block story link -->
    	<%=link_to('Block story' , {:controller => 'users', :action => 'block_story', :id => (@story.id)})%> &nbsp;
    	
 <!-- block interest link -->
