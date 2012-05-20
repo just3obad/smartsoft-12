@@ -23,7 +23,7 @@
 <!-- adds content of story  -->
  <% if @story.content != nil && @story.content.length > 0%>
  <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
- <%= @story.content %>
+ <%=raw @story.content %>
  </br></br>
  </div>
  <%end%>
