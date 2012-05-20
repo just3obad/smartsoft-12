@@ -146,7 +146,7 @@ this method takes a story object as a parameter form social feed and renders its
 			if @listemail.nil?
 			   @successflag=false
 			else
-			 Emailer.recommend_story(@useremail, @listemail, @message, @storytit, 				  @storybod).deliver
+			 Emailer.recommend_story(@useremail, @listemail, @message, @storytit).deliver
 			 Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 
 				story_id: @storyid,interest_id: @interest_id,message: @logmessage )
 
@@ -157,10 +157,11 @@ this method takes a story object as a parameter form social feed and renders its
 
 			else
 			  if !@user.has_account(@friendmail)
-				    Emailer.invite_to_app(@useremail, @friendmail, @message).deliver
+				    Emailer.invite_to_app(@useremail, @friendmail, @message,
+            @storytit).deliver
 			  else
-				    Emailer.recommend_story(@useremail, @friendmail, @message, @storytit,
-				    @storybod).deliver
+				    Emailer.recommend_story(@useremail, @friendmail, @message,
+            @storytit).deliver
 			  end
 			Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 
 				story_id: @storyid,interest_id: @interest_id,message: @logmessage )
