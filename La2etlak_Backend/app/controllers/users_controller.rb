@@ -184,6 +184,7 @@ Author: Kareem
 				stories = stories + temp_stories
 			end
 		end
+		stories = stories.uniq!
 		# Author : Mina Adel
 		@stories=stories.paginate(:per_page => 10, :page=> params[:page])
 		render :layout => "mobile_template"
