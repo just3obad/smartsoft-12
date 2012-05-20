@@ -434,18 +434,20 @@ class UsersControllerTest < ActionController::TestCase
 
 	end
 	
-	  test "the user should recieve the registration mail" do
+	#Author: Kiro
+	test "the user should recieve the registration mail" do
 
-    	assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      	post :create, :user => {:email => "user@example.com", :password => '123456', :password_confirmation => '123456'}
-    	end
-    	registration_email = ActionMailer::Base.deliveries.last
-    	assert_equal "La2etlak Verification Instructions", registration_email.subject, "wrong subject"
-    	assert_equal "user@example.com", registration_email.to[0], "wrong reciever"
+    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      post :create, :user => {:email => "user@example.com", :password => '123456', :password_confirmation => '123456'}
+    end
+    registration_email = ActionMailer::Base.deliveries.last
+    assert_equal "La2etlak Verification Instructions", registration_email.subject, "wrong subject"
+    assert_equal "user@example.com", registration_email.to[0], "wrong reciever"
 
   end
 
-	  test "unsaved user should not get the email" do
+	#Author: Kiro
+	test "unsaved user should not get the email" do
 
 			User.create(email: "in_use@example.com",password: "123456", password_confirmation:"123456")
       
