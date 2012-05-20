@@ -445,40 +445,27 @@ end
    Case 6 : If the pasword is less than 4 chars, he will be notified of this error
 =end
   def update
-   @user = current_user
-   if @user.update_attributes(params[:user])
+    @user = current_user
+    if @user.update_attributes(params[:user])
         flash[:notice] = "Your Info was saved successfully green"
-        redirect_to action:"edit"
-   else
-    if @user.name.length>20
-         flash[:notice] = "The nickname is too long. Must be less than 20 chars red"
-         redirect_to action:"edit"
-    else
-      if @user.first_name.length>20
-           flash[:notice] = "The firstname is too long. Must be less than 20 chars red"
+        redirect_to action:"feed"
+    elsif @user.name.length>20
+      flash[:notice] = "The nickname is too long. Must be less than 20 chars red"
+      redirect_to action:"edit"
+    elsif @user.first_name.length>20
+      flash[:notice] = "The firstname is too long. Must be less than 20 chars red"
            redirect_to action:"edit"
-      else
-        if @user.last_name.length>20
-             flash[:notice] = "The lastname is too long. Must be less than 20 chars red"
-             redirect_to action:"edit"
-        else
-          if @user.password != @user.password_confirmation
-               flash[:notice] = "Password missmatch red"
-               redirect_to action:"edit"
-          else
-            if @user.password.length<4
-                 flash[:notice] = "The password must be greater than 4 chars red"
-                 redirect_to action:"edit"
-            else
-                 flash[:notice] = "Error please try again red"
-                 redirect_to action:"edit" 
-            end
-          end
-        end  
-      end           
+    elsif @user.last_name.length>20
+      flash[:notice] = "The lastname is too long. Must be less than 20 chars red"
+      redirect_to action:"edit"
+    elsif @user.password != @user.password_confirmation
+      flash[:notice] = "Password missmatch red"
+      redirect_to action:"edit"
+    elsif @user.password.length<6
+      flash[:notice] = "The password must be greater than 6 chars red"
+      redirect_to action:"edit"
     end
-   end
-  end   
+    end   
 
 #~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
 
