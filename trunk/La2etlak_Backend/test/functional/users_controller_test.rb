@@ -192,7 +192,7 @@ class UsersControllerTest < ActionController::TestCase
 	end
 	
   #Author:Rana
-  test "get block story" do
+  test "should redirect on block story" do
     this_interest = Interest.create :name => "Sports", :description => "hey sporty"
     this_story= Story.new :title => "Story1", :interest_id => this_interest
     this_story.interest = this_interest
@@ -201,10 +201,11 @@ class UsersControllerTest < ActionController::TestCase
     UserSession.create(this_user)
     get :block_story, 'id' => this_story.id
     assert_response :redirect 
+    assert_redirected_to(options = {:controller => "users", :action => "feed"},   	message = "Story blocked successfully")
   end
 
   #Author: Rana
-  test "get block interest" do
+  test "should redirect on block interest" do
     this_interest = Interest.create :name => "Sports", :description => "hey sporty"
     this_story= Story.new :title => "Story1", :interest_id => this_interest
     this_story.interest = this_interest
@@ -213,6 +214,7 @@ class UsersControllerTest < ActionController::TestCase
     UserSession.create(this_user)
     get :block_interest, 'id' => this_story.id
     assert_response :redirect 
+    assert_redirected_to(options = {:controller => "users", :action => "feed"},   	message = "Interest blocked successfully")
   end
 
   #Author: Rana
@@ -255,11 +257,11 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   #Author: Rana
-  test "get manage blocked friends list" do
+  test "should get manage blocked friends list" do
       this_user = users(:ben)
       UserSession.create(this_user)
       get :manage_blocked_friends
-      assert_response :success
+      assert_response(:success, message = "list fetched successfully")
       assert_select 'div[id = "heading"]'
       assert_select 'div[id = "list"]'
       assert_select 'div[id = "back"]'
@@ -270,14 +272,14 @@ class UsersControllerTest < ActionController::TestCase
       this_user = users(:ben)
       UserSession.create(this_user)
       get :manage_blocked_stories
-      assert_response :success
+      assert_response(:success, message = "list fetched successfully")
       assert_select 'div[id = "heading"]'
       assert_select 'div[id = "list"]'
       assert_select 'div[id = "back"]'
   end
 
   #Author: Rana
-  test "get unblock story" do
+  test "should redirect on unblock story" do
     this_user = users(:ben)
     UserSession.create(this_user)
     this_interest = Interest.create :name => "Sports", :description => "hey sporty"
@@ -286,6 +288,7 @@ class UsersControllerTest < ActionController::TestCase
     this_story.save
     get :unblock_story, 'id' => this_story.id
     assert_response :redirect 
+    assert_redirected_to(options = {:controller => "users", :action => "feed"},   	message = "Story unblocked successfully")
   end
 
 
