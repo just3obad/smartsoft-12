@@ -79,6 +79,7 @@ class FlickrAccountsController < ApplicationController
   def callback 
 
     user_id = Rails.cache.read("user_id")
+    @user = User.find(user_id)
     oauth_token_secret = Rails.cache.read("oauth_token_secret")
 
 
@@ -104,6 +105,11 @@ class FlickrAccountsController < ApplicationController
 
     unless flickr_account.new_record?
       flash[:notice] = 'Flickr account created green'
+      l = Log.new
+      l.user_id_1 = @user.id
+      name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+      l.message = "#{name_1} is now connected to flickr account"
+      l.save
     else 
       flash[:notice] = 'Flickr account couldn\'t be created red'
     end 
