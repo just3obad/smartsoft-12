@@ -179,9 +179,12 @@ end
   end
   
    
-  
-  #This method returns the number of users who signed in today.
-  ########## Author : christinesed@gmail.com #########
+=begin  
+  This method returns the number of users who signed in today.
+  Input: No input
+  Output: number
+  Author : christinesed@gmail.com 
+=end
   def self.get_no_of_users_signed_in_today
     no_sing_ins=UserLogIn.where(:created_at=>
     Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).
