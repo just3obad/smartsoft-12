@@ -229,7 +229,12 @@ require "net/http"
 		return newpass
 	
 	end
-
+=begin
+this method reset perishable_token of the admin which refer to password 
+then email the admin
+Author : Mouaz
+No arguments
+=end
   def deliver_password_reset_instructions!  
    reset_perishable_token!  
    Emailer.password_reset_instructions(self)  

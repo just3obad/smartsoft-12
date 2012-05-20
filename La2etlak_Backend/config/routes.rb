@@ -214,7 +214,7 @@ NokiaRuby::Application.routes.draw do
   #Mouaz
   match '/admin/login', to: 'admin_sessions#new'
   match '/admin/logout', to: 'admin_sessions#destroy'
-  #match '/admins_reset_pass', to: 'admins#resetPassword'
+  match '/admin/edit', to: 'admins#edit'
   match '/password_resets/new', to: 'password_resets#new'
   match '/password_resets/edit', to: 'password_resets#edit'
  # match 'forgot_password' => 'admin_sessions#forgot_password_lookup_email', :as => :forgot_password, :via => :post

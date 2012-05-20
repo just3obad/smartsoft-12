@@ -78,19 +78,19 @@ class AdminTest < ActiveSupport::TestCase
 
 #Author : mouaz.alabsawi@gmail.com
 
- test "should not save admin without email 1 RED" do
+ test "should not save admin without email 1" do
    admin = Admin.new
    assert !admin.save
  end
 
- test "should not save admin with invalid email 2 RED" do
+ test "should not save admin with invalid email 2" do
    admin = Admin.new
    admin.email = "mouaz.alabsawi@gmail.com"
    admin.save
    assert_match(/\A(?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+\z/i, email, 'valid mail' ) 
  end
 
- test "should not save admin with password not confirmed 1 RED" do
+ test "should not save admin with password not confirmed 1" do
    admin = Admin.new
    admin.crypted_password = "adminp"
    admin.password_salt = "adminp"
@@ -98,7 +98,7 @@ class AdminTest < ActiveSupport::TestCase
    assert_equal( admin.crypted_password, admin.password_salt, 'password confirmed')
  end
 
- test "should not save admin with first and last name should be greater than  3 letters 2 RED" do
+ test "should not save admin with first and last name should be greater than  3 letters 2" do
    admin = Admin.new
    admin.crypted_password = "adminp"
    admin.password_salt = "adminp"
@@ -106,12 +106,13 @@ class AdminTest < ActiveSupport::TestCase
    assert(admin.crypted_password.length > 3, 'password is short')
  end
 
- test "should not save admin with first and last name should be greater than  3 letters 1 RED" do
+ test "should not save admin with first and last name should be greater than  3 letters 1" do
    admin = Admin.new
    a.first_name = "admin"
    a.last_name = "admin"
    admin.save
-   assert(admin.crypted_password.length > 3 && a.first_name.length > 3, 'first and last name is short')
+   assert(admin.last_name.length > 3 && a.first_name.length > 3, 'first and last name is short')
  end
+
 
 end
