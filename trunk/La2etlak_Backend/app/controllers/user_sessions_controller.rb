@@ -45,6 +45,7 @@ class UserSessionsController < ApplicationController
     			redirect_to "/mob/main_feed"
 				end
   		else
+  		  flash[:notice] = @user_session.errors.full_messages[0].to_s+"red"
    			redirect_to :action => 'new', :layout =>"mobile_template"
  	 	end
 	end
