@@ -246,7 +246,7 @@ class UserTest < ActiveSupport::TestCase
 	
 
     #Author: Rana
-    test "user wants to block interest" do
+    test "interest should be blocked" do
       this_interest = Interest.create :name => "Sports", :description => "hey sporty"
       this_story= Story.new :title => "Story1", :interest_id => this_interest
       this_story.interest = this_interest
@@ -262,7 +262,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
     #Author: Rana
-   test "user wants to block story" do
+   test "story should be blocked" do
       this_interest = Interest.create :name => "Sports", :description => "hey sporty"
       this_story= Story.new :title => "Story1", :interest_id => this_interest
       this_story.interest = this_interest
@@ -299,7 +299,7 @@ class UserTest < ActiveSupport::TestCase
     end
 
    #Author: Rana
-   test "user wants to unblock story" do
+   test "story should be unblocked" do
       this_user = users(:ben)
       UserSession.create(this_user)
       this_interest = Interest.create :name => "Sports", :description => "hey sporty"
@@ -311,15 +311,15 @@ class UserTest < ActiveSupport::TestCase
     end
 
    #Author: Rana
-   test "user wants to get blocked stories list" do
+   test "should return blocked story list" do
       this_user = users(:ben)
       UserSession.create(this_user)
       this_interest = Interest.create :name => "Sports", :description => "hey sporty"
       this_story= Story.new :title => "Story1", :interest_id => this_interest
       this_story.interest = this_interest
       this_story.save
-      BlockStory.create!(:user_id => this_user, :story_id => this_story)
-      blocked_stories = this_user.block_stories 
+      this_user.blocked_stories << this_story
+      blocked_stories = this_user.blocked_stories 
       assert_equal(blocked_stories, this_user.get_blocked_stories)
     end
 
