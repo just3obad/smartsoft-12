@@ -381,7 +381,7 @@ end
       @story = Story.find_by_id(@story_id)
       @text = @user.unblock_story1(@story) 
       flash[:notice] = "#{@text}"
-      redirect_to action: "friends_feed", id: 1
+      redirect_to action: "feed"
   end
 
 =begin
