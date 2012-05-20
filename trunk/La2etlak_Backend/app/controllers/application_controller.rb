@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-
+  helper_method :admin_authenticated?
 	helper_method :current_user
-        helper_method :current_admin
-    helper_method :nokia_user?
+  helper_method :current_admin
+  helper_method :nokia_user?
+  
 
     def nokia_user?
 
@@ -14,6 +15,15 @@ class ApplicationController < ActionController::Base
     		return false
     	end
     end
+
+  def admin_authenticated?
+    if(current_admin.nil?)
+      redirect_to('/admin/login')
+    return false
+      else 
+    return true
+    end
+  end
 
 	# This is a helper method that returns the User record
 	# for the currently logged in user, this method is

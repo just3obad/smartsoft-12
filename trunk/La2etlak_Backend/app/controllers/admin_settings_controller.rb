@@ -1,5 +1,6 @@
 class AdminSettingsController < ApplicationController
 
+    before_filter {admin_authenticated?} 
 	#author: Bassem
   	def index
   		@admin = Admin.new

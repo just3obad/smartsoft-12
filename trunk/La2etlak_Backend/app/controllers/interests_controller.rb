@@ -1,5 +1,5 @@
 class InterestsController < ApplicationController
-  
+  before_filter {admin_authenticated?}
   def index
     redirect_to "/interests/list"
     @interests = Interest.all #passing a list of all interests to show them all in the view

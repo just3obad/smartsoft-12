@@ -1,4 +1,5 @@
 class FeedsController < ApplicationController
+  before_filter {admin_authenticated?}
 def index
    
 end
