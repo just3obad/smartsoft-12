@@ -95,9 +95,12 @@ end
 #output: a list of emails of the user friends
 #Author: khaled.elbhaey
   def get_friends_email()
-    @flistemail=Array.new
-    @flist = self.friends
 
+
+  @flistemail=Array.new
+  @flist = self.friends
+  @flistemail=Array.new
+    @flist = self.friends
     (0..(@flist.length-1)).each do |i|
     @flistemail << (@flist[i].email)
     end  
@@ -137,24 +140,16 @@ end
   end
 
 
-=begin
-  lets a user share a story given its id
-  Input: story_id
-  Output: true
-  The method before did not allow the user to
-  share the same story twice, however this is 
-  now allowed so no checks are neccessary.
-  Author: Menisy
-=end
+
+# lets a user share a story given its id
   def share?(story_id)
-    Share.create :user_id=>self.id,:story_id=>story_id
-    user_name = self.name  ||  self.email.split('@')[0]
-    story = Story.find(story_id)
-    story_title = story.title || story.content[0,20]+"..."
-    p story_title.nil?
-    p user_name.nil?
-    Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil,admin_id: nil,story_id: story_id,interest_id: nil,message: user_name + " shared the story \"" +  story_title +  "\"" )
-    return true
+    share = Share.find_by_user_id_and_story_id(self.id,story_id)
+    if share.nil? then  # if he/she didn't share this story before then make him/her share it
+      Share.create :user_id=>self.id,:story_id=>story_id
+      return true   # shared successfully, return true
+    else      # else, dont allow to share it
+      return false    # and return false
+    end
   end 
  
  # this methods generates a verification code for the user and adds an entry to Verification_Code
@@ -529,47 +524,32 @@ Author:Kareem
  return unblocked_stories
 end
 	
-=begin
-  This action returns the rank of one user
-  Returns the rank of a user
-  Author: Shafei
-=end
-  def get_user_rank
-	i = 0
-	User.all.each do |user|
-		if (user.blocked? self) == true
-			i = i + 10
+#Author : Shafei
+# This action returns the rank of one user
+	def get_user_rank
+		rank = (self.shares.count * 3) + (self.comments.count * 2) + self.likedislikes.where(action: 1).count + self.flags.count + self.likedislikes.where(action: -1).count + (self.added_interests.count * 5) + self.friends.count + (self.user_log_ins.count * 2)
+		return rank
+	end
+
+#Author : Shafei
+# This action returns a list of all users in the database sorted according to their rank
+	def self.get_users_ranking
+		all_users = Array.new
+		top_users = Array.new
+		final_users = Array.new
+		User.all.each do |user|
+	  	all_users << {:rank => user.get_user_rank, :theuser => user}
+		end
+		(all_users.sort_by {|element| element[:rank]}).each do |hsh|
+		  final_users << hsh[:theuser]
+		end
+		top_users =  final_users.reverse
+		if(top_users.empty? == true)
+			return []
+		else
+		return top_users
 		end
 	end
-	rank = ((self.comments.count * 2) + (self.user_log_ins.count * 2)
-	+ self.likedislikes.where(action: 1).count + self.flags.count
-	+ self.likedislikes.where(action: -1).count + (self.added_interests.count * 5)
-	+ self.friends.count + (self.shares.count * 3) - i)
-	return rank
-  end
-
-=begin
-  This action returns a list of all users in the database sorted according to their rank
-  Returns a list of all users
-  Author: Shafei
-=end
-  def self.get_users_ranking
-	all_users = Array.new
-	top_users = Array.new
-	final_users = Array.new
-	User.all.each do |user|
-		all_users << {:rank => user.get_user_rank, :theuser => user}
-	end
-	(all_users.sort_by {|element| element[:rank]}).each do |hsh|
-		final_users << hsh[:theuser]
-	end
-	top_users =  final_users.reverse
-	if (top_users.empty? == true)
-		return []
-	else
-		return top_users
-	end
-  end
 
 
   
@@ -873,8 +853,7 @@ Author:Kareem
      return social_stories.shuffle
    end
    
-   
-   
+
     # Author : Essam
     # issue 88
     # a method called when the user wants to see a specific feed
@@ -907,12 +886,9 @@ Author:Kareem
 		return newpass
 	
 	end
-=begin  
-  get recent Activity of user from the passed start date
-  Parameters : start_date (date that the recent Activity will be calculated from)
-  Author: Christine
-=end
-  
+
+  #get recent Activity of user from the passed start date
+  #Author: Christine
   def get_recent_activity(start_date)
     activities=Log.get_log_for_user(self.id,start_date)
   end
@@ -921,17 +897,16 @@ These methods simply take the user id as an input , fetch him from the database 
 to the right value
 Author: Bassem
 =end
-  def deactivate_user(id)
-    @user =User.find(id)
-    @user.deactivated = true
-    Emailer.notify_deactivation(@user).deliver
-    @user.save
+  def deactivate_user()
+    self.deactivated = true
+   Emailer.notify_deactivation(self).deliver
+    self.save
   end
-  def activate_user(id)
-    @user =User.find(id)
-    @user.deactivated = false
-    Emailer.notify_activation(@user).deliver
-    @user.save
+
+  def activate_user()
+    self.deactivated = false
+    Emailer.notify_activation(self).deliver
+    self.save
   end
 
 end
