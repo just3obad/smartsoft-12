@@ -63,4 +63,186 @@ class AdminsControllerTest < ActionController::TestCase
           @feeds = Admin.get_feed
           assert(@feeds.length >= 1,"should find number of feeds greater than 1")
         end
+        
+        
+  #Author: Lydia
+  test "route of search page exists" do
+     assert_routing '/admins/search' , { :controller => "admins", :action => "search"}
+  end
+  
+  #Author: Lydia
+  test "results of empty search query exists" do
+      post :search, :query=>"",:autocomplete=>{:query =>""}
+  end
+  
+  #Author: Lydia
+  test "results of nonempty search query exists" do
+      post :search, :query=>"lydia", :autocomplete=>{:query =>"lydia"}
+  end
+  
+  #Author: Lydia
+  test "empty search query" do
+  
+      results = Admin.search("")
+      if not results.nil?
+      	users = results[0]
+      	stories = results[1]
+      	interests = results[2]
+      	uCount = users.count
+      	sCount = stories.count
+      	iCount = interests.count
+      else
+      	uCount = 0
+      	sCount = 0
+      	iCount = 0
+      end
+      post :search, :query=>"",:autocomplete=>{:query =>""}
+      assert_select "div[id=noSearchQuery]",'Please enter query into the search bar.' do
+        assert_select "div[class=well-user-component]" , uCount
+        assert_select "div[class=well-story-component]" , sCount
+        assert_select "div[class=well-interest-component]" , iCount
+      end
+  end
+  
+  #Author: Lydia
+  test "no results found" do
+      results = Admin.search("blabla")
+      if not results.nil?
+      	users = results[0]
+      	stories = results[1]
+      	interests = results[2]
+      	uCount = users.count
+      	sCount = stories.count
+      	iCount = interests.count
+      else
+      	uCount = 0
+      	sCount = 0
+      	iCount = 0
+      end
+      post :search, :query=>"blabla",:autocomplete=>{:query =>"blabla"}
+      assert_select "div[id=noSearchQuery]",'There are no matching results.' do
+        assert_select "div[class=well-user-component]" , uCount
+        assert_select "div[class=well-story-component]" , sCount
+        assert_select "div[class=well-interest-component]" , iCount
+      end
+  end
+  
+  #Author: Lydia
+  test "get results of nonempty search query" do
+      User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
+      int = Interest.create!(name: "lydia", description: "Description of Test Interest")
+      story = Story.new
+      story.title = "lydia"
+      story.interest = int
+      story.content = "Test content"
+      story.save
+      results = Admin.search("lydia")
+      if not results.nil?
+      	users = results[0]
+      	stories = results[1]
+      	interests = results[2]
+      	uCount = users.count
+      	sCount = stories.count
+      	iCount = interests.count
+      else
+      	uCount = 0
+      	sCount = 0
+      	iCount = 0
+      end
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "div[id=usersSearchResults]" do
+        assert_select "div[class=well-user-component]" , uCount
+      end
+      assert_select "div[id=storiesSearchResults]" do
+        assert_select "div[class=well-story-component]" , sCount
+      end
+      assert_select "div[id=interestsSearchResults]" do
+        assert_select "div[class=well-interest-component]" , iCount
+      end
+  end
+  
+  #Author: Lydia
+  test "button view all for users" do
+      User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
+      users = Admin.search_user("lydia")
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "a[href=?]", '/admins/all_results?type=1' , 'View All Users Results' 
+  end
+  
+  #Author: Lydia
+  test "button view all for stories" do
+      int = Interest.create!(name: "Test Interest", description: "Description of Test Interest")
+      story = Story.new
+      story.title = "lydia"
+      story.interest = int
+      story.content = "Test content"
+      story.save
+      stories = Admin.search_story("lydia")
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "a[href=?]", '/admins/all_results?type=2' , 'View All Stories Results'
+  end
+  
+  #Author: Lydia
+  test "button view all for interests" do
+      Interest.create!(name: "lydia", description: "Description of Test Interest")
+      interests = Admin.search_interest("lydia")
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "a[href=?]", '/admins/all_results?type=3' ,  'View All Interests Results' 
+  end
+  
+  #Author: Lydia
+  test "filter panel exists" do
+      User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
+      int = Interest.create!(name: "lydia", description: "Description of Test Interest")
+      story = Story.new
+      story.title = "lydia"
+      story.interest = int
+      story.content = "Test content"
+      story.save
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "div[id=filterPanel]" do
+        assert_select "label[class=checkbox]" , 3
+      end
+  end
+  
+  #Author: Lydia
+  test "viewing all users results" do
+      User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
+      users = Admin.search_user("lydia")
+      uCount = users.count
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      post :all_results, :type=>"1"
+      assert_select "div[id=searchResults]" do
+        assert_select "div[class=well-user-component]" , uCount
+      end
+  end
+  
+  #Author: Lydia
+  test "viewing all stories results" do
+      int = Interest.create!(name: "lydia", description: "Description of Test Interest")
+      story = Story.new
+      story.title = "lydia"
+      story.interest = int
+      story.content = "Test content"
+      story.save
+      stories = Admin.search_story("lydia")
+      sCount = stories.count
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      post :all_results, :type=>"2"
+      assert_select "div[id=searchResults]" do
+        assert_select "div[class=well-story-component]" , sCount
+      end
+  end
+  
+  #Author: Lydia
+  test "viewing all interests results" do
+      Interest.create!(name: "lydia", description: "Description of Test Interest")
+      interests = Admin.search_interest("lydia")
+      iCount = interests.count
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      post :all_results, :type=>"3"
+      assert_select "div[id=searchResults]" do
+        assert_select "div[class=well-interest-component]" , iCount
+      end
+  end
 end
