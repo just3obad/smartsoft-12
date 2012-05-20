@@ -5,6 +5,8 @@ class StoriesControllerTest < ActionController::TestCase
   #   assert true
   # end
 
+ setup :activate_authlogic
+
   # Author: Menisy
   test "should up comment" do
   	assert_difference('CommentUpDown.find_all_by_action(1).count',1) do
@@ -65,8 +67,12 @@ class StoriesControllerTest < ActionController::TestCase
 
   
   
-  #Author : Omar
+=begin 
+Author : Omar
+=end
   test "create story view" do
+	user = users(:ben)
+	UserSession.create(user)	
 	st = Story.new
 	st.interest_id = 1
 	st.title = "title"
