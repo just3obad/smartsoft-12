@@ -49,7 +49,6 @@ module AutoComplete
         @items2 = Interest.find(:all, find_options2)
         @items3 = Story.find(:all, find_options3)
         @items = @items1 + @items2 + @items3
-        puts @items
         render :inline => "<%= auto_complete_result @items%>"
       end
     end
