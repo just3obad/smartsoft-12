@@ -187,54 +187,48 @@ include StoriesHelper
 	end
   end
 
-#view_friends_like is a method that return a list of friends emails that liked the story
+##################Begin############
+#description: view_friends_like is a method that return a list of friends emails that liked the story
+#input: a user
+#output: a list of names of friends who liked this story
 #Author: khaled.elbhaey
-def view_friends_like(user)
-  @user=user
-  @flistliked=Array.new
-  @listlike = self.liked() 
-  @flistlike=@user.extract_friends(@listlike)
+  def view_friends_like(user)
+    @user=user
+    @flistliked=Array.new
+    @listlike = self.liked() 
+    @flistlike=@user.extract_friends(@listlike)
 
-   (0..(@flistlike.length-1)).each do |i|
+    (0..(@flistlike.length-1)).each do |i|
     @flistliked << (@flistlike[i].email)
-      end  
+    end  
 
-   return @flistliked
+    return @flistliked
 
-   ''' @username = User.find(@userid).name
-    @storytitle = Story.find(@storyid).title
-    @interest_id = Story.find(@storyid).interest_id
-    @interesttitle = Interest.find(@interest_id).name
-    @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
-
-    Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
-'''
-end
+  end
+################End##################
 
 
-#view_friends_dislike is a method that return a list of friends emails that disliked the story
+##################Begin############
+#description: view_friends_dislike is a method that return a list of friends emails that disliked the story
+#input: a user
+#output: a list of names of friends who disliked this story
 #Author: khaled.elbhaey
-def view_friends_dislike(user)
-  @user=user
-  @flistdisliked=Array.new
-  @listdislike = self.liked() 
-  @flistdislike=@user.extract_friends(@listdislike)
+  def view_friends_dislike(user)
+    @user=user
+    @flistdisliked=Array.new
+    @listdislike = self.disliked() 
+    @flistdislike=@user.extract_friends(@listdislike)
 
-   (0..(@flistdislike.length-1)).each do |i|
-    @flistdisliked << (@flistdislike[i].email)
-      end  
+     (0..(@flistdislike.length-1)).each do |i|
+     @flistdisliked << (@flistdislike[i].email)
+     end  
 
-   return @flistdisliked
+     return @flistdisliked
 
-   ''' @username = User.find(@userid).name
-    @storytitle = Story.find(@storyid).title
-    @interest_id = Story.find(@storyid).interest_id
-    @interesttitle = Interest.find(@interest_id).name
-    @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
+  end
+################End##################
 
-    Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
-'''
-end
+
 =begin
 Description: this method takes as input a user and returns "action" which should be a Likedislike table record .. if the User Liked this Story
 Input:takes a User as input

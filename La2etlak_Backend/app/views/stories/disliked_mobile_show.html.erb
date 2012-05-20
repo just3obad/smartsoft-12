@@ -1,26 +1,26 @@
 <div align="center">
-<% if @friends.empty? %>
- <%= render 'shared/logs_error_messages'%>
-<br>
-<table>
-<tr>
-<td>
-<%= link_to 'back',{:controller => 'stories', :action => 'get', :id => @storyid},  class: "btn btn-small" %> 
-</td>
-<td>
-<%= link_to 'find friend',{:controller => 'friendships', :action => 'search'},  class: "btn btn-small" %>  
-</td>
-</tr>
-</table>
-<% else %>
-<div id="disliked">
-<% @friends.each do |f| %>
-<%=f%>
-<br>
- <%end%>
-<div align="center"> 
-<%= link_to 'back',{:controller => 'stories', :action => 'get', :id => @storyid},  class: "btn btn-small" %> 
-</div>
-<% end %>
-</div>
+	<% if @friends.empty? %><!-- error message if the user has no friends who disliked this story -->
+		 <%= render 'shared/logs_error_messages'%>
+		<br>
+		<table>
+			<tr>
+				<td>
+					<%= link_to 'back',{:controller => 'stories', :action => 'get', :id => @storyid},  class: "btn btn-small" %> 
+					</td>
+					<td>
+						<%= link_to 'find friend',{:controller => 'friendships', :action => 'search'},  class: "btn btn-small" %>  
+				</td>
+			</tr>
+		</table>
+	<% else %>
+		<div id="disliked">
+			<% @friends.each do |f| %><!-- list of friends who disliked the story -->
+				<%=f%>
+				<br>
+			 <%end%>
+			<div align="center"> 
+				<%= link_to 'back',{:controller => 'stories', :action => 'get', :id => @storyid},  class: "btn btn-small" %> 
+			</div>
+		<% end %>
+	</div>
 </div>

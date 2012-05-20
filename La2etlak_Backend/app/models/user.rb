@@ -89,39 +89,41 @@ def get_notifications
     self.pending_invited_by
   end
 end
-#the get_friends is a method that return list of all friends email of the user
+##################Begin############
+#description: the get_friends is a method that return list of all friends email of the user
+#input: No Input
+#output: a list of emails of the user friends
 #Author: khaled.elbhaey
   def get_friends_email()
-  @flistemail=Array.new
-  @flist = self.friends
+    @flistemail=Array.new
+    @flist = self.friends
 
-      (0..(@flist.length-1)).each do |i|
-      @flistemail << (@flist[i].email)
-      end  
+    (0..(@flist.length-1)).each do |i|
+    @flistemail << (@flist[i].email)
+    end  
 
+    return @flistemail
 
-      return @flistemail
-
- ''' @username = User.find(@userid).name
-  @message = "#{@username}get_friends_email"
-
-   Log.create!(loggingtype: 1,user_id_1: @userid,user_id_2: nil,admin_id:   nil,story_id: nil,interest_id: nil,message: @message )
-  '''
   end
+################End##################
    
 
-#has_account checks if the user with the (mail) is in our database or not
+##################Begin############
+#description: has_account checks if the user with the (mail) is in our database or not
+#input: email
+#output: true if the user with the mail in DB and false otherwise
 #Author: khaled.elbhaey
   def has_account(mail)
   
-  @email=mail
-  if User.find_by_email(@email).nil?
-      return false
-  else
-      return true
-  end    
+    @email=mail
+    if User.find_by_email(@email).nil?
+       return false
+    else
+       return true
+    end    
 
   end
+################End##################
 
 =begin 
   This method takes a list of users and return a list users that are friends
