@@ -40,6 +40,7 @@ class UsersController < ApplicationController
 				redirect_to "/dummyLogin"
 			end
    else
+     	flash[:notice] = @user.errors.full_messages[0].to_s + "red"
     redirect_to :action => 'new', :layout => "mobile_template"
    end
   end
