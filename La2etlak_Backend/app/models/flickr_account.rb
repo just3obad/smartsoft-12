@@ -42,11 +42,12 @@ begin
      self.config_flickr
      login = flickr.test.login
      user = flickr.people.findByUsername( :username => login.username )
-     photo_list = flickr.photos.getContactsPhotos( :count=>"20",:just_friends => "1")
+     #photo_list = flickr.photos.getContactsPhotos(:cdfount=>'50')
+     photo_list=getContactsPhotos(:count => '50',:just_friends => '1')
      stories = Array.new
      photo_list.each do |photo|
        temp = FlickrAccount.convert_photo_to_story(photo) 
-     stories.push(temp) 
+       stories.push(temp) 
      end 
     rescue Exception => ex
       puts ex
@@ -68,8 +69,9 @@ begin
     info = flickr.photos.getInfo :photo_id => photo.id, :secret => photo.secret
     original_url = FlickRaw.url(info)
     story.instance_variables
-    story.title = "Photo of #{photo.username}"
+    story.title = info.title
     story.category = 'flickr'
+    story.content = info.description
     story.media_link = original_url
     return story 
   end
