@@ -27,12 +27,12 @@ class UserTest < ActionDispatch::IntegrationTest
     end
     
     #Author: Rana
-    test "route to block story" do
+    test "should get to block story" do
       assert_routing 'mob/block_story/1', {:controller => "users", :action => "block_story", :id => "1" }
     end
 
     #Author: Rana   
-    test "route to block interest" do
+    test "should get to block interest" do
       assert_routing 'mob/block_interest/1', {:controller => "users", :action => "block_interest", :id => "1" }
     end
 
@@ -57,12 +57,12 @@ class UserTest < ActionDispatch::IntegrationTest
     end
 
     #Author: Rana   
-    test "route to unblock story" do
+    test "should get to unblock story" do
       assert_routing 'mob/unblock_story/1', {:controller => "users", :action => "unblock_story", :id => "1" }
     end  
 
     #Author: Rana    
-    test "route to manage blocked stories" do
+    test "should get to manage blocked stories" do
       assert_routing 'mob/manage_blocked_stories', {:controller => "users", :action => "manage_blocked_stories"}
     end 
      
