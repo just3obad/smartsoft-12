@@ -27,7 +27,7 @@
 	<% if @stories.empty? == true %>
 		<div class="alert">  
 			<a class="close" data-dismiss="alert"></a>
-			<h1><strong>Warning!</strong> No Stories In Our Database Yet.</h1>
+			<h1><strong>Warning!</strong> No Stories In Our Database Yet</h1>
 		</div>
 	<% else %>
 		<div class="general info" id ="genInfo">
@@ -41,8 +41,8 @@
 					<div class="alert alert-info">
 						Top 5 Stories All Time : </br>
 							
-						<!--Make A Story Component For Each Of The Top Ranked Five Stories Contiaing Title, Rank, Shares,
-						Comments, Likes, Dislikes, Interest Tag And A Link To Its Page And Statistics Page -->
+						<!--Make A Story Component For Each Of The Top Ranked Five Stories Contiaing Title, Rank, 
+						Shares, Comments, Likes, Dislikes, Interest Tag And A Link To Its Page And Statistics Page -->
 							
 					</div>
 				</h4>
@@ -60,10 +60,10 @@
 							{:controller => 'statistics', :action => 'stories',:id => story.id }, 
 							class: "story-component-button-absolute btn btn-primary"%>
 							<h7> Rank : <%= story.get_story_rank_all_time %> </h7>
-							<h7> &nbsp&nbsp Shares : <%= Share.where(:story_id => story.id).count %> </h7>
-							<h7> &nbsp&nbsp Comments : <%= Comment.where(:story_id => story.id).count %> </h7>
-							<h7> &nbsp&nbsp Likes : <%= Likedislike.where(:story_id => story.id, :action => 1).count %> </h7>
-							<h7> &nbsp&nbsp Dislikes : <%= Likedislike.where(:story_id => story.id, :action => -1).count %> </h7>
+							<h7> &nbsp&nbsp Shares : <%= story.shares.count %> </h7>
+							<h7> &nbsp&nbsp Comments : <%= story.comments.count %> </h7>
+							<h7> &nbsp&nbsp Likes : <%= story.likedislikes.where(action: 1).count %> </h7>
+							<h7> &nbsp&nbsp Dislikes : <%= story.likedislikes.where(action: -1).count %> </h7>
 							<h8> Interests : <%= Interest.where(:id => story.interest_id).first.name %> </h8>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 						<% if Story.get_stories_ranking_last_30_days.first.get_story_rank_last_30_days == 0 %>
 							<div class="alert">  
 								<a class="close" data-dismiss="alert"></a>
-								<h1><strong>Warning!</strong> No Stories Ranking In The Last 30 Days .</h1>
+								<h1><strong>Warning!</strong> No Stories Ranking In The Last 30 Days</h1>
 							</div>
 						<% else %>
 							<h4>
@@ -86,7 +86,7 @@
 									Top 5 Stories Last 30 Days: </br>
 								</div>
 							</h4>
-							<% Story.get_stories_ranking_all_time[0..4].each do |story|%>
+							<% Story.get_stories_ranking_last_30_days[0..4].each do |story|%>
 								<div class="well-story-component">
 									<a href="/stories/<%= story.id%>"
 										class="thumbnail-story-component">
@@ -99,11 +99,22 @@
 										<%= link_to "view Statistics", 
 										{:controller => 'statistics', :action => 'stories',:id => story.id }, 
 										class: "story-component-button-absolute btn btn-primary"%>
-										<h7> Rank : <%= story.get_story_rank_all_time %> </h7>
-										<h7> &nbsp&nbsp Shares : <%= Share.where(:story_id => story.id).count %> </h7>
-										<h7> &nbsp&nbsp Comments : <%= Comment.where(:story_id => story.id).count %> </h7>
-										<h7> &nbsp&nbsp Likes : <%= Likedislike.where(:story_id => story.id, :action => 1).count %> </h7>
-										<h7> &nbsp&nbsp Dislikes : <%= Likedislike.where(:story_id => story.id, :action => -1).count %> </h7>
+										<h7> Rank : <%= story.get_story_rank_last_30_days %> </h7>
+										<h7> 
+											&nbsp&nbsp Shares : <%= (story.shares.where(created_at: 
+											30.days.ago..Time.zone.now.end_of_day).count) %> 
+										</h7>
+										<h7> 
+											&nbsp&nbsp Comments : <%= (story.comments.where(created_at: 
+											30.days.ago..Time.zone.now.end_of_day).count) %> 
+										</h7>
+										<h7> 
+											&nbsp&nbsp Likes : <%= (story.likedislikes.where(action: 1, 
+											created_at: 30.days.ago..Time.zone.now.end_of_day).count)%> </h7>
+										<h7> 
+											&nbsp&nbsp Dislikes : <%= (story.likedislikes.where(action: -1, 
+											created_at: 30.days.ago..Time.zone.now.end_of_day).count) %> 
+										</h7>
 										<h8> Interests : <%= Interest.where(:id => story.interest_id).first.name %> </h8>
 									</div>
 								</div>
