@@ -36,7 +36,7 @@ end
 =end
 
 
-  def get_feed(count=10)
+  def get_feed(count=20)
 
 begin
      self.config_flickr
