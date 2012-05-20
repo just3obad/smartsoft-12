@@ -61,8 +61,7 @@
 		<a class="close" data-dismiss="alert"></a>
 		<h1><strong>Warning!</strong> No Users in our database Yet.</h1>
 	</div>
-	<% if(@users.empty? == true) %>
-	<% else %>
+	<% if !(@users.empty?) %>
 		<div id="ccc"></div>
 		<div class="general info">
 
