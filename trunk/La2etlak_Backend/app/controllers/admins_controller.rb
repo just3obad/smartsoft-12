@@ -87,7 +87,7 @@ class AdminsController < ApplicationController
 =end
   def index
     @admin_session = AdminSession.find
-    if @admin_session == nil
+    if current_admin == nil
      redirect_to('/admin/login')
     else
       Admin.get_feed
