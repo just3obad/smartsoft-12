@@ -172,16 +172,20 @@ Author: Kareem
 			stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)
 			stories = stories + user.get_friends_stories
 			stories = stories + user.get_social_feed
+			stories.shuffle!
 		else
 			if(int_name)
 				stories = user.get_feed(int_name)
+				stories.shuffle!
 			else
-				stories =  user.get_feed("null")
-				stories = stories + user.get_friends_stories
-				stories = stories + user.get_social_feed
+				stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)[0,4]
+				temp_stories = user.get_feed("null")
+				temp_stories = temp_stories + user.get_friends_stories
+				temp_stories = temp_stories + user.get_social_feed
+				temp_stories.shuffle!
+				stories = stories + temp_stories
 			end
 		end
-		stories.shuffle!
 		# Author : Mina Adel
 		@stories=stories.paginate(:per_page => 10, :page=> params[:page])
 		render :layout => "mobile_template"
