@@ -420,22 +420,25 @@ Input: Story , Action [1 or -1]
 Output: Nothing
 Author: Kareem
 =end
-  def thumb_story(story,act)
-   thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
-        if thumped.empty? 
-        Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
-   puts "Thump"
-    
-    elsif (thumped[0].action == act) 
-           puts "Already"
-  
-  elsif (thumped[0].action != act) 
-    Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
-     Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )  
-    puts "Removed _thumbed"
-  end
+	def thumb_story(story,act)
+		name_1 = if self.name.nil? then self.email.split('@')[0] else self.name end
+		thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
+		if thumped.empty? 
+			Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
+			l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")
+			puts "Thump"
 
-end
+		elsif (thumped[0].action == act) 
+			puts "Already"
+
+		elsif (thumped[0].action != act) 
+			Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
+			Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )
+			l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")  
+			puts "Removed _thumbed"
+		end
+
+	end
 
 =begin
 Description:this Action takes as a parametar a story and it checks if the current User flagged it before or not .. if not a new Record will be added in the Flags table with current user_id , current_story id else if he already flagged it nothing will happen.
@@ -443,15 +446,17 @@ Input: Story
 Output: true or False
 Author: Kareem
 =end
-def flag_story(story)
-  thumped = Flag.where(:story_id => story.id, :user_id => self.id)
-     if thumped.empty?
-        Flag.create!(:user_id =>  self.id, :story_id => story.id)
-	#Admin_Settings.update_story_if_flagged
-  return true
-     end
-  return false
-end
+	def flag_story(story)
+		thumped = Flag.where(:story_id => story.id, :user_id => self.id)
+		if thumped.empty?
+			Flag.create!(:user_id =>  self.id, :story_id => story.id)
+			#Admin_Settings.update_story_if_flagged(story)
+			name_1 = if self.name.nil? then self.email.split('@')[0] else self.name end
+			l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Flagged Story #{story.title}")  
+			return true
+		end
+			return false
+	end
 =begin
 Description: this Action returns a list of stories according to the current user interests .. and it also checks if theses stories are blocked According to an Interest or its a Blocked story or not before it returns the List of stories,the method also takes as input Interest name if it's not "null" the method will return the stories filtered according to this interest only.
 Input: Interest.name 
@@ -494,6 +499,8 @@ Author: Kareem
     filtered_stories_ids.each do |filtered_story_id|
           filtered_stories.append(Story.find(filtered_story_id))
     end
+
+
            done_stories = filtered_stories
           # done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
     end
@@ -508,18 +515,18 @@ Output:array of unblocked stories
 Author:Kareem
 =end
   def  get_unblocked_stories(stories)
-	unblocked_stories = Array.new
+		unblocked_stories = Array.new
   	stories = stories.sort_by &:created_at
   	stories_ids = stories.map {|story| story.id}
   	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
-	blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
+		blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
   	unblocked_stories_ids = stories_ids - blocked_stories_ids
 	#loop on unblocked stories and for each unblocked_story_id we get the Story accrding to this Id and if this story doesn't belong 	an unblocked interest append it to unblocked_stories
   	unblocked_stories_ids.each do |unblocked_story_id|
-	story = Story.find(unblocked_story_id)
-	if !(blocked_interests.include?(story.interest_id))
+		story = Story.find(unblocked_story_id)
+		if !(blocked_interests.include?(story.interest_id))
         unblocked_stories.append(story)
-	end
+		end
   end
  return unblocked_stories
 end
