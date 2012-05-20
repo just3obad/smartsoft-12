@@ -26,7 +26,7 @@ class InterestsController < ApplicationController
   $errors = false
   @interests = Interest.all 
   if @interests.empty?
-       flash[:error] = "There are currently no interests." 
+      flash[:error] = "There are currently no interests." 
   end
   @feed = Feed.new # creaing a new interest and returning it in a variable @interest used in the form in new.html.erb 
   @interest = Interest.new
@@ -48,29 +48,21 @@ and saves it , if it's saved then a success message appears .. otherwise an erro
 =end
 
   def create 
-   $saved = nil
-   $savedinterest
-   @interests = Interest.get_all_interests
-   @interest = Interest.model_create(params[:interest])
-   if @interest.save
-
-
-     flash[:success] = "Your Interest was added Successfully"
- 
-
- Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
-     redirect_to @interest
-
-
-else
-
-$errors = true
-@title = "Add Interest"     
-render 'new'
-
+    $saved = nil
+    $savedinterest
+    @interests = Interest.get_all_interests
+    @interest = Interest.model_create(params[:interest])
+    if @interest.save
+      flash[:success] = "Your Interest was added Successfully"
+      Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
+      redirect_to @interest
+    else
+      $errors = true
+      @title = "Add Interest"     
+      render 'new'
 #Render 'new' , evaluates the contents in the error_messages partial contents, and insert the results into the view.
     end
- end
+  end
 
 #Author: Jailan
 #This part is to push Notifications to the admin
@@ -83,50 +75,37 @@ Update Method uses the form in the view to update the attributes of the interest
 all databese changes are done in the "model_update" method in the Model that takes as parameters the Interest's id as well as the Interests parameters to be changed (name , Image & Description)
 =end
 
- def update
-
- @interests = Interest.get_all_interests
-#here, we call the method in model
+  def update
+    @interests = Interest.get_all_interests
+    #here, we call the method in model
     @interest= Interest.model_update(params[:id],params[:interest])
-
-@deleted = Interest.is_deleted(params[:id])
-
+    @deleted = Interest.is_deleted(params[:id])
 #we check on the interest deleted or not because an admin is not allowed to adjust any changes/edit an interest unless it's ACTIVE
     if @interest && (@deleted == false || @deleted.nil?)
-
       flash[:success] = "Interest updated successfully "
-
- 
-    @myinterest= Interest.get_interest(params[:id])
-  redirect_to @myinterest
+      @myinterest= Interest.get_interest(params[:id]) 
+      redirect_to @myinterest
     else
-
-
-  $errors = true
+      $errors = true
 #global variable $errors used to handle the flash message in "Show.html.erb"
-if (@deleted == false || @deleted.nil?)  && (params[:interest][:name].blank?)
-# a flash appears when we enter an invalid info (balnk name)
-               
-          flash[:error] = "  Interest Update failed , Name can't be blank , PLease Try again !"
-else
-
-if (@deleted == false || @deleted.nil?)
-# a flash appears when we enter an invalid info (invalid content type of image)
-               
+      if (@deleted == false || @deleted.nil?)  && (params[:interest][:name].blank?)
+# a flash appears when we enter an invalid info (balnk name)          
+        flash[:error] = "  Interest Update failed , Name can't be blank , PLease Try again !"
+      else
+        if (@deleted == false || @deleted.nil?)
+# a flash appears when we enter an invalid info (invalid content type of image)       
           flash[:error] = " Interest Update failed , Photo content type is invalid , PLease Try again !"
-else
+        else
 #a flash appears banning the admin from updating the interest as long as it's blocked
-flash[:error] = " This interest is now blocked , Please Restore it if you want to Update"
-end
-end
-    @myinterest= Interest.get_interest(params[:id])
-  redirect_to @myinterest
-end
-
+          flash[:error] = " This interest is now blocked , Please Restore it if you want to Update"
+        end
+      end
+      @myinterest= Interest.get_interest(params[:id])
+      redirect_to @myinterest
+    end
 #after updating we redirect to the interest main page but after editing
 
   end
-
 
 =begin
 #Author: jailan
@@ -137,23 +116,20 @@ if the interest is deleted then he admin has the right to restore it once more .
 this method calls the "model_toggle" method that takes as parameters the Interest's id .
 =end
   def toggle
-
     @interest= Interest.model_toggle(params[:id])
-   @interests = Interest.get_all_interests
-   @deleted = Interest.is_deleted(params[:id])
-
-if !@deleted 
-
- $savedinterest = true
+    @interests = Interest.get_all_interests
+    @deleted = Interest.is_deleted(params[:id])
+    if !@deleted 
+      $savedinterest = true
 # if the interest was deleted and the admin restored it successfully a flash appears endicating that
-flash[:success] = " Interest Restored Successfuly "
-else
-
-
+      flash[:success] = " Interest Restored Successfuly "
+    else
 # if the interest wasn't deleted and the admin blocked it successfully a flash appears endicating that
-flash[:success] = " Interest Blocked Successfuly "
-end
+      flash[:success] = " Interest Blocked Successfuly "
+    end
 # finally , we redirect to the main interest's page after adjusting the changes
- redirect_to @interest
+    redirect_to @interest
+  end
+
 end
-end
+      
