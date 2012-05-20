@@ -167,7 +167,7 @@ require "net/http"
     end
 
     for name_query in name_match
-      query_result += Interest.all.select {|interest| not interest.name.nil? and not interest.name.empty? and interest.name =~ %r'#{name_query}'}
+      query_result += Interest.all.select {|interest| not interest.name.nil? and not interest.name.empty? and interest.name.downcase =~ %r'#{name_query}'}
     end
 
     description_query = query
@@ -180,7 +180,7 @@ require "net/http"
     end
 
     for description_query in description_match
-      query_result += Interest.all.select {|interest| not interest.description.nil? and not interest.description.empty? and interest.description =~ %r'#{description_query}'}
+      query_result += Interest.all.select {|interest| not interest.description.nil? and not interest.description.empty? and interest.description.downcase =~ %r'#{description_query}'}
     end
 
     return query_result.to_a
