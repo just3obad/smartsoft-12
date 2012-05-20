@@ -96,12 +96,7 @@ include StoriesHelper
   Author: Lydia
 =end
   def liked
-    likes = likedislikes.where(action: 1)
-    likers = []
-    likes.find_each do |like|
-      likers << likedislikers.find_by_id(like.user_id)
-    end
-    return likers
+    likers = likedislikes.where(action: 1).map {|like| User.find(like.user_id)}
   end
   
   
@@ -110,12 +105,7 @@ include StoriesHelper
   Author: Lydia
 =end
   def disliked
-    dislikes = likedislikes.where(action: -1)
-    dislikers = []
-    dislikes.find_each do |dislike|
-      dislikers << likedislikers.find_by_id(dislike.user_id)
-    end
-    return dislikers
+    dislikers = likedislikes.where(action: -1).map {|dislike| User.find(dislike.user_id)}
   end
   
 =begin
