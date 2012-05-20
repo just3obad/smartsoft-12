@@ -15,10 +15,20 @@ require "net/http"
   $NAME = /([a-zA-Z]+)(.*)/
   $USERNAME = /(\w+)(.*)/
   $EMAIL = /((?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+)(.*)/
+  $WORD = /(\w+)(.*)/
 
 
   def self.search(query)
-    return search_user(query)
+    if query.empty?
+      return nil
+    
+    if query.instance_of? String
+      query = query.downcase
+    else
+      return query_result.to_a
+    end
+
+    return [search_user(query), search_story(query), search_interest(query)]
   end
 
   def self.search_user(query)
@@ -41,12 +51,6 @@ require "net/http"
     is then converted to an array.
 =end
     query_result = [].to_set
-    
-    if query.instance_of? String
-      query = query.downcase
-    else
-      return query_result.to_a
-    end
 
     email_query = query
 
@@ -118,7 +122,33 @@ require "net/http"
   end
 
   def self.search_story(query)
-    return []
+    query_result = [].to_set
+
+    title_query = query
+
+    title_match = []
+    while title_query =~ $WORD
+      match = $WORD.match(title_query)
+      title_match.push(match[1])
+      title_query = match[2]
+    end
+
+    for title_query in title_match
+      query_result += Story.all.select {|story| not story.title.nil? and not story.title.empty? and story.title =~ %r'#{title_query}'}
+
+    content_query = query
+
+    content_match = []
+    while content_query =~ $WORD
+      match = $WORD.match(content_query)
+      content_match.push(match[1])
+      content_query = match[2]
+    end
+
+    for content_query in content_match
+      query_result += Story.all.select {|story| not story.content.nil? and not story.title.empty? and story.content =~ %r'#{content_query}'}
+
+    return query_result.to_a
   end
   
   def self.search_interest(query)
@@ -138,4 +168,6 @@ def deliver_password_reset_instructions!
  reset_perishable_token!  
  Emailer.password_reset_instructions(self)  
 end  
+end
+end
 end
