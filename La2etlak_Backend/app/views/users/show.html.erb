@@ -19,35 +19,35 @@
         </div>
          <div id="user-personal-info"> 
            <li class="nav-header">Email:-</li>
-          <li class="divider"></li>
-          <li>
-            <span class="label label-info" id="my-email"><%= @user.email %> </span>
-          </li>
-          <li class="divider"></li>
-          <li class="nav-header">Name:-</li>
-          <li class="divider"></li>
-          <li>
-            <span class="label label-info" id="my-email">
+           <li class="divider"></li>
+           <li>
+             <span class="label label-info" id="my-email"><%= @user.email %> </span>
+           </li>
+           <li class="divider"></li>
+           <li class="nav-header">Name:-</li>
+           <li class="divider"></li>
+           <li>
+             <span class="label label-info" id="my-email">
               <% if @user.name.nil? %>
                      <%= @user.email.split("@")[0]%>
                   <% else %>
                    <%= @user.name %>
                   <% end %> 
              </span>
-          </li>
-          <li class="divider"></li>
-          <li class="nav-header">Status:-</li>
-          <li class="divider"></li>
-          <li>
-            <span id="is-active">
-            <% if @user.deactivated %>
-              <span class="label label-important">Deactivated</span> 
-            <% else %>
-              <span class="label label-success">Active</span> 
-            <% end %>
+           </li>
+           <li class="divider"></li>
+           <li class="nav-header">Status:-</li>
+           <li class="divider"></li>
+           <li>
+             <span id="is-active">
+             <% if @user.deactivated %>
+               <span class="label label-important">Deactivated</span> 
+             <% else %>
+               <span class="label label-success">Active</span> 
+             <% end %>
               
-          </li>
-          <li class="divider"></li>
+           </li>
+           <li class="divider"></li>
          
 
          </div>
@@ -64,34 +64,34 @@
           </ul>
           <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade in active" id="recentActivity">
-             <table class="table table-striped table-bordered">
-              <tbody>
-              <% if @logs== [] %>
-              No recent Activity
-              <% end %>
-              <% if @logs != nil %>
-              <% @logs.each do |l| %>
-              <tr >
+              <table class="table table-striped table-bordered">
+                <tbody>
+                  <% if @logs== [] %>
+                    No recent Activity
+                  <% end %>
+                  <% if @logs != nil %>
+                    <% @logs.each do |l| %>
+                      <tr >
                 
-                <td><%=  l.message %></td>
-                <td><%=  if(l.user_id_1 != nil and l.user_id_1 != @user.id)
-                  link_to User.find(l.user_id_1).name,{:controller => 'users', :action => 'show', :id => l.user_id_1 },  class: " btn btn-primary btn-danger"   
-                   end%>
-                    <%= if(l.user_id_2 != nil and l.user_id_2 != @user.id)
-                    link_to User.find(l.user_id_2).name,{:controller => 'users', :action => 'show', :id => l.user_id_2 }, class: "btn btn-primary  btn-danger"  
-                    end%>
+                        <td><%=  l.message %></td>
+                        <td><%=  if(l.user_id_1 != nil and l.user_id_1 != @user.id)
+                         link_to User.find(l.user_id_1).name,{:controller => 'users', :action => 'show', :id => l.user_id_1 },  class: " btn btn-primary btn-danger"   
+                           end%>
+                            <%= if(l.user_id_2 != nil and l.user_id_2 != @user.id)
+                            link_to User.find(l.user_id_2).name,{:controller => 'users', :action => 'show', :id => l.user_id_2 }, class: "btn btn-primary  btn-danger"  
+                            end%>
               
-                    <%= if(l.story_id != nil)
-                        link_to Story.find(l.story_id).title,{:controller => 'stories', :action => 'show', :id => l.story_id },class: "btn btn-primary  btn-warning"  
-                    end%>
-                     <%= if(l.interest_id != nil)
-                         link_to Interest.find(l.interest_id).name,{:controller => 'interests', :action => 'show', :id => l.interest_id },  class: "btn btn-primary  btn-success" 
-                    end%>
-                </td>
-                <td class="logs-table-row"><%= time_ago_in_words(l.created_at) + " ago" %></td>
-              </tr>
-              <% end %>
-              <% end %>
+                            <%= if(l.story_id != nil)
+                            link_to Story.find(l.story_id).title,{:controller => 'stories', :action => 'show', :id => l.story_id },class: "btn btn-primary  btn-warning"  
+                            end%>
+                            <%= if(l.interest_id != nil)
+                           link_to Interest.find(l.interest_id).name,{:controller => 'interests', :action => 'show', :id => l.interest_id },  class: "btn btn-primary  btn-success" 
+                            end%>
+                        </td>
+                        <td class="logs-table-row"><%= time_ago_in_words(l.created_at) + " ago" %></td>
+                      </tr>
+                    <% end %>
+                  <% end %>
               </tbody>
              </table>
              
@@ -104,13 +104,13 @@
                  <div class="well-user-component">
                    <a href="/users/<%= friend.id%>"class="thumbnail-user-component">
                    
-                <% if friend.image.nil? || 
+                     <% if friend.image.nil? || 
                       friend.image == "" %>
                      <%= image_tag "logo.jpeg", :size => "75x75" %>
-                  <% else %>
-                    <img src= "<%= friend.image %>" 
+                     <% else %>
+                      <img src= "<%= friend.image %>" 
                       width="75" style="height:75px"/>
-                  <% end %> </a>
+                     <% end %> </a>
                    <div class="user-component-info">
                      <h3><%= friend.email %>
                      </h3>
@@ -118,37 +118,37 @@
                       {:controller => 'statistics', :action => 'users', :id => friend.id}, 
                         class: "user-component-button-absolute btn btn-primary"%>
                    </div>
-                </div>
+                 </div>
               <% end %>
             </div>
             <div class="tab-pane fade" id="interests">
                  <% if @interests.length == 0 %>
                  No interests Available.
-               <% end %>
-               <% @interests.each do |interest| %>
-                  <div class="well-interest-component">
-                    <a href="/interests/<%= interest.id%>"
+                 <% end %>
+                 <% @interests.each do |interest| %>
+                   <div class="well-interest-component">
+                     <a href="/interests/<%= interest.id%>"
                        class="thumbnail-interest-component">
-                    <% if interest.photo.file? %>
-                     <img src= "<%= interest.photo.url(:small) %>" width="75" style="height:75px"/>
-                    <% else %>
-                      <%= image_tag "logo.jpeg", :size => "75x75" %>
-                    <% end %>
-                    </a>
-                    <div class="interest-component-info">
-                      <h2><% if interest.name.nil? %>
+                       <% if interest.photo.file? %>
+                         <img src= "<%= interest.photo.url(:small) %>" width="75" style="height:75px"/>
+                       <% else %>
+                          <%= image_tag "logo.jpeg", :size => "75x75" %>
+                       <% end %>
+                     </a>
+                     <div class="interest-component-info">
+                       <h2><% if interest.name.nil? %>
                             <%= "No Name Available" %>
-                          <% else %>
+                           <% else %>
                             <%= interest.name  %>
-                          <%  end %>
-                      </h2>
-                      <%= link_to "view Statistics", 
+                           <%  end %>
+                       </h2>
+                       <%= link_to "view Statistics", 
                       {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
                         class: "interest-component-button-absolute btn btn-primary"%>
 
-                    </div>
-                  </div>
-               <% end %>
+                     </div>
+                   </div>
+                <% end %>
             </div>
           </div>
         </div>
@@ -170,7 +170,7 @@
           <li class="divider"></li>
           
           <% if @user.deactivated %>
-          <div id="myModal" class="modal hide fade in" style="display: none; ">
+            <div id="myModal" class="modal hide fade in" style="display: none; ">
             <div class="modal-header">
               <button class="close" data-dismiss="modal">×</button>
               <h3>Confirmation message</h3>
@@ -183,7 +183,7 @@
               <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
               <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success", id: "deactivate_button") %>
             </div>
-          </div>
+            </div>
             <a data-toggle="modal" href="#myModal" class="btn btn-success btn-large">Activate</a>
               
             <% else %>
@@ -204,9 +204,6 @@
             <a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large">Deactivate</a>
               
             <% end %>
-          <li class="divider"></li>
-           <li class="nav-header">Back to all users</li>
-            <%= link_to('Back', {:controller => 'users', :action => 'index'}, class: "btn btn-large btn-success", id: "back_button") %>
         </ul>
       </div>
   </div>
