@@ -77,7 +77,7 @@ class AdminsController < ApplicationController
       flash[:notice] = "Registration successful."
       redirect_to('/admin_settings')
     else
-      render :action => 'new'
+      redirect_to('/admin_settings')
     end
   end
 =begin
