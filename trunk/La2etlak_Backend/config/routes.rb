@@ -138,8 +138,8 @@ NokiaRuby::Application.routes.draw do
   match "mob/stories/:id/comments/upc" => "stories#up_comment"
   match "mob/stories/:id/comments/downc" => "stories#down_comment"
   match "mob/stories/:id/show_mob/" => "stories#mobile_show"
-  match "/fb/done" => "users#authenticate_facebook_done"
-  match "mob/users/facebook/auth_init" => "users#authenticate_facebook_init"
+  match "/fb/done" => "facebook_account#authenticate_facebook_done"
+  match "mob/facebook/auth_init" => "facebook_account#authenticate_facebook_init"
   # $$$$$$$$$$$$ MENISY END $$$$$$$$$$$$$$$$$$$$$$
 
     # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
@@ -165,7 +165,6 @@ NokiaRuby::Application.routes.draw do
 
   match 'interests/feeds/create' => 'feeds#create'
   resources :feeds
-
 
   match "check" => "verification_codes#check"
 
