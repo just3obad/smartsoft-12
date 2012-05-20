@@ -853,29 +853,33 @@ Author:Kareem
      return @text #return the message in variable text
   end
 
-  # Author : Essam
+=begin
    # issue 89
    # A method called to get stories from social accounts conected to the current user
    # returns a list of stories shuffled 
    # checks the four social networks we have in our system and sees whether 
    # the user connected to them or not, then
    # calls the get_feed method in each network
+   # input : no input
+   # output : list of stories of connected social accounts
+   # Author : Essam Hafez
+=end
    def get_social_feed()
-     user = User.find(self.id)
-     social_stories = Array.new
-    if(!user.twitter_account.nil?)
-       social_stories = social_stories + (user.twitter_account.get_feed)
+     user = User.find(self.id) # could be removed and user replaced by self
+     social_stories = Array.new #Initialize new empty array
+    if(!user.twitter_account.nil?) # if user has twitter account then enters if
+       social_stories = social_stories + (user.twitter_account.get_feed) # appends twitter feed to list
      end
-     if(!user.tumblr_account.nil?)
-       social_stories = social_stories + (user.tumblr_account.get_feed)
+     if(!user.tumblr_account.nil?) #if user has tumblr account then enters if
+       social_stories = social_stories + (user.tumblr_account.get_feed) #appends tumblr feed to list
      end
-     if(!user.facebook_account.nil?)
-       social_stories = social_stories + (user.facebook_account.get_feed)
+     if(!user.facebook_account.nil?) # if user has facebook account then enters if
+       social_stories = social_stories + (user.facebook_account.get_feed) #appends facebook feed to list
      end
-     if(!user.flickr_account.nil?)
-       social_stories = social_stories + (user.flickr_account.get_feed)
+     if(!user.flickr_account.nil?) # if user has flickr account then enters if
+       social_stories = social_stories + (user.flickr_account.get_feed) # appends flickr feed to list
      end
-     return social_stories.shuffle
+     return social_stories.shuffle # returned stories shuffled
    end
    
 
