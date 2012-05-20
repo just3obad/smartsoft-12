@@ -1,6 +1,8 @@
 class AdminSettingsController < ApplicationController
 
     before_filter {admin_authenticated?} 
+    $span_settings=false
+    $story_settings=false
 	#author: Bassem
   	def index
   		@admin = Admin.new
@@ -25,6 +27,9 @@ class AdminSettingsController < ApplicationController
 		if $flash_error ==  "true"
 			flash[:error] = "Please enter a valid string"
 		end
+		$story_settings=true
+		$span_settings=false
+
 		redirect_to '/admin_settings'		
 	end
 	
@@ -49,8 +54,11 @@ class AdminSettingsController < ApplicationController
 	  	if ( @response == 1)
 	  		flash[:success] = "Time span set successfully."
 	 	 else
-	 	 	flash[:error] = "Please enter a valid number of 30 days or more."
+	 	 	flash[:error] = "Please enter a valid number."
 	 	 end
+	 	 	$span_settings=true
+	 	 	$story_settings=false
+
 	  	redirect_to :action => "index"
 	  end
 end
