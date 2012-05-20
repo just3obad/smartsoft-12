@@ -65,7 +65,9 @@
               <%= form_tag("/admin_settings/statistics_time_span", :method => "post") %>
                    <label>Configure statistics time span</label>
                 <input type="number" class="span3" placeholder="Number in days." name="days">
-                <span class="help-block">Current time span is: <%= Admin_Settings.find_by_key("statistics_time_span").value %></span>
+                <span class="help-block">Current time span is: <%= Admin_Settings.find_by_key("statistics_time_span").value %> 
+                  <% if Admin_Settings.find_by_key("statistics_time_span").value == 1 %> day <%else%> days <%end%>
+                </span>
                 <button type="submit" class="btn">Submit</button>
               </form> 
             </div>
