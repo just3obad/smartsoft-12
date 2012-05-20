@@ -1,4 +1,11 @@
 <html>
+<head>
+	<script>
+	function fbs_click(u,t) {
+	window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=50,height=50');return false;
+	}
+	</script>
+</head>
 <!-- back to main feed button -->
 <div align="center">
 <%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
@@ -108,7 +115,8 @@
 
    &nbsp;
 <!-- I create the facebook sharer url with the media link, then I put it into the url part of the button -->
-  <% facebook_url = "https://www.facebook.com/sharer/sharer.php?u="+@story.story_link%>
+  <% media_url = @story.story_link%>
+  <% facebook_url = "http://www.facebook.com/share.php?u="+media_url+" onclick=return fbs_click('http://www.google.com/', 'Google') target=\"_blank\">Share on Facebook"%>
     <a href=<%=facebook_url%>><img src = "http://dcbdluf1ahqio.cloudfront.net/facebook/32x32.png" height="30" width="30"></a>
   <!-- I create the twitter sharer url with the media link along with the message "Shared via La2etlak Nokia App", then I put it into the url part of the button -->
 	<% twitter_url = "http://twitter.com/intent/tweet?url="+@story.story_link+"&text=Shared%20via%20La2etlak%20Nokia%20App" %>
