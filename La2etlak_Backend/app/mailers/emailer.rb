@@ -24,9 +24,13 @@ class Emailer < ActionMailer::Base
     mail(:to => h_account.email, :subject => "2allak New Password")
   end
   
-  # author: Gasser
-  # This method takes the user and the resetted password and puts it in a variable to be used in 
-  # show of the mail then it sends the mail to the user mail with the subject and its view.
+=begin 
+  Method Description: This method takes the user and the resetted password and puts it in 
+  a variable to be used in show of the mail then it sends the mail to the user mail with 
+  the subject and its view.
+  Parameters (User object and generated password, void)
+  Author : Gasser
+=end
   def send_forced_password(user, pass)
     @passw = pass
     mail(:to => user.email, :subject => "Your Password was reset by the Admin")

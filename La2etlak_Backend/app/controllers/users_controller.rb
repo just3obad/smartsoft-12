@@ -238,23 +238,25 @@ end
 
 #$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-# author: Gasser
-# This method is responsible for calling the resetPassword method in the users model 
-# that generates a random password and updates his password then it is passed to the 
-#emailer to send this mail with the format I made in send_forced_password in the views.
-#Then a success flash appears to inform the admin that the password is sent successfully
-# then it redirects again to the show page.
-def force_reset_password     
-  @user = User.find(params[:id])
-  @logs = @user.get_recent_activity(Time.zone.now)
-  @friends = @user.friends
-  @interests = @user.added_interests
-  pass = @user.resetPassword
-  Emailer.send_forced_password(@user,pass).deliver
-  flash[:success] = "The new password is sent to the user by e-mail"
-  redirect_to '/users/'+ (params[:id])
-end
-
+=begin
+ Method Descriotion: This method is responsible for calling the resetPassword method 
+ in the users model that generates a random password and updates his password then it 
+ is passed to the emailer to send this mail with the format I made in send_forced_password 
+ in the mailers view.Then a success flash appears to inform the admin that the password is
+ sent successfully then it redirects again to the show page.
+ Author: Gasser
+=end
+  def force_reset_password     
+    @user = User.find(params[:id])
+    @logs = @user.get_recent_activity(Time.zone.now)
+    @friends = @user.friends
+    @interests = @user.added_interests
+    pass = @user.resetPassword
+    Emailer.send_forced_password(@user,pass).deliver
+    flash[:success] = "The new password is sent to the user by e-mail"
+    redirect_to '/users/'+ (params[:id])
+  end
+ 
  #Author: Christine
  # @user is the user that we will show
  # @logs contain recent activity of the user in the last 30 days
