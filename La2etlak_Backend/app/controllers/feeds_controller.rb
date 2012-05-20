@@ -17,10 +17,12 @@ end
     #@id1 = Feed.find(params[:id]).interest_id
     $saved
     $savedinterest = false
-    # author : Gasser
-    # Here I find the feed by the link given from the form and check if it is present in the 
-    # database or not and if it is present I give him a warning message to notify him that 
-    # this feed already exists in another interest.
+=begin
+  Method Description: Here I find the feed by the link given from the form and check if it is 
+  present in the database or not and if it is present I give him a warning message to notify him that 
+  this feed already exists in another interest.
+  Author: Gasser
+=end 
     feed = Feed.find_by_link(params[:feed][:link])  
     if !feed.nil? 
       flash[:notify] = "Be Careful, You have entered this RSS Feed in another interest before."   
@@ -41,6 +43,7 @@ end
      flash[:error] = "Link is invalid. Please try again" 
       redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
     end
+    
   end
 
   def destroy
