@@ -8,17 +8,14 @@ class AdminsController < ApplicationController
       $search_result = Admin.search(params[:autocomplete][:query])
 
       $users = $search_result[0]
-      
-    #these attributes are added this way temporarilly until Mostafa comitts his
-    #work so that I can work on the view of the search(LYDIA)
       $stories = $search_result[1]
       $interests = $search_result[2]
       
       if $users.length == 0 and $stories.length == 0 and $interests.length == 0
-        $users = "There are no matching results."
+        @message = "There are no matching results."
       end
     else
-        $users = "Please enter query into the search bar."
+        @message = "Please enter query into the search bar."
     end
     
     respond_to do |format|
@@ -52,13 +49,13 @@ class AdminsController < ApplicationController
 =end
   def all_results
     if params[:type] == "1"
-      @results = $users.paginate(:page=>params[:page], :per_page=> 2)
+      @results = $users.paginate(:page=>params[:page], :per_page=> 10)
     end
     if params[:type] == "2"
-      @results = $stories.paginate(:page=>params[:page], :per_page=> 2)
+      @results = $stories.paginate(:page=>params[:page], :per_page=> 10)
     end
     if params[:type] == "3"
-      @results = $interests.paginate(:page=>params[:page], :per_page=> 2)
+      @results = $interests.paginate(:page=>params[:page], :per_page=> 10)
     end
   end
  #Author : Mouaz
