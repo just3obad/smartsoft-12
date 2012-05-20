@@ -40,6 +40,7 @@ class UserSessionsController < ApplicationController
 					flash[:notice] = "Sorry, your account has been deactivated red"
    				redirect_to :action => 'new', :layout =>"mobile_template"
 				else
+					UserLogIn.create!(:user_id => @user.id)
    				flash[:notice] = "Successfully logged in green"
     			redirect_to "/mob/main_feed"
 				end

@@ -34,6 +34,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Thank you for joining La2etlak, you just recieved an E-mail containing the verification instructions green"
 			session = UserSession.new(@user)
 			if session.save
+				UserLogIn.create!(:user_id => @user.id)				
      		redirect_to "/mob/toggle"
 			else
 				redirect_to "/dummyLogin"
