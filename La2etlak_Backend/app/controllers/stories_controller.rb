@@ -192,7 +192,7 @@ end
     @user=current_user
     @friends=@story.view_friends_like(@user)
 
-    flash[:error] = "sorry, you have no friends that liked this story"
+    flash[:error] = "Sorry, you have no friends that liked this story"
     render :layout => "mobile_template" 
   end
 ################End##################
@@ -209,7 +209,7 @@ end
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
 
-    flash[:error] = "sorry, you have no friends that disliked this story"
+    flash[:error] = "Sorry, you have no friends that disliked this story"
     render :layout => "mobile_template" 
   end
 ################End##################
