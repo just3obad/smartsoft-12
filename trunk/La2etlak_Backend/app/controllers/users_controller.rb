@@ -296,30 +296,44 @@ end
     redirect_to(:action => 'show', :id => @user.id)
   end
 
-  #method that calls the method in model to block story and renders the view
-  #Author: Rana
+=begin
+  Method that calls the method in model to block story and redirects to main feed.
+  Input: id of the story to be blocked
+  Output: flash of success/failure and redirect to main feed
+  Author: Rana
+=end
   def block_story
     @user = current_user
     @story_id = params[:id]
-    @story = Story.find_by_id(@story_id)
+    @story = Story.get_story(@story_id)
     @text = @user.block_story1(@story)
     flash[:notice] = "#{@text}"
     redirect_to action: "feed"
   end
 
-  #method that calls the method in model to block interest and renders the view
-  #Author: Rana
+=begin
+  Method that calls the method in model to block interest and redirects to main
+  feed.
+  Input: id of the story for which the interest should be blocked
+  Output: flash of success/failure and redirect to main feed
+  Author: Rana
+=end
   def block_interest
     @user = current_user
     @story_id = params[:id]
-    @story = Story.find_by_id(@story_id)
+    @story = Story.get_story(@story_id)
     @text = @user.block_interest1(@story)
     flash[:notice] = "#{@text}"
     redirect_to action: "feed"
   end
 
-  #The method that calls the method in the model to block friend feed and renders the view
-  #Author: Rana
+=begin
+  The method that calls the method in the model to block friend feed and renders
+  the view.
+  Input: friend_id
+  Output: flash and redirection
+  Author: Rana
+=end
   def block_friends_feed
       @user = current_user
       @friend_id = params[:id]
@@ -329,35 +343,54 @@ end
       redirect_to controller: 'friendships', action: "index"
   end
 
-  #The method that gets the user's blocked friends and renders the view
-  #Author: Rana
+=begin
+  The method that gets the user's blocked friends and renders the view.
+  Input: None
+  Output: render view with same name
+  Author: Rana
+=end
   def manage_blocked_friends
       @user = current_user
       @my_friends = @user.blocked
       render layout: "mobile_template"
   end
 
-  #The method that calls method in the model to get the user's blocked stories and renders the view
-  #Author: Rana
+=begin
+  The method that calls method in the model to get the user's blocked stories and
+  renders the view.
+  Input: None
+  Output: render view with same name
+  Author: Rana
+=end
   def manage_blocked_stories
       @user = current_user
       @blocked_stories = @user.get_blocked_stories
       render layout: "mobile_template"
   end
 
-  #The method that calls the method in the model to unblock a story and renders the view
-  #Author: Rana
+=begin
+  The method that calls the method in the model to unblock a story and renders the
+  view.
+  Input: story_id
+  Output: flash and redirect to main feed
+  Author: Rana
+=end
   def unblock_story
       @user = current_user
       @story_id = params[:id]
       @story = Story.find_by_id(@story_id)
       @text = @user.unblock_story1(@story) 
       flash[:notice] = "#{@text}"
-      redirect_to action: "feed"
+      redirect_to action: "friends_feed", id: 1
   end
 
-  #The method that calls the method in the model to unblock friend feed and renders the view
-  #Author: Rana
+=begin
+  The method that calls the method in the model to unblock friend feed and renders
+  the view.
+  Input: friend_id
+  Output: flash and redirect to friends feed
+  Author: Rana
+=end
   def unblock_friends_feed
       @user = current_user
       @friend_id = params[:id]
