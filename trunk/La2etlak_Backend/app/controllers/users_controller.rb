@@ -158,28 +158,29 @@ Output: Array of Stories according to the Description Stored in variable @storie
 Author: Kareem
 =end
 
-def feed
-  user = current_user
-	@lol = current_user
-  int_name = params[:interest]
-  if(user.user_add_interests == [] && !int_name)
-               stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)
-		stories = stories + user.get_friends_stories
-               @stories=stories.paginate(:per_page => 10, :page=> params[:page])
-     else
-   	 if(int_name)
-    	 stories = user.get_feed(int_name)
-	 else
-	 stories =  user.get_feed("null")
-	 stories = stories + user.get_friends_stories
-	 stories = stories + user.get_social_feed
-	 end
-  end
-  # Author : Mina Adel
-  @stories=stories.paginate(:per_page => 10, :page=> params[:page])
-  render :layout => "mobile_template"
+	def feed
+		user = current_user
+		@lol = current_user
+		int_name = params[:interest]
+		if(user.user_add_interests == [] && !int_name)
+			stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)
+			stories = stories + user.get_friends_stories
+			stories = stories + user.get_social_feed
+		else
+			if(int_name)
+				stories = user.get_feed(int_name)
+			else
+				stories =  user.get_feed("null")
+				stories = stories + user.get_friends_stories
+				stories = stories + user.get_social_feed
+			end
+		end
+		stories.shuffle!
+		# Author : Mina Adel
+		@stories=stories.paginate(:per_page => 10, :page=> params[:page])
+		render :layout => "mobile_template"
  	#
-end
+	end
 ########################
 
 #$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
