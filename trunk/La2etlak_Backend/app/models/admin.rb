@@ -134,6 +134,17 @@ require "net/http"
   end
 
   def self.search_story(query)
+=begin
+    Given a query string, the method analyze the type of the field is being searched for, and 
+    returns all the stories matching the query.
+    The method work by trying to match the fields title, content
+    a regular expression is used for each of the fields
+
+    Args :
+      query : string of the given query
+
+    Returns : A list of matching stories objects.
+=end
     query = query.downcase
     query_result = [].to_set
 
