@@ -81,6 +81,12 @@
           url_for({:controller => 'tumblr_accounts', :action => 'login'}),
           :class => 'quick', 
           :remote => true%>
+
+			  <% if @user.tumblr_account %>
+              <div id="tumblr_warning" class="warning-component-box-mobile well" style="width:35%; float:right;">
+                You are connected to TUMBLR
+              </div>
+            <% end %>
       </div>
       
       <%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
