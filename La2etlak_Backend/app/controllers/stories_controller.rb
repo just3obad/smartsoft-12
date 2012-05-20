@@ -17,8 +17,8 @@ def show
   
   
 =begin 
-Authot : Omar
 this method takes a story object as a parameter form social feed and renders its view 
+Author : Omar
 =end
 
   def get_story_feed
@@ -26,11 +26,13 @@ this method takes a story object as a parameter form social feed and renders its
    @story = Marshal::load(@ser)
    render :layout => "mobile_template"   
   end
-  
-  # Author: Omar $$ this method taks params story id and get number of likes dislikes done bu user and 
-  #renders mobile_template view  likes => method in the model gets the user who thumbed up story 
-  # dislikes=> method in model gets user who thumbed down the story
-  
+
+=begin  
+  this method taks params story id and get number of likes dislikes done by users and 
+  renders mobile_template view , likes => method in the model gets the user who thumbed up story 
+   dislikes=> method in model gets user who thumbed down the story
+Author: Omar 
+=end
   
    def get
 	id = params[:id]
