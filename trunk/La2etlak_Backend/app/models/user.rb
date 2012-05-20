@@ -865,7 +865,7 @@ Author:Kareem
     # Author : Essam Hafez
 =end
    def get_social_feed()
-     user = User.find(self.id) # could be removed and user replaced by self
+     user = self
      social_stories = Array.new #Initialize new empty array
     if(!user.twitter_account.nil?) # if user has twitter account then enters if
        social_stories = social_stories + (user.twitter_account.get_feed) # appends twitter feed to list
