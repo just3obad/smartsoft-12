@@ -106,6 +106,7 @@ class FlickrAccountsController < ApplicationController
     unless flickr_account.new_record?
       flash[:notice] = 'Flickr account created green'
       l = Log.new
+      l.loggingtype =0
       l.user_id_1 = @user.id
       name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
       l.message = "#{name_1} is now connected to flickr account"
