@@ -436,6 +436,17 @@ class UserTest < ActiveSupport::TestCase
 		assert result.include?(u2), 'User 2 should be in the result'
 		assert !result.include?( users(:three)), 'User three should not be in the result'
 	end 
-   
-
+  
+	  #Author: Bassem
+    test "deactivating users" do
+    @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    @usr.deactivate_user
+  	assert @usr.deactivated
+end
+ #Author: Bassem
+    test "activating users" do
+    @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
+    @usr.activate_user
+  	assert !@usr.deactivated
+end
 end
