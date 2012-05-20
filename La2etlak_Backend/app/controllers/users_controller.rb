@@ -169,7 +169,7 @@ Author: Kareem
 		int_name = params[:interest]
 		if(user.user_add_interests == [] && !int_name)
 			stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days[0..4])
-			temp_stories = temp_stories + user.get_friends_stories
+			temp_stories = user.get_friends_stories
 			temp_stories = temp_stories + user.get_social_feed
 			temp_stories.shuffle!
 			stories = stories + temp_stories
@@ -210,6 +210,20 @@ end
 def twitter_feed
   @user = current_user
   stories = @user.filter_social_network(1)
+  @stories=stories.paginate(:per_page => 10, :page=> params[:page])
+  render :layout => "mobile_template", :template => "users/feed"
+end
+
+def flickr_feed
+  @user = current_user
+  stories = @user.filter_social_network(3)
+  @stories=stories.paginate(:per_page => 10, :page=> params[:page])
+  render :layout => "mobile_template", :template => "users/feed"
+end
+
+def tumblr_feed
+  @user = current_user
+  stories = @user.filter_social_network(4)
   @stories=stories.paginate(:per_page => 10, :page=> params[:page])
   render :layout => "mobile_template", :template => "users/feed"
 end

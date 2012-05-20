@@ -72,7 +72,7 @@
   		    </tr>
   	    </table>
           <% if @user.flickr_account %>
-          <%= link_to "Flickr Feed", {:controller => 'users', :action => 'twitter_feed'}, class: "btn"%></br></br>       
+          <%= link_to "Flickr Feed", {:controller => 'users', :action => 'flickr_feed'}, class: "btn"%></br></br>       
           <% end %>
       </div>
 
@@ -81,11 +81,11 @@
           url_for({:controller => 'tumblr_accounts', :action => 'login'}),
           :class => 'quick', 
           :remote => true%>
-
 			  <% if @user.tumblr_account %>
               <div id="tumblr_warning" class="warning-component-box-mobile well" style="width:35%; float:right;">
                 You are connected to TUMBLR
               </div>
+             <%= link_to "TumblrFeed", {:controller => 'users', :action => 'tumblr_feed'}, class: "btn"%></br></br>
             <% end %>
       </div>
       

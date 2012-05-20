@@ -1,73 +1,71 @@
 <!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
 <!--This checks whether the list of stories I receive is nil or not -->
 
-<!-- Author: Omar 
-	added warning for user that he didnt select any interest -->
-<% if (@lol.user_interests == []) %>
-  	<%flash[:notice] = " You didn't select any interest ! "%>
- <%end%>
-
-<% # encoding: utf-8%>
-	<% unless @stories.nil? %>
-	<!-- if not nil -->
-	<% @stories.each do |f| %>
-	<!-- I loop over the list of stories -->
 <div class="story-component-box-mobile">
-	<table class="table" width="200">
-		<tr>
-			<%unless f.content.nil?%>
-			<td rowspan="2">
-			<!-- Displaying the picture with a width of 50 -->
-			<img id="topic" src="<%=f.media_link%>" width="50"/>
-		</td>
-		<td rowspan="2">
-		<%end%>
-			<table>
-				<% if f.id.nil?%>
-				<% serStory = Marshal::dump(f)%>
-					<%if f.title.length > 17 %>
-						<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
-					<%else%>
-					<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
-					<%end%>
-					<%if f.content.length > 20 %>
-					<tr><td><%= f.content[0..20]+"..."%></td></tr>
-					<%else%>
-					<tr><td><%= f.content%></td></tr>
-					<%end%>
-				<%else%>
-				<%if f.title.length > 17 %>
-						<% url = "/stories/"+f.id.to_s+"/get" %>
-						<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
-				<%else%>
-						<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
-				<%end%>
-				<%unless f.mobile_content == nil%>
-				<%if f.mobile_content.length > 20 %>
-				<tr><td><%= f.mobile_content[0..20]+"..."%></td></tr>
-				<%else%>
-				<tr><td><%= f.mobile_content%></td></tr>
-				<%end%>
-				<%end%>
-				<%end%>
-				<td>
-				<% if @stories[0].equal? f or @stories[1].equal?f or @stories[2].equal?f or @stories[3].equal?f or @stories[4].equal?f%>
-				<% image_tag('star.jpg' , :style =>"width:25px;height:20px;")%>
-				<%end%>
-				</td>
-			</table>
-		</td>
-	</tr>
-	</table>
-	</div>
-	<%end%>
-	<div class="apple_pagination">
-	<%= will_paginate @stories, :container => false %>
-	</div>
-	<%else%>
-	<!--if nil, an error message of sorts appears -->
-	<div class="story-component-box-mobile">
-		There are no stories in your feed.
-	</div>
-	<%end%>
+	<% unless @stories.nil? %>
+		<% @stories.each do |f| %>
+			<% if f.is_a?(Story) %>
+				<div class="story-component-box-mobile">
+					<table class="table" width="200">
+						<tr>
+							<% if !f.media_link.nil?%>
+								<td rowspan="2">
+									<!-- Displaying the picture with a width of 50 -->
+									<img id="topic" src="<%=f.media_link%>" width="50"/>
+								</td>
+								<td rowspan="2">
+							<% end %>
+							<table>
+								<% if f.id.nil? %>
+									<% serStory = Marshal::dump(f)%>
+									<% if !f.title.nil? %>
+										<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
+									<%end%>
+									<% if !f.content.nil? %>
+										<% if f.content.length > 150 %>
+											<tr><td><%= f.content[0..147]+"..."%></td></tr>
+										<% else %>
+											<tr><td><%= f.content%></td></tr>
+										<% end %>
+									<% elsif !f.mobile_content.nil?%>
+										<% if f.mobile_content.length > 150 %>
+											<tr><td><%= f.mobile_content[0..147]+"..."%></td></tr>
+										<% else %>
+											<tr><td><%= f.mobile_content%></td></tr>
+										<% end %>
+									<% end %>
+								<% else %>
+									<% if !f.title.nil? %>
+										<% url = "/stories/"+f.id.to_s+"/get" %>
+										<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+									<%end%>
+									<% if !f.mobile_content.nil? %>
+										<% if f.mobile_content.length > 150 %>
+											<tr><td><%= f.mobile_content[0..147]+"..."%></td></tr>
+										<% else %>
+											<tr><td><%= f.mobile_content%></td></tr>
+										<% end %>
+									<% elsif !f.content.nil?%>
+										<% if f.content.length > 150 %>
+											<tr><td><%= f.content[0..147]+"..."%></td></tr>
+										<% else %>
+											<tr><td><%= f.content%></td></tr>
+										<% end %>
+									<% end %>
+								<% end %>
+							</table>
+						</tr>
+					</table>
+				</div>					
+			<% end %>
+		<% end %>
+		<div class="apple_pagination">
+			<%= will_paginate @stories, :container => false %>
+		</div>
+	<% else %>
+		<!--if nil, an error message of sorts appears -->
+		<div class="story-component-box-mobile">
+			There are no stories in your feed.
+		</div>
+	<% end %>
 <!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
