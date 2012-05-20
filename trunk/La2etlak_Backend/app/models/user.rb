@@ -676,24 +676,27 @@ Author:Kareem
     end
   end
 
-#This method takes a story id as input and blocks the interest belonging to the story by inserting a row in BlockInterest table.
-  #It also removes the row belonging to the interest and user from UserAddInterest table. 
-  #If the interest is already blocked, it responds with a message that the interest is already blocked.
-  #Author : Rana
-   
+=begin
+  This method blocks the interest belonging to the story by inserting a row in
+  BlockInterest table.
+  It also removes the row belonging to the interest and user from UserAddInterest
+  table. 
+  If the interest is already blocked, it responds with a message that the interest
+  is already blocked.
+  Input: story to be blocked
+  Output: message to indicate success/failure of block
+  Author: Rana
+=end   
   def block_interest1(this_story)
    this_user = self
    story_interest = this_story.interest
-   check_interest =  BlockInterest.find_by_user_id_and_interest_id(this_user,story_interest)
-   check_user_add_interest = UserAddInterest.find_by_user_id_and_interest_id(this_user,story_interest)
-   if (!(check_user_add_interest.nil?)) #checks if the interest belongs to the user
-      check_user_add_interest.delete
+   #checks if the interest belongs to the user
+   if (this_user.added_interests.include? story_interest)
+      this_user.added_interests.delete story_interest
    end
-   if check_interest.nil?
-      blocked_interest = BlockInterest.new(:user_id => this_user, :interest_id => story_interest)
-      blocked_interest.user = this_user
-      blocked_interest.interest = story_interest 
-      blocked_interest.save
+   #checks if the interest is not already blocked.
+   if !(this_user.blocked_interests.include? story_interest)
+      this_user.blocked_interests << story_interest
       @text = "Interest blocked successfully"
    #for log file in case of success of block
    if self.name.nil?
@@ -703,7 +706,8 @@ Author:Kareem
    end
    @interesttitle = story_interest.name
    @message = "#{@username} blocks interest with name: #{@interesttitle}"
-   Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, interest_id: story_interest.id, message: @message)
+   Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil,
+   story_id: nil, interest_id: story_interest.id, message: @message)
    else 
       @text = "Interest already blocked"    
    end
@@ -711,18 +715,20 @@ Author:Kareem
    return @text #return the message in variable text
   end
 
-  #This method takes a story id as input and blocks its story by inserting a row in BlockStory table. 
-  #If the story is already blocked, it responds with a message that the story is already blocked.
-  #Author : Rana
-
+=begin
+  This method takes a story id as input and blocks its story by inserting a row in
+	BlockStory table. 
+  If the story is already blocked, it responds with a message that the story is
+	already blocked.
+  Input: story to be blocked
+  Output: message to indicate success/failure of block
+  Author: Rana
+=end
   def block_story1(this_story)
    this_user = self
-   check_story = BlockStory.find_by_user_id_and_story_id(this_user,this_story)
-   if check_story.nil?
-      blocked_story = BlockStory.new(:user_id => this_user, :story_id => this_story)     
-      blocked_story.story = this_story
-      blocked_story.user = this_user
-      blocked_story.save
+   #if the story is not blocked, insert it in the block_story table
+   if !(this_user.blocked_stories.include? this_story)
+      this_user.blocked_stories << this_story
       @text = "Story blocked successfully"
    #for log file in case of success of block
    if self.name.nil?
@@ -732,7 +738,8 @@ Author:Kareem
    end
    @storytitle = this_story.title
    @message = "#{@username} blocks story with title: #{@storytitle}" 
-   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: this_story.id, interest_id: nil, message: @message)
+   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil,
+   story_id: this_story.id, interest_id: nil, message: @message)
 
    else 
       @text = "Story already blocked"
@@ -741,14 +748,17 @@ Author:Kareem
    return @text #return the message in variable text
   end
 
-  #This method takes a story id as input and unblocks its story by deleting its row in BlockStory table. 
-  #Author : Rana
-
+=begin
+  This method unblocks a story by deleting its row in BlockStory table.
+  Input: story to be blocked
+  Output: text message to indicate success of block  
+  Author: Rana
+=end
   def unblock_story1(this_story)
    this_user = self
-   check_story = BlockStory.find_by_user_id_and_story_id(this_user,this_story)
-   if !(check_story.nil?)
-      check_story.delete
+   # if it is blocked, delete its record
+   if (this_user.blocked_stories.include? this_story)
+      this_user.blocked_stories.delete this_story
       @text = "Story unblocked successfully."
    #for log file in case of success of unblock
    if self.name.nil?
@@ -758,22 +768,21 @@ Author:Kareem
    end
    @storytitle = this_story.title
    @message = "#{@username} unblocks story with title: #{@storytitle}" 
-   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: check_story.id, interest_id: nil, message: @message)
+   Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil,
+   story_id: this_story.id, interest_id: nil, message: @message)
    end
    return @text #return the message in variable text
   end
 
-  #This method gets the unblocked stories of the user from the BlockStory table. 
-  #Author : Rana
-
+=begin
+  This method gets the blocked stories of the user from the BlockStory table.
+  Input: no input
+  Output: array of stories 
+  Author : Rana
+=end
   def get_blocked_stories
    this_user = self
-   blocked_stories = Array.new
-   blocked_stories_id = this_user.block_stories
-   blocked_stories_id.each do |blocked_story|
-      blocked_stories << Story.find_by_id(blocked_story.story_id)
-    end
-   return blocked_stories
+   return this_user.blocked_stories
   end
 
   #This method takes a friend as input and blocks him/her using the block method provided by the gem amistad.
