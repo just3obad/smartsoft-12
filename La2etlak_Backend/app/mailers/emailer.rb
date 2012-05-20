@@ -77,6 +77,8 @@ class Emailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Your La2etlak account has been re-activated")
   end
 
+	# Author: Mouaz
+        #this method send reseting password message with the private password reset link
   def password_reset_instructions(admin)
     #subject       "Password Reset Instructions"
     #from          "Binary Logic Notifier <noreply@binarylogic.com>"
