@@ -424,18 +424,18 @@ Author: Kareem
 		name_1 = if self.name.nil? then self.email.split('@')[0] else self.name end
 		thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
 		if thumped.empty? 
-			Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
-			l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")
-			puts "Thump"
+				Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
+				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")
+				puts "Thump"
 
 		elsif (thumped[0].action == act) 
-			puts "Already"
+				puts "Already"
 
 		elsif (thumped[0].action != act) 
-			Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
-			Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )
-			l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")  
-			puts "Removed _thumbed"
+				Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
+				Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )
+				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")  
+				puts "Removed _thumbed"
 		end
 
 	end
@@ -449,10 +449,10 @@ Author: Kareem
 	def flag_story(story)
 		thumped = Flag.where(:story_id => story.id, :user_id => self.id)
 		if thumped.empty?
-			Flag.create!(:user_id =>  self.id, :story_id => story.id)
-			#Admin_Settings.update_story_if_flagged(story)
-			name_1 = if self.name.nil? then self.email.split('@')[0] else self.name end
-			l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Flagged Story #{story.title}")  
+				Flag.create!(:user_id =>  self.id, :story_id => story.id)
+				#Admin_Settings.update_story_if_flagged(story)
+				name_1 = if self.name.nil? then self.email.split('@')[0] else self.name end
+				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Flagged Story #{story.title}")  
 			return true
 		end
 			return false
@@ -470,42 +470,39 @@ Author: Kareem
     unblocked_stories = Array.new
     unblocked_interests = user_interests - blocked_interests
     stories_list = Array.new
- 	#loop on the unblocked_interests Array and for each Interest call the get_stories method and returns it's corresponding stories
+    #loop on the unblocked_interests Array and for each Interest call the get_stories method and returns it's corresponding stories
     unblocked_interests.each do |unblocked_interest|
-    stories_list +=  Interest.find(unblocked_interest).get_stories(10)
-   end
-  
-  stories_list = stories_list.sort_by &:created_at
-  stories_ids = stories_list.map {|story| story.id}
-  blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
-  unblocked_stories_ids = stories_ids - blocked_stories_ids
-	#loop on the unblocked_stories_ids [Array] and get the story for each story_id and append it to the Array of unblocked_stories
-  unblocked_stories_ids.each do |unblocked_story_id|
+  		stories_list +=  Interest.find(unblocked_interest).get_stories(10)
+   	end
+    stories_list = stories_list.sort_by &:created_at
+ 		stories_ids = stories_list.map {|story| story.id}
+ 		blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
+ 		unblocked_stories_ids = stories_ids - blocked_stories_ids
+		#loop on the unblocked_stories_ids [Array] and get the story for each story_id and append it to the Array of unblocked_stories
+  	unblocked_stories_ids.each do |unblocked_story_id|
         unblocked_stories.append(Story. find(unblocked_story_id))
-  end
-  done_stories =   unblocked_stories #.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
-  if(int_name != "null")
-    filtered_stories = Array.new
-          filtered_stories_ids = Array.new
-	#loop on the unblocked_stories_ids [Array] and get Interest[name] of each story and if this Interest[name] equals the Parametar[int_name] append this story_id to the filtered_stories_ids
-    unblocked_stories_ids.each do |unblocked_story_id|
-    interest_name = Interest.find(Story.find(unblocked_story_id).interest_id).name
-    if(interest_name == int_name)
-      filtered_stories_ids.append(unblocked_story_id)
-      end
     end
-    filtered_stories = Array.new
-	#loop on filtered_stories_ids and get each story according to it's id and append it to filtered_stories
-    filtered_stories_ids.each do |filtered_story_id|
-          filtered_stories.append(Story.find(filtered_story_id))
+ 		done_stories =   unblocked_stories #.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
+ 		if(int_name != "null")
+    	filtered_stories = Array.new
+    	filtered_stories_ids = Array.new
+			#loop on the unblocked_stories_ids [Array] and get Interest[name] of each story and if this Interest[name] equals
+			#the Parametar[int_name] append thisstory_id to the filtered_stories_ids
+		  unblocked_stories_ids.each do |unblocked_story_id|
+	  		interest_name = Interest.find(Story.find(unblocked_story_id).interest_id).name
+				if(interest_name == int_name)
+			  	filtered_stories_ids.append(unblocked_story_id)
+			  end
+		  end
+    	filtered_stories = Array.new
+			#loop on filtered_stories_ids and get each story according to it's id and append it to filtered_stories
+		  filtered_stories_ids.each do |filtered_story_id|
+	      filtered_stories.append(Story.find(filtered_story_id))
+		  end
+      done_stories = filtered_stories
+    	# done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
     end
-
-
-           done_stories = filtered_stories
-          # done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
-    end
-  return done_stories
-
+  	return done_stories
   end
 
 =begin
@@ -516,20 +513,21 @@ Author:Kareem
 =end
   def  get_unblocked_stories(stories)
 		unblocked_stories = Array.new
-  	stories = stories.sort_by &:created_at
-  	stories_ids = stories.map {|story| story.id}
-  	blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
+		stories = stories.sort_by &:created_at
+		stories_ids = stories.map {|story| story.id}
+		blocked_stories_ids = BlockStory.select { |entry| self.id==entry.user_id }.map  { |entry| entry.story_id }
 		blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
-  	unblocked_stories_ids = stories_ids - blocked_stories_ids
-	#loop on unblocked stories and for each unblocked_story_id we get the Story accrding to this Id and if this story doesn't belong 	an unblocked interest append it to unblocked_stories
-  	unblocked_stories_ids.each do |unblocked_story_id|
-		story = Story.find(unblocked_story_id)
-		if !(blocked_interests.include?(story.interest_id))
-        unblocked_stories.append(story)
+		unblocked_stories_ids = stories_ids - blocked_stories_ids
+		#loop on unblocked stories and for each unblocked_story_id we get the Story accrding to this Id and if this story doesn't belong 	an 
+		# unblocked interest append it to unblocked_stories
+		unblocked_stories_ids.each do |unblocked_story_id|
+			story = Story.find(unblocked_story_id)
+			if !(blocked_interests.include?(story.interest_id))
+					unblocked_stories.append(story)
+			end
 		end
-  end
- return unblocked_stories
-end
+		return unblocked_stories	
+	end
 	
 #Author : Shafei
 # This action returns the rank of one user
