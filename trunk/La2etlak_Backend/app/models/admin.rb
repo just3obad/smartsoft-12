@@ -156,6 +156,7 @@ require "net/http"
   end
   
   def self.search_interest(query)
+    query = query.downcase
     query_result = [].to_set
 
     name_query = query

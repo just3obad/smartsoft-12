@@ -46,32 +46,32 @@ class AdminTest < ActiveSupport::TestCase
     assert(((search_result.include? @story1) and (search_result.include? @story2)))
   end
 
-  test "search interest name 1 RED" do
+  test "search interest name 1" do
     search_result = Admin.search_interest("StiNsoN")
     assert(search_result.include? @interest2)
   end
 
-  test "search interest name 2 RED" do
+  test "search interest name 2" do
     search_result = Admin.search_interest("bored")
     assert(search_result.include? @interest1)
   end
 
-  test "search interest description 1 RED" do
+  test "search interest description 1" do
     search_result = Admin.search_interest("swarely")
     assert(search_result.include? @interest2)
   end
 
-  test "search interest description 2 RED" do
+  test "search interest description 2" do
     search_result = Admin.search_interest("elnesr")
     assert(search_result.empty?)
   end
 
-  test "search interest description 3 RED" do
+  test "search interest description 3" do
     search_result = Admin.search_interest("more")
     assert(((search_result.include? @interest1) and (search_result.include? @interest2)))
   end
   
-  test "search interest description 4 RED" do
+  test "search interest description 4" do
     search_result = Admin.search_interest("speciFIcally")
     assert(search_result.include? @interest1)
   end
