@@ -82,7 +82,25 @@
            
                <div class="story-component-info">
 
-                 <h3><%= story.title %></h3>
+                 <h4>
+
+                  <%= story.title %> </br>
+
+                  <% if !(story.deleted || story.hidden) %>
+                  
+                    <span class="greenbadge">Active</span>
+                  
+                  <% elsif story.deleted %>
+
+                    <span class="redbadge">Deleted</span>
+
+                  <% elsif story.hidden %>
+
+                    <span class="yellowbadge">Hidden</span>
+
+                  <% end %>
+
+                </h4>
 
                    <%= link_to "view Statistics",
                    {:controller => 'statistics', :action => 'stories', :id => story.id},
