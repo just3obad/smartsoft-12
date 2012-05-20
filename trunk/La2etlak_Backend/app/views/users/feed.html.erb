@@ -50,6 +50,11 @@
 				<%end%>
 				<%end%>
 				<%end%>
+				<td>
+				<% if @stories[0].equal? f or @stories[1].equal?f or @stories[2].equal?f%>
+				<% image_tag('star.jpg' , :style =>"width:25px;height:20px;")%>
+				<%end%>
+				</td>
 			</table>
 		</td>
 	</tr>
