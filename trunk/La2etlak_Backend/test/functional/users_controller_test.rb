@@ -272,8 +272,6 @@ class UsersControllerTest < ActionController::TestCase
      end
   end
 
-
-  end
 	# Auther: Kiro
 	test "The old password of the user should expire after requesting a new one RED" do
 
@@ -300,6 +298,8 @@ class UsersControllerTest < ActionController::TestCase
   # Author : Christine
   #Test that the user profile page responds with http:succes
   test "UserProfilePage should return success response" do
+     admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
       @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
       get :show, :id=> @usr.id
   
@@ -309,6 +309,8 @@ class UsersControllerTest < ActionController::TestCase
   # Author : Christine
   #Check that the profile page contain all the buttons needed.
   test "UserProfilePage should contain all needed buttons" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
      @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
   
@@ -320,6 +322,8 @@ class UsersControllerTest < ActionController::TestCase
   # Author : Christine
   #Check that the profile page contains all the Main divs needed.
   test "UserProfilePage should contain all the right main divs" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
     @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
     get :show, :id=> @usr.id
     assert_select "div[id=friends]"
@@ -328,6 +332,8 @@ class UsersControllerTest < ActionController::TestCase
   end
   # Author : Christine
   test "UserProfilePage contains usr info" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
      @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
     assert_select "div[id=user-personal-info]" do
@@ -337,6 +343,8 @@ class UsersControllerTest < ActionController::TestCase
   end
   # Author : Christine
   test "UserProfilePage get right no of friends" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
      @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
       @usr2=User.create!(:email=>"example1userpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
@@ -350,6 +358,8 @@ class UsersControllerTest < ActionController::TestCase
 
   # Author : Christine
   test "UserProfilePage get right no of interests of a user with no interests" do
+     admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
      @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
 
@@ -359,6 +369,8 @@ class UsersControllerTest < ActionController::TestCase
   end 
   # Author : Christine
   test "UserProfilePage get right no of interests of a user who added two interests" do
+     admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
      @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
     int1=Interest.new(:name=> "InterestDummy1")
@@ -375,6 +387,8 @@ class UsersControllerTest < ActionController::TestCase
   end   
   # Author : Christine
   test "UserProfilePage get right no of activities in the last 30 days" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+     AdminSession.create admin1
      @usr=User.create!(:email=>"exampleuserpage@gmail.com", :password => "1234567", :password_confirmation => "1234567")
      get :show, :id=> @usr.id
     count1=@usr.get_recent_activity(Time.zone.now).count
@@ -441,8 +455,5 @@ class UsersControllerTest < ActionController::TestCase
 			assert_no_difference 'ActionMailer::Base.deliveries.size', "User that wasn't saved got the email" do
       	post :create, :user => {:email => "in_use@example.com", :password => '1234', :password_confirmation => '123456'}
     	end
-
   end
-
-
 end
