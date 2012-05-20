@@ -84,7 +84,7 @@ class InterestTest < ActiveSupport::TestCase
 #Author:Jailan
  test "should save interest when updated " do
     interest = Interest.create!(name: "my Test", description: "blabla")
-     @inty = Interest.my_update( interest.id ,{ :name => "fff" } )
+     @inty = Interest.model_update( interest.id ,{ :name => "fff" } )
 
     assert interest.save , "Interest wasn't saved when updated"
  
@@ -110,7 +110,7 @@ end
 #Author:Jailan
  test "should save interest when toggled " do
     interest = Interest.create!(name: "my Test", description: "blabla")
-    @inty = Interest.my_toggle(interest.id)
+    @inty = Interest.model_toggle(interest.id)
 
     assert interest.save , "Interest wasn't saved when toggled"
   end
