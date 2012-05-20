@@ -35,13 +35,7 @@ var $j = jQuery.noConflict();
 			</ul>
 			</div>	
 			
-				 <div class="well sidebar-nav">
-			      	<ul class="nav nav-list">
-					<li class="nav-header"> La2etlak at Glance </li>
-					<li class="divider"></li>		
-					<li><%= User.get_no_of_users_signed_in_today %> users</li>
-					</ul>
-					</div>		  
+				 		  
 	
 <div>
 <input type="button" class="btn btn-primary" value="Add new interest" onclick="callmodal()" style= "margin:20px";/>	
@@ -101,27 +95,31 @@ var $j = jQuery.noConflict();
 
 
 
-	    <div class="admin_right_panel " >
+	  <div class="admin_right_panel " >
 		<h2>Interests</h2>
-		 <% if @interests.empty? %>
-                   <%= render 'shared/logs_error_messages' %>
-                   <% else %>
+		<% if @interests.empty? %>
+       <%= render 'shared/logs_error_messages' %>
+    <% else %>
 		<div class="well admin_feed_padding">
 				
 			<div id="feeds">
-			  <% for interest in @interests %>
-					
-				
+			  <% for @interest in @interests %>
+					<span class="pull-left greenbadge " style=" -webkit-transform: rotate(-45deg);	
+							-moz-transform: rotate(-45deg);
+							-ms-transform: rotate(-45deg);
+							-o-transform: rotate(-45deg);
+							transform: rotate(-45deg); 
+							margin-top:40px;">Interest</span>
 						<div style:"float:left;">
-							
+							<% if @interest.name.nil? %>
+								<% name = "No Name Available" %>
+								<% else %>
 								<% name = @interest.name  %>
+								<%  end %>
+							<font size="3"><b><%= link_to(name , {:controller => "interests", :action => "show",:id => @interest.id}) %></b></font>
 								
-							<font size="3"><b><%= link_to(interest.name, {:controller => "interests", :action => "show", :id => interest.id} ) %></b></font>
-</div>
-
-								
-		
-							<div class="well admin_story_feed ; ">
+							<span class="pull-right bluebadge "><%=time_ago_in_words(@interest.created_at)%></span>
+							<div class="well admin_story_feed "  style=" border-right:5px solid #468847; ">
 								
 								<% if !@interest.photo.file? %>
 					     			  <%= image_tag "logo.jpeg"  , style: "float:left; margin-right:20px; width=150x; height:150px;" %>
@@ -129,43 +127,40 @@ var $j = jQuery.noConflict();
 					            <img src= "<%=@interest.photo.url(:small) %>" style=" width=150px; height:150px;"/>
 					            		  <% end %>
 					<div class"control-panel" style="width:50%;">
-									<% if !(interest.deleted ) %>
+									<% if !(@interest.deleted ) %>
 											<ul class="nav nav-list">
 											<li class="nav-header">Status :</li>
 											<span class="greenbadge">Active</span>
-											<% else%>
+											<% elsif @interest.deleted %>
 											<ul class="nav nav-list">
 											<li class="nav-header">Status</li>
 											<li><span class="redbadge">Blocked</span></li>
 											<% end %>
 											<li class="nav-header">Date :</li>
-<%= interest.created_at.to_date %>
-			
+											<li><h3><%= @interest.created_at.to_date %></h3></li>
 											<li class="nav-header">Description :</li>
-</div>
-											<li><%=if interest.description !="" then interest.description  else "No Description" end%></br></li></br>
-
-										
-													
+											<li><h3><%=if @interest.description !="" then @interest.description  else "No Description" end%></h3></li>
+											<!--	<li class="nav-header">Popularity :</li>
+										<div class="progresscustom" id="progressbar" style="display: block;">
+											 <div class="barcustom" id="barofprogress" 
+											 	style="width: <%User.count%>"></div>
+														</div>-->
 														
-<%= link_to "view Statistics", 
-														{:controller => 'statistics', :action => 'interests',:id => @interest.id }, class:"btn btn-primary"  %></br></br>
-</div>
-
-	<%end%>
-<%end%>	
+														<%= link_to "view Statistics", 
+														{:controller => 'statistics', :action => 'interests',:id => @interest.id }, 
+														class: "btn btn-primary"  %>
 											</div>
 									
 										
 
-				
-
-
-
-
-
-
-
-
-
-
+										</div>
+								
+							</div>
+							
+						
+						
+						
+						</div>
+			<%end%>
+		<%end%>	
+	</div>
