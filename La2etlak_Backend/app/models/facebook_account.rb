@@ -35,15 +35,23 @@ class FacebookAccount < ActiveRecord::Base
           i = i+1
           p i.to_s
           p s["type"]
-          title = s["from"]["name"]+" shared:"
+          title = s["from"]["name"]+" shared "
           if s["type"] == "photo"
-            title = title+"\n"+s["message"] if s["message"]
+            title = title+"a photo:\n"
+            msg = ""
+            msg = s["message"] if s["message"]
+            if msg.length > 150
+              content = msg + "\n"
+              msg = msg[0,150]+"..."
+            end
+            title = title+"\n"+msg
             media = s["picture"]
             story_link = s["picture"]
             if s["caption"]
               content = content + s["caption"]
             end
           elsif s["type"] == "video"
+            title = title+"a video:\n"
             title = title+"\n"+s["name"] if s["name"]
             story_link = s["link"]
             img = s["picture"]
