@@ -90,11 +90,11 @@ include StoriesHelper
             date = Time.zone.now.to_date - creation_date.to_date
     end
   end
-  
-  #Author: Lydia
-  '''
+
+=begin  
   This method returns a list of users who liked a certain story
-  '''
+  Author: Lydia
+=end
   def liked
     likes = likedislikes.where(action: 1)
     likers = []
@@ -105,10 +105,10 @@ include StoriesHelper
   end
   
   
-  #Author: Lydia
-  '''
+=begin
   This method returns a list of users who disliked a certain story
-  '''
+  Author: Lydia
+=end
   def disliked
     dislikes = likedislikes.where(action: -1)
     dislikers = []
