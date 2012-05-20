@@ -104,36 +104,12 @@ this method takes a story object as a parameter form social feed and renders its
   def destroy
  
   end
-
-
-#share_story_social_network is a method to share specific story to  asocial network by clicking the button of share story in the story 
-#it depend on the method share_story which take the story id and the account id and return true or false if it returns true then a pop up message will display thet the story published successfully
-#if it returned false a pop up message will disply thet an error happend and to try again
- def share_story_social_network
-  @storyid=params[:sid]
-  @userid=params[:uid]
-  flag=User.find_by_id(@userid).share?(@storyid) 
-
-    if flag
-   respond_to do |format|
-      format.json{render json: "true" }
-        end  
-    else
-      respond_to do |format|
-     format.json{render json:"false"}
-    end
-   end 
-#@username = User.find(@userid).name
- #   @storytitle = Story.find(@storyid).title
-  #  @interest_id = Story.find(@storyid).interest_id
-   # @interesttitle = Interest.find(@interest_id).name
- # @message = "#{@username}recommend_story#{@storytitle}#{@interestitle}"
-
-#Log.create!(loggingtype: 2,user_id_1: @userid,user_id_2:nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
- end
    
 
-#recommend_story_mobile_show is a method that calls the view of the recommendation page with a list of friends email for the user to select one of them or to write down an email on his own and then click the button send which will call the recommend_success_mobile_show method to send the recommendation
+##################Begin############
+#description: recommend_story_mobile_show is a method that calls the view of the recommendation page with a list of friends email for the user to select one of them or to write down an email on his own and then click the button send which will call the recommend_success_mobile_show method to send the recommendation
+#input: story_id
+#output: view for a form and a list for the user to select a friend from and write down the message or the email
 #Author=> khaled.elbhaey
   def recommend_story_mobile_show()
     @storyid=params[:sid]
@@ -141,8 +117,12 @@ this method takes a story object as a parameter form social feed and renders its
     @flistemail=@user.get_friends_email()
     render :layout => "mobile_template"
   end
+################End##################
 
-#recommend_success_mobile_show is a method to recommend specific story to another friend via email so an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
+##################Begin############
+#description: recommend_success_mobile_show is a method to recommend specific story to another friend via email so an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
+#input: story_id, inputs of the form(email and message)
+#output: a message that tell the user weather the recommendation was successful or not
 #Author=> khaled.elbhaey
   def recommend_success_mobile_show()
     @storyid=params[:sid]
@@ -158,35 +138,41 @@ this method takes a story object as a parameter form social feed and renders its
     @username=@user.email.split("@").first
     @interest_id = @story.interest_id
     @interesttit = Interest.get_interest(@interest_id).name
-    @message = "the user: " + @username.to_s + " has recommended a story with atitle: " + @storytit.to_s + " in the interest: "+ @interesttit.to_s
+    @logmessage = "the user: " 
+    + @username.to_s + " has recommended a story with atitle: " + @storytit.to_s 
+    + " in the interest: "+ @interesttit.to_s
     regex = Regexp.new('^(\s*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}\s*([,]{1}[\s]*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.]+\.[azA-Z]{2,4}\s*)*)$')
 
 
-  if @friendmail==""
-    if @listemail.nil?
-       @successflag=false
-    else
-      Emailer.recommend_story(@useremail, @listemail, @message, @storytit, @storybod).deliver
-    Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
+		if @friendmail==""
+			if @listemail.nil?
+			   @successflag=false
+			else
+			 Emailer.recommend_story(@useremail, @listemail, @message, @storytit, 				  @storybod).deliver
+			 Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 
+				story_id: @storyid,interest_id: @interest_id,message: @logmessage )
 
-    end
-  else
-    if(!@friendmail.match(regex))
-       @successflag=false
-    else
-  
-      if !@user.has_account(@friendmail)
-        Emailer.invite_to_app(@useremail, @friendmail, @message).deliver
-      else
-        Emailer.recommend_story(@useremail, @friendmail, @message, @storytit, @storybod).deliver
-      end
-    Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil,story_id: @storyid,interest_id: @interest_id,message: @message )
+			end
+		else
+			if(!@friendmail.match(regex))
+				   @successflag=false
 
-    end
-  end
+			else
+			  if !@user.has_account(@friendmail)
+				    Emailer.invite_to_app(@useremail, @friendmail, @message).deliver
+			  else
+				    Emailer.recommend_story(@useremail, @friendmail, @message, @storytit,
+				    @storybod).deliver
+			  end
+			Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 
+				story_id: @storyid,interest_id: @interest_id,message: @logmessage )
+
+			end
+		end
 
     render :layout => "mobile_template"
   end
+################End##################
 
 #this method returns friend emails and ids when takes the user id.
 def get_friend_id()
@@ -194,27 +180,41 @@ def get_friend_id()
  @id = User.find_by_email(@useremail).id
  render text: @id.to_s
 end
-#liked_mobile_show is a method to view to the user a list of friends who liked specific story (calls the view of the list)
+
+
+##################Begin############
+#description: liked_mobile_show is a method to view to the user a list of friends who liked specific story (calls the view of the list)
+#input: story_id
+#output: a list of names of friends who liked this story
 #Author=> khaled.elbhaey
   def liked_mobile_show
-    @storyid = params[:id]
+    @storyid=params[:id]
     @story=Story.get_story(@storyid)
-    @user = current_user
+    @user=current_user
     @friends=@story.view_friends_like(@user)
+
     flash[:error] = "sorry, you have no friends that liked this story"
     render :layout => "mobile_template" 
   end
+################End##################
 
-#disliked_mobile_show is a method to view to the user a list of friends who disliked specific story (calls the view of the list)
+
+##################Begin############
+#description: disliked_mobile_show is a method to view to the user a list of friends who disliked specific story (calls the view of the list)
+#input: story_id
+#output: a list of names of friends who disliked this story
 #Author=> khaled.elbhaey
   def disliked_mobile_show
     @storyid = params[:id]
     @story=Story.get_story(@storyid)
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
+
     flash[:error] = "sorry, you have no friends that disliked this story"
     render :layout => "mobile_template" 
   end
+################End##################
+
   #Author: Bassem !!
   def filter
     $hidden = params[:hidden]
