@@ -123,6 +123,7 @@ require "net/http"
   end
 
   def self.search_story(query)
+    query = query.downcase
     query_result = [].to_set
 
     title_query = query
