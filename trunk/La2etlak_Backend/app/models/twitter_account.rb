@@ -51,17 +51,20 @@ class TwitterAccount < ActiveRecord::Base
   Author: Yahia
 =end
   def get_feed(page=1)
-    self.config_twitter
-    #puts "getting the feed"
-    feed = Twitter.home_timeline(:page => page)
-    #puts feed
-    stories = Array.new
-    feed.each do |tweet|
-      temp = TwitterAccount.convert_tweet_to_story(tweet) 
-      stories.push(temp) 
+    begin 
+      self.config_twitter
+      #puts "getting the feed"
+      feed = Twitter.home_timeline(:page => page)
+      #puts feed
+      stories = Array.new
+      feed.each do |tweet|
+        temp = TwitterAccount.convert_tweet_to_story(tweet) 
+        stories.push(temp) 
+      end 
+      #puts stories 
+      stories
+    rescue 
     end 
-    #puts stories 
-    stories
   end 
 
 =begin 
