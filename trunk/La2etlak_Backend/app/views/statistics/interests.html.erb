@@ -11,35 +11,42 @@
       data= <%= Interest.get_interest_stat(@id) %>;
       date= <%= Interest.get_interest_start_date(@id)%>
       if(date != -1) {
-      //the graphs that we want to show
-      names=["No Of Users","No Of Stories"];
-      //the time interval between one point and another in the graph.
-      pointInterval= <%= 1.day * 1000 %>;
-      // Start point of the graph.
-      pointStart= <%= Interest.get_interest_start_date(@id).days.ago.to_i * 1000 %>;
-      //Label for x-axis 
-      xl="Day"; 
-      //Label for y-axis
-      yl="Number";
-      //Label for whole graph
-      titleOfGraph="Interest Statistics";
-      //call the method that renders the graph with the calculated parameters.
-      document.getElementById("deletedInterest").style.display= "none"; 
-      Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);  
-      }else{
-       document.getElementById("deletedInterest").style.display= "block";  
-        document.getElementById("ccc").style.display= "none"; 
+        //the graphs that we want to show
+        names=["No Of Users","No Of Stories"];
+        //the time interval between one point and another in the graph.
+        pointInterval= <%= 1.day * 1000 %>;
+        // Start point of the graph.
+        pointStart= <%= Interest.get_interest_start_date(@id).days.ago.to_i * 1000 %>;
+        //Label for x-axis
+        xl="Day";
+        //Label for y-axis
+        yl="Number";
+        //Label for whole graph
+        titleOfGraph="Interest Statistics";
+        //call the method that renders the graph with the calculated parameters.
+        document.getElementById("deletedInterest").style.display= "none";
+        Graph(data,names,pointInterval,pointStart,xl,yl,titleOfGraph);  
+      }
+      else{
+        document.getElementById("deletedInterest").style.display= "block";  
+        document.getElementById("ccc").style.display= "none";
       }
    });
 </script>
+
 <div class="alert-error" id="deletedInterest" style="display: none;">
   
-           <h3><strong>Warning!</strong> Interest was deleted a long time ago.</h3>
-     </div> 
+   <h3><strong>Warning!</strong> Interest was deleted a long time ago.</h3>
+
+</div>
+
 <!-- ccc is the id of the div that the graph would render to -->
  <div class="main-user-profile-page">
+
       <div class="middle-user-profile-page-panel" >
+
         <div id="ccc"></div>
+
           <div>
             
             <!--Here we'll get the number of stories and users in an interest:-->
@@ -53,38 +60,62 @@
             
 
           </div>
-      <div id="adders">
-      <%if @interest.get_users_added_interest.empty?%>
-      <div class="alert-error" id="noUsersAdded" >
-  
-           <h3><strong>Warning!</strong> No User Added This Interest.</h3>
-     </div> 
-     <%else%>
-     <h4><div class="alert alert-info"> 
-              Users Who Added This Interest : </br>
+
+          <div id="adders">
+
+            <%if @interest.get_users_added_interest.empty?%>
+
+               <div class="alert" id="noUsersAdded" >  
+
+                 <h3><strong>Warning!</strong> No User Added This Interest.</h3>
+
+               </div>
+
+            <%else%>
+
+               <h4>
+                <div class="alert alert-info">
+
+                   Users Who Added This Interest : </br>
              
-      </div></h4>
-    <%@interest.get_users_added_interest.each do |user|%>
-     <div class="well-user-component">
+                </div>
+              </h4>
 
-        <a href="/users/<%= user.id%>"class="thumbnail-user-component">
-        <% if user.image.nil? ||user.image == "" %>
-               <%= image_tag "logo.jpeg", :size => "75x75" %>
-        <% else %>
-          <img src= "<%= user.image %>"  width="75" style="height:75px"/>
-        <% end %> </a>
+              <%@interest.get_users_added_interest.each do |user|%>
+
+                <div class="well-user-component">
+
+                 <a href="/users/<%= user.id%>"class="thumbnail-user-component">
+ 
+                  <% if user.image.nil? ||user.image == "" %>
+ 
+                     <%= image_tag "logo.jpeg", :size => "75x75" %>
+ 
+                  <% else %>
+ 
+                     <img src= "<%= user.image %>"  width="75" style="height:75px"/>
+ 
+                  <% end %> 
+                 </a>
            
-        <div class="user-component-info">
-              <h3><%= user.email %></h3>
-        <%= link_to "view Statistics",
-{:controller => 'statistics', :action => 'users', :id => user.id},
-class: "user-component-button-absolute btn btn-primary"%>
-        </div>
+                 <div class="user-component-info">
 
-</div>
-<%end%>
-<%end%>
-</div>
-</div>
-</div>
+                   <h3><%= user.email %></h3>
+                   <%= link_to "view Statistics",
+                   {:controller => 'statistics', :action => 'users', :id => user.id},
+                   class: "user-component-button-absolute btn btn-primary"%>
+                   
+                 </div>
+
+                </div>
+
+              <%end%>
+
+            <%end%>
+
+          </div>
+
+      </div>
+
+  </div>
 
