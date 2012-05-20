@@ -15,18 +15,27 @@
 <!--checking for media url if exsist adds the image-->
     <% if @story.media_link != nil && @story.media_link.length > 3%>
     <div align="center">
+    	<!-- Author: Menisy
+					making the image of the video redirect to 
+					the youtube video link -->
+    	<% is_video = false %>
+  <% if @story.story_link.index("www.youtube.com") %>
+    <a href="<%= @story.story_link %>">
+    	<% end %>
+    	<!-- Menisy end -->
     <img src="<%=@story.media_link%>" width="220" align="center">
 	 </div></br>
+	</a>
+	
 	<%end%>
 	
  	 
 <!-- adds content of story  -->
  <% if @story.content != nil && @story.content.length > 0%>
- <div class="story-comment-box-mobile pre-scrollable" style="padding-left:10px;">
+ <div class="story-comment-box-mobile well" style="padding-left:10px;border-color:#D3C5C5;">
  <%=raw @story.content %>
  </br></br>
  </div>
  <%end%>
-    
 </html> 	
 
