@@ -5,12 +5,14 @@ class AdminsController < ApplicationController
     $storiesSearch = "true"
     $interestsSearch = "true"
     if params[:autocomplete][:query].length > 0
-      $users = Admin.search_user(params[:autocomplete][:query])
+      $search_result = Admin.search(params[:autocomplete][:query])
+
+      $users = $search_result[0]
       
     #these attributes are added this way temporarilly until Mostafa comitts his
     #work so that I can work on the view of the search(LYDIA)
-      $interests = Admin.search_interest(params[:autocomplete][:query])
-      $stories = Admin.search_story(params[:autocomplete][:query])
+      $stories = $search_result[1]
+      $interests = $search_result[2]
       
       if $users.length == 0 and $stories.length == 0 and $interests.length == 0
         $users = "There are no matching results."
