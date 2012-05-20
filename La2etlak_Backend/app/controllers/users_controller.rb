@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 				redirect_to "/dummyLogin"
 			end
    else
-    render :action => 'new', :layout => "mobile_template"
+    redirect_to :action => 'new', :layout => "mobile_template"
    end
   end
 
