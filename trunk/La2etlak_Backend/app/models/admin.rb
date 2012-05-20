@@ -152,7 +152,34 @@ require "net/http"
   end
   
   def self.search_interest(query)
-    return []
+    query_result = [].to_set
+
+    name_query = query
+
+    name_match = []
+    while name_query =~ $WORD
+      match = $WORD.match(name_query)
+      name_match.push(match[1])
+      name_query = match[2]
+    end
+
+    for name_query in name_match
+      query_result += Interest.all.select {|interest| not interest.name.nil? and not interest.name.empty? and interest.name =~ %r'#{name_query}'}
+
+    description_query = query
+
+    description_match = []
+    while description_query =~ $WORD
+      match = $WORD.match(description_query)
+      description_match.push(match[1])
+      description_query = match[2]
+    end
+
+    for description_query in description_match
+      query_result += Interest.all.select {|interest| not interest.description.nil? and not interest.description.empty? 
+                                           and interest.description =~ %r'#{description_query}'}
+
+    return query_result.to_a
   end
 
 	def resetPassword
