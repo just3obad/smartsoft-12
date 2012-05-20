@@ -22,14 +22,14 @@
 										<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
 									<%end%>
 									<% if !f.content.nil? %>
-										<% if f.content.length > 150 %>
-											<tr><td><%= f.content[0..147]+"..."%></td></tr>
+										<% if f.content.length > 50 %>
+											<tr><td><%= f.content[0..47]+"..."%></td></tr>
 										<% else %>
 											<tr><td><%= f.content%></td></tr>
 										<% end %>
 									<% elsif !f.mobile_content.nil?%>
-										<% if f.mobile_content.length > 150 %>
-											<tr><td><%= f.mobile_content[0..147]+"..."%></td></tr>
+										<% if f.mobile_content.length > 50 %>
+											<tr><td><%= f.mobile_content[0..47]+"..."%></td></tr>
 										<% else %>
 											<tr><td><%= f.mobile_content%></td></tr>
 										<% end %>
@@ -40,14 +40,14 @@
 										<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
 									<%end%>
 									<% if !f.mobile_content.nil? %>
-										<% if f.mobile_content.length > 150 %>
-											<tr><td><%= f.mobile_content[0..147]+"..."%></td></tr>
+										<% if f.mobile_content.length > 50 %>
+											<tr><td><%= f.mobile_content[0..47]+"..."%></td></tr>
 										<% else %>
 											<tr><td><%= f.mobile_content%></td></tr>
 										<% end %>
 									<% elsif !f.content.nil?%>
-										<% if f.content.length > 150 %>
-											<tr><td><%= f.content[0..147]+"..."%></td></tr>
+										<% if f.content.length > 50 %>
+											<tr><td><%= f.content[0..47]+"..."%></td></tr>
 										<% else %>
 											<tr><td><%= f.content%></td></tr>
 										<% end %>
