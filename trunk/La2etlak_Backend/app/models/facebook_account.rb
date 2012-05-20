@@ -17,7 +17,7 @@ class FacebookAccount < ActiveRecord::Base
   	begin
       self.auth_secret = self.auth_secret.to_i+1
       p("\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>> \n\n\ngetting feed\n\n")
-      new_token = Koala::Facebook::OAuth.new("http://localhost/fb/done/").exchange_access_token(self.auth_token)
+      new_token = Koala::Facebook::OAuth.new("http://127.0.0.1:3000/fb/done/").exchange_access_token(self.auth_token)
       puts(">>>>>>>>>>>>>>>>>>>>>>>>>>\n\n\n"+new_token+"\n\n\n\n")
       self.auth_token = new_token.to_s
       self.auth_secret = self.auth_secret.to_i+1
@@ -39,12 +39,15 @@ class FacebookAccount < ActiveRecord::Base
           if s["type"] == "photo"
             title = title+"\n"+s["message"] if s["message"]
             media = s["picture"]
+            story_link = s["picture"]
             if s["caption"]
               content = content + s["caption"]
             end
           elsif s["type"] == "video"
             title = title+"\n"+s["name"] if s["name"]
-            media = s["link"]
+
+            doc = Nokogiri::HTML(open(story_link));nil
+            media = doc.xpath('//meta[@property="og:image"]/@content').map(&:value)[0]
             content = s["message"] if s["message"]
             content = content + s["description"] if s["description"]
           else
@@ -53,11 +56,13 @@ class FacebookAccount < ActiveRecord::Base
           story = Story.new
           story.title = title
           story.media_link = media
+          story.story_link = story_link
           story.content = content
           story.deleted = false
           story.hidden = false
           feed.append story
           pic = ""
+          story_link = ""
           content = ""
           media = ""
         end
@@ -74,6 +79,7 @@ class FacebookAccount < ActiveRecord::Base
   # connects his/her facebook account
   # Author: Menisy
   def add_to_log
-    Log.create!(loggingtype: 2,user_id_1: self.user.id ,user_id_2: nil,admin_id: nil,story_id: nil ,interest_id: nil,message: (self.user.name+" added a Facebook account").to_s)
+    user_name = self.user.name  ||  self.user.email.split('@')[0]
+    Log.create!(loggingtype: 2,user_id_1: self.user.id ,user_id_2: nil,admin_id: nil,story_id: nil ,interest_id: nil,message: (user_name+" added a Facebook account").to_s)
   end
 end
