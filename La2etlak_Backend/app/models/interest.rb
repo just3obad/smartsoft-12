@@ -1,46 +1,42 @@
 class Interest < ActiveRecord::Base
 #Author: jailan
 #attributes  that can be modified automatically by outside users
-  attr_accessible :description, :name, :deleted, :photo
-  
+  attr_accessible :description, :name, :deleted, :photo  
   has_many :stories
   has_many :feeds, :dependent => :destroy
 
 #the attached file we migrated with the interest to upload the interest's image from the Admin's computer
   has_attached_file :photo, :styles => { :small => "150x150>" },
-                  :url  => "/assets/products/:id/:style/:basename.:extension",
-                  :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
+                    :url  => "/assets/products/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension"
 #here we validate the an Image should be specified with a certain size & type
-  #validates_attachment_presence :photo
+#validates_attachment_presence :photo
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
  # RSS feed link has to be of the form "http://www.abc.com"
-LINK_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix
+  LINK_regex = /^(?:(?:http|https):\/\/[a-z0-9]+(?:[\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(?::[0-9]{1,5})?(\/.*)?)|(?:^$)$/ix
  
   # name cannot be duplicated and has to be there .
 
-validates :name, :presence => true,
-                 :uniqueness => {:case_sensitive => false},
-                 :length   => { :maximum => 20 }
+  validates :name, :presence => true,
+                   :uniqueness => {:case_sensitive => false},
+                   :length   => { :maximum => 20 }
 
                  
 
-has_many :block_interests
-has_many :blockers, :class_name => "User", :through => :block_interests
-has_many :user_add_interests
-has_many :adding_users, :class_name => "User", :through => :user_add_interests
+  has_many :block_interests
+  has_many :blockers, :class_name => "User", :through => :block_interests
+  has_many :user_add_interests
+  has_many :adding_users, :class_name => "User", :through => :user_add_interests
 
 #description can never exceed 240 characters .
   validates :description,  :length   => { :maximum => 100 }
 
-
-
-
 #a method that takes a number and returns this number of stories related to this interest
   def get_stories(stories_number=10)
-  # querying the related stories to the passed interest and take only the number given in the method
-     self.stories [0..stories_number-1]
+# querying the related stories to the passed interest and take only the number given in the method
+    self.stories [0..stories_number-1]
   end
 
 def self.get_all_interests
@@ -402,51 +398,45 @@ end
 Create Method after moving it from controller to Model descriptlion)
 It makes a new interest and saves it
 =end
-def self.model_create(interest)
-   @interests = Interest.get_all_interests
-   @interest = Interest.new(interest)
 
- @interest.save
-if @interest
- Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
-
-end 
-return @interest
-
-end
+  def self.model_create(interest)
+    @interests = Interest.get_all_interests
+    @interest = Interest.new(interest)
+    @interest.save
+    if @interest
+      Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
+    end 
+    return @interest
+  end
 =begin
 #Author: jailan
 Update Method after moving it from controller to Model
 takes as argument the id of the interest and the new values we want to update with and returns the interest after updating the deleted column in it
 It gets the interest using the id and call the method Update_Attribute that takes the input in the form of "Show.html.erb" and adjust changes
 =end
-def self.model_update(id,interest)
-
+  def self.model_update(id,interest)
     @interest= Interest.find(id)
-   @interests = Interest.all 
-@deleted = Interest.is_deleted(id)
- if (@deleted == false || @deleted.nil?) 
-   @interest.save 
-if @interest
- Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Updated an interest")
-
-end
-   return   @interest.update_attributes(interest)
-             
-else
-return @interest
-end
-end
+    @interests = Interest.all 
+    @deleted = Interest.is_deleted(id)
+    if (@deleted == false || @deleted.nil?) 
+      @interest.save 
+      if @interest
+        Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Updated an interest")
+      end
+      return   @interest.update_attributes(interest)           
+    else
+      return @interest
+    end
+  end
 =begin
 #Author: jailan
 is_deleted Method 
 takes the id of the interest and returns the value of deleted attribute to use it in the controller
 =end
-def self.is_deleted(id)
-
-@interest = Interest.find(id)
-return @interest.deleted
-end
+  def self.is_deleted(id)
+    @interest = Interest.find(id)
+    return @interest.deleted
+  end
 
 =begin
 #Author: jailan
@@ -455,26 +445,24 @@ takes as argument the id of the interest and returns the interest after updating
 =end
   def self.model_toggle(id)
     @interest= Interest.find(id)
-   @interests = Interest.all 
+    @interests = Interest.all 
 # if the interest was blocked the we restore it and save
-if @interest.deleted 
- @interest.deleted = nil
-@interest.save
-if @interest
- Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Restored an interest")
-
-end
-
-else
+    if @interest.deleted 
+      @interest.deleted = nil
+      @interest.save
+      if @interest
+        Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Restored an interest")
+      end
+    else
 # if the interest wasn't blocked the we block it and save
-@interest.deleted = true
-@interest.save
-if @interest
- Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Blocked an interest")
+      @interest.deleted = true
+      @interest.save
+      if @interest
+        Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin Blocked an interest")
+      end
+    end
+    return @interest
+  end
 
 end
 
-end
-return @interest
-end
-end
