@@ -451,6 +451,7 @@ end
         redirect_to action:"feed"
         l = Log.new
         l.user_id_1 = @user.id
+        l.loggingtype =0
         name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
         l.message = "#{name_1} has modified his info"
         l.save
