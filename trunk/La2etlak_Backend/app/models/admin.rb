@@ -19,6 +19,24 @@ require "net/http"
 
 
   def self.search(query)
+=begin
+  Given a query string, the method searches for users, stories and interests that are related
+  to the given query.
+
+  Args:
+    query : String of the given query
+
+  Returns:
+    list of 3 lists, the lists of matching users, stories and interests
+
+    For any field, the same is done ::
+      If the regular expression of a field is R, then I use the regular expression '(R)(.*)'
+      to get the first matching to R, and then taking the rest of the string, and extract 
+      from it all that match with R; then a query is done on all entities that matches the expressions.
+
+    The result in each search function for each query are put in a set, to avoid repeated results, then the result returned
+    is then converted to an array.
+=end
     if query.empty?
       return nil
     end
@@ -36,20 +54,13 @@ require "net/http"
 =begin
     Given a query string, the method analyze the type of the field is being searched for, and 
     returns all the users matching the query.
-
-    Args : query : string of the given query
-    Returns : A list of User objects.
-
     The method work by trying to match the fields first_name, name, email
     a regular expression is used for each of the fields
 
-    For any field, the same is done ::
-      if the regular expression of a field is R, then I use the regular expression '(R)(.*)'
-      to get the first matching to R, and then taking the rest of the string, and extract 
-      from it all that match with R; then a query is done on all users that matches the expressions
+    Args :
+      query : string of the given query
 
-    The users from each query are put in a set, to avoid repeated users, then the result returned
-    is then converted to an array.
+    Returns : A list of matching User objects.
 =end
     query_result = [].to_set
 
