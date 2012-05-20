@@ -2,7 +2,7 @@
 
 	<div class="row-fluid">
 
-	 	<div class="left_panel">
+	 	<div class="story_main_left_panel">
 		<ul class="nav nav-list">
 				<li class="nav-header">Statistics</li>
 						
@@ -40,22 +40,9 @@
 				
 		</ul>	
 
-			<div class="story-show-page-right-panel">
+			<div class="story_right_panel">
 			<h1><%= @story.title %></h1>
-				<ul class="nav nav-list" >
-				<li class="divider"></li>
-				</ul>
-		<div class="story-media">
-			
-			<%if @story.media_link== "" || @story.media_link == nil%>
-			<div class="story-body story-page-well">
-				<p style="float:left;"><font size="5"><%=raw @story.content %></p>
-				</div>	
-			<%else%>
-			<a href="#"><img src="<%= @story.media_link %>"><alt src= "208640_203383299694136_161982183834248_565348_5857145_n"></a>
-				<%end%>
 <%if @story.media_link!= "" && @story.media_link != nil%>			
-		<h2 class="story-page-text" style="clear:both;">Content</h2>
 			<ul class="nav nav-list" >
 			<li class="divider"></li>
 			</ul>
