@@ -13,16 +13,53 @@
 	<% @stories.each do |f| %>
 	<!-- I loop over the list of stories -->
 <div class="story-component-box-mobile">
-	<div class="well" style="border-right:5px solid #f89406;">
-				<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
-				<table style="float:right">
-					<tr>
-						<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
-						<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
-					</tr>
-				</table>
-	</div>		
-</div>
+	<table class="table" width="200">
+		<tr>
+			<%unless f.content.nil?%>
+			<td rowspan="2">
+			<!-- Displaying the picture with a width of 50 -->
+			<img id="topic" src="<%=f.media_link%>" width="50"/>
+		</td>
+		<td rowspan="2">
+		<%end%>
+			<table>
+				<% if f.id.nil?%>
+				<% serStory = Marshal::dump(f)%>
+					<%if f.title.length > 17 %>
+						<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
+					<%else%>
+					<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
+					<%end%>
+					<%if f.content.length > 20 %>
+					<tr><td><%= f.content[0..20]+"..."%></td></tr>
+					<%else%>
+					<tr><td><%= f.content%></td></tr>
+					<%end%>
+				<%else%>
+				<%if f.title.length > 17 %>
+						<% url = "/stories/"+f.id.to_s+"/get" %>
+						<tr><td><%= link_to(f.title[0..17]+"..." , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+				<%else%>
+						<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
+				<%end%>
+				<%unless f.mobile_content == nil%>
+				<%if f.mobile_content.length > 20 %>
+				<tr><td><%= f.mobile_content[0..20]+"..."%></td></tr>
+				<%else%>
+				<tr><td><%= f.mobile_content%></td></tr>
+				<%end%>
+				<%end%>
+				<%end%>
+				<td>
+				<% if @stories[0].equal? f or @stories[1].equal?f or @stories[2].equal?f or @stories[3].equal?f or @stories[4].equal?f%>
+				<% image_tag('star.jpg' , :style =>"width:25px;height:20px;")%>
+				<%end%>
+				</td>
+			</table>
+		</td>
+	</tr>
+	</table>
+	</div>
 	<%end%>
 	<div class="apple_pagination">
 	<%= will_paginate @stories, :container => false %>
