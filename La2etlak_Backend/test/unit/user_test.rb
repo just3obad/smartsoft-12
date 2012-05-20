@@ -336,7 +336,7 @@ class UserTest < ActiveSupport::TestCase
 	#Author: Kiro
 	test "should not save a user without any parameters" do
 		user = User.new
-		assert !user.save
+		assert !user.save, "saved a user without any parameters"
 	end
 
 	#Auther: Kiro
@@ -349,7 +349,7 @@ class UserTest < ActiveSupport::TestCase
 	#Auther: Kiro
 	test "shouldn't save a user with mismatching password confirmation" do
 		user = User.new(email: "email_2@test.com",password: "123456",password_confirmation:"abcdet")
-		assert !user.save
+		assert !user.save, "saved a user with mismatching password confirmation"
 	end
 
 	#Auther: Kiro

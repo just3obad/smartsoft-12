@@ -7,7 +7,7 @@ class UsersControllerTest < ActionController::TestCase
 	#########################
 
 
-   test "admin should reset user's password RED" do
+   test "admin should reset users password RED" do
      user=User.first
      get :force_reset_password, :id => user.id
      assert_routing '/force_reset_password/'+user.id.to_s, {:controller =>"users", :action => "force_reset_password", :id=> "1"}
@@ -191,14 +191,14 @@ class UsersControllerTest < ActionController::TestCase
 
 
 	# Author: Kiro
-	test "should create user RED" do
+	test "should create user" do
 		assert_difference('User.count') do
    		post :register, :user => { :email => 'user_email1@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 	end
 
 	# Auther: Kiro
-	test "should not create user RED" do
+	test "should not create user" do
 		assert_no_difference('User.count') do
    		post :register, :user => { :email => 'user_email2@test.com', :password => '12345', :password_confirmation => '123456'}
   	end
@@ -423,7 +423,7 @@ class UsersControllerTest < ActionController::TestCase
    end
 
 	# Author: Kiro
-	test "test login" do
+	test "The correct user is logged in" do
 
 		UserSession.create(users(:ben))
 		get :feed
@@ -433,6 +433,27 @@ class UsersControllerTest < ActionController::TestCase
 		assert_equal user.email, "ben@gmail.com", "user is not ben"
 
 	end
+	
+	  test "the user should recieve the registration mail" do
+
+    	assert_difference 'ActionMailer::Base.deliveries.size', +1 do
+      	post :create, :user => {:email => "user@example.com", :password => '123456', :password_confirmation => '123456'}
+    	end
+    	registration_email = ActionMailer::Base.deliveries.last
+    	assert_equal "La2etlak Verification Instructions", registration_email.subject, "wrong subject"
+    	assert_equal "user@example.com", registration_email.to[0], "wrong reciever"
+
+  end
+
+	  test "unsaved user should not get the email" do
+
+			User.create(email: "in_use@example.com",password: "123456", password_confirmation:"123456")
+      
+			assert_no_difference 'ActionMailer::Base.deliveries.size', "User that wasn't saved got the email" do
+      	post :create, :user => {:email => "in_use@example.com", :password => '1234', :password_confirmation => '123456'}
+    	end
+
+  end
 
 
 end

@@ -11,23 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field" align="center">
-    
-    <%= f.email_field :email,:style => "height:40px; width:200px",  :placeholder => 'E-mail' %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.email_field :email,:style => "height:40px; width:95%" %>
   </div>
-  <div class="field" align="center">
-    
-    <%= f.password_field :password,:style => "height:40px; width:200px",  :placeholder => 'Password'%>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password,:style => "height:40px; width:95%"%>
   </div>
-  <div class="field" align="center">
-    
-    <%= f.password_field :password_confirmation,:style => "height:40px; width:200px",  :placeholder => 'Password Confirmation'%>
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation,:style => "height:40px; width:95%"%>
   </div>
-  <div class="actions" align="center">
+  <div class="actions">
     <%= f.submit "Register", :style => "width:100px" %>
   </div>
 <% end %>
 
 <div align="center">
-  <p><a href="#" onclick="history.back();"><class: "btn btn-danger">Back</a></p>
+  <p><font size="3"><a href="#" onclick="history.back();"><class: "btn btn-danger">Already have an account?</a></font></p>
 </div>
