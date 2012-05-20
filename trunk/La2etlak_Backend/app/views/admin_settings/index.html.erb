@@ -3,16 +3,32 @@
 
 <div class="middle-settings-panel" >
 <ul id="myTab" class="nav nav-tabs">
-            <li class="active "><a href="#profile_settings" data-toggle="tab">Profile settings</a></li>
-            <li class=""><a href="#story_settings" data-toggle="tab">Story settings</a></li>
-            <li class=""><a href="#general_settings" data-toggle="tab">General settings</a></li>
+            <li class=""><a href="#profile_settings" data-toggle="tab">Profile settings</a></li>
+            <% if $story_settings %>
+              <li class="active"><a href="#general_settings" data-toggle="tab">Story settings</a></li>
+            <%else%>
+              <li class=""><a href="#general_settings" data-toggle="tab">Story settings</a></li>
+            <%end%>
+            <% if $span_settings %>
+              <li class="active"><a href="#general_settings" data-toggle="tab">General settings</a></li>
+            <%else%>
+              <li class=""><a href="#general_settings" data-toggle="tab">General settings</a></li>
+            <%end%>
             <li class=""><a href="#new_admin" data-toggle="tab">Add a new admin</a></li>
           </ul>
           <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="profile_settings">
+            <% if $span_settings %>
+              <div class="tab-pane fade" id="profile_settings">
+            <%else%>
+              <div class="tab-pane fade in active" id="profile_settings">
+            <%end%>
              This is tab is empty temporarily
             </div>
-            <div class="tab-pane fade" id="story_settings">
+            <% if $story_settings %>
+              <div class="tab-pane fade in active" id="story_settings">
+            <%else%>
+              <div class="tab-pane fade" id="story_settings">
+            <%end%>
               <div class="well">
                    <%= form_tag("/admin_settings/configure_flags_threshold", :method => "post") %>
                    <label>Configure flags threshold</label>
@@ -39,7 +55,11 @@
               </div>    
               
             </div>
-            <div class="tab-pane fade" id="general_settings">
+            <% if $span_settings %>
+              <div class="tab-pane fade in active" id="general_settings">
+            <%else%>
+              <div class="tab-pane fade" id="general_settings">
+            <%end%>
               <%= form_tag("/admin_settings/statistics_time_span", :method => "post") %>
                    <label>Configure statistics time span</label>
                 <input type="number" class="span3" placeholder="Number in days." name="days">
