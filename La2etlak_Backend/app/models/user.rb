@@ -854,15 +854,15 @@ Author:Kareem
   end
 
 =begin
-   # issue 89
-   # A method called to get stories from social accounts conected to the current user
-   # returns a list of stories shuffled 
-   # checks the four social networks we have in our system and sees whether 
-   # the user connected to them or not, then
-   # calls the get_feed method in each network
-   # input : no input
-   # output : list of stories of connected social accounts
-   # Author : Essam Hafez
+    # issue 89
+    # A method called to get stories from social accounts conected to the current user
+    # returns a list of stories shuffled 
+    # checks the four social networks we have in our system and sees whether 
+    # the user connected to them or not, then
+    # calls the get_feed method in each network
+    # input : no input
+    # output : list of stories of connected social accounts
+    # Author : Essam Hafez
 =end
    def get_social_feed()
      user = User.find(self.id) # could be removed and user replaced by self
@@ -883,7 +883,8 @@ Author:Kareem
    end
    
 
-    # Author : Essam
+    
+=begin 
     # issue 88
     # a method called when the user wants to see a specific feed
     # if the user wants to filter the view of any social account he is connected to 
@@ -892,6 +893,11 @@ Author:Kareem
     # facebook => id = 2
     # flickr => id = 3
     # tumblr => id = 4
+    # Input: social network id
+    # output: list of stories of this social network
+    # Author : Essam Hafez
+=end
+
   def filter_social_network (socialID)
     user = User.find(self.id)
     if(socialID == 1)
