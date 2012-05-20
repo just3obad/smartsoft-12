@@ -30,6 +30,16 @@ class TumblrAccountsController < ApplicationController
     redirect_to action:'connect_social_accounts' , controller:'users'
   end
   
+=begin
+  deletes current user tumblr account
+  input: noinput
+  output: no output
+  Author : Essam Hafez
+=end
+  def delete_account
+    current_user.tumblr_account = nil
+  end
+  
   
 end
 
