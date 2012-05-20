@@ -31,17 +31,17 @@ end
     @feed= Feed.new(params[:feed]) #retrieving the feed from the database using the table feed parameters
     @interestid= params[:feed][:interest_id]
     if params.has_key?(:feed) and StoriesHelper.check_rss(params[:feed][:link])
-    if @feed.save
+     if @feed.save
       $saved=true
       redirect_to :controller => 'interests', :action => 'show', :id => @interestid
       flash[:success] = "Link added successfully."
       StoriesHelper.fetch_rss(params[:feed][:link])
       Log.create(loggingtype:3, interest_id:@interestid, message:"A new RSS link is added.")
-    end
+      end
     else #if saving faild a flash message box will appear with the errors
      $saved=false
      flash[:error] = "Link is invalid. Please try again" 
-      redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
+     redirect_to :controller => 'interests', :action => 'show', :id => @feed.interest_id
     end
     
   end
