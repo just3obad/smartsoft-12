@@ -910,8 +910,8 @@ div.auto_complete ul strong.highlight {
 }
 .main-user-profile-page{
   background-color:#e5e5e5;
-  width:60%;
-  margin-left:20%;
+  width:70%;
+  margin-left:27%;
   padding-left:2%;
   padding-bottom:20px;
   overflow-x: hidden;
@@ -1000,27 +1000,22 @@ padding-bottom:20px;
 
   .sidebar-nav-fixed {
     padding: 9px 0;
-    position:fixed;
     left:2%;
     top:60px;
-    width:20%;
+    width:25%;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
 
 }
 .sidebar-nav-fixed-right {
     padding: 9px 0;
-    position:fixed;
     left:83%;
-    width:15%px;
+    width:15%;
 }
 .img-user-img {
     width: 90%; 
 }
-div#center {
-                width: 75%;
-                height: 100%;                                                                     
-                margin-top: 0;                                                              
-                float: right;
-            }
 
 
 .story_main_left_panel{
@@ -1036,4 +1031,7 @@ div#center {
 				float:left;
 				position:relative;
 			}
+.btn-fixed {
+  width:40%;
+}
 
