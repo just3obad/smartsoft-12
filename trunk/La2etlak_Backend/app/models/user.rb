@@ -156,29 +156,7 @@ end
     Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil,admin_id: nil,story_id: story_id,interest_id: nil,message: user_name + " shared the story \"" +  story_title +  "\"" )
     return true
   end 
- 
- # this methods generates a verification code for the user and adds an entry to Verification_Code
-  def generateVerificationCode?()
-  @verification_code = VerificationCode.find_by_user_id(self.id)
-      if @verification_code.nil? then
-      VerificationCode.create :code=>( (0..9).to_a + ('a'..'z').to_a).shuffle[0..3].join,:user_id=>self.id, :verified=>false
-      return true   
-    else      
-      return false    
-    end
-  end 
-
-  def verifyAccount?(verCode)
-    @verEntry = VerificationCode.find_by_user_id(self.id)
-    if @verEntry.code == verCode then
-      @verEntry.update_attributes(verified: true)
-      return true
-    else 
-      return false
-    end
-  end
-  
-   
+     
 =begin  
   This method returns the number of users who signed in today.
   Input: No input
@@ -651,11 +629,15 @@ Author:Kareem
 	 return interests 
 	end 
 
-# This method generateVerificationCode? generates a verification code for the user
-# and adds an entry to the verification codes table in the database.
-# The verification code is 4 characters from (0-->9) and (a-->z).
-# Returns true if it succeeded to create the entry, otherwise it returns false.
-# Author: Kiro
+=begin
+	Description: This method generated a verification code record
+	for the user, where the verification code is a random 4 characters
+	string containing digits and lowercase letters, and it sets the
+	boolean verified field to false. This method returns true if
+	the user has no verification code record yet, false otherwise
+	Output: Boolean
+	Author: Kiro
+=end
   def generateVerificationCode?()
   		@verification_code = self.verification_code
       if @verification_code.nil? then
@@ -667,11 +649,14 @@ Author:Kareem
     end
   end 
 
-# This method verifyAccount?(verCode) takes the verCode entered by the user to verify his account
-# and it tries to match this code with the account's code.
-# returns true and sets verified to true if the user entered the correct code,
-# otherwise it returns false.
-# Author: Kiro
+=begin
+	Description: This method checks if the code entered by the
+	user matches his verification code, it returns true if it
+	matches, false otherwise.
+	Input: String (code entered by user)
+	Output: Boolean
+	Author: Kiro
+=end
   def verifyAccount?(verCode)
     @verEntry = self.verification_code
     if @verEntry.code == verCode then
@@ -682,11 +667,13 @@ Author:Kareem
     end
   end
 
- 
-# This method resendCode? resets the verification Code of a specific account and updates the
-# entry in the database.
-# This method returns true if the accout wasnt verified yet, otherwise it returns false.
-# Author: Kiro
+=begin
+  This method resendCode? resets the verification Code of the user's account and updates the
+  verification code in the database by the new generated one.
+  This method returns true if the accout wasnt verified yet, otherwise it returns false.
+	Output: Boolean
+  Author: Kiro
+=end
   def resendCode?
     @varEntry = self.verification_code
     if @varEntry.verified
@@ -927,6 +914,14 @@ Author:Kareem
     end
   end
 
+=begin
+	Description: This method generates a new password for the user
+	and updates it in the database, this password generated is
+	a 6 character string containing digits and letters (lower case
+	and upper case), and it returns the new password.
+	Output: String (The new password)
+	Author: Kiro
+=end
 	def resetPassword
 	
 		newpass = ((0..9).to_a + ('a'..'z').to_a + ('A'..'Z').to_a ).shuffle[0..5].join
