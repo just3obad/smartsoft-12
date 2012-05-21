@@ -46,7 +46,7 @@ class FacebookAccount < ActiveRecord::Base
             end
             title = title+"\n"+msg
             media = s["picture"]
-            story_link = s["picture"]
+            story_link = s["link"]
             if s["caption"]
               content = content + s["caption"]
             end
