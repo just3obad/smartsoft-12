@@ -1,6 +1,6 @@
 class TumblrAccountsController < ApplicationController
   before_filter {user_authenticated?}
-  require 'Tumblr'
+  require 'tumblr'
   
 =begin
   renders the login form login.html.erb
@@ -9,7 +9,7 @@ class TumblrAccountsController < ApplicationController
   Author: Essam Hafez
 =end
   def login 
-  
+    render :layout => "mobile_template"
   end 
   
 =begin
@@ -22,12 +22,23 @@ class TumblrAccountsController < ApplicationController
   def connect_tumblr
     email = params[:email]
     password = params[:password]
+    if(email == "" or password == "")
+      flash[:notice] = "Please enter a valid email and password"
+      redirect_to action:'login' , controller:'tumblr_accounts'
+    else
+    test_tumblr = Tumblr::User.new(email, password)
+    if(!test_tumblr.tumblr.nil?)
     tm = TumblrAccount.new
     tm.email = email
     tm.password = password
     tm.save
     current_user.tumblr_account = tm
     redirect_to action:'connect_social_accounts' , controller:'users'
+  else
+    flash[:notice] = "Email and password mismatch with tumblr, please try again"
+    redirect_to action:'login' , controller:'tumblr_accounts'
+  end
+  end
   end
   
 =begin
