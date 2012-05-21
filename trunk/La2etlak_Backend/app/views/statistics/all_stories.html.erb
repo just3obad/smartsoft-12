@@ -44,15 +44,18 @@
 						<h1><strong>Warning!</strong> No Stories Ranking </h1>
 					</div>
 				<% else %>
-					<h4>
-						<div class="alert alert-info">
-							Top 5 Stories All Time : </br>
+					
+						<div>
+							<ul class="nav nav-list">
+							  <li class="nav-header">
+							  Top 5 Stories All Time :</li>
+							  <li class="divider" style="width: 40%;"></li> 
 								
 							<!--Make A Story Component For Each Of The Top Ranked Five Stories Contiaing Title, Rank, 
 							Shares, Comments, Likes, Dislikes, Interest Tag And A Link To Its Page And Statistics Page -->
-								
+							</ul>	
 						</div>
-					</h4>
+					
 					<% Story.get_stories_ranking_all_time[0..4].each do |story|%>
 						<div class="well-story-component">
 							<a href="/stories/<%= story.id%>"
@@ -88,11 +91,16 @@
 									<h1><strong>Warning!</strong> No Stories Ranking In The Last 30 Days</h1>
 								</div>
 							<% else %>
-								<h4>
-									<div class="alert alert-info">
-										Top 5 Stories Last 30 Days: </br>
-									</div>
-								</h4>
+								<div>
+							<ul class="nav nav-list">
+							  <li class="nav-header">
+							  Top 5 Stories Last 30 Days :</li>
+							  <li class="divider" style="width: 40%;"></li> 
+								
+							<!--Make A Story Component For Each Of The Top Ranked Five Stories Contiaing Title, Rank, 
+							Shares, Comments, Likes, Dislikes, Interest Tag And A Link To Its Page And Statistics Page -->
+							</ul>	
+						</div>
 								<% Story.get_stories_ranking_last_30_days[0..4].each do |story|%>
 									<div class="well-story-component">
 										<a href="/stories/<%= story.id%>"

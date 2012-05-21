@@ -45,7 +45,16 @@
 					<li class="active"><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a></li>
 					<li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a></li>
 				</ul>
-			</div>	
+			</div>
+		<div style="margin-top: 20px; background-color: #f8f8f8;">
+					<ul class="nav nav-list">
+					  <li class="nav-header" style="margin-left:5%; margin-right:5%; width: 90%;">
+					     Number of registered users : </li>
+					     <li class="divider"></li>
+					     <li class="nav-header" style="margin-left:20%; margin-right:20%; width: 60%;"> <%= User.all_user_registered %> users.</li>
+				    
+				</ul>
+		</div>	
 	</div>
   <div class="main-user-profile-page">
   	<div class="middle-user-profile-page-panel">
@@ -63,24 +72,14 @@
 		</ul>
  
 	
-	<div class="alert" id="noUser" style="display: none;">  
+	<div id="noUser" style="display: none; margin-top:20px;">  
 		<a class="close" data-dismiss="alert"></a>
-		<h1><strong>Warning!</strong> No Users in our database Yet.</h1>
+		<h2><strong>Warning!</strong> No Users in our database Yet.</h2>
 	</div>
 	<% if !(@users.empty?) %>
 		<div id="ccc"></div>
-		<div class="general info">
 
-			<!--Get The Number Of Users In The System-->
-	
-			<h4>
-				<div class="alert alert-info">Number of registered users :
-					<%= User.all_user_registered %>
-				</div>
-			</h4>
-		</div>
-
-		<div class="general info" id ="genInfo">
+		<div class="general info" id ="genInfo" style="margin-top:20px;">
 			<% if User.get_users_ranking.first.get_user_rank == 0 %>
 				<div class="alert">  
 					<a class="close" data-dismiss="alert"></a>
