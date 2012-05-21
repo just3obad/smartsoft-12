@@ -17,7 +17,7 @@ class FacebookAccount < ActiveRecord::Base
   	begin
       self.auth_secret = self.auth_secret.to_i+1
       p("\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>> \n\n\ngetting feed\n\n")
-      new_token = Koala::Facebook::OAuth.new("http://127.0.0.1:3000/fb/done/").exchange_access_token(self.auth_token)
+      new_token = Koala::Facebook::OAuth.new("http:\\127.0.0.1:3000").exchange_access_token(self.auth_token.to_s)
       puts(">>>>>>>>>>>>>>>>>>>>>>>>>>\n\n\n"+new_token+"\n\n\n\n")
       self.auth_token = new_token.to_s
       self.auth_secret = self.auth_secret.to_i+1
@@ -55,7 +55,11 @@ class FacebookAccount < ActiveRecord::Base
             title = title+"\n"+s["name"] if s["name"]
             story_link = s["link"]
             img = s["picture"]
-            img_link = URI.unescape(img[img.index("url=")+4,img.length])
+            if img.index("url=")
+              img_link = URI.unescape(img[img.index("url=")+4,img.length])
+            else
+              img_link = img
+            end
             media = img_link
             content = s["message"] if s["message"]
             content = content + s["description"] if s["description"]
@@ -77,7 +81,7 @@ class FacebookAccount < ActiveRecord::Base
           media = ""
         end
         p "returning feed"
-        p feed.to_s
+        #p feed.to_s
         return feed
       end	
     rescue
