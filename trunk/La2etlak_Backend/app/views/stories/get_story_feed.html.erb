@@ -20,9 +20,7 @@
 					the youtube video link -->
     	<% is_video = false %>
   <% if !@story.story_link.nil? %>
-  		<% if @story.story_link.index("www.youtube.com") %>
    			 <a href="<%= @story.story_link %>">
-    	<% end %>
   <% end %>
     	<!-- Menisy end -->
     <img src="<%=@story.media_link%>" width="220" align="center">
