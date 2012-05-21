@@ -15,10 +15,10 @@
 				<li><%= link_to "Toggle interests", {:controller => 'users', :action => 'toggle'}, class: "btn", style: "margin:2%; height:30px;"%>	</li>
 				<% if !@user.verification_code.verified %>
 				<li><%= link_to "Verify account", {:controller => 'users', :action => 'verifySettings'}, class: "btn", style: "margin:2%; height:30px;"%>	</li>
+			<% end %>
 				<div align="center" style="margin-top:25px; margin-bottom:25px;">
 				<li><%= link_to "Logout", logout_path, class: "btn btn-large btn-danger", style: "margin:2%; width:60%;"%>	</li>
 				</div>
-			<% end %>
 		</div>
 	<body>
 </html>
