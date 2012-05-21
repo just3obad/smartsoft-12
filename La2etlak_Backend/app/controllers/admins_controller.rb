@@ -77,7 +77,7 @@ class AdminsController < ApplicationController
       flash[:notice] = "Addition successful."
       redirect_to('/admin_settings')
     else
-      flash[:notice] = "Enter Valid arguments successful."
+      flash[:notice] = "Enter Valid arguments."
       redirect_to('/admin_settings')
     end
   end
