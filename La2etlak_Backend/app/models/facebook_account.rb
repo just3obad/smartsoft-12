@@ -55,10 +55,14 @@ class FacebookAccount < ActiveRecord::Base
             title = title+"\n"+s["name"] if s["name"]
             story_link = s["link"]
             img = s["picture"]
-            if img.index("url=")
-              img_link = URI.unescape(img[img.index("url=")+4,img.length])
+            if img
+              if img.index("url=")
+                img_link = URI.unescape(img[img.index("url=")+4,img.length])
+              else
+                img_link = img
+              end
             else
-              img_link = img
+              img_link = ""
             end
             media = img_link
             content = s["message"] if s["message"]
@@ -80,11 +84,12 @@ class FacebookAccount < ActiveRecord::Base
           content = ""
           media = ""
         end
-        p "returning feed"
+        p "returning Facebook feed"
         #p feed.to_s
         return feed
       end	
     rescue
+      raise
       self.destroy
       return []
     end
