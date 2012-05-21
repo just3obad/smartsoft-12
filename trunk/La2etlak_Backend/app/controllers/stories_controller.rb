@@ -122,6 +122,10 @@ Author: Omar
     @storyid=params[:sid]
     @user=current_user
     @flistemail=@user.get_friends_email()
+    if @flistemail.empty?
+      flash[:notice]="Sorry you don't have any friends you can add friends from 
+      the settings page"
+    end
     render :layout => "mobile_template"
   end
 ################End##################
@@ -151,31 +155,34 @@ Author: Omar
 		if @friendmail==""
 			if @listemail.nil?
 			   @successflag=false
+         flash[:notice]="Please choose an email from the list or write down one red" 
 			else
 			 Emailer.recommend_story(@useremail, @listemail, @message, @storytit).deliver
 			 Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 
 				story_id: @storyid,interest_id: @interest_id,message: @logmessage )
-
+        flash[:notice]="Recommendation sent green"
 			end
 		else
 			if(!@friendmail.match(regex))
 				   @successflag=false
-
+           flash[:notice]="Please enter a valid email red"
 			else
 			  if !@user.has_account(@friendmail)
 				    Emailer.invite_to_app(@useremail, @friendmail, @message,
             @storytit).deliver
+            flash[:notice]="Recommendation sent green" 
 			  else
 				    Emailer.recommend_story(@useremail, @friendmail, @message,
             @storytit).deliver
+            flash[:notice]="Recommendation sent green"
 			  end
 			Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 
 				story_id: @storyid,interest_id: @interest_id,message: @logmessage )
 
 			end
 		end
-
-    render :layout => "mobile_template"
+    redirect_to :action => "recommend_story_mobile_show" ,:sid => params[:sid]
+    
   end
 ################End##################
 
@@ -197,9 +204,12 @@ end
     @story=Story.get_story(@storyid)
     @user=current_user
     @friends=@story.view_friends_like(@user)
-
-    flash[:error] = "Sorry, you have no friends that liked this story"
-    render :layout => "mobile_template" 
+    if @friends.empty?
+      flash[:notice] = "Sorry, you have no friends that liked this story red"
+      redirect_to :action => "get" ,:sid => params[:id]  
+    else
+      render :layout => "mobile_template" 
+    end
   end
 ################End##################
 
@@ -214,9 +224,12 @@ end
     @story=Story.get_story(@storyid)
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
-
-    flash[:error] = "Sorry, you have no friends that disliked this story"
-    render :layout => "mobile_template" 
+    if @friends.empty?
+      flash[:notice] = "Sorry, you have no friends that disliked this story red"
+      redirect_to :action => "get" ,:sid => params[:id]  
+    else
+      render :layout => "mobile_template" 
+    end
   end
 ################End##################
 
