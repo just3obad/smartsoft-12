@@ -51,7 +51,7 @@ class FacebookAcountTest < ActiveSupport::TestCase
   test "should get facebook feed" do
     fb = FacebookAccount.new
     fb.user = users(:ben)
-    fb.auth_token = "AAADGpYHrrBQBAJdeZCZC9EBqTEkGz5TIh0iHycoFtY52K5mfuGPIZCgcV2Ir4YLVTP3whtxGZAkyaOrk5Xm2uttZCS84ZBZAAZBGTeAPT6PxZBAZDZD"
+    fb.auth_token = "AAADGpYHrrBQBAAzIqkRaZCCxORcSv4mnEZAmKxP4s8c7ZBD7liTV93qpfqkljuFw6hQyrnZC2JQZC0dE8huNka0u7xBSoN0FEEMyyd9tGngZDZD"
     fb.auth_secret = 1
     fb.save!
     feed = fb.get_feed
