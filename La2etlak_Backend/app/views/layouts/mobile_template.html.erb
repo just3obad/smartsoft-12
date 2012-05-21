@@ -35,7 +35,10 @@
 <!-- If a flash notice has been set, display it with the proper
     color
     Author: Menisy -->
-<% if fl = flash[:notice] %>
+<% keys = flash.keys %>
+<% keys.each do |key| %>
+  <% fl = flash[key] %>
+  <% if fl == "" then next end %>
   <% color = fl["$red"] || fl["$green"] || fl["$yellow"] || fl["$blue"]%>
   <% if color %>
     <% fl[color] = "" %>
@@ -44,6 +47,7 @@
   <% end %>
   <div class="flash-<%= color[1,10] %> well" id="notification"> <!-- assigning css color class triming tailing $ -->
   <%= fl %>
+  <% flash[key] = "" %>
   </div>
 <% end %>
   <body>
