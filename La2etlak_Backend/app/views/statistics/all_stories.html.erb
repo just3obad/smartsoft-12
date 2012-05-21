@@ -1,29 +1,36 @@
 <div class="row-fluid" style="position: absolute; top: 60px; z-index: 1px; visibility: show;">
-   <div class="span3">
-		<!--Sidebar content-->
-		<div class="well sidebar-nav">
-			<ul class="nav nav-list">
-				<li class="nav-header">
-					Statistics
-				</li>
-				<li>
-					<%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
-				</li>
-				<li>
-					<%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
-				</li>
-				<li class = "active">
-					<%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
-				</li>
-			</ul>
-		</div>
-	</div>
 </div>
-<div id="center">
+<div class="sidebar-nav-fixed">
+		<div class="well sidebar-nav">
+	      		<ul class="nav nav-list">
+					<li class="nav-header">Directory</li>
+					<li class="divider"></li>		
+					<li><a href="/users"><i class="icon-user"></i><font size="4%">Users</font></a></li>
+					<li><a href="/interests/list"><i class="icon-heart"></i><font size="4%">Interest</font></a></li>
+					<li><a href="/stories"><i class="icon-book"></i><font size="4%">Stories</font></a></li>
+					<li class="divider"></li>
+					<li class="active"><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a></li>
+					<li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a></li>
+				</ul>
+			</div>	
+	</div>
+<div id="center" class="main-user-profile-page">
+	<div class="middle-user-profile-page-panel">
 	<div class="span9" style="position: relative;  z-index: 1px; visibility: show;">
 		
 		<!--Check If The Database Is Empty Or Not-->
-	
+		<ul class="nav nav-tabs">
+	       <!-- Check Whether There Is Any User In The Database Or Not -->
+	        <li>
+				<%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
+			</li>
+			<li>
+				<%= link_to "Interests", {controller: 'statistics' ,action: 'all_interests'} %>
+			</li>
+			<li class="active">
+				<%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
+			</li>
+		</ul>
 		<% if @stories.empty? == true %>
 			<div class="alert">  
 				<a class="close" data-dismiss="alert"></a>
@@ -126,4 +133,5 @@
 			</div>
 		<% end %>
 	</div>
+</div>
 </div>

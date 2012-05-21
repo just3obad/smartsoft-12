@@ -19,13 +19,11 @@
         </div>
          <div id="user-personal-info"> 
            <li class="nav-header">Email:-</li>
-           <li class="divider"></li>
            <li>
              <span class="label label-info" id="my-email"><%= @user.email %> </span>
            </li>
            <li class="divider"></li>
            <li class="nav-header">Name:-</li>
-           <li class="divider"></li>
            <li>
              <span class="label label-info" id="my-email">
               <% if @user.name.nil? %>
@@ -37,7 +35,6 @@
            </li>
            <li class="divider"></li>
            <li class="nav-header">Status:-</li>
-           <li class="divider"></li>
            <li>
              <span id="is-active">
              <% if @user.deactivated %>
@@ -52,6 +49,51 @@
 
          </div>
        </ul>
+          <!--This is the right panel of the user profile page that contains three buttons button used to deactivate the user, one to go to his statistics page and the third one to reset his password-->
+        <ul class="nav nav-list ">
+          <%= link_to('Statistics', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary btn-fixed", id: "statistics_button") %>
+          
+          <li class="divider"></li>
+           <%= link_to('Reset Password', {:controller => 'users', :action => 'force_reset_password', :id => @user.id}, class: "btn btn-large btn-primary btn-fixed", id: "reset_password_button") %>
+          
+          <li class="divider"></li>
+          
+          <% if @user.deactivated %>
+            <div id="myModal" class="modal hide fade in" style="display: none; ">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">×</button>
+              <h3>Confirmation message</h3>
+            </div>
+            <div class="modal-body">
+              <h4>Are you sure you want to activate this user ?</h4>
+              
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
+              <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success btn-fixed", id: "deactivate_button") %>
+            </div>
+            </div>
+            <a data-toggle="modal" href="#myModal" class="btn btn-success btn-large">Activate</a>
+              
+            <% else %>
+            <div id="myModal" class="modal hide fade in" style="display: none; ">
+            <div class="modal-header">
+              <button class="close" data-dismiss="modal">×</button>
+              <h3>Confirmation message</h3>
+            </div>
+            <div class="modal-body">
+              <h4>Are you sure you want to deactivate this user ?</h4>
+              
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
+              <%= link_to('Deactivate', {:controller => 'users', :action => 'deactivate', :id => @user.id}, class: "btn btn-large btn-danger", id: "deactivate_button") %>
+            </div>
+          </div>
+            <a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large btn-fixed">Deactivate</a>
+              
+            <% end %>
+        </ul>
      </div>
       <!--This is the main panel of the user profile page that contains three tabs the first one contains the recent activity of that user in the form of log message and all related variables in that log in the form of links to these variables show page whether these variables are stories, other users or interests and when this log occured with respect to the current time, The second one contains a list of user components of this user's friends, The third one contains a list of interests that the user is subscribed to as a list of interests' components-->
      <div class="main-user-profile-page">
@@ -153,59 +195,8 @@
           </div>
         </div>
       </div>
-       <!--This is the right panel of the user profile page that contains three buttons button used to deactivate the user, one to go to his statistics page and the third one to reset his password-->
-      <div class="sidebar-nav-fixed-right">
-        <ul class="nav nav-list ">
-          <li class="nav-header">Go to statistics Page</li>
-          <li class="divider"></li>
-          <%= link_to('Statistics', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary", id: "statistics_button") %>
-          
-          <li class="divider"></li>
-          <li class="nav-header">Reset the password for this user</li>
-          <li class="divider"></li>
-           <%= link_to('Reset Password', {:controller => 'users', :action => 'force_reset_password', :id => @user.id}, class: "btn btn-large btn-primary", id: "reset_password_button") %>
-          
-          <li class="divider"></li>
-          <li class="nav-header">Ban this user</li>
-          <li class="divider"></li>
-          
-          <% if @user.deactivated %>
-            <div id="myModal" class="modal hide fade in" style="display: none; ">
-            <div class="modal-header">
-              <button class="close" data-dismiss="modal">×</button>
-              <h3>Confirmation message</h3>
-            </div>
-            <div class="modal-body">
-              <h4>Are you sure you want to activate this user ?</h4>
-              
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
-              <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success", id: "deactivate_button") %>
-            </div>
-            </div>
-            <a data-toggle="modal" href="#myModal" class="btn btn-success btn-large">Activate</a>
-              
-            <% else %>
-            <div id="myModal" class="modal hide fade in" style="display: none; ">
-            <div class="modal-header">
-              <button class="close" data-dismiss="modal">×</button>
-              <h3>Confirmation message</h3>
-            </div>
-            <div class="modal-body">
-              <h4>Are you sure you want to deactivate this user ?</h4>
-              
-            </div>
-            <div class="modal-footer">
-              <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
-              <%= link_to('Deactivate', {:controller => 'users', :action => 'deactivate', :id => @user.id}, class: "btn btn-large btn-danger", id: "deactivate_button") %>
-            </div>
-          </div>
-            <a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large">Deactivate</a>
-              
-            <% end %>
-        </ul>
-      </div>
+    
+      
   </div>
 </div>
 
