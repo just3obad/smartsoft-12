@@ -9,30 +9,41 @@ class FacebookAccountController < ApplicationController
     redirect_to path
   end
 
-  # Action to be called in the call back url after authentication take place
-  # Author: Menisy
+=begin
+ Action to be called in the call back url after authentication takes place
+ If the authentication is successful a new Facebook account is created for the
+ user 
+ Input: None
+ Output: 
+ Author: Menisy
+=end
   def authenticate_facebook_done
     if !params[:code]
-      flash[:notice] = "Facebook account was not added red"
+      flash[:notice] = "Facebook account was not added $red"
       redirect_to :controller => "users", :action => "feed"
       return
     end
-    token = Koala::Facebook::OAuth.new("http://127.0.0.1:3000/fb/done/").get_access_token(params[:code]) if params[:code]
-    fb_account = FacebookAccount.find_or_create_by_user_id(current_user.id)
-    fb_account.auth_token = token
-    fb_account.auth_secret = 1
-    graph =  Koala::Facebook::API.new(token)
-    user = graph.get_object("me")
-    fb_id = user["id"]
-    fb_account.facebook_id = fb_id
-    if fb_account.save
-      fb_account.add_to_log
-      flash[:notice] = "Facebook account was added successfully green"
+    begin
+    	token = Koala::Facebook::OAuth.new("http://127.0.0.1:3000/fb/done/").get_access_token(params[:code]) if params[:code]
+    	fb_account = FacebookAccount.find_or_create_by_user_id(current_user.id)
+    	fb_account.auth_token = token
+    	fb_account.auth_secret = 1
+    	graph =  Koala::Facebook::API.new(token)
+    	user = graph.get_object("me")
+    	fb_id = user["id"]
+    	fb_account.facebook_id = fb_id
+    	if fb_account.save
+      	fb_account.add_to_log
+      	flash[:notice] = "Facebook account connected. $green"
+      	redirect_to :controller => "users", :action => "connect_social_accounts"
+    	else
+      	flash[:notice] = "Facebook account was not added $red" + user.to_s
+      	redirect_to :controller => "users", :action => "connect_social_accounts"
+    	end
+    rescue
+    	flash[:notice] = "Error occured contacting facebook $red" + user.to_s
       redirect_to :controller => "users", :action => "connect_social_accounts"
-    else
-      flash[:notice] = "Facebook account was not added red" + user.to_s
-      redirect_to :controller => "users", :action => "connect_social_accounts"
-    end
+  	end
   end
 end
 
