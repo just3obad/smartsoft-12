@@ -1,12 +1,14 @@
 class UserSessionsController < ApplicationController
 
 	before_filter :user_authenticated?, :only => [:destroy]
-
-	# This method is used to check if the user entered a valid
-	# email and password, if the UserSession was successfully
-	# created it replies with the user's perishable_token,
-	# otherwise it replies with the errors that occured.
-	# Author: Kiro
+=begin
+	Description: This method is used to check if the user entered
+  a valid email and password, if the UserSession was successfully
+	created it replies with the user's perishable_token,
+	otherwise it replies with the errors that occured.
+  <MOBILE SIDE> This is left in case we change our mind again.
+	Author: Kiro
+=end	
 	def requestToken
   	@user_session = UserSession.new(params[:user_session])
 		respond_to do |format|
@@ -21,16 +23,26 @@ class UserSessionsController < ApplicationController
 		end
 	end
 
-	# Author: Kiro
-	# renders the login screen
+=begin
+	Description: This method creates an empty user_session record and renders
+	the Login template
+	Author: Kiro
+=end
 	def new
   		@user_session = UserSession.new
   		render :layout =>"mobile_template"
 	end
 
-	# Author: Kiro
-	# creates a user session for the user
-	# redirects the user to his main feed
+=begin
+	Description: This method is responsible to login the user by
+	creating a user_session for him.
+	First it created the user session for the user then it
+	checks if this user is deactivated, if hes deactivated
+	a flash will appear telling him that and it deletes the
+	session created, if he is not deactivated an he entered
+	a valid login he will be redirected to his main feed
+	Author: Kiro	
+=end
 	def create
  		@user_session = UserSession.new(params[:user_session])
   		if @user_session.save
@@ -50,13 +62,12 @@ class UserSessionsController < ApplicationController
  	 	end
 	end
 
-
-
-
-
-	# This method is used to logout the currently logged in
-	# user by destroying his UserSession
-	# Author: Kiro
+=begin
+	Description: This method is used to logout the user
+	by destroying the current user session, then he
+	is directed to the login screen
+	Author: Kiro
+=end
 	def destroy
   	@user_session = UserSession.find
   	@user_session.destroy
@@ -64,9 +75,13 @@ class UserSessionsController < ApplicationController
 		redirect_to new_user_session_path
 	end
 
-	# This method is used to login the user by creating
-	# a UserSession using his perishable_token
-	# Author: Kiro
+=begin
+	Description: This method is used to login the user using the
+	token that was sent to him from the requestToken method
+	by creating a user session using this token.
+	Author: Kiro
+  <MOBILE SIDE> This is left in case we change our mind again.
+=end
 	def login_with_token
 		user = User.find_by_perishable_token(params[:token])
  		UserSession.create(user)
