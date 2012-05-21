@@ -1,9 +1,9 @@
+<!-- Auther: khaled.elbhaey -->
 <div "id=submit" align="center">
-		<form action="/mob/stories/recommend_success_mobile_show/<%= @storyid%>", id="recommendation"><!-- form which the user fill input in -->
+	<form action="/mob/stories/recommend_success_mobile_show/<%= @storyid%>", id="recommendation"><!-- form which the user fill input in -->
 		<%if @flistemail.empty?%>
-			 <p style="color:darkblue">
-					sorry, you don't have any friends you can find more friend through find friend button 
-			</p>
+			 <br>
+			 <br> 
 			<%else%>
 				choose friend email
 				<br>
@@ -24,14 +24,4 @@
 		<br>  
 		<input type="submit" name="commit" value="send" style= "width:100px" />
 	</form>	
-	<table id="options">
-		<tr>
-			<td>
-				<%= link_to 'back',{:controller => 'stories', :action => 'get', :id => @storyid},  class: "btn btn-small" %> 
-			</td>
-			<td>
-				<%= link_to 'find friend',{:controller => 'friendships', :action => 'search'},  class: "btn btn-small" %>  
-			</td>
-		</tr>
-	</table>
 </div>
