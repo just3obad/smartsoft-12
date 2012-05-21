@@ -277,6 +277,7 @@ require 'open-uri'
 
 	doc = Nokogiri::HTML(sdescription)
 	doc = doc.xpath("//text()").to_s
+	
 	return doc
 
  end
@@ -294,7 +295,19 @@ require 'open-uri'
 	frag = Nokogiri::HTML.fragment(sdescription)
 	first_img_src = frag.at_css('img')['src']
 	#first_p_text  = frag.at_css('p').text
+ 				url_end = ".com" 
+ 				if first_img_src.length > 1
+				  allstart = first_img_src.index(url_end)
+				  media = first_img_src[ allstart.to_i+4 , first_img_src.length ] 
+			        end
+			 dot = "." 
+			 misho = media.index(dot) 
+			
+		 if !misho.nil? 
 	 return first_img_src
+	 	else 
+	 	 return ""
+	 	  end
 	
  end
  
