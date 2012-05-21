@@ -13,7 +13,7 @@ Arguments : Admin.email
 def create  
  @admin = Admin.find_by_email(params[:email])  
  if @admin  
-#  @admin.deliver_password_reset_instructions!
+  @admin.deliver_password_reset_instructions!
   Emailer.password_reset_instructions(@admin).deliver
   flash[:notice] = "Instructions to reset your password have been emailed to you. " +  
   "Please check your email."  
@@ -58,7 +58,7 @@ def load_admin_using_perishable_token
   "If you are having issues try copying and pasting the URL " +  
   "from your email into your browser or restarting the " +  
   "reset password process."  
-  redirect_to('/admin/login')  
+  #redirect_to('/admin/login')  
  end  
 end
   

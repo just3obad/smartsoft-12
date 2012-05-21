@@ -192,7 +192,7 @@ DEPENDENCIES
   flickraw
   jquery-rails
   koala
-  matenia-tumblr-api
+  matenia-tumblr-api (~> 0.1.6)
   minitest
   nokogiri
   oauth

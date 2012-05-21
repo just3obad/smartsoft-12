@@ -6,6 +6,7 @@ class AdminSettingsController < ApplicationController
 	#author: Bassem
   	def index
   		@admin = Admin.new
+                @admin2 = current_admin
   	end
 
 	def show
@@ -41,17 +42,18 @@ class AdminSettingsController < ApplicationController
 	  def create
 	    @admin = Admin.new(params[:admin])
 	    if @admin.save
-	      flash[:notice] = "Registration successful."
-	      redirect_to('/admins/index')
+	      flash[:notice] = "Addition successful."
+	      redirect_to('/admin_settings')
 	    else
-	      render :action => 'index'
+	      flash[:error] = "Enter Valid Arguments."
+	      redirect_to('/admin_settings')
 	    end
 	  end
 
 	  #Author : BASSEM
 	  def statistics_time_span
 	  	@response = Admin_Settings.set_statistics_span params[:days]
-	  	if ( @response == 1)
+	  	if ( @response == 1 )
 	  		flash[:success] = "Time span set successfully."
 	 	 else
 	 	 	flash[:error] = "Please enter a valid number."
@@ -61,4 +63,23 @@ class AdminSettingsController < ApplicationController
 
 	  	redirect_to :action => "index"
 	  end
+  def edit
+    
+  end
+=begin
+ this method for edit current admin 
+ if there is an attribute invalid user will be notified
+ Author Mouaz
+ param(admin parameters)
+=end 
+  def update
+    @admin = current_admin
+    if @admin.update_attributes(params[:admin])
+      flash[:notice] = "Successfully updated profile."
+        redirect_to('/admin_settings')
+    else
+      flash[:error] = "Enter Valid Arguments."
+      redirect_to('/admin_settings')
+    end
+  end
 end

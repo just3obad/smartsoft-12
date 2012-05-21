@@ -24,7 +24,35 @@
             <%else%>
               <div class="tab-pane fade in active" id="profile_settings">
             <%end%>
-             This is tab is empty temporarily
+             <%= form_for @admin2 do |f| %>
+  <% @admin2.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+   <% end %>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+<div>
+
+  <p><%= f.submit "Update" %></p>
+</div>
+<% end %>
             </div>
             <% if $story_settings %>
               <div class="tab-pane fade in active" id="story_settings">
