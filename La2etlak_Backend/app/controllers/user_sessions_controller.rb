@@ -45,20 +45,20 @@ class UserSessionsController < ApplicationController
 =end
 	def create
  		@user_session = UserSession.new(params[:user_session])
-  		if @user_session.save
-				@user = current_user
-				if @user.deactivated
-					@user_session.destroy
-					flash[:notice] = "Sorry, your account has been deactivated red"
-   				redirect_to :action => 'new', :layout =>"mobile_template"
-				else
-					UserLogIn.create!(:user_id => @user.id)
-   				flash[:notice] = "Successfully logged in green"
-    			redirect_to "/mob/main_feed"
-				end
-  		else
-  		  flash[:notice] = @user_session.errors.full_messages[0].to_s+"red"
+  	if @user_session.save
+			@user = current_user
+			if @user.deactivated
+				@user_session.destroy
+				flash[:notice] = "Sorry, your account has been deactivated red"
    			redirect_to :action => 'new', :layout =>"mobile_template"
+			else
+				UserLogIn.create!(:user_id => @user.id)
+   			flash[:notice] = "Successfully logged in green"
+    		redirect_to "/mob/main_feed"
+			end
+  	else
+  		 flash[:notice] = @user_session.errors.full_messages[0].to_s+"red"
+   		redirect_to :action => 'new', :layout =>"mobile_template"
  	 	end
 	end
 
@@ -86,8 +86,6 @@ class UserSessionsController < ApplicationController
 		user = User.find_by_perishable_token(params[:token])
  		UserSession.create(user)
 	end
-
-
 
 end
 
