@@ -36,13 +36,13 @@
     color
     Author: Menisy -->
 <% if fl = flash[:notice] %>
-  <% color = fl["red"] || fl["green"] || fl["yellow"]%>
+  <% color = fl["$red"] || fl["$green"] || fl["$yellow"] || fl["$blue"]%>
   <% if color %>
     <% fl[color] = "" %>
   <% else %>
-    <% color = "yellow" %>
+    <% color = "$yellow" %>
   <% end %>
-  <div class="flash-<%= color %> well" id="notification">
+  <div class="flash-<%= color[1,10] %> well" id="notification"> <!-- assigning css color class triming tailing space -->
   <%= fl %>
   </div>
 <% end %>
