@@ -817,6 +817,8 @@ Author:Kareem
       @message = "#{@username} unblocked story with title: #{@storytitle}" 
       Log.create!(loggingtype: 2,user_id_1: self.id,user_id_2: nil, admin_id: nil,
       story_id: this_story.id, interest_id: nil, message: @message)
+   else
+      @text = "Story already unblocked"
    end
    return @text #return the message in variable text
   end
