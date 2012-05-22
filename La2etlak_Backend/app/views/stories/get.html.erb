@@ -257,10 +257,10 @@
   
     <%= f.hidden_field :user_id, :value => @user.id %>
     <%= f.hidden_field :story_id, :value => @story.id %>
-    <div class="actions" style="padding:20px;float:right;">
-        <%= f.submit "comment" ,:class => "btn btn-large" %>
+
+        <%= f.submit "comment" ,:class => "btn btn-large" ,:style => "margin-left:10px;" %>
         <% end %>
-    </div>
+    
 </div>
 
  <!-- adds related stories  -->
