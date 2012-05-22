@@ -13,7 +13,11 @@ class FriendshipsController < ApplicationController
     @friends = @user.friends
     @pending_invited_by = @user.pending_invited_by
     @pending_invited = @user.pending_invited
-    
+    @friends = @friends + @pending_invited
+    @friends.map{|a| if a.name.nil? then a.name = a.email.split('@')[0] end}
+    @friends.sort! {|a,b| a.email <=> b.email}
+    @friends = @friends.paginate(:per_page => 5, :page=> params[:page])
+    flash[:notice] = 'You have no approved friendships $red'
     render layout: 'mobile_template'
   end
 
@@ -125,7 +129,7 @@ class FriendshipsController < ApplicationController
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1} blocked #{name_2}"
     l.save
-    flash[:notice] = "#{name_2} was blocked successfully green"
+    flash[:notice] = "#{name_2} was blocked successfully $green"
     redirect_to action: 'index'
   end
 
@@ -142,6 +146,8 @@ class FriendshipsController < ApplicationController
     @query = params[:query]
     @resulted_users = Admin.search_user(@query)
     @resulted_users.delete @user
+    @resulted_users.sort! {|a,b| a.email <=> b.email}
+    @resulted_users = @resulted_users.paginate(:per_page => 5, :page=> params[:page])
     render layout: 'mobile_template'
   end 
 
@@ -155,7 +161,7 @@ class FriendshipsController < ApplicationController
     @user = current_user
     @inviters = @user.pending_invited_by
     if @inviters.empty?
-      flash[:notice] = "You have no pending requests red"   
+      flash[:notice] = "You have no pending requests $red"   
     end 
     render layout: 'mobile_template'
   end 

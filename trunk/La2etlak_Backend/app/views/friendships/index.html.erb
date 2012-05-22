@@ -1,31 +1,46 @@
 <html> 
-	<% if @friends.empty? %>
-	<header> You have no friends, try searching for friends </header>
-	<% else %>
-	<header> Friends are <%= @query %> </header>
-	<ul>
-		<% @friends.each do |friend| %>
-			<li> <%= if friend.name.nil?  then friend.email.split('@').first else friend.name end %> </li>
-			
-			<%=	link_to 'remove',{:controller => 'friendships',
-					:action => 'remove', 
-					:friend_id => friend.id}, 
-					class: "btn btn-danger" 	
-			%>
-			<%= link_to 'view feed', {:controller => 'users', :action => 'friends_feed', :id => User.find_by_email(friend.email).id}, 
-				class: "btn"%>
+	<% unless @friends.empty? %>
+		<ul>
+			<% @friends.each do |friend| %>
+				<li> <%= if friend.name.nil?  then friend.email.split('@').first else friend.name + " (#{friend.email})" end %> </li>
+				<% if @user.invited friend %>
+					<%=	link_to 'Remove request',{:controller => 'friendships',
+												:action => 'remove', 
+												:friend_id => friend.id}, 
+												class: "btn btn-warning" 	
+					%>					
+				<% else %>
+					<%=	link_to 'Remove friendship',{:controller => 'friendships',
+												:action => 'remove', 
+												:friend_id => friend.id}, 
+												class: "btn btn-danger" 	
+					%>
+					<%= link_to 'View feed', {:controller => 'users',
+											  :action => 'friends_feed',
+											  :id => User.find_by_email(friend.email).id}, 
+												class: "btn"%>
+				<% end %>
 
 
-		<% end %>	
-	</ul>
+			<% end %>	
+		</ul>
 	<% end %>
-	<div> </div>
-	<%= form_tag("search", :method => "get") do %>
-	  <%= label_tag(:q, "Search for friends using name or email:") %>
-	  <%= text_field_tag(:query, "", :style => "height:40px;") %>
-	  <%= submit_tag("Search", :style => "height:40px") %>
-	<% end %>
+	<div style="padding-top:4%"> 
+		<%= form_tag("search", :method => "get") do %>
+		  <%= label_tag(:q, "Search for friends using name or email:") %>
+		  <%= text_field_tag(:query, "", :style => "height:40px;") %>
+		  <div>
+		  	<%= submit_tag("Search", :class => "btn", :style => "height:40px") %>
+		  <div>	
+		<% end %>
+	</div>
+	<div style="padding-top:1%">
+		<%= link_to 'Manage blocked friends', {:controller => 'users', :action => 'manage_blocked_friends'}, 
+		class: "btn"%>
+	</div>
 
-	<%= link_to 'Manage blocked friends', {:controller => 'users', :action => 'manage_blocked_friends'}, 
-	class: "btn"%>
+	<div class="apple_pagination">
+		<%= will_paginate @friends, :container => false %>
+	</div>
+
 </html>
