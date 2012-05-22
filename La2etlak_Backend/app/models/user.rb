@@ -685,27 +685,26 @@ Author:Kareem
   end
 
 =begin
-  This method blocks the interest belonging to the story by inserting a row in
+  This method blocks the interest by inserting a row in
   BlockInterest table.
   It also removes the row belonging to the interest and user from UserAddInterest
   table. 
   If the interest is already blocked, it responds with a message that the interest
   is already blocked.
-  Input: story to be blocked
+  Input: interest to be blocked
   Output: message to indicate success/failure of block
   Author: Rana
 =end   
-  def block_interest1(this_story)
+  def block_interest_from_toggle1(this_interest)
    this_user = self
-   story_interest = this_story.interest
    #checks if the interest belongs to the user
-   if (this_user.added_interests.include? story_interest)
-      this_user.added_interests.delete story_interest
+   if (this_user.added_interests.include? this_interest)
+      this_user.added_interests.delete this_interest
    end
    #checks if the interest is not already blocked.
-   if !(this_user.blocked_interests.include? story_interest)
-      this_user.blocked_interests << story_interest
-      @text = "Interest blocked successfully"
+   if !(this_user.blocked_interests.include? this_interest)
+      this_user.blocked_interests << this_interest
+      @text = "Interest blocked"
    #for log file in case of success of block
       if self.name.nil?
          @username = self.email.split('@')[0]
@@ -737,7 +736,7 @@ Author:Kareem
    #if the story is not blocked, insert it in the block_story table
    if !(this_user.blocked_stories.include? this_story)
       this_user.blocked_stories << this_story
-      @text = "Story blocked successfully"
+      @text = "Story blocked"
    #for log file in case of success of block
       if self.name.nil?
          @username = self.email.split('@')[0]
@@ -766,7 +765,7 @@ Author:Kareem
    # if it is blocked, delete its record
    if (this_user.blocked_stories.include? this_story)
       this_user.blocked_stories.delete this_story
-      @text = "Story unblocked successfully."
+      @text = "Story unblocked"
       #for log file in case of success of unblock
       if self.name.nil?
         @username = self.email.split('@')[0]
