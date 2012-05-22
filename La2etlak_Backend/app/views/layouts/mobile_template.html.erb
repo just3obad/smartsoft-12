@@ -46,7 +46,7 @@
     <% color = "$yellow" %>
   <% end %>
   <div class="flash-<%= color[1,10] %> well" id="notification"> <!-- assigning css color class triming tailing $ -->
-  <%= fl %>
+  <%= raw fl %>
   <% flash[key] = "" %>
   </div>
 <% end %>
