@@ -156,7 +156,7 @@ Author: Kareem
 		stories = stories.uniq
 		# Author : Mina Adel
 		@stories=stories.paginate(:per_page => 10, :page=> params[:page])
-		render :layout => "mobile_template", :template => "users/feed-alt"
+		render :layout => "mobile_template"
  	#
 	end
 ########################
@@ -336,9 +336,9 @@ end
     @story = Story.get_story(@story_id)
     @text = @user.block_interest1(@story)
     if (@text == "Interest blocked")
-      flash[:notice] = "#{@text} $green"
+      flash[:block_interest_s] = "#{@text} $green"
     else 
-      flash[:notice] = "#{@text} $red"
+      flash[:block_interest_f] = "#{@text} $red"
     end
     redirect_to action: "feed"
   end
@@ -347,14 +347,14 @@ end
   Method that calls the method in model to block interest and redirects to toggle 
   interests page.
   Input: id of the story for which the interest should be blocked
-  Output: flash of success/failure and redirect to main feed
+  Output: flash of success/failure and redirect to toggle
   Author: Rana
 =end
   def block_interest_from_toggle
     @user = current_user
-    @story_id = params[:id]
-    @story = Story.get_story(@story_id)
-    @text = @user.block_interest1(@story)
+    @interest_id = params[:id]
+    @interest = Interest.find_by_id(@interest_id)
+    @text = @user.block_interest_from_toggle1(@interest)
     if (@text == "Interest blocked")
       flash[:block_interest_toggle_s] = "#{@text} $green"
     else 
