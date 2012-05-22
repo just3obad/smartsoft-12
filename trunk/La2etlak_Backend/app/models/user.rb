@@ -685,6 +685,45 @@ Author:Kareem
   end
 
 =begin
+  This method blocks the interest belonging to the story by inserting a row in
+  BlockInterest table.
+  It also removes the row belonging to the interest and user from UserAddInterest
+  table. 
+  If the interest is already blocked, it responds with a message that the interest
+  is already blocked.
+  Input: story for which the interest wil be blocked
+  Output: message to indicate success/failure of block
+  Author: Rana
+=end   
+  def block_interest1(this_story)
+   this_user = self
+   this_interest = this_story.interest
+   #checks if the interest belongs to the user
+   if (this_user.added_interests.include? this_interest)
+      this_user.added_interests.delete this_interest
+   end
+   #checks if the interest is not already blocked.
+   if !(this_user.blocked_interests.include? this_interest)
+      this_user.blocked_interests << this_interest
+      @text = "Interest blocked"
+   #for log file in case of success of block
+      if self.name.nil?
+         @username = self.email.split('@')[0]
+      else
+         @username = self.name
+      end
+      @interesttitle =this_interest.name
+      @message = "#{@username} blocked interest with name: #{@interesttitle}"
+      Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil,
+      story_id: nil, interest_id: this_interest.id, message: @message)
+   else 
+      @text = "Interest already blocked"    
+   end
+   
+   return @text #return the message in variable text
+  end
+
+=begin
   This method blocks the interest by inserting a row in
   BlockInterest table.
   It also removes the row belonging to the interest and user from UserAddInterest
