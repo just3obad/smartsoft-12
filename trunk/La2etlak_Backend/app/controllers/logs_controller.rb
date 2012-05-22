@@ -55,18 +55,18 @@ class LogsController < ApplicationController
         return
       end
     if(params[:from]==''||params[:to]=='')
-       flash[:error] = "Missing an input !"
+       flash[:error] = "Missing an input ! $red"
       redirect_to logs_path
       return
     end
     if(!params[:from].match('(19|20)[0-9]{2}[- \/.](0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])'))
-      flash[:error] = "Wrong Format !"
+      flash[:error] = "Wrong Format ! $red"
        redirect_to logs_path
        return
      end
       begin
      if( Date.parse(params[:from])> Date.parse(params[:to]))
-       flash[:error] = "The limits of  your dates are wrong !"
+       flash[:error] = "The limits of  your dates are wrong ! $red"
        redirect_to logs_path
        return
      end
@@ -77,7 +77,7 @@ class LogsController < ApplicationController
         $datefilter = true
         render :template => 'logs/Logs'
      rescue 
-        flash[:error] = "Invalid input !"
+        flash[:error] = "Invalid input ! $red"
         redirect_to(:action => 'index')
      end  
   end
