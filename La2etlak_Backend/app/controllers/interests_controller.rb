@@ -77,28 +77,40 @@ all databese changes are done in the "model_update" method in the Model that tak
 
   def update
     @interests = Interest.get_all_interests
+    @names = Interest.get_top_interests_names 
+    @names=[]
     #here, we call the method in model
     @interest= Interest.model_update(params[:id],params[:interest])
     @deleted = Interest.is_deleted(params[:id])
+    @myinterest= Interest.get_interest(params[:id])
 #we check on the interest deleted or not because an admin is not allowed to adjust any changes/edit an interest unless it's ACTIVE
     if @interest && (@deleted == false || @deleted.nil?)
-      flash[:success] = "Interest updated successfully "
-      @myinterest= Interest.get_interest(params[:id]) 
+      flash[:success] = " Changes saved successfully "
+ 
       redirect_to @myinterest
+
     else
       $errors = true
 #global variable $errors used to handle the flash message in "Show.html.erb"
       if (@deleted == false || @deleted.nil?)  && (params[:interest][:name].blank?)
 # a flash appears when we enter an invalid info (balnk name)          
-        flash[:error] = "  Interest Update failed , Name can't be blank , PLease Try again !"
+        flash[:error] = "  Interest update failed: Name can't be blank "
       else
-        if (@deleted == false || @deleted.nil?)
-# a flash appears when we enter an invalid info (invalid content type of image)       
-          flash[:error] = " Interest Update failed , Photo content type is invalid , PLease Try again !"
+        if (@deleted == false || @deleted.nil?) && !(@names.include?(params[:interest][:name])) && 
+(params[:interest][:name] != @myinterest.name)
+ # a flash appears when we enter a name that was taken for another Interest before 
+          flash[:error] = " Interest already exists. Please try another name"
+
+
+        else
+         if (@deleted == false || @deleted.nil?) 
+  # a flash appears when we enter an invalid info (invalid content type of image) 
+          flash[:error] = " Interest Update failed, photo content type is invalid."
         else
 #a flash appears banning the admin from updating the interest as long as it's blocked
-          flash[:error] = " This interest is now blocked , Please Restore it if you want to Update"
+          flash[:error] = " This interest is now blocked, please restore it if you want to update"
         end
+      end
       end
       @myinterest= Interest.get_interest(params[:id])
       redirect_to @myinterest
@@ -122,10 +134,10 @@ this method calls the "model_toggle" method that takes as parameters the Interes
     if !@deleted 
       $savedinterest = true
 # if the interest was deleted and the admin restored it successfully a flash appears endicating that
-      flash[:success] = " Interest Restored Successfuly "
+      flash[:success] = " Interest restored successfully "
     else
 # if the interest wasn't deleted and the admin blocked it successfully a flash appears endicating that
-      flash[:success] = " Interest Blocked Successfuly "
+      flash[:error] = " You have just blocked this interest "
     end
 # finally , we redirect to the main interest's page after adjusting the changes
     redirect_to @interest
