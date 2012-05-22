@@ -11,13 +11,13 @@
 <!-- checking if selected story was not removes from database -->
 <% if @story.nil? %>
  <div align="center" style="padding-down:10px;">
- <%= " the selected story was removed ! "%> </br></br>
- 			   <%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
-	   </div></br> 
+	<%= " the selected story was removed ! "%> </br></br>
+	<%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
+  </div></br> 
 	   <%else%>
 <!-- adding story title -->
- <div align="center">
-        <h3> <%= @story.title %> </h3>
+     <div align="center">
+         <h3><%= @story.title %> </h3>
       </div>
 
 <!--checking for media url if exsist adds the image and if exsists add like and dislike button after images else adds them after content-->
@@ -25,7 +25,7 @@
   <% if !@story.media_link.nil? && @story.media_link.length > 3%>
     <div align="center">
        <img src="<%=@story.media_link%>" width="220" align="center">
-       </div></br>
+    </div></br>
   
 	 <% m = 2 %>
 	
@@ -101,47 +101,49 @@
   <%end%> 
  <%end%>
  	 </table>
- 	 </div>
+     	     </div>
 <!-- adds content of story  -->
  <% if !@story.mobile_content.nil?  && @story.mobile_content.length > 0 %>
  <div class="story-comment-box-mobile well" style="padding-left:10px;padding-up:15px;">
- <%= @story.mobile_content %>
+	 <%= @story.mobile_content %>
  </div>
  <%end%>
         <div style="padding-left:10px;">
-      <% if m == 1 %>
- <table>
+     	 <% if m == 1 %>
+	   <table>
  
- <% if @action1 == [] && @action2 == [] %>
- <%= link_to image_tag('likecopy.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%>
- <% if @likes.length > 0 %>
-  <% @a = "#{@likes.length}" %>
- <%=link_to("#{@likes.length} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
- <%end%></br>
+		 <% if @action1 == [] && @action2 == [] %>
+		 <%= link_to image_tag('likecopy.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%>
+		 <% if @likes.length > 0 %>
+		  <% @a = "#{@likes.length}" %>
+		 <%=link_to("#{@likes.length} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+		 <%end%></br>
 
 
 <!-- checks for number of likes and dislikes per story -->
  
- <%= link_to image_tag('dislikekh.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
-  <% if @dislikes.length > 0 %>
-  <% @a = "#{@dislikes.length} user dislike this." %>
-  <%=link_to(@a, {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
-  <%end%>
-  <%end%></br>
-  
+		 <%= link_to image_tag('dislikekh.png' , :style =>"width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
+		  <% if @dislikes.length > 0 %>
+		  <% @a = "#{@dislikes.length} user dislike this." %>
+		  <%=link_to(@a, {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
+		  <%end%>
+		  <%end%></br>
+		  
 <!-- if user liked this story before remove like button and only adds dislike button -->
 <!-- checks for number of likes and dislikes per story -->
   <% if @action1 != [] && @action2 == [] %>
   	<% if @likes.length > 1 %>
-  	<%= link_to image_tag('un-like.png' , :style =>"padding-left:10px;width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> <%="you and"%> <%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+	  	<%= link_to image_tag('un-like.png' , :style =>"padding-left:10px;width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> <%="you and"%> <%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+  	
   	 <%else%>
-<%= link_to image_tag('un-like.png' , :style =>"padding-left:10px;width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
+		<%= link_to image_tag('un-like.png' , :style =>"padding-left:10px;width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
   	 <%end%></br>
+  	
   	 <%= link_to image_tag('dislikekh.png' , :style =>"padding-left:10px;width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
 	  <% if @dislikes.length > 0 %>
-  <% @a = "#{@dislikes.length} user dislike this." %>
-  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
-  <%end%>
+		  <% @a = "#{@dislikes.length} user dislike this." %>
+		  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
+  	<%end%>
  	
   <%end%>
     
@@ -150,19 +152,20 @@
   <% if @action2 != []  && @action1 == [] %>
 	
 
-<%= link_to image_tag('likecopy.png' , :style =>"padding-left:5px;width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1}%>
-	 <% if @likes.length > 0 %>
- 		<% @a = "#{@likes.length} user like this." %>
- 		<%=link_to(@a , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
- 	<%end%></br>
+	<%= link_to image_tag('likecopy.png' , :style =>"padding-left:5px;width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1}%>
+	 	<% if @likes.length > 0 %>
+	 		<% @a = "#{@likes.length} user like this." %>
+	 		<%=link_to(@a , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
+ 		<%end%></br>
 
-<%= link_to image_tag('un-dislike.png' , :style =>"padding-left:10px;width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1 }%> 
+   	   <%= link_to image_tag('un-dislike.png' , :style =>"padding-left:10px;width:25px;height:25px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1 }%> 
 
 	<% if @dislikes.length > 1 %>
-	<% @a = "#{@dislikes.length-1} user dislike this." %>
-  	 <%= "you and"%>
-  	  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
+		<% @a = "#{@dislikes.length-1} user dislike this." %>
+  	 	<%= "you and"%>
+  	  	<%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   	 <%else%>
+  	      <%= link_to image_tag('un-dislike.png' , :style =>"padding-left:5px;width:25px;height:25px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
   	 <%end%>
 
 
@@ -171,7 +174,7 @@
 
  	 </table>
       <%end%>
-      </div>
+       </div>
 	
 	<% if @story.category == "RSS" %>
 
@@ -271,7 +274,7 @@
 		<%for story in @filtered_related_stories %>
 		<div style="padding-up:7px;"%>
 		   <%=link_to(story.title , {:controller => 'stories', :action => 'get', :id => (story.id)})%>
-		   </div><br>
+		</div><br>
 		   <%end%>        	
 		      <%=link_to('More...', {:controller => 'users', :action => 'feed', :interest => story.interest.name})%>
         </div><
