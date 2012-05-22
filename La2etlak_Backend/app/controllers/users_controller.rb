@@ -316,7 +316,7 @@ end
     @story = Story.get_story(@story_id)
     @text = @user.block_story1(@story)
     if (@text == "Story blocked")
-      flash[:story_blocked_success] = "#{@text},<a href=\"/mob/unblock_story/#{@story_id}\"><h7 style=\"color:#FFFFFF;\">undo?</h7> </a> $green"
+      flash[:story_blocked_success] = "#{@text}. You can unblock it through settings page $green"
     else 
       flash[:story_blocked_fail] = "#{@text} $red"
     end
@@ -401,8 +401,9 @@ end
   def manage_blocked_stories
       @user = current_user
       @blocked_stories = @user.get_blocked_stories
-      if(@blocked_stories == [])
-        flash[:notice] = "You do not have any blocked stories $blue"
+      if(@blocked_stories.empty?)
+        flash[:no_blocked_stories] = "You do not have any blocked stories. $blue"
+        redirect_to action: "settings"
       else
         render layout: "mobile_template"
       end
@@ -419,8 +420,12 @@ end
       @user = current_user
       @story_id = params[:id]
       @story = Story.find_by_id(@story_id)
-      @text = @user.unblock_story1(@story) 
-      flash[:notice] = "#{@text} $green"
+      @text = @user.unblock_story1(@story)
+      if(@text = "Story unblocked") 
+         flash[:story_unblocked_s] = "#{@text} $green"
+      else 
+         flash[:story_unblocked_f] = "#{@text} $red"
+      end
       if(@user.get_blocked_stories.empty?)
          redirect_to action: "feed"
       else 
