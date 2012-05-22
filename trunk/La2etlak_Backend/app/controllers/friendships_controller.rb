@@ -46,7 +46,7 @@ class FriendshipsController < ApplicationController
       l.message = "#{name_1} requested friendship of #{name_2}"
       l.save
     else 
-      flash[:notice] = 'Frindship request was not sent red'
+      flash[:notice] = 'Frindship request was not sent $red'
     end  
 
     redirect_to action: "index"
@@ -64,8 +64,6 @@ class FriendshipsController < ApplicationController
     @friendship_approved = @user.approve(@friend)
     @friends = @user.friends
     @pending_invited_by = @user.pending_invited_by
-    #flash.now[:notice] = "Friendship approved #{@friend.email} a t approuve"
-    #render layout: 'mobile_template', text: "Friendship approved  #{@friend.email}"
     l = Log.new
     l.user_id_1 = @user.id
     l.user_id_2 = @friend.id
@@ -73,7 +71,7 @@ class FriendshipsController < ApplicationController
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1} accepted friendship of #{name_2}"
     l.save
-
+    flash[:notice] = "You and #{name_2} are now friends $green"
     redirect_to action: 'pending'
   end
 
@@ -90,9 +88,9 @@ class FriendshipsController < ApplicationController
     if @friendship
       @friendship.delete
       @removed = true
-      flash[:notice] = "Friendship removed #{@friend.email} green"
+      flash[:notice] = "Friendship removed #{@friend.email} $green"
     else 
-      flash[:notice] = "Friendship was not #{@friend.email} red"
+      flash[:notice] = "Friendship was not #{@friend.email} $red"
     end
     l = Log.new
     l.user_id_1 = @user.id
