@@ -272,12 +272,12 @@
         <div class="story-comment-box-mobile well" style="padding-left:10px;">
 		<%= "More #{@story.interest.name} related stories: " %></br>
 		<%for story in @filtered_related_stories %>
-		<div style="padding-up:7px;"%>
+		<div style="padding-up:7px;" %>
 		   <%=link_to(story.title , {:controller => 'stories', :action => 'get', :id => (story.id)})%>
 		</div><br>
 		   <%end%>        	
 		      <%=link_to('More...', {:controller => 'users', :action => 'feed', :interest => story.interest.name})%>
-        </div><
+        </div>
         <%else%>
           <% if @block == true %>
             <%= "All #{@story.interest.name} related stories are blocked to unblock " %><%=link_to('Click here!', {:controller => 'users', :action => 'manage_blocked_stories' })%>
@@ -290,7 +290,7 @@
    </br><%=link_to('Block story' , {:controller => 'users', :action => 'block_story', :id => (@story.id)})%> &nbsp;
    	
 <!-- block interest link -->
-   	<%=link_to('Block interest' , { :controller => 'users', :action => 'block_interest', :id => (@story.id)})%></br>
+   	<%=link_to('Block interest' , { :controller => 'users', :action => 'block_interest', :id => (@story.interest.id)})%></br>
  
  
 
