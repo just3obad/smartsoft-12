@@ -2,25 +2,15 @@
     <h3> Choose a social network connect to</h3>
 
       <div class="actions" style="margin:5%; clear:both">
-      	<table>
-      		<tr>
-      			<td>
-              <%= link_to image_tag('facebook.png', :size => "50x50") + "Facebook", 
-             url_for({:controller => 'facebook_account', :action => 'authenticate_facebook_init'}),
-               :class => 'quick', 
-               :remote => true%>
-
-               <% unless @user.facebook_account.nil? %>
-                <div id="facebook_warning" class="warning-component-box-mobile well" style="width:35%; float:right;">
-                  You are connected to facebook
-                </div>
-              <% end %>
-      			</td>
-      		</tr>
-      	</table>
         <div>
-          <% unless @user.facebook_account.nil? %>
-          <%= link_to "FacebookFeed", {:controller => 'users', :action => 'facebook_feed'}, class: "btn"%></br></br>        
+          <%= link_to image_tag('facebook.png', :size => "50x50") + "Facebook", 
+         url_for({:controller => 'facebook_account', :action => 'authenticate_facebook_init'}),
+           :class => 'quick', 
+           :remote => true%>
+          <% if @user.facebook_account %>
+          <br></br>
+          <%= link_to "Feed", {:controller => 'users', :action => 'facebook_feed'}, class: "btn"%>
+          <%= link_to "Disconnect", {:controller => 'facebook_accounts', :action => 'delete_account'}, class: "btn btn-danger"%>
           <% end %>
         </div>
       </div>
@@ -30,66 +20,46 @@
           
           Author: Yahia -->
       <div class="actions" style="margin:5%; clear:both">
-        <table>
-          <tr>
-            <td>
-            <%= link_to image_tag('twitter.png', :size => "50x50") + "Twitter", 
-            url_for({:controller => 'twitter_accounts', :action => 'generate_request_token'}),
-            :class => 'quick', 
-            :remote => true%>
-
-            <% unless @user.twitter_account.nil? %>
-            <div id="twitter_warning" class="warning-component-box-mobile well" style="width:35%; float:right;">
-              You are connected to twitter
-            </div>
-            <% end %>
-            </td>
-          </tr>
-        </table>
         <div>
-          <% unless @user.twitter_account.nil? %>
-          <%= link_to "Twitter Feed", {:controller => 'users', :action => 'twitter_feed'}, class: "btn"%></br></br>       
+          <%= link_to image_tag('twitter.png', :size => "50x50") + "Twitter", 
+          url_for({:controller => 'twitter_accounts', :action => 'generate_request_token'}),
+          :class => 'quick', 
+          :remote => true%>
+          <% if @user.twitter_account %>
+          <br></br>
+          <%= link_to "Feed", {:controller => 'users', :action => 'twitter_feed'}, class: "btn"%>       
+          <%= link_to "Disconnect", {:controller => 'twitter_accounts', :action => 'delete_account'}, class: "btn btn-danger"%>
           <% end %>
         </div>
       </div>
 
 
       <div class="actions" style="margin:5%; clear:both">
-  			<table>
-  				<tr>
-  					<td>
-              <%= link_to image_tag('flickr.png', :size => "50x50") + "Flickr", 
-                url_for({:controller => 'flickr_accounts', :action => 'auth'}),
-                :class => 'quick', 
-                :remote => true%>
-
-              <% if @user.flickr_account %>
-                <div id="flickr_warning" class="warning-component-box-mobile well" style="width:35%; float:right;">
-                  You are connected to flickr
-                </div>
-              <% end %>
-  			    </td>
-  		    </tr>
-  	    </table>
+        <div>
+          <%= link_to image_tag('flickr.png', :size => "50x50") + "Flickr", 
+            url_for({:controller => 'flickr_accounts', :action => 'auth'}),
+            :class => 'quick', 
+            :remote => true%>
           <% if @user.flickr_account %>
-          <%= link_to "Flickr Feed", {:controller => 'users', :action => 'flickr_feed'}, class: "btn"%></br></br>       
+          <br></br>
+          <%= link_to "Feed", {:controller => 'users', :action => 'flickr_feed'}, class: "btn"%> 
+          <%= link_to "Disconnect", {:controller => 'flickr_accounts', :action => 'delete_account'}, class: "btn btn-danger"%>
           <% end %>
+        </div>
       </div>
 
       <div class="actions" style="margin:5%; clear:both">
-        <%= link_to image_tag('tumblr.png', :size => "50x50") + "Tumblr", 
-          url_for({:controller => 'tumblr_accounts', :action => 'login'}),
-          :class => 'quick', 
-          :remote => true%>
-			  <% if @user.tumblr_account %>
-              <div id="tumblr_warning" class="warning-component-box-mobile well" style="width:35%; float:right;">
-                You are connected to TUMBLR
-              </div>
-             <%= link_to "TumblrFeed", {:controller => 'users', :action => 'tumblr_feed'}, class: "btn"%></br></br>
-            <% end %>
+        <div>
+          <%= link_to image_tag('tumblr.png', :size => "50x50") + "Tumblr", 
+            url_for({:controller => 'tumblr_accounts', :action => 'login'}),
+            :class => 'quick', 
+            :remote => true%> 
+  			  <% if @user.tumblr_account %>
+            <br></br>
+              <%= link_to "Feed", {:controller => 'users', :action => 'tumblr_feed'}, class: "btn"%>
+              <%= link_to "Disconnect", {:controller => 'tumblr_accounts', :action => 'delete_account'}, class: "btn btn- danger"%>
+          <% end %>
+        </div>
       </div>
-      
-      <%= link_to_function image_tag('back-icon.png' , :style =>"width:40px;height:40px;"), "history.back()" %>
-
 
 </div>    

@@ -74,5 +74,20 @@ class TwitterAccountsController < ApplicationController
     end 
   end 
 
+=begin 
+  This method is resposible of deleting the social account of the current user
+  Input: Nothing
+  Output: Nothing
+  Author: Yahia
+=end 
+  def delete_account
+      @user = current_user
+      if @user.twitter_account.destroy
+        flash[:notice] = 'You are not connected to twitter anymore $green'
+      else 
+        flash[:notice] = 'Something went wrong. Please try again $red'
+      end 
+      redirect_to controller: 'users', action: 'connect_social_accounts'
+  end 
 
 end
