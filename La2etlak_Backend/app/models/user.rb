@@ -711,10 +711,10 @@ Author:Kareem
       else
          @username = self.name
       end
-      @interesttitle = story_interest.name
+      @interesttitle =this_interest.name
       @message = "#{@username} blocked interest with name: #{@interesttitle}"
       Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil,
-      story_id: nil, interest_id: story_interest.id, message: @message)
+      story_id: nil, interest_id: this_interest.id, message: @message)
    else 
       @text = "Interest already blocked"    
    end
