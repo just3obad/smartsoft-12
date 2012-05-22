@@ -19,18 +19,23 @@ class TumblrAccount < ActiveRecord::Base
 =end
   
   def get_feed
-    new_tumblr = Tumblr::User.new(self.email, self.password) #Authentication
-    blog = new_tumblr.tumblr["tumblelog"]["name"]   #Get blog name through hashes
-    Tumblr.blog = blog # set blog name
-    stories = Array.new # create stories array to be returned
-    posts = Tumblr::Post.all #Get user posts
-    posts.each do |post| #loop and convert to story type
-      s = TumblrAccount.convert_blog_to_story(post)
-      if(!(s.content == ""))
-        stories.push(s) #adds element to list
+    begin
+      new_tumblr = Tumblr::User.new(self.email, self.password) #Authentication
+      blog = new_tumblr.tumblr["tumblelog"]["name"]   #Get blog name through hashes
+      Tumblr.blog = blog # set blog name
+      stories = Array.new # create stories array to be returned
+      posts = Tumblr::Post.all #Get user posts
+      posts.each do |post| #loop and convert to story type
+        s = TumblrAccount.convert_blog_to_story(post)
+        if(!(s.content == ""))
+          stories.push(s) #adds element to list
+        end
       end
+      stories #returned
+    rescue
+      raise
+      return []
     end
-    stories #returned
   end
   
 
@@ -50,10 +55,14 @@ class TumblrAccount < ActiveRecord::Base
       photo_type = post["photo_url"] #Grabs required parameters 
       story.media_link = post["photo_url"][3]["__content__"] #gets photo @ position 3 with max width of 250px
       story.content = post["photo_caption"] # get caption in case phoro can be loaded
+      story.content = story.content.gsub(/<\/?[^>]+>/, '')
       story.title = post["slug"] # title encapsulated into "slug" hash
+      story.title = story.title.gsub(/<\/?[^>]+>/, '')
     elsif(post_type == "regular")
       story.content = post["regular_body"] #story body encapsulated in regular body
+      story.content = story.content.gsub(/<\/?[^>]+>/, '')
       story.title = post["slug"] # title encapsulated into "slug" hash
+      story.title = story.title.gsub(/<\/?[^>]+>/, '')
     else
       story.content = ""
     end
