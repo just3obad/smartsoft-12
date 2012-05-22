@@ -120,4 +120,15 @@ class FlickrAccountsController < ApplicationController
     end
 
 
+  def delete_account
+      @user = current_user
+      if @user.flickr_account.destroy
+        flash[:notice] = 'You are not connected to flickr anymore $green'
+      else 
+        flash[:notice] = 'Something went wrong. Please try again $red'
+      end 
+      redirect_to controller: 'users', action: 'connect_social_accounts'
+  end   
+
+
 end
