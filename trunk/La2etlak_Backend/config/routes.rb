@@ -9,9 +9,10 @@ NokiaRuby::Application.routes.draw do
  # ~~~~~~~~~~~~~~~~ 3OBAD ~~~~~~~~~~~~~~~~~~~~~~~~
 
   match "mob/edit/info" => "users#edit"
-  post "users/info/update" => "users#update"
-  match "users/flickr/authenticate" => "flickr_accounts#auth"
-  match "users/flickr/callback" => "flickr_accounts#callback"
+  post "mob/info/update" => "users#update"
+  match "mob/flickr/authenticate" => "flickr_accounts#auth"
+  match "mob/flickr/callback" => "flickr_accounts#callback"
+  match "mob/flickr/delete" => "flickr_accounts#delete_account"
 
  # ~~~~~~~~~~~~~~~~ 3OBAD ~~~~~~~~~~~~~~~~~~~~~~~~
 
