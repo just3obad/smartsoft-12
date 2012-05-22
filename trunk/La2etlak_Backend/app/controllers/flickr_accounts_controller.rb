@@ -43,7 +43,7 @@ class FlickrAccountsController < ApplicationController
 
     flickr = FlickRaw::Flickr.new
     token = flickr.get_request_token(:oauth_callback => (
-    'http://127.0.0.1:3000/users/flickr/callback'))
+    'http://127.0.0.1:3000/mob/flickr/callback'))
 
     Rails.cache.write("oauth_token_secret",token['oauth_token_secret'])
 
@@ -104,7 +104,7 @@ class FlickrAccountsController < ApplicationController
     User.find(user_id).flickr_account = flickr_account
 
     unless flickr_account.new_record?
-      flash[:notice] = 'Flickr account created green'
+      flash[:notice] = 'Flickr account created $green'
       l = Log.new
       l.loggingtype =0
       l.user_id_1 = @user.id
@@ -112,7 +112,7 @@ class FlickrAccountsController < ApplicationController
       l.message = "#{name_1} is now connected to flickr account"
       l.save
     else 
-      flash[:notice] = 'Flickr account couldn\'t be created red'
+      flash[:notice] = 'Flickr account couldn\'t be created $red'
     end 
 
     redirect_to controller: 'users', action: 'connect_social_accounts'
