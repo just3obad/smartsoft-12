@@ -72,14 +72,14 @@
 		<% if @stories.empty? == true %>
 			<div class="alert">  
 				<a class="close" data-dismiss="alert"></a>
-				<h1><strong>Warning!</strong> No Stories In Our Database Yet</h1>
+				<h2><strong>Warning!</strong> No Stories In Our Database Yet.</h2>
 			</div>
 		<% else %>
 			<div id ="genInfo" style="padding-top:20px;">
 				<% if Story.get_stories_ranking_all_time.first.get_story_rank_all_time == 0 %>
 					<div class="alert">  
 						<a class="close" data-dismiss="alert"></a>
-						<h1><strong>Warning!</strong> No Stories Ranking </h1>
+						<h2><strong>Warning!</strong> No Stories Ranking </h2>
 					</div>
 				<% else %>
 					<div class="general-info">
