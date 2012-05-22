@@ -508,7 +508,7 @@ end
     elsif @user.first_name.length>20
       flash[:notice] = "First name must be less than 20 characters $red"
            redirect_to action:"edit"
-    elsif @user.last_name.length>
+    elsif @user.last_name.length>20
       flash[:notice] = "Last name must be less than 20 characters $red"
       redirect_to action:"edit"
     elsif @user.password != @user.password_confirmation
