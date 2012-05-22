@@ -178,6 +178,10 @@ include StoriesHelper
 	end
   end
   
+=begin
+  This action returns a list of the ranking of all stories
+  Author: Shafei
+=end
   def self.get_stories_ranking_all_time_rank
     all_stories = Array.new
     top_stories = Array.new
