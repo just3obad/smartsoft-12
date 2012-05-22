@@ -76,47 +76,50 @@
     <div class="general info" id ="genInfo">
             
             <!--Here we'll get the general infor of top interests:-->
-            <h4><div class="alert alert-info"> 
-
+            
+            <ul class="nav nav-list" style="width:30%;">
+              <li class="nav-header">
               Top Ranked 5 Interests : </br>
-             
-               </div>
-            </h4>
+              </li>
+              <li class="divider"></li>
+            </ul>
+               
 
             <% Interest.get_top_interests[0..4].each do |interest|%>
     
                <div class="well-interest-component">
 
                  <a href="/interests/<%= interest.id%>"
-                    class="thumbnail-interest-component">
+                    style="display:block; float:left; height:100px;">
 
                  <% if not interest.photo.file? %>
 
-                   <%= image_tag "logo.jpeg", :size => "75x75" %>
+                   <%= image_tag "logo.jpeg", :class=>"img-user-component" %>
 
                  <% else %>
 
-                   <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="75" style="height:75px"/>
+                   <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="80" style="height:100px"/>
                   
                   <% end %> 
 
                  </a>
 
-                 <div class="interest-component-info">
+                 <div style="padding-left:10px; margin-left:100px;">
 
-                  <h3>
-
-                    <% if interest.name.nil? %>
-
-                      <%= "No Name Available" %>
-
-                    <% else %>
-
+                  
+                    <h3>
                       <%= interest.name  %>
+                    </h3>
+                      <%= link_to "Interest", 
+                  {:controller => 'interests', :action => 'show',:id => interest.id }, 
+                  class: "interest-component-button-absolute btn btn-warning"%>
 
-                      <h6>Rank : <%=interest.get_interest_rank%></h6>
-
-                    <%  end %>
+                      <h5>Rank : <%=interest.get_interest_rank%></h5>
+                      <h5>No Of Stories: <%=interest.stories.count%></h5>
+                      <%= link_to "Statistics", 
+                        {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
+                        class: "interest-component-button-absolute btn btn-primary"%>
+                      <h5>No Of Subscribers: <%=interest.adding_users.count%></h5>
 
                      <% if !(interest.deleted ) %>
           
@@ -127,12 +130,7 @@
                       <span class="redbadge"  style="width:100%">Blocked</span>
 
                      <% end %>
-
-                  </h3>
-          
-                  <%= link_to "view Statistics", 
-                  {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
-                  class: "interest-component-button-absolute btn btn-primary"%>
+                
 
                 </div>
 

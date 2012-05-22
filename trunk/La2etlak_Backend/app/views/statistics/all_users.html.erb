@@ -48,7 +48,7 @@
 			</div>
 		<div style="margin-top: 20px; background-color: #f8f8f8;">
 					<ul class="nav nav-list">
-					  <li class="nav-header" style="margin-left:5%; margin-right:5%; width: 90%;">
+					  <li class="nav-header">
 					     Number of registered users : </li>
 					     <li class="divider"></li>
 					     <li class="nav-header" style="margin-left:20%; margin-right:20%; width: 60%;"> <%= User.all_user_registered %> users.</li>
@@ -58,7 +58,7 @@
 	</div>
   <div class="main-user-profile-page">
   	<div class="middle-user-profile-page-panel">
-  		<ul class="nav nav-tabs">
+  		<ul class="nav nav-tabs" >
 	       <!-- Check Whether There Is Any User In The Database Or Not -->
 	        <li class="active">
 				<%= link_to "Users", {controller: 'statistics' ,action: 'all_users'} %>
@@ -86,38 +86,53 @@
 					<h1><strong>Warning!</strong> No Contributions By Our Users Yet.</h1>
 				</div>
 			<% else %>
-				<h4>
-					<div class="alert alert-info">
-						Top 5 Users : </br>
+				<ul class="nav nav-list" style="width:20%; padding-bottom:20px;">
+					<li class="nav-header">
+						Top 5 Users :
+					</li>
+					<li class="divider"></li>
 
 						<!--Make A User Component For Each Of The Top Ranked Five Users Contiaing Email, Name, Rank
 						And A Link To His Profile Page And Statistics Page -->
-					
-					</div>
-				</h4>
+				</ul>	
+				
 				<% User.get_users_ranking[0..4].each do |user|%>
 					<div class="well-user-component">
 						<a href="/users/<%= user.id%>"
-						class="thumbnail-user-component">
+						style="display:block; float:left; height:100px;">
 						<% if not user.image? %>
-							<%= image_tag "logo.jpeg", :size => "75x75" %>
+							<%= image_tag "logo.jpeg", :class=>"img-user-component" %>
 						<% else %>
-							<img src= "<%= user.image %>" width="75" style="height:75px"/>
+							<img src= "<%= user.image %>" width="80" style="height:100px"/>
 						<% end %> </a>
-						<div class="user-component-info">
+						<div style="padding-left:10px; margin-left:100px;">
 							<h3>
 								<% if user.name.nil? %>
-									<%= "No Name Available" %>
+									<%= user.email.split("@")[0] %>
 								<% else %>
 									<%= user.name %>
 								<% end %>
 							</h3>
-														<%= link_to "view Statistics",
-							{:controller => 'statistics', :action => 'users',:id => user.id },
-							class: "interest-component-button-absolute btn btn-primary"%>
+							<%= link_to "Profile",
+							{:controller => 'users', :action => 'show',:id => user.id },
+							class: "interest-component-button-absolute btn btn-warning"%>
+							
 							<h5>Email : <%=user.email%></h5>
 							<h5>Rank : <%= user.get_user_rank %></h5>
-							<h5>Last Update : <%=user.updated_at%></h5>
+							<%= link_to "Statistics",
+							{:controller => 'statistics', :action => 'users',:id => user.id },
+							class: "interest-component-button-absolute btn btn-primary"%>
+							<h5>Registration date : <%=time_ago_in_words(user.created_at) +" ago"%></h5>
+							
+							<% if !(user.deactivated) %>
+          
+                               <span class="greenbadge"  style="width:100%" >Active</span>
+
+                            <% else%>
+
+                               <span class="redbadge"  style="width:100%">Deactivated</span>
+
+                            <% end %>
 						</div>
 					</div>
 				<% end %>
