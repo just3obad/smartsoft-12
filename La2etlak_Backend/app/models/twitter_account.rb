@@ -38,7 +38,6 @@ class TwitterAccount < ActiveRecord::Base
       config.oauth_token          = self.auth_token
       config.oauth_token_secret   = self.auth_secret
     end
-    #puts 'twitter configured'
   end 
 
 =begin
@@ -53,15 +52,12 @@ class TwitterAccount < ActiveRecord::Base
   def get_feed(count=20)
     begin 
       self.config_twitter
-      #puts "getting the feed"
       feed = Twitter.home_timeline(:count => count)
-      #puts feed
       stories = Array.new
       feed.each do |tweet|
         temp = TwitterAccount.convert_tweet_to_story(tweet) 
         stories.push(temp) 
       end 
-      #puts stories 
       stories
     rescue 
       [] 
@@ -74,7 +70,6 @@ class TwitterAccount < ActiveRecord::Base
   Author: Yahia
 =end  
   def self.convert_tweet_to_story(tweet)
-    #story = [author: tweet['user']['name'], text: tweet['text']]
     story = Story.new
     story.instance_variables
     story.title = tweet['user']['name']
@@ -94,11 +89,5 @@ class TwitterAccount < ActiveRecord::Base
     OAuth::Consumer.new(CONSUMER_TOKEN, CONSUMER_SECRET,
                       { :site=>"http://twitter.com" })
   end
-
-#  def tweet(tweet)
-#    configure_twitter
-#    client = Twitter::Client.new
-#    client.update(tweet)
-#  end 
 
 end
