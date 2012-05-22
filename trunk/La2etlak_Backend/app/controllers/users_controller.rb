@@ -485,8 +485,8 @@ end
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-        flash[:notice] = "Your Info was saved successfully green"
-        redirect_to action:"feed"
+        flash[:notice] = "Saved $green"
+        redirect_to action:"edit"
         l = Log.new
         l.user_id_1 = @user.id
         l.loggingtype =0
@@ -494,28 +494,28 @@ end
         l.message = "#{name_1} has modified his info"
         l.save
     elsif @user.name.nil?
-      flash[:notice] = "Please try again"
+      flash[:notice] = "Please try again $yellow"
       redirect_to action:"edit"
     elsif @user.first_name.nil?
-      flash[:notice] = "Please try again"
+      flash[:notice] = "Please try again $yellow"
       redirect_to action:"edit"
     elsif @user.last_name.nil?
-      flash[:notice] = "Please try again"
+      flash[:notice] = "Please try again $yellow"
       redirect_to action:"edit"
     elsif @user.name.length>20
-      flash[:notice] = "The nickname is too long. Must be less than 20 chars red"
+      flash[:notice] = "Nickname must be less than 20 chars $red"
       redirect_to action:"edit"
     elsif @user.first_name.length>20
-      flash[:notice] = "The firstname is too long. Must be less than 20 chars red"
+      flash[:notice] = "First name must be less than 20 chars $red"
            redirect_to action:"edit"
     elsif @user.last_name.length>20
-      flash[:notice] = "The lastname is too long. Must be less than 20 chars red"
+      flash[:notice] = "Last name must be less than 20 chars $red"
       redirect_to action:"edit"
     elsif @user.password != @user.password_confirmation
-      flash[:notice] = "Password missmatch red"
+      flash[:notice] = "Password missmatch $red"
       redirect_to action:"edit"
     elsif @user.password.length<6
-      flash[:notice] = "The password must be greater than 6 chars red"
+      flash[:notice] = "Password must be greater than 6 chars $red"
       redirect_to action:"edit"
     end
     end   
