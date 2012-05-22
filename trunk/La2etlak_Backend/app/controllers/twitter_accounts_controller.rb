@@ -23,7 +23,6 @@ class TwitterAccountsController < ApplicationController
                 "http://127.0.0.1:3000/mob/twitter/generate_access_token")
 
     url = request_token.authorize_url
-    #puts 'URL IS ' + url
     redirect_to(url)
   end 
 
