@@ -35,8 +35,22 @@
       }  
    });
 </script>
-
-<div class="main-user-profile-page">
+<div class="row-fluid">
+  <div class="sidebar-nav-fixed">
+    <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+          <li class="nav-header">Directory</li>
+          <li class="divider"></li>   
+          <li><a href="/users"><i class="icon-user"></i><font size="4%">Users</font></a></li>
+          <li><a href="/interests/list"><i class="icon-heart"></i><font size="4%">Interest</font></a></li>
+          <li><a href="/stories"><i class="icon-book"></i><font size="4%">Stories</font></a></li>
+          <li class="divider"></li>
+          <li class="active"><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a></li>
+          <li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a></li>
+        </ul>
+      </div>
+    </div>
+  <div class="main-user-profile-page">
 
     <div class="middle-user-profile-page-panel" >
 
@@ -59,63 +73,41 @@
 
              </div> 
 
-         <%else%>
-
-             <h4>
-              <div class="alert alert-info"> 
-              
-              Stories Shared By This User : </br>
-             
-              </div>
-            </h4>
+         <%else%>  
+            <ul class="nav nav-list">
+              <li class="nav-header">
+                Stories Shared By This User : 
+              </li>
+              <li class="divider" style="width:30%;">
+              </li>
+            </ul>
 
             <!-- to list all the stories -->
             <%@user.get_shared_stories.each do |story|%>
-
               <div class="well-story-component">
-
-                <a href="/stories/<%= story.id%>"class="thumbnail-story-component">
-
-                  <%= image_tag "logo.jpeg", :size => "75x75" %>
-
-                </a>
-           
-               <div class="story-component-info">
-
-                 <h4>
-
-                  <%= story.title %> </br>
-
-                  <% if !(story.deleted || story.hidden) %>
-                  
-                    <span class="greenbadge">Active</span>
-                  
-                  <% elsif story.deleted %>
-
-                    <span class="redbadge">Deleted</span>
-
-                  <% elsif story.hidden %>
-
-                    <span class="yellowbadge">Hidden</span>
-
-                  <% end %>
-
-                </h4>
-
-                   <%= link_to "view Statistics",
-                   {:controller => 'statistics', :action => 'stories', :id => story.id},
-                   class: "story-component-button-absolute btn btn-primary"%>
-
-               </div>
-
+              <a href="/stories/<%= story.id%>"
+               style="display:block; float:left; height:100px;">
+               <%= image_tag "logo.jpeg", :class=>"img-story-component"%> 
+              </a>
+              <div style="padding-left:10px; margin-left:100px;">
+                <h3>
+                  <%= story.title %>
+                </h3>
+                <%= link_to "More Info",
+                  {:controller => 'stories', :action => 'show',:id => story.id },
+                   class: "interest-component-button-absolute btn btn-warning"%>
+                <h5> Rank : <%= story.get_story_rank_all_time %> </h5>
+                <h5> Shares : <%= story.shares.count %> </h5>
+                <%= link_to "Statistics", 
+                {:controller => 'statistics', :action => 'stories',:id => story.id }, 
+                class: "interest-component-button-absolute btn btn-primary"%>
+                <h5> Fetched at : <%=time_ago_in_words(story.created_at) +" ago." %> </h5>
+                 <span class="greenbadge"  style="width:100%" ><%=story.interest.name %></span>
               </div>
-
+            </div>
             <%end%>
-
         <%end%>
-
      </div>  
-
    </div>
-
-</div>  
+  </div>  
+</div>
