@@ -266,6 +266,24 @@ Author:Kareem
  end
 
 =begin
+return list of top ranked five stories related to current story interest 
+Author: Omar
+=end
+
+ def get_related_stories
+ 
+ 	stories =  Story.get_stories_ranking_all_time
+	st = Array.new
+	for story in stories 
+		if(story.interest.id == self.interest.id && story!=self)
+			st << story
+		end
+	end
+	return st 
+	
+ end
+
+=begin
  this method takes as a parameter the html file and extract the content from it 
  Author: Omar
 =end
