@@ -485,7 +485,7 @@ end
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-        flash[:notice] = "Saved $green"
+        flash[:notice] = "Updated $green"
         redirect_to action:"edit"
         l = Log.new
         l.user_id_1 = @user.id
@@ -503,19 +503,19 @@ end
       flash[:notice] = "Please try again $yellow"
       redirect_to action:"edit"
     elsif @user.name.length>20
-      flash[:notice] = "Nickname must be less than 20 chars $red"
+      flash[:notice] = "Nickname must be less than 20 characters $red"
       redirect_to action:"edit"
     elsif @user.first_name.length>20
-      flash[:notice] = "First name must be less than 20 chars $red"
+      flash[:notice] = "First name must be less than 20 characters $red"
            redirect_to action:"edit"
-    elsif @user.last_name.length>20
-      flash[:notice] = "Last name must be less than 20 chars $red"
+    elsif @user.last_name.length>
+      flash[:notice] = "Last name must be less than 20 characters $red"
       redirect_to action:"edit"
     elsif @user.password != @user.password_confirmation
       flash[:notice] = "Password missmatch $red"
       redirect_to action:"edit"
     elsif @user.password.length<6
-      flash[:notice] = "Password must be greater than 6 chars $red"
+      flash[:notice] = "Password must be greater than 6 characters $red"
       redirect_to action:"edit"
     end
     end   
