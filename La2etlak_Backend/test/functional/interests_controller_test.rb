@@ -128,7 +128,7 @@ test "should see the correct Flash message when restored" do
   AdminSession.create myadmin 
   put :toggle, :id => interests(:one), :interest => {:deleted => nil}
 
-  assert_equal " Interest Restored Successfuly ", flash[:success]
+  assert_equal " Interest restored successfully ", flash[:success]
 end
 
 #Author: Jailan
@@ -136,7 +136,7 @@ test "Flash success when update Interest" do
   myadmin = Admin.create( email:"jolly@mail.com" , password:"123456" , password_confirmation: "123456")
   AdminSession.create myadmin 
   put :update, :id => interests(:two), :interest => {:name => 'MyString2'}
-  assert_equal "Interest updated successfully ", flash[:success]
+  assert_equal " Changes saved successfully ", flash[:success]
 end
 
 #Author: Jailan
@@ -144,7 +144,7 @@ test "Flash error when update Interest with a blank name " do
   myadmin = Admin.create( email:"jolly@mail.com" , password:"123456" , password_confirmation: "123456")
   AdminSession.create myadmin 
   put :update, :id => interests(:two), :interest => {:name => "", :description => 'lala'}
-  assert_equal "  Interest Update failed , Name can't be blank , PLease Try again !", flash[:error]
+  assert_equal "  Interest update failed: Name can't be blank ", flash[:error]
 end
 
 #Author: Jailan
@@ -155,7 +155,7 @@ test " Flash Error shouldn't update Interest when it's blocked " do
   assert_equal true, assigns(:interest).deleted
   put :update, :id => interests(:two), :interest => {:name => 'lala'}
 
-  assert_equal " This interest is now blocked , Please Restore it if you want to Update", flash[:error]
+  assert_equal " This interest is now blocked, please restore it if you want to update", flash[:error]
 end
 
 
@@ -166,7 +166,8 @@ end
   myadmin = Admin.create( email:"jolly@mail.com" , password:"123456" , password_confirmation: "123456")
   AdminSession.create myadmin 
   put :toggle, :id => interests(:two), :interest => {:deleted => true}
-  assert_equal " Interest Blocked Successfuly ", flash[:success]
+ 
+  assert_equal " You have just blocked this interest ", flash[:error]
 end
 
 
