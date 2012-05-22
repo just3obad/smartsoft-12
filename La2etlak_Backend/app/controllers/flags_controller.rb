@@ -17,10 +17,10 @@ Author:Kareem
   			user = current_user
   			result = user.flag_story(story)
 				if(result == true)
-						flash[:notice] = "Story Flagged Succesfully"
+						flash[:notice] = "Story flagged succesfully $green"
 	 			 		redirect_to :controller => "stories", :action => "get" , :id => story_id
 	  	  else
-	  				flash[:notice] = "You Already Flagged this Story"
+	  				flash[:notice] = "You already flagged this Story $red"
 	 					redirect_to :controller => "stories", :action => "get" , :id => story_id 
 				end
 
