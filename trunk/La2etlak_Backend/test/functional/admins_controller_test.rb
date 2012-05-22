@@ -72,17 +72,22 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "results of empty search query exists" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       post :search, :query=>"",:autocomplete=>{:query =>""}
   end
   
   #Author: Lydia
   test "results of nonempty search query exists" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       post :search, :query=>"lydia", :autocomplete=>{:query =>"lydia"}
   end
   
   #Author: Lydia
   test "empty search query" do
-  
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       results = Admin.search("")
       if not results.nil?
       	users = results[0]
@@ -106,6 +111,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "no results found" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       results = Admin.search("blabla")
       if not results.nil?
       	users = results[0]
@@ -129,6 +136,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "get results of nonempty search query" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
       int = Interest.create!(name: "lydia", description: "Description of Test Interest")
       story = Story.new
@@ -163,6 +172,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "button view all for users" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
       users = Admin.search_user("lydia")
       post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
@@ -171,6 +182,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "button view all for stories" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       int = Interest.create!(name: "Test Interest", description: "Description of Test Interest")
       story = Story.new
       story.title = "lydia"
@@ -184,6 +197,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "button view all for interests" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       Interest.create!(name: "lydia", description: "Description of Test Interest")
       interests = Admin.search_interest("lydia")
       post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
@@ -192,6 +207,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "filter panel exists" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
       int = Interest.create!(name: "lydia", description: "Description of Test Interest")
       story = Story.new
@@ -207,6 +224,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "viewing all users results" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
       users = Admin.search_user("lydia")
       uCount = users.count
@@ -219,6 +238,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "viewing all stories results" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       int = Interest.create!(name: "lydia", description: "Description of Test Interest")
       story = Story.new
       story.title = "lydia"
@@ -236,6 +257,8 @@ class AdminsControllerTest < ActionController::TestCase
   
   #Author: Lydia
   test "viewing all interests results" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
       Interest.create!(name: "lydia", description: "Description of Test Interest")
       interests = Admin.search_interest("lydia")
       iCount = interests.count
