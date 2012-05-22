@@ -11,20 +11,20 @@
 				<div style="margin:1%;" >
 					<%= inviter.email.split('@').first %>
 				</div>	
-					<%= link_to 'Approve',{:controller => 'friendships',
-					 	:action => 'accept',
-					  	:friend_id => inviter.id}, 
-					  	class: "btn btn-success" %>
+				<%= link_to 'Approve',{:controller => 'friendships',
+				 	:action => 'accept',
+				  	:friend_id => inviter.id}, 
+				  	class: "btn btn-success" %>
 
-					<%= link_to 'Ignore',{:controller => 'friendships',
-					 	:action => 'remove',
-					 	:friend_id => inviter.id},
-					 	class: "btn" %>
+				<%= link_to 'Ignore',{:controller => 'friendships',
+				 	:action => 'remove',
+				 	:friend_id => inviter.id},
+				 	class: "btn" %>
 
-					<%= link_to 'Block',{:controller => 'friendships',
-						:action => 'block', 
-						:friend_id => inviter.id}, 
-						class: "btn btn-danger" %>
+				<%= link_to 'Block',{:controller => 'friendships',
+					:action => 'block', 
+					:friend_id => inviter.id}, 
+					class: "btn btn-danger" %>
 			</li>
 		<% end %>
 		</div>
