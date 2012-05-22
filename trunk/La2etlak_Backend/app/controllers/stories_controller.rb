@@ -138,9 +138,10 @@ Author: Omar
     @storyid=params[:sid]
     @user=current_user
     @flistemail=@user.get_friends_email()
+      @text="Sorry you don't have any friends  "
     if @flistemail.empty?
-      flash[:hint]="Sorry you don't have any friends you can add friends from 
-      the settings page $blue"
+      flash[:hint]="#{@text}<a href=\"/mob/friendship/index/\">
+      <h7 style=\"color:#0000A0;\">Find friend</h7> </a> $blue"
     end
     render :layout => "mobile_template"
   end
