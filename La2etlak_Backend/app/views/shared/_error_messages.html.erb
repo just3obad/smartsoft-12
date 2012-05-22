@@ -1,9 +1,6 @@
 <% if @interest.errors.any? %>
-  <div id="error_explanation-new">
-    <h2><%= pluralize(@interest.errors.count, "error") %> 
-        prohibited this interest from being saved </br>
-</h2>
-    <p>There were problems with the following fields:</p>
+  <div class="alert alert-error">
+
     <ul>
     <% @interest.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
