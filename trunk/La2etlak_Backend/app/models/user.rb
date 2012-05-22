@@ -408,19 +408,21 @@ Author: Kareem
 =end
 	def thumb_story(story,act)
 		name_1 = if self.name.nil? then self.email.split('@')[0] else self.name end
+		action_n = if act == 1 then "UP" else "Down" end
 		thumped = Likedislike.where(:story_id => story.id, :user_id => self.id)
 		if thumped.empty? 
 				Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act)
-				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")
+				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{action_n} #{story.title}")
 				puts "Thump"
 
 		elsif (thumped[0].action == act) 
-				puts "Already"
-
+				Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
+				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} un-Thumbed #{action_n} #{story.title}") 
+				puts "Removed"
 		elsif (thumped[0].action != act) 
 				Likedislike.find(:first , :conditions => ["user_id = ? AND story_id = ?" ,self.id , story.id]).destroy
 				Likedislike.create!(:user_id => self.id, :story_id => story.id , :action => act )
-				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{act} #{story.title}")  
+				l = Log.create(:loggingtype => 2 , :user_id_1 => self.id , :story_id => story.id , :message => "#{name_1} Thumbed #{action_n} #{story.title}")  
 				puts "Removed _thumbed"
 		end
 
