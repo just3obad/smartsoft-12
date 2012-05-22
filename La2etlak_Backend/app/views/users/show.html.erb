@@ -3,8 +3,8 @@
 
   <div class="row-fluid">
     <!--This is the left panel of the user profile page that contains main info of user as his image and if his image is nil then will display the default image for our application along with his status whether active or non-active along with his email-->
-    <div class="sidebar-nav-fixed">
-      <ul class="nav nav-list left_panel-user-profile-page ">
+    <div class="sidebar-nav-fixed" >
+      <ul class="well nav nav-list left_panel-user-profile-page ">
         <div class="user-image">
            <a href="/users/<%= @user.id%>">
                    
@@ -18,12 +18,12 @@
            </a>
         </div>
          <div id="user-personal-info"> 
-           <li class="nav-header">Email:-</li>
+           <li class="nav-header">Email</li>
            <li>
              <span class="label label-info" id="my-email"><%= @user.email %> </span>
            </li>
            <li class="divider"></li>
-           <li class="nav-header">Name:-</li>
+           <li class="nav-header">Name</li>
            <li>
              <span class="label label-info" id="my-email">
               <% if @user.name.nil? %>
@@ -34,7 +34,7 @@
              </span>
            </li>
            <li class="divider"></li>
-           <li class="nav-header">Status:-</li>
+           <li class="nav-header">Status</li>
            <li>
              <span id="is-active">
              <% if @user.deactivated %>
@@ -50,11 +50,14 @@
          </div>
        </ul>
           <!--This is the right panel of the user profile page that contains three buttons button used to deactivate the user, one to go to his statistics page and the third one to reset his password-->
-        <ul class="nav nav-list ">
-          <%= link_to('Statistics', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary btn-fixed", id: "statistics_button") %>
+       <div>
+        <ul class="well nav nav-list left_panel-user-profile-page" style="margin-top:30px;">
+          <li class="nav-header">Options</li>
+          <li class="divider"></li>
+          <%= link_to('Statistics', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary btn-fixed-left-side-bar", id: "statistics_button") %>
           
           <li class="divider"></li>
-           <%= link_to('Reset Password', {:controller => 'users', :action => 'force_reset_password', :id => @user.id}, class: "btn btn-large btn-primary btn-fixed", id: "reset_password_button") %>
+           <%= link_to('Reset Password', {:controller => 'users', :action => 'force_reset_password', :id => @user.id}, class: "btn btn-large btn-warning btn-fixed-left-side-bar", id: "reset_password_button") %>
           
           <li class="divider"></li>
           
@@ -70,7 +73,7 @@
             </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
-              <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success btn-fixed", id: "deactivate_button") %>
+              <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success btn-fixed-left-side-bar", id: "deactivate_button") %>
             </div>
             </div>
             <a data-toggle="modal" href="#myModal" class="btn btn-success btn-large">Activate</a>
@@ -90,10 +93,11 @@
               <%= link_to('Deactivate', {:controller => 'users', :action => 'deactivate', :id => @user.id}, class: "btn btn-large btn-danger", id: "deactivate_button") %>
             </div>
           </div>
-            <a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large btn-fixed">Deactivate</a>
+            <a data-toggle="modal" href="#myModal" class="btn btn-danger btn-large btn-fixed-left-side-bar">Deactivate</a>
               
             <% end %>
         </ul>
+      </div>
      </div>
       <!--This is the main panel of the user profile page that contains three tabs the first one contains the recent activity of that user in the form of log message and all related variables in that log in the form of links to these variables show page whether these variables are stories, other users or interests and when this log occured with respect to the current time, The second one contains a list of user components of this user's friends, The third one contains a list of interests that the user is subscribed to as a list of interests' components-->
      <div class="main-user-profile-page">
@@ -142,25 +146,46 @@
               <% if (@friends.length) == 0 %>
                  No Friends Available.
                <% end %>
-              <% @friends.each do |friend| %>
+              <% @friends.each do |user| %>
                  <div class="well-user-component">
-                   <a href="/users/<%= friend.id%>"class="thumbnail-user-component">
-                   
-                     <% if friend.image.nil? || 
-                      friend.image == "" %>
-                     <%= image_tag "logo.jpeg", :size => "75x75" %>
-                     <% else %>
-                      <img src= "<%= friend.image %>" 
-                      width="75" style="height:75px"/>
-                     <% end %> </a>
-                   <div class="user-component-info">
-                     <h3><%= friend.email %>
-                     </h3>
-                     <%= link_to "view Statistics", 
-                      {:controller => 'statistics', :action => 'users', :id => friend.id}, 
-                        class: "user-component-button-absolute btn btn-primary"%>
-                   </div>
+                   <a href="/users/<%= user.id%>"
+                     style="display:block; float:left; height:100px;">
+                    <% if not user.image? %>
+                     <%= image_tag "logo.jpeg", :class=>"img-user-component" %>
+                    <% else %>
+                     <img src= "<%= user.image %>" width="80" style="height:100px"/>
+                    <% end %>
+                   </a>
+                   <div style="padding-left:10px; margin-left:100px;">
+                    <h3>
+                    <% if user.name.nil? %>
+                      <%= user.email.split("@")[0] %>
+                    <% else %>
+                      <%= user.name %>
+                    <% end %>
+                   </h3>
+                   <%= link_to "Profile",
+                   {:controller => 'users', :action => 'show',:id => user.id },
+                    class: "interest-component-button-absolute btn btn-warning"%>
+              
+                   <h5>Email : <%=user.email%></h5>
+                   <h5>Rank : <%= user.get_user_rank %></h5>
+                   <%= link_to "Statistics",
+                    {:controller => 'statistics', :action => 'users',:id => user.id },
+                     class: "interest-component-button-absolute btn btn-primary"%>
+                   <h5>Registration date : <%=time_ago_in_words(user.created_at) + " ago"%></h5>
+              
+                   <% if !(user.deactivated) %>
+          
+                       <span class="greenbadge"  style="width:100%" >Active</span>
+
+                   <% else%>
+
+                       <span class="redbadge"  style="width:100%">Deactivated</span>
+
+                   <% end %>
                  </div>
+                </div>
               <% end %>
             </div>
             <div class="tab-pane fade" id="interests">
@@ -170,26 +195,33 @@
                  <% @interests.each do |interest| %>
                    <div class="well-interest-component">
                      <a href="/interests/<%= interest.id%>"
-                       class="thumbnail-interest-component">
-                       <% if interest.photo.file? %>
-                         <img src= "<%= interest.photo.url(:small) %>" width="75" style="height:75px"/>
-                       <% else %>
-                          <%= image_tag "logo.jpeg", :size => "75x75" %>
-                       <% end %>
+                     style="display:block; float:left; height:100px;">
+                     <% if not interest.photo.file? %>
+                       <%= image_tag "logo.jpeg", :class=>"img-user-component" %>
+                     <% else %>
+                       <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="80" style="height:100px"/>
+                     <% end %> 
                      </a>
-                     <div class="interest-component-info">
-                       <h2><% if interest.name.nil? %>
-                            <%= "No Name Available" %>
-                           <% else %>
-                            <%= interest.name  %>
-                           <%  end %>
-                       </h2>
-                       <%= link_to "view Statistics", 
-                      {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
+                     <div style="padding-left:10px; margin-left:100px;">
+                      <h3>
+                       <%= interest.name  %>
+                      </h3>
+                       <%= link_to "Interest", 
+                       {:controller => 'interests', :action => 'show',:id => interest.id }, 
+                      class: "interest-component-button-absolute btn btn-warning"%>
+                      <h5>Rank : <%=interest.get_interest_rank%></h5>
+                      <h5>No Of Stories: <%=interest.stories.count%></h5>
+                      <%= link_to "Statistics", 
+                        {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
                         class: "interest-component-button-absolute btn btn-primary"%>
-
-                     </div>
-                   </div>
+                      <h5>No Of Subscribers: <%=interest.adding_users.count%></h5>
+                      <% if !(interest.deleted ) %>
+                        <span class="greenbadge"  style="width:100%" >Active</span>
+                      <% elsif interest.deleted %>
+                        <span class="redbadge"  style="width:100%">Blocked</span>
+                     <% end %>
+                    </div>
+                  </div>
                 <% end %>
             </div>
           </div>
