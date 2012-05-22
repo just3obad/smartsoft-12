@@ -9,6 +9,9 @@ class TumblrAccountsController < ApplicationController
   Author: Essam Hafez
 =end
   def login 
+    if(!current_user.tumblr_account.nil?)
+      flash[:notice] = "You are already connected to tumblr. Enter tumblr email and password to update our records. $red"
+    end
     render :layout => "mobile_template"
   end 
   
@@ -23,7 +26,7 @@ class TumblrAccountsController < ApplicationController
     email = params[:email]
     password = params[:password]
     if(email == "" or password == "")
-      flash[:notice] = "Please enter a valid email and password"
+      flash[:notice] = "Please enter a valid email and password $red"
       redirect_to action:'login' , controller:'tumblr_accounts'
     else
     test_tumblr = Tumblr::User.new(email, password)
@@ -35,7 +38,7 @@ class TumblrAccountsController < ApplicationController
     current_user.tumblr_account = tm
     redirect_to action:'connect_social_accounts' , controller:'users'
   else
-    flash[:notice] = "Email and password mismatch with tumblr, please try again"
+    flash[:notice] = "Email and password mismatch with tumblr, please try again $red"
     redirect_to action:'login' , controller:'tumblr_accounts'
   end
   end
