@@ -1,19 +1,7 @@
 <!--$$$$$$$$$$$$$$$$$$ Rana $$$$$$$$$$$$$$$$$$$ -->
 
-<div id = "heading" style="padding-left:5px;color:#0000FF;font-size:5px;">
-          <!--check the user name to display it to the user and checks the size of
-          blocked_stories -->
-	  <%if (!(@user.name.nil?) && @user.name != "")
-	      @username = @user.name
-	   else
-	      @username = @user.email
-	  end%>
-	  <% if @blocked_stories.size == 0 %>
-              <p>"You do not have any blocked stories yet!"</p><br>
-          <%else%>
-	      <p><%= "Hey, #{@username}! These are your blocked stories. Click one
-                      to unblock it."%></p>
-          <%end%>
+<div id = "heading" style="padding-left:5px;color:#0088CC;">
+	      <h4>Click a story to unblock it.</h4><br>
 </div>
 
 <div id = "list" class ="story-component-box-mobile pre-scrollable", style ="padding-left:5px;">
@@ -23,10 +11,6 @@
                  'unblock_story', :id => Story.find_by_id(blocked_story.id)}, class:
                  "user-component-button-absolute btn span2"%><br><br><br><br>
 	  <%end%>
-</div>
-
-<div id = "back", align = "center">
-          <br><p><a href="#" onclick="history.back();"><class: "btn btn-danger">Back</a></p>
 </div>
 
 <!--$$$$$$$$$$$$$$$$$$ Rana $$$$$$$$$$$$$$$$$$$ -->
