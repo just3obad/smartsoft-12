@@ -44,8 +44,8 @@ class TwitterAccountsController < ApplicationController
   Author: Yahia
 =end 
   def generate_access_token
+    @user = current_user
     begin 
-      @user = current_user
       request_token = OAuth::RequestToken.new(TwitterAccount.twitter_consumer,
                       params["oauth_token"], params["oauth_verifier"])
       if @user.twitter_account
@@ -54,7 +54,7 @@ class TwitterAccountsController < ApplicationController
       t_account = @user.create_twitter_account(request_token)
 
       unless t_account.new_record?
-        flash[:notice] = 'Twitter account created green'
+        flash[:notice] = 'You are now connected to twitter $green'
         l = Log.new
         l.user_id_1 = @user.id
         name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
@@ -63,14 +63,15 @@ class TwitterAccountsController < ApplicationController
         l.save
 
       else 
-        flash[:notice] = 'Twitter account couldn\'t be created red'
+        flash[:notice] = 'Couldn\'t connect to twitter $red'
       end 
       redirect_to controller: 'users', action: 'connect_social_accounts'
+
     rescue 
-      flash[:notice] = 'Twitter account couldn\'t be created red'
+      flash[:notice] = 'Couldn\'t connect to twitter $red'
+      @user.twitter_account.destroy      
       redirect_to controller: 'users', action: 'connect_social_accounts'
     end 
-
   end 
 
 
