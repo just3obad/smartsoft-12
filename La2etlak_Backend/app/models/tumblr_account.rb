@@ -26,7 +26,9 @@ class TumblrAccount < ActiveRecord::Base
     posts = Tumblr::Post.all #Get user posts
     posts.each do |post| #loop and convert to story type
       s = TumblrAccount.convert_blog_to_story(post)
-      stories.push(s) #adds element to list
+      if(!(s.content == ""))
+        stories.push(s) #adds element to list
+      end
     end
     stories #returned
   end
@@ -43,15 +45,15 @@ class TumblrAccount < ActiveRecord::Base
     story = Story.new #new Story
     #story.instance_variables
     story.category = 'tumblr' #sets story category to tumblr
-    story.title = post["slug"] # title encapsulated into "slug" hash
-    s = post["type"] # get post type
-    x = s <=> ("photo")  # checks if the story type is photo 
-    if(x==0) # story is a photo
+    post_type = post["type"] # get post type
+    if(post_type == "photo") # story is a photo
       photo_type = post["photo_url"] #Grabs required parameters 
       story.media_link = post["photo_url"][3]["__content__"] #gets photo @ position 3 with max width of 250px
       story.content = post["photo_caption"] # get caption in case phoro can be loaded
-    elsif(x==1)
+      story.title = post["slug"] # title encapsulated into "slug" hash
+    elsif(post_type == "regular")
       story.content = post["regular_body"] #story body encapsulated in regular body
+      story.title = post["slug"] # title encapsulated into "slug" hash
     else
       story.content = ""
     end
