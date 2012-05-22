@@ -50,11 +50,11 @@ class TwitterAccount < ActiveRecord::Base
   into a hash and providing them to the home_timeline method. 
   Author: Yahia
 =end
-  def get_feed(page=1)
+  def get_feed(count=20)
     begin 
       self.config_twitter
       #puts "getting the feed"
-      feed = Twitter.home_timeline(:page => page)
+      feed = Twitter.home_timeline(:count => count)
       #puts feed
       stories = Array.new
       feed.each do |tweet|
@@ -64,6 +64,7 @@ class TwitterAccount < ActiveRecord::Base
       #puts stories 
       stories
     rescue 
+      [] 
     end 
   end 
 
