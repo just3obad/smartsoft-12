@@ -137,6 +137,7 @@ include StoriesHelper
   This action returns a list of all stories sorted according to their rank since the day they were created
   Author: Shafei
 =end
+
   def self.get_stories_ranking_all_time
 	all_stories = Array.new
 	top_stories = Array.new
@@ -156,7 +157,7 @@ include StoriesHelper
   end
   
 =begin
-  This action returns a list of all stories sortd according to their rank in the last 30 days
+  This action returns a list of all stories sorted according to their rank in the last 30 days
   Author: Shafei
 =end
   def self.get_stories_ranking_last_30_days
@@ -175,6 +176,24 @@ include StoriesHelper
 	else
 		return top_stories
 	end
+  end
+  
+  def self.get_stories_ranking_all_time_rank
+    all_stories = Array.new
+    top_stories = Array.new
+    final_stories = Array.new
+    Story.all.each do |story|
+      all_stories << {:rank => story.get_story_rank_all_time, :thestory => story}
+    end
+    (all_stories.sort_by {|element| element[:rank]}).each do |hsh|
+      final_stories << hsh[:rank]
+    end
+    top_stories =  final_stories.reverse
+    if (top_stories.empty? == true)
+      return []
+    else
+      return top_stories
+    end
   end
 
 ##################Begin############
