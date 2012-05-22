@@ -156,7 +156,7 @@ Author: Kareem
 		stories = stories.uniq
 		# Author : Mina Adel
 		@stories=stories.paginate(:per_page => 10, :page=> params[:page])
-		render :layout => "mobile_template"
+		render :layout => "mobile_template", :template => "users/feed-alt"
  	#
 	end
 ########################
@@ -315,7 +315,11 @@ end
     @story_id = params[:id]
     @story = Story.get_story(@story_id)
     @text = @user.block_story1(@story)
-    flash[:notice] = "#{@text}"
+    if (@text == "Story blocked")
+      flash[:story_blocked_success] = "#{@text},<a href=\"/mob/unblock_story/#{@story_id}\"><h7 style=\"color:#FFFFFF;\">undo?</h7> </a> $green"
+    else 
+      flash[:story_blocked_fail] = "#{@text} $red"
+    end
     redirect_to action: "feed"
   end
 
@@ -331,8 +335,32 @@ end
     @story_id = params[:id]
     @story = Story.get_story(@story_id)
     @text = @user.block_interest1(@story)
-    flash[:notice] = "#{@text}"
+    if (@text == "Interest blocked")
+      flash[:notice] = "#{@text} $green"
+    else 
+      flash[:notice] = "#{@text} $red"
+    end
     redirect_to action: "feed"
+  end
+
+=begin
+  Method that calls the method in model to block interest and redirects to toggle 
+  interests page.
+  Input: id of the story for which the interest should be blocked
+  Output: flash of success/failure and redirect to main feed
+  Author: Rana
+=end
+  def block_interest_from_toggle
+    @user = current_user
+    @story_id = params[:id]
+    @story = Story.get_story(@story_id)
+    @text = @user.block_interest1(@story)
+    if (@text == "Interest blocked")
+      flash[:block_interest_toggle_s] = "#{@text} $green"
+    else 
+      flash[:block_interest_toggle_f] = "#{@text} $red"
+    end
+    redirect_to action: "toggle"
   end
 
 =begin
@@ -347,7 +375,7 @@ end
       @friend_id = params[:id]
       @friend = User.find_by_id(@friend_id)
       @text = @user.block_friends_feed1(@friend) 
-      flash[:notice] = "#{@text}"
+      flash[:notice] = "#{@text} $blue"
       redirect_to controller: 'friendships', action: "index"
   end
 
@@ -373,7 +401,11 @@ end
   def manage_blocked_stories
       @user = current_user
       @blocked_stories = @user.get_blocked_stories
-      render layout: "mobile_template"
+      if(@blocked_stories == [])
+        flash[:notice] = "You do not have any blocked stories $blue"
+      else
+        render layout: "mobile_template"
+      end
   end
 
 =begin
@@ -388,8 +420,12 @@ end
       @story_id = params[:id]
       @story = Story.find_by_id(@story_id)
       @text = @user.unblock_story1(@story) 
-      flash[:notice] = "#{@text}"
-      redirect_to action: "feed"
+      flash[:notice] = "#{@text} $green"
+      if(@user.get_blocked_stories.empty?)
+         redirect_to action: "feed"
+      else 
+         redirect_to action: "manage_blocked_stories"
+      end
   end
 
 =begin
