@@ -21,13 +21,13 @@
 </header>
 <% if current_user %>
   <% if current_user.get_notifications %>
-   <% s = "s" if current_user.get_notifications.length!=1 %>
    <!-- if user has notification display this active div which
         redirects to pending requests page
         Author: Menisy -->
    <a href="<%= url_for(controller: "friendships", action: "pending") %>" >
-    <div class="flash-yellow well" id="notification">
-    You have <%= current_user.get_notifications.length %> pending friendship request<%= s %>!
+    <div id="notification" class="flash-yellow well">
+      <% n = current_user.get_notifications.length %>
+    You have <%= n %> pending friendship <%= "request".pluralize(n) %>!
     </div>
    </a>
   <% end %>
@@ -45,7 +45,7 @@
   <% else %>
     <% color = "$yellow" %>
   <% end %>
-  <div class="flash-<%= color[1,10] %> well" id="notification"> <!-- assigning css color class triming tailing $ -->
+  <div id="<%= key.to_s %>" class="flash-<%= color[1,10] %> well"> <!-- assigning css color class triming tailing $ -->
   <%= raw fl %>
   <% flash[key] = "" %>
   </div>
