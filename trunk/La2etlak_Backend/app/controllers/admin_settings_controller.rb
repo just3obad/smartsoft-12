@@ -10,7 +10,9 @@ class AdminSettingsController < ApplicationController
 	Method Description: A method in the admin_settings controller passed 
 	from the show page of the settings page this function just calls the 
 	static method in the model and passes the value entered in the form 
-	then it redirects to the settings page again.
+	then it redirects to the settings page again and it handles if the 
+	admin enters characters not numbers in the text field and throws error
+	and success flashes.
 	Author : Gasser
 =end
 	def configure_flags_threshold
@@ -27,9 +29,6 @@ class AdminSettingsController < ApplicationController
 				flash[:success] = "Settings changed successfully. $green"
 				Admin_Settings.configure_flags_threshold params[:valuee] , true
 			end
-		end
-		if @flash_success == "true"
-			flash[:success] = "Settings changed successfully. $green"
 		end
 		#if $current_auto_hiding == 0
 		#	flash[:changed_settings] = "Settings changed successfully. $green"	
