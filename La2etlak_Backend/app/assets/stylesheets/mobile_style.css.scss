@@ -4099,7 +4099,7 @@ a.thumbnail:hover {
   border-color: rgba(0, 0, 0, 0.15);
 }
 .well-large {
-  padding: 24px;
+  padding: 3px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -4908,8 +4908,9 @@ body {
 }
 
 .story-comment-box-mobile{
+  padding-left:10px;
   background-color:#e5e5e5;
-  border: 1px solid; 
+  border: 1px solid #C7C7C7; 
 }
 .story-textarea-mobile{
   width:95%;
@@ -4949,7 +4950,7 @@ background-color:#e5e5e5;
   margin:3px;
   padding:2px;
   border: 1px solid #eed3d7;
-  color: #b94a48;
+  color: #E91616;
 }
 .flash-yellow{
   background-color: #FFEB9B;
