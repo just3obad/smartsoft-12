@@ -24,7 +24,8 @@ class FlickrAccount < ActiveRecord::Base
  Description:
  This is the configuaration for the gem. Its called every time I need an access to the flickr account
  of the user.
- No I/O
+ Input: NO
+ Output: NO
  Author : 3OBAD
 =end
 
@@ -43,7 +44,7 @@ Description
   or not by making a test login. photo_list is a list of the recent friends` photos
   then we change them into stories to be used in the main feed.
 
-Input: Count (No of photos to return default ois 20)
+Input int count - [No of photos to return]
 Output: List of stories
 
 Author: 3OBAD
