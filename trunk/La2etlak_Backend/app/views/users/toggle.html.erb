@@ -10,16 +10,16 @@
   <div align="center">
   </br>
      <font face="Courier New, Courier, monospace" size="3"><b>Interests</b></font></br></br>
-  </div>
+  
 
 <!-- create button each interest in the system and if this interest already exists in user interests it makes the button green else it make it red and if interest is blocked by user before the word "(blocked)" is displayed next to the interest -->
 <!-- on adding new/blocked interest the page is refreshed and buttin color is changed into green
 on deleting an exsiting interest the page is refreshed and button color is changed into red -->
    
-   <div align="center" >     
+      
    	<% @all_interests.each do |interest| %>
 		<!-- Kareem -->
-   	   <div class="well" >
+   	   <div class="well">
 		<table>			
    <%if @user_interests.include? interest%> 		 			
 	<span class="greenbadge"><%=interest.name.upcase%></span><br>
@@ -29,7 +29,7 @@ on deleting an exsiting interest the page is refreshed and button color is chang
 		</table><br>
 			<table>
 
-		<!-- Kareem -->
+
 		<%if @user_interests.include? interest%> 		 	
 			<td><span><%= link_to 'Delete', 
 {:controller => 'users', :action => 'int_toggle',:id => interest.id }, 
@@ -41,7 +41,7 @@ class: "btn btn-success"%></span></td>
 			
 			
 		<%end%>
-		<!-- Kareem -->
+
 		 
 	<%if @user.blocked_interests.include? interest %>	  
 		<td><span><%= link_to 'Unblock', 
@@ -56,20 +56,11 @@ class: "btn btn-warning"%></span></td>
 	class: "btn btn-info" %></span></td>
 	<%end%>	
 		
-		<!-- check if the user has added this Interest .. if its added a Filter by Interest button appers to Filter according to that Interest -->
-	
-	
-		<!-- Kareem -->
 	</table>
 	</div>
 	<br>	
    	<%end%> 
-		<!-- Kareem -->
-	
-		<!-- Kareem -->
-	
 	</div>
-	
 	<!-- added main feed button on click goes to main feed  -->
 		<div align="center" >
 			<%= link_to ' Main feed' , {:controller => 'users', :action => 'feed'} , 
