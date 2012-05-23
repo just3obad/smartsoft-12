@@ -46,6 +46,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(count+1,count2)
   end
 
+      #Author: Menisy
+    test "should get shared stories" do
+      user = users(:ben)
+      assert user.get_shared_stories == [], "Should not have any shared stories initially"
+      user.share(Story.first.id)
+      assert user.get_shared_stories.length == 1, "Should have one shared story"
+    end   
+
    ##########Author: christinesed@gmail.com ############
   test "get no of users who signed in today shouldn't add" do
     count=User.get_no_of_users_signed_in_today
