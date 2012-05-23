@@ -640,7 +640,7 @@ feed and renders the view.
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-        flash[:notice] = "Updated $green"
+        flash[:notice] = "Your info has been updated $green"
         redirect_to action:"edit"
         l = Log.new
         l.user_id_1 = @user.id
