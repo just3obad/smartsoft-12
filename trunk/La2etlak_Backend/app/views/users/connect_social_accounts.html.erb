@@ -10,7 +10,7 @@
           <% if @user.facebook_account %>
           <br>
           <%= link_to "Feed", {:controller => 'users', :action => 'facebook_feed'}, class: "btn", id: "facebook_feed"%>
-          <%= link_to "Disconnect", {:controller => 'facebook_accounts', :action => 'delete_account'}, class: "btn btn-danger", id: "facebook_disconnect"%>
+          <%= link_to "Disconnect", {:controller => 'facebook_account', :action => 'delete_account'}, class: "btn btn-danger", id: "facebook_disconnect"%>
           <% end %>
           </br>
         </div>
