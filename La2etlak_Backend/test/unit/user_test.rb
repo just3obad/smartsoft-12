@@ -234,18 +234,16 @@ class UserTest < ActiveSupport::TestCase
     #Author: Rana
     test "interest should be blocked" do
       this_interest = Interest.create :name => "Sports", :description => "hey sporty"
-      this_story= Story.new :title => "Story1", :interest_id => this_interest
-      this_story.interest = this_interest
-      this_story.save
       this_user = users(:ben)
       UserSession.create(this_user)
-      assert_difference('BlockInterest.count',1,"Interest blocked successfully") do
-         this_user.block_interest1(this_story)
+      assert_difference('BlockInterest.count',1,"Interest blocked.") do
+         this_user.block_interest1(this_interest)
       end
-      assert_difference('BlockInterest.count', 0, "Interest already blocked") do
-         this_user.block_interest1(this_story)
+      assert_difference('BlockInterest.count', 0, "Interest is already blocked.") do
+         this_user.block_interest1(this_interest)
       end
     end
+
 
     #Author: Rana
    test "story should be blocked" do
@@ -255,10 +253,10 @@ class UserTest < ActiveSupport::TestCase
       this_story.save
       this_user = users(:ben)
       UserSession.create(this_user)
-      assert_difference('BlockStory.count',1,"Story blocked successfully") do
+      assert_difference('BlockStory.count',1,"Story blocked.") do
          this_user.block_story1(this_story)
       end
-      assert_difference('BlockStory.count', 0,"Story already blocked") do
+      assert_difference('BlockStory.count', 0,"Story is already blocked.") do
          this_user.block_story1(this_story)
       end
     end
@@ -270,8 +268,8 @@ class UserTest < ActiveSupport::TestCase
       my_friend = users(:ahmed)
       this_user.invite my_friend
       my_friend.approve this_user
-      assert_equal("#{my_friend.email} blocked.",  			this_user.block_friends_feed1(my_friend),"Friend blocked")
-      assert_equal("#{my_friend.email} already blocked.", this_user.block_friends_feed1(my_friend), "Friend already blocked")
+      assert_equal("#{my_friend.email} blocked.",  			this_user.block_friends_feed1(my_friend),"#{my_friend.email} blocked.")
+      assert_equal("#{my_friend.email} is already blocked.", this_user.block_friends_feed1(my_friend), "#{my_friend.email} is already blocked.")
     end
 
     #Author: Rana
@@ -282,7 +280,7 @@ class UserTest < ActiveSupport::TestCase
       this_user.invite my_friend
       my_friend.approve this_user
       this_user.block my_friend
-      assert_equal("#{my_friend.email} unblocked successfully." , this_user.unblock_friends_feed1(my_friend), "Friend unblocked")
+      assert_equal("#{my_friend.email} unblocked." , this_user.unblock_friends_feed1(my_friend), "#{my_friend.email} unblocked.")
     end
 
    #Author: Rana
@@ -294,8 +292,20 @@ class UserTest < ActiveSupport::TestCase
       this_story.interest = this_interest
       this_story.save
       this_user.block_story1(this_story)
-      assert_equal("Story unblocked successfully.", this_user.unblock_story1(this_story), "Story unlbocked successfully")
+      assert_equal("Story unblocked.", this_user.unblock_story1(this_story), "Story unlbocked.")
+      assert_equal("Story is already unblocked.", this_user.unblock_story1(this_story), "Story is already unlbocked.")
     end
+
+ #Author: Rana
+   test "interest should be unblocked" do
+      this_user = users(:ben)
+      UserSession.create(this_user)
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_user.block_interest1(this_interest)
+      assert_equal("Interest unblocked.", this_user.unblock_interest1(this_interest), "Story unlbocked.")
+      assert_equal("Interest is already unblocked.", this_user.unblock_interest1(this_interest), "Interest is already unlbocked.")
+    end
+
 
    #Author: Rana
    test "should return blocked story list" do
@@ -307,7 +317,7 @@ class UserTest < ActiveSupport::TestCase
       this_story.save
       this_user.blocked_stories << this_story
       blocked_stories = this_user.blocked_stories 
-      assert_equal(blocked_stories, this_user.get_blocked_stories, "List returned 	successfully")
+      assert_equal(blocked_stories, this_user.get_blocked_stories, "List returned 	successfully.")
     end
 
   #Author : 3OBAD
