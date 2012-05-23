@@ -19,7 +19,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
     #Author : Shafei
-  test "users get rank RED" do
+  test "users get rank" do
   
 	top_users = Array.new#
 	top_users << users(:five)
