@@ -34,28 +34,48 @@ class UserTest < ActionDispatch::IntegrationTest
     end
 
     #Author: Rana   
-    test "route to block friend" do
+    test "should get to block interest from toggle" do
+      assert_routing 'mob/block_interest_from_toggle/1', {:controller => "users", :action => "block_interest_from_toggle", :id => "1" }
+    end
+
+    #Author: Rana   
+    test "should get to unblock interest" do
+      assert_routing 'mob/unblock_interest/1', {:controller => "users", :action => "unblock_interest", :id => "1" }
+    end
+  
+    #Author: Rana   
+    test "should get to unblock interest from toggle" do
+      assert_routing 'mob/unblock_interest_from_toggle/1', {:controller => "users", :action => "unblock_interest_from_toggle", :id => "1" }
+    end
+
+    #Author: Rana   
+    test "should get to block friend" do
       assert_routing 'mob/block_friends_feed/1', {:controller => "users", :action => "block_friends_feed", :id => "1" }
     end
 
     #Author: Rana   
-    test "route to unblock friend" do
+    test "should get to unblock friend" do
       assert_routing 'mob/unblock_friends_feed/1', {:controller => "users", :action => "unblock_friends_feed", :id => "1" }
     end
 
     #Author: Rana   
-    test "route to view friends feed" do
+    test "should get to view friends feed" do
       assert_routing 'mob/friends_feed/1', {:controller => "users", :action => "friends_feed", :id => "1"}
     end
 
     #Author: Rana    
-    test "route to manage blocked friends" do
+    test "should get to manage blocked friends" do
       assert_routing 'mob/manage_blocked_friends', {:controller => "users", :action => "manage_blocked_friends"}
     end
 
     #Author: Rana   
     test "should get to unblock story" do
       assert_routing 'mob/unblock_story/1', {:controller => "users", :action => "unblock_story", :id => "1" }
+    end  
+
+    #Author: Rana   
+    test "should get to unblock story from undo" do
+      assert_routing 'mob/unblock_story_from_undo/1', {:controller => "users", :action => "unblock_story_from_undo", :id => "1" }
     end  
 
     #Author: Rana    
