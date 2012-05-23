@@ -45,7 +45,7 @@ Author : mostafa.amin93@gmail.com
     if query.instance_of? String
       query = query.downcase
     else
-      return query_result.to_a
+      return [[], [], []]
     end
 
     return [search_user(query), search_story(query), search_interest(query)]
@@ -190,10 +190,11 @@ Author : mostafa.amin93@gmail.com
     The method work by trying to match the fields name, description
     a regular expression is used for each of the fields
 
-    Args :
+    Parameters :
       query : string of the given query
 
     Returns : A list of matching interest objects.
+Author : mostafa.amin93@gmail.com
 =end
     query = query.downcase
     query_result = [].to_set
