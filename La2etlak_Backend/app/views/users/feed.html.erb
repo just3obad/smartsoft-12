@@ -1,7 +1,10 @@
 <!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
 <!--This checks whether the list of stories I receive is nil or not -->
 
-
+<h2>Feeds</h2>
+ <ul class="nav nav-list">
+      <li class="divider"></li>
+</ul>
 <% unless @stories.nil? %>
 	<% @stories.each do |f| %>
 		<% if f.is_a?(Story) %>
@@ -22,14 +25,41 @@
 				<% end %>
 				<% serStory = Marshal::dump(f)%>
 				<% if f.title.nil? %>
-					<h3><%= link_to("Social Feed, No Title", {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
+					<h4><%= link_to("Social Feed, No Title", {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h4>
+						<%if f.media_link!=""%>
+						<img src= <%=f.media_link %>>
+						<%end%>
+							<% if f.category == "Facebook"%>
+							<span class="pull-right facebookbadge" >Facebook</span>
+							<% elsif f.category == "twitter"%>
+								<span class="pull-right twitterbadge">Twitter</span>
+							<% elsif f.category == "Flickr"%>
+								<span class="pull-right flickrbadge">Flickr</span>
+							<% elsif f.category == "Tumblr"%>
+								<span class="pull-right tumblrbadge">Tumblr</span>
+								<% end %>
 				<% else %>
-					<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
+					<h4><%= link_to(f.title, {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h4>
+						<%if f.media_link!=""%>
+						<img src= <%=f.media_link %>>
+						<%end%>
+							<% if f.category == "Facebook"%>
+							<span class="pull-right facebookbadge">Facebook</span>
+							<% elsif f.category == "twitter"%>
+								<span class="pull-right twitterbadge">Twitter</span>
+							<% elsif f.category == "Flickr"%>
+								<span class="pull-right flickrbadge">Flickr</span>
+							<% elsif f.category == "Tumblr"%>
+								<span class="pull-right tumblrbadge">Tumblr</span>
+					<% end %>
 				<% end %>
 			<% else %>
 			<div class="well" style="border-right:5px solid #f89406;">
-				<% if f.title.nil? %>
+			<% if f.title.nil? %>
 				<h3><%= link_to("Interest Feed, No Title", {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
+					<%if f.media_link!=""%>
+					<img src= <%=f.media_link %>>
+					<%end%>
 				<table style="float:right">
 					<tr>
 						<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
@@ -37,7 +67,10 @@
 					</tr>
 				</table>
 				<% else %>
-				<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
+				<h4><%= link_to(f.title, {:controller => 'stories', :action => 'get', :id => f.id} )%></h4>
+					<%if f.media_link!=""%>
+					<img src= <%=f.media_link %>>
+					<%end%>
 				<table style="float:right">
 					<tr>
 						<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
