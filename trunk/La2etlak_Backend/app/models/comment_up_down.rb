@@ -35,8 +35,9 @@ class CommentUpDown < ActiveRecord::Base
         msg = "un-downed"
       end
     end
-      user_name = self.user.name  ||  self.user.email.split('@')[0]
-      commenter_name = commenter.name  ||  commenter.email.split('@')[0]
-      Log.create!(loggingtype: 2,user_id_1: self.user.id,user_id_2: commenter.id,admin_id: nil,story_id: nil,interest_id: nil,message: user_name + " " + msg + " the comment \"" +  self.comment.content +  "\"" + " by " + commenter_name )
+    user_name = self.user.name  ||  self.user.email.split('@')[0]
+    commenter_name = commenter.name  ||  commenter.email.split('@')[0]
+    Log.create!(loggingtype: 2,user_id_1: self.user.id,user_id_2: commenter.id,admin_id: nil,story_id: nil,interest_id: nil,message: user_name + " " + msg + " the comment \"" +  self.comment.content +  "\"" + " by " + commenter_name )
+    Admin.push_notifications "/admins/index" ,""
   end
 end

@@ -26,6 +26,7 @@ class Comment < ActiveRecord::Base
   def add_to_log
     user_name = self.user.name  ||  self.user.email.split('@')[0]
     Log.create!(loggingtype: 2,user_id_1: self.user.id ,user_id_2: nil,admin_id: nil,story_id: self.story.id ,interest_id: nil,message: (user_name+" commented on \"" + self.story.title + "\" with \"" + self.content + "\"").to_s )
+    Admin.push_notifications "/admins/index" ,""
   end
   
 =begin
