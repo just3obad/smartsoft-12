@@ -207,10 +207,10 @@ this method return current user interests and all interests on the system and re
 =end
 
 def toggle
-@user = current_user
-@user_interests = @user.added_interests
-@all_interests = Interest.get_all_interests_for_users
-render :layout => "mobile_template"
+   @user = current_user
+   @user_interests = @user.added_interests
+   @all_interests = Interest.get_all_interests_for_users
+   render :layout => "mobile_template"
 end
 
 =begin 
