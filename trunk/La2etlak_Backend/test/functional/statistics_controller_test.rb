@@ -56,6 +56,15 @@ class StatisticsControllerTest < ActionController::TestCase
    assert_select 'div[id = adders]'
  end
  
+  ##########Author: Diab ############
+  test "no users added interest warning" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+    AdminSession.create admin1
+    i = Interest.new(:name=>"interest1")
+    i.save
+    get :interests, :id=>i.id
+    assert_select 'div[id = noUsersAdded]'
+  end
   
    ##########Author: Diab ############
   test "get interest statistics response" do
