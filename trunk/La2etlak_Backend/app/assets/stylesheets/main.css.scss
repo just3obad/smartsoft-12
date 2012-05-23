@@ -93,9 +93,10 @@ padding-bottom:20px;
 }
 .left_panel-user-profile-page{
    width:90%;
-  padding-bottom:20px;
+  padding-bottom:5px;
   float:left;
   padding-right:0px;
+
 }
 .redbadge{
   padding: 1px 4px 2px;
@@ -921,7 +922,7 @@ padding-bottom:20px;
   float:left;
 }
 .user-image {
-  padding-bottom:40px;
+  padding-bottom:10px;
   width: 80%;
 }
 
@@ -979,7 +980,7 @@ padding-bottom:20px;
       text-decoration: underline; }
 
   .sidebar-nav-fixed {
-    padding: 9px 0;
+    padding-top: 0px;
     left:2%;
     top:60px;
     width:20%;
@@ -1002,6 +1003,7 @@ padding-bottom:20px;
     align: center;
     margin-left: 8%;
     margin-right: 8%;
+    height: width;
 }
 
 
