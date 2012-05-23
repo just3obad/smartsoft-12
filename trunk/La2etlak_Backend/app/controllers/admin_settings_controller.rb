@@ -1,7 +1,12 @@
 class AdminSettingsController < ApplicationController
 
     before_filter {admin_authenticated?} 
-	#author: Bassem
+=begin
+This method initailizes the index page and gives it the admins to be created or updated
+Inputs: @admin, @admin2
+Outputs: non
+Author: Bassem
+=end
   	def index
   		@admin = Admin.new
       @admin2 = current_admin
