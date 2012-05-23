@@ -187,16 +187,16 @@ include StoriesHelper
     top_stories = Array.new
     final_stories = Array.new
     Story.all.each do |story|
-      all_stories << {:rank => story.get_story_rank_all_time, :thestory => story}
+		all_stories << {:rank => story.get_story_rank_all_time, :thestory => story}
     end
     (all_stories.sort_by {|element| element[:rank]}).each do |hsh|
-      final_stories << hsh[:rank]
+		final_stories << hsh[:rank]
     end
     top_stories =  final_stories.reverse
     if (top_stories.empty? == true)
-      return []
+		return []
     else
-      return top_stories
+		return top_stories
     end
   end
 
