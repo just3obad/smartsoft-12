@@ -391,8 +391,23 @@ class UsersControllerTest < ActionController::TestCase
     assert_response :success, 'Get should be successful'
     assert_select "a[id=facebook_disconnect]"
     assert_select "a[id=facebook_feed]"
-  end 
-
+  end
+  
+   
+  # Author: Essam
+  test "tumblr feed and disconnect buttons" do
+    u1 = users(:ben)
+    ta = TumblrAccount.new
+    ta.email = 'essamahmedhafez@gmail.com'
+    ta.password = '12345678'
+    u1.save
+    u1.tumblr_account = ta
+    UserSession.create u1
+    get :connect_social_accounts
+    assert_response :success, 'Get should be successful'
+    assert_select "a[id=disconnect_tumblr]"
+    assert_select "a[id=feed_tumblr]"
+  end
 
   
 
