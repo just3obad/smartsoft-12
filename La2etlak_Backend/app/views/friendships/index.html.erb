@@ -3,7 +3,7 @@
 		<ul>
 			<% @friends.each do |friend| %>
 				<li> <%= if friend.name.nil?  then friend.email.split('@').first else friend.name + " (#{friend.email})" end %> </li>
-				<% if @user.invited friend %>
+				<% if @user.pending_invited.include? friend %>
 					<%=	link_to 'Remove request',{:controller => 'friendships',
 												:action => 'remove', 
 												:friend_id => friend.id}, 
