@@ -449,4 +449,32 @@ end
     @usr.activate_user
   	assert !@usr.deactivated
 end
+
+	#Author: Kiro
+	test "reset password adds a value to new password field" do
+
+		ben = users(:ben)
+		ben.resetPassword
+		assert_not_nil ben.new_password	
+
+	end
+
+	#Author: Kiro
+	test "after resetting password the new password can be used for login" do
+
+		ben = users(:ben)
+		ben.resetPassword
+		assert UserSession.create(:email => "ben@gmail.com", :password => ben.new_password), "cannot use new password"
+
+	end
+
+	#Author: Kiro
+	test "after resetting password the old password can be used for login" do
+
+		ben = users(:ben)
+		ben.resetPassword
+		assert UserSession.create(:email => "ben@gmail.com", :password => "benrocks"), "cannot use old password"
+
+	end
+
 end

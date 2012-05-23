@@ -540,4 +540,29 @@ class UsersControllerTest < ActionController::TestCase
       	post :create, :user => {:email => "in_use@example.com", :password => '1234', :password_confirmation => '123456'}
     	end
   end
+	
+	#Author: Kiro
+	test "the method resetPassword shows the correct flash messages" do
+
+		ben = users(:ben)
+		post :resetPassword, :email => "ben@gmail.com"
+		assert_equal flash[:notice], "Your new password has been sent to your email $green", "(valid email)Incorrect flash message"
+
+		post :resetPassword, :email => "bek@gmail.com"
+		assert_equal flash[:notice], "This email doesn't exist $red", "(invalid email)Incorrect flash message"
+
+	end
+
+	#Author: Kiro
+	test "user is redirected correctly resetPassword" do
+
+	ben = users(:ben)
+	post :resetPassword, :email => "ben@gmail.com"
+	assert_redirected_to :controller => 'user_sessions', :action => 'new'
+
+	post :resetPassword, :email => "bek@gmail.com"
+	assert_redirected_to :controller => 'users', :action => 'forgot_password'
+
+	end
+
 end
