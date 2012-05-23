@@ -54,6 +54,9 @@ class FriendshipsController < ApplicationController
 
 =begin
   This is the controller responsible of accepting frinedship
+  when this controller is active, the current user will accept
+  the friendship request sent by the user with the id passed
+  in the params
   Input: params[:friend_id]
   Output: Nothing
   Author: Yahia 
@@ -149,7 +152,8 @@ class FriendshipsController < ApplicationController
   end 
 
 =begin
-  This is the controller responsible of accepting frinedship
+  This is the controller responsible of viewing pending frinedship
+  requests. 
   Input: Nothing
   Output: Nothing  
   Author: Yahia 
