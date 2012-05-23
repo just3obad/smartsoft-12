@@ -10,15 +10,12 @@ class UserTest < ActionDispatch::IntegrationTest
 
   ##########Author: Diab ############
   test "should route to user statistics page" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+    AdminSession.create admin1
     assert_routing '/users/statistics/1', { :controller => "statistics", :action => "users" , :id => "1"}
    end 
   
-  ##########Author: Diab ############
-  test "get user statistics response" do
-   get '/users/statistics/1'
-   assert_response :success
-   end 
-  
+    
  
 
     #Author : Mina Adel
