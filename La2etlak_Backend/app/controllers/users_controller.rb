@@ -593,9 +593,10 @@ end
 
 #~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
 =begin
- ~ Method Name : edit
- ~ Description : Responsible for rendering the view in which the user can edit his information
- No I/O
+ 
+ Description : Responsible for rendering the view in which the user can edit his information
+ Input: No
+ Output:No
  Author: 3OBAD
 
 =end
@@ -614,7 +615,8 @@ end
    Case 5 : If there is a password missmatch, he will be notified of this error
    Case 6 : If the pasword is less than 4 chars, he will be notified of this error
 
-   No I/O
+   Input: NO
+   Output: NO
    Author: 3OBAD
 =end
   def update
