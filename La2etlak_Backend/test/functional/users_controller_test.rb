@@ -422,7 +422,7 @@ class UsersControllerTest < ActionController::TestCase
      get :show, :id=> @usr.id
     assert_select "div[id=user-personal-info]" do
       assert_select "span[id=my-email]", @usr.email
-      assert_select "span[class='label label-info']", "Active"
+      assert_select "span[id=is-active]", "Active"
     end
   end
   # Author : Christine
