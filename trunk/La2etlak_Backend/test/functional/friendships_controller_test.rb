@@ -43,7 +43,7 @@ class FriendshipsControllerTest < ActionController::TestCase
   end 
 
   #Author: Yahia
-  test 'should be able to delete friendship RED' do  	
+  test 'should be able to delete friendship' do  	
     u1 = users(:ben)
     u2 = users(:ahmed)
     u1.invite u2
