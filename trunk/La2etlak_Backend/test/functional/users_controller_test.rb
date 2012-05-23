@@ -332,7 +332,7 @@ class UsersControllerTest < ActionController::TestCase
   end 
 
   # Author: Menisy
-  test "facebook warning box" do
+  test "facebook feed and disconnect buttons" do
     # needs to create a session with that user
     u1 = users(:ben)
     u1.facebook_account = facebook_accounts(:one)
