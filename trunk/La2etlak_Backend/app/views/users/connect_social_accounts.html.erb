@@ -60,7 +60,7 @@
           <% if @user.tumblr_account %>
             <br>
               <%= link_to "Feed", {:controller => 'users', :action => 'tumblr_feed'}, class: "btn", id: "feed_tumblr"%>
-              <%= link_to "Disconnect", {:controller => 'tumblr_accounts', :action => 'delete_account'}, class: "btn btn- danger", id:"disconnect_tumblr"%>
+              <%= link_to "Disconnect", {:controller => 'tumblr_accounts', :action => 'delete_account'}, class: "btn btn-danger", id:"disconnect_tumblr"%>
           <% end %>
           </br>
         </div>
