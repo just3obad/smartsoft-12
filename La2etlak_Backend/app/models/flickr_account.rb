@@ -44,7 +44,7 @@ Description
   or not by making a test login. photo_list is a list of the recent friends` photos
   then we change them into stories to be used in the main feed.
 
-Input int count - No of photos to return
+Input: count - No of photos to return
 Output: List of stories
 
 Author: 3OBAD
