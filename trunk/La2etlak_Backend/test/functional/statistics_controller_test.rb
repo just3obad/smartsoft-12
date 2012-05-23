@@ -15,6 +15,16 @@ class StatisticsControllerTest < ActionController::TestCase
  end
 
  ##########Author: Diab ############
+ test "no shared stories by user warning" do
+   admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+    AdminSession.create admin1
+    u = User.new(:email=>"mail1@mail.com" , :password=>"123456" , :password_confirmation=>"123456")
+    u.save
+    get :users, :id=>u.id
+    assert_select 'div[id = noStoriesShared]'
+ end
+
+ ##########Author: Diab ############
   test "get user statistics response" do
     admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
     AdminSession.create admin1
