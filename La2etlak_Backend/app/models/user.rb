@@ -699,10 +699,8 @@ Author:Kareem
   end
 
 =begin
-  This method blocks the interest by inserting a row in
+  This method blocks the interest from toggle page by inserting a row in
   BlockInterest table.
-  It also removes the row belonging to the interest and user from UserAddInterest
-  table. 
   If the interest is already blocked, it responds with a message that the interest
   is already blocked.
   Input: interest to be blocked
@@ -711,10 +709,6 @@ Author:Kareem
 =end   
   def block_interest_from_toggle1(this_interest)
    this_user = self
-   #checks if the interest belongs to the user
-   if (this_user.added_interests.include? this_interest)
-      this_user.added_interests.delete this_interest
-   end
    #checks if the interest is not already blocked.
    if !(this_user.blocked_interests.include? this_interest)
       this_user.blocked_interests << this_interest
@@ -731,6 +725,38 @@ Author:Kareem
       story_id: nil, interest_id: this_interest.id, message: @message)
    else 
       @text = "Interest is already blocked."    
+   end
+   
+   return @text #return the message in variable text
+  end
+
+=begin
+  This method unblocks the interest from toggle page by inserting a row in
+  BlockInterest table.
+  If the interest is already unblocked, it responds with a message that the 	
+  interest is already unblocked.
+  Input: interest to be unblocked
+  Output: message to indicate success/failure of unblock
+  Author: Rana
+=end   
+  def unblock_interest_from_toggle1(this_interest)
+   this_user = self
+   #checks if the interest is blocked.
+   if (this_user.blocked_interests.include? this_interest)
+      this_user.blocked_interests.delete this_interest
+      @text = "Interest unblocked."
+   #for log file in case of success of block
+      if self.name.nil?
+         @username = self.email.split('@')[0]
+      else
+         @username = self.name
+      end
+      @interesttitle =this_interest.name
+      @message = "#{@username} unblocked interest with name: #{@interesttitle}"
+      Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil,
+      story_id: nil, interest_id: this_interest.id, message: @message)
+   else 
+      @text = "Interest is already unblocked."    
    end
    
    return @text #return the message in variable text
