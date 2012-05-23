@@ -338,7 +338,8 @@ class UsersControllerTest < ActionController::TestCase
     UserSession.create u1
     get :connect_social_accounts
     assert_response :success, 'Get should be successful'
-    assert_select "div[id=facebook_warning]"
+    assert_select "a[id=facebook_disconnect]"
+    assert_select "a[id=facebook_feed]"
   end 
 
 
