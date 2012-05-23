@@ -12,7 +12,8 @@ Author:Kareem
 
 
 def thumb
-	action = params[:act]  
+	action = params[:act]
+	action = action.to_i  
 	story_id = params[:sid]
 	user = current_user
 	story = Story.find(story_id)
