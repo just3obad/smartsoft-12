@@ -202,13 +202,13 @@ NokiaRuby::Application.routes.draw do
 # $$$$$$$$$$$$$$$$$$ MESAI $$$$$$$$$$$$$$$$$$$$$$$
   post "/autocomplete/auto_complete_for_autocomplete_query" => "autocomplete#auto_complete_for_autocomplete_query"
   resources :logs, :except => [:delete,:show]  
-  match '/logs/filter/',    to: 'logs#filter'
-  match '/logs/search/',    to: 'logs#search'
-  match '/logs/filterbydate/',    to: 'logs#filter_by_date'
-  match '/logs/interest/:id',    to: 'logs#get_specific_interest'
-  match '/logs/stories/:id',    to: 'logs#get_specific_story'
-  match '/logs/users/:id',    to: 'logs#get_specific_user'
-  match '/logs/admins/:id',    to: 'logs#get_specific_admin'
+  match '/logs/filter/', to: 'logs#filter'
+  match '/logs/search/', to: 'logs#search'
+  match '/logs/filterbydate/', to: 'logs#filter_by_date'
+  match '/logs/interest/:id', to: 'logs#get_specific_interest'
+  match '/logs/stories/:id', to: 'logs#get_specific_story'
+  match '/logs/users/:id', to: 'logs#get_specific_user'
+  match '/logs/admins/:id', to: 'logs#get_specific_admin'
 #L $$$$$$$$$$$$$$$$ MESAI $$$$$$$$$$$$$$$$$$$$$$$
   
   # $$$$$$$$$$$$$$ GASSER $$$$$$$$$$$$$$$$$$$$$$$
