@@ -281,6 +281,7 @@ class UserTest < ActiveSupport::TestCase
       my_friend.approve this_user
       this_user.block my_friend
       assert_equal("#{my_friend.email} unblocked." , this_user.unblock_friends_feed1(my_friend), "#{my_friend.email} unblocked.")
+      assert_equal("#{my_friend.email} is already unblocked." , this_user.unblock_friends_feed1(my_friend), "#{my_friend.email} is already unblocked.")
     end
 
    #Author: Rana
