@@ -18,10 +18,8 @@ class Admin_Settings < ActiveRecord::Base
 =end
   def self.configure_flags_threshold (flags_number, disable)
       @flash_success = "false"
-      @flash_error = "false"
       flags_threshold = Admin_Settings.find_by_key("flags_threshold")
       auto_hiding = Admin_Settings.find_by_key("auto_hiding")
-      # current_flags = flags_threshold.value
       flags = flags_number.to_i
   		if disable == true
         auto_hiding.value = 1
@@ -44,12 +42,12 @@ class Admin_Settings < ActiveRecord::Base
       $current_auto_hiding = Admin_Settings.find_by_key("auto_hiding").value
       $current_flags_threshold = Admin_Settings.find_by_key("flags_threshold").value
   end
-
-  # author : Gasser
-  # A static method that is called in the flag_story method in users_controller
-  # to check after flagging any story if the number of flags exceeds the threshold
-  # or not to hide this story or not.All of that after checking the global variable
-  # auto_hiding which the admin changes from the checkbox.
+=begin 
+  Method Description: A static method that is called in the flag_story method 
+  in users_controller to check after flagging any story if the number of flags
+  exceeds the threshold or not to hide this story or not.All of that after 
+  checking the global variable auto_hiding which the admin changes from the checkbox.
+=end
   def self.update_story_if_flagged (story)
   	if Admin_Settings.find_by_key("auto_hiding").value == 1
       if(story.flags.count >= Admin_Settings.first.value)
