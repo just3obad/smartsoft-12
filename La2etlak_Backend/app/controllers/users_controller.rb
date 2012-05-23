@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.generateVerificationCode?
       Emailer.verification_instructions(@user).deliver
-      flash[:notice] = "Thank you for joining La2etlak, you just recieved an E-mail containing the verification instructions green"
+      flash[:notice] = "Thank you for joining La2etlak, you just recieved an E-mail containing the verification instructions $green"
 			session = UserSession.new(@user)
 			if session.save
 				UserLogIn.create!(:user_id => @user.id)				
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 				redirect_to "/dummyLogin"
 			end
    else
-     	flash[:notice] = @user.errors.full_messages[0].to_s + "red"
+     	flash[:notice] = @user.errors.full_messages[0].to_s + "$red"
     redirect_to :action => 'new', :layout => "mobile_template"
    end
   end
@@ -647,10 +647,10 @@ end
 		@code = params[:code].downcase
 		@user = current_user
 		if @user.verifyAccount?(@code)
-			flash[:notice] = "Your account has been successfully verified green"
+			flash[:notice] = "Your account has been successfully verified $green"
 			redirect_to :controller => 'users', :action => 'feed'
 		else
-			flash[:notice] = "Incorrect Verification Code red"
+			flash[:notice] = "Incorrect Verification Code $red"
 			redirect_to :controller => 'users', :action => 'verifySettings'
 		end
 	end
@@ -667,7 +667,7 @@ end
 		@user = current_user
 		if @user.resendCode?
 			Emailer.verification_instructions(@user).deliver
-			flash[:notice] = "The verification E-mail has been sent to your email green"
+			flash[:notice] = "The verification E-mail has been sent to your email $green"
 			redirect_to :controller => 'users', :action => 'verifySettings'
 		else
 			flash[:notice] = "You have already verified your account"

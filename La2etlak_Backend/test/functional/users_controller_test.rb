@@ -270,24 +270,24 @@ class UsersControllerTest < ActionController::TestCase
 	# Author: Kiro
 	test "should create user" do
 		assert_difference('User.count') do
-   		post :register, :user => { :email => 'user_email1@test.com', :password => '123456', :password_confirmation => '123456'}
+   		post :create, :user => { :email => 'user_email1@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 	end
 
 	# Auther: Kiro
 	test "should not create user" do
 		assert_no_difference('User.count') do
-   		post :register, :user => { :email => 'user_email2@test.com', :password => '12345', :password_confirmation => '123456'}
+   		post :create, :user => { :email => 'user_email2@test.com', :password => '12345', :password_confirmation => '123456'}
   	end
 	
 		User.create(email: "AlreadyInUse@test.com", password: "123456", password_confirmation: "123456")
 
 		assert_no_difference('User.count',"created a user with an existing email --same") do
-   		post :register, :user => { :email => 'AlreadyInUse@test.com', :password => '123456', :password_confirmation => '123456'}
+   		post :create, :user => { :email => 'AlreadyInUse@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 
 		assert_no_difference('User.count',"created a user with an existing --lowercase") do
-   		post :register, :user => { :email => 'alreadyinuse@test.com', :password => '123456', :password_confirmation => '123456'}
+   		post :create, :user => { :email => 'alreadyinuse@test.com', :password => '123456', :password_confirmation => '123456'}
   	end
 	end
 
@@ -346,23 +346,7 @@ class UsersControllerTest < ActionController::TestCase
      end
   end
 
-	# Auther: Kiro
-	test "The old password of the user should expire after requesting a new one RED" do
 
-		get :resetPassword
-		post :requestToken, :user_session => { :email => 'ben@gmail.com', :password => 'benrocks'}
-		assert_nil assigns(:user), "the user was able to login using his expired password"
-
-  end 
-
-
- 
-	# Author: Kiro
-	test "An email should be sent to the user after requesting a new password RED" do
-	   assert_difference 'ActionMailer::Base.deliveries.size', +1, "An email wasn't sent to the user" do
-     get :resetPasswordz
-     end
-	end
    
   # Author : Christine
   test "UserProfilePageRoute" do

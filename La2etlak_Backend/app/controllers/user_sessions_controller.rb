@@ -79,7 +79,7 @@ class UserSessionsController < ApplicationController
 	def destroy
   	@user_session = UserSession.find
   	@user_session.destroy
-  	flash[:notice] = "Successfully logged out.$green"
+  	flash[:notice] = "Successfully logged out$green"
 		redirect_to new_user_session_path
 	end
 
