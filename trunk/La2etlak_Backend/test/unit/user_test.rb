@@ -278,24 +278,25 @@ class UserTest < ActiveSupport::TestCase
     end
 
     #Author: Rana
-   test "user wants to block friend feed" do
+   test "should block friend feed" do
       this_user = users(:ben)
       UserSession.create(this_user)
       my_friend = users(:ahmed)
       this_user.invite my_friend
       my_friend.approve this_user
-      assert_equal("#{my_friend.email} blocked successfully.",  			this_user.block_friends_feed1(my_friend))
-      assert_equal('Friend already blocked.', this_user.block_friends_feed1 		(my_friend))
+      assert_equal("#{my_friend.email} blocked.",  			this_user.block_friends_feed1(my_friend),"Friend blocked")
+      assert_equal("#{my_friend.email} already blocked.", this_user.block_friends_feed1(my_friend), "Friend already blocked")
     end
 
     #Author: Rana
-   test "user wants to unblock friend feed" do
+   test "should unblock friend feed" do
       this_user = users(:ben)
       UserSession.create(this_user)
       my_friend = users(:ahmed)
       this_user.invite my_friend
       my_friend.approve this_user
-      assert_equal("#{my_friend.email} unblocked successfully.",  			this_user.unblock_friends_feed1(my_friend))
+      this_user.block my_friend
+      assert_equal("#{my_friend.email} unblocked successfully." , this_user.unblock_friends_feed1(my_friend), "Friend unblocked")
     end
 
    #Author: Rana
@@ -307,7 +308,7 @@ class UserTest < ActiveSupport::TestCase
       this_story.interest = this_interest
       this_story.save
       this_user.block_story1(this_story)
-      assert_equal("Story unblocked successfully.", this_user.unblock_story1	 	(this_story), "Story unlbocked successfully")
+      assert_equal("Story unblocked successfully.", this_user.unblock_story1(this_story), "Story unlbocked successfully")
     end
 
    #Author: Rana
