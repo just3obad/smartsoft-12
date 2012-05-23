@@ -171,42 +171,23 @@ class AdminsControllerTest < ActionController::TestCase
   end
   
   #Author: Lydia
-  test "button view all for users" do
+  test "at the beginning only 3 components exist" do
       admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
       AdminSession.create admin
-      User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou1@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou2@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou3@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou4@mail.com", password: "123456", password_confirmation: "123456")
       users = Admin.search_user("lydia")
+      uCount = users.count
       post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
-      assert_select "a[href=?]", '/admins/all_results?type=1' , 'View All Users Results' 
+      assert_select "div[id=usersSearchResults]" do
+        assert_select "div[class=well-user-component]" , 3
+      end
   end
   
   #Author: Lydia
-  test "button view all for stories" do
-      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
-      AdminSession.create admin
-      int = Interest.create!(name: "Test Interest", description: "Description of Test Interest")
-      story = Story.new
-      story.title = "lydia"
-      story.interest = int
-      story.content = "Test content"
-      story.save
-      stories = Admin.search_story("lydia")
-      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
-      assert_select "a[href=?]", '/admins/all_results?type=2' , 'View All Stories Results'
-  end
-  
-  #Author: Lydia
-  test "button view all for interests" do
-      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
-      AdminSession.create admin
-      Interest.create!(name: "lydia", description: "Description of Test Interest")
-      interests = Admin.search_interest("lydia")
-      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
-      assert_select "a[href=?]", '/admins/all_results?type=3' ,  'View All Interests Results' 
-  end
-  
-  #Author: Lydia
-  test "filter panel exists" do
+  test "when there are results filteration exists" do
       admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
       AdminSession.create admin
       User.create!(name: "lydia",email: "loulou@mail.com", password: "123456", password_confirmation: "123456")
@@ -218,7 +199,23 @@ class AdminsControllerTest < ActionController::TestCase
       story.save
       post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
       assert_select "div[id=filterPanel]" do
-        assert_select "label[class=checkbox]" , 3
+        assert_select "li[id=allResults]", 1
+        assert_select "li[id=allUsers]", 1
+        assert_select "li[id=allStories]", 1
+        assert_select "li[id=allInterests]", 1
+      end
+  end
+  
+  #Author: Lydia
+  test "when there are no results filteration does not exist" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "div[id=filterPanel]" do
+        assert_select "li[id=allResults]", 0
+        assert_select "li[id=allUsers]", 0
+        assert_select "li[id=allStories]", 0
+        assert_select "li[id=allInterests]", 0
       end
   end
   
@@ -230,7 +227,7 @@ class AdminsControllerTest < ActionController::TestCase
       users = Admin.search_user("lydia")
       uCount = users.count
       post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
-      post :all_results, :type=>"1"
+      post :all_results, :type=>"1", :query=>"lydia",:autocomplete=>{:query =>"lydia"}
       assert_select "div[id=searchResults]" do
         assert_select "div[class=well-user-component]" , uCount
       end
@@ -249,7 +246,7 @@ class AdminsControllerTest < ActionController::TestCase
       stories = Admin.search_story("lydia")
       sCount = stories.count
       post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
-      post :all_results, :type=>"2"
+      post :all_results, :type=>"2", :query=>"lydia",:autocomplete=>{:query =>"lydia"}
       assert_select "div[id=searchResults]" do
         assert_select "div[class=well-story-component]" , sCount
       end
@@ -263,9 +260,45 @@ class AdminsControllerTest < ActionController::TestCase
       interests = Admin.search_interest("lydia")
       iCount = interests.count
       post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
-      post :all_results, :type=>"3"
+      post :all_results, :type=>"3", :query=>"lydia",:autocomplete=>{:query =>"lydia"}
       assert_select "div[id=searchResults]" do
         assert_select "div[class=well-interest-component]" , iCount
+      end
+  end
+  
+  #Author: Lydia
+  test "no all results for some category" do
+      admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      post :all_results, :type=>"3", :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "div[id=searchResults]" do
+      	assert_select "div[id=noSearchQuery]"
+        assert_select "div[class=well-interest-component]" , 0
+      end
+  end
+  
+  #Author: Lydia
+  test "if more than 10 results pagination exists" do
+  	  admin = Admin.create!(email:"lydia@gmail.com", password:"123456", password_confirmation:"123456")
+      AdminSession.create admin
+      User.create!(name: "lydia",email: "loulou1@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou2@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou3@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou4@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou5@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou6@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou7@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou8@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou9@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou10@mail.com", password: "123456", password_confirmation: "123456")
+      User.create!(name: "lydia",email: "loulou11@mail.com", password: "123456", password_confirmation: "123456")
+      users = Admin.search_user("lydia")
+      uCount = users.count
+      post :search, :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      post :all_results, :type=>"1", :query=>"lydia",:autocomplete=>{:query =>"lydia"}
+      assert_select "div[id=searchResults]" do
+        assert_select "div[class=apple_pagination]"
       end
   end
 end
