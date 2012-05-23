@@ -141,7 +141,7 @@ Author: Omar
     @flistemail=@user.get_friends_email()
     @text="Sorry you don't have any friends  "
     if @flistemail.empty?
-      flash[:hint]="#{@text}<a href=\"/mob/friendship/index/\">
+      flash[:hint]="#{@text}<a href=\"/mob/friendship/index\">
       <h7 style=\"color:#0000A0;\">Find friend</h7> </a> $blue"
     end
     render :layout => "mobile_template"
