@@ -49,7 +49,7 @@ class FriendshipsControllerTest < ActionController::TestCase
     u1.invite u2
     u2.approve u1    
     UserSession.create u1
-  	assert_difference('u2.friends.count') do
+  	assert_difference('u1.friends.count', -1) do
   		get :remove, {friend_id: u2.id}
   	end 
   end 
