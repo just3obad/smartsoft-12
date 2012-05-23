@@ -1,9 +1,13 @@
 class FacebookAccountController < ApplicationController
 
   before_filter {user_authenticated?}
-	 # Action to be called from the connet_to_social network view
-  # which redirects to the facebook api using koala
-  # Author: Menisy
+=begin
+   Action to be called from the connect_to_social network view
+   which redirects to the facebook api using koala
+   Inputs: none
+   Output: none
+   Author: Menisy
+=end
   def authenticate_facebook_init
     path = Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => "http://127.0.0.1:3000/fb/done/",:permissions => "read_stream")  
     redirect_to path
@@ -44,6 +48,22 @@ class FacebookAccountController < ApplicationController
     	flash[:notice] = "Error occured contacting facebook $red" + user.to_s
       redirect_to :controller => "users", :action => "connect_social_accounts"
   	end
+  end
+
+=begin
+  Action to delete the associated facebook account
+  of a user. On success a flash message is shown which
+  has an undo option.
+  Inputs: none
+  Output: none 
+  Author: Menisy
+=end
+  def delete_account
+    current_user.facebook_account.destroy
+    message = "Facebook account disconnected, "
+    flash[:facebook_account_deleted] = "#{message}<a href=\"/mob/facebook/auth_init\">
+      <h7 style=\"color:#FF9408;\">undo?</h7> </a> $yellow"
+    redirect_to :controller => "users", :action => "connect_social_accounts"
   end
 end
 
