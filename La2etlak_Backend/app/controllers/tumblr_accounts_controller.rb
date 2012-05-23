@@ -51,9 +51,13 @@ class TumblrAccountsController < ApplicationController
   Author : Essam Hafez
 =end
   def delete_account
-    current_user.tumblr_account = nil
+    @user = current_user
+    if @user.tumblr_account.destroy
+      flash[:notice] = 'You are not connected to tumblr anymore $green'
+    else 
+      flash[:notice] = 'Something went wrong. Please try again $red'
+    end 
+    redirect_to controller: 'users', action: 'connect_social_accounts'
   end
-  
-  
 end
 
