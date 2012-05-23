@@ -15,8 +15,7 @@ class StoryTest < ActiveSupport::TestCase
     story.interest = int
     story.content = "Test content"
     story.save
-    list = story.liked
-    assert_equal(list.count, 0)
+    assert_equal(story.liked.count, 0)
   end
   
   #Author: Lydia
@@ -28,8 +27,7 @@ class StoryTest < ActiveSupport::TestCase
     story.interest = int
     story.content = "Test content"
     story.save
-    list = story.disliked
-    assert_equal(list.count, 0)
+    assert_equal(story.disliked.count, 0)
   end
   
   #Author: Lydia
@@ -44,23 +42,10 @@ class StoryTest < ActiveSupport::TestCase
     user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "123456",password_confirmation: "123456")
     user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "123456",password_confirmation: "123456")
     user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "123456",password_confirmation: "123456")
-    like1 = Likedislike.new
-    like1.likedisliker = user1
-    like1.action = 1
-    like1.likedisliked_story = story
-    like1.save
-    like2 = Likedislike.new
-    like2.likedisliker = user2
-    like2.action = 1
-    like2.likedisliked_story = story
-    like2.save
-    like3 = Likedislike.new
-    like3.likedisliker = user3
-    like3.action = 1
-    like3.likedisliked_story = story
-    like3.save
-    list = story.liked
-    assert_equal(list.count, 3)
+    user1.thumb_story(story,1)
+    user2.thumb_story(story,1)
+    user3.thumb_story(story,1)
+    assert_equal(story.liked.count, 3)
   end
   
   #Author: Lydia
@@ -75,23 +60,42 @@ class StoryTest < ActiveSupport::TestCase
     user1 = User.create!(name: "Test user1",email: "test1@user.com",password: "123456",password_confirmation: "123456")
     user2 = User.create!(name: "Test user2",email: "test2@user.com",password: "123456",password_confirmation: "123456")
     user3 = User.create!(name: "Test user3",email: "test3@user.com",password: "123456",password_confirmation: "123456")
-    dislike1 = Likedislike.new
-    dislike1.likedisliker = user1
-    dislike1.action = -1
-    dislike1.likedisliked_story = story
-    dislike1.save
-    dislike2 = Likedislike.new
-    dislike2.likedisliker = user2
-    dislike2.action = -1
-    dislike2.likedisliked_story = story
-    dislike2.save
-    dislike3 = Likedislike.new
-    dislike3.likedisliker = user3
-    dislike3.action = -1
-    dislike3.likedisliked_story = story
-    dislike3.save
-    list = story.disliked
-    assert_equal(list.count, 3)
+    user1.thumb_story(story,-1)
+    user2.thumb_story(story,-1)
+    user3.thumb_story(story,-1)
+    assert_equal(story.disliked.count, 3)
+  end
+  
+  #Author: Lydia
+  test "user likes then dislikes" do
+    int = Interest.create!(name: "Test Interest", description: "Description
+    of Test Interest")
+    story = Story.new
+    story.title = "Test Story"
+    story.interest = int
+    story.content = "Test content"
+    story.save
+    user = User.create!(name: "Test user1",email: "test1@user.com",password: "123456",password_confirmation: "123456")
+    user.thumb_story(story,1)
+    assert_equal(story.liked.count, 1)
+    user.thumb_story(story,-1)
+    assert_equal(story.liked.count, 0)
+  end
+  
+  #Author: Lydia
+  test "user dislikes then likes" do
+    int = Interest.create!(name: "Test Interest", description: "Description
+    of Test Interest")
+    story = Story.new
+    story.title = "Test Story"
+    story.interest = int
+    story.content = "Test content"
+    story.save
+    user = User.create!(name: "Test user1",email: "test1@user.com",password: "123456",password_confirmation: "123456")
+    user.thumb_story(story,-1)
+    assert_equal(story.disliked.count, 1)
+    user.thumb_story(story,1)
+    assert_equal(story.disliked.count, 0)
   end
 
 #Author : Shafei
