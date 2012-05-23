@@ -12,22 +12,22 @@
        
        if (arrayNames.length == 0)
        {
-         document.getElementById("noInterest").style.display= "block";  
-         document.getElementById("ccc").style.display= "none"; 
+        // document.getElementById("noInterest").style.display= "block";  
+         document.getElementById("interest_chart").style.display= "none"; 
          document.getElementById("genInfo").style.display= "none"; 
          
        }
        else if(arrayRanks[0] == 0)
        {
-         document.getElementById("noInterest").style.display= "block";  
-         document.getElementById("ccc").style.display= "none"; 
+         //document.getElementById("noInterest").style.display= "block";  
+         document.getElementById("interest_chart").style.display= "none"; 
          document.getElementById("genInfo").style.display= "none";
          
        }
       else
       { 
       var title="Top Interests";
-      var container="ccc";
+      var container="interest_chart";
       Pie_chart(arrayNames,arrayRanks,title,container);
       }
    });
@@ -64,14 +64,18 @@
         <%= link_to "Stories", {controller: 'statistics' ,action: 'all_stories'} %>
       </li>
     </ul>
-       
-   <div class="alert" id="noInterest" style="display: none;">
- 
-      <h2><strong>Warning!</strong> No interests were created or cannot rank them.</h2>
     
-   </div>
+    <%if Interest.get_top_interests_ranks.empty? or Interest.get_top_interests_ranks[0] == 0%> 
 
-   <div id="ccc"></div> </br>
+     <div class="alert" id="noInterest">
+
+        <h2><strong>Warning!</strong> No interests were created or cannot rank them.</h2>
+      
+     </div>
+    
+    <%end%>
+
+   <div id="interest_chart"></div> </br>
 
     <div class="general info" id ="genInfo">
             
