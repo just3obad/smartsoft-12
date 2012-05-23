@@ -44,7 +44,7 @@ Description
   or not by making a test login. photo_list is a list of the recent friends` photos
   then we change them into stories to be used in the main feed.
 
-Input int count - [No of photos to return]
+Input int count - No of photos to return
 Output: List of stories
 
 Author: 3OBAD
@@ -75,7 +75,7 @@ Author: 3OBAD
 Description:
   This is the method that change the photo into a story by getting 
   the story url and its title. The story is made as C1 requested.
-Input:Flickr photo
+Input: photo -  Photo retrieved from flickr
 Output:Story
 Author: 3OBAD
 =end 
