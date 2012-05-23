@@ -60,6 +60,7 @@ NokiaRuby::Application.routes.draw do
   match 'mob/unblock_friends_feed/:id' => 'users#unblock_friends_feed'
   match 'mob/manage_blocked_stories' => 'users#manage_blocked_stories'
   match 'mob/unblock_story/:id' => 'users#unblock_story'
+  match 'mob/unblock_story_from_undo/:id' => 'users#unblock_story_from_undo'
   match 'mob/block_interest_from_toggle/:id' => 'users#block_interest_from_toggle'
   match 'mob/unblock_interest_from_toggle/:id' => 	'users#unblock_interest_from_toggle'
   match 'mob/unblock_interest/:id' => 'users#unblock_interest'
