@@ -46,7 +46,7 @@ class: "btn btn-danger"%></br></br>
 
 		<!-- check if the user has added this Interest .. if its added a Filter by Interest button appers to Filter according to that Interest -->
 
-			<% if @user_interests.include?(interest.id) %>
+		<!--	 if @user_interests.include?(interest.id) --> 
 		<td>
 	
 	<%= link_to "Filter by "+interest.name, 
@@ -55,7 +55,7 @@ class: "btn btn-danger"%></br></br>
 		</td>
 		<!-- Kareem -->
 		<%end%>
-   	<%end%> 
+   	
 		<!-- Kareem -->
 	</table>
 		<!-- Kareem -->
