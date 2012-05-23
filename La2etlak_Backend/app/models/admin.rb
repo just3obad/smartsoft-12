@@ -16,6 +16,7 @@ require "net/http"
   $USERNAME = /(\w+)(.*)/
   $EMAIL = /((?:\w+\.)*\w+@(?:[a-z\d]+[.-])*[a-z\d]+\.[a-z\d]+)(.*)/
   $WORD = /(\w+)(.*)/
+  $FULLNAME = /(\w+)\s+(\w+)(.*)/
 
 
   def self.search(query)
@@ -94,9 +95,25 @@ Author : mostafa.amin93@gmail.com
 
     for name_query in name_match
       query_result += User.all.select {|user| not user.first_name.nil? and not user.first_name.empty? and
-                                       (user.first_name.downcase =~ %r'#{name_query}' or name_query.downcase =~ %r'#{user.first_name}')}
+                                       (user.first_name.downcase =~ %r'#{name_query}' or name_query.downcase =~ %r'#{user.first_name.downcase}')}
     end
     # Matched names
+    name_query = query
+
+    name_match = []
+    while name_query =~ $FULLNAME
+      match = $FULLNAME.match(name_query)
+      name_match.push(match[1] + ' ' + match[2])
+      name_query = match[2] + match[3]
+    end
+
+    for name_query in name_match
+      query_result += User.all.select {|user| not user.first_name.nil? and not user.first_name.empty? and
+                                       (not user.last_name.nil? and not user.last_name.empty?) and
+                                       ((user.first_name + ' ' + user.last_name).downcase =~ %r'#{name_query}' 
+                                        or name_query.downcase =~ %r'#{user.first_name.downcase} #{user.last_name.downcase}')}
+    end
+    # Matched full name
     username_query = query
 
     username_match = []
