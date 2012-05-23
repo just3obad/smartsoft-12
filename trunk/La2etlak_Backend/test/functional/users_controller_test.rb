@@ -320,6 +320,19 @@ class UsersControllerTest < ActionController::TestCase
   end 
 
 
+  test "one" do
+    # needs to create a session with that user
+    u1 = users(:ben)
+    u1.flickr_account = flickr_accounts(:one)
+    u1.save
+    UserSession.create u1
+    get :connect_social_accounts
+    assert_response :success, 'Get should be successful'
+    assert_select "a[id=disconnect_flickr]"
+    assert_select "a[id=feed_flickr]"
+  end 
+
+
    #author: khaled.elbhaey
   test "the view of friends emails RED" do
     new_user=User.create(:email=>"khd@abc.com")
