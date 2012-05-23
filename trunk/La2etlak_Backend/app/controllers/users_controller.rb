@@ -208,11 +208,8 @@ this method return current user interests and all interests on the system and re
 
 def toggle
 @user = current_user
-@user_interests = @user.user_interests
-@all_interests = @user.all_interests
- if @user.user_interests == []
-  flash[:notice] = " You didn't select any interest ! "
- end
+@user_interests = @user.added_interests
+@all_interests = Interest.get_all_interests_for_users
 render :layout => "mobile_template"
 end
 
@@ -223,11 +220,11 @@ Author Omar
 
 def int_toggle
   user = current_user
-  id = params[:id]
+  id_num = params[:id]
+  id = Interest.find(id_num)
   user.toggle_interests(id)
   redirect_to "/mob/toggle"
 end
-
 
 
 
