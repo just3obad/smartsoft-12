@@ -142,8 +142,12 @@ Author: Kareem
 			stories = stories + temp_stories
 		else
 			if(int_name)
-				stories = user.get_feed(int_name)
-				stories.shuffle!
+				#stories = user.get_feed(int_name)
+				interest = Interest.find_by_name(int_name)
+				stories = user.get_interest_stories(interest)
+				if stories == [] 
+				flash[:notice] = "There is no stories for this interest. $yellow"
+				end 
 			else
 				stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)[0..4]
 				temp_stories = user.get_feed("null")

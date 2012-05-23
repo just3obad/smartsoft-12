@@ -998,5 +998,17 @@ Author: Bassem
     Emailer.notify_activation(self).deliver
     self.save
   end
+=begin
+Description: This method takes as Input an Interest and returns 10 Stories Under this Interest and Filters them from the Blocked One's
+Input : Interest
+Output: Array of Stories - related to this Interest
+Author: Kareem
+=end
+	def get_interest_stories(interest)
+				stories = interest.get_stories(10)
+				unblocked_stories = get_unblocked_stories(stories)
+				return unblocked_stories
+	end
+	
 
 end
