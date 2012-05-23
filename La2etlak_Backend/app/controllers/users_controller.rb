@@ -294,7 +294,7 @@ end
     @interests = @user.added_interests
     pass = @user.resetPassword
     Emailer.send_forced_password(@user,pass).deliver
-    flash[:success] = "The new password is sent to the user by e-mail"
+    flash[:success] = "The new password is sent to the user by e-mail $green"
     redirect_to '/users/'+ (params[:id])
   end
  
