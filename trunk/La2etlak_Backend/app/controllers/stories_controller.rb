@@ -132,11 +132,12 @@ Author: Omar
   end
    
 
-##################Begin############
+=begin 
 #description: recommend_story_mobile_show is a method that calls the view of the recommendation page with a list of friends email for the user to select one of them or to write down an email on his own and then click the button send which will call the recommend_success_mobile_show method to send the recommendation
 #input: story_id
 #output: view for a form and a list for the user to select a friend from and write down the message or the email
 #Author=> khaled.elbhaey
+=end
   def recommend_story_mobile_show()
     @storyid=params[:sid]
     @user=current_user
@@ -148,13 +149,13 @@ Author: Omar
     end
     render :layout => "mobile_template"
   end
-################End##################
 
-##################Begin############
+=begin 
 #description: recommend_success_mobile_show is a method to recommend specific story to another friend via email so an email and the recommendation go to that email if the email isnot in the database an invitation shall be sent to him
 #input: story_id, inputs of the form(email and message)
 #output: a message that tell the user weather the recommendation was successful or not
 #Author=> khaled.elbhaey
+=end
   def recommend_success_mobile_show()
     @storyid=params[:sid]
     @user=current_user
@@ -204,7 +205,6 @@ Author: Omar
     redirect_to :action => "recommend_story_mobile_show" ,:sid => params[:sid]
     
   end
-################End##################
 
 #this method returns friend emails and ids when takes the user id.
 def get_friend_id()
@@ -214,11 +214,12 @@ def get_friend_id()
 end
 
 
-##################Begin############
+=begin 
 #description: liked_mobile_show is a method to view to the user a list of friends who liked specific story (calls the view of the list)
 #input: story_id
 #output: a list of names of friends who liked this story
 #Author=> khaled.elbhaey
+=end
   def liked_mobile_show
     @storyid=params[:id]
     @story=Story.get_story(@storyid)
@@ -231,14 +232,14 @@ end
       render :layout => "mobile_template" 
     end
   end
-################End##################
 
 
-##################Begin############
+=begin 
 #description: disliked_mobile_show is a method to view to the user a list of friends who disliked specific story (calls the view of the list)
 #input: story_id
 #output: a list of names of friends who disliked this story
 #Author=> khaled.elbhaey
+=end 
   def disliked_mobile_show
     @storyid = params[:id]
     @story=Story.get_story(@storyid)
@@ -251,7 +252,6 @@ end
       render :layout => "mobile_template" 
     end
   end
-################End##################
 
   #Author: Bassem !!
   def filter
