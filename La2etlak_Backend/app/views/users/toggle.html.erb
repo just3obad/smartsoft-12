@@ -2,9 +2,10 @@
 	<!-- checks if there are no interests on the system yet-->
 	<% if @all_interests == nil || @all_interests == [] %>
 	<div align="center">
-		 <font face="Courier New, Courier, monospace" COLOR="FF0000" size="3"><b>No interests on the system yet!!</b></font></br>		 
+		 <font face="Courier New, Courier, monospace" COLOR="FF0000" size="3">
+		 <b>No interests on the system yet!!</b></font></br>		 
 		</div>
-  <%else%>
+  	<%else%>
 
   <div align="center">
   </br>
@@ -33,7 +34,7 @@ on deleting an exsiting interest the page is refreshed and button color is chang
 			<td><span><%= link_to 'Delete', 
 {:controller => 'users', :action => 'int_toggle',:id => interest.id }, 
 class: "btn btn-danger" %></span></td>
-			<%else%>
+		<%else%>
    		  	            <td><span><%= link_to 'Add', 
 {:controller => 'users', :action => 'int_toggle', :id => interest.id }, 
 class: "btn btn-success"%></span></td>
