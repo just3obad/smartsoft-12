@@ -98,6 +98,7 @@ class UserTest < ActiveSupport::TestCase
   
 
  #Author : Essam
+ #issue 89
   test "get social networks feed" do
     user = User.new(:email=>"essamahmedhafez@gmail.com", :password => "12345678", :password_confirmation => "12345678")
     user.save
@@ -119,6 +120,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   #Author : Essam
+  #Issue 90
   test "tumblr account" do
     new_tumblr = Tumblr::User.new('essamahmedhafez@gmail.com', '12345678') #Authentication
     blog = new_tumblr.tumblr["tumblelog"]["name"]
@@ -129,6 +131,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   #Author : Essam
+  #Issue 88
   test "filter selected social account" do
     user = User.new
     user.email = 'essam@hafez.com'
