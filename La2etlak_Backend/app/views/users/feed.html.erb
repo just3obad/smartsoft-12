@@ -1,65 +1,62 @@
 <!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
 <!--This checks whether the list of stories I receive is nil or not -->
 
+
 <% unless @stories.nil? %>
 	<% @stories.each do |f| %>
 		<% if f.is_a?(Story) %>
-			<div class="story-component-box-mobile">
-				<div class="well" style="border-right:5px solid #f89406;">
-					<% if f.id.nil? %>
-						<% serStory = Marshal::dump(f)%>
-						<% if f.title.nil? %>
-						<h3><%= link_to("Social Feed, No Title", {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
-						<% else %>
-						<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
-						<% end %>
-						<table style="float:right">
-							<tr>
-							<% if f.category.nil? %>
-									<td><span class="pull-right bluebadge">Social Network Feed</span></td>
-							<% else %>
-								<% if f.category == "Facebook"%>
-									<td><span class="pull-right bluebadge">Facebook</span></td>
-								<% elsif f.category == "twitter"%>
-									<td><span class="pull-right bluebadge">Twitter</span></td>
-								<% elsif f.category == "Flickr"%>
-									<td><span class="pull-right bluebadge">Flickr</span></td>
-								<% elsif f.category == "Tumblr"%>
-									<td><span class="pull-right bluebadge">Tumblr</span></td>
-								<% end %>
-							<% end %>
-							</tr>
-						</table>
-					<% else %>
-						<% if f.title.nil? %>
-						<h3><%= link_to("Interest Feed, No Title", {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
-						<table style="float:right">
-							<tr>
-								<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
-								<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
-							</tr>
-						</table>
-						<% else %>
-						<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
-						<table style="float:right">
-							<tr>
-								<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
-								<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
-							</tr>
-						</table>
-						<% end %>
+		<div class="story-component-box-mobile">
+			<% if f.id.nil? %>
+				<% if f.category.nil? %>
+					<div class="well" style="border-right:5px solid #f89406;">
+				<% else %>
+					<% if f.category == "Facebook"%>
+						<div class="well" style="border-right:5px solid #3b589a;">
+					<% elsif f.category == "twitter"%>
+						<div class="well" style="border-right:5px solid #30ccfa;">
+					<% elsif f.category == "Flickr"%>
+						<div class="well" style="border-right:5px solid #fb0080;">
+					<% elsif f.category == "Tumblr"%>
+						<div class="well" style="border-right:5px solid #385672;">
 					<% end %>
+				<% end %>
+				<% serStory = Marshal::dump(f)%>
+				<% if f.title.nil? %>
+					<h3><%= link_to("Social Feed, No Title", {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
+				<% else %>
+					<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
+				<% end %>
+			<% else %>
+			<div class="well" style="border-right:5px solid #f89406;">
+				<% if f.title.nil? %>
+				<h3><%= link_to("Interest Feed, No Title", {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
+				<table style="float:right">
+					<tr>
+						<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
+						<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
+					</tr>
+				</table>
+				<% else %>
+				<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
+				<table style="float:right">
+					<tr>
+						<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
+						<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
+					</tr>
+				</table>
+				<% end %>
 				</div>
-			</div>
+			<% end %>
+		</div>
 		<% end %>
 	<% end %>
-		<div class="apple_pagination">
-			<%= will_paginate @stories, :container => false %>
-		</div>
-	<% else %>
-		<!--if nil, an error message of sorts appears -->
-		<div class="story-component-box-mobile">
-			There are no stories in your feed.
-		</div>
-	<% end %>
+	<div class="apple_pagination">
+		<%= will_paginate @stories, :container => false %>
+	</div>
+<% else %>
+	<!--if nil, an error message of sorts appears -->
+	<div class="story-component-box-mobile">
+		There are no stories in your feed.
+	</div>
+<% end %>
 <!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
