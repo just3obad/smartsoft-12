@@ -149,6 +149,7 @@ NokiaRuby::Application.routes.draw do
   match "mob/stories/:id/show_mob/" => "stories#mobile_show"
   match "/fb/done" => "facebook_account#authenticate_facebook_done"
   match "mob/facebook/auth_init" => "facebook_account#authenticate_facebook_init"
+  match "mob/facebook/delete" => "facebook_account#delete_account"
   # $$$$$$$$$$$$ MENISY END $$$$$$$$$$$$$$$$$$$$$$
 
     # $$$$$$$$$$$$$$ Khaled $$$$$$$$$$$$$$$$$$$$$$$$$
