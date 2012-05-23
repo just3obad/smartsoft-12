@@ -131,9 +131,9 @@ Author : Omar
   end
 
 #Author: khaled.elbhaey 
-  test "the view of friends who liked " do
-   user1 = users(:ben)
-UserSession.create(user1)
+  test "the view of friends who liked" do
+    user1 = users(:ben)
+    UserSession.create(user1)
     new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
     new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
 
@@ -141,38 +141,42 @@ UserSession.create(user1)
      if !list.empty?
       assert get(:liked_mobile_show, {'id' => new_story.id})
       assert_select 'div[ id=liked]'
-     else
-      assert get(:liked_mobile_show, {'id' => new_story.id}) 
-      assert_select 'div[ id=error_explanation]'
      end
   end
 #Author: khaled.elbhaey 
-  test "the view of friends who disliked " do
-   user1 = users(:ben)
-UserSession.create(user1)
+  test "the view of friends who disliked" do
+    user1 = users(:ben)
+    UserSession.create(user1)
     new_interest=Interest.create(:name=>"sport", :description=>"sport is good")
     new_story=Story.create(:title=>"messi", :content=>"won a lot", :interest_id=>1)
     list=new_story.view_friends_dislike(user1)
     if !list.empty?
       assert get(:disliked_mobile_show, {'id' => new_story.id})
       assert_select 'div[ id=disliked]'
-    else
-      assert get(:disliked_mobile_show, {'id' => new_story.id})
-      assert_select 'div[ id=error_explanation]'
     end
   end
 
 
 #Author: khaled.elbhaey 
-  test "the view of recommendation of story RED" do
+  test "the view of recommendation of story" do
+    user1 = users(:ben)
+    UserSession.create(user1)
     this_interest = Interest.create :name => "Sports", :description => "hey sporty"
     this_story= Story.new :title => "Story1", :interest_id => this_interest
     this_story.interest = this_interest
     this_story.save
-    user1 = users(:ben)
-    UserSession.create(user1)
-    get :recommend_story_mobile_show, 'sid' => this_story.id
-    assert_select 'div[ id=submit]'
+    flist=user1.get_friends_email
+    if !flist.empty?
+      assert get(:recommend_story_mobile_show, {'sid' => this_story.id})
+      assert_select 'div[ id=submit]'
+      assert_select 'div[ id=recommendation]'
+      assert_select 'table[ id=list]'
+    else
+      assert get(:recommend_story_mobile_show, {'sid' => this_story.id})
+      assert_select 'div[ id=submit]'
+      assert_select 'div[ id=recommendation]'
+    end
+    
   end
   
   #Author : Shafei
