@@ -46,7 +46,7 @@ end
  #This method when called will return an array of ActiveRecords having 
   #all interests in the database that are not deleted.
   def self.get_all_interests_for_users
-    interests=Interest.where("deleted=? OR deleted=?",nil,true)
+     interests=Interest.where(:deleted => nil)
   end
 
   '''This method when called will return the difference between today and the day
