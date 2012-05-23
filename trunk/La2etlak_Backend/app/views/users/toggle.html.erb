@@ -2,10 +2,7 @@
 	<!-- checks if there are no interests on the system yet-->
 	<% if @all_interests == nil || @all_interests == [] %>
 	<div align="center">
-		 <font face="Courier New, Courier, monospace" COLOR="FF0000" size="3"><b>No interests on the system yet!!</b></font></br></br> 
-		 
-		 <p><a href="#" onclick="history.back();"><class: "btn btn-danger">Back</a></p>
-		 
+		 <font face="Courier New, Courier, monospace" COLOR="FF0000" size="3"><b>No interests on the system yet!!</b></font></br>		 
 		</div>
   <%else%>
 
@@ -21,45 +18,54 @@ on deleting an exsiting interest the page is refreshed and button color is chang
    <div align="center" >     
    	<% @all_interests.each do |interest| %>
 		<!-- Kareem -->
-		<table>
-			<td>
+   	   <div class="well" >
+		<table>			
+   <%if @user_interests.include? interest%> 		 			
+	<span class="greenbadge"><%=interest.name.upcase%></span><br>
+	<%else%>
+	   <span class="redbadge"><%=interest.name.upcase%></span><br>
+   <%end%>
+		</table><br>
+			<table>
+
 		<!-- Kareem -->
-		<%if @user_interests.include? interest.id%> 		 	
-		<%= link_to interest.name, 
+		<%if @user_interests.include? interest%> 		 	
+			<td><span><%= link_to 'Delete', 
 {:controller => 'users', :action => 'int_toggle',:id => interest.id }, 
-class: "btn btn-success" %></br></br>
+class: "btn btn-danger" %></span></td>
 			<%else%>
-			 <% if @user.is_blocked(interest.id) == 1 %>
-				<%= link_to "#{interest.name} (blocked)" , 
+   		  	            <td><span><%= link_to 'Add', 
 {:controller => 'users', :action => 'int_toggle', :id => interest.id }, 
-class: "btn btn-danger"%></br></br>				
-		<%else%>
-   		  <%= link_to interest.name, 
-{:controller => 'users', :action => 'int_toggle', :id => interest.id }, 
-class: "btn btn-danger"%></br></br>
+class: "btn btn-success"%></span></td>
 			
-			<%end%>
 			
-			<%end%>
-		<!-- Kareem -->
-		  </td>
-
-		<!-- check if the user has added this Interest .. if its added a Filter by Interest button appers to Filter according to that Interest -->
-
-		<!--	 if @user_interests.include?(interest.id) --> 
-		<td>
-	
-	<%= link_to "Filter by "+interest.name, 
-	{:controller => "users", :action => "feed", :interest => interest.name}, 
-	class: "btn btn-primary" %></br></br>
-		</td>
-		<!-- Kareem -->
 		<%end%>
-   	
+		<!-- Kareem -->
+		 
+	<%if @user.blocked_interests.include? interest %>	  
+		<td><span><%= link_to 'Unblock', 
+{:controller => 'users', :action => 'block_interest_from_toggle', :id => (interest.id)} , 
+class: "btn btn-warning"%></span> </td>
+	<%else%>
+	 	<td><span><%= link_to 'Block', 
+{:controller => 'users', :action => 'block_interest_from_toggle', :id => (interest.id)} , 
+class: "btn btn-warning"%></span></td>
+	<%end%>	
+		
+		<!-- check if the user has added this Interest .. if its added a Filter by Interest button appers to Filter according to that Interest -->
+	
+	<td><span><%= link_to "feed", 
+	{:controller => "users", :action => "feed", :interest => interest.name}, 
+	class: "btn btn-info" %></span></td>
 		<!-- Kareem -->
 	</table>
+	</div>
+	<br>	
+   	<%end%> 
 		<!-- Kareem -->
-	</br></br>
+	
+		<!-- Kareem -->
+	
 	</div>
 	
 	<!-- added main feed button on click goes to main feed  -->
