@@ -48,12 +48,13 @@ class Emailer < ActionMailer::Base
 	end
 
 #Author: khaled
-	def invite_to_app(sender, reciever, message, stitle)
+	def invite_to_app(sender, reciever, message, stitle, surl)
 
 		 @user=sender
 		 @friend=reciever
 		 @mess=message
 	   @storytit=stitle
+     @storyurl=surl
 		
 		mail(:to => @friend, :subject => "invitation to La2etlak app")
 
