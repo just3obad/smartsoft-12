@@ -326,7 +326,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_routing 'mob/connect_network', {:controller => "users", :action => "connect_social_accounts"}
     get :connect_social_accounts
     assert_response :success, 'Get should be successful'
-    assert_select "div[id=twitter_warning]"
 
   end 
 
