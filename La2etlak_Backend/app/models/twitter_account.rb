@@ -47,6 +47,8 @@ class TwitterAccount < ActiveRecord::Base
   I have pruned the option to one optional option which is the pages.  a page
   contains 20 tweets. Adding a new options will be as simple as putting them 
   into a hash and providing them to the home_timeline method. 
+  Input: count, is the number of desired tweets that the method will return 
+  Output: a list of [count] tweets that are converted to stories 
   Author: Yahia
 =end
   def get_feed(count=20)
@@ -67,6 +69,8 @@ class TwitterAccount < ActiveRecord::Base
 =begin 
   This method converts a Twitter::Status to Story class. This representation
   was asked by C1 
+  Input: Tweet
+  Output:Story
   Author: Yahia
 =end  
   def self.convert_tweet_to_story(tweet)
@@ -80,9 +84,10 @@ class TwitterAccount < ActiveRecord::Base
   end
 
 =begin
- This return the consumer for twitter authentication
- 
- Author: Yahia  
+  This return the consumer for twitter authentication
+  Input: Nothing
+  Output: Twitter::Consumer
+  Author: Yahia  
 =end
   def self.twitter_consumer
   # The readkey and readsecret below are the values you get during registration
