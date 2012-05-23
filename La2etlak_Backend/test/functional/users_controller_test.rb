@@ -189,7 +189,7 @@ class UsersControllerTest < ActionController::TestCase
     this_user = users(:ben)
     UserSession.create(this_user)
     get :block_story, 'id' => this_story.id
-    assert_response :redirect 
+    assert_response(:redirect, "redirect successfull") 
     assert_redirected_to(options = {:controller => "users", :action => "feed"},   	message = "Story blocked successfully")
   end
 
@@ -202,47 +202,81 @@ class UsersControllerTest < ActionController::TestCase
     this_user = users(:ben)
     UserSession.create(this_user)
     get :block_interest, 'id' => this_story.id
-    assert_response :redirect 
+    assert_response(:redirect, "redirect successfull") 
     assert_redirected_to(options = {:controller => "users", :action => "feed"},   	message = "Interest blocked successfully")
   end
 
   #Author: Rana
-  test "get block friend" do
+  test "should redirect on unblock interest from toggle" do
+    this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    get :unblock_interest_from_toggle, 'id' => this_interest.id
+    assert_response(:redirect, "redirect successfull") 
+    assert_redirected_to(options = {:controller => "users", :action => "toggle"},  	message = "Interest unblocked successfully")
+  end
+
+  #Author: Rana
+  test "should redirect on unblock interest" do
+    this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+    this_story= Story.new :title => "Story1", :interest_id => this_interest
+    this_story.interest = this_interest
+    this_story.save
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    get :unblock_interest, 'id' => this_story.id
+    assert_response(:redirect, "redirect successfull") 
+    assert_redirected_to(options = {:controller => "users", :action => "feed"},  	message = "Interest unblocked successfully")
+  end
+  
+  #Author: Rana
+  test "should redirect on block interest from toggle" do
+    this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    get :block_interest_from_toggle, 'id' => this_interest.id
+    assert_response(:redirect, "redirect successfull") 
+    assert_redirected_to(options = {:controller => "users", :action => "toggle"},  message = "Interest blocked successfully")
+  end
+
+  #Author: Rana
+  test "should redirect on block friend" do
     this_user = users(:ben)
     UserSession.create(this_user)
     my_friend = users(:ahmed)
     this_user.invite my_friend
     my_friend.approve this_user
     get :block_friends_feed, 'id' => my_friend.id
-    assert_response :redirect 
+    assert_response(:redirect, "redirect successfull") 
+    assert_redirected_to(options = {:controller => "friendships", :action =>  		"index"},message = "#{my_friend.email} blocked.")
   end
 
   #Author: Rana
-  test "get unblock friend" do
+  test "should redirect on unblock friend" do
     this_user = users(:ben)
     UserSession.create(this_user)
     my_friend = users(:ahmed)
     this_user.invite my_friend
     my_friend.approve this_user
     get :unblock_friends_feed, 'id' => my_friend.id
-    assert_response :redirect 
+    assert_response(:redirect, "redirect successfull")
+    assert_redirected_to(options = {:controller => "users", :action => 	  	"friends_feed", :id => my_friend.id}, message = "#{my_friend.email} unblocked.")
   end
 
   #Author: Rana
-  test "get friend feed" do
+  test "should get friend feed" do
     this_user = users(:ben)
     UserSession.create(this_user)
     my_friend = users(:ahmed)
     this_user.invite my_friend
     my_friend.approve this_user
     get :friends_feed, 'id' => my_friend.id
-    assert_response :success
-    assert_select 'div[id = "heading"]'
+    assert_response(:success, "Friend feed generated successfully")
+    assert_select('div[id = "heading"]',nil,"div containing heading")
     if(!(this_user.get_one_friend_stories(my_friend.id).empty?))
-    assert_select 'div[id = "my_stories"]'
+    assert_select('div[id = "my_stories"]',nil,"div containing stories")
     end
-    assert_select 'div[id = "block"]'
-    assert_select 'div[id = "back"]' 
+    assert_select('div[id = "block"]',nil,"div containing block button")
   end
 
   #Author: Rana
@@ -250,21 +284,34 @@ class UsersControllerTest < ActionController::TestCase
       this_user = users(:ben)
       UserSession.create(this_user)
       get :manage_blocked_friends
-      assert_response(:success, message = "list fetched successfully")
-      assert_select 'div[id = "heading"]'
-      assert_select 'div[id = "list"]'
-      assert_select 'div[id = "back"]'
+      assert_response(:redirect, "no blocked friends")
+      assert_redirected_to(options = {:controller => "friendships", :action => "index"}, message = "no blocked friends")
+      my_friend = users(:ahmed)
+      this_user.invite my_friend
+      my_friend.approve this_user
+      this_user.block_friends_feed1(my_friend)
+      get :manage_blocked_friends
+      assert_response(:success,"list fetched successfully")
+      assert_select('div[id = "heading"]',nil,"div containing heading")
+      assert_select('div[id = "list"]',nil,"div containing list")
   end
 
   #Author: Rana
-  test "get manage blocked stories list" do
+  test "should get manage blocked stories list" do
       this_user = users(:ben)
       UserSession.create(this_user)
       get :manage_blocked_stories
-      assert_response(:success, message = "list fetched successfully")
-      assert_select 'div[id = "heading"]'
-      assert_select 'div[id = "list"]'
-      assert_select 'div[id = "back"]'
+      assert_response(:redirect, "no blocked stories")
+      assert_redirected_to(options = {:controller => "users", :action => "settings"}, message = "no blocked stories")
+      this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+      this_story= Story.new :title => "Story1", :interest_id => this_interest
+      this_story.interest = this_interest
+      this_story.save
+      this_user.block_story1(this_story)
+      get :manage_blocked_stories
+      assert_response(:success, "list fetched successfully")
+      assert_select('div[id = "heading"]',nil,"div containing heading")
+      assert_select('div[id = "list"]',nil,"div containing list")
   end
 
   #Author: Rana
@@ -276,7 +323,20 @@ class UsersControllerTest < ActionController::TestCase
     this_story.interest = this_interest
     this_story.save
     get :unblock_story, 'id' => this_story.id
-    assert_response :redirect 
+    assert_response(:redirect, "redirect sucessfull") 
+    assert_redirected_to(options = {:controller => "users", :action => "feed"},   	message = "Story unblocked successfully")
+  end
+
+  #Author: Rana
+  test "should redirect on unblock story from undo" do
+    this_user = users(:ben)
+    UserSession.create(this_user)
+    this_interest = Interest.create :name => "Sports", :description => "hey sporty"
+    this_story= Story.new :title => "Story1", :interest_id => this_interest
+    this_story.interest = this_interest
+    this_story.save
+    get :unblock_story, 'id' => this_story.id
+    assert_response(:redirect, "redirect sucessfull") 
     assert_redirected_to(options = {:controller => "users", :action => "feed"},   	message = "Story unblocked successfully")
   end
 
