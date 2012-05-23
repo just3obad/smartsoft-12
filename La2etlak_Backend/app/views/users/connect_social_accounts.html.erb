@@ -8,10 +8,11 @@
            :class => 'quick', 
            :remote => true%>
           <% if @user.facebook_account %>
-          <br></br>
+          <br>
           <%= link_to "Feed", {:controller => 'users', :action => 'facebook_feed'}, class: "btn", id: "facebook_feed"%>
           <%= link_to "Disconnect", {:controller => 'facebook_accounts', :action => 'delete_account'}, class: "btn btn-danger", id: "facebook_disconnect"%>
           <% end %>
+          </br>
         </div>
       </div>
 
@@ -26,7 +27,7 @@
           :class => 'quick', 
           :remote => true%>
           <% if @user.twitter_account %>
-          <br id='twitter_connected'>
+          <br>
           <%= link_to "Feed", {:controller => 'users', :action => 'twitter_feed'}, class: "btn", id:"feed_twitter"%>       
           <%= link_to "Disconnect",  {:controller => 'twitter_accounts', :action => 'delete_account'}, class: "btn btn-danger", id:"disconnect_twitter"%>
           <% end %>
@@ -42,10 +43,11 @@
             :class => 'quick', 
             :remote => true%>
           <% if @user.flickr_account %>
-          <br></br>
+          <br>
           <%= link_to "Feed", {:controller => 'users', :action => 'flickr_feed'}, class: "btn", id:"feed_flickr"%> 
           <%= link_to "Disconnect", {:controller => 'flickr_accounts', :action => 'delete_account'}, class: "btn btn-danger", id:"disconnect_flickr"%>
           <% end %>
+          </br>
         </div>
       </div>
 
@@ -56,10 +58,11 @@
             :class => 'quick', 
             :remote => true%> 
           <% if @user.tumblr_account %>
-            <br></br>
+            <br>
               <%= link_to "Feed", {:controller => 'users', :action => 'tumblr_feed'}, class: "btn", id: "feed_tumblr"%>
               <%= link_to "Disconnect", {:controller => 'tumblr_accounts', :action => 'delete_account'}, class: "btn btn- danger", id:"disconnect_tumblr"%>
           <% end %>
+          </br>
         </div>
       </div>
 
