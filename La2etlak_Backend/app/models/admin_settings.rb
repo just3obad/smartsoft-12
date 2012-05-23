@@ -59,13 +59,15 @@ class Admin_Settings < ActiveRecord::Base
     end
 end
 
-#Author: Bassem
-#This method takes the number of days as an input, checks if its not equal to zero and sets the value of the time span
-#to this number which is to be checked lately whenever statistics are shown.
-#NB: "statistics_time_span" key is to be put initially = 30. But now for the sake of testing, please type this command
-#in your terminal:
-# $ Admin_Settings.create!(key:"statistics_time_span", value:30)
-
+=begin
+This method takes the number of days as an input, checks if its not equal to zero and sets the value of the time span
+to this number which is to be checked lately whenever statistics are shown.
+Inputs: no of days to be set
+NB: "statistics_time_span" key is to be put initially = 30. But now for the sake of testing, please type this command
+in your terminal:
+$ Admin_Settings.create!(key:"statistics_time_span", value:30)
+Author: Bassem
+=end
   def self.set_statistics_span (days)
     days_value = days.to_i
     span= Admin_Settings.find_by_key("statistics_time_span")
