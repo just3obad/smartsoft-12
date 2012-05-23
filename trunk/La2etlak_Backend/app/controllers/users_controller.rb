@@ -562,7 +562,10 @@ end
 #~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
 =begin
  ~ Method Name : edit
- ~ Function : Responsible for rendering the view in which the user can edit his information
+ ~ Description : Responsible for rendering the view in which the user can edit his information
+ No I/O
+ Author: 3OBAD
+
 =end
 
   def edit
@@ -570,14 +573,17 @@ end
     render layout: "mobile_template", template: "users/edit" 
   end
 =begin
- ~ Method : 
- ~ Function : Responsible for updating the information of the user and notiyf him.
+  
+  Description : Responsible for updating the information of the user and notiyf him.
    Case 1 : If the update was successful the user is notified that his information was updated successfully
    Case 2 : If the nickname is greater than 20 chars, he will be notified of this error
    Case 3 : If the firstname is greater than 20 chars, he will be notified of this error
    Case 4 : If the lastname is greater than 20 chars, he will be notified of this error
    Case 5 : If there is a password missmatch, he will be notified of this error
    Case 6 : If the pasword is less than 4 chars, he will be notified of this error
+
+   No I/O
+   Author: 3OBAD
 =end
   def update
     @user = current_user
