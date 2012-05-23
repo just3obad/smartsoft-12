@@ -340,7 +340,8 @@ end
     @user = current_user
     @story_id = params[:id]
     @story = Story.find_by_id(@story_id)
-    @text = @user.block_interest1(@story)
+    @interest = @story.interest
+    @text = @user.block_interest1(@interest)
     if (@text == "Interest blocked.")
       flash[:block_interest_s] = "#{@text} <a href=\"/mob/unblock_interest/#{@story_id}\"> <h7 style=\"color:#0088CC;\">Undo</h7> </a> $green"
     else 
@@ -360,7 +361,7 @@ end
     @user = current_user
     @interest_id = params[:id]
     @interest = Interest.find_by_id(@interest_id)
-    @text = @user.block_interest_from_toggle1(@interest)
+    @text = @user.block_interest1(@interest)
     if (@text == "Interest blocked.")
       flash[:block_interest_toggle_s] = "#{@text} $green"
     else 
@@ -479,7 +480,7 @@ end
       @user = current_user
       @interest_id = params[:id]
       @interest = Interest.find_by_id(@interest_id)
-      @text = @user.unblock_interest_from_toggle1(@interest)
+      @text = @user.unblock_interest1(@interest)
       if(@text == "Interest unblocked.") 
          flash[:interest_unblocked_toggle_s] = "#{@text} $green"
       else 
@@ -499,7 +500,8 @@ end
       @user = current_user
       @story_id = params[:id]
       @story = Story.find_by_id(@story_id)
-      @text = @user.unblock_interest1(@story)
+      @interest = @story.interest
+      @text = @user.unblock_interest1(@interest)
       if(@text == "Interest unblocked.") 
          flash[:interest_unblocked_s] = "#{@text} $green"
       else 
