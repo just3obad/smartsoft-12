@@ -292,7 +292,9 @@ Author:Kareem
  end
 
 =begin
-return list of top ranked  stories related to current story interest 
+Discription : return list of top ranked  stories related to current story interest 
+Input : no input
+Output: list of stories
 Author: Omar
 =end
 
