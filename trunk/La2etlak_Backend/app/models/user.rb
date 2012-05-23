@@ -580,10 +580,12 @@ Author:Kareem
 	 	self.added_interests.delete interest
  		message = "#{username} deleted interest : #{interest_name}"
    		Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			interest_id: id, message: message)
+   		return "Interest deleted."
        else 
 		 UserAddInterest.create(:user_id => self.id , :interest_id => id)
  	      	 message = "#{username} added interest : #{interest_name}"
    		 Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			 interest_id: id, message: message)
+   		 return "Interest added."
        end
  end
  
