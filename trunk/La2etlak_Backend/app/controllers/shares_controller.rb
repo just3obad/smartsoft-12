@@ -9,10 +9,10 @@ class SharesController < ApplicationController
     @story_id = params[:id]
     usershare = Share.new(:user_id => @user.id, :story_id => @story_id)
     if(usershare.save)
-      flash.now[:notice] = "You have successfully shared this story, it will now appear on your friends' feeds"
+      flash.now[:story_successfully_shared] = "You have successfully shared this story, it will now appear on your friends' feeds $green"
       redirect_to("/stories/"+@story_id+"/get", :flash => flash)
     else 
-      flash.now[:error] = "Story not successfully saved, please try again later"
+      flash.now[:story_not_shared] = "Story not successfully saved, please try again later $red"
       redirect_to("/stories/"+@story_id+"/get", :flash => flash)
   end
 
