@@ -261,6 +261,7 @@ Author:Kareem
  This method checks the three booleans (hidden, flagged, checked) and queries the corresponding stories form the database
  All of these conditions append a sublist of stories to the array "stories" and then returns an array of unique stories.
  Inputs: 3 flags, hidden, flagged and active
+ Output: Array of stories according to the input flags
  Author: Bassem
 =end
  def self.filter_stories(hidden,flagged,active)

@@ -343,10 +343,13 @@ end
     # redirect_to(:action => 'generate_request_token', :id => 5)
   end 
   
-
- #Author: Bassem
-  #The method takes the user Id as a parameter, passes it to the model where the user is found
-  #and his deactivated attribute is set to true
+=begin
+  This method takes the user Id as a parameter, passes it to the model where the user is found and deactivated
+  input: user id
+  output: non
+  Author: bassem
+=end
+  
   def deactivate
     @user = User.find(params[:id])
     @user.deactivate_user()
@@ -354,9 +357,12 @@ end
     redirect_to(:action => 'show', :id => @user.id)
   end
 
-  #Author: Bassem
-  #The method takes the user Id as a parameter, passes it to the model where the user is found
-  #and his deactivated attribute is set to false
+=begin
+  This method takes the user Id as a parameter, passes it to the model where the user is found and activated
+  input: user id
+  output: non
+  Author: bassem
+=end
   def activate
     @user = User.find(params[:id])
     @user.activate_user()
