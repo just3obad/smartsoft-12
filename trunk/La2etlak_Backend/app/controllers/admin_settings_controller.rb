@@ -53,8 +53,12 @@ class AdminSettingsController < ApplicationController
 	      redirect_to('/admin_settings')
 	    end
 	  end
-
-	  #Author : BASSEM
+=begin
+This methods takes the number of days and passes it to the method in the model
+Inputs: no of days
+Outputs: non
+Author: Bassem
+=end
 	  def statistics_time_span
 	  	@response = Admin_Settings.set_statistics_span params[:days]
 	  	if ( @response == 1 )
