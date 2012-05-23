@@ -431,7 +431,7 @@ end
       @story_id = params[:id]
       @story = Story.find_by_id(@story_id)
       @text = @user.unblock_story1(@story)
-      if(@text = "Story unblocked.") 
+      if(@text == "Story unblocked.") 
          flash[:story_unblocked_s] = "#{@text} $green"
       else 
          flash[:story_unblocked_f] = "#{@text} $red"
@@ -441,6 +441,26 @@ end
       else 
          redirect_to action: "manage_blocked_stories"
       end
+  end
+
+=begin
+  The method that calls the method in the model to unblock an interest and renders 
+  the view.
+  Input: interest_id
+  Output: flash and redirect to toggle
+  Author: Rana
+=end
+  def unblock_interest_from_toggle
+      @user = current_user
+      @interest_id = params[:id]
+      @interest = Interest.find_by_id(@interest_id)
+      @text = @user.unblock_interest_from_toggle1(@interest)
+      if(@text == "Interest unblocked.") 
+         flash[:interest_unblocked_toggle_s] = "#{@text} $green"
+      else 
+         flash[:interest_unblocked_toggle_f] = "#{@text} $red"
+      end
+      redirect_to action: "toggle"
   end
 
 =begin
