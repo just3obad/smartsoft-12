@@ -322,7 +322,7 @@ end
     @story = Story.get_story(@story_id)
     @text = @user.block_story1(@story)
     if (@text == "Story blocked.")
-      flash[:story_blocked_success] = "#{@text} <a href=\"/mob/unblock_story/#{@story_id}\"> <h7 style=\"color:#0088CC;\">undo?</h7> </a> $green"
+      flash[:story_blocked_success] = "#{@text} <a href=\"/mob/unblock_story_from_undo/#{@story_id}\"> <h7 style=\"color:#0088CC;\">Undo</h7> </a> $green"
     else 
       flash[:story_blocked_fail] = "#{@text} $red"
     end
@@ -339,14 +339,14 @@ end
   def block_interest
     @user = current_user
     @story_id = params[:id]
-    @story = Story.get_story(@story_id)
+    @story = Story.find_by_id(@story_id)
     @text = @user.block_interest1(@story)
     if (@text == "Interest blocked.")
-      flash[:block_interest_s] = "#{@text} <a href=\"/mob/unblock_interest/#{@story_id}\"> <h7 style=\"color:#0088CC;\">undo?</h7> </a> $green"
+      flash[:block_interest_s] = "#{@text} <a href=\"/mob/unblock_interest/#{@story_id}\"> <h7 style=\"color:#0088CC;\">Undo</h7> </a> $green"
     else 
       flash[:block_interest_f] = "#{@text} $red"
     end
-    redirect_to action: "feed"
+    redirect_to action:"feed"
   end
 
 =begin
@@ -446,6 +446,26 @@ end
       else 
          redirect_to action: "manage_blocked_stories"
       end
+  end
+
+=begin
+  The method that calls the method in the model to unblock a story and renders the
+  view.
+  Input: story_id
+  Output: flash and redirect to main feed
+  Author: Rana
+=end
+  def unblock_story_from_undo
+      @user = current_user
+      @story_id = params[:id]
+      @story = Story.find_by_id(@story_id)
+      @text = @user.unblock_story1(@story)
+      if(@text == "Story unblocked.") 
+         flash[:story_unblocked_s] = "#{@text} $green"
+      else 
+         flash[:story_unblocked_f] = "#{@text} $red"
+      end
+      redirect_to action: "feed"
   end
 
 =begin
