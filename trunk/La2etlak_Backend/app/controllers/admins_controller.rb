@@ -3,9 +3,6 @@ class AdminsController < ApplicationController
     before_filter {admin_authenticated?}
 
   def search
-    $usersSearch = "true"
-    $storiesSearch = "true"
-    $interestsSearch = "true"
     if params[:autocomplete][:query].length > 0
       $search_result = Admin.search(params[:autocomplete][:query])
 
@@ -27,22 +24,6 @@ class AdminsController < ApplicationController
   end
   
 =begin
-  This method checks if the Users/Stories/Interests checkboxes are 
-  checked or not and returns the values in the global variables:
-  $usersSearch
-  $storiesSearch
-  $interestsSearch 
-  Then it renders the search view again after the filteration.
-  Author: Lydia
-=end
-  def filter
-    $usersSearch = params[:users]
-    $storiesSearch = params[:stories]
-    $interestsSearch = params[:interests]
-     render :template => 'admins/search'
-  end
-  
-=begin
   This method checks the params of type passed from the search page so that
   it sets the @results variable to be either all results of the users or all 
   results of the stories or all results of the interests and it also applies
@@ -51,13 +32,25 @@ class AdminsController < ApplicationController
 =end
   def all_results
     if params[:type] == "1"
-      @results = $users.paginate(:page=>params[:page], :per_page=> 10)
+    	if $users.length > 10
+      	@results = $users.paginate(:page=>params[:page], :per_page=> 10)
+      elsif
+      	@results = $users
+      end
     end
     if params[:type] == "2"
-      @results = $stories.paginate(:page=>params[:page], :per_page=> 10)
+      if $stories.length > 10
+      	@results = $stories.paginate(:page=>params[:page], :per_page=> 10)
+      elsif
+      	@results = $stories
+      end
     end
     if params[:type] == "3"
-      @results = $interests.paginate(:page=>params[:page], :per_page=> 10)
+      if $interests.length > 10
+      	@results = $interests.paginate(:page=>params[:page], :per_page=> 10)
+      elsif
+      	@results = $interests
+      end
     end
   end
  #Author : Mouaz
