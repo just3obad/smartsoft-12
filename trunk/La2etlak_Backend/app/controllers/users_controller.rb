@@ -561,7 +561,7 @@ end
       flash[:notice] = "Password must be greater than 6 characters $red"
       redirect_to action:"edit"
     end
-    end   
+  end   
 
 #~~~~~~~~~~ 3OBAD ~~~~~~~~~~#
 
