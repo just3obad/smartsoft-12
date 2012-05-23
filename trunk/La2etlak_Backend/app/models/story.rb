@@ -293,7 +293,7 @@ Author:Kareem
  end
 
 =begin
-return list of top ranked five stories related to current story interest 
+return list of top ranked  stories related to current story interest 
 Author: Omar
 =end
 
@@ -310,52 +310,6 @@ Author: Omar
 	
  end
 
-=begin
- this method takes as a parameter the html file and extract the content from it 
- Author: Omar
-=end
-
-require 'nokogiri'
-require 'rubygems'
-require 'open-uri'
- def new_content(sdescription)
-
-	doc = Nokogiri::HTML(sdescription)
-	doc = doc.xpath("//text()").to_s
-	
-	return doc
-
- end
- 
-=begin
- this method takes as a parameter the html file and extract the img src (url) from it 
- Author: Omar
-=end
- 
-require 'nokogiri'
-require 'rubygems'
-require 'open-uri'
- def  new_media_link(sdescription)
- 
-	frag = Nokogiri::HTML.fragment(sdescription)
-	first_img_src = frag.at_css('img')['src']
-	#first_p_text  = frag.at_css('p').text
- 				url_end = ".com" 
- 				if first_img_src.length > 1
-				  allstart = first_img_src.index(url_end)
-				  media = first_img_src[ allstart.to_i+4 , first_img_src.length ] 
-			        end
-			 dot = "." 
-			 misho = media.index(dot) 
-			
-		 if !misho.nil? 
-	 return first_img_src
-	 	else 
-	 	 return ""
-	 	  end
-	
- end
- 
 
 
 end
