@@ -25,18 +25,25 @@
             </ul>
 
             <form action="stories/filter" method="post">
-              <label class="checkbox">
-			    <input type="checkbox" value= "true" <%if( $hidden )%>  checked <%end%>  name="hidden" id="hidden"> Hidden
+            	<label class="checkbox" style="background-color:#46a546; cursor:pointer;">
+			    <input type="checkbox" value= "true" <%if( $active)%>  checked <%end%>  name="active" id="active"  > Active
 			  </label>
-              <label class="checkbox">
+
+			  <label class="checkbox" style="background-color:#f89406; cursor:pointer;" >
 			    <input type="checkbox" value= "true" <%if( $flagged )%>  checked <%end%>  name="flagged" id="flagged"> Flagged
 			  </label>
-              <label class="checkbox">
-			    <input type="checkbox" value= "true" <%if( $active)%>  checked <%end%>  name="active" id="active"> Active
+
+              <label class="checkbox" style="background-color:#9d261d; cursor:pointer;" >
+			    <input type="checkbox" value= "true" <%if( $hidden )%>  checked <%end%>  name="hidden" id="hidden"> Hidden
 			  </label>
+              
+              
               <input type="submit" name="commit" value="Submit" class="btn btn-primary"/>
             </form>
           </div><!--/.well -->
+          <div class="well" style=" border-right:5px solid #9d261d; ">
+          	Hidden
+          </div>
         </div><!--/span-->
 
      <div class="admin_right_panel " >
@@ -57,11 +64,19 @@
 					-o-transform: rotate(-45deg);
 					transform: rotate(-45deg); 
 					margin-top:35px;
-					position:relative;">Story</span>
+					position:relative;"><%=Interest.find(story.interest_id).name%></span>
 				<font size="3"><b>
 				<%= link_to( story.title, {:controller => "stories", :action => "show",:id => story.id}) %></b></font>
 				<span class="pull-right bluebadge"><%=time_ago_in_words(story.created_at)%></span>
+				<%flags = story.flags.count%>
+				<%if story.hidden %>
+				<div class="well admin_story_feed" style=" border-right:5px solid #9d261d; ">
+				
+				<%elsif flags != 0 %>
 				<div class="well admin_story_feed" style=" border-right:5px solid #f89406; ">
+				<%else%>
+				<div class="well admin_story_feed" style=" border-right:5px solid #46a546; ">
+				<%end%>
 					<div class="well control-panel">
 					<%=raw story.content %>
 					</div>
