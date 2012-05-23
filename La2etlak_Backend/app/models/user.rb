@@ -661,11 +661,11 @@ Author:Kareem
 
 
 =begin
-  This method blocks the interest by inserting a row in
+  Description: This method blocks the interest by inserting a row in
   BlockInterest table.
   If the interest is already blocked, it responds with a message that the interest
   is already blocked.
-  Input: interest to be blocked
+  Input: interest
   Output: message to indicate success/failure of block
   Author: Rana
 =end   
@@ -693,11 +693,11 @@ Author:Kareem
   end
 
 =begin
-  This method unblocks the interest belonging to the story by deleting the row in
-  BlockInterest table.
+  Description: This method unblocks the interest belonging to the story by 
+  deleting the row in BlockInterest table.
   If the interest is already unblocked, it responds with a message that the 
   interest is already unblocked.
-  Input: story for which the interest wil be unblocked
+  Input: interest
   Output: message to indicate success/failure of unblock
   Author: Rana
 =end   
@@ -725,11 +725,11 @@ Author:Kareem
   end
 
 =begin
-  This method takes a story id as input and blocks its story by inserting a row in
-  BlockStory table. 
+  Description: This method takes a story id as input and blocks its story by 
+  inserting a row in BlockStory table. 
   If the story is already blocked, it responds with a message that the story is
   already blocked.
-  Input: story to be blocked
+  Input: story
   Output: message to indicate success/failure of block
   Author: Rana
 =end
@@ -757,9 +757,10 @@ Author:Kareem
   end
 
 =begin
-  This method unblocks a story by deleting its row in BlockStory table.
-  Input: story to be blocked
-  Output: text message to indicate success of block  
+  Description: This method unblocks a story by deleting its row in BlockStory 
+  table.
+  Input: story
+  Output: text message to indicate success of unblock  
   Author: Rana
 =end
   def unblock_story1(this_story)
@@ -785,7 +786,8 @@ Author:Kareem
   end
 
 =begin
-  This method gets the blocked stories of the user from the BlockStory table.
+  Description: This method gets the blocked stories of the user from the 
+  BlockStory table.
   Input: no input
   Output: array of stories 
   Author : Rana
@@ -796,10 +798,10 @@ Author:Kareem
   end
 
 =begin
-  This method blocks a user's friend using the block method provided by the gem
-  amistad.
+  Description:This method blocks a user's friend using the block method provided 
+  by the gem amistad.
   It first checks if the friend is already blocked or not.
-  Input: friend to block
+  Input: friend
   Output: text message to indicate success/failure
   Author: Rana
 =end
@@ -830,9 +832,9 @@ Author:Kareem
   end
 
 =begin
-  This method takes unblocks a user's friend using the unblock method provided by
-  the gem amistad.
-  Input: friend to be unblocked
+  Description: This method takes unblocks a user's friend using the unblock method 
+  provided by the gem amistad.
+  Input: friend
   Output: text message to indicate success
   Author: Rana
 =end
