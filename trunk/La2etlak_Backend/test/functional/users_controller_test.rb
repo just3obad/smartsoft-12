@@ -120,6 +120,20 @@ class UsersControllerTest < ActionController::TestCase
 # $$$$$$$$$$$$$$$$$$$ 3OBAD $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  
 
   
+# Author: 3OBAD
+ test "flickr feed and disconnect button" do
+    # needs to create a session with that user
+    u1 = users(:ben)
+    u1.flickr_account = flickr_accounts(:one)
+    u1.save
+    UserSession.create u1
+    get :connect_social_accounts
+    assert_response :success, 'Get should be successful'
+    assert_select "a[id=disconnect_flickr]"
+    assert_select "a[id=feed_flickr]"
+  end 
+
+
 
   #Author : Mina Adel
   test "show main feed" do
@@ -320,18 +334,7 @@ class UsersControllerTest < ActionController::TestCase
   end 
 
 
-  test "one" do
-    # needs to create a session with that user
-    u1 = users(:ben)
-    u1.flickr_account = flickr_accounts(:one)
-    u1.save
-    UserSession.create u1
-    get :connect_social_accounts
-    assert_response :success, 'Get should be successful'
-    assert_select "a[id=disconnect_flickr]"
-    assert_select "a[id=feed_flickr]"
-  end 
-
+  
 
    #author: khaled.elbhaey
   test "the view of friends emails RED" do
