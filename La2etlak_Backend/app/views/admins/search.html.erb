@@ -2,29 +2,37 @@
 	<div class="row-fluid">
 		<div class="sidebar-nav-fixed" id="filterPanel">
 	<!--Here I check if there are results for users,stories and/or interests at all and show the checkboxes for the filter accordingly...-->
-			<% if @message.nil? %>
-					<% if $users.length > 0 %>
-					<%= form_tag("/admins/filter", :method => "get") %>	
-			 			<label class="checkbox">
-			    		<input type="checkbox" value= "true" <%if( $usersSearch=='true')%>  checked <%end%>  name="users" id="users"> Users
-			  		</label>
-					<% end %>
-					<% if $stories.length > 0 %>
-			 			<label class="checkbox">
-			    		<input type="checkbox" value= "true"  <%if( $storiesSearch=='true')%>  checked <%end%> name="stories" id="stories"> Stories
-			  		</label>
-					<% end %>
-					<% if $interests.length > 0 %>
-			 			<label class="checkbox">
-			    		<input type="checkbox" value= "true" <%if( $interestsSearch=='true')%>  checked <%end%>  name="interests" id="interests"> Interests
-			  		</label>
-					<% end %>	  
-					<div>
-						<input class="btn btn-primary" name="filter" type="submit" 
-						         value="Filter" />
-					</div>
-				</form>	
-			<% end %>  
+			
+						<div class="sidebar-nav-fixed">
+							<div class="well sidebar-nav">
+	      				<ul class="nav nav-list">
+									<li class="nav-header">Directory</li>
+									<li class="divider"></li>		
+									<li><a href="/users"><i class="icon-user"></i><font size="4%">Users</font></a></li>
+									<li><a href="/interests/list"><i class="icon-heart"></i><font size="4%">Interests</font></a></li>
+									<li><a href="/stories"><i class="icon-book"></i><font size="4%">Stories</font></a></li>
+									<li class="divider"></li>
+									<li><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a></li>
+									<li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a></li>
+								</ul>
+							</div>
+						<% if @message.nil? %>
+							<div class="well sidebar-nav" style="margin-top: 20px; background-color: #f8f8f8;">
+								<ul class="nav nav-list">
+					  			<li class="nav-header">Search for: </li>
+					     		<li class="divider"></li>
+					     		<li><i class="icon-user"></i><font size="4%"><%= link_to "All",
+                    {:controller => 'admins', :action => 'search',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]} }%></font></a></li>
+					     		<li><i class="icon-user"></i><font size="4%"><%= link_to "Users",
+                    {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 1 }%></font></a></li>
+									<li><i class="icon-user"></i><font size="4%"><%= link_to "Interests",
+                    {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 3 }%></font></a></li>
+                  <li><i class="icon-user"></i><font size="4%"><%= link_to "Stories",
+                    {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 2 }%></font></a></li>
+				    		</ul>
+							</div>
+						<% end %>	
+				</div>
 	  </div>
 	    
 	<!--The results of the three parts (users,stories,interests) will appear in this panel-->
@@ -42,19 +50,45 @@
         			<h2>Users Search Results</h2>
         			<% $users[0..2].each do |user| %>
         				<div class="well-user-component">
-        					<% if !(user.nil?) %>
-            				<a href="/users/<%= user.id %>"class="thumbnail-user-component"><%= image_tag "logo.jpeg", :size => "75x75" %></a>
-            				<div class="user-component-info">
-                			<h4><%= user.first_name.nil? ? '' : user.first_name.downcase.capitalize %> <%= user.last_name.nil? ? '' : user.last_name.downcase.capitalize %></h4>
-                			<h6 class ="user-component-text"><%= user.email %></h6>
-                			<h6 class ="user-component-text"><%= user.name %><%=	link_to "User Statistics", {:controller=> 'statistics', :action => 'users', :id => user.id}, class: "user-component-button-absolute btn btn-primary"%> </h6>
-            				</div>
-            			<% end %>
-          			</div>
+                   <a href="/users/<%= user.id%>"
+                     style="display:block; float:left; height:100px;">
+                    <% if not user.image? %>
+                     <%= image_tag "logo.jpeg", :class=>"img-user-component" %>
+                    <% else %>
+                     <img src= "<%= user.image %>" width="80" style="height:100px"/>
+                    <% end %>
+                   </a>
+                   <div style="padding-left:10px; margin-left:100px;">
+                    <h3>
+                    <% if user.name.nil? %>
+                      <%= user.email.split("@")[0] %>
+                    <% else %>
+                      <%= user.name %>
+                    <% end %>
+                   </h3>
+                   <%= link_to "Profile",
+                   {:controller => 'users', :action => 'show',:id => user.id },
+                    class: "interest-component-button-absolute btn btn-warning"%>
+              
+                   <h5>Email : <%=user.email%></h5>
+                   <h5>Rank : <%= user.get_user_rank %></h5>
+                   <%= link_to "Statistics",
+                    {:controller => 'statistics', :action => 'users',:id => user.id },
+                     class: "interest-component-button-absolute btn btn-primary"%>
+                   <h5>Registration date : <%=time_ago_in_words(user.created_at) + " ago"%></h5>
+              
+                   <% if !(user.deactivated) %>
+          
+                       <span class="greenbadge"  style="width:100%" >Active</span>
+
+                   <% else%>
+
+                       <span class="redbadge"  style="width:100%">Deactivated</span>
+
+                   <% end %>
+                 </div>
+                </div>
         			<%end%>
-        			<%= link_to "View All Users Results", 
-							{:controller=> 'admins', :action => 'all_results', :type => "1"}, 
-							class: "btn btn-primary"%>
   					</div>
       		<% end %>
       	<% end %>
@@ -66,19 +100,27 @@
         			<h2>Stories Search Results</h2>
        				<% $stories[0..2].each do |story| %>
         				<div class="well-story-component">
-        					<% if !(story.nil?) %>
-            				<a href="/stories/<%= story.id%>" class="thumbnail-story-component">
-										<%= image_tag "logo.jpeg", :size => "75x75" %></a>
-            				<div class="story-component-info">
-                			<h4><%= story.title.nil? ? 'No Title' : story.title.downcase.capitalize %></h4>
-                			<%=	link_to "Story Statistics", {:controller=> 'statistics', :action => 'stories', :id => story.id}, class: "story-component-button-absolute btn btn-primary"%> </h6>
-            				</div>
-            			<% end %>
-          			</div>
+							<a href="/stories/<%= story.id%>"
+							 style="display:block; float:left; height:100px;">
+							 <%= image_tag "logo.jpeg", :class=>"img-story-component"%> 
+							</a>
+							<div style="padding-left:10px; margin-left:100px;">
+								<h3>
+									<%= story.title %>
+								</h3>
+								<%= link_to "More Info",
+							    {:controller => 'stories', :action => 'show',:id => story.id },
+							     class: "interest-component-button-absolute btn btn-warning"%>
+								<h5> Rank : <%= story.get_story_rank_all_time %> </h5>
+								<h5> Shares : <%= story.shares.count %> </h5>
+								<%= link_to "Statistics", 
+								{:controller => 'statistics', :action => 'stories',:id => story.id }, 
+								class: "interest-component-button-absolute btn btn-primary"%>
+								<h5> Fetched at : <%=time_ago_in_words(story.created_at) +" ago." %> </h5>
+								 <span class="greenbadge"  style="width:100%" >Related Interest: <%=story.interest.name %></span>
+							</div>
+						</div>
         			<%end%>
-        			<%= link_to "View All Stories Results", 
-							{:controller=> 'admins', :action => 'all_results', :type => "2"}, 
-							class: "btn btn-primary"%>
   					</div>
 					<% end %>
       	<% end %>
@@ -90,23 +132,35 @@
         			<h2>Interests Search Results</h2>
         			<% $interests[0..2].each do |interest| %>
         				<div class="well-interest-component">
-        					<% if !(interest.nil?) %>
-        						<a href="/interests/<%= interest.id %>" class="thumbnail-interest-component">
-			  						<% if not interest.photo.file? %>
-     			  					<%= image_tag "logo.jpeg", :size => "75x75" %>
-     			  				<% else %>
-            					<img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="75" style="height:75px"/>
-            		  	<% end %> </a>
-            				<div class="interest-component-info">
-                			<h4><%= interest.name.nil? ? 'No Name' : interest.name.downcase.capitalize %></h4>
-                			<%=	link_to "Interest Statistics", {:controller=> 'statistics', :action => 'interests', :id => interest.id}, class: "interest-component-button-absolute btn btn-primary"%> </h6>
-            				</div>
-            			<% end %>
-            		</div>
+                     <a href="/interests/<%= interest.id%>"
+                     style="display:block; float:left; height:100px;">
+                     <% if not interest.photo.file? %>
+                       <%= image_tag "logo.jpeg", :class=>"img-user-component" %>
+                     <% else %>
+                       <img src= "<%= interest.photo.url(:small) if interest.photo.file? %>" width="80" style="height:100px"/>
+                     <% end %> 
+                     </a>
+                     <div style="padding-left:10px; margin-left:100px;">
+                      <h3>
+                       <%= interest.name  %>
+                      </h3>
+                       <%= link_to "Interest", 
+                       {:controller => 'interests', :action => 'show',:id => interest.id }, 
+                      class: "interest-component-button-absolute btn btn-warning"%>
+                      <h5>Rank : <%=interest.get_interest_rank%></h5>
+                      <h5>No Of Stories: <%=interest.stories.count%></h5>
+                      <%= link_to "Statistics", 
+                        {:controller => 'statistics', :action => 'interests',:id => interest.id }, 
+                        class: "interest-component-button-absolute btn btn-primary"%>
+                      <h5>No Of Subscribers: <%=interest.adding_users.count%></h5>
+                      <% if !(interest.deleted ) %>
+                        <span class="greenbadge"  style="width:100%" >Active</span>
+                      <% elsif interest.deleted %>
+                        <span class="redbadge"  style="width:100%">Blocked</span>
+                     <% end %>
+                    </div>
+                  </div>
         			<%end%>
-           		<%= link_to "View All Interests Results", 
-							{:controller=> 'admins', :action => 'all_results', :type => "3"}, 
-							class: "btn btn-primary"%>
   					</div>
      			<% end %>
       	<% end %>

@@ -52,146 +52,180 @@
    });
    
 </script>
-<div class="container-fluid maindiv">
-	<div id="graphTitle" style="display: none; margin-left: 30px;"> 
+<div class="row-fluid">
+	<div class="sidebar-nav-fixed">
+		<div class="well sidebar-nav">
+	    <ul class="nav nav-list">
+				<li class="nav-header">Directory</li>
+				<li class="divider"></li>		
+				<li><a href="/users"><i class="icon-user"></i><font size="4%">Users</font></a></li>
+				<li><a href="/interests/list"><i class="icon-heart"></i><font size="4%">Interests</font></a></li>
+				<li><a href="/stories"><i class="icon-book"></i><font size="4%">Stories</font></a></li>
+				<li class="divider"></li>
+				<li class="active"><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a></li>
+				<li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="main-user-profile-page">
+		<div class="middle-user-profile-page-panel"> 
     	<h1>Graph</h1></div>
     	<div class="alert" id="deletedStory" style="display: none;">
         <h1><strong>Warning!</strong> Story was hidden before the last 30 days.
         </h1>
      	</div>
     	<!-- ccc is the id of the div that the graph would render to -->
-	<div class="border-graph" id="ccc" style="width: 1230px; margin-left: 30px;">
-	</div>
-	<div class="row-fluid">
-		<div class="statistics-left-panel " id="graph">
-			<ul class="nav nav-list">	
-				
-			<li class="divider"></li>
-			<div class="statistics-page-well">
-				<div class="accordion-inner">
-					<h3 class="statistics-component-text">
-Likes/Dislikes : <%= @story.likedislikes.where(action: 1).count %> 
-/ <%= @story.likedislikes.where(action: -1).count %></h3> 
-	<div class="progresscustom" id="progressbar" style="display: none;">
-	 <div class="barcustom" id="barofprogress" 
-	 	style="width: <%= get_width %>%"></div>
-				</div>						      					<h3 class="statistics-component-text">
-			Number of Flags : <%= @story.flags.count %>
-			<% if @story.flags.count == 1 %>
-			<%= "Flag" %>
-			<% else %>
-			<%= "Flags"  %>
-			<%  end %>
-				</h3>
-				<h3 class="statistics-component-text">
-			Number of Shares : <%= @story.shares.count %>
-			<% if @story.shares.count == 1 %>
-			<%= "Share" %>
-			<% else %>
-			<%= "Shares"  %>
-			<%  end %>
-				</h3>
-				<h3 class="statistics-component-text">
-			Number of Comments : <%= @story.comments.count %>
-			<% if @story.comments.count == 1 %>
-			<%= "Comment" %>
-			<% else %>
-			<%= "Comments"  %>
-			<%  end %>
-				</h3>
-					</div>
-				</div>
-	<h3 class="statistics-component-text">Story</h3>
-		<li class="divider"></li>
-		<div class="well-story-component ">
-		<a href="/stories/<%= @id%>"
-				class="thumbnail-story-component">
-			<%= image_tag "logo.jpeg", :size => "75x75" %></a>
-		  	<div class="story-component-info">
-				<h2><% if @story.title.nil? %>
-					   <%= "No Title Available" %>
-					   <% else %>
-					   <%= @story.title  %>
-					   <%  end %></h2>					
-				</div>
-		</div>
-	<h3 class="statistics-component-text">Interest related</h3>
-		<li class="divider"></li>
-		<div class="well-interest-component">
-			<a href="/interests/<%= @story.interest_id%>"
-				class="thumbnail-interest-component">
-			  <% if not @story.interest.photo.file? %>
-     			  <%= image_tag "logo.jpeg", :size => "75x75" %>
-     			  <% else %>
-            <img src= "<%= @story.interest.photo.url(:small) if @story.interest.photo.file? %>" width="75" style="height:75px"/>
-            		  <% end %> </a>
-				<div class="interest-component-info">
-					<h2><% if @story.interest.name.nil? %>
-						<%= "No Name Available" %>
-						<% else %>
-						<%= @story.interest.name  %>
-						<%  end %>
-					</h2>
-<%= link_to "view Statistics", 
-{:controller => 'statistics', :action => 'interests',:id => @story.interest_id }, 
-class: "interest-component-button-absolute btn btn-primary"%>
+			<div id="ccc"></div>
+			<div class="row-fluid">
+				<div class="statistics-left-panel " id="graph">
+					<ul class="nav nav-list">	
+						<li class="divider"></li>
+						<div class="statistics-page-well">
+							<div class="accordion-inner">
+								<h3 class="statistics-component-text">
+									Likes/Dislikes: <%= @story.likedislikes.where(action: 1).count %> 
+									/ <%= @story.likedislikes.where(action: -1).count %></h3> 
+								<div class="progresscustom" id="progressbar" style="display: none;">
+	 								<div class="barcustom" id="barofprogress" style="width: <%= get_width %>%">
+	 								</div>
+								</div>						      					
+								<h3 class="statistics-component-text">Number of Flags: <%= @story.flags.count %>
+									<% if @story.flags.count == 1 %>
+										<%= "Flag" %>
+									<% else %>
+										<%= "Flags"  %>
+									<%  end %>
+								</h3>
+								<h3 class="statistics-component-text">Number of Shares: <%= @story.shares.count %>
+									<% if @story.shares.count == 1 %>
+										<%= "Share" %>
+									<% else %>
+										<%= "Shares"  %>
+									<%  end %>
+								</h3>
+								<h3 class="statistics-component-text">Number of Comments: <%= @story.comments.count %>
+									<% if @story.comments.count == 1 %>
+										<%= "Comment" %>
+									<% else %>
+										<%= "Comments"  %>
+									<%  end %>
+								</h3>
+							</div>
+						</div>
+						<h3 class="statistics-component-text">Story</h3>
+							<li class="divider"></li>
+							<div class="well-story-component">
+								<a href="/stories/<%= @story.id%>" style="display:block; float:left; height:100px;">
+							 		<%= image_tag "logo.jpeg", :class=>"img-story-component"%> 
+								</a>
+								<div style="padding-left:10px; margin-left:100px;">
+									<h3><%= @story.title %></h3>
+									<%= link_to "More Info",
+							    {:controller => 'stories', :action => 'show',:id => @story.id },
+							     class: "interest-component-button-absolute btn btn-warning"%>
+									<h5> Rank : <%= @story.get_story_rank_all_time %> </h5>
+									<h5> Shares : <%= @story.shares.count %> </h5>
+									<%= link_to "Statistics", 
+									{:controller => 'statistics', :action => 'stories',:id => @story.id }, 
+									class: "interest-component-button-absolute btn btn-primary"%>
+									<h5> Fetched at : <%=time_ago_in_words(@story.created_at) +" ago." %> </h5>
+								 	<span class="greenbadge"  style="width:100%" >Related Interest: <%=@story.interest.name %></span>
+								</div>
+							</div>
+							<h3 class="statistics-component-text">Interest related</h3>
+							<li class="divider"></li>
+							<div class="well-interest-component">
+                     <a href="/interests/<%= @story.interest.id%>"
+                     style="display:block; float:left; height:100px;">
+                     <% if not @story.interest.photo.file? %>
+                       <%= image_tag "logo.jpeg", :class=>"img-user-component" %>
+                     <% else %>
+                       <img src= "<%= @story.interest.photo.url(:small) if @story.interest.photo.file? %>" width="80" style="height:100px"/>
+                     <% end %> 
+                     </a>
+                     <div style="padding-left:10px; margin-left:100px;">
+                      <h3>
+                       <%= @story.interest.name  %>
+                      </h3>
+                       <%= link_to "Interest", 
+                       {:controller => 'interests', :action => 'show',:id => @story.interest.id }, 
+                      class: "interest-component-button-absolute btn btn-warning"%>
+                      <h5>Rank : <%=@story.interest.get_interest_rank%></h5>
+                      <h5>No Of Stories: <%=@story.interest.stories.count%></h5>
+                      <%= link_to "Statistics", 
+                        {:controller => 'statistics', :action => 'interests',:id => @story.interest.id }, 
+                        class: "interest-component-button-absolute btn btn-primary"%>
+                      <h5>No Of Subscribers: <%=@story.interest.adding_users.count%></h5>
+                      <% if !(@story.interest.deleted ) %>
+                        <span class="greenbadge"  style="width:100%" >Active</span>
+                      <% elsif @story.interest.deleted %>
+                        <span class="redbadge"  style="width:100%">Blocked</span>
+                     <% end %>
+                    </div>
+                  </div>
+								</ul>
+	 						</div>
+	 					<div class="statistics-right-panel ">
+							<ul class="nav nav-list">
+								<h3 class="statistics-component-text">
+									<% if @story.sharers.uniq.count == 0 %>
+	 									<%= "This story was not shared by anyone" %>
+									<% elsif @story.sharers.uniq.count == 1 %>
+										Shared by <%= @story.sharers.uniq.count %>
+										<%= "user" %>
+									<% else %>
+										Shared by <%= @story.sharers.uniq.count %>
+										<%= "users"  %>
+									<%  end %>
+								</h3>
+								<li class="divider"></li>
+									<% if @story.sharers.uniq.count != 0 %>
+										<div class="pre-scrollable-statistics">
+											<% @story.shares.select("distinct(user_id)").find_each do |share| %>
+									<div class="well-user-component">
+                   <a href="/users/<%= user.id%>"
+                     style="display:block; float:left; height:100px;">
+                    <% if not user.image? %>
+                     <%= image_tag "logo.jpeg", :class=>"img-user-component" %>
+                    <% else %>
+                     <img src= "<%= user.image %>" width="80" style="height:100px"/>
+                    <% end %>
+                   </a>
+                   <div style="padding-left:10px; margin-left:100px;">
+                    <h3>
+                    <% if user.name.nil? %>
+                      <%= user.email.split("@")[0] %>
+                    <% else %>
+                      <%= user.name %>
+                    <% end %>
+                   </h3>
+                   <%= link_to "Profile",
+                   {:controller => 'users', :action => 'show',:id => user.id },
+                    class: "interest-component-button-absolute btn btn-warning"%>
+              
+                   <h5>Email : <%=user.email%></h5>
+                   <h5>Rank : <%= user.get_user_rank %></h5>
+                   <%= link_to "Statistics",
+                    {:controller => 'statistics', :action => 'users',:id => user.id },
+                     class: "interest-component-button-absolute btn btn-primary"%>
+                   <h5>Registration date : <%=time_ago_in_words(user.created_at) + " ago"%></h5>
+              
+                   <% if !(user.deactivated) %>
+          
+                       <span class="greenbadge"  style="width:100%" >Active</span>
 
-				</div>
-		</div>
-			</ul>
-	 </div>
-	 <div class="statistics-right-panel ">
-<ul class="nav nav-list">
-		
-	
-	<h3 class="statistics-component-text">
-	<% if @story.sharers.uniq.count == 0 %>
-	 	<%= "This story was not shared by anyone" %>
-	<% elsif @story.sharers.uniq.count == 1 %>
-		Shared by <%= @story.sharers.uniq.count %>
-		<%= "user" %>
-	<% else %>
-		Shared by <%= @story.sharers.uniq.count %>
-		<%= "users"  %>
-	<%  end %></h3>
-	
-	<li class="divider"></li>
-	<% if @story.sharers.uniq.count != 0 %>
-	<div class="pre-scrollable-statistics">
-<% @story.shares.select("distinct(user_id)").find_each do |share| %>
-		<div class="well-user-component">
-		<a href="/users/<%= share.user_id%>"class="thumbnail-user-component">
-		<% if User.find(share.user_id).image.nil? || 
-			User.find(share.user_id).image == "" %>
-     		  <%= image_tag "logo.jpeg", :size => "75x75" %>
-     		  <% else %>
-		  <img src= "<%= User.find(share.user_id).image %>" 
-		  	width="75" style="height:75px"/>
-            	  <% end %> </a>
-			<div class="user-component-info">
-			  <h3><%= User.find(share.user_id).email %>
-			  <h6>
-			  (
-			  <%= @story.sharers.where(id: share.user_id).count %>
-			  <% if @story.sharers.where(id: share.user_id).count == 1 %>
-			  <%= "Share" %>
-			  <% else %>
-			  <%= "Shares"  %>
-			  <%  end %>
-			  )
-			  </h6>
-			  </h3>
-<%= link_to "view Statistics", 
-{:controller => 'statistics', :action => 'users', :id => share.user_id}, 
-class: "user-component-button-absolute btn btn-primary"%>
+                   <% else%>
+
+                       <span class="redbadge"  style="width:100%">Deactivated</span>
+
+                   <% end %>
+                 </div>
+                </div>
+							<% end %>
+						</div>
+					<% end %>
+				</ul>
 			</div>
 		</div>
-		<% end %>
 	</div>
-	<% end %>
-			
-					
-</ul>
-</div>
-</div>
 </div>
