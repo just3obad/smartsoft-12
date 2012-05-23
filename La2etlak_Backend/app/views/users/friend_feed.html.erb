@@ -1,6 +1,6 @@
 <!--$$$$$$$$$$$$$$$$$$ Rana $$$$$$$$$$$$$$$$$$$ -->
 
-<div id = "heading" class="story-component-box-mobile" style="padding-left: 5px;color:#0088CC">
+<div id = "heading" class="story-component-box-mobile" style="padding-left: 5px;">
      <!--displaying friend info and message if no stories were shared by him/her-->
   <h4>Friend Information</h4><br>
   <div class="well">
@@ -24,7 +24,7 @@
 	<!-- if not nil -->
 	<% @my_friend_stories.each do |f| %>
 	<!-- I loop over the list of stories -->
-<div class="story-component-box-mobile">
+<div id ="my_stories" class="story-component-box-mobile">
 	<div class="well" style="border-right:5px solid #f89406;">
 				<% if f.id.nil?%>
 				<% serStory = Marshal::dump(f)%>
@@ -52,7 +52,7 @@
 	</div>
 	<%else%>
 	<!--if nil or empty, a message appears -->
-	<div class="story-component-box-mobile" style="color:#0088CC">
+	<div class="story-component-box-mobile">
 		This friend did not share any stories.
 	</div>
 	<%end%>
