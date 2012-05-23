@@ -91,7 +91,7 @@ Author: Omar
     if upped 
       redirect_to :action => "get" ,:id => params[:id]
     else
-      flash[:notice] = "Temporary error has occured red"
+      flash[:notice] = "Temporary error has occured $red"
       redirect_to :action => "get" ,:id => params[:id]
     end
   end
@@ -104,7 +104,7 @@ Author: Omar
     if downed 
       redirect_to :action => "get" ,:id => params[:id]
     else
-      flash[:notice] = "Temporary error has occured red"
+      flash[:notice] = "Temporary error has occured $red"
       redirect_to :action => "get" ,:id => params[:id]
     end
   end
