@@ -656,47 +656,9 @@ Author:Kareem
     end
   end
 
-=begin
-  This method blocks the interest belonging to the story by inserting a row in
-  BlockInterest table.
-  It also removes the row belonging to the interest and user from UserAddInterest
-  table. 
-  If the interest is already blocked, it responds with a message that the interest
-  is already blocked.
-  Input: story for which the interest wil be blocked
-  Output: message to indicate success/failure of block
-  Author: Rana
-=end   
-  def block_interest1(this_story)
-   this_user = self
-   this_interest = this_story.interest
-   #checks if the interest belongs to the user
-   if (this_user.added_interests.include? this_interest)
-      this_user.added_interests.delete this_interest
-   end
-   #checks if the interest is not already blocked.
-   if !(this_user.blocked_interests.include? this_interest)
-      this_user.blocked_interests << this_interest
-      @text = "Interest blocked."
-   #for log file in case of success of block
-      if self.name.nil?
-         @username = self.email.split('@')[0]
-      else
-         @username = self.name
-      end
-      @interesttitle =this_interest.name
-      @message = "#{@username} blocked interest with name: #{@interesttitle}"
-      Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil,
-      story_id: nil, interest_id: this_interest.id, message: @message)
-   else 
-      @text = "Interest is already blocked."    
-   end
-   
-   return @text #return the message in variable text
-  end
 
 =begin
-  This method blocks the interest from toggle page by inserting a row in
+  This method blocks the interest by inserting a row in
   BlockInterest table.
   If the interest is already blocked, it responds with a message that the interest
   is already blocked.
@@ -704,7 +666,7 @@ Author:Kareem
   Output: message to indicate success/failure of block
   Author: Rana
 =end   
-  def block_interest_from_toggle1(this_interest)
+  def block_interest1(this_interest)
    this_user = self
    #checks if the interest is not already blocked.
    if !(this_user.blocked_interests.include? this_interest)
@@ -730,54 +692,15 @@ Author:Kareem
 =begin
   This method unblocks the interest belonging to the story by deleting the row in
   BlockInterest table.
-  It also adds a row belonging to the interest and user from UserAddInterest
-  table. 
   If the interest is already unblocked, it responds with a message that the 
   interest is already unblocked.
   Input: story for which the interest wil be unblocked
   Output: message to indicate success/failure of unblock
   Author: Rana
 =end   
-  def unblock_interest1(this_story)
+  def unblock_interest1(this_interest)
    this_user = self
-   this_interest = this_story.interest
-   #checks if the interest does not belong to the user
-   if !(this_user.added_interests.include? this_interest)
-      this_user.added_interests << this_interest
-   end
    #checks if the interest is not already unblocked.
-   if (this_user.blocked_interests.include? this_interest)
-      this_user.blocked_interests.delete this_interest
-      @text = "Interest unblocked."
-   #for log file in case of success of block
-      if self.name.nil?
-         @username = self.email.split('@')[0]
-      else
-         @username = self.name
-      end
-      @interesttitle =this_interest.name
-      @message = "#{@username} unblocked interest with name: #{@interesttitle}"
-      Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil,
-      story_id: nil, interest_id: this_interest.id, message: @message)
-   else 
-      @text = "Interest is already unblocked."    
-   end
-   
-   return @text #return the message in variable text
-  end
-
-=begin
-  This method unblocks the interest from toggle page by inserting a row in
-  BlockInterest table.
-  If the interest is already unblocked, it responds with a message that the 	
-  interest is already unblocked.
-  Input: interest to be unblocked
-  Output: message to indicate success/failure of unblock
-  Author: Rana
-=end   
-  def unblock_interest_from_toggle1(this_interest)
-   this_user = self
-   #checks if the interest is blocked.
    if (this_user.blocked_interests.include? this_interest)
       this_user.blocked_interests.delete this_interest
       @text = "Interest unblocked."
