@@ -127,6 +127,16 @@ class UserTest < ActiveSupport::TestCase
     posts = Tumblr::Post.all #Get user posts
     assert !posts.nil?
   end
+  
+  #Author : Essam
+  test "filter selected social account" do
+    user = User.new
+    user.email = 'essam@hafez.com'
+    user.twitter_account = twitter_accounts(:one)
+    user_feed = user.twitter_account.get_feed()
+    assert !user_feed.nil?
+  end
+  
 
 	#Author : Kareem
 	test "create new flag" do
