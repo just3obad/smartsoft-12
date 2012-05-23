@@ -222,7 +222,12 @@ def int_toggle
   user = current_user
   id_num = params[:id]
   id = Interest.find(id_num)
-  user.toggle_interests(id)
+  text = user.toggle_interests(id)
+   if (text == "Interest added.")
+      flash[:block_interest_toggle_s] = "#{text} $green"
+   else 
+      flash[:block_interest_toggle_f] = "#{text} $red"
+   end    
   redirect_to "/mob/toggle"
 end
 
