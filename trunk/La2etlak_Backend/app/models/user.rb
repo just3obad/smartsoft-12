@@ -563,8 +563,10 @@ Author:Kareem
 
   
 =begin 
- check if user toggle new interests the methods adds it to his interests if toggled old interest it deletes it from his interests
- Author : Omar 
+Discription: check if user toggle new interests the methods adds it to his interests if toggled old interest it deletes it from his interests and return msg discribing either interest is deleted or added
+Input : Interest
+Output : String
+Author : Omar 
 =end
  
  def toggle_interests(interest)
