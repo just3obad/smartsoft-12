@@ -46,6 +46,7 @@ GEM
       activerecord (>= 3.0.7)
     bootstrap-sass (2.0.2)
     builder (3.0.0)
+    chronic (0.6.7)
     cocaine (0.2.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -144,6 +145,8 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     ruby-ole (1.2.11.3)
+    rufus-scheduler (2.0.16)
+      tzinfo (>= 0.3.23)
     sass (3.1.16)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -187,6 +190,7 @@ DEPENDENCIES
   amistad
   authlogic
   bootstrap-sass
+  chronic
   coffee-rails (~> 3.2.1)
   faye
   flickraw
@@ -199,6 +203,7 @@ DEPENDENCIES
   paperclip
   rails (= 3.2.3)
   random_data
+  rufus-scheduler
   sass-rails (~> 3.2.3)
   spreadsheet
   sqlite3
