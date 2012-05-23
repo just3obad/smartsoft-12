@@ -163,7 +163,7 @@ class UserTest < ActiveSupport::TestCase
 	s = Story.create(:title => "ahaaaa" , :interest_id => i.id)
 	Likedislike.create(:user_id => user.id , :story_id => s.id ,:action => 1)
 	assert_no_difference('Likedislike.count') do
-	user.thumb_story(s,1)
+	user.thumb_story(s,-1)
 	end
 	end
 
