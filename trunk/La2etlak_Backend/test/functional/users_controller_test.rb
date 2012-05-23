@@ -25,19 +25,6 @@ class UsersControllerTest < ActionController::TestCase
     assert_redirected_to user_path, "The admin was not redirected to the user profile page"
   end
 
-   test "admin should reset users password RED" do
-     user=User.first
-     get :force_reset_password, :id => user.id
-     assert_routing '/force_reset_password/'+user.id.to_s, {:controller =>"users", :action => "force_reset_password", :id=> "1"}
-     assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-     get :send_resetted_password , :id =>user.id
-     end
-     reset_password = ActionMailer::Base.deliveries.last
-     assert_equal "Your Password was reset by the Admin", reset_password.subject
-     assert_equal 'menis@abc.com', reset_password.to[0]
-     assert_redirected_to user_path
-   end
-
 # $$$$$$$$$$$$$$$$$$$ 3OBAD $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  
 =begin
   Modify Info Test
