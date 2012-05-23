@@ -130,49 +130,38 @@ Output: Array of Stories according to the Description Stored in variable @storie
 Author: Kareem
 =end
 
-	def feed
-		user = current_user
-		@lol = current_user
-		int_name = params[:interest]
-    my_interests = user.user_add_interests
-    my_interests - user.blocked_interests
-		if( my_interests == [] && !int_name)
-			stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days[0..4])
-			temp_stories = user.get_friends_stories
-			temp_stories = temp_stories + user.get_social_feed
-			temp_stories.shuffle!
-			stories = stories + temp_stories
-		else
-			if(int_name)
-				#stories = user.get_feed(int_name)
-				interest = Interest.find_by_name(int_name)
-				stories = user.get_interest_stories(interest)
-				if stories == [] 
-				flash[:notice] = "There is no stories for this interest. $yellow"
-				end 
-			else
-				stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)[0..4]
-				temp_stories = user.get_feed("null")
-				temp_stories = temp_stories + user.get_friends_stories
-				temp_stories = temp_stories + user.get_social_feed
-				temp_stories.shuffle!
-				stories = stories + temp_stories
-				if stories.empty?
-				  flash[:main_feed_empty] = "You have no stories to view, you can add more stories via the <a href=\"/mob/settings\"> <h7 style=\"color:#0088CC;\">Settings Page</h7> </a> $green"
-				end
-			end
-		end
-			
-		stories = stories.uniq
-		if (stories == []) 	
-		flash[:has_no_stories] = "this Feed is empty, <a href=\"/mob/toggle\"><h7 style=	\"color:#FF0000;\">Click here
-		 						to add some interests. </h7> </a> $yellow"
-		end
-		# Author : Mina Adel
-		@stories=stories.paginate(:per_page => 10, :page=> params[:page])
-		render :layout => "mobile_template"
- 	#
-	end
+def feed
+                user = current_user
+                int_name = params[:interest]
+                if(user.user_add_interests == [] && !int_name)
+                        stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days[0..4])
+                        temp_stories = user.get_friends_stories
+                        temp_stories = temp_stories + user.get_social_feed
+                        temp_stories.shuffle!
+                        stories = stories + temp_stories
+                else
+                        if(int_name)
+                                #stories = user.get_feed(int_name)
+                                interest = Interest.find_by_name(int_name)
+                                stories = user.get_interest_stories(interest)
+                        else
+                                stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)[0..4]
+                                temp_stories = user.get_feed("null")
+                                temp_stories = temp_stories + user.get_friends_stories
+                                temp_stories = temp_stories + user.get_social_feed
+                                temp_stories.shuffle!
+                                stories = stories + temp_stories
+                        end
+                end
+                stories = stories.uniq
+								if (stories == []) 	
+										flash[:has_no_stories] = "this Feed is empty, <a href=\"/mob/toggle\"><h7 style=	\"color:#FF0000;\">Click here to add some 										interests. </h7> </a> $yellow"
+								end
+                # Author : Mina Adel
+                @stories=stories.paginate(:per_page => 10, :page=> params[:page])
+                render :layout => "mobile_template"
+        #
+        end
 ########################
 
 =begin
