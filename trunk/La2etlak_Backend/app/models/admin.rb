@@ -23,12 +23,6 @@ require "net/http"
   Given a query string, the method searches for users, stories and interests that are related
   to the given query.
 
-  Args:
-    query : String of the given query
-
-  Returns:
-    list of 3 lists, the lists of matching users, stories and interests
-
     For any field, the same is done ::
       If the regular expression of a field is R, then I use the regular expression '(R)(.*)'
       to get the first matching to R, and then taking the rest of the string, and extract 
@@ -36,6 +30,13 @@ require "net/http"
 
     The result in each search function for each query are put in a set, to avoid repeated results, then the result returned
     is then converted to an array.
+
+  Parameters:
+    query : String of the given query
+
+  Returns:
+    list of 3 lists, the lists of matching users, stories and interests
+Author : mostafa.amin93@gmail.com
 =end
     if query.empty?
       return nil
@@ -57,10 +58,11 @@ require "net/http"
     The method work by trying to match the fields first_name, name, email
     a regular expression is used for each of the fields
 
-    Args :
+    Parameters :
       query : string of the given query
 
     Returns : A list of matching User objects.
+Author : mostafa.amin93@gmail.com
 =end
     query_result = [].to_set
 
@@ -143,10 +145,11 @@ require "net/http"
     The method work by trying to match the fields title, content
     a regular expression is used for each of the fields
 
-    Args :
+    Parameters:
       query : string of the given query
 
     Returns : A list of matching stories objects.
+Author : mostafa.amin93@gmail.com
 =end
     query = query.downcase
     query_result = [].to_set
