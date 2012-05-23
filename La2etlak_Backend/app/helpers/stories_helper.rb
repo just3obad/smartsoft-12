@@ -117,13 +117,13 @@ def fetch_rss(link)
     slink = rss.items[i].link
 
     #check if the story already exists in the database
-    count_of_stories_with_same_title = Story.where(:title => stitle).select("title").count
+    count_of_stories_with_same_title = Story.where(:title => stitle).select(:title).count
 
 
     #if it is a new story, it will enter automatically
     #if count_of_stories_with_same_title == 0
       #getting the id of the interest 
-	f = Feed.find_by_link(source)
+	#f = Feed.find_by_link(source)
 	
 	#if f == nil
 	#	f = Feed.new(:interest_id => 1)

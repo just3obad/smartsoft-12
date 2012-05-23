@@ -98,7 +98,7 @@ class AdminTest < ActiveSupport::TestCase
    assert_equal( admin.crypted_password, admin.password_salt, 'password confirmed')
  end
 
- test "should not save admin with first and last name should be greater than  3 letters 2" do
+ test "should not save admin with password length less than 4 chrachters 1" do
    admin = Admin.new
    admin.crypted_password = "adminp"
    admin.password_salt = "adminp"
