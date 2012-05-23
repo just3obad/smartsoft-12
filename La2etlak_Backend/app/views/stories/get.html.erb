@@ -2,6 +2,7 @@
 <head>
 	<script>
 	function fbs_click(u,t) {
+		<%=5%>
 	window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t),'sharer','toolbar=0,status=0,width=50,height=50');return false;
 	}
 	</script>
@@ -182,12 +183,12 @@
 
    &nbsp;
 <!-- I create the facebook sharer url with the media link, then I put it into the url part of the button -->
-  <% media_url = @story.story_link%>
-  <% facebook_url = "http://www.facebook.com/share.php?u="+media_url+" onclick=return fbs_click('http://www.google.com/', 'Google') target=\"_blank\">Share on Facebook"%>
-    <a href=<%=facebook_url%>><img src = "http://dcbdluf1ahqio.cloudfront.net/facebook/32x32.png" height="30" width="30"></a>
+  <% media_url = "http://127.0.0.1:3000/stories/"+@story.id.to_s+"/get"%>
+  <% facebook_url = "127.0.0.1:3000/stories/"+@story.id.to_s+"/get"%>
+  <a href="http://www.facebook.com/share.php?u=<%=facebook_url%>" onclick="return fbs_click(<%=facebook_url%>,via%20nokia)" target="_blank"><%= image_tag('facebook.png' , :style =>"width:32px;height:32px;")%></a>
   <!-- I create the twitter sharer url with the media link along with the message "Shared via La2etlak Nokia App", then I put it into the url part of the button -->
-	<% twitter_url = "http://twitter.com/intent/tweet?url="+@story.story_link+"&text=Shared%20via%20La2etlak%20Nokia%20App" %>
-    <a href=<%=twitter_url%>><img src = "http://dcbdluf1ahqio.cloudfront.net/twitter/32x32.png" height="30" width="30"></a>
+	<% twitter_url = "http://twitter.com/intent/tweet?url=http://127.0.0.1:3000/stories/"+@story.id.to_s+"/get&text=Shared%20via%20La2etlak%20Nokia%20App" %>
+	<%= link_to image_tag('twitter.png' , :style =>"width:32px;height:32px;"), twitter_url%>
   <!-- This is a link to the share controller, which calls the method user_share_story with a the story id as a parameter -->
     <%= link_to image_tag('L.png' , :style =>"width:30px;height:30px;"), {:controller => 'shares' , :action => 'user_share_story' , :id => @story.id }%>
 </br>
