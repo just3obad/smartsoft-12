@@ -130,9 +130,9 @@ class StoryTest < ActiveSupport::TestCase
 		top_stories = Array.new#
 		top_stories << stories(:two)
 		top_stories << stories(:one)
-		top_stories << stories(:five)
-		top_stories << stories(:four)
 		top_stories << stories(:three)
+		top_stories << stories(:four)
+		top_stories << stories(:five)
 	
 		for i in 0...5
 			assert_equal(top_stories[i].id, Story.get_stories_ranking_all_time[i].id, "Ranking not correct")
@@ -144,9 +144,9 @@ class StoryTest < ActiveSupport::TestCase
 		top_stories = Array.new#
 		top_stories << stories(:two)
 		top_stories << stories(:one)
-		top_stories << stories(:five)
-		top_stories << stories(:four)
 		top_stories << stories(:three)
+		top_stories << stories(:four)
+		top_stories << stories(:five)
 		for i in 0...5
 			assert_equal(top_stories[i].id, Story.get_stories_ranking_last_30_days[i].id, "Ranking not correct")
 		end
