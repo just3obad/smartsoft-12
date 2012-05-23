@@ -168,7 +168,7 @@ Author: Omar
     @logmessage = @username.to_s+" has recommended a story '"+ 
     @storytit.to_s + "'"
     regex = Regexp.new('^(\s*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}\s*([,]{1}[\s]*[a-zA-Z0-9\._%-]+@[a-zA-Z0-9\.]+\.[azA-Z]{2,4}\s*)*)$')
-
+    @story_url=@story.story_link
 
 		if @friendmail==""
 			if @listemail.nil?
@@ -187,7 +187,7 @@ Author: Omar
 			else
 			  if !@user.has_account(@friendmail)
 				    Emailer.invite_to_app(@useremail, @friendmail, @message,
-            @storytit).deliver
+            @storytit, @story_url).deliver
             flash[:notice]="Recommendation sent $green" 
 			  else
 				    Emailer.recommend_story(@useremail, @friendmail, @message,
