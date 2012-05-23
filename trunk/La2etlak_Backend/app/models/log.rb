@@ -24,12 +24,15 @@ class Log < ActiveRecord::Base
      @log = Log.new(log)
      @log.save
   end
-  
+=begin
+        this method is used to get the recent activity of certain user starting from a specific time
+        Author: MESAI
+=end
    def self.get_log_for_user(id,time)
      out1 = Log.where("user_id_1=? AND created_at < ?",id,time)
 	   out2 = Log.where("user_id_2=? AND created_at < ?",id,time)
      out = out1 + out2
   	 result = out.sort_by { |obj| obj.created_at }.reverse
      return result	
-     end
+  end
 end
