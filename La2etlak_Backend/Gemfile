@@ -20,6 +20,8 @@ gem 'koala'
 gem 'flickraw'
 gem 'matenia-tumblr-api', "~> 0.1.6", :require => 'tumblr'
 gem 'nokogiri'
+gem 'rufus-scheduler'
+gem 'chronic'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
