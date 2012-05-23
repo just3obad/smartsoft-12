@@ -62,6 +62,7 @@ class TwitterAccount < ActiveRecord::Base
       end 
       stories
     rescue 
+      puts 'EXCEPTION RAISED IN TWITTER_ACCOUNT#GET_FEED'
       [] 
     end 
   end 
