@@ -566,8 +566,9 @@ Author:Kareem
  Author : Omar 
 =end
  
- def toggle_interests(id)
-
+ def toggle_interests(id1)
+	
+	id = id1.id
 	 if self.name.nil?
 	      username = self.email.split('@')[0]
           else
@@ -575,50 +576,22 @@ Author:Kareem
          end
    		interest_name = Interest.find(id).name
   
-   if(UserAddInterest.find_by_interest_id(id) == nil)
- 	UserAddInterest.create(:user_id => self.id , :interest_id => id)
- 		if(BlockInterest.find_by_interest_id(id) != nil)
- 			BlockInterest.find_by_interest_id(id).destroy
- 		end
- 		message = "#{username} added interest : #{interest_name}"
-   		Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			interest_id: id, message: message)
- 	else 
- 		UserAddInterest.find_by_interest_id(id).destroy
+   if(self.added_interests.include?(id1))
+	 		self.added_interests.delete id1
  		message = "#{username} deleted interest : #{interest_name}"
    		Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			interest_id: id, message: message)
- 	end
+
+ 	else 
+		UserAddInterest.create(:user_id => self.id , :interest_id => id)
+=begin       		if(self.blocked_interests.include?(id1))
+ 			self.blocked_interests.delete id1
+ 		end
+=end 		
+ 	      	 message = "#{username} added interest : #{interest_name}"
+   		 Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			 interest_id: id, message: message)
+      end
  end
  
-=begin  
-  select user existing interests in our database
- Author: Omar
-=end
-   
-  def user_interests
-    user_interests =  UserAddInterest.find(:all , :conditions => ["user_id = ?" , self.id ] , :select => "interest_id").map {|interest| interest.interest_id}
-  end
-
-=begin
- check if user has this interest as blocked or not if blocked return 1 else return 0
- Author: Omar
-=end
- 
- def is_blocked(interest)
- 	if(BlockInterest.find(:all , :conditions => ["user_id = ? AND interest_id = ? ", self.id, interest]).length > 0)
- 	return 1
- 	  else 
- 	    return 2
- 	 end
- end
- 	    
-
-=begin
-  select all interests in the system
-  Author: Omar
-=end 
-  def all_interests
-    all_interests =  Interest.all()
-  end
 =begin
 Description: this method returns the Interests names of the User's Interests
 Input:
