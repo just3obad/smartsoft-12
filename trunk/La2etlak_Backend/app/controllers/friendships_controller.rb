@@ -100,7 +100,6 @@ class FriendshipsController < ApplicationController
     l.message = "#{name_1} removed friendship of #{name_2}"
     l.save
 
-    # redirect_to action: "index", query: params[:query_forward]
     redirect_to action: "index"
   end
 
