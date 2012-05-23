@@ -5,7 +5,9 @@
 			 <br>
 			 <br> 
 			<%else%>
-				choose friend email
+			    <b>
+				  choose friend email
+				</b>
 				<br>
 				<% @flistemail.each do |f| %><!-- list of friends email-->
 					<input type="radio" name="lemail" value=<%=f%>><%=f%>
