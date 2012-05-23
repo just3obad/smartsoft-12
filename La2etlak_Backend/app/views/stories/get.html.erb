@@ -64,7 +64,7 @@
   <% if @action1 != [] && @action2 == [] %>
   	<% if @likes.length > 1 %>
 	  	<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
-	  	<%="you and"%> <%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+	  	 <%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
   <%else%>
 	<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
   <%end%></br>
@@ -92,7 +92,6 @@
 
 		<% if @dislikes.length > 1 %>
 			<% @a = "#{@dislikes.length-1} user dislike this." %>
-		  	 <%= "you and"%>
 		  	  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
 	  	 <%else%>
         <%end%>
@@ -135,7 +134,7 @@
   <% if @action1 != [] && @action2 == [] %>
   	<% if @likes.length > 1 %>
 	  	<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
-	  	<%="you and"%> <%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+	  	<%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
   	
   	 <%else%>
 		<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
@@ -164,7 +163,6 @@
 
 	<% if @dislikes.length > 1 %>
 		<% @a = "#{@dislikes.length-1} user dislike this." %>
-  	 	<%= "you and"%>
   	  	<%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   	 <%end%>
 
@@ -175,7 +173,7 @@
  	
       <%end%>
        </div>
-	
+ 
 	<% if @story.category == "RSS" %>
 
 <!-- recommend buttons  1) facebook button 2)twitter button 3)La2etlak button -->
@@ -294,6 +292,8 @@
    	<br><br><%=link_to('Block interest' , { :controller => 'users', :action => 'block_interest', :id => (@story.id)})%></br><br>
  
 	<%end%>
+	
+	<%= time_ago_in_words(@story.created_at)%><%= " ago."%>
  </div>
 </html> 	
 
