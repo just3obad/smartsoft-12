@@ -36,10 +36,19 @@ class StatisticsControllerTest < ActionController::TestCase
   test "all interests page has div chart" do
     admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
     AdminSession.create admin1
-   get :all_interests
-    assert_select 'div[id = ccc]'
+    get :all_interests
+    assert_select 'div[id = interest_chart]'
    end
    
+   ##########Author: Diab ############
+   test "no interest warning" do
+    admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
+    AdminSession.create admin1
+    Interest.destroy_all
+    get :all_interests
+    assert_select 'div[id = noInterest]'
+    end
+
     ##########Author: Diab ############
   test "get all interests response" do
     admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
