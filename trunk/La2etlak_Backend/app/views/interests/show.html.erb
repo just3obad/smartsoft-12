@@ -1,5 +1,5 @@
 <html>
-<%= render 'shared/all_flash' %>
+
 <div class="container-fluid maindiv">
   <div class="row-fluid">
     <div class="left_panel-interest">
@@ -58,6 +58,7 @@
 <!-- the switching button for the Block/unblock interest purpose -->
 		<div id="block">			
       		<%= link_to  "Block",{:controller => "interests", :action => "toggle",:id => @interest.id} ,:class => "btn btn-danger" %>
+
 		</div>
 			<%else%>
 			<li class="divider"></li>
