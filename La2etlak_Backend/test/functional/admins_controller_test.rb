@@ -9,7 +9,7 @@ class AdminsControllerTest < ActionController::TestCase
   	admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
   	AdminSession.create admin1
   	get :index
-  	assert_select "li[id=no_users_signed_in][class=label-warning]", "0 sign ins"
+  	assert_select "li[id=no_users_signed_in]", "0 sign ins"
   end
 
   test "AdminMainPage contains no of users who signed in today not zero" do
@@ -22,7 +22,7 @@ class AdminsControllerTest < ActionController::TestCase
   	admin1 = Admin.create!(email:"admin1@gmail.com", password:"123456", password_confirmation:"123456")
   	AdminSession.create admin1
   	get :index
-  	assert_select "li[id=users_signed_in][class=label-info]", "#{count2} sign ins"
+  	assert_select "li[id=users_signed_in]", "#{count2} sign ins"
   end
 #Author MESAI
   #this test is to make sure that the route is not lost 
