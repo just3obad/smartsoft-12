@@ -317,7 +317,7 @@ end
     @story = Story.get_story(@story_id)
     @text = @user.block_story1(@story)
     if (@text == "Story blocked.")
-      flash[:story_blocked_success] = "#{@text} You can unblock it through settings page $green"
+      flash[:story_blocked_success] = "#{@text} <a href=\"/mob/unblock_story/#{@story_id}\"> <h7 style=\"color:#0088CC;\">undo?</h7> </a> $green"
     else 
       flash[:story_blocked_fail] = "#{@text} $red"
     end
@@ -337,7 +337,7 @@ end
     @story = Story.get_story(@story_id)
     @text = @user.block_interest1(@story)
     if (@text == "Interest blocked.")
-      flash[:block_interest_s] = "#{@text} $green"
+      flash[:block_interest_s] = "#{@text} <a href=\"/mob/unblock_interest/#{@story_id}\"> <h7 style=\"color:#0088CC;\">undo?</h7> </a> $green"
     else 
       flash[:block_interest_f] = "#{@text} $red"
     end
@@ -377,9 +377,9 @@ end
       @friend = User.find_by_id(@friend_id)
       @text = @user.block_friends_feed1(@friend) 
       if (@text == "#{@friend.email} blocked.")
-        flash[:block_interest_toggle_s] = "#{@text} $green"
+        flash[:block_friends_feed_s] = "#{@text} $green"
       else 
-        flash[:block_interest_toggle_f] = "#{@text} $red"
+        flash[:block_friends_feed_f] = "#{@text} $red"
       end
       redirect_to controller: 'friendships', action: "index"
   end
@@ -461,6 +461,26 @@ end
          flash[:interest_unblocked_toggle_f] = "#{@text} $red"
       end
       redirect_to action: "toggle"
+  end
+
+=begin
+  The method that calls the method in the model to unblock an interest and renders 
+  the view.
+  Input: interest_id
+  Output: flash and redirect to main feed
+  Author: Rana
+=end
+  def unblock_interest
+      @user = current_user
+      @story_id = params[:id]
+      @story = Story.find_by_id(@story_id)
+      @text = @user.unblock_interest1(@story)
+      if(@text == "Interest unblocked.") 
+         flash[:interest_unblocked_s] = "#{@text} $green"
+      else 
+         flash[:interest_unblocked_f] = "#{@text} $red"
+      end
+      redirect_to action: "feed"
   end
 
 =begin
