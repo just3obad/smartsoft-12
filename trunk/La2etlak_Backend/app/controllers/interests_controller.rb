@@ -26,7 +26,7 @@ class InterestsController < ApplicationController
   $errors = false
   @interests = Interest.all 
   if @interests.empty?
-      flash[:error] = "There are currently no interests." 
+      flash[:error] = "There are currently no interests. $red" 
   end
   @feed = Feed.new # creaing a new interest and returning it in a variable @interest used in the form in new.html.erb 
   @interest = Interest.new
@@ -53,7 +53,7 @@ and saves it , if it's saved then a success message appears .. otherwise an erro
     @interests = Interest.get_all_interests
     @interest = Interest.model_create(params[:interest])
     if @interest.save
-      flash[:success] = "Your Interest was added Successfully"
+      flash[:success] = "Your Interest was added Successfully $green"
       Log.create!(loggingtype: 1,user_id_1: nil,user_id_2: nil,admin_id: nil,story_id: nil,interest_id: @interest.id,message: "Admin added an interest")
       redirect_to @interest
     else
@@ -78,14 +78,15 @@ all databese changes are done in the "model_update" method in the Model that tak
   def update
     @interests = Interest.get_all_interests
     @names = Interest.get_top_interests_names 
-    @names=[]
+  
+   @myinterest= Interest.get_interest(params[:id])
     #here, we call the method in model
     @interest= Interest.model_update(params[:id],params[:interest])
     @deleted = Interest.is_deleted(params[:id])
-    @myinterest= Interest.get_interest(params[:id])
+   
 #we check on the interest deleted or not because an admin is not allowed to adjust any changes/edit an interest unless it's ACTIVE
     if @interest && (@deleted == false || @deleted.nil?)
-      flash[:success] = " Changes saved successfully "
+      flash[:success] = " Changes saved successfully $green"
  
       redirect_to @myinterest
 
@@ -94,21 +95,21 @@ all databese changes are done in the "model_update" method in the Model that tak
 #global variable $errors used to handle the flash message in "Show.html.erb"
       if (@deleted == false || @deleted.nil?)  && (params[:interest][:name].blank?)
 # a flash appears when we enter an invalid info (balnk name)          
-        flash[:error] = "  Interest update failed: Name can't be blank "
+        flash[:error] = "  Interest update failed: Name can't be blank $red"
       else
-        if (@deleted == false || @deleted.nil?) && !(@names.include?(params[:interest][:name])) && 
+        if (@deleted == false || @deleted.nil?) && (@names.include?(params[:interest][:name])) && 
 (params[:interest][:name] != @myinterest.name)
  # a flash appears when we enter a name that was taken for another Interest before 
-          flash[:error] = " Interest already exists. Please try another name"
+          flash[:error] = " Interest already exists. Please try another name $red"
 
 
         else
          if (@deleted == false || @deleted.nil?) 
   # a flash appears when we enter an invalid info (invalid content type of image) 
-          flash[:error] = " Interest Update failed, photo content type is invalid."
+          flash[:error] = " Interest Update failed, photo content type is invalid. $red"
         else
 #a flash appears banning the admin from updating the interest as long as it's blocked
-          flash[:error] = " This interest is now blocked, please restore it if you want to update"
+          flash[:error] = " This interest is now blocked, please restore it if you want to update $red"
         end
       end
       end
@@ -134,10 +135,10 @@ this method calls the "model_toggle" method that takes as parameters the Interes
     if !@deleted 
       $savedinterest = true
 # if the interest was deleted and the admin restored it successfully a flash appears endicating that
-      flash[:success] = " Interest restored successfully "
+      flash[:success] = " Interest restored successfully $green"
     else
 # if the interest wasn't deleted and the admin blocked it successfully a flash appears endicating that
-      flash[:error] = " You have just blocked this interest ,  #{view_context.link_to('Undo?', Interest.model_toggle(params[:id]))}".html_safe
+      flash[:error] = " You have just blocked this interest $red"
 
 
     end
