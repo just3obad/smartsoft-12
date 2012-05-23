@@ -257,7 +257,7 @@ def share_story
 end
 
 =begin
-this method return current user interests and all interests on the system and render to mobile_template (toggle view )
+Discription : this method return current user interests and all interests on the system and render to mobile_template (toggle view )
  Author Omar 
 =end
 
@@ -269,7 +269,7 @@ def toggle
 end
 
 =begin 
-updates user interests according what the user selects  and redirect to the same view toggle to update view of interests
+Discription : updates user interests according what the user selects  and redirect to the same view toggle to update view of interests
 Author Omar
 =end
 
