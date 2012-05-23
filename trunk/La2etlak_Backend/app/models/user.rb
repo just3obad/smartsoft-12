@@ -89,11 +89,13 @@ def get_notifications
     self.pending_invited_by
   end
 end
-##################Begin############
+
+=begin 
 #description: the get_friends is a method that return list of all friends email of the user
 #input: No Input
 #output: a list of emails of the user friends
 #Author: khaled.elbhaey
+=end 
   def get_friends_email()
   @flistemail=Array.new
   @flist = self.friends
@@ -106,14 +108,14 @@ end
     return @flistemail
 
   end
-################End##################
-   
 
-##################Begin############
+
+=begin 
 #description: has_account checks if the user with the (mail) is in our database or not
 #input: email
 #output: true if the user with the mail in DB and false otherwise
 #Author: khaled.elbhaey
+=end
   def has_account(mail)
   
     @email=mail
@@ -124,7 +126,6 @@ end
     end    
 
   end
-################End##################
 
 =begin 
   This method takes a list of users and return a list users that are friends
