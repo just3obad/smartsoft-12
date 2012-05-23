@@ -98,7 +98,7 @@ class UserTest < ActiveSupport::TestCase
   
 
  #Author : Essam
-  test "filter social networks RED" do
+  test "get social networks feed" do
     user = User.new(:email=>"essamahmedhafez@gmail.com", :password => "12345678", :password_confirmation => "12345678")
     user.save
     user.twitter_account = twitter_accounts(:one)
@@ -109,10 +109,17 @@ class UserTest < ActiveSupport::TestCase
     assert !user.facebook_account.nil?
     facebook_feed = user.facebook_account.get_feed
     assert !facebook_feed.nil?
+    tumblr_test =  Tumblr::User.new('essamahmedhafez@gmail.com', '12345678')
+    assert !tumblr_test.tumblr.nil?
+    blog = tumblr_test.tumblr["tumblelog"]["name"]
+    assert blog = 'essamhafez'
+    Tumblr.blog = 'essamhafez'
+    posts = Tumblr::Post.all
+    assert !posts.nil?
   end
 
   #Author : Essam
-  test "tumblr account RED" do
+  test "tumblr account" do
     new_tumblr = Tumblr::User.new('essamahmedhafez@gmail.com', '12345678') #Authentication
     blog = new_tumblr.tumblr["tumblelog"]["name"]
     tumblr = TumblrAccount.new
