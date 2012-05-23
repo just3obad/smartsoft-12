@@ -45,7 +45,7 @@
 		 <%= link_to image_tag('likecopy.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%>
 		 <% if @likes.length > 0 %>
 		  <% @a = "#{@likes.length}" %>
-		 <%=link_to("#{@likes.length} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+		 <%=link_to("#{@likes.length} user(s) like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
 	 <%end%><br>
 
 
@@ -53,7 +53,7 @@
  
 	 <%= link_to image_tag('dislikekh.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
   <% if @dislikes.length > 0 %>
-	  <% @a = "#{@dislikes.length} user dislike this." %>
+	  <% @a = "#{@dislikes.length} user(s) dislike this." %>
 	  <%=link_to(@a, {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
   <%end%>
  <%end%>
@@ -64,14 +64,14 @@
   <% if @action1 != [] && @action2 == [] %>
   	<% if @likes.length > 1 %>
 	  	<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
-	  	 <%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+	  	 <%=link_to( "#{@likes.length-1} user(s) like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
   <%else%>
 	<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
   <%end%></br>
 	
 	<%= link_to image_tag('dislikekh.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
 	  <% if @dislikes.length > 0 %>
-		  <% @a = "#{@dislikes.length} user dislike this." %>
+		  <% @a = "#{@dislikes.length} user(s) dislike this." %>
 		  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   	  <%end%>
  	
@@ -84,14 +84,14 @@
 
 	<%= link_to image_tag('likecopy.png' , :style =>"width:30px;height:30px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1}%>
 	 	<% if @likes.length > 0 %>
- 			<% @a = "#{@likes.length} user like this." %>
+ 			<% @a = "#{@likes.length} user(s) like this." %>
  			<%=link_to(@a , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
  		<%end%></br>
 
 	<%= link_to image_tag('un-dislike.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1 }%> 
 
 		<% if @dislikes.length > 1 %>
-			<% @a = "#{@dislikes.length-1} user dislike this." %>
+			<% @a = "#{@dislikes.length-1} user(s) dislike this." %>
 		  	  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
 	  	 <%else%>
         <%end%>
@@ -115,7 +115,7 @@
 		 <%= link_to image_tag('likecopy.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%>
 		 <% if @likes.length > 0 %>
 		  <% @a = "#{@likes.length}" %>
-		 <%=link_to("#{@likes.length} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+		 <%=link_to("#{@likes.length} user(s) like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
 		 <%end%><br>
 
 
@@ -123,7 +123,7 @@
  
 		 <%= link_to image_tag('dislikekh.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
 		  <% if @dislikes.length > 0 %>
-		  <% @a = "#{@dislikes.length} user dislike this." %>
+		  <% @a = "#{@dislikes.length} user(s) dislike this." %>
 		  <%=link_to(@a, {:controller => "stories", :action => "disliked_mobile_show", :id => (@story.id)})%>
 		  <%end%>
 		  </br>
@@ -134,7 +134,7 @@
   <% if @action1 != [] && @action2 == [] %>
   	<% if @likes.length > 1 %>
 	  	<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
-	  	<%=link_to( "#{@likes.length-1} user like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
+	  	<%=link_to( "#{@likes.length-1} user(s) like this." , {:controller => "stories", :action => "liked_mobile_show", :id => (@story.id)})%>
   	
   	 <%else%>
 		<%= link_to image_tag('un-like.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1 }%> 
@@ -142,7 +142,7 @@
   	
   	 <%= link_to image_tag('dislikekh.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
 	  <% if @dislikes.length > 0 %>
-		  <% @a = "#{@dislikes.length} user dislike this." %>
+		  <% @a = "#{@dislikes.length} user(s) dislike this." %>
 		  <%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   	<%end%>
  	
@@ -155,14 +155,14 @@
 
 	<%= link_to image_tag('likecopy.png' , :style =>"width:30px;height:30px;"),{ :controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => 1}%>
 	 	<% if @likes.length > 0 %>
-	 		<% @a = "#{@likes.length} user like this." %>
+	 		<% @a = "#{@likes.length} user(s) like this." %>
 	 		<%=link_to(@a , {:controller => 'stories', :action => 'liked_mobile_show', :id => (@story.id)})%>
  		<%end%><br>
 
    	   <%= link_to image_tag('un-dislike.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1 }%> 
 
 	<% if @dislikes.length > 1 %>
-		<% @a = "#{@dislikes.length-1} user dislike this." %>
+		<% @a = "#{@dislikes.length-1} user(s) dislike this." %>
   	  	<%=link_to(@a , {:controller => 'stories', :action => 'disliked_mobile_show', :id => (@story.id)})%>
   	 <%end%>
 
