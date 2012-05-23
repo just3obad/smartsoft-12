@@ -319,8 +319,8 @@ end
     @story_id = params[:id]
     @story = Story.get_story(@story_id)
     @text = @user.block_story1(@story)
-    if (@text == "Story blocked")
-      flash[:story_blocked_success] = "#{@text}. You can unblock it through settings page $green"
+    if (@text == "Story blocked.")
+      flash[:story_blocked_success] = "#{@text} You can unblock it through settings page $green"
     else 
       flash[:story_blocked_fail] = "#{@text} $red"
     end
@@ -339,7 +339,7 @@ end
     @story_id = params[:id]
     @story = Story.get_story(@story_id)
     @text = @user.block_interest1(@story)
-    if (@text == "Interest blocked")
+    if (@text == "Interest blocked.")
       flash[:block_interest_s] = "#{@text} $green"
     else 
       flash[:block_interest_f] = "#{@text} $red"
@@ -359,7 +359,7 @@ end
     @interest_id = params[:id]
     @interest = Interest.find_by_id(@interest_id)
     @text = @user.block_interest_from_toggle1(@interest)
-    if (@text == "Interest blocked")
+    if (@text == "Interest blocked.")
       flash[:block_interest_toggle_s] = "#{@text} $green"
     else 
       flash[:block_interest_toggle_f] = "#{@text} $red"
@@ -379,7 +379,11 @@ end
       @friend_id = params[:id]
       @friend = User.find_by_id(@friend_id)
       @text = @user.block_friends_feed1(@friend) 
-      flash[:notice] = "#{@text} $blue"
+      if (@text == "#{@friend.email} blocked.")
+        flash[:block_interest_toggle_s] = "#{@text} $green"
+      else 
+        flash[:block_interest_toggle_f] = "#{@text} $red"
+      end
       redirect_to controller: 'friendships', action: "index"
   end
 
@@ -392,7 +396,12 @@ end
   def manage_blocked_friends
       @user = current_user
       @my_friends = @user.blocked
-      render layout: "mobile_template"
+      if(@my_friends.empty?)
+        flash[:no_blocked_friends] = "You do not have any blocked friends. $blue"
+        redirect_to controller: "friendships", action: "index"
+      else
+        render layout: "mobile_template"
+      end
   end
 
 =begin
@@ -425,7 +434,7 @@ end
       @story_id = params[:id]
       @story = Story.find_by_id(@story_id)
       @text = @user.unblock_story1(@story)
-      if(@text = "Story unblocked") 
+      if(@text = "Story unblocked.") 
          flash[:story_unblocked_s] = "#{@text} $green"
       else 
          flash[:story_unblocked_f] = "#{@text} $red"
@@ -449,8 +458,16 @@ end
       @friend_id = params[:id]
       @friend = User.find_by_id(@friend_id)
       @text = @user.unblock_friends_feed1(@friend) 
-      flash[:notice] = "#{@text}"
-      redirect_to action: "friends_feed", id: @friend_id
+      if(@text == "#{@friend.email} unblocked.")
+        flash[:unblock_friend_s] = "#{@text} $green"
+      else
+        flash[:unblock_friend_s] = "#{@text} $red"
+      end
+      if(@user.blocked.empty?)
+         redirect_to action: "friends_feed", id: @friend_id
+      else 
+         redirect_to action: "manage_blocked_friends"
+      end
   end
 
 =begin
