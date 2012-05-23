@@ -7,12 +7,16 @@ class FacebookAccount < ActiveRecord::Base
   validates_presence_of :auth_token
   validates_presence_of :auth_secret
 
-
-  # Method to get facebook feed of the user
-  # if the token is expired a new one is generated
-  # key attributes are selected from the facebook stream
-  # according to the story type
-	# Author: Menisy
+=begin
+   Method to get facebook feed of the user
+   if the token is expired a new one is generated
+   using koala's helper exchange token method 
+   key attributes are selected from the facebook stream
+   according to the story type
+   Inputs: none
+   Output: story array of facebook images and videos
+	 Author: Menisy
+=end
   def get_feed
   	begin
       self.auth_secret = self.auth_secret.to_i+1
@@ -94,9 +98,14 @@ class FacebookAccount < ActiveRecord::Base
       return []
     end
   end
-  # Adds the log message whenever a user
-  # connects his/her facebook account
-  # Author: Menisy
+
+=begin
+  Adds the log message whenever a user
+  connects his/her facebook account
+  Inputs: none
+  Output: none
+  Author: Menisy
+=end  
   def add_to_log
     user_name = self.user.name  ||  self.user.email.split('@')[0]
     Log.create!(loggingtype: 2,user_id_1: self.user.id ,user_id_2: nil,admin_id: nil,story_id: nil ,interest_id: nil,message: (user_name+" added a Facebook account").to_s)
