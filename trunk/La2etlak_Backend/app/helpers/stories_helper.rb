@@ -1,8 +1,10 @@
 module StoriesHelper
  
 =begin
- this method takes as a parameter the html file and extract the content from it 
- Author: Omar
+Discription : this method takes as a parameter the html file and extract the content from it 
+Input : String
+Output : String
+Author: Omar
 =end
 
 require 'nokogiri'
@@ -18,8 +20,10 @@ require 'open-uri'
  end
  
 =begin
- this method takes as a parameter the html file and extract the img src (url) from it 
- Author: Omar
+Discription : this method takes as a parameter the html file and extract the img src (url) from it 
+Input : String
+Output : String
+Author: Omar
 =end
  
 require 'nokogiri'
@@ -36,9 +40,9 @@ require 'open-uri'
 				  media = first_img_src[ allstart.to_i+4 , first_img_src.length ] 
 			        end
 			 dot = "." 
-			 misho = media.index(dot) 
+			 m = media.index(dot) 
 			
-		 if !misho.nil? 
+		 if !m.nil? 
 	 return first_img_src
 	 	else 
 	 	 return ""
