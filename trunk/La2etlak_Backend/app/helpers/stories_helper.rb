@@ -152,7 +152,6 @@ def fetch_rss(link)
       	storynow.media_link =  storynow.new_media_link(sdescription)	
       #end
       storynow.mobile_content = storynow.new_content(sdescription)
-      storynow.content = sdescription
       storynow.save
 
       sid = Story.find_by_title(stitle).id
