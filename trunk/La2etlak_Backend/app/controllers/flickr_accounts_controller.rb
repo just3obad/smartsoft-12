@@ -31,7 +31,8 @@ class FlickrAccountsController < ApplicationController
   in the second phase of the authentication process, when the user is redirected back
   from flickr to the call back method
 
-  No Input/Output
+  Input: NO
+  Output: NO
 
   Author: 3OBAD
 =end
@@ -71,7 +72,8 @@ class FlickrAccountsController < ApplicationController
   Note that, the token expires every 24 houres, so the user will have to renew the token 
   every time he asks for the main feed comming from flickr.
 
-  NO I/O
+  Input: NO
+  Output: NO
 
   Author: 3OBAD
 =end 
@@ -122,7 +124,8 @@ class FlickrAccountsController < ApplicationController
 =begin
   Description:
   This method is resposible of deleting the social account of the current user
-  NO I/O
+  Input: NO
+  Output: NO
   Author: 3OBAD
 =end
 
