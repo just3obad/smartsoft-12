@@ -157,6 +157,9 @@ Author: Kareem
 				temp_stories = temp_stories + user.get_social_feed
 				temp_stories.shuffle!
 				stories = stories + temp_stories
+				if stories.empty?
+				  flash[:main_feed_empty] = "You have no stories to view, you can add more stories via the <a href=\"/mob/settings\"> <h7 style=\"color:#0088CC;\">Settings Page</h7> </a> $green"
+				end
 			end
 		end
 			
@@ -172,12 +175,24 @@ Author: Kareem
 	end
 ########################
 
-#$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
+=begin
+Description: Method to render the settings view 
+Input: none
+Output: @user, the current user
+Author: Mina Adel
+=end
 def settings
 	@user = current_user
   render :layout => "mobile_template"
 end
 
+
+=begin
+Description: Method to render the Facebook feed view
+Input: none
+Output: @user, the current user. @stories, the facebook stories
+Author: Mina Adel
+=end
 def facebook_feed
   @user = current_user
   stories = @user.filter_social_network(2)
@@ -185,6 +200,12 @@ def facebook_feed
   render :layout => "mobile_template", :template => "users/feed"
 end
 
+=begin
+Description: Method to render the Twitter feed view
+Input: none
+Output: @user, the current user. @stories, the Twitter stories
+Author: Mina Adel
+=end
 def twitter_feed
   @user = current_user
   stories = @user.filter_social_network(1)
@@ -192,6 +213,12 @@ def twitter_feed
   render :layout => "mobile_template", :template => "users/feed"
 end
 
+=begin
+Description: Method to render the Flickr feed view
+Input: none
+Output: @user, the current user. @stories, the flickr stories
+Author: Mina Adel
+=end
 def flickr_feed
   @user = current_user
   stories = @user.filter_social_network(3)
@@ -199,13 +226,18 @@ def flickr_feed
   render :layout => "mobile_template", :template => "users/feed"
 end
 
+=begin
+Description: Method to render the Tumblr feed view
+Input: none
+Output: @user, the current user. @stories, the tumblr stories
+Author: Mina Adel
+=end
 def tumblr_feed
   @user = current_user
   stories = @user.filter_social_network(4)
   @stories=stories.paginate(:per_page => 10, :page=> params[:page])
   render :layout => "mobile_template", :template => "users/feed"
 end
-#$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$
 
 
 =begin
