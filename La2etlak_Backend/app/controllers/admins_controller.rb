@@ -70,7 +70,7 @@ class AdminsController < ApplicationController
       flash[:notice] = "Addition successful."
       redirect_to('/admin_settings')
     else
-      flash[:notice] = "Enter Valid arguments."
+      flash[:error] = "Enter Valid arguments."
       redirect_to('/admin_settings')
     end
   end
@@ -117,7 +117,7 @@ class AdminsController < ApplicationController
     @admin = current_admin
     if @admin.update_attributes(params[:admin])
       flash[:notice] = "Successfully updated profile."
-      redirect_to('/admins/index')
+      redirect_to('/admin_settings')
     else
       render :action => 'edit'
     end
