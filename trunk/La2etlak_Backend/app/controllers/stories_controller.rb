@@ -19,7 +19,7 @@ def show
   
   
 =begin 
-this method takes a story object as a parameter form social feed and renders its view 
+Discription : this method takes a story object as a parameter form social feed and renders its view 
 Author : Omar
 =end
 
@@ -30,7 +30,7 @@ Author : Omar
   end
 
 =begin  
-  this method taks params story id and get number of likes dislikes done by users and 
+Discription :  this method taks params story id and get number of likes dislikes done by users and 
   renders mobile_template view , likes => method in the model gets the user who thumbed up story 
    dislikes=> method in model gets user who thumbed down the story
 Author: Omar 
