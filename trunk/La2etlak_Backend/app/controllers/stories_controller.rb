@@ -223,7 +223,7 @@ end
     @user=current_user
     @friends=@story.view_friends_like(@user)
     if @friends.empty?
-      flash[:no_friends] = "Sorry , You have no friends that liked this story $red"
+      flash[:no_friends] = "Sorry , You do not have any friends who liked this story $red"
       redirect_to :action => "get" ,:sid => params[:id]  
     else
       render :layout => "mobile_template" 
@@ -243,7 +243,7 @@ end
     @user = current_user
     @friends=@story.view_friends_dislike(@user)
     if @friends.empty?
-      flash[:no_friends] = "Sorry , You have no friends that disliked this story $red"
+      flash[:no_friends] = "Sorry , You do not have any friends who disliked this story $red"
       redirect_to :action => "get" ,:sid => params[:id]  
     else
       render :layout => "mobile_template" 
