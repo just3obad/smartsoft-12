@@ -44,7 +44,6 @@
         </div>
       <% else %>
 	<!--If the users checkbox is checked, then the results of the users will be shown unless there are no results to show. I also add a button to view the statistics of each user and another button to view the remaining results of the users-->
-				<% if $usersSearch == "true"  %>
       		<% if $users.length > 0 %>
       			<div class="middle-user-profile-page-panel" id="usersSearchResults">
         			<h2>Users Search Results</h2>
@@ -91,10 +90,8 @@
         			<%end%>
   					</div>
       		<% end %>
-      	<% end %>
       
       <!--If the stories checkbox is checked, then the results of the stories will be shown unless there are no results to show. I also add a button to view the statistics of each story and another button to view the remaining results of the stories-->
-      	<% if $storiesSearch == "true"  %>
     			<% if $stories.length > 0 %>
       			<div class="middle-user-profile-page-panel" id="storiesSearchResults">
         			<h2>Stories Search Results</h2>
@@ -123,10 +120,8 @@
         			<%end%>
   					</div>
 					<% end %>
-      	<% end %>
       
       <!--If the interests checkbox is checked, then the results of the interests will be shown unless there are no results to show. I also add a button to view the statistics of each interest and another button to view the remaining results of the interests-->
-      	<% if $interestsSearch == "true"  %>
     			<% if $interests.length > 0 %>
       			<div class="middle-user-profile-page-panel" id="interestsSearchResults">
         			<h2>Interests Search Results</h2>
@@ -163,7 +158,6 @@
         			<%end%>
   					</div>
      			<% end %>
-      	<% end %>
   		<% end %>    
 		</div>
 	</div>
