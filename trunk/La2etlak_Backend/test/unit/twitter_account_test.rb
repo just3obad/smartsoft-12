@@ -42,12 +42,8 @@ class TwitterAccountTest < ActiveSupport::TestCase
 
   # author : Yahia
   test "twitter feed should be a list of stories" do 
-    # t_account = TwitterAccount.first
     t_account = twitter_accounts(:one)
-    #puts t_account.auth_token
-    #puts t_account.auth_secret
-    stories = t_account.get_feed
-    #puts "class is " + stories.first.class.name
+    stories =   t_account.get_feed
     assert_equal stories.first.class.name, "Story", 'get_feed should return a list of stories'
   end 
 
