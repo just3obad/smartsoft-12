@@ -21,13 +21,13 @@
                 <ul class="nav nav-list">
                   <li class="nav-header">Search for: </li>
                   <li class="divider"></li>
-                  <li><i class="icon-user"></i><font size="4%"><%= link_to "All",
+                  <li id="allResults"><i class="icon-user"></i><font size="4%"><%= link_to "All",
                     {:controller => 'admins', :action => 'search',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]} }%></font></a></li>
-                  <li><i class="icon-user"></i><font size="4%"><%= link_to "Users",
+                  <li id="allUsers"><i class="icon-user"></i><font size="4%"><%= link_to "Users",
                     {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 1 }%></font></a></li>
-                  <li><i class="icon-user"></i><font size="4%"><%= link_to "Interests",
+                  <li id="allStories"><i class="icon-user"></i><font size="4%"><%= link_to "Interests",
                     {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 3 }%></font></a></li>
-                  <li><i class="icon-user"></i><font size="4%"><%= link_to "Stories",
+                  <li id="allInterests"><i class="icon-user"></i><font size="4%"><%= link_to "Stories",
                     {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 2 }%></font></a></li>
                 </ul>
               </div>
