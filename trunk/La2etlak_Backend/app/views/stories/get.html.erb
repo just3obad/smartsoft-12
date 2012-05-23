@@ -190,7 +190,7 @@
 	<% twitter_url = "http://twitter.com/intent/tweet?url=http://127.0.0.1:3000/stories/"+@story.id.to_s+"/get&text=Shared%20via%20La2etlak%20Nokia%20App" %>
 	<%= link_to image_tag('twitter.png' , :style =>"width:32px;height:32px;"), twitter_url%>
   <!-- This is a link to the share controller, which calls the method user_share_story with a the story id as a parameter -->
-    <%= link_to image_tag('L.png' , :style =>"width:30px;height:30px;"), {:controller => 'shares' , :action => 'user_share_story' , :id => @story.id }%>
+    <%= link_to image_tag('L.png' , :style =>"width:30px;height:30px;"), {:controller => 'users' , :action => 'share_story' , :id => @story.id }%>
 </br>
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
 

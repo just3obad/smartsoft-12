@@ -74,6 +74,7 @@ NokiaRuby::Application.routes.draw do
   match "mob/twitter" => "users#twitter_feed"
   match "mob/flickr" => "users#flickr_feed"
   match "mob/tumblr" => "users#tumblr_feed"
+  match "mob/share" => "users#share_story"
   #$$$$$$$$$$$$$$$$ MINA $$$$$$$$$$$$$$$$$$$$$$$
 	
 
