@@ -966,6 +966,8 @@ Author:Kareem
 =begin
 These methods simply take the user id as an input , fetch him from the database and change his deactivated attribute
 to the right value
+Inputs: non
+Outputs: non
 Author: Bassem
 =end
   def deactivate_user()
