@@ -256,8 +256,12 @@ end
       render :layout => "mobile_template" 
     end
   end
-
-  #Author: Bassem !!
+=begin
+  This method passes the three parameters to filter_stories method in the story model where the array of stories is returned
+  Inputs: three flags: hidden,flagged and active
+  Outputs : non
+  Author: Bassem
+=end
   def filter
     $hidden = params[:hidden]
     $flagged = params[:flagged]
