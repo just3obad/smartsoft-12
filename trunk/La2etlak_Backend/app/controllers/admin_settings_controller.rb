@@ -1,16 +1,11 @@
 class AdminSettingsController < ApplicationController
 
     before_filter {admin_authenticated?} 
-    $span_settings=false
-    $story_settings=false
 	#author: Bassem
   	def index
   		@admin = Admin.new
-                @admin2 = current_admin
+      @admin2 = current_admin
   	end
-
-	def show
-	end
 	
 	# author : Gasser
 	# a method in the admin_settings controller passed from the show page of the settings page
@@ -28,8 +23,7 @@ class AdminSettingsController < ApplicationController
 		if $flash_error ==  "true"
 			flash[:error] = "Please enter a valid string"
 		end
-		$story_settings=true
-		$span_settings=false
+		
 
 		redirect_to '/admin_settings'		
 	end
@@ -45,6 +39,8 @@ class AdminSettingsController < ApplicationController
 	      flash[:notice] = "Addition successful."
 	      redirect_to('/admin_settings')
 	    else
+   			
+	      render :action => 'index'
 	      flash[:error] = "Enter Valid Arguments."
 	      redirect_to('/admin_settings')
 	    end
@@ -54,13 +50,11 @@ class AdminSettingsController < ApplicationController
 	  def statistics_time_span
 	  	@response = Admin_Settings.set_statistics_span params[:days]
 	  	if ( @response == 1 )
-	  		flash[:success] = "Time span set successfully."
+	  		flash[:span_set] = "Time span set successfully. $green"
 	 	 else
-	 	 	flash[:error] = "Please enter a valid number."
+	 	 	flash[:span_not_set] = "Please enter a valid number. $red"
 	 	 end
-	 	 	$span_settings=true
-	 	 	$story_settings=false
-
+	 	 	
 	  	redirect_to :action => "index"
 	  end
   def edit
