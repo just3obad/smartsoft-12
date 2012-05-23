@@ -63,6 +63,7 @@ end
 This method takes the number of days as an input, checks if its not equal to zero and sets the value of the time span
 to this number which is to be checked lately whenever statistics are shown.
 Inputs: no of days to be set
+Outputs: non
 NB: "statistics_time_span" key is to be put initially = 30. But now for the sake of testing, please type this command
 in your terminal:
 $ Admin_Settings.create!(key:"statistics_time_span", value:30)
