@@ -97,6 +97,17 @@ class UserTest < ActiveSupport::TestCase
   end
   
 
+  #Author : Essam
+  #Issue 90
+  test "tumblr account" do
+    ta = TumblrAccount.new
+    ta.email = 'essamahmedhafez@gmail.com'
+    ta.password = '12345678'
+    feed = ta.get_feed
+    assert !feed.nil?
+    end
+    
+    
  #Author : Essam
  #issue 89
   test "get social networks feed" do
@@ -116,17 +127,6 @@ class UserTest < ActiveSupport::TestCase
     assert blog = 'essamhafez'
     Tumblr.blog = 'essamhafez'
     posts = Tumblr::Post.all
-    assert !posts.nil?
-  end
-
-  #Author : Essam
-  #Issue 90
-  test "tumblr account" do
-    new_tumblr = Tumblr::User.new('essamahmedhafez@gmail.com', '12345678') #Authentication
-    blog = new_tumblr.tumblr["tumblelog"]["name"]
-    tumblr = TumblrAccount.new
-    Tumblr.blog = blog
-    posts = Tumblr::Post.all #Get user posts
     assert !posts.nil?
   end
   
