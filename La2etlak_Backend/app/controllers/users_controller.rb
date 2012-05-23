@@ -134,7 +134,9 @@ Author: Kareem
 		user = current_user
 		@lol = current_user
 		int_name = params[:interest]
-		if(user.user_add_interests == [] && !int_name)
+    my_interests = user.user_add_interests
+    my_interests - user.blocked_interests
+		if( my_interests == [] && !int_name)
 			stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days[0..4])
 			temp_stories = user.get_friends_stories
 			temp_stories = temp_stories + user.get_social_feed
