@@ -13,18 +13,18 @@
                      <%= image_tag "logo.jpeg",:class => "img-user-img"%>
                   <% else %>
                     <img src= "<%= @user.image %>" 
-                      width="15%" style="height:15%"/>
+                      width="15%" style="height:10%"/>
                   <% end %> 
            </a>
         </div>
          <div id="user-personal-info"> 
-           <li class="nav-header">Email</li>
-           <li>
+           <li class="nav-header">Email
+           <br />
              <span class="label label-info" id="my-email"><%= @user.email %> </span>
            </li>
            <li class="divider"></li>
-           <li class="nav-header">Name</li>
-           <li>
+           <li class="nav-header">Name
+           <br />
              <span class="label label-info" id="my-email">
               <% if @user.name.nil? %>
                      <%= @user.email.split("@")[0]%>
@@ -34,8 +34,8 @@
              </span>
            </li>
            <li class="divider"></li>
-           <li class="nav-header">Status</li>
-           <li>
+           <li class="nav-header">Status
+           <br />
              <span id="is-active">
              <% if @user.deactivated %>
                <span class="label label-important">Deactivated</span> 
@@ -46,13 +46,15 @@
               
            </li>
            <li class="divider"></li>
+           <li class="nav-header">Rank <br />
+            <span class="label label-info"><%=@user.get_user_rank %></span></li>
          
 
          </div>
        </ul>
           <!--This is the right panel of the user profile page that contains three buttons button used to deactivate the user, one to go to his statistics page and the third one to reset his password-->
        <div>
-        <ul class="well nav nav-list left_panel-user-profile-page" style="margin-top:30px;">
+        <ul class="well nav nav-list left_panel-user-profile-page" style="margin-top:10px;">
           <li class="nav-header">Options</li>
           <li class="divider"></li>
           <%= link_to('Statistics', {:controller => 'statistics', :action => 'users', :id => @user.id}, class: "btn btn-large btn-primary btn-fixed-left-side-bar", id: "statistics_button") %>
@@ -74,7 +76,7 @@
             </div>
             <div class="modal-footer">
               <a href="#" class="btn btn-large" data-dismiss="modal">Cancel</a>
-              <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success btn-fixed-left-side-bar", id: "deactivate_button") %>
+              <%= link_to('Activate', {:controller => 'users', :action => 'activate', :id => @user.id}, class: "btn btn-large btn-success", id: "deactivate_button") %>
             </div>
             </div>
             <a data-toggle="modal" href="#myModal" class="btn btn-success btn-large">Activate</a>
