@@ -4,23 +4,25 @@
 		<%if @flistemail.empty?%>
 			 <br>
 			 <br> 
-			<%else%>
+	    <%else%>
 			    <b>
-				  choose friend email
+				  choose a friend's email
 				</b>
 				<br>
+			    <br>
 				<% @flistemail.each do |f| %><!-- list of friends email-->
 					<input type="radio" name="lemail" value=<%=f%>><%=f%>
-					<br> 
+					<br>
 				<%end%>
 		<%end%>
 		<p>
-			email: 
+			<br> 
+			or write an email manually: 
 		</p>  
 		<input type="text" name="email" id="fmail" style ="height:30px; width:200px" placeholder ="E-mail"/>
 		<br>
 		<p>
-			message: 
+			recommendation message: 
 		</p>
 		<input type="text" name="message" style ="height:30px; width:200px" placeholder ="Message"/>
 		<br>  
