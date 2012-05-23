@@ -1,7 +1,7 @@
 # encoding: utf-8
 class StoriesController < ApplicationController
-  before_filter :admin_authenticated?, :only => [:show, :index, :new, :create, :destroy, :filter]
-  before_filter :user_authenticated?, :except => [:show, :index, :new, :create, :destroy, :filter]
+  before_filter :admin_authenticated?, :only => [:show, :index, :new, :create, :destroy]
+  before_filter :user_authenticated?, :except => [:show, :index, :new, :create, :destroy]
   respond_to :html,:json
   require 'net/smtp'
   $hidden = true
@@ -58,6 +58,7 @@ Author: Omar
 	 	
 	#where(:interest_id => @story.interest.id) 
 	#- @user.blockd_stories
+  
   # instance variables for comments
   # Author: Menisy
   @story = Story.find(params[:id])
@@ -138,10 +139,9 @@ Author: Omar
     @storyid=params[:sid]
     @user=current_user
     @flistemail=@user.get_friends_email()
-      @text="Sorry you don't have any friends  "
     if @flistemail.empty?
-      flash[:hint]="#{@text}<a href=\"/mob/friendship/index/\">
-      <h7 style=\"color:#0000A0;\">Find friend</h7> </a> $blue"
+      flash[:hint]="Sorry you don't have any friends you can add friends from 
+      the settings page $blue"
     end
     render :layout => "mobile_template"
   end
