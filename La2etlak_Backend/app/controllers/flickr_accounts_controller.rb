@@ -77,34 +77,47 @@ class FlickrAccountsController < ApplicationController
 =end 
 
   def callback 
-    user_id = Rails.cache.read("user_id")
-    @user = User.find(user_id)
-    oauth_token_secret = Rails.cache.read("oauth_token_secret")
-    flickr = FlickRaw::Flickr.new
-    oauth_token = params[:oauth_token]
-    oauth_verifier = params[:oauth_verifier]
-    raw_token = flickr.get_access_token(params[:oauth_token], oauth_token_secret, params[:oauth_verifier])
-    oauth_token = raw_token["oauth_token"]
-    oauth_token_secret = raw_token["oauth_token_secret"]
-    flickr.access_token = oauth_token
-    flickr.access_secret =oauth_token_secret
-    if User.find(user_id).flickr_account
-       User.find(user_id).flickr_account.delete
+    begin
+      user_id = Rails.cache.read("user_id")
+      @user = User.find(user_id)
+      oauth_token_secret = Rails.cache.read("oauth_token_secret")
+
+      flickr = FlickRaw::Flickr.new
+      oauth_token = params[:oauth_token]
+      oauth_verifier = params[:oauth_verifier]
+
+      raw_token = flickr.get_access_token(params[:oauth_token], oauth_token_secret, params[:oauth_verifier])
+      oauth_token = raw_token["oauth_token"]
+      oauth_token_secret = raw_token["oauth_token_secret"]
+
+      flickr.access_token = oauth_token
+      flickr.access_secret =oauth_token_secret
+
+      if User.find(user_id).flickr_account
+         User.find(user_id).flickr_account.delete
+      end
+
+      flickr_account = FlickrAccount.create(consumer_key: oauth_token , secret_key: oauth_token_secret)
+      User.find(user_id).flickr_account = flickr_account
+
+      unless flickr_account.new_record?
+        flash[:notice] = 'Flickr account created $green'
+        l = Log.new
+        l.loggingtype =0
+        l.user_id_1 = @user.id
+        name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+        l.message = "#{name_1} is now connected to flickr account"
+        l.save
+      else 
+        flash[:notice] = 'Flickr account couldn\'t be created $red'
+      end 
+
+      redirect_to controller: 'users', action: 'connect_social_accounts'
+      
+    rescue
+      flash[:notice] = 'Couldn\'t connect to flickr $red'
+      redirect_to controller: 'users', action: 'connect_social_accounts'
     end
-    flickr_account = FlickrAccount.create(consumer_key: oauth_token , secret_key: oauth_token_secret)
-    User.find(user_id).flickr_account = flickr_account
-    unless flickr_account.new_record?
-      flash[:notice] = 'Flickr account created $green'
-      l = Log.new
-      l.loggingtype =0
-      l.user_id_1 = @user.id
-      name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
-      l.message = "#{name_1} is now connected to flickr account"
-      l.save
-    else 
-      flash[:notice] = 'Flickr account couldn\'t be created $red'
-    end 
-    redirect_to controller: 'users', action: 'connect_social_accounts'
   end
 =begin
   Description:
