@@ -146,8 +146,8 @@ end
   now allowed so no checks are neccessary.
   Author: Menisy
 =end
-  def share?(story_id)
-    Share.create :user_id=>self.id,:story_id=>story_id
+  def share(story_id)
+    self.shared_stories << Story.find(story_id)
     user_name = self.name  ||  self.email.split('@')[0]
     story = Story.find(story_id)
     story_title = story.title || story.content[0,20]+"..."
