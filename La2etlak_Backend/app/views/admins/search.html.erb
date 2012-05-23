@@ -1,45 +1,45 @@
 <div class="container-fluid maindiv">
-	<div class="row-fluid">
-		<div class="sidebar-nav-fixed" id="filterPanel">
-	<!--Here I check if there are results for users,stories and/or interests at all and show the checkboxes for the filter accordingly...-->
-			
-						<div class="sidebar-nav-fixed">
-							<div class="well sidebar-nav">
-	      				<ul class="nav nav-list">
-									<li class="nav-header">Directory</li>
-									<li class="divider"></li>		
-									<li><a href="/users"><i class="icon-user"></i><font size="4%">Users</font></a></li>
-									<li><a href="/interests/list"><i class="icon-heart"></i><font size="4%">Interests</font></a></li>
-									<li><a href="/stories"><i class="icon-book"></i><font size="4%">Stories</font></a></li>
-									<li class="divider"></li>
-									<li><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a></li>
-									<li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a></li>
-								</ul>
-							</div>
-						<% if @message.nil? %>
-							<div class="well sidebar-nav" style="margin-top: 20px; background-color: #f8f8f8;">
-								<ul class="nav nav-list">
-					  			<li class="nav-header">Search for: </li>
-					     		<li class="divider"></li>
-					     		<li><i class="icon-user"></i><font size="4%"><%= link_to "All",
+  <div class="row-fluid">
+    <div class="sidebar-nav-fixed" id="filterPanel">
+  <!--Here I check if there are results for users,stories and/or interests at all and show the checkboxes for the filter accordingly...-->
+      
+            <div class="sidebar-nav-fixed">
+              <div class="well sidebar-nav">
+                <ul class="nav nav-list">
+                  <li class="nav-header">Directory</li>
+                  <li class="divider"></li>   
+                  <li><a href="/users"><i class="icon-user"></i><font size="4%">Users</font></a></li>
+                  <li><a href="/interests/list"><i class="icon-heart"></i><font size="4%">Interests</font></a></li>
+                  <li><a href="/stories"><i class="icon-book"></i><font size="4%">Stories</font></a></li>
+                  <li class="divider"></li>
+                  <li><a href="/admins/statistics/all_users"><i class="icon-signal"></i><font size="4%">Statistics</font></a></li>
+                  <li><a href="/logs"><i class="icon-list"></i><font size="4%">Logs</font></a></li>
+                </ul>
+              </div>
+            <% if @message.nil? %>
+              <div class="well sidebar-nav" style="margin-top: 20px; background-color: #f8f8f8;">
+                <ul class="nav nav-list">
+                  <li class="nav-header">Search for: </li>
+                  <li class="divider"></li>
+                  <li><i class="icon-user"></i><font size="4%"><%= link_to "All",
                     {:controller => 'admins', :action => 'search',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]} }%></font></a></li>
-					     		<li><i class="icon-user"></i><font size="4%"><%= link_to "Users",
+                  <li><i class="icon-user"></i><font size="4%"><%= link_to "Users",
                     {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 1 }%></font></a></li>
-									<li><i class="icon-user"></i><font size="4%"><%= link_to "Interests",
+                  <li><i class="icon-user"></i><font size="4%"><%= link_to "Interests",
                     {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 3 }%></font></a></li>
                   <li><i class="icon-user"></i><font size="4%"><%= link_to "Stories",
                     {:controller => 'admins', :action => 'all_results',:query => params[:autocomplete][:query], :autocomplete => {:query => params[:autocomplete][:query]}, :type => 2 }%></font></a></li>
-				    		</ul>
-							</div>
-						<% end %>	
-				</div>
-	  </div>
-	    
-	<!--The results of the three parts (users,stories,interests) will appear in this panel-->
-	  <div class="main-user-profile-page" >
-	  	<% if @message.class == String %>
+                </ul>
+              </div>
+            <% end %> 
+        </div>
+    </div>
+      
+  <!--The results of the three parts (users,stories,interests) will appear in this panel-->
+    <div class="main-user-profile-page" >
+      <% if @message.class == String %>
   <!--If there are no results found or if there is no query written in the search bar then a warning will appear to the admin informing him about that-->
-      	<div class="middle-user-profile-page-panel" id="noSearchQuery">
+        <div class="middle-user-profile-page-panel" id="noSearchQuery">
             <h2><%= @message %></h2>
         </div>
       <% else %>
