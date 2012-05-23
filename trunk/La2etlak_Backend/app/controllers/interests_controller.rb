@@ -137,7 +137,9 @@ this method calls the "model_toggle" method that takes as parameters the Interes
       flash[:success] = " Interest restored successfully "
     else
 # if the interest wasn't deleted and the admin blocked it successfully a flash appears endicating that
-      flash[:error] = " You have just blocked this interest "
+      flash[:error] = " You have just blocked this interest ,  #{view_context.link_to('Undo?', Interest.model_toggle(params[:id]))}".html_safe
+
+
     end
 # finally , we redirect to the main interest's page after adjusting the changes
     redirect_to @interest
