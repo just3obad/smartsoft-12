@@ -54,5 +54,7 @@ class FacebookAcountTest < ActiveSupport::TestCase
     feed = fb.get_feed
     p feed.to_s
     assert feed.length > 0 , "Length of feed array should be greater than zero"
+    assert feed.first.class.name == "Story" , "Feed type must be story"
+    assert feed.first.category == "Facebook" , "Stories category must be Facebook"
   end 
 end
