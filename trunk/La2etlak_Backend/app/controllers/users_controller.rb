@@ -366,8 +366,9 @@ end
   end
 
 =begin
-  Method that calls the method in model to block story and redirects to main feed.
-  Input: id of the story to be blocked
+  Description: Method that calls the method in model to block story and redirects 
+  to main feed.
+  Input: story id
   Output: flash of success/failure and redirect to main feed
   Author: Rana
 =end
@@ -385,9 +386,9 @@ end
   end
 
 =begin
-  Method that calls the method in model to block interest and redirects to main
-  feed.
-  Input: id of the story for which the interest should be blocked
+  Description: Method that calls the method in model to block interest and 
+  redirects to main feed.
+  Input: story id - id for which the interest should be blocked
   Output: flash of success/failure and redirect to main feed
   Author: Rana
 =end
@@ -406,9 +407,9 @@ end
   end
 
 =begin
-  Method that calls the method in model to block interest and redirects to toggle 
-  interests page.
-  Input: id of the story for which the interest should be blocked
+  Description: Method that calls the method in model to block interest and
+redirects to toggle interests page.
+  Input: story id - for which the interest should be blocked
   Output: flash of success/failure and redirect to toggle
   Author: Rana
 =end
@@ -426,9 +427,9 @@ end
   end
 
 =begin
-  The method that calls the method in the model to block friend feed and renders
-  the view.
-  Input: friend_id
+  Description: The method that calls the method in the model to block friend feed 
+  and renders the view.
+  Input: friend id
   Output: flash and redirection
   Author: Rana
 =end
@@ -446,7 +447,8 @@ end
   end
 
 =begin
-  The method that gets the user's blocked friends and renders the view.
+  Description: The method that gets the user's blocked friends and renders the 
+  view.
   Input: None
   Output: render view with same name
   Author: Rana
@@ -463,8 +465,8 @@ end
   end
 
 =begin
-  The method that calls method in the model to get the user's blocked stories and
-  renders the view.
+  Description: The method that calls method in the model to get the user's blocked 
+  stories and renders the view.
   Input: None
   Output: render view with same name
   Author: Rana
@@ -481,9 +483,9 @@ end
   end
 
 =begin
-  The method that calls the method in the model to unblock a story and renders the
-  view.
-  Input: story_id
+  Description: The method that calls the method in the model to unblock a story 
+  and renders the view.
+  Input: story id
   Output: flash and redirect to main feed
   Author: Rana
 =end
@@ -505,8 +507,8 @@ end
   end
 
 =begin
-  The method that calls the method in the model to unblock a story and renders the
-  view.
+  Description: The method that calls the method in the model to unblock a story 
+  and renders the view.
   Input: story_id
   Output: flash and redirect to main feed
   Author: Rana
@@ -525,9 +527,9 @@ end
   end
 
 =begin
-  The method that calls the method in the model to unblock an interest and renders 
-  the view.
-  Input: interest_id
+  Description: The method that calls the method in the model to unblock an 
+  interest and renders the view.
+  Input: interest id
   Output: flash and redirect to toggle
   Author: Rana
 =end
@@ -545,8 +547,8 @@ end
   end
 
 =begin
-  The method that calls the method in the model to unblock an interest and renders 
-  the view.
+  Description: The method that calls the method in the model to unblock an 
+  interest and renders the view.
   Input: interest_id
   Output: flash and redirect to main feed
   Author: Rana
@@ -566,9 +568,9 @@ end
   end
 
 =begin
-  The method that calls the method in the model to unblock friend feed and renders
-  the view.
-  Input: friend_id
+  Description: The method that calls the method in the model to unblock friend 
+feed and renders the view.
+  Input: friend id
   Output: flash and redirect to friends feed
   Author: Rana
 =end
@@ -590,9 +592,9 @@ end
   end
 
 =begin
-  The method that calls method in the model to get friend stories and renders the
-  view.
-  Input: id of friend to view his/her feed
+  Description: The method that calls method in the model to get friend stories and 
+  renders the view.
+  Input: friend id
   Output: rendering the friend's feed
   Author: Rana
 =end
