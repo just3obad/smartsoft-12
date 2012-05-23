@@ -49,11 +49,8 @@ class FacebookAcountTest < ActiveSupport::TestCase
   end 
 
   test "should get facebook feed" do
-    fb = FacebookAccount.new
+    fb = facebook_accounts(:one)
     fb.user = users(:ben)
-    fb.auth_token = "AAADGpYHrrBQBAAzIqkRaZCCxORcSv4mnEZAmKxP4s8c7ZBD7liTV93qpfqkljuFw6hQyrnZC2JQZC0dE8huNka0u7xBSoN0FEEMyyd9tGngZDZD"
-    fb.auth_secret = 1
-    fb.save!
     feed = fb.get_feed
     p feed.to_s
     assert feed.length > 0 , "Length of feed array should be greater than zero"
