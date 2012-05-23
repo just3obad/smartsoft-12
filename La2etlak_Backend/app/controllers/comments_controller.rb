@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to :controller => "stories", :action => "get" , :id => @comment.story.id
     else
-      flash[:empty_comment_danger] = "Enter something to comment. $red"
+      flash[:empty_comment_danger] = "Please enter something to comment. $red"
       redirect_to :controller => "stories", :action => "get" , :id => params[:comment][:story_id]
     end
   end
