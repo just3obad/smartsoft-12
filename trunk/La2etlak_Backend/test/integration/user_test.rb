@@ -20,7 +20,7 @@ class UserTest < ActionDispatch::IntegrationTest
 
     #Author : Mina Adel
     test "route to main feed" do
-      assert_routing 'users/1/main_feed', {:controller => "users", :action => "feed", :id => "1"}
+      assert_routing 'users/mob/main_feed', {:controller => "users", :action => "feed", :id => "1"}
     end
     
     #Author: Rana
