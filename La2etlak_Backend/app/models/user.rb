@@ -53,24 +53,34 @@ class User < ActiveRecord::Base
   :uniqueness => { :case_sensitive => false}
   validates :first_name, :length => { :maximum => 20 }
   validates :last_name,  :length => { :maximum => 20 }
-  
- # gets the shared stories of one friend given his/her id
- # to get your own shared stories supply your own ID
- # as the param friend id
- # Author: Menisy
+
+=begin  
+ gets the shared stories of one friend given his/her id
+ to get your own shared stories supply your own ID
+ as the param friend id
+ Input: int friend id whom I want to get stories from
+ Output: story array
+ Author: Menisy
+=end  
   def get_one_friend_stories(friend_id) 
     user = User.find(friend_id)
     user.shared_stories
   end
 
-  # gets the users shared stories
-  # Author: Menisy
+=begin
+   gets the users shared stories
+   Inputs: none
+   Author: Menisy
+=end
   def get_shared_stories
     self.shared_stories
   end
-  
- # gets the shared stories of friends of a user
- # Author: Menisy
+=begin
+  gets the shared stories of friends of a user
+  Inputs: none
+  Output: story array
+  Author: Menisy
+=end
   def get_friends_stories()
     friends = self.friends
     shared_stories = Array.new
@@ -79,9 +89,14 @@ class User < ActiveRecord::Base
     end
     return shared_stories.flatten
   end
-# gets the users pending notifications
-# only pending friendship requests for now
-# Author: Menisy
+
+=begin  
+ gets the users pending notifications
+ only pending friendship requests for now
+ Inputs: none
+ Output: array of users who invited me
+ Author: Menisy
+=end
 def get_notifications
   if self.pending_invited_by.empty?
     nil
