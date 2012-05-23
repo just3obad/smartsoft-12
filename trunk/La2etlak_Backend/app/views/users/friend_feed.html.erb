@@ -1,91 +1,66 @@
 <!--$$$$$$$$$$$$$$$$$$ Rana $$$$$$$$$$$$$$$$$$$ -->
-<div id = "heading" style="padding-left:5px;color:#0000FF;font-size:5px;">
+
+<div id = "heading" class="story-component-box-mobile" style="padding-left: 5px;color:#0088CC">
      <!--displaying friend info and message if no stories were shared by him/her-->
+  <h4>Friend Information</h4><br>
+  <div class="well">
+     <table style="float:right">
      <%@friend = User.find_by_id(@friend_id)
          if (!(@friend.name.nil?) && @friend.name != "")
               @username = @friend.name
          else
-              @username = @friend.email
+              @username = @friend.email.split('@')[0]
          end%>
-     <p>Friend Info</p>
-     <p><%= "Name: #{@username}"%></p>
-     <p><%= "Email: #{@friend.email}"%></p><br><br>
-     <p>Friend Feed</p>
-     <% if @my_friend_stories.size == 0 %>
-         <p>"This user did not share any stories yet!"</p><br>
-     <%end%>
+     <tr><%= "Name: #{@username}"%></tr><br>
+     <tr><%= "Email: #{@friend.email}"%></tr>
+     </table>
+  </div>
+  <h4>Friend Feed</h4><br>
 </div>
+     
 <!--loop on each story to display it correctly-->
-          <% unless @my_friend_stories.nil? %>
-	     <% @my_friend_stories.each do |f| %>
-<div id = "my_stories" class="story-component-box-mobile">
-	<table class="table" width="200">
-		<tr>
-			<%unless f.content.nil?%>
-			<td rowspan="2">
-			<!-- Displaying the picture with a width of 50 -->
-			<img id="topic" src="<%=f.media_link%>" width="50"/>
-			</td>
-			<td rowspan="2">
-			<%end%>
-			<table>
+<% # encoding: utf-8%>
+	<% unless @my_friend_stories.nil? || @my_friend_stories.empty? %>
+	<!-- if not nil -->
+	<% @my_friend_stories.each do |f| %>
+	<!-- I loop over the list of stories -->
+<div class="story-component-box-mobile">
+	<div class="well" style="border-right:5px solid #f89406;">
 				<% if f.id.nil?%>
 				<% serStory = Marshal::dump(f)%>
-					<%if f.title.length > 17 %>
-						<tr><td><%= link_to(f.title[0..17] 								+"..." , {:controller => 								'stories', :action => 								'get_story_feed', :serStor 								=> serStory} )%>
- 					        </td></tr>
-					<%else%>
-						<tr><td><%= link_to(f.title , 	 								{:controller => 							'stories', :action => 								'get_story_feed', :serStor 								=> serStory} )%>
-						</td></tr>
-					<%end%>
-						<%if f.content.length > 20 %>
-						<tr><td><%= f.content[0..20]+"..."%>
-						</td></tr>
-					<%else%>
-						<tr><td><%= f.content%></td></tr>
-					<%end%>
+					<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
+						<table style="float:right">
+							<tr>
+								<td><span class="pull-right bluebadge">Social Network Feed</span></td>
+							</tr>
+						</table>
+					
 				<%else%>
-					<%if f.title.length > 17 %>
-						<% url = "/stories/"+f.id.to_s+"/ 							get" %>
-						<tr><td><%= link_to(f.title[0..17] 								+"..." , {:controller => 								'stories', :action => 								'get', :id => f.id} )%>
-						</td></tr>
-					<%else%>
-						<tr><td><%= link_to(f.title , 								{:controller => 							'stories', :action => 								'get', :id => f.id} )%>
-					        </td></tr>
+						<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
+						<table style="float:right">
+							<tr>
+								<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
+								<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
+							</tr>
+						</table>
 					<%end%>
-					<%unless f.mobile_content == nil%>
-						<%if f.mobile_content.length > 20 %>
-						<tr><td>
-						<%=f.mobile_content[0..20]+"..."%>
-						</td></tr>
-						<%else%>
-						<tr><td><%= f.mobile_content%>
-						</td></tr>
-						<%end%>
-					<%end%>
-				<%end%>
-                                
-			</table>
-		        </td>
-	        </tr>
-	</table>
+	</div>		
+</div>
 	<%end%>
-</div>
-             <%end%>
-<div class="apple_pagination">
+	<div class="apple_pagination">
 	<%= will_paginate @my_friend_stories, :container => false %>
-</div>
+	</div>
+	<%else%>
+	<!--if nil or empty, a message appears -->
+	<div class="story-component-box-mobile" style="color:#0088CC">
+		This friend did not share any stories.
+	</div>
+	<%end%>
 <!-- block friend button -->
 <div id = "block">
-        <br><%= link_to "Block this friend", 
+        <br><%= link_to " Block this friend ", 
         {:controller => 'users', :action => 'block_friends_feed', :id => 
-        @friend_id},class: "user-component-button-absolute btn span2"%><br><br>
-</div>
-<!-- back button to friendship/index-->
-<div id = "back">
-        <%= link_to "Back", 
-        {:controller => 'friendships', :action => 'index'}, 
-        class: "user-component-button-absolute btn span2"%>
+        @friend_id},class: "user-component-button-absolute btn"%><br><br>
 </div>
 
 <!--$$$$$$$$$$$$$$$$$$ Rana $$$$$$$$$$$$$$$$$$$ -->
