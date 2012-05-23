@@ -117,8 +117,8 @@ def fetch_rss(link)
     slink = rss.items[i].link
 
     #check if the story already exists in the database
-    count_of_stories_with_same_title = Story.where(:title => stitle).select(:title).count
-
+    #count_of_stories_with_same_title = Story.where(:title => stitle).select("count(title)")
+    sid = Story.find_by_story_link(slink)
 
     #if it is a new story, it will enter automatically
     #if count_of_stories_with_same_title == 0
@@ -132,29 +132,27 @@ def fetch_rss(link)
 	#end
 
 	#getting the id of the interest
-
-      a = Feed.where(:link => source).select(:interest_id)
       
 	sinterest = Feed.find_by_link(source).interest_id
 
     #if it is a new story, it will enter automatically
-    if count_of_stories_with_same_title == 0
+    if sid == nil
     puts '#######################################################1'
      i = 0
-     while i < a.size do
+ 
       storynow = Story.new(:title => stitle, :rank => 0, :category => "RSS", :deleted => false, :hidden => false, :media_link => "")
 	
 
     puts '######################################################2'
-      storynow.interest_id = a[i].interest_id
+      storynow.interest_id = sinterest
       storynow.content = sdescription
       storynow.story_link = slink
        img = "img src="
-      if(sdescription.index(img) > 0)
-      	storynow.media_link =  storynow.new_media_link(sdescription)	
-      end
+      #if(sdescription.index(img) != 0)
+      	#storynow.media_link =  storynow.new_media_link(sdescription)	
+      #end
       storynow.mobile_content = storynow.new_content(sdescription)
-      #storynow.content = sdescription
+      storynow.content = sdescription
       storynow.save
 
       sid = Story.find_by_title(stitle).id
@@ -163,7 +161,6 @@ def fetch_rss(link)
 
       listOfStories.append(storynow)
       i+=1
-    end
     else
       puts '#######################################################3'
       #if the story exists in the database it will enter the array without modifications
@@ -186,9 +183,9 @@ rescue SocketError
 	return false
 rescue RuntimeError
 	return false
-rescue NoMethodError
-	p 'enter valid link not a website'
-	return false
+#rescue NoMethodError
+#	p 'enter valid link not a website'
+#	return false
 rescue Errno::ENOENT
 	p 'enter valid link'
 	 return
