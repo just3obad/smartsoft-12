@@ -2,7 +2,7 @@ class CommentUpDown < ActiveRecord::Base
 
 =begin
     
-Author: Menisy
+  This class is solely done by me, Menisy.
 
 
 =end
@@ -11,6 +11,15 @@ Author: Menisy
   belongs_to :user
   belongs_to :comment
   
+=begin
+  Adds the action that has just happened to the log, the type
+  of un-up/up is determened by the comment model that calls
+  this method passing the parameter before as specified.
+  Inputs: commnter (user who is the comment owner).
+          before (int which tells if the action is up or un-up)
+  Output: none
+  Author: Menisy
+=end
   def add_to_log(commenter,before=1)
     msg = nil
     if self.action == 1 then
