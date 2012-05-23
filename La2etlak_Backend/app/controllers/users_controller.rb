@@ -239,6 +239,22 @@ def tumblr_feed
   render :layout => "mobile_template", :template => "users/feed"
 end
 
+=begin
+Description: Method to call on the User model method, share
+Input: story id via params
+Output: none
+Author: Mina Adel
+=end
+def share_story
+  @user = current_user
+  story_id = params[:id]
+  if(@user.share(story_id))
+    flash[:story_successfully_shared] = "You have successfully shared this story, it will now appear on your friends' feeds $green"
+  else
+    flash[:story_not_shared] = "Story not successfully shared, please try again later $red"
+  end
+  redirect_to("/stories/"+story_id+"/get", :flash => flash)
+end
 
 =begin
 this method return current user interests and all interests on the system and render to mobile_template (toggle view )
