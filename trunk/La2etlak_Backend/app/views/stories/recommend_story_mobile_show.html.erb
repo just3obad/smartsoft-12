@@ -1,31 +1,36 @@
 <!-- Auther: khaled.elbhaey -->
-<div "id=submit" align="center">
-	<form action="/mob/stories/recommend_success_mobile_show/<%= @storyid%>", id="recommendation"><!-- form which the user fill input in -->
-		<%if @flistemail.empty?%>
-			 <br>
-			 <br> 
-	    <%else%>
-			    <b>
-				  choose a friend's email
-				</b>
-				<br>
-			    <br>
-				<% @flistemail.each do |f| %><!-- list of friends email-->
-					<input type="radio" name="lemail" value=<%=f%>><%=f%>
+<div align="center">
+	<div id="submit">
+		<form action="/mob/stories/recommend_success_mobile_show/<%= @storyid%>"><!-- form which the user fill input in -->
+			<div id="recommendation">
+			<%if @flistemail.empty?%>
+				 <br>
+				 <br> 
+		    <%else%>
+				    <b>
+					  choose a friend's email
+					</b>
 					<br>
-				<%end%>
-		<%end%>
-		<p>
-			<br> 
-			or write an email manually: 
-		</p>  
-		<input type="text" name="email" id="fmail" style ="height:30px; width:200px" placeholder ="E-mail"/>
-		<br>
-		<p>
-			recommendation message: 
-		</p>
-		<input type="text" name="message" style ="height:30px; width:200px" placeholder ="Message"/>
-		<br>  
-		<input type="submit" name="commit" value="send" style= "width:100px" />
-	</form>	
+				    <br>
+					<table id="list">
+						<% @flistemail.each do |f| %><!-- list of friends email-->
+							<input type="radio" name="lemail" value=<%=f%>><%=f%>
+							<br>
+						<%end%>
+					</table>
+			<%end%>
+			<p>
+				<br> 
+				or write an email manually: 
+			</p>  
+			<input type="text" name="email" id="fmail" style ="height:30px; width:200px" placeholder ="E-mail"/>
+			<br>
+			<p>
+				recommendation message: 
+			</p>
+			<input type="text" name="message" style ="height:30px; width:200px" placeholder ="Message"/>
+			<br>  
+			<input type="submit" name="commit" value="send" style= "width:100px" />
+		</form>	
+	</div>
 </div>
