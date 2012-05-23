@@ -175,7 +175,7 @@ Author: Omar
 			   @successflag=false
          flash[:notice]="Please choose an email from the list or write down one $red" 
 			else
-			 Emailer.recommend_story(@useremail, @listemail, @message, @storytit).deliver
+			 Emailer.recommend_story(@useremail, @listemail, @message, @storytit, @story_url).deliver
 			 Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 
 				story_id: @storyid,interest_id: @interest_id,message: @logmessage )
         flash[:notice]="Recommendation sent $green"
@@ -191,7 +191,7 @@ Author: Omar
             flash[:notice]="Recommendation sent $green" 
 			  else
 				    Emailer.recommend_story(@useremail, @friendmail, @message,
-            @storytit).deliver
+            @storytit, @story_url).deliver
             flash[:notice]="Recommendation sent $green"
 			  end
 			Log.create!(loggingtype: 2,user_id_1: @user.id,user_id_2: nil,admin_id: nil, 

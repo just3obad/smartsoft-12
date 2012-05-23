@@ -1,3 +1,4 @@
+
 class Emailer < ActionMailer::Base
   default from: "info.2allak@gmail.com"
   default_url_options[:host] = "localhost:3000"
@@ -36,12 +37,13 @@ class Emailer < ActionMailer::Base
     mail(:to => user.email, :subject => "Your Password was reset by the Admin")
   end
 #Author: khaled
-	def recommend_story(sender, reciever, message, stitle)
+	def recommend_story(sender, reciever, message, stitle, surl)
 
 	 @user=sender
 	 @friend=reciever
 	 @mess=message
 	 @storytit=stitle
+   @storyurl=surl
 
 	mail(:to => @friend, :subject => "recommendation in La2etlak app")
 
