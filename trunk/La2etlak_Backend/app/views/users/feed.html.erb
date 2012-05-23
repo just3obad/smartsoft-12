@@ -1,64 +1,58 @@
 <!--$$$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$$$$ -->
 <!--This checks whether the list of stories I receive is nil or not -->
 
-<div class="story-component-box-mobile">
-	<% unless @stories.nil? %>
-		<% @stories.each do |f| %>
-			<% if f.is_a?(Story) %>
-				<div class="story-component-box-mobile">
-					<table class="table" width="200">
-						<tr>
-							<% if !f.media_link.nil?%>
-								<td rowspan="2">
-									<!-- Displaying the picture with a width of 50 -->
-									<img id="topic" src="<%=f.media_link%>" width="50"/>
-								</td>
-								<td rowspan="2">
-							<% end %>
-							<table>
-								<% if f.id.nil? %>
-									<% serStory = Marshal::dump(f)%>
-									<% if !f.title.nil? %>
-										<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></td></tr>
-									<%end%>
-									<% if !f.content.nil? %>
-										<% if f.content.length > 50 %>
-											<tr><td><%= f.content[0..47]+"..."%></td></tr>
-										<% else %>
-											<tr><td><%= f.content%></td></tr>
-										<% end %>
-									<% elsif !f.mobile_content.nil?%>
-										<% if f.mobile_content.length > 50 %>
-											<tr><td><%= f.mobile_content[0..47]+"..."%></td></tr>
-										<% else %>
-											<tr><td><%= f.mobile_content%></td></tr>
-										<% end %>
-									<% end %>
-								<% else %>
-									<% if !f.title.nil? %>
-										<% url = "/stories/"+f.id.to_s+"/get" %>
-										<tr><td><%= link_to(f.title , {:controller => 'stories', :action => 'get', :id => f.id} )%></td></tr>
-									<%end%>
-									<% if !f.mobile_content.nil? %>
-										<% if f.mobile_content.length > 50 %>
-											<tr><td><%= f.mobile_content[0..47]+"..."%></td></tr>
-										<% else %>
-											<tr><td><%= f.mobile_content%></td></tr>
-										<% end %>
-									<% elsif !f.content.nil?%>
-										<% if f.content.length > 50 %>
-											<tr><td><%= f.content[0..47]+"..."%></td></tr>
-										<% else %>
-											<tr><td><%= f.content%></td></tr>
-										<% end %>
-									<% end %>
+<% unless @stories.nil? %>
+	<% @stories.each do |f| %>
+		<% if f.is_a?(Story) %>
+			<div class="story-component-box-mobile">
+				<div class="well" style="border-right:5px solid #f89406;">
+					<% if f.id.nil? %>
+						<% serStory = Marshal::dump(f)%>
+						<% if f.title.nil? %>
+						<h3><%= link_to("Social Feed, No Title", {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
+						<% else %>
+						<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get_story_feed', :serStor => serStory} )%></h3>
+						<% end %>
+						<table style="float:right">
+							<tr>
+							<% if f.category.nil? %>
+									<td><span class="pull-right bluebadge">Social Network Feed</span></td>
+							<% else %>
+								<% if f.category == "Facebook"%>
+									<td><span class="pull-right bluebadge">Facebook</span></td>
+								<% elsif f.category == "twitter"%>
+									<td><span class="pull-right bluebadge">Twitter</span></td>
+								<% elsif f.category == "Flickr"%>
+									<td><span class="pull-right bluebadge">Flickr</span></td>
+								<% elsif f.category == "Tumblr"%>
+									<td><span class="pull-right bluebadge">Tumblr</span></td>
 								<% end %>
-							</table>
-						</tr>
-					</table>
-				</div>					
-			<% end %>
+							<% end %>
+							</tr>
+						</table>
+					<% else %>
+						<% if f.title.nil? %>
+						<h3><%= link_to("Interest Feed, No Title", {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
+						<table style="float:right">
+							<tr>
+								<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
+								<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
+							</tr>
+						</table>
+						<% else %>
+						<h3><%= link_to(f.title, {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
+						<table style="float:right">
+							<tr>
+								<td><span class="pull-right greenbadge">Ups(<%=f.liked.length%>)</span></td>
+								<td><span class="pull-right redbadge">Downs(<%=f.disliked.length%>) </span></td>
+							</tr>
+						</table>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
 		<% end %>
+	<% end %>
 		<div class="apple_pagination">
 			<%= will_paginate @stories, :container => false %>
 		</div>
