@@ -2,9 +2,15 @@ class CommentsController < ApplicationController
 
   before_filter {user_authenticated?}
   respond_to :html,:json
-   #### Author: Menisy ####
+=begin
+  This controller is solely created by me, Menisy.
+=end
 
-   
+=begin
+  new action included by default in the controller
+  upon generation
+  Author: Menisy
+=end   
   def new
     @comment = Comment.new
 
@@ -16,7 +22,22 @@ class CommentsController < ApplicationController
 
   def show
     respond_with(@comment = Comment.find(params[:id]))
-  end  
+  end 
+
+=begin
+  An action to create a new comment
+  It set the correct attributes of the
+  comment based on the params that were passed
+  in the post request, if the comment is created
+  successfully the user is redirected to the story page
+  from which he came.
+  Otherwise the comment is not saved and the user is 
+  also redirected to the story page with the appropriate
+  failure flash displayed.
+  Inputs: comment hash in the params of the http POST request
+  Output: failure flash incase of failure
+  Author: Menisy  
+=end 
   def create
     @comment = Comment.new
     @comment.story = Story.find(params[:comment][:story_id])

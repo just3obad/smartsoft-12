@@ -75,6 +75,7 @@ Author: Omar
   # the instance variables needed for the 
   # story page, this was used for seperate
   # testing.
+  ### DEPRECATED ###
   # Author: Menisy
   def mobile_show
     @story = Story.find(params[:id])
@@ -83,8 +84,10 @@ Author: Omar
     render :layout => "mobile_template" 
   end
 
-  # action for thumbing up a comment with params passed in POST HTTP request
-  # Author: Menisy
+=begin
+  Action for thumbing up a comment with params passed in POST HTTP request
+  Author: Menisy
+=end  
   def up_comment
     comment = Comment.find(params[:comment_id])
     upped = comment.up_comment(current_user)
@@ -95,9 +98,10 @@ Author: Omar
       redirect_to :action => "get" ,:id => params[:id]
     end
   end
-  
-  # action for thumbing down a comment with params passed in POST HTTP request
-  # Author: Menisy
+=begin
+  Action for thumbing down a comment with params passed in POST HTTP request
+  Author: Menisy
+=end
   def down_comment
     comment = Comment.find(params[:comment_id])
     downed = comment.down_comment(current_user)
