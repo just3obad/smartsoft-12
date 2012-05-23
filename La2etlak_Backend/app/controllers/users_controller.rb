@@ -78,12 +78,12 @@ class UsersController < ApplicationController
 	def resetPassword
 		@user = User.find_by_email(params[:email].downcase)
     if @user.nil?
-      flash[:notice] ="This email doesn't exist red"
+      flash[:notice] ="This email doesn't exist $red"
       redirect_to :controller => 'users', :action => 'forgot_password'
     else
 		  newpass = @user.resetPassword
 		  Emailer.reset_password(@user,newpass).deliver
-      flash[:notice] = "Your new password has been sent to your email green"
+      flash[:notice] = "Your new password has been sent to your email $green"
       redirect_to :controller => 'user_sessions' , :action => 'new'
     end
 	end

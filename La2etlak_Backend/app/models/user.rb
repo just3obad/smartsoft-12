@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   include UsersHelper
 
   # attr_accessible :title, :body
-  attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, :twitter_account, :twitter_request, :image, :password, :password_confirmation
+  attr_accessible :name, :first_name, :last_name, :date_of_birth, :email, :deactivated, :twitter_account, :twitter_request, :image, :password, :password_confirmation, :new_password
   has_many :comments
   has_many :comment_up_downs
   # stat 0 pending
@@ -970,7 +970,7 @@ Author:Kareem
 	def resetPassword
 	
 		newpass = ((0..9).to_a + ('a'..'z').to_a + ('A'..'Z').to_a ).shuffle[0..5].join
-		self.update_attributes(password: newpass, password_confirmation: newpass)
+		self.new_password = newpass
 		self.save
 		return newpass
 	

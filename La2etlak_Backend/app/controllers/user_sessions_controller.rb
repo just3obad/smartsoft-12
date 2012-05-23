@@ -45,19 +45,27 @@ class UserSessionsController < ApplicationController
 =end
 	def create
  		@user_session = UserSession.new(params[:user_session])
+		userX = User.find_by_email(params[:user_session][:email])
+		if userX != nil
+			if params[:user_session][:password] == userX.new_password && userX.new_password != nil
+				userX.update_attributes(password: userX.new_password, password_confirmation: userX.new_password)
+			end
+		end
   	if @user_session.save
 			@user = current_user
+			@user.new_password = nil
+			@user.save
 			if @user.deactivated
 				@user_session.destroy
-				flash[:notice] = "Sorry, your account has been deactivated red"
+				flash[:notice] = "Sorry, your account has been deactivated $red"
    			redirect_to :action => 'new', :layout =>"mobile_template"
 			else
 				UserLogIn.create!(:user_id => @user.id)
-   			flash[:notice] = "Successfully logged in green"
+   			flash[:notice] = "Successfully logged in $green"
     		redirect_to "/mob/main_feed"
 			end
   	else
-  		 flash[:notice] = @user_session.errors.full_messages[0].to_s+"red"
+  		 flash[:notice] = @user_session.errors.full_messages[0].to_s+"$red"
    		redirect_to :action => 'new', :layout =>"mobile_template"
  	 	end
 	end
@@ -71,7 +79,7 @@ class UserSessionsController < ApplicationController
 	def destroy
   	@user_session = UserSession.find
   	@user_session.destroy
-  	flash[:notice] = "Successfully logged out."
+  	flash[:notice] = "Successfully logged out.$green"
 		redirect_to new_user_session_path
 	end
 
