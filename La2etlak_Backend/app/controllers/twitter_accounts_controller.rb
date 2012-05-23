@@ -68,7 +68,6 @@ class TwitterAccountsController < ApplicationController
 
     rescue 
       flash[:notice] = 'Couldn\'t connect to twitter $red'
-      @user.twitter_account.destroy      
       redirect_to controller: 'users', action: 'connect_social_accounts'
     end 
   end 
