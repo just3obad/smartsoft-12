@@ -566,30 +566,25 @@ Author:Kareem
  Author : Omar 
 =end
  
- def toggle_interests(id1)
+ def toggle_interests(interest)
 	
-	id = id1.id
+    id = interest.id
 	 if self.name.nil?
 	      username = self.email.split('@')[0]
-          else
-      		username = self.name
+         else
+      	      username = self.name
          end
-   		interest_name = Interest.find(id).name
+    interest_name = Interest.find(id).name
   
-   if(self.added_interests.include?(id1))
-	 		self.added_interests.delete id1
+       if(self.added_interests.include?(interest))
+	 	self.added_interests.delete interest
  		message = "#{username} deleted interest : #{interest_name}"
    		Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			interest_id: id, message: message)
-
- 	else 
-		UserAddInterest.create(:user_id => self.id , :interest_id => id)
-=begin       		if(self.blocked_interests.include?(id1))
- 			self.blocked_interests.delete id1
- 		end
-=end 		
+       else 
+		 UserAddInterest.create(:user_id => self.id , :interest_id => id)
  	      	 message = "#{username} added interest : #{interest_name}"
    		 Log.create!(loggingtype: 3,user_id_1: self.id,user_id_2: nil, admin_id: nil, story_id: nil, 			 interest_id: id, message: message)
-      end
+       end
  end
  
 =begin
