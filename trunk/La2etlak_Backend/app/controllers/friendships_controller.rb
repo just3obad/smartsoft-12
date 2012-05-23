@@ -129,8 +129,8 @@ class FriendshipsController < ApplicationController
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1} blocked #{name_2}"
     l.save
-    flash[:notice] = "#{name_2} was blocked successfully $green"
-    redirect_to action: 'index'
+    flash[:notice] = "#{name_2} was blocked successfully $green"    
+    redirect_to action: 'pending'
   end
 
 
@@ -163,7 +163,9 @@ class FriendshipsController < ApplicationController
     @inviters = @user.pending_invited_by
     if @inviters.empty?
       flash[:notice] = "You have no pending requests $red"   
+      redirect_to action: 'index'
+    else 
+      render layout: 'mobile_template'
     end 
-    render layout: 'mobile_template'
   end 
 end 
