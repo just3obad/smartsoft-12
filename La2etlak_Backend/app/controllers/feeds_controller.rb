@@ -39,7 +39,7 @@ end
        end 
      end
     else 
-      flash[:same_rss_feed] = "Sorry, you cannot add the same RSS feed more than once $red"
+      flash[:same_rss_feed] = "Sorry, you cannot add the same RSS feed more than once. $red"
       redirect_to :controller => 'interests', :action => 'show', :id => @interestid
     end
 end

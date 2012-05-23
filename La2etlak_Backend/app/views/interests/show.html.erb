@@ -93,11 +93,11 @@
 					<h3 class="interest-page-text">RSS Feeds :</h3>
 					<div class="interest-page-well ">
 						<! .. adding the RSS feeds added to this interest unless the table is empty ..>
-						<table class="table" style="width:100%">
+						<table class="table" >
 						<% @feeds.each do |f| %>
-    					<tr  style="width:100%">
-      						<td  style="width:100%"><%= link_to( (f.link.length > 30 ? ('%{sub}...' % {:sub => f.link[0,30]}) : f.link), f.link, :style=>"width:100%")	%></td>
-      						<td  style="width:100%"><%= link_to("Delete", f, {:controller => "feeds", :method=>:delete, class: "btn btn-danger" ,:style=>"width:100%"} ) %></td>
+    					<tr >
+      						<td><%= link_to( (f.link.length > 30 ? ('%{sub}...' % {:sub => f.link[0,30]}) : f.link), f.link)	%></td>
+      						<td ><%= link_to("x", f, {:controller => "feeds", :method=>:delete, class: "btn btn-small btn-danger" } ) %></td>
     					</tr>
   						<% end %>
 						</table>
@@ -112,7 +112,7 @@
 			<ul class="nav nav-list" >
 				<li class="divider"></li>	
 			</ul>
-<!.. these are two dummy user stories .. who is responsible for the stories page should  add them here ..>
+			
 			<div class="pre-scrollable">
 				<% @stories.each do |story| %>
 				<div >
