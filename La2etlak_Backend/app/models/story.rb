@@ -200,11 +200,12 @@ include StoriesHelper
     end
   end
 
-##################Begin############
+=begin 
 #description: view_friends_like is a method that return a list of friends emails that liked the story
 #input: a user
 #output: a list of names of friends who liked this story
 #Author: khaled.elbhaey
+=end
   def view_friends_like(user)
     @user=user
     @flistliked=Array.new
@@ -218,14 +219,14 @@ include StoriesHelper
     return @flistliked
 
   end
-################End##################
 
 
-##################Begin############
+=begin 
 #description: view_friends_dislike is a method that return a list of friends emails that disliked the story
 #input: a user
 #output: a list of names of friends who disliked this story
 #Author: khaled.elbhaey
+=end
   def view_friends_dislike(user)
     @user=user
     @flistdisliked=Array.new
@@ -239,8 +240,6 @@ include StoriesHelper
      return @flistdisliked
 
   end
-################End##################
-
 
 =begin
 Description: this method takes as input a user and returns "action" which should be a Likedislike table record .. if the User Liked this Story
