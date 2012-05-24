@@ -1,10 +1,10 @@
 <!--$$$$$$$$$$$$$$$$$$ Rana $$$$$$$$$$$$$$$$$$$ -->
 
-<div id = "heading" style="padding-left:5px;color:#0088CC;">
+<div id = "heading" style="padding-left:5px;">
 	      <h4>Click a story to unblock it.</h4><br>
 </div>
 
-<div id = "list" class ="story-component-box-mobile pre-scrollable", style ="padding-left:5px;">
+<div id = "list" class ="story-component-box-mobile", style ="padding-left:5px;">
            <!--creates a button for each story to unblock it-->
 	  <% @blocked_stories.each do |blocked_story|%>
 	     <%= link_to blocked_story.title, {:controller => 'users', :action =>

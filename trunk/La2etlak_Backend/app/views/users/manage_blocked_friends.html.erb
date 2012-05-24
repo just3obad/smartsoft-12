@@ -1,11 +1,11 @@
 <!--$$$$$$$$$$$$$$$$$$ Rana $$$$$$$$$$$$$$$$$$$ -->
 
-<div id = "heading" style="padding-left:5px;color:#0088CC;">
+<div id = "heading" style="padding-left:5px;">
 
 	      <h4>Click a friend to unblock him/her.</h4><br>
 </div>
 
-<div id = "list" class ="story-component-box-mobile pre-scrollable", style ="padding-left:5px;">
+<div id = "list" class ="story-component-box-mobile", style ="padding-left:5px;">
         <!--creates a button for each friend to unblock him/her -->
 	<% @my_friends.each do |fn|%>
 		<%= link_to fn.email, {:controller => 'users', :action =>

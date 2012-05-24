@@ -2,7 +2,7 @@
 
 <div id = "heading" class="story-component-box-mobile" style="padding-left: 5px;">
      <!--displaying friend info and message if no stories were shared by him/her-->
-  <h4>Friend Information</h4><br>
+  <h4>Friend's information</h4><br>
   <div class="well">
      <table style="float:right">
      <%@friend = User.find_by_id(@friend_id)
@@ -15,7 +15,7 @@
      <tr><%= "Email: #{@friend.email}"%></tr>
      </table>
   </div>
-  <h4>Friend Feed</h4><br>
+  <h4>Friend's feed</h4><br>
 </div>
      
 <!--loop on each story to display it correctly-->
@@ -47,9 +47,12 @@
 	</div>		
 </div>
 	<%end%>
+        <%if (@my_friend_stories.size < 10)%>
+        <%else%>
 	<div class="apple_pagination">
 	<%= will_paginate @my_friend_stories, :container => false %>
 	</div>
+        <%end%>
 	<%else%>
 	<!--if nil or empty, a message appears -->
 	<div class="story-component-box-mobile">
