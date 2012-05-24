@@ -61,7 +61,6 @@ class UserSessionsController < ApplicationController
    			redirect_to :action => 'new', :layout =>"mobile_template"
 			else
 				UserLogIn.create!(:user_id => @user.id)
-   			flash[:notice] = "Successfully logged in $green"
     		redirect_to "/mob/main_feed"
 			end
   	else
@@ -79,7 +78,6 @@ class UserSessionsController < ApplicationController
 	def destroy
   	@user_session = UserSession.find
   	@user_session.destroy
-  	flash[:notice] = "Successfully logged out$green"
 		redirect_to new_user_session_path
 	end
 
