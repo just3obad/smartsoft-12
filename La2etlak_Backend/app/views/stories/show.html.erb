@@ -42,7 +42,6 @@
 
 			<div class="story_right_panel">
 			<h1><%= @story.title %></h1>
-<%if @story.media_link!= "" && @story.media_link != nil%>			
 			<ul class="nav nav-list" >
 			<li class="divider"></li>
 			</ul>
@@ -52,14 +51,13 @@
 					
 					
 <% if !(@story.content.nil? || @story.content=="") %>
-					<div class="pre-scrollable">
+					<div>
 						<p><font size="5"><%=raw @story.content %></p>
 					</div>		
 <%else%>
 <p><font size="3">No content</p>
 <%end%>
 					</div>
-				<%end%>	
 					<div class=body>
 					<h2 class="story-identation story-page-text">Comments</h2>
 					<ul class="nav nav-list story-identation" >
@@ -67,7 +65,7 @@
 					</ul>
 
 <% if !(@comments.nil? || @comments.empty?) %>
-					<div class="story-comments pre-scrollable">
+					<div class="story-comments">
 				<% @comments.each do |comment| %>
 							
 						<div class="well-comment-component">
