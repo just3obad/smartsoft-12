@@ -1,4 +1,4 @@
-  class FriendshipsController < ApplicationController
+class FriendshipsController < ApplicationController
 
   before_filter {user_authenticated?}
 
@@ -46,6 +46,7 @@
       name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
       name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
       l.message = "#{name_1.humanize} requested friendship of #{name_2.humanize}"
+      l.loggingtype = 0
       l.save
     else 
       flash[:request_not_sent] = 'Frindship request was not sent $red'
@@ -74,7 +75,8 @@
     l.user_id_2 = @friend.id
     name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
-    l.message = "#{name_1} accepted friendship of #{name_2}"
+    l.message = "#{name_1.humanize} accepted friendship of #{name_2.humanize}"
+    l.loggingtype = 0
     l.save
     flash[:freindship_accept] = "You and #{name_2.humanize} are now friends $green"
     redirect_to action: 'pending'
@@ -103,6 +105,7 @@
     name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1.humanize} removed friendship of #{name_2.humanize}"
+    l.loggingtype = 0
     l.save
 
     redirect_to action: "index"
@@ -125,6 +128,7 @@
     name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1.humanize} removed friendship requst of #{name_2.humanize}"
+    l.loggingtype = 0
     l.save
 
     redirect_to action: "index"
@@ -148,9 +152,10 @@
     l.user_id_2 = @friend.id
     name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
-    l.message = "#{name_1} blocked #{name_2}"
+    l.message = "#{name_1.humanize} blocked #{name_2.humanize}"
+    l.loggingtype = 0
     l.save
-    flash[:block_success] = "#{name_2} was blocked successfully $green"    
+    flash[:block_success] = "#{name_2.humanize} was blocked successfully $green"    
     redirect_to action: 'pending'
   end
 
@@ -171,8 +176,9 @@
     name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1.humanize} blocked #{name_2.humanize}"
+    l.loggingtype = 0
     l.save
-    flash[:blocked] = "#{name_2.humanize} was blocked successfully $green"    
+    flash[:blocked] = "#{name_2.humanize} was unblocked successfully $green"    
     redirect_to action: 'pending'
   end
 
