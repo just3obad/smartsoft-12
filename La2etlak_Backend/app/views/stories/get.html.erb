@@ -279,9 +279,9 @@
         </div>
         <%else%>
           <% if @block == true %>
-            <%= "All #{@story.interest.name} related stories are blocked to unblock " %><%=link_to('Click here!', {:controller => 'users', :action => 'manage_blocked_stories' })%>
+            <%= "All #{@story.interest.name} related stories are blocked to unblock " %><%=link_to('Click here!', {:controller => 'users', :action => 'manage_blocked_stories' })%><br>
             <%else%>
-          <%= "No more #{@story.interest.name} related stories"%>
+          <%= "No more #{@story.interest.name} related stories"%><br>
           <%end%>
  	<%end%>
   
@@ -293,7 +293,7 @@
  
 	<%end%>
 	
-	<%= time_ago_in_words(@story.created_at)%><%= " ago."%>
+	<%= "Added "%><%= time_ago_in_words(@story.created_at)%><%= " ago."%>
  </div>
 </html> 	
 
