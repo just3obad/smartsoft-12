@@ -13,7 +13,7 @@ Author: Bassem
   	end	
 =begin	
 	Method Description: A method in the admin_settings controller passed 
-	from the show page of the settings page this function just calls the 
+	from the settings page this function just calls the 
 	static method in the model and passes the value entered in the form 
 	then it redirects to the settings page again and it handles if the 
 	admin enters characters not numbers in the text field and throws error
@@ -21,25 +21,29 @@ Author: Bassem
 	Author : Gasser
 =end
 	def configure_flags_threshold
-		if params[:auto] == "on"
-			if params[:valuee].to_i == 0
-			#	flash[:not_entering_numbers] = "Please enter a valid number. $red"
-				Admin_Settings.configure_flags_threshold $current_flags_threshold , false
-			end
+		input = params[:valuee].to_i
+		if input == 0
+			flash[:not_entering_numbers] = "Please enter a valid number. $red"
+			redirect_to '/admin_settings'
+			return
 		else
-			if params[:valuee].to_i == 0
-				flash[:not_entering_numbers] = "Please enter a valid number. $red"
-				Admin_Settings.configure_flags_threshold $current_flags_threshold , true
-			else
-				flash[:success] = "Settings changed successfully. $green"
-				Admin_Settings.configure_flags_threshold params[:valuee] , true
-			end
+			Admin_Settings.configure_flags_threshold input
+			flash[:changed_settings] = "Settings Changed Successfully $green"
 		end
-		#if $current_auto_hiding == 0
-		#	flash[:changed_settings] = "Settings changed successfully. $green"	
-		#end
-		redirect_to '/admin_settings'		
+		redirect_to '/admin_settings'
 	end
+=begin
+	Method Decription: A method in the admin_settings controller passed
+	from the settings page and calls the static method in the model to 
+	update the value in the database and renders success flash that 
+	the settings has changed.
+	Author : Gasser
+=end
+	def configure_auto_hiding
+		Admin_Settings.configure_auto_hiding	
+		flash[:changed_settings] = "Settings Changed Successfully $green"
+		redirect_to '/admin_settings'
+	end 
 	
  	def new
 	  @admin = Admin.new
