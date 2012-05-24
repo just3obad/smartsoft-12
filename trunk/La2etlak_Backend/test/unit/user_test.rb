@@ -329,16 +329,6 @@ class UserTest < ActiveSupport::TestCase
       assert_equal(blocked_stories, this_user.get_blocked_stories, "List returned 	successfully.")
     end
 
-  #Author : 3OBAD
-  test "flickr account RED" do
-    user = User.new
-    user.email = '3obad@prince.com'
-    user.flickr_account = flickr_account(:one)
-    assert !user.flickr_account.nil?
-    flickr_feed = user.flickr_account.get_feed()
-    assert !flickr_feed.nil?
-  end
-
 	#Author: Kiro
 	test "should not save a user without any parameters" do
 		user = User.new
