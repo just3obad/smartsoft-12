@@ -73,7 +73,7 @@
             <%= link_to  "Manual Hiding",{:controller => "admin_settings", :action => "configure_auto_hiding"} ,:class => "btn btn-primary" %>
             <%= form_tag("/admin_settings/configure_flags_threshold", :method => "post") %>
                 <label><b>Configure flags threshold: </b></label>
-                <input type="text" class="span3" placeholder= "<%= $current_flags_threshold %>" name="valuee" <% if $current_auto_hiding == 0 %> disabled = "true" <%end %> >
+                <input type="text" class="span3" placeholder= "<%= Admin_Settings.find_by_key("flags_threshold").value %>" name="valuee" >
                 <button type="submit" class="btn">Submit</button>
               </form> 
                 <span class="badge badge-info">Active Stories: <%= Story.find_all_by_hidden(false).count%></span>
