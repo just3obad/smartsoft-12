@@ -116,7 +116,7 @@ class AdminsController < ApplicationController
   def update
     @admin = current_admin
     if @admin.update_attributes(params[:admin])
-      flash[:notice] = "Successfully updated profile."
+      flash[:notice] = "Successfully updated profile. $green"
       redirect_to('/admin_settings')
     else
       flash[:error] = "Enter Valid arguments. $red"

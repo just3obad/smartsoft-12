@@ -1,7 +1,13 @@
 class AdminSessionsController < ApplicationController
 
  def new  
-   @admin_session = AdminSession.new  
+    @admin_session = AdminSession.find
+    if current_admin == nil
+   @admin_session = AdminSession.new
+    render layout: "login_template", template: "admin_sessions/new"  
+    else
+    redirect_to('/admins/index')  
+    end
  end
 =begin
   This method is used to check if the user entered a valid
@@ -16,7 +22,7 @@ class AdminSessionsController < ApplicationController
   if @admin_session.save   
     redirect_to('/admins/index')  
   else  
-    render :action => 'new'  
+    render layout: "login_template", template: "admin_sessions/new"  
   end  
  end  
 =begin

@@ -1,8 +1,10 @@
-<h1>Change My Password</h1>
+
+<div class="well" style="  display:block; position:absolute; margin-top:15%; margin-left:35%; width:300px;">
+<h5>Change My Password</h5>
 
 <%= form_for @admin, :url => password_reset_path, :method => :put do |f| %>
-    <% @admin.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
+  <% @admin.errors.full_messages.each do |msg| %>
+      <div class="alert alert-error"><%= msg %></div>
    <% end %>
   <%= f.label :password %><br />
   <%= f.password_field :password %><br />
@@ -12,3 +14,5 @@
   <br />
   <%= f.submit "Update my password and log me in" %>
 <% end %>
+
+</div>

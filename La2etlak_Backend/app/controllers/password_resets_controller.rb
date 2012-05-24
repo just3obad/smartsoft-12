@@ -3,7 +3,7 @@ before_filter :load_admin_using_perishable_token, :only => [:edit, :update]
   #before_filter :require_no_admin
 
 def new  
-   render  
+    render layout: "login_template", template: "password_resets/new"  
 end  
 =begin
 this method take the email and send the link to reset password
@@ -27,7 +27,7 @@ end
 
   
 def edit  
- render  
+    render layout: "login_template", template: "password_resets/edit"  
 end  
 =begin
 this method resets password
@@ -38,10 +38,11 @@ def update
  @admin.password = params[:admin][:password]  
  @admin.password_confirmation = params[:admin][:password_confirmation]  
  if @admin.save  
-  flash[:notice] = "Password successfully updated"  
-  redirect_to('/admin/logout')  
+  flash[:notice] = "Password successfully updated. $green"  
+  redirect_to('/admin/login')  
+
  else  
-  render :action => :edit  
+  flash[:notice] = "write your password correctly. $red"  
  end  
 end  
 
