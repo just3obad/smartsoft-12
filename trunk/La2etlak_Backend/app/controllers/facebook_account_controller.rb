@@ -23,7 +23,7 @@ class FacebookAccountController < ApplicationController
 =end
   def authenticate_facebook_done
     if !params[:code]
-      flash[:notice] = "Facebook account was not added $red"
+      flash[:facebook_error] = "Facebook account was not added $red"
       redirect_to :controller => "users", :action => "feed"
       return
     end
@@ -38,14 +38,14 @@ class FacebookAccountController < ApplicationController
     	fb_account.facebook_id = fb_id
     	if fb_account.save
       	fb_account.add_to_log
-      	flash[:notice] = "Facebook account connected. $green"
+      	flash[:facebook_connected] = "Facebook account connected. $green"
       	redirect_to :controller => "users", :action => "connect_social_accounts"
     	else
-      	flash[:notice] = "Facebook account was not added $red" + user.to_s
+      	flash[:facebook_not_added] = "Facebook account was not added $red" + user.to_s
       	redirect_to :controller => "users", :action => "connect_social_accounts"
     	end
     rescue
-    	flash[:notice] = "Error occured contacting facebook $red" + user.to_s
+    	flash[:facebook_error] = "Error occured contacting facebook $red" + user.to_s
       redirect_to :controller => "users", :action => "connect_social_accounts"
   	end
   end
