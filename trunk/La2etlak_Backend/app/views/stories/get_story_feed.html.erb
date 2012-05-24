@@ -12,7 +12,7 @@
     	<!-- Author: Menisy
 					making the image of the video redirect to 
 					the video link -->
-  <% if !@story.story_link.nil? %>
+  <% if !@story.story_link.nil? && @story.category == "Facebook" %>
    			 <a href="<%= @story.story_link %>" target="_new">
   <% end %>
     	<!-- Menisy end -->
