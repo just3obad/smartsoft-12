@@ -10,15 +10,28 @@
 												class: "btn btn-warning" 	
 					%>					
 				<% else %>
-					<%=	link_to 'Remove friendship',{:controller => 'friendships',
+					<%=	link_to 'Remove',{:controller => 'friendships',
 												:action => 'remove', 
 												:friend_id => friend.id}, 
 												class: "btn btn-danger" 	
 					%>
-					<%= link_to 'View feed', {:controller => 'users',
+					<%= link_to 'Feed', {:controller => 'users',
 											  :action => 'friends_feed',
-											  :id => User.find_by_email(friend.email).id}, 
+											  :id => friend.id}, 
 												class: "btn"%>
+					<% if @user.blocked? friend %>
+						<%= link_to 'Unblock', {:controller => 'friendships',
+											  :action => 'unblock',
+											  :friend_id => friend.id}, 
+												class: "btn btn-warning"%>
+					<% else %>
+						<%= link_to 'Block', {:controller => 'friendships',
+											  :action => 'block',
+											  :friend_id => friend.id}, 
+												class: "btn btn-warning"%>
+
+					<% end %>												
+
 				<% end %>
 
 
@@ -39,8 +52,10 @@
 		class: "btn"%>
 	</div>
 
-	<div class="apple_pagination">
-		<%= will_paginate @friends, :container => false %>
-	</div>
+	<% if @friends.count > 5 %>
+		<div class="apple_pagination">
+			<%= will_paginate @friends, :container => false %>
+		</div>
+	<% end %>
 
 </html>

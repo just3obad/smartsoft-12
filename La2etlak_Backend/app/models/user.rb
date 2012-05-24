@@ -991,6 +991,23 @@ Author: Kareem
 				unblocked_stories = get_unblocked_stories(stories)
 				return unblocked_stories
 	end
-	
+
+=begin	
+  Description: This method is not included in the Gem "amistad" yet we need it 
+               therefore, it's not very efficient because of the lack of a proper data
+               structuture 
+  Input : Nothing
+  Ouput : users who blocked self.
+=end
+  def blockers
+    blockers = Array.new
+    for u in User.all
+      if u.blocked? self
+        blockers << u
+      end 
+    end 
+    return blockers
+  end 
+
 
 end
