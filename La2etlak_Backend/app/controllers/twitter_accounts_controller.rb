@@ -57,7 +57,7 @@ class TwitterAccountsController < ApplicationController
         l = Log.new
         l.user_id_1 = @user.id
         name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
-        l.message = "#{name_1} is now connected to twitter account"
+        l.message = "#{name_1.humanize} is now connected to twitter account"
         l.loggingtype = 0
         l.save
 
