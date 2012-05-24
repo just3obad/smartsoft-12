@@ -44,20 +44,7 @@ Author: Omar
 	@dislikes = @story.disliked
 	@action1 = @story.check_like(@user)
 	@action2 = @story.check_dislike(@user)
-	all_related_stories = @story.get_related_stories
-	if(all_related_stories.length > 0)
-	  @block = true
-	 else 
-	      @block = false
-	 end
-	filter_related_stories = all_related_stories - @user.blocked_stories
-	 if (filter_related_stories.length < 5)
-	 	filter_related_stories = filter_related_stories[0,filter_related_stories.length]
-	 else
-	 	filter_related_stories = filter_related_stories[0,5]
-	 end
-	 @filtered_related_stories = filter_related_stories	  
-	 	
+	@filtered_related_stories = []
 	#where(:interest_id => @story.interest.id) 
 	#- @user.blockd_stories
   

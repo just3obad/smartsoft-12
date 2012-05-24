@@ -155,7 +155,7 @@ def feed
                 end
                 stories = stories.uniq
 								if (stories == []) 	
-										flash[:has_no_stories] = "this Feed is empty, <a href=\"/mob/toggle\"><h7 style=	\"color:#FF0000;\">Click here to add some 										interests. </h7> </a> $yellow"
+										flash[:has_no_stories] = "This feed is empty, <a href=\"/mob/toggle\"><h7 style=	\"color:#FF0000;\">Click here to add some 										interests. </h7> </a> $yellow"
 								end
                 # Author : Mina Adel
                 @stories=stories.paginate(:per_page => 10, :page=> params[:page])
