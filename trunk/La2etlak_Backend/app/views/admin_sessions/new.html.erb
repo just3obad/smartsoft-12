@@ -1,17 +1,24 @@
+<div class="well" style="  display:block; position:absolute; margin-top:15%; margin-left:35%; width:300px;">
+<h5>Please enter your email and password to login.</h5>
 <%= form_for @admin_session do |f| %>
   <% @admin_session.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
+      <div class="alert alert-error"><%= msg %></div>
    <% end %>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-  <a href = "/password_resets/new" >forgot password? </a><br />
-  </p>
-  <p><%= f.submit "Log in" %></p>
+	<table style="width:300px;">
+	<tr>	
+    <td align="left"><h3><%= f.label :email%></h3></td>
+    <td align="right"><%= f.text_field :email%></td>
+	</tr>
+	<tr>	
+    <td  align="left"><%= f.label :password %></td>
+    <td  align="right"><%= f.password_field :password %></td>
+	</tr>
+	</table>
+	<table style="width:300px;">
+	<tr>	
+    <td align="left"> <a href = "/password_resets/new" >forgot password?</a></td>
+    <td  align="right"><%= f.submit "     Log in    "%></td>
+	</tr>
+	</table>
 <% end %> 
+</div>
