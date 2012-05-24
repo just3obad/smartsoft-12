@@ -8,10 +8,11 @@
   	<%else%>
 
   <div align="center">
-  </br>
-     <font face="Courier New, Courier, monospace" size="3"><b>Interests</b></font></br></br>
-  
-
+     <font face="Courier New, Courier, monospace" size="3"><b>Interests</b></font></br><br>
+     <span class="greenbadge"><%="Added"%></span> 
+     <span class="redbadge"><%="Deleted"%></span>  
+     <span class="yellowbadge"><%="Blocked"%></span>
+     <br><br><br>
 <!-- create button each interest in the system and if this interest already exists in user interests it makes the button green else it make it red and if interest is blocked by user before the word "(blocked)" is displayed next to the interest -->
 <!-- on adding new/blocked interest the page is refreshed and buttin color is changed into green
 on deleting an exsiting interest the page is refreshed and button color is changed into red -->
@@ -21,10 +22,14 @@ on deleting an exsiting interest the page is refreshed and button color is chang
 		<!-- Kareem -->
    	   <div class="well">
 		<table>			
-   <%if @user_interests.include? interest%> 		 			
-	<span class="greenbadge"><%=interest.name.upcase%></span><br>
+   <%if (@user_interests.include? interest) && (@user.blocked_interests.include? interest) %> 		 			
+	<span class="yellowbadge"><%=interest.name.upcase%></span><br>
 	<%else%>
-	   <span class="redbadge"><%=interest.name.upcase%></span><br>
+		<% if @user.added_interests.include? interest %>
+			<span class="greenbadge"><%=interest.name.upcase%></span><br>	
+		<%else%>	
+	   		<span class="redbadge"><%=interest.name.upcase%></span><br>
+	        <%end%>
    <%end%>
 		</table><br>
 			<table>
