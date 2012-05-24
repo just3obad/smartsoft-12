@@ -184,13 +184,19 @@
 <!-- I create the facebook sharer url with the media link, then I put it into the url part of the button -->
   <% media_url = "http://127.0.0.1:3000/stories/"+@story.id.to_s+"/get"%>
   <% facebook_url = "127.0.0.1:3000/stories/"+@story.id.to_s+"/get"%>
+<div id="Facebook">
   <a href="http://www.facebook.com/share.php?u=<%=facebook_url%>" onclick="return fbs_click(<%=facebook_url%>,via%20nokia)" target="_blank"><%= image_tag('facebook.png' , :style =>"width:32px;height:32px;padding-right:10%;")%></a>
+</div>  
   <!-- I create the twitter sharer url with the media link along with the message "Shared via La2etlak Nokia App", then I put it into the url part of the button -->
 	<% twitter_url = "http://twitter.com/intent/tweet?url=http://127.0.0.1:3000/stories/"+@story.id.to_s+"/get&text=Shared%20via%20La2etlak%20Nokia%20App" %>
+	<div id="Twitter">
 	<%= link_to image_tag('twitter.png' , :style =>"width:32px;height:32px;padding-right:10%;"), twitter_url%>
+</div>
   <!-- This is a link to the users controller, which calls the method share_story with a the story id as a parameter -->
+<div id="La2etlak">
     <%= link_to image_tag('L.png' , :style =>"width:30px;height:30px;"), {:controller => 'users' , :action => 'share_story' , :id => @story.id }%>
 </br>
+</div>
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
 
 <!-- recommend button -->
