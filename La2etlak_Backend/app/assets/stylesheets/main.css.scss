@@ -167,15 +167,6 @@ padding-bottom:20px;
 .greenbadge:hover {
   background-color: #356635;
 }
-#error_explanation {
-  color:#f00;
- margin: -20px 20px 20px 20px;
-  ul {
-    list-style: none;
-text-align: center;
-    margin: 18px 18px 18px 18px;
-  }
-}
 
 .maindiv{
 	margin-top:10px;
@@ -461,13 +452,6 @@ padding-bottom:20px;
 .interest-control-absolute {
 	position:absolute;
 	float:left;
-}
-
-.field_with_errors {
-  margin-top: 10px;
-  padding: 2px;
-  background-color: red;
-  display: block;
 }
 .statistics-left-panel{
 	width: 40%;
