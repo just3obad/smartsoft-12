@@ -70,13 +70,15 @@ Author: Omar
 	render :layout => "mobile_template"
   #render :temple => "show_comments"
   end
-  
-# renders the mobile view and initialize
-  # the instance variables needed for the 
-  # story page, this was used for seperate
-  # testing.
-  ### DEPRECATED ###
-  # Author: Menisy
+
+=begin  
+  Renders the mobile view and initialize
+  the instance variables needed for the 
+  story page, this was used for seperate
+  testing.
+  ## DEPRECATED ###
+  Author: Menisy
+=end
   def mobile_show
     @story = Story.find(params[:id])
     @comment = Comment.new

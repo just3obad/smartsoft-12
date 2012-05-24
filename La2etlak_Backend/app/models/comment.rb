@@ -96,7 +96,7 @@ class Comment < ActiveRecord::Base
       up.add_to_log(self.user)
       return true
     elsif upped_before
-      old_up = self.comment_up_downs.find_by_user_id_and_action(user.id,1)
+      old_up = self.comment_up_downs.find_by_user_id_and_action(user.id,1) # if upped before, then un-up
       old_up.add_to_log(self.user,2)
       old_up.destroy
       return true
@@ -130,7 +130,7 @@ class Comment < ActiveRecord::Base
       down.add_to_log(self.user)
       return true
     elsif downed_before
-      old_down = self.comment_up_downs.find_by_user_id_and_action(user.id,2)
+      old_down = self.comment_up_downs.find_by_user_id_and_action(user.id,2) #if downed before then un-down
       old_down.add_to_log(self.user,2)
       old_down.destroy
       return true
