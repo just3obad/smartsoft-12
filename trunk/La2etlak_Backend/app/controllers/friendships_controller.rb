@@ -1,4 +1,4 @@
-class FriendshipsController < ApplicationController
+  class FriendshipsController < ApplicationController
 
   before_filter {user_authenticated?}
 
@@ -13,11 +13,13 @@ class FriendshipsController < ApplicationController
     @friends = @user.friends
     @pending_invited_by = @user.pending_invited_by
     @pending_invited = @user.pending_invited
-    @friends = @friends + @pending_invited
+    @friends = @friends + @pending_invited + @user.blockers
     @friends.map{|a| if a.name.nil? then a.name = a.email.split('@')[0] end}
     @friends.sort! {|a,b| a.email <=> b.email}
     @friends = @friends.paginate(:per_page => 5, :page=> params[:page])
-    flash[:notice] = 'You have no approved friendships $red'
+    if @friends.empty? 
+      flash[:notice] = 'You have no approved friendships $red'
+    end 
     render layout: 'mobile_template'
   end
 
@@ -36,7 +38,7 @@ class FriendshipsController < ApplicationController
     @friend = User.find(params[:friend_id])
     @friendship_created = @user.invite(@friend)
     if @friendship_created
-      flash[:notice] = 'Frindship request has succesffully been sent green'
+      flash[:notice] = 'Frindship request has succesffully been sent $green'
       # for the log file 
       l = Log.new
       l.user_id_1 = @user.id
@@ -117,10 +119,28 @@ class FriendshipsController < ApplicationController
     @user = current_user
     @friend = User.find(params[:friend_id])
     @user.block @friend
-    @friendship = @user.send(:find_any_friendship_with, @friend)
-    if @friendship
-      @friendship.delete
-    end 
+
+    l = Log.new
+    l.user_id_1 = @user.id
+    l.user_id_2 = @friend.id
+    name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+    name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+    l.message = "#{name_1} blocked #{name_2}"
+    l.save
+    flash[:notice] = "#{name_2} was blocked successfully $green"    
+    redirect_to action: 'pending'
+  end
+
+=begin
+  This is the controller responsible of unblocking a user
+  Input: params[:friend_id]
+  Output: Nothing  
+  Author: Yahia 
+=end
+  def unblock
+    @user = current_user
+    @friend = User.find(params[:friend_id])
+    @user.unblock @friend
 
     l = Log.new
     l.user_id_1 = @user.id
@@ -165,7 +185,9 @@ class FriendshipsController < ApplicationController
       flash[:notice] = "You have no pending requests $red"   
       redirect_to action: 'index'
     else 
+      @inviters = @inviters.paginate(:per_page => 5, :page=> params[:page])
       render layout: 'mobile_template'
     end 
   end 
+
 end 

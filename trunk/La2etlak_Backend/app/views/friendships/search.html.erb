@@ -14,8 +14,8 @@
 			<% @resulted_users.each do |member| %>
 				<li> <%= if member.name.nil?  then member.email.split('@').first else "#{member.name}  (#{member.email})"  end %> </li>
 				
-				<%=	if member.friends.include? @user
-					link_to 'remove friendship',{:controller => 'friendships',
+				<%=	if member.friends.include? @user or member.blocked? @user
+					link_to 'Remove friendship',{:controller => 'friendships',
 						:action => 'remove', 
 						:friend_id => member.id, 
 						:query_forward => @query}, 
@@ -25,8 +25,8 @@
 				elsif @user.invited_by? member  
 					'Requested Friendship'
 
-				elsif @user.invited? member
-						link_to 'remove request',{:controller => 'friendships',
+				elsif @user.invited? member and not member.blocked? @user
+						link_to 'Remove request',{:controller => 'friendships',
 						:action => 'remove', 
 						:friend_id => member.id,
 						:query_forward => @query
@@ -34,7 +34,7 @@
 						class: "btn btn-warning btn-small",  	
 
 				else 
-					link_to 'request friendship',{:controller => 'friendships',
+					link_to 'Request friendship',{:controller => 'friendships',
 							:action => 'create',
 							:friend_id => member.id, 
 							:query_forward => @query
@@ -54,7 +54,7 @@
 			class: "btn btn-small" %>
 	</div>
 
-	<% unless @resulted_users.empty? %>
+	<% if @resulted_users.count > 5 %>
 		<div class="apple_pagination">
 			<%= will_paginate @resulted_users, :container => false %>
 		</div>
