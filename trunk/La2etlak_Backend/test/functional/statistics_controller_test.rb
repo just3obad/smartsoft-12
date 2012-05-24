@@ -82,4 +82,27 @@ class StatisticsControllerTest < ActionController::TestCase
    get :interests, :id=>1
    assert_response :success
    end 
+   
+	#Author : Shafei
+	test "route to all users" do
+		assert_routing 'admins/statistics/all_users', { :controller => "statistics", :action => "all_users"}
+    end
+	
+	#Author : Shafei
+	test "get all users response" do
+		get :all_users
+		assert_response :redirect
+    end
+	
+	#Author : Shafei
+	test "route to all stories" do
+		assert_routing 'admins/statistics/all_stories', { :controller => "statistics", :action => "all_stories"}
+    end
+	
+  #Author : Shafei
+	test "get all stories response" do
+		get :all_stories
+		assert_response :redirect
+    end
+   
 end
