@@ -67,10 +67,10 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(params[:admin])
     if @admin.save
-      flash[:notice] = "Addition successful."
+      flash[:success] = "Addition successful."
       redirect_to('/admin_settings')
     else
-      flash[:error] = "Enter Valid arguments."
+      flash[:error] = "Enter Valid arguments. $red"
       redirect_to('/admin_settings')
     end
   end
@@ -119,7 +119,8 @@ class AdminsController < ApplicationController
       flash[:notice] = "Successfully updated profile."
       redirect_to('/admin_settings')
     else
-      render :action => 'edit'
+      flash[:error] = "Enter Valid arguments. $red"
+      redirect_to('/admin_settings')
     end
   end
 end

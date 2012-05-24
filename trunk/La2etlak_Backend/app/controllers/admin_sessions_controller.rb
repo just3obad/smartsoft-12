@@ -13,8 +13,7 @@ class AdminSessionsController < ApplicationController
 =end
  def create  
   @admin_session = AdminSession.new(params[:admin_session])  
-  if @admin_session.save  
-    flash[:notice] = "Successfully logged in."  
+  if @admin_session.save   
     redirect_to('/admins/index')  
   else  
     render :action => 'new'  
@@ -33,8 +32,7 @@ class AdminSessionsController < ApplicationController
   if @admin_session == nil
     redirect_to('/admin/login')
   else  
-    @admin_session.destroy  
-    flash[:notice] = "Successfully logged out."  
+    @admin_session.destroy   
     redirect_to('/admin/login')
   end  
  end 

@@ -40,9 +40,6 @@
             <h2 id="profile_settings">Profile settings</h2>
 
               <%= form_for @admin2 do |f| %>
-              <% @admin2.errors.full_messages.each do |msg| %>
-                  <p><%= msg %></p>
-               <% end %>
               <p>
                 <%= f.label :first_name %><br />
                 <%= f.text_field :first_name %>
