@@ -93,7 +93,6 @@ class FacebookAccount < ActiveRecord::Base
         return feed
       end	
     rescue
-      raise
       self.destroy
       return []
     end
