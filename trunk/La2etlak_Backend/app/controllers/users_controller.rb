@@ -146,7 +146,7 @@ def feed
                                 stories = user.get_interest_stories(interest)
                         else
                                 stories = user.get_unblocked_stories(Story.get_stories_ranking_last_30_days)[0..4]
-                                temp_stories = user.get_feed("null")
+                                temp_stories = user.get_feed
                                 temp_stories = temp_stories + user.get_friends_stories
                                 temp_stories = temp_stories + user.get_social_feed
                                 temp_stories.shuffle!

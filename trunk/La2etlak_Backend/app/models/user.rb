@@ -466,7 +466,7 @@ Input: Interest.name
 Output: returns List of stories according to the Description
 Author: Kareem
 =end
-  def get_feed(int_name)
+  def get_feed
 	
     user_interests = UserAddInterest.find(:all , :conditions => ["user_id =?" , self.id ] , :select => "interest_id").map {|interest|interest.interest_id} 
     blocked_interests =  BlockInterest.select {|entry| self.id==entry.user_id }.map{|entry| entry.interest_id }
@@ -485,26 +485,7 @@ Author: Kareem
   	unblocked_stories_ids.each do |unblocked_story_id|
         unblocked_stories.append(Story. find(unblocked_story_id))
     end
- 		done_stories =   unblocked_stories #.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
- 		if(int_name != "null")
-    	filtered_stories = Array.new
-    	filtered_stories_ids = Array.new
-			#loop on the unblocked_stories_ids [Array] and get Interest[name] of each story and if this Interest[name] equals
-			#the Parametar[int_name] append thisstory_id to the filtered_stories_ids
-		  unblocked_stories_ids.each do |unblocked_story_id|
-	  		interest_name = Interest.find(Story.find(unblocked_story_id).interest_id).name
-				if(interest_name == int_name)
-			  	filtered_stories_ids.append(unblocked_story_id)
-			  end
-		  end
-    	filtered_stories = Array.new
-			#loop on filtered_stories_ids and get each story according to it's id and append it to filtered_stories
-		  filtered_stories_ids.each do |filtered_story_id|
-	      filtered_stories.append(Story.find(filtered_story_id))
-		  end
-      done_stories = filtered_stories
-    	# done_stories =   filtered_stories.map {|story|story.attributes.merge(:interest =>Interest.find(story.interest_id).name)}
-    end
+ 		done_stories =   unblocked_stories
   	return done_stories
   end
 
