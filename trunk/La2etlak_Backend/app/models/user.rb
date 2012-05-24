@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   # stat 0 pending
   # stat 1 requested
   # stat 2 accepted
-  has_one :haccount
   has_one :facebook_account
   has_one :twitter_account
 	has_one :verification_code
