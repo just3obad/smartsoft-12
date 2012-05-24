@@ -29,9 +29,10 @@ Author: Omar
 require 'nokogiri'
 require 'rubygems'
 require 'open-uri'
- def  new_media_link(sdescription)
+  def  new_media_link(sdescription)
  
 	frag = Nokogiri::HTML.fragment(sdescription)
+	if !frag.at_css('img').nil?
 	first_img_src = frag.at_css('img')['src']
 	#first_p_text  = frag.at_css('p').text
  				url_end = ".com" 
@@ -47,6 +48,9 @@ require 'open-uri'
 	 	else 
 	 	 return ""
 	 	  end
+	 else 
+	   return ""
+	 end  
 	
  end
  
