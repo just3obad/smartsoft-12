@@ -54,7 +54,7 @@
 					<% end %>
 				<% end %>
 			<% else %>
-			<div class="well" style="border-right:5px solid #f89406;">
+			<div id=<%=f.title%> class="well" style="border-right:5px solid #f89406;">
 			<% if f.title.nil? %>
 				<h3><%= link_to("Interest Feed, No Title", {:controller => 'stories', :action => 'get', :id => f.id} )%></h3>
 					<%if f.media_link!=""%>
@@ -88,7 +88,7 @@
 	</div>
 <% else %>
 	<!--if nil, an error message of sorts appears -->
-	<div class="story-component-box-mobile">
+	<div id="Emptiness_Alert" class="story-component-box-mobile">
 		There are no stories in your feed.
 	</div>
 <% end %>
