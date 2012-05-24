@@ -145,7 +145,7 @@ class UsersControllerTest < ActionController::TestCase
   end
   
   #Author : Mina Adel
-  test "check if main feed has the correct elements RED" do
+  test "check if main feed has the correct elements" do
     interest = Interest.create(:name => "Test")
     user = users(:ben)
     UserSession.create user
@@ -159,20 +159,7 @@ class UsersControllerTest < ActionController::TestCase
     end  
   end
   
-  #Author : Mina Adel
-  test "check if main feed is nil RED" do
-    interest = Interest.create(:name => "test Interest")
-    user = users(:ben)
-    UserSession.create user
-    user.block_interest1(interest)
-    stories = user.get_feed(interest.name)
-    puts stories.length
-    assert_empty stories
-    assert get(:feed, {'id' => user.id})
-    puts "gotten"
-    assert_tag :tag => "div", :attributes => { :id => "has_no_stories" }
-  end
-  
+
   #Author: Omar
 	test "toggle view" do
 		
