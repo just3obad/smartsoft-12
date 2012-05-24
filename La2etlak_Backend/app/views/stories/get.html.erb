@@ -105,7 +105,7 @@
      	     </div>
 <!-- adds content of story  -->
  <% if !@story.mobile_content.nil?  && @story.mobile_content.length > 0 %>
-	 <div class="story-comment-box-mobile well" style="padding-left:10px;">
+	 <div class="story-comment-box-mobile well-large" style="padding-left:10px;background-color:#E0DCDC;margin-bottom:5px;">
 		 <%= @story.mobile_content %><br>
 	 </div>
  <%end%>
@@ -120,7 +120,7 @@
 
 
 <!-- checks for number of likes and dislikes per story -->
- 
+  
 		 <%= link_to image_tag('dislikekh.png' , :style =>"width:30px;height:30px;"), {:controller => 'likedislikes' , :action => 'thumb' , :sid => @story.id  , :act => -1}%>
 		  <% if @dislikes.length > 0 %>
 		  <% @a = "#{@dislikes.length} user(s) dislike this." %>
@@ -179,15 +179,15 @@
 <!-- recommend buttons  1) facebook button 2)twitter button 3)La2etlak button -->
   
 <!--$$$$$$$$$$$$$$$$ Mina Adel $$$$$$$$$$$$$$$$ -->
-
+<br>
    &nbsp;
 <!-- I create the facebook sharer url with the media link, then I put it into the url part of the button -->
   <% media_url = "http://127.0.0.1:3000/stories/"+@story.id.to_s+"/get"%>
   <% facebook_url = "127.0.0.1:3000/stories/"+@story.id.to_s+"/get"%>
-  <a href="http://www.facebook.com/share.php?u=<%=facebook_url%>" onclick="return fbs_click(<%=facebook_url%>,via%20nokia)" target="_blank"><%= image_tag('facebook.png' , :style =>"width:32px;height:32px;")%></a>
+  <a href="http://www.facebook.com/share.php?u=<%=facebook_url%>" onclick="return fbs_click(<%=facebook_url%>,via%20nokia)" target="_blank"><%= image_tag('facebook.png' , :style =>"width:32px;height:32px;padding-right:10%;")%></a>
   <!-- I create the twitter sharer url with the media link along with the message "Shared via La2etlak Nokia App", then I put it into the url part of the button -->
 	<% twitter_url = "http://twitter.com/intent/tweet?url=http://127.0.0.1:3000/stories/"+@story.id.to_s+"/get&text=Shared%20via%20La2etlak%20Nokia%20App" %>
-	<%= link_to image_tag('twitter.png' , :style =>"width:32px;height:32px;"), twitter_url%>
+	<%= link_to image_tag('twitter.png' , :style =>"width:32px;height:32px;padding-right:10%;"), twitter_url%>
   <!-- This is a link to the users controller, which calls the method share_story with a the story id as a parameter -->
     <%= link_to image_tag('L.png' , :style =>"width:30px;height:30px;"), {:controller => 'users' , :action => 'share_story' , :id => @story.id }%>
 </br>
@@ -201,22 +201,19 @@
 <!-- Comments area, to comments and up or 
      any comments
      Author: Menisy-->
+<br>
     <div style="padding-left:3px;float:left;">
     <h4> Comments </h4>
 </div>
-<br>
 <br>
 <div style="width:95%;">
     <% comments = Comment.find_all_by_story_id(@story.id) %>
     <% comments.each do |comment| %>
 
-    <div class="story-comment-box-mobile well" style="float:left;clear:both;width:90%;margin:0.5%">
-        <h5 style="padding-left:3%;padding-top:1px;">    <%= comment.user.name %> says:</h5>
+    <div class="story-comment-box-mobile well-large" style="float:left;clear:both;width:90%;margin:0.5%;">
+        <h5 style="padding-top:1px;">    <%= comment.user.name || comment.user.email.split("@")[0] %> says:</h5>
         <div style="clear:both;padding:1px;">
-            <a href="#" style="float:left;padding-right:5px;padding-left:3px;padding-top:10px;" align="top"> <img
-                    src="http://placehold.it/50x50">
-            </a>
-            <div style="padding-top:10px;padding-bottom:5px;">
+            <div style="padding-top:0px;padding-bottom:5px;padding-left:10px;">
                 <%= comment.content %>
             </div>
         </div>
@@ -251,7 +248,7 @@
 </div>
 <div style="width:95%">
     <%= form_for(@comment) do |f| %>
-    <div class="story-comment-box-mobile well" style="padding-left:3px; clear:both;width:margin:0.5%">
+    <div class="story-comment-box-mobile well-large" style="padding-left:3px; clear:both;width:margin:0.5%">
         <div style="margin-left:0.5%;">
             Enter a comment:
         </div>
