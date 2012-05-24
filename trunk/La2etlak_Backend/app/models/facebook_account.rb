@@ -20,9 +20,7 @@ class FacebookAccount < ActiveRecord::Base
   def get_feed
   	begin
       self.auth_secret = self.auth_secret.to_i+1
-      p("\n\n\n>>>>>>>>>>>>>>>>>>>>>>>>>> \n\n\ngetting feed\n\n")
       new_token = Koala::Facebook::OAuth.new("http:\\127.0.0.1:3000").exchange_access_token(self.auth_token.to_s)
-      puts(">>>>>>>>>>>>>>>>>>>>>>>>>>\n\n\n"+new_token+"\n\n\n\n")
       self.auth_token = new_token.to_s
       self.auth_secret = self.auth_secret.to_i+1
       self.save!
@@ -40,6 +38,7 @@ class FacebookAccount < ActiveRecord::Base
           p i.to_s
           p s["type"]
           title = s["from"]["name"]+" shared "
+          # check on the type of post
           if s["type"] == "photo"
             title = title+"a photo:\n"
             msg = ""
@@ -61,6 +60,7 @@ class FacebookAccount < ActiveRecord::Base
             img = s["picture"]
             if img
               if img.index("url=")
+                # extract video url from within the link
                 img_link = URI.unescape(img[img.index("url=")+4,img.length])
               else
                 img_link = img
@@ -74,6 +74,8 @@ class FacebookAccount < ActiveRecord::Base
           else
             next
           end
+          # create new story with the attributes
+          # that were fetched
           story = Story.new
           story.title = title
           story.media_link = media
@@ -88,8 +90,6 @@ class FacebookAccount < ActiveRecord::Base
           content = ""
           media = ""
         end
-        p "returning Facebook feed"
-        #p feed.to_s
         return feed
       end	
     rescue
