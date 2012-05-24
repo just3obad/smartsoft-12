@@ -27,7 +27,7 @@
 
 				elsif @user.invited? member and not member.blocked? @user
 						link_to 'Remove request',{:controller => 'friendships',
-						:action => 'remove', 
+						:action => 'remove_request', 
 						:friend_id => member.id,
 						:query_forward => @query
 						}, 

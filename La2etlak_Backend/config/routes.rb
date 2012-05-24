@@ -137,6 +137,7 @@ NokiaRuby::Application.routes.draw do
   match "mob/friendship/search/:query" => "friendships#search"
   match "mob/friendship/create/:friend_id" => "friendships#create"
   match "mob/friendship/reject/:friend_id" => "friendships#remove"
+  match "mob/friendship/remove_request/:friend_id" => "friendships#remove_request"
   match "mob/friendship/block/:friend_id" => "friendships#block"
   match "mob/friendship/unblock/:friend_id" => "friendships#unblock"
   match "mob/friendship/pending" => "friendships#pending"

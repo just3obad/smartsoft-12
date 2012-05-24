@@ -18,7 +18,7 @@
     @friends.sort! {|a,b| a.email <=> b.email}
     @friends = @friends.paginate(:per_page => 5, :page=> params[:page])
     if @friends.empty? 
-      flash[:notice] = 'You have no approved friendships $red'
+      flash[:friendship_approved] = 'You have no approved friendships $blue'
     end 
     render layout: 'mobile_template'
   end
@@ -38,17 +38,17 @@
     @friend = User.find(params[:friend_id])
     @friendship_created = @user.invite(@friend)
     if @friendship_created
-      flash[:notice] = 'Frindship request has succesffully been sent $green'
+      flash[:request_sent] = 'Frindship request has succesffully been sent $green'
       # for the log file 
       l = Log.new
       l.user_id_1 = @user.id
       l.user_id_2 = @friend.id
       name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
       name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
-      l.message = "#{name_1} requested friendship of #{name_2}"
+      l.message = "#{name_1.humanize} requested friendship of #{name_2.humanize}"
       l.save
     else 
-      flash[:notice] = 'Frindship request was not sent $red'
+      flash[:request_not_sent] = 'Frindship request was not sent $red'
     end  
 
     redirect_to action: "index"
@@ -76,7 +76,7 @@
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1} accepted friendship of #{name_2}"
     l.save
-    flash[:notice] = "You and #{name_2} are now friends $green"
+    flash[:freindship_accept] = "You and #{name_2.humanize} are now friends $green"
     redirect_to action: 'pending'
   end
 
@@ -93,20 +93,43 @@
     if @friendship
       @friendship.delete
       @removed = true
-      flash[:notice] = "Friendship removed #{@friend.email} $green"
+      flash[:friendship_removed] = "Friendship removed #{@friend.email} $green"
     else 
-      flash[:notice] = "Friendship was not #{@friend.email} $red"
+      flash[:friendship_removed] = "Friendship was not #{@friend.email} $red"
     end
     l = Log.new
     l.user_id_1 = @user.id
     l.user_id_2 = @friend.id
     name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
-    l.message = "#{name_1} removed friendship of #{name_2}"
+    l.message = "#{name_1.humanize} removed friendship of #{name_2.humanize}"
     l.save
 
     redirect_to action: "index"
   end
+
+  def remove_request
+    @user = current_user
+    @friend = User.find(params[:friend_id])
+    @friendship = @user.send(:find_any_friendship_with, @friend)
+    if @friendship
+      @friendship.delete
+      @removed = true
+      flash[:request_removed] = "Friendship request removed #{@friend.email} $green"
+    else 
+      flash[:request_not_removed] = "Friendship request was not #{@friend.email} $red"
+    end
+    l = Log.new
+    l.user_id_1 = @user.id
+    l.user_id_2 = @friend.id
+    name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
+    name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
+    l.message = "#{name_1.humanize} removed friendship requst of #{name_2.humanize}"
+    l.save
+
+    redirect_to action: "index"
+
+  end 
 
 =begin
   This is the controller responsible of blocking a user (not receiving
@@ -127,7 +150,7 @@
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
     l.message = "#{name_1} blocked #{name_2}"
     l.save
-    flash[:notice] = "#{name_2} was blocked successfully $green"    
+    flash[:block_success] = "#{name_2} was blocked successfully $green"    
     redirect_to action: 'pending'
   end
 
@@ -147,9 +170,9 @@
     l.user_id_2 = @friend.id
     name_1 = if @user.name.nil? then @user.email.split('@')[0] else @user.name end
     name_2 = if @friend.name.nil? then @friend.email.split('@')[0] else @friend.name end
-    l.message = "#{name_1} blocked #{name_2}"
+    l.message = "#{name_1.humanize} blocked #{name_2.humanize}"
     l.save
-    flash[:notice] = "#{name_2} was blocked successfully $green"    
+    flash[:blocked] = "#{name_2.humanize} was blocked successfully $green"    
     redirect_to action: 'pending'
   end
 
@@ -182,7 +205,7 @@
     @user = current_user
     @inviters = @user.pending_invited_by
     if @inviters.empty?
-      flash[:notice] = "You have no pending requests $red"   
+      flash[:no_pending] = "You have no pending requests $blue"   
       redirect_to action: 'index'
     else 
       @inviters = @inviters.paginate(:per_page => 5, :page=> params[:page])
