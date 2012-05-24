@@ -111,23 +111,35 @@ Author : Omar
 
   #Author : Mina Adel
   test "check facebook share button exists" do
-    story = Story.first
-    assert get(:get, {'id' => story.id})
-    assert_select 'div[id = "Facebook_Button"]'
-  end
+     user = users(:ben)
+     UserSession.create(user)        
+     st = Story.first
+     st.category = "RSS"
+     st.save
+     assert get(:get , {'id' => st.id })
+      assert_select 'div[id = "Facebook"]'
+    end
   
   #Author : Mina Adel
   test "check twitter share button exists" do
-    story = Story.first
-    assert get(:get, {'id' => story.id})
-    assert_select 'div[id = "Twitter_Button"]'
-  end
+     user = users(:ben)
+     UserSession.create(user)        
+     st = Story.first
+     st.category = "RSS"
+     st.save
+     assert get(:get , {'id' => st.id })
+      assert_select 'div[id = "Twitter"]'
+    end
   
   #Author : Mina Adel
-  test "check la2etlak share button exists" do
-    story = Story.first
-    assert get(:get, {'id' => story.id})
-    assert_select 'div[id = "La2etlak_Button"]'
+   test "check la2etlak share button exists" do
+   user = users(:ben)
+   UserSession.create(user)        
+   st = Story.first
+   st.category = "RSS"
+   st.save
+   assert get(:get , {'id' => st.id })
+    assert_select 'div[id = "La2etlak"]'
   end
 
 #Author: khaled.elbhaey 
