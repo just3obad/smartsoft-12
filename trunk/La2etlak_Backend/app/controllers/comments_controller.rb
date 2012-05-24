@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
       end
     end
 
+# included by default upon generation
   def show
     respond_with(@comment = Comment.find(params[:id]))
   end 
