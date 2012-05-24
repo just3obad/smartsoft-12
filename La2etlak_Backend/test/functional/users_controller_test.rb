@@ -139,36 +139,38 @@ class UsersControllerTest < ActionController::TestCase
   test "show main feed" do
     user = User.new(:email => "test@test.com")
     user.save
+    UserSession.create user
     puts user.id
     assert get(:feed, {"id" => user.id})
   end
   
   #Author : Mina Adel
   test "check if main feed has the correct elements RED" do
-    interest = Interest.new(:name => "test Interest")
-    interest.save
-    user = User.new(:email => "test@test.com")
-    user.save
-    useraddinterest = UserAddInterest.new(:user_id => user.id, :interest_id => interest.id)
+    interest = Interest.create(:name => "Test")
+    user = users(:ben)
+    UserSession.create user
     feed = Feed.new(:link => "http://xkcd.com/rss.xml", :interest_id => interest.id)
     feed.save
+    user.toggle_interests(interest)
     stories = user.get_feed("null")
     get(:feed, {'id' => user})
     stories.each do |s|
-          puts s.title
-          assert_select 'div[id = '+s.title+']'
+          assert_select 'div#'+stories.title
     end  
   end
   
   #Author : Mina Adel
   test "check if main feed is nil RED" do
-    interest = Interest.new(:name => "test Interest")
-    interest.save
-    user = User.new(:email => "test@test.com")
-    user.save
-    useraddinterest = UserAddInterest.new(:user_id => user.id, :interest_id => interest.id)
+    interest = Interest.create(:name => "test Interest")
+    user = users(:ben)
+    UserSession.create user
+    user.block_interest1(interest)
+    stories = user.get_feed(interest.name)
+    puts stories.length
+    assert_empty stories
     assert get(:feed, {'id' => user.id})
-    assert_select 'div[id = "Emptiness_Alert"]'
+    puts "gotten"
+    assert_tag :tag => "div", :attributes => { :id => "has_no_stories" }
   end
   
   #Author: Omar
