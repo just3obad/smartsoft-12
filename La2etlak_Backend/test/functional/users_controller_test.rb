@@ -592,11 +592,11 @@ class UsersControllerTest < ActionController::TestCase
    end
 
 	# Author: Kiro
-	test "The correct user is logged in" do
+	test "the correct user is logged in" do
 
 		UserSession.create(users(:ben))
-		get :feed
-		user = assigns(:lol)
+		get :toggle
+		user = assigns(:user)
 		puts user.email
 		assert_not_nil user, "user is nil"
 		assert_equal user.email, "ben@gmail.com", "user is not ben"
