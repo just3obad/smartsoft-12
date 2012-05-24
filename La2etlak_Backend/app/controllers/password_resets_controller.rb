@@ -39,7 +39,7 @@ def update
  @admin.password_confirmation = params[:admin][:password_confirmation]  
  if @admin.save  
   flash[:notice] = "Password successfully updated. $green"  
-  redirect_to('/admin/login')  
+  redirect_to('/admin/logout')  
 
  else  
   flash[:notice] = "write your password correctly. $red"  
