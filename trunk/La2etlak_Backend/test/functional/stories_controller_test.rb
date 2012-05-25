@@ -117,7 +117,7 @@ Author : Omar
      st.category = "RSS"
      st.save
      assert get(:get , {'id' => st.id })
-      assert_select 'div[id = "Facebook"]'
+      assert_select 'a[id = "Facebook"]'
     end
   
   #Author : Mina Adel
@@ -128,7 +128,7 @@ Author : Omar
      st.category = "RSS"
      st.save
      assert get(:get , {'id' => st.id })
-      assert_select 'div[id = "Twitter"]'
+      assert_select 'a[id = "Twitter"]'
     end
   
   #Author : Mina Adel
@@ -139,7 +139,7 @@ Author : Omar
    st.category = "RSS"
    st.save
    assert get(:get , {'id' => st.id })
-    assert_select 'div[id = "La2etlak"]'
+    assert_select 'a[id = "La2etlak"]'
   end
 
 #Author: khaled.elbhaey 
