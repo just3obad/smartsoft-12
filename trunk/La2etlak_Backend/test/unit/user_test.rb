@@ -183,7 +183,7 @@ class UserTest < ActiveSupport::TestCase
 	user.thumb_story(s,1)
 	end
 	end
-	
+	#$$$$$$$$
 	#Author : Kareem
 	test "thumb story again" do
 	user = User.create(:email => "b@a.com" , :password => "123456" , :password_confirmation => "123456")
@@ -201,7 +201,7 @@ class UserTest < ActiveSupport::TestCase
 	i= Interest.create(:name => "Art")
 	s= Story.create(:title => "hahsd" , :interest_id => i.id)
 	UserAddInterest.create(:user_id => user.id , :interest_id => i.id)
-	stories = user.get_feed("null")
+	stories = user.get_feed()
 	assert_not_nil stories
 	assert_equal stories[0].class.name , "Story" , "Return must be of class story"
 	end
