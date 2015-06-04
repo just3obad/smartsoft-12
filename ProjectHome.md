@@ -1,0 +1,2 @@
+![https://docs.google.com/a/sakr.me/spreadsheet/oimg?key=0AuvMRAIn4v4gdGhTN0x3SlYwY3ZiMFJacFRNemZXdWc&oid=11&zx=6qy6tud6al6n&kamasheto.png](https://docs.google.com/a/sakr.me/spreadsheet/oimg?key=0AuvMRAIn4v4gdGhTN0x3SlYwY3ZiMFJacFRNemZXdWc&oid=11&zx=6qy6tud6al6n&kamasheto.png)
+![https://docs.google.com/a/sakr.me/spreadsheet/oimg?key=0AuvMRAIn4v4gdGhTN0x3SlYwY3ZiMFJacFRNemZXdWc&oid=9&zx=nl4l6r87idfz&kamasheto.png](https://docs.google.com/a/sakr.me/spreadsheet/oimg?key=0AuvMRAIn4v4gdGhTN0x3SlYwY3ZiMFJacFRNemZXdWc&oid=9&zx=nl4l6r87idfz&kamasheto.png)
